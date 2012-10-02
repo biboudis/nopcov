@@ -1,0 +1,39 @@
+group C;
+emit_basic_instrumentation_block(label_number) ::= <<
+    __asm__("TRACK<label_number>_BEGIN:\n\t" 
+		"   lea	TRACK<label_number>_BEGIN, %%eax\n\t"   
+		"   lea	TRACK<label_number>_END, %%ecx\n\t" 
+		"   mov	%%eax, (%%esp)\n\t" 
+		"   mov    %%ecx, 4(%%esp)\n\t" 
+		" calll track\n\t" 
+		"TRACK<label_number>_END:\n\t" 
+		: 
+		: 
+		: "eax", "ecx", "esp");
+>>
+
+instrument_compound_statement(label_number, declarations, statement_list) ::= <<
+{
+  <emit_basic_instrumentation_block(label_number)>
+  <declarations; separator="\n">
+  <statement_list>
+}
+>>
+
+instrument_statement(label_number, statement) ::= << {
+<emit_basic_instrumentation_block(label_number)>
+<statement>
+}
+>>
+
+instrument_labeled_statement(label_number, constant_expression, statement) ::= << 
+  case <constant_expression>:
+	<emit_basic_instrumentation_block(label_number)>
+	<statement>
+>>
+
+instrument_default_labeled_statement(label_number, statement) ::= << 
+  default:
+	<emit_basic_instrumentation_block(label_number)>
+	<statement>
+>>
