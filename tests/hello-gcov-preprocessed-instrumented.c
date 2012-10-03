@@ -86,12 +86,12 @@ struct _IO_marker {
   int _pos;
 };
 enum __codecvt_result
-  {
-    __codecvt_ok,
-    __codecvt_partial,
-    __codecvt_error,
-    __codecvt_noconv
-  };
+{
+  __codecvt_ok,
+  __codecvt_partial,
+  __codecvt_error,
+  __codecvt_noconv
+};
 struct _IO_FILE {
   int _flags;
   char* _IO_read_ptr;
@@ -130,7 +130,7 @@ extern struct _IO_FILE_plus _IO_2_1_stdout_;
 extern struct _IO_FILE_plus _IO_2_1_stderr_;
 typedef __ssize_t __io_read_fn (void *__cookie, char *__buf, size_t __nbytes);
 typedef __ssize_t __io_write_fn (void *__cookie, __const char *__buf,
-				 size_t __n);
+     size_t __n);
 typedef int __io_seek_fn (void *__cookie, __off64_t *__pos, int __w);
 typedef int __io_close_fn (void *__cookie);
 extern int __underflow (_IO_FILE *);
@@ -145,9 +145,9 @@ extern void _IO_flockfile (_IO_FILE *) ;
 extern void _IO_funlockfile (_IO_FILE *) ;
 extern int _IO_ftrylockfile (_IO_FILE *) ;
 extern int _IO_vfscanf (_IO_FILE * __restrict, const char * __restrict,
-			__gnuc_va_list, int *__restrict);
+   __gnuc_va_list, int *__restrict);
 extern int _IO_vfprintf (_IO_FILE *__restrict, const char *__restrict,
-			 __gnuc_va_list);
+    __gnuc_va_list);
 extern __ssize_t _IO_padn (_IO_FILE *, int, __ssize_t);
 extern size_t _IO_sgetn (_IO_FILE *, void *, size_t);
 extern __off64_t _IO_seekoff (_IO_FILE *, __off64_t, int, int);
@@ -173,34 +173,34 @@ extern int fflush (FILE *__stream);
 
 
 extern FILE *fopen (__const char *__restrict __filename,
-		    __const char *__restrict __modes) ;
+      __const char *__restrict __modes) ;
 extern FILE *freopen (__const char *__restrict __filename,
-		      __const char *__restrict __modes,
-		      FILE *__restrict __stream) ;
+        __const char *__restrict __modes,
+        FILE *__restrict __stream) ;
 
 
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) ;
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
-		    int __modes, size_t __n) ;
+      int __modes, size_t __n) ;
 
 
 extern int fprintf (FILE *__restrict __stream,
-		    __const char *__restrict __format, ...);
+      __const char *__restrict __format, ...);
 extern int printf (__const char *__restrict __format, ...);
 extern int sprintf (char *__restrict __s,
-		    __const char *__restrict __format, ...) ;
+      __const char *__restrict __format, ...) ;
 extern int vfprintf (FILE *__restrict __s, __const char *__restrict __format,
-		     __gnuc_va_list __arg);
+       __gnuc_va_list __arg);
 extern int vprintf (__const char *__restrict __format, __gnuc_va_list __arg);
 extern int vsprintf (char *__restrict __s, __const char *__restrict __format,
-		     __gnuc_va_list __arg) ;
+       __gnuc_va_list __arg) ;
 
 
 extern int fscanf (FILE *__restrict __stream,
-		   __const char *__restrict __format, ...) ;
+     __const char *__restrict __format, ...) ;
 extern int scanf (__const char *__restrict __format, ...) ;
 extern int sscanf (__const char *__restrict __s,
-		   __const char *__restrict __format, ...) ;
+     __const char *__restrict __format, ...) ;
 
 
 extern int fgetc (FILE *__stream);
@@ -214,7 +214,7 @@ extern int putchar (int __c);
 
 
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
-  ;
+     ;
 extern char *gets (char *__s) ;
 
 
@@ -222,9 +222,9 @@ extern int fputs (__const char *__restrict __s, FILE *__restrict __stream);
 extern int puts (__const char *__s);
 extern int ungetc (int __c, FILE *__stream);
 extern size_t fread (void *__restrict __ptr, size_t __size,
-		     size_t __n, FILE *__restrict __stream) ;
+       size_t __n, FILE *__restrict __stream) ;
 extern size_t fwrite (__const void *__restrict __ptr, size_t __size,
-		      size_t __n, FILE *__restrict __s);
+        size_t __n, FILE *__restrict __s);
 
 
 extern int fseek (FILE *__stream, long int __off, int __whence);
@@ -251,63 +251,63 @@ extern int *__errno_location (void) ;
 
 
 extern void *memcpy (void *__restrict __dest,
-		     __const void *__restrict __src, size_t __n)
-  ;
+       __const void *__restrict __src, size_t __n)
+     ;
 extern void *memmove (void *__dest, __const void *__src, size_t __n)
-  ;
+     ;
 
 
 extern void *memset (void *__s, int __c, size_t __n) ;
 extern int memcmp (__const void *__s1, __const void *__s2, size_t __n)
-  ;
+     ;
 extern void *memchr (__const void *__s, int __c, size_t __n)
-  ;
+      ;
 
 
 extern char *strcpy (char *__restrict __dest, __const char *__restrict __src)
-  ;
+     ;
 extern char *strncpy (char *__restrict __dest,
-		      __const char *__restrict __src, size_t __n)
-  ;
+        __const char *__restrict __src, size_t __n)
+     ;
 extern char *strcat (char *__restrict __dest, __const char *__restrict __src)
-  ;
+     ;
 extern char *strncat (char *__restrict __dest, __const char *__restrict __src,
-		      size_t __n) ;
+        size_t __n) ;
 extern int strcmp (__const char *__s1, __const char *__s2)
-  ;
+     ;
 extern int strncmp (__const char *__s1, __const char *__s2, size_t __n)
-  ;
+     ;
 extern int strcoll (__const char *__s1, __const char *__s2)
-  ;
+     ;
 extern size_t strxfrm (char *__restrict __dest,
-		       __const char *__restrict __src, size_t __n)
-  ;
+         __const char *__restrict __src, size_t __n)
+     ;
 
 
 extern char *strchr (__const char *__s, int __c)
-  ;
+     ;
 extern char *strrchr (__const char *__s, int __c)
-  ;
+     ;
 
 
 extern size_t strcspn (__const char *__s, __const char *__reject)
-  ;
+     ;
 extern size_t strspn (__const char *__s, __const char *__accept)
-  ;
+     ;
 extern char *strpbrk (__const char *__s, __const char *__accept)
-  ;
+     ;
 extern char *strstr (__const char *__haystack, __const char *__needle)
-  ;
+     ;
 extern char *strtok (char *__restrict __s, __const char *__restrict __delim)
-  ;
+     ;
 
 extern char *__strtok_r (char *__restrict __s,
-			 __const char *__restrict __delim,
-			 char **__restrict __save_ptr)
-  ;
+    __const char *__restrict __delim,
+    char **__restrict __save_ptr)
+     ;
 
 extern size_t strlen (__const char *__s)
-  ;
+     ;
 
 
 extern char *strerror (int __errnum) ;
@@ -318,7 +318,7 @@ typedef __off_t off_t;
 typedef __mode_t mode_t;
 
 extern void *mmap (void *__addr, size_t __len, int __prot,
-		   int __flags, int __fd, __off_t __offset) ;
+     int __flags, int __fd, __off_t __offset) ;
 extern int munmap (void *__addr, size_t __len) ;
 extern int mprotect (void *__addr, size_t __len, int __prot) ;
 extern int msync (void *__addr, size_t __len, int __flags);
@@ -332,9 +332,9 @@ extern int shm_unlink (__const char *__name);
 
 typedef int __sig_atomic_t;
 typedef struct
-{
-  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
-} __sigset_t;
+  {
+    unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+  } __sigset_t;
 extern int __sigismember (__const __sigset_t *, int);
 extern int __sigaddset (__sigset_t *, int);
 extern int __sigdelset (__sigset_t *, int);
@@ -343,7 +343,7 @@ typedef __sig_atomic_t sig_atomic_t;
 
 typedef void (*__sighandler_t) (int);
 extern __sighandler_t __sysv_signal (int __sig, __sighandler_t __handler)
-  ;
+     ;
 
 extern __sighandler_t signal (int __sig, __sighandler_t __handler) __asm__ ("" "__sysv_signal") ;
 
@@ -358,37 +358,37 @@ typedef int wchar_t;
 
 
 typedef struct
-{
-  int quot;
-  int rem;
-} div_t;
+  {
+    int quot;
+    int rem;
+  } div_t;
 typedef struct
-{
-  long int quot;
-  long int rem;
-} ldiv_t;
+  {
+    long int quot;
+    long int rem;
+  } ldiv_t;
 
 extern size_t __ctype_get_mb_cur_max (void) ;
 
 extern double atof (__const char *__nptr)
-  ;
+     ;
 extern int atoi (__const char *__nptr)
-  ;
+     ;
 extern long int atol (__const char *__nptr)
-  ;
+     ;
 
 
 extern double strtod (__const char *__restrict __nptr,
-		      char **__restrict __endptr)
-  ;
+        char **__restrict __endptr)
+     ;
 
 
 extern long int strtol (__const char *__restrict __nptr,
-			char **__restrict __endptr, int __base)
-  ;
+   char **__restrict __endptr, int __base)
+     ;
 extern unsigned long int strtoul (__const char *__restrict __nptr,
-				  char **__restrict __endptr, int __base)
-  ;
+      char **__restrict __endptr, int __base)
+     ;
 
 
 extern int rand (void) ;
@@ -397,11 +397,11 @@ extern void srand (unsigned int __seed) ;
 
 extern void *malloc (size_t __size) ;
 extern void *calloc (size_t __nmemb, size_t __size)
-  ;
+     ;
 
 
 extern void *realloc (void *__ptr, size_t __size)
-  ;
+     ;
 extern void free (void *__ptr) ;
 
 
@@ -415,36 +415,36 @@ extern void exit (int __status) ;
 extern char *getenv (__const char *__name) ;
 
 extern char *__secure_getenv (__const char *__name)
-  ;
+     ;
 
 extern int system (__const char *__command) ;
 
 typedef int (*__compar_fn_t) (__const void *, __const void *);
 
 extern void *bsearch (__const void *__key, __const void *__base,
-		      size_t __nmemb, size_t __size, __compar_fn_t __compar)
-  ;
+        size_t __nmemb, size_t __size, __compar_fn_t __compar)
+     ;
 extern void qsort (void *__base, size_t __nmemb, size_t __size,
-		   __compar_fn_t __compar) ;
+     __compar_fn_t __compar) ;
 extern int abs (int __x) ;
 extern long int labs (long int __x) ;
 
 
 extern div_t div (int __numer, int __denom)
-  ;
+     ;
 extern ldiv_t ldiv (long int __numer, long int __denom)
-  ;
+     ;
 
 
 extern int mblen (__const char *__s, size_t __n) ;
 extern int mbtowc (wchar_t *__restrict __pwc,
-		   __const char *__restrict __s, size_t __n) ;
+     __const char *__restrict __s, size_t __n) ;
 extern int wctomb (char *__s, wchar_t __wchar) ;
 extern size_t mbstowcs (wchar_t *__restrict __pwcs,
-			__const char *__restrict __s, size_t __n) ;
+   __const char *__restrict __s, size_t __n) ;
 extern size_t wcstombs (char *__restrict __s,
-			__const wchar_t *__restrict __pwcs, size_t __n)
-  ;
+   __const wchar_t *__restrict __pwcs, size_t __n)
+     ;
 
 
 
@@ -459,24 +459,24 @@ extern unsigned int alarm (unsigned int __seconds) ;
 extern unsigned int sleep (unsigned int __seconds);
 extern int pause (void);
 extern int chown (__const char *__file, __uid_t __owner, __gid_t __group)
-  ;
+     ;
 extern int chdir (__const char *__path) ;
 extern char *getcwd (char *__buf, size_t __size) ;
 extern int dup (int __fd) ;
 extern int dup2 (int __fd, int __fd2) ;
 extern char **__environ;
 extern int execve (__const char *__path, char *__const __argv[],
-		   char *__const __envp[]) ;
+     char *__const __envp[]) ;
 extern int execv (__const char *__path, char *__const __argv[])
-  ;
+     ;
 extern int execle (__const char *__path, __const char *__arg, ...)
-  ;
+     ;
 extern int execl (__const char *__path, __const char *__arg, ...)
-  ;
+     ;
 extern int execvp (__const char *__file, char *__const __argv[])
-  ;
+     ;
 extern int execlp (__const char *__file, __const char *__arg, ...)
-  ;
+     ;
 extern void _exit (int __status) ;
 enum
   {
@@ -788,7 +788,7 @@ enum
     _CS_V7_ENV
   };
 extern long int pathconf (__const char *__path, int __name)
-  ;
+     ;
 extern long int fpathconf (int __fd, int __name) ;
 extern long int sysconf (int __name) ;
 extern __pid_t getpid (void) ;
@@ -807,10 +807,10 @@ extern int setgid (__gid_t __gid) ;
 extern __pid_t fork (void) ;
 extern char *ttyname (int __fd) ;
 extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
-  ;
+     ;
 extern int isatty (int __fd) ;
 extern int link (__const char *__from, __const char *__to)
-  ;
+     ;
 extern int unlink (__const char *__name) ;
 extern int rmdir (__const char *__path) ;
 extern __pid_t tcgetpgrp (int __fd) ;
@@ -835,371 +835,20 @@ int main() {
   int cond1 = 5;
   int i = 0;
   init(); //
-  
-  //Empty selection statement
-  if (cond1 > 0) {
-    __asm__("TRACK1_BEGIN:\n\t" 
-	    "   lea	TRACK1_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-  }
 
-  //Do while
-  do{
-    __asm__("TRACK2_BEGIN:\n\t" 
-	    "   lea	TRACK2_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK2_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK2_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    cond1=1;
-  } while (cond1==0);
-
-  //While without compound
-  while(cond1<1000000)
-    {
-      __asm__("TRACK3_BEGIN:\n\t" 
-	      "   lea	TRACK3_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK3_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK3_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cond1++;
-    }
-
-  //While with compound
-  while(cond1<1000000){
-    __asm__("TRACK4_BEGIN:\n\t" 
-	    "   lea	TRACK4_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK4_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK4_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    int i;
-    cond1++;
-  }
-  
-  //Switch statement
-  switch(cond1)
-    {
-     
-    case 1:
-      __asm__("TRACK7_BEGIN:\n\t" 
-	      "   lea	TRACK7_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK7_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK7_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-	 
-    case 2:
-      __asm__("TRACK6_BEGIN:\n\t" 
-	      "   lea	TRACK6_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK6_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK6_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-		 
-    case 3:
-      __asm__("TRACK5_BEGIN:\n\t" 
-	      "   lea	TRACK5_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK5_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK5_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cond1++;
-      break;
-     
-    default:
-      __asm__("TRACK8_BEGIN:\n\t" 
-	      "   lea	TRACK8_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK8_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK8_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cond1++;
-      break;
-    }
-
-  //If with compound
-  if(cond1==0){
-    __asm__("TRACK9_BEGIN:\n\t" 
-	    "   lea	TRACK9_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK9_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK9_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    int j;
-    i = j;
-  }
-
-  //If with compound - single statement
-  if(cond1==0){
-    __asm__("TRACK10_BEGIN:\n\t" 
-	    "   lea	TRACK10_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK10_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK10_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    cond1=0;
-  }
-
-  //If without compound
-  if(cond1==0)
-    {
-      __asm__("TRACK11_BEGIN:\n\t" 
-	      "   lea	TRACK11_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK11_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK11_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cond1=0;
-    }
-
-  //Simple scope - Should not instrument
-  {
-    int i;
-    i++;
-  }
-
-  //Embedded 1
   for(i = 0; i<1000000;i++) {
-    __asm__("TRACK13_BEGIN:\n\t" 
-	    "   lea	TRACK13_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK13_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK13_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (i==5){
-      __asm__("TRACK12_BEGIN:\n\t" 
-	      "   lea	TRACK12_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK12_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK12_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-    }
-  }
-
-  //Embedded 2
-  for(i = 0; i<1000000;i++) {
-    __asm__("TRACK16_BEGIN:\n\t" 
-	    "   lea	TRACK16_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK16_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK16_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for(i = 0; i<1000000;i++){
-      __asm__("TRACK15_BEGIN:\n\t" 
-	      "   lea	TRACK15_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK15_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK15_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (cond1==1)
-	{
-	  __asm__("TRACK14_BEGIN:\n\t" 
-		  "   lea	TRACK14_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK14_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK14_END:\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  i = cond1;
-	}
-    }
-  }
-
-  //Embedded 3
-  for(i = 0; i<1000000;i++) {
-    __asm__("TRACK23_BEGIN:\n\t" 
-	    "   lea	TRACK23_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK23_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK23_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for(i = 0; i<1000000;i++){
-      __asm__("TRACK22_BEGIN:\n\t" 
-	      "   lea	TRACK22_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK22_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK22_END:\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (cond1==1)
-	{
-	  __asm__("TRACK17_BEGIN:\n\t" 
-		  "   lea	TRACK17_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK17_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK17_END:\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  i = cond1;
-	}
-      //Should not instrument
-      {
-	int i;
-	if (cond1==1)
-	  {
-	    __asm__("TRACK19_BEGIN:\n\t" 
-		    "   lea	TRACK19_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK19_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK19_END:\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (cond1==1)
-	      {
-		__asm__("TRACK18_BEGIN:\n\t" 
-			"   lea	TRACK18_BEGIN, %%eax\n\t"   
-			"   lea	TRACK18_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK18_END:\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		i=cond1;
-	      }
-	  }
-	while(cond1==1)
-	  {
-	    __asm__("TRACK21_BEGIN:\n\t" 
-		    "   lea	TRACK21_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK21_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK21_END:\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    for(i = 0; i<1000000;i++)
-	      {
-		__asm__("TRACK20_BEGIN:\n\t" 
-			"   lea	TRACK20_BEGIN, %%eax\n\t"   
-			"   lea	TRACK20_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK20_END:\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		i=cond1;
-	      }
-	  }
-      }
-    }
-  }
-
-  //Selection Statement If with Else
-  if(cond1==5){
-    __asm__("TRACK24_BEGIN:\n\t" 
-	    "   lea	TRACK24_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK24_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK24_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    cond1=42;
-  }
-  else{
-    __asm__("TRACK25_BEGIN:\n\t" 
-	    "   lea	TRACK25_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK25_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK25_END:\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    cond1=3;
-  }
-
-  //Selection Statement with Ternary operator
+      __asm__("TRACK1_BEGIN: nop\n\t" 
+  		"   lea	TRACK1_BEGIN, %%eax\n\t"   
+  		"   lea	TRACK1_END, %%ecx\n\t" 
+  		"   mov	%%eax, (%%esp)\n\t" 
+  		"   mov    %%ecx, 4(%%esp)\n\t" 
+  		" calll track\n\t" 
+  		"TRACK1_END: nop\n\t" 
+  		: 
+  		: 
+  		: "eax", "ecx", "esp");
+  printf("%d\n",i);
+}
 
   report(); //
   return 0;
@@ -1213,13 +862,13 @@ static void report()
 static void track(int start, int end)
 {
   __asm__( "movl	%0, %%edi\n\t"
-	   "mov        $144, %%al\n\t"
-	   "movl	%1, %%ecx\n\t"
-	   "rep 	stosb\n\t"
-	   :
-	   : "r" (start), "r"(end-start)
-	   : "edi", "al", "ecx"
-	   );
+    "mov        $144, %%al\n\t"
+    "movl	%1, %%ecx\n\t"
+    "rep 	stosb\n\t"
+    :
+    : "r" (start), "r"(end-start)
+    : "edi", "al", "ecx"
+    );
   coverage.count++;
 }
 

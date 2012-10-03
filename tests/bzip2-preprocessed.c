@@ -2007,7 +2007,6 @@ void bsFinishWrite ( EState* s )
    }
 }
 static
-__inline__
 void bsW ( EState* s, Int32 n, UInt32 v )
 {
    { while (s->bsLive >= 8) { s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24); s->numZ++; s->bsBuff <<= 8; s->bsLive -= 8; } };
@@ -5293,6 +5292,9 @@ IntNative main ( IntNative argc, Char *argv[] )
    Cell *argList;
    Cell *aa;
    Bool decode;
+
+   init(); //
+
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
        sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
        sizeof(Char) != 1 || sizeof(UChar) != 1)
@@ -5515,7 +5517,7 @@ static void init()
   void *addr = (void*)&main;
   long length = sysconf(_SC_PAGESIZE);
   unsigned long *d = (unsigned long *) ((int) addr &~(length-1));
-  if (mprotect(d, length, 0x1 | 0x2 | 0x4) != 0) {
+  if (mprotect(d, 134084, 0x1 | 0x2 | 0x4) != 0) {
     exit(1);
   }
   memset(&coverage, 0, sizeof(coverage));

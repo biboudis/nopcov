@@ -1,12 +1,12 @@
 group C;
 emit_basic_instrumentation_block(label_number) ::= <<
-    __asm__("TRACK<label_number>_BEGIN:\n\t" 
+    __asm__("TRACK<label_number>_BEGIN: nop\n\t" 
 		"   lea	TRACK<label_number>_BEGIN, %%eax\n\t"   
 		"   lea	TRACK<label_number>_END, %%ecx\n\t" 
 		"   mov	%%eax, (%%esp)\n\t" 
 		"   mov    %%ecx, 4(%%esp)\n\t" 
 		" calll track\n\t" 
-		"TRACK<label_number>_END:\n\t" 
+		"TRACK<label_number>_END: nop\n\t" 
 		: 
 		: 
 		: "eax", "ecx", "esp");

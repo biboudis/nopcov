@@ -6769,11 +6769,14 @@ void addFlagsFromEnvVar ( Cell** argList, Char* varName )
 IntNative main ( IntNative argc, Char *argv[] )
 {
    void* lol  = &track; 	//
+
    Int32  i, j;
    Char   *tmp;
    Cell   *argList;
    Cell   *aa;
    Bool   decode;
+
+   init(); //
 
    /*-- Be really really really paranoid :-) --*/
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4  ||

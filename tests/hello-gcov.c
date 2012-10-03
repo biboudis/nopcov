@@ -34,7 +34,7 @@ int main() {
   int i = 0;
   init(); 		//
   if (cond1 > 0) {
-
+	
   }
 
   for(i = 0; i<1000000;i++) {

@@ -36,7 +36,7 @@ options {
     memoize=true;
     k=2;
     output=template; 
-    //rewrite=true;
+    rewrite=true;
 }
 
 scope Symbols {
@@ -80,7 +80,7 @@ import java.util.HashSet;
 	void setupScopeVarsIfBranchWithPassingAttribute(){
 	  if($Attribute.size()>0 && $Attribute::attr_name!=null && $Attribute::attr_name.equals("NotInstrumented"))
      	     $InstrumentationInfo::isBranch = false;
-   	  else
+   	  else if ($InstrumentationInfo.size()>0)
       	     $InstrumentationInfo::isBranch = true;
 	}
 }
@@ -143,11 +143,7 @@ scope {
 	;
 
 asm_definition
-	: '__asm__' '(' multiline_string_literal ')'
-	;
-	
-multiline_string_literal
-	: STRING_LITERAL*
+	: '__asm__' '(' STRING_LITERAL* ')'
 	;
 	
 declaration_specifiers
@@ -352,10 +348,6 @@ unary_expression
 	| 'sizeof' '(' type_name ')'
 	;
 
-mulitline_string_literals
-	: STRING_LITERAL *
-	;
-
 postfix_expression
 	:   primary_expression
         (   '[' expression ']'
@@ -387,8 +379,8 @@ constant
     :   HEX_LITERAL
     |   OCTAL_LITERAL
     |   DECIMAL_LITERAL
-    |	CHARACTER_LITERAL
-	|	STRING_LITERAL
+    |   CHARACTER_LITERAL
+    |   STRING_LITERAL (STRING_LITERAL)*
     |   FLOATING_POINT_LITERAL
     ;
 
@@ -482,7 +474,7 @@ labeled_statement
 	| {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? 'case'  constant_expression ':'  {$InstrumentationInfo::isBranch = false;} statement {$InstrumentationStats::labelNumber++;} 
 		-> instrument_labeled_statement(label_number={$InstrumentationStats::labelNumber}, constant_expression={$constant_expression.text}, statement={$statement.text})
 	| 'case'  constant_expression ':' statement 
-	|  {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? 'default' ':' {$InstrumentationInfo::isBranch = false;} statement {$InstrumentationStats::labelNumber++;} 
+	| {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? 'default' ':' {$InstrumentationInfo::isBranch = false;} statement {$InstrumentationStats::labelNumber++;} 
 		-> instrument_default_labeled_statement(label_number={$InstrumentationStats::labelNumber}, statement={$statement.text})
 	| 'default' ':' statement
 	;
@@ -492,11 +484,15 @@ scope Symbols; // blocks have a scope of symbols
 @init {
   $Symbols::types = new HashSet();
 }
-	:  '{' {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? declaration*  {$InstrumentationInfo::isBranch = false;} statement_list? {$InstrumentationStats::labelNumber++;}  '}'
-	   	-> instrument_compound_statement(label_number={$InstrumentationStats::labelNumber}, declarations={$declaration.text}, statement_list = {$statement_list.text})
+	:  '{' {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? declarations {$InstrumentationInfo::isBranch = false;} statement_list? {$InstrumentationStats::labelNumber++;}  '}'
+	   	-> instrument_compound_statement(label_number={$InstrumentationStats::labelNumber}, declarations={$declarations.text}, statement_list = {$statement_list.text})
 	|  '{'  declaration* statement_list? '}'  //The case where a block is defined but not as part of another statement.
 	;
-
+	
+declarations
+	: declaration*
+	;
+	
 statement_list
 	: statement+
 	;
