@@ -36,7 +36,7 @@ options {
     memoize=true;
     k=2;
     output=template; 
-    rewrite=true;
+    //rewrite=true;
 }
 
 scope Symbols {
