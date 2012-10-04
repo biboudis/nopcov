@@ -30,7 +30,7 @@ public class CTransformer {
 			parser.setTemplateLib(templates);
 			try {
 				CParser.translation_unit_return r = parser.translation_unit();
-				System.out.print(tokens.toString());
+				//System.out.print(tokens.toString());
 				FileUtils.writeStringToFile(output, tokens.toString());
 			} catch (RecognitionException e) {
 				e.printStackTrace();

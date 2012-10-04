@@ -95,12 +95,12 @@ struct _IO_marker {
   int _pos;
 };
 enum __codecvt_result
-  {
-    __codecvt_ok,
-    __codecvt_partial,
-    __codecvt_error,
-    __codecvt_noconv
-  };
+{
+  __codecvt_ok,
+  __codecvt_partial,
+  __codecvt_error,
+  __codecvt_noconv
+};
 struct _IO_FILE {
   int _flags;
   char* _IO_read_ptr;
@@ -139,7 +139,7 @@ extern struct _IO_FILE_plus _IO_2_1_stdout_;
 extern struct _IO_FILE_plus _IO_2_1_stderr_;
 typedef __ssize_t __io_read_fn (void *__cookie, char *__buf, size_t __nbytes);
 typedef __ssize_t __io_write_fn (void *__cookie, __const char *__buf,
-				 size_t __n);
+     size_t __n);
 typedef int __io_seek_fn (void *__cookie, __off64_t *__pos, int __w);
 typedef int __io_close_fn (void *__cookie);
 extern int __underflow (_IO_FILE *);
@@ -154,9 +154,9 @@ extern void _IO_flockfile (_IO_FILE *) ;
 extern void _IO_funlockfile (_IO_FILE *) ;
 extern int _IO_ftrylockfile (_IO_FILE *) ;
 extern int _IO_vfscanf (_IO_FILE * __restrict, const char * __restrict,
-			__gnuc_va_list, int *__restrict);
+   __gnuc_va_list, int *__restrict);
 extern int _IO_vfprintf (_IO_FILE *__restrict, const char *__restrict,
-			 __gnuc_va_list);
+    __gnuc_va_list);
 extern __ssize_t _IO_padn (_IO_FILE *, int, __ssize_t);
 extern size_t _IO_sgetn (_IO_FILE *, void *, size_t);
 extern __off64_t _IO_seekoff (_IO_FILE *, __off64_t, int, int);
@@ -202,35 +202,35 @@ extern int fflush (FILE *__stream);
 
 
 extern FILE *fopen (__const char *__restrict __filename,
-		    __const char *__restrict __modes) ;
+      __const char *__restrict __modes) ;
 extern FILE *freopen (__const char *__restrict __filename,
-		      __const char *__restrict __modes,
-		      FILE *__restrict __stream) ;
+        __const char *__restrict __modes,
+        FILE *__restrict __stream) ;
 
 extern FILE *fdopen (int __fd, __const char *__modes) ;
 
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) ;
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
-		    int __modes, size_t __n) ;
+      int __modes, size_t __n) ;
 
 
 extern int fprintf (FILE *__restrict __stream,
-		    __const char *__restrict __format, ...);
+      __const char *__restrict __format, ...);
 extern int printf (__const char *__restrict __format, ...);
 extern int sprintf (char *__restrict __s,
-		    __const char *__restrict __format, ...) ;
+      __const char *__restrict __format, ...) ;
 extern int vfprintf (FILE *__restrict __s, __const char *__restrict __format,
-		     __gnuc_va_list __arg);
+       __gnuc_va_list __arg);
 extern int vprintf (__const char *__restrict __format, __gnuc_va_list __arg);
 extern int vsprintf (char *__restrict __s, __const char *__restrict __format,
-		     __gnuc_va_list __arg) ;
+       __gnuc_va_list __arg) ;
 
 
 extern int fscanf (FILE *__restrict __stream,
-		   __const char *__restrict __format, ...) ;
+     __const char *__restrict __format, ...) ;
 extern int scanf (__const char *__restrict __format, ...) ;
 extern int sscanf (__const char *__restrict __s,
-		   __const char *__restrict __format, ...) ;
+     __const char *__restrict __format, ...) ;
 
 
 extern int fgetc (FILE *__stream);
@@ -248,7 +248,7 @@ extern int putc_unlocked (int __c, FILE *__stream);
 extern int putchar_unlocked (int __c);
 
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
-  ;
+     ;
 extern char *gets (char *__s) ;
 
 
@@ -256,9 +256,9 @@ extern int fputs (__const char *__restrict __s, FILE *__restrict __stream);
 extern int puts (__const char *__s);
 extern int ungetc (int __c, FILE *__stream);
 extern size_t fread (void *__restrict __ptr, size_t __size,
-		     size_t __n, FILE *__restrict __stream) ;
+       size_t __n, FILE *__restrict __stream) ;
 extern size_t fwrite (__const void *__restrict __ptr, size_t __size,
-		      size_t __n, FILE *__restrict __s);
+        size_t __n, FILE *__restrict __s);
 
 
 extern int fseek (FILE *__stream, long int __off, int __whence);
@@ -290,78 +290,78 @@ extern int *__errno_location (void) ;
 
 
 extern void *memcpy (void *__restrict __dest,
-		     __const void *__restrict __src, size_t __n)
-  ;
+       __const void *__restrict __src, size_t __n)
+     ;
 extern void *memmove (void *__dest, __const void *__src, size_t __n)
-  ;
+     ;
 
 
 extern void *memset (void *__s, int __c, size_t __n) ;
 extern int memcmp (__const void *__s1, __const void *__s2, size_t __n)
-  ;
+     ;
 extern void *memchr (__const void *__s, int __c, size_t __n)
-  ;
+      ;
 
 
 extern char *strcpy (char *__restrict __dest, __const char *__restrict __src)
-  ;
+     ;
 extern char *strncpy (char *__restrict __dest,
-		      __const char *__restrict __src, size_t __n)
-  ;
+        __const char *__restrict __src, size_t __n)
+     ;
 extern char *strcat (char *__restrict __dest, __const char *__restrict __src)
-  ;
+     ;
 extern char *strncat (char *__restrict __dest, __const char *__restrict __src,
-		      size_t __n) ;
+        size_t __n) ;
 extern int strcmp (__const char *__s1, __const char *__s2)
-  ;
+     ;
 extern int strncmp (__const char *__s1, __const char *__s2, size_t __n)
-  ;
+     ;
 extern int strcoll (__const char *__s1, __const char *__s2)
-  ;
+     ;
 extern size_t strxfrm (char *__restrict __dest,
-		       __const char *__restrict __src, size_t __n)
-  ;
+         __const char *__restrict __src, size_t __n)
+     ;
 
 
 extern char *strchr (__const char *__s, int __c)
-  ;
+     ;
 extern char *strrchr (__const char *__s, int __c)
-  ;
+     ;
 
 
 extern size_t strcspn (__const char *__s, __const char *__reject)
-  ;
+     ;
 extern size_t strspn (__const char *__s, __const char *__accept)
-  ;
+     ;
 extern char *strpbrk (__const char *__s, __const char *__accept)
-  ;
+     ;
 
 
 
 
 extern char *strstr (__const char *__haystack, __const char *__needle)
-  ;
+     ;
 
 
 
 
 extern char *strtok (char *__restrict __s, __const char *__restrict __delim)
-  ;
+     ;
 
 
 
 
 extern char *__strtok_r (char *__restrict __s,
-			 __const char *__restrict __delim,
-			 char **__restrict __save_ptr)
-  ;
+    __const char *__restrict __delim,
+    char **__restrict __save_ptr)
+     ;
 
 extern char *strtok_r (char *__restrict __s, __const char *__restrict __delim,
-		       char **__restrict __save_ptr)
-  ;
+         char **__restrict __save_ptr)
+     ;
 
 extern size_t strlen (__const char *__s)
-  ;
+     ;
 
 
 extern char *strerror (int __errnum) ;
@@ -372,7 +372,7 @@ typedef __off_t off_t;
 typedef __mode_t mode_t;
 
 extern void *mmap (void *__addr, size_t __len, int __prot,
-		   int __flags, int __fd, __off_t __offset) ;
+     int __flags, int __fd, __off_t __offset) ;
 extern int munmap (void *__addr, size_t __len) ;
 extern int mprotect (void *__addr, size_t __len, int __prot) ;
 extern int msync (void *__addr, size_t __len, int __flags);
@@ -386,9 +386,9 @@ extern int shm_unlink (__const char *__name);
 
 typedef int __sig_atomic_t;
 typedef struct
-{
-  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
-} __sigset_t;
+  {
+    unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+  } __sigset_t;
 extern int __sigismember (__const __sigset_t *, int);
 extern int __sigaddset (__sigset_t *, int);
 extern int __sigdelset (__sigset_t *, int);
@@ -398,7 +398,7 @@ typedef __sig_atomic_t sig_atomic_t;
 typedef __sigset_t sigset_t;
 typedef void (*__sighandler_t) (int);
 extern __sighandler_t __sysv_signal (int __sig, __sighandler_t __handler)
-  ;
+     ;
 
 extern __sighandler_t signal (int __sig, __sighandler_t __handler) __asm__ ("" "__sysv_signal") ;
 
@@ -412,22 +412,22 @@ extern int sigfillset (sigset_t *__set) ;
 extern int sigaddset (sigset_t *__set, int __signo) ;
 extern int sigdelset (sigset_t *__set, int __signo) ;
 extern int sigismember (__const sigset_t *__set, int __signo)
-  ;
+     ;
 struct sigaction
-{
-  __sighandler_t sa_handler;
-  __sigset_t sa_mask;
-  int sa_flags;
-  void (*sa_restorer) (void);
-};
+  {
+    __sighandler_t sa_handler;
+    __sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer) (void);
+  };
 extern int sigprocmask (int __how, __const sigset_t *__restrict __set,
-			sigset_t *__restrict __oset) ;
+   sigset_t *__restrict __oset) ;
 extern int sigsuspend (__const sigset_t *__set) ;
 extern int sigaction (int __sig, __const struct sigaction *__restrict __act,
-		      struct sigaction *__restrict __oact) ;
+        struct sigaction *__restrict __oact) ;
 extern int sigpending (sigset_t *__set) ;
 extern int sigwait (__const sigset_t *__restrict __set, int *__restrict __sig)
-  ;
+     ;
 extern int __libc_current_sigrtmin (void) ;
 extern int __libc_current_sigrtmax (void) ;
 
@@ -435,37 +435,37 @@ typedef int wchar_t;
 
 
 typedef struct
-{
-  int quot;
-  int rem;
-} div_t;
+  {
+    int quot;
+    int rem;
+  } div_t;
 typedef struct
-{
-  long int quot;
-  long int rem;
-} ldiv_t;
+  {
+    long int quot;
+    long int rem;
+  } ldiv_t;
 
 extern size_t __ctype_get_mb_cur_max (void) ;
 
 extern double atof (__const char *__nptr)
-  ;
+     ;
 extern int atoi (__const char *__nptr)
-  ;
+     ;
 extern long int atol (__const char *__nptr)
-  ;
+     ;
 
 
 extern double strtod (__const char *__restrict __nptr,
-		      char **__restrict __endptr)
-  ;
+        char **__restrict __endptr)
+     ;
 
 
 extern long int strtol (__const char *__restrict __nptr,
-			char **__restrict __endptr, int __base)
-  ;
+   char **__restrict __endptr, int __base)
+     ;
 extern unsigned long int strtoul (__const char *__restrict __nptr,
-				  char **__restrict __endptr, int __base)
-  ;
+      char **__restrict __endptr, int __base)
+     ;
 
 
 extern int rand (void) ;
@@ -475,7 +475,7 @@ extern int rand_r (unsigned int *__seed) ;
 
 extern void *malloc (size_t __size) ;
 extern void *calloc (size_t __nmemb, size_t __size)
-  ;
+     ;
 
 
 
@@ -483,7 +483,7 @@ extern void *calloc (size_t __nmemb, size_t __size)
 
 
 extern void *realloc (void *__ptr, size_t __size)
-  ;
+     ;
 
 extern void free (void *__ptr) ;
 
@@ -498,36 +498,36 @@ extern void exit (int __status) ;
 extern char *getenv (__const char *__name) ;
 
 extern char *__secure_getenv (__const char *__name)
-  ;
+     ;
 
 extern int system (__const char *__command) ;
 
 typedef int (*__compar_fn_t) (__const void *, __const void *);
 
 extern void *bsearch (__const void *__key, __const void *__base,
-		      size_t __nmemb, size_t __size, __compar_fn_t __compar)
-  ;
+        size_t __nmemb, size_t __size, __compar_fn_t __compar)
+     ;
 extern void qsort (void *__base, size_t __nmemb, size_t __size,
-		   __compar_fn_t __compar) ;
+     __compar_fn_t __compar) ;
 extern int abs (int __x) ;
 extern long int labs (long int __x) ;
 
 
 extern div_t div (int __numer, int __denom)
-  ;
+     ;
 extern ldiv_t ldiv (long int __numer, long int __denom)
-  ;
+     ;
 
 
 extern int mblen (__const char *__s, size_t __n) ;
 extern int mbtowc (wchar_t *__restrict __pwc,
-		   __const char *__restrict __s, size_t __n) ;
+     __const char *__restrict __s, size_t __n) ;
 extern int wctomb (char *__s, wchar_t __wchar) ;
 extern size_t mbstowcs (wchar_t *__restrict __pwcs,
-			__const char *__restrict __s, size_t __n) ;
+   __const char *__restrict __s, size_t __n) ;
 extern size_t wcstombs (char *__restrict __s,
-			__const wchar_t *__restrict __pwcs, size_t __n)
-  ;
+   __const wchar_t *__restrict __pwcs, size_t __n)
+     ;
 
 
 
@@ -542,7 +542,7 @@ extern unsigned int alarm (unsigned int __seconds) ;
 extern unsigned int sleep (unsigned int __seconds);
 extern int pause (void);
 extern int chown (__const char *__file, __uid_t __owner, __gid_t __group)
-  ;
+     ;
 extern int chdir (__const char *__path) ;
 extern char *getcwd (char *__buf, size_t __size) ;
 extern int dup (int __fd) ;
@@ -550,17 +550,17 @@ extern int dup2 (int __fd, int __fd2) ;
 extern char **__environ;
 
 extern int execve (__const char *__path, char *__const __argv[],
-		   char *__const __envp[]) ;
+     char *__const __envp[]) ;
 extern int execv (__const char *__path, char *__const __argv[])
-  ;
+     ;
 extern int execle (__const char *__path, __const char *__arg, ...)
-  ;
+     ;
 extern int execl (__const char *__path, __const char *__arg, ...)
-  ;
+     ;
 extern int execvp (__const char *__file, char *__const __argv[])
-  ;
+     ;
 extern int execlp (__const char *__file, __const char *__arg, ...)
-  ;
+     ;
 extern void _exit (int __status) ;
 enum
   {
@@ -872,7 +872,7 @@ enum
     _CS_V7_ENV
   };
 extern long int pathconf (__const char *__path, int __name)
-  ;
+     ;
 extern long int fpathconf (int __fd, int __name) ;
 extern long int sysconf (int __name) ;
 extern __pid_t getpid (void) ;
@@ -891,10 +891,10 @@ extern int setgid (__gid_t __gid) ;
 extern __pid_t fork (void) ;
 extern char *ttyname (int __fd) ;
 extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
-  ;
+     ;
 extern int isatty (int __fd) ;
 extern int link (__const char *__from, __const char *__to)
-  ;
+     ;
 extern int unlink (__const char *__name) ;
 extern int rmdir (__const char *__path) ;
 extern __pid_t tcgetpgrp (int __fd) ;
@@ -911,173 +911,173 @@ static void init();
 //Report Statistics in the end
 static void report();
 //Tracking block
-static void track(int start, int end);
+static void track(void* start, void* end);
 //Declare a static coverage var
 static coverage_t coverage;
 typedef
-struct {
-  char *next_in;
-  unsigned int avail_in;
-  unsigned int total_in_lo32;
-  unsigned int total_in_hi32;
-  char *next_out;
-  unsigned int avail_out;
-  unsigned int total_out_lo32;
-  unsigned int total_out_hi32;
-  void *state;
-  void *(*bzalloc)(void *,int,int);
-  void (*bzfree)(void *,void *);
-  void *opaque;
-}
-  bz_stream;
+   struct {
+      char *next_in;
+      unsigned int avail_in;
+      unsigned int total_in_lo32;
+      unsigned int total_in_hi32;
+      char *next_out;
+      unsigned int avail_out;
+      unsigned int total_out_lo32;
+      unsigned int total_out_hi32;
+      void *state;
+      void *(*bzalloc)(void *,int,int);
+      void (*bzfree)(void *,void *);
+      void *opaque;
+   }
+   bz_stream;
 extern int BZ2_bzCompressInit (
-			       bz_stream* strm,
-			       int blockSize100k,
-			       int verbosity,
-			       int workFactor
-			       );
+      bz_stream* strm,
+      int blockSize100k,
+      int verbosity,
+      int workFactor
+   );
 extern int BZ2_bzCompress (
-			   bz_stream* strm,
-			   int action
-			   );
+      bz_stream* strm,
+      int action
+   );
 extern int BZ2_bzCompressEnd (
-			      bz_stream* strm
-			      );
+      bz_stream* strm
+   );
 extern int BZ2_bzDecompressInit (
-				 bz_stream *strm,
-				 int verbosity,
-				 int small
-				 );
+      bz_stream *strm,
+      int verbosity,
+      int small
+   );
 extern int BZ2_bzDecompress (
-			     bz_stream* strm
-			     );
+      bz_stream* strm
+   );
 extern int BZ2_bzDecompressEnd (
-				bz_stream *strm
-				);
+      bz_stream *strm
+   );
 typedef void BZFILE;
 extern BZFILE* BZ2_bzReadOpen (
-			       int* bzerror,
-			       FILE* f,
-			       int verbosity,
-			       int small,
-			       void* unused,
-			       int nUnused
-			       );
+      int* bzerror,
+      FILE* f,
+      int verbosity,
+      int small,
+      void* unused,
+      int nUnused
+   );
 extern void BZ2_bzReadClose (
-			     int* bzerror,
-			     BZFILE* b
-			     );
+      int* bzerror,
+      BZFILE* b
+   );
 extern void BZ2_bzReadGetUnused (
-				 int* bzerror,
-				 BZFILE* b,
-				 void** unused,
-				 int* nUnused
-				 );
+      int* bzerror,
+      BZFILE* b,
+      void** unused,
+      int* nUnused
+   );
 extern int BZ2_bzRead (
-		       int* bzerror,
-		       BZFILE* b,
-		       void* buf,
-		       int len
-		       );
+      int* bzerror,
+      BZFILE* b,
+      void* buf,
+      int len
+   );
 extern BZFILE* BZ2_bzWriteOpen (
-				int* bzerror,
-				FILE* f,
-				int blockSize100k,
-				int verbosity,
-				int workFactor
-				);
+      int* bzerror,
+      FILE* f,
+      int blockSize100k,
+      int verbosity,
+      int workFactor
+   );
 extern void BZ2_bzWrite (
-			 int* bzerror,
-			 BZFILE* b,
-			 void* buf,
-			 int len
-			 );
+      int* bzerror,
+      BZFILE* b,
+      void* buf,
+      int len
+   );
 extern void BZ2_bzWriteClose (
-			      int* bzerror,
-			      BZFILE* b,
-			      int abandon,
-			      unsigned int* nbytes_in,
-			      unsigned int* nbytes_out
-			      );
+      int* bzerror,
+      BZFILE* b,
+      int abandon,
+      unsigned int* nbytes_in,
+      unsigned int* nbytes_out
+   );
 extern void BZ2_bzWriteClose64 (
-				int* bzerror,
-				BZFILE* b,
-				int abandon,
-				unsigned int* nbytes_in_lo32,
-				unsigned int* nbytes_in_hi32,
-				unsigned int* nbytes_out_lo32,
-				unsigned int* nbytes_out_hi32
-				);
+      int* bzerror,
+      BZFILE* b,
+      int abandon,
+      unsigned int* nbytes_in_lo32,
+      unsigned int* nbytes_in_hi32,
+      unsigned int* nbytes_out_lo32,
+      unsigned int* nbytes_out_hi32
+   );
 extern int BZ2_bzBuffToBuffCompress (
-				     char* dest,
-				     unsigned int* destLen,
-				     char* source,
-				     unsigned int sourceLen,
-				     int blockSize100k,
-				     int verbosity,
-				     int workFactor
-				     );
+      char* dest,
+      unsigned int* destLen,
+      char* source,
+      unsigned int sourceLen,
+      int blockSize100k,
+      int verbosity,
+      int workFactor
+   );
 extern int BZ2_bzBuffToBuffDecompress (
-				       char* dest,
-				       unsigned int* destLen,
-				       char* source,
-				       unsigned int sourceLen,
-				       int small,
-				       int verbosity
-				       );
+      char* dest,
+      unsigned int* destLen,
+      char* source,
+      unsigned int sourceLen,
+      int small,
+      int verbosity
+   );
 extern const char * BZ2_bzlibVersion (
-				      void
-				      );
+      void
+   );
 extern BZFILE * BZ2_bzopen (
-			    const char *path,
-			    const char *mode
-			    );
+      const char *path,
+      const char *mode
+   );
 extern BZFILE * BZ2_bzdopen (
-			     int fd,
-			     const char *mode
-			     );
+      int fd,
+      const char *mode
+   );
 extern int BZ2_bzread (
-		       BZFILE* b,
-		       void* buf,
-		       int len
-		       );
+      BZFILE* b,
+      void* buf,
+      int len
+   );
 extern int BZ2_bzwrite (
-			BZFILE* b,
-			void* buf,
-			int len
-			);
+      BZFILE* b,
+      void* buf,
+      int len
+   );
 extern int BZ2_bzflush (
-			BZFILE* b
-			);
+      BZFILE* b
+   );
 extern void BZ2_bzclose (
-			 BZFILE* b
-			 );
+      BZFILE* b
+   );
 extern const char * BZ2_bzerror (
-				 BZFILE *b,
-				 int *errnum
-				 );
+      BZFILE *b,
+      int *errnum
+   );
 
 enum
-  {
-    _ISupper = ((0) < 8 ? ((1 << (0)) << 8) : ((1 << (0)) >> 8)),
-    _ISlower = ((1) < 8 ? ((1 << (1)) << 8) : ((1 << (1)) >> 8)),
-    _ISalpha = ((2) < 8 ? ((1 << (2)) << 8) : ((1 << (2)) >> 8)),
-    _ISdigit = ((3) < 8 ? ((1 << (3)) << 8) : ((1 << (3)) >> 8)),
-    _ISxdigit = ((4) < 8 ? ((1 << (4)) << 8) : ((1 << (4)) >> 8)),
-    _ISspace = ((5) < 8 ? ((1 << (5)) << 8) : ((1 << (5)) >> 8)),
-    _ISprint = ((6) < 8 ? ((1 << (6)) << 8) : ((1 << (6)) >> 8)),
-    _ISgraph = ((7) < 8 ? ((1 << (7)) << 8) : ((1 << (7)) >> 8)),
-    _ISblank = ((8) < 8 ? ((1 << (8)) << 8) : ((1 << (8)) >> 8)),
-    _IScntrl = ((9) < 8 ? ((1 << (9)) << 8) : ((1 << (9)) >> 8)),
-    _ISpunct = ((10) < 8 ? ((1 << (10)) << 8) : ((1 << (10)) >> 8)),
-    _ISalnum = ((11) < 8 ? ((1 << (11)) << 8) : ((1 << (11)) >> 8))
-  };
+{
+  _ISupper = ((0) < 8 ? ((1 << (0)) << 8) : ((1 << (0)) >> 8)),
+  _ISlower = ((1) < 8 ? ((1 << (1)) << 8) : ((1 << (1)) >> 8)),
+  _ISalpha = ((2) < 8 ? ((1 << (2)) << 8) : ((1 << (2)) >> 8)),
+  _ISdigit = ((3) < 8 ? ((1 << (3)) << 8) : ((1 << (3)) >> 8)),
+  _ISxdigit = ((4) < 8 ? ((1 << (4)) << 8) : ((1 << (4)) >> 8)),
+  _ISspace = ((5) < 8 ? ((1 << (5)) << 8) : ((1 << (5)) >> 8)),
+  _ISprint = ((6) < 8 ? ((1 << (6)) << 8) : ((1 << (6)) >> 8)),
+  _ISgraph = ((7) < 8 ? ((1 << (7)) << 8) : ((1 << (7)) >> 8)),
+  _ISblank = ((8) < 8 ? ((1 << (8)) << 8) : ((1 << (8)) >> 8)),
+  _IScntrl = ((9) < 8 ? ((1 << (9)) << 8) : ((1 << (9)) >> 8)),
+  _ISpunct = ((10) < 8 ? ((1 << (10)) << 8) : ((1 << (10)) >> 8)),
+  _ISalnum = ((11) < 8 ? ((1 << (11)) << 8) : ((1 << (11)) >> 8))
+};
 extern __const unsigned short int **__ctype_b_loc (void)
-  ;
+     ;
 extern __const __int32_t **__ctype_tolower_loc (void)
-  ;
+     ;
 extern __const __int32_t **__ctype_toupper_loc (void)
-  ;
+     ;
 
 extern int isalnum (int) ;
 extern int isalpha (int) ;
@@ -1105,47 +1105,47 @@ extern void BZ2_bz__AssertH__fail ( int errcode );
 extern Int32 BZ2_rNums[512];
 extern UInt32 BZ2_crc32Table[256];
 typedef
-struct {
-  bz_stream* strm;
-  Int32 mode;
-  Int32 state;
-  UInt32 avail_in_expect;
-  UInt32* arr1;
-  UInt32* arr2;
-  UInt32* ftab;
-  Int32 origPtr;
-  UInt32* ptr;
-  UChar* block;
-  UInt16* mtfv;
-  UChar* zbits;
-  Int32 workFactor;
-  UInt32 state_in_ch;
-  Int32 state_in_len;
-  Int32 rNToGo; Int32 rTPos;
-  Int32 nblock;
-  Int32 nblockMAX;
-  Int32 numZ;
-  Int32 state_out_pos;
-  Int32 nInUse;
-  Bool inUse[256];
-  UChar unseqToSeq[256];
-  UInt32 bsBuff;
-  Int32 bsLive;
-  UInt32 blockCRC;
-  UInt32 combinedCRC;
-  Int32 verbosity;
-  Int32 blockNo;
-  Int32 blockSize100k;
-  Int32 nMTF;
-  Int32 mtfFreq [258];
-  UChar selector [(2 + (900000 / 50))];
-  UChar selectorMtf[(2 + (900000 / 50))];
-  UChar len [6][258];
-  Int32 code [6][258];
-  Int32 rfreq [6][258];
-  UInt32 len_pack[258][4];
-}
-  EState;
+   struct {
+      bz_stream* strm;
+      Int32 mode;
+      Int32 state;
+      UInt32 avail_in_expect;
+      UInt32* arr1;
+      UInt32* arr2;
+      UInt32* ftab;
+      Int32 origPtr;
+      UInt32* ptr;
+      UChar* block;
+      UInt16* mtfv;
+      UChar* zbits;
+      Int32 workFactor;
+      UInt32 state_in_ch;
+      Int32 state_in_len;
+      Int32 rNToGo; Int32 rTPos;
+      Int32 nblock;
+      Int32 nblockMAX;
+      Int32 numZ;
+      Int32 state_out_pos;
+      Int32 nInUse;
+      Bool inUse[256];
+      UChar unseqToSeq[256];
+      UInt32 bsBuff;
+      Int32 bsLive;
+      UInt32 blockCRC;
+      UInt32 combinedCRC;
+      Int32 verbosity;
+      Int32 blockNo;
+      Int32 blockSize100k;
+      Int32 nMTF;
+      Int32 mtfFreq [258];
+      UChar selector [(2 + (900000 / 50))];
+      UChar selectorMtf[(2 + (900000 / 50))];
+      UChar len [6][258];
+      Int32 code [6][258];
+      Int32 rfreq [6][258];
+      UInt32 len_pack[258][4];
+   }
+   EState;
 extern void
 BZ2_blockSort ( EState* );
 extern void
@@ -1157,72 +1157,72 @@ BZ2_hbAssignCodes ( Int32*, UChar*, Int32, Int32, Int32 );
 extern void
 BZ2_hbMakeCodeLengths ( UChar*, Int32*, Int32, Int32 );
 typedef
-struct {
-  bz_stream* strm;
-  Int32 state;
-  UChar state_out_ch;
-  Int32 state_out_len;
-  Bool blockRandomised;
-  Int32 rNToGo; Int32 rTPos;
-  UInt32 bsBuff;
-  Int32 bsLive;
-  Int32 blockSize100k;
-  Bool smallDecompress;
-  Int32 currBlockNo;
-  Int32 verbosity;
-  Int32 origPtr;
-  UInt32 tPos;
-  Int32 k0;
-  Int32 unzftab[256];
-  Int32 nblock_used;
-  Int32 cftab[257];
-  Int32 cftabCopy[257];
-  UInt32 *tt;
-  UInt16 *ll16;
-  UChar *ll4;
-  UInt32 storedBlockCRC;
-  UInt32 storedCombinedCRC;
-  UInt32 calculatedBlockCRC;
-  UInt32 calculatedCombinedCRC;
-  Int32 nInUse;
-  Bool inUse[256];
-  Bool inUse16[16];
-  UChar seqToUnseq[256];
-  UChar mtfa [4096];
-  Int32 mtfbase[256 / 16];
-  UChar selector [(2 + (900000 / 50))];
-  UChar selectorMtf[(2 + (900000 / 50))];
-  UChar len [6][258];
-  Int32 limit [6][258];
-  Int32 base [6][258];
-  Int32 perm [6][258];
-  Int32 minLens[6];
-  Int32 save_i;
-  Int32 save_j;
-  Int32 save_t;
-  Int32 save_alphaSize;
-  Int32 save_nGroups;
-  Int32 save_nSelectors;
-  Int32 save_EOB;
-  Int32 save_groupNo;
-  Int32 save_groupPos;
-  Int32 save_nextSym;
-  Int32 save_nblockMAX;
-  Int32 save_nblock;
-  Int32 save_es;
-  Int32 save_N;
-  Int32 save_curr;
-  Int32 save_zt;
-  Int32 save_zn;
-  Int32 save_zvec;
-  Int32 save_zj;
-  Int32 save_gSel;
-  Int32 save_gMinlen;
-  Int32* save_gLimit;
-  Int32* save_gBase;
-  Int32* save_gPerm;
-}
-  DState;
+   struct {
+      bz_stream* strm;
+      Int32 state;
+      UChar state_out_ch;
+      Int32 state_out_len;
+      Bool blockRandomised;
+      Int32 rNToGo; Int32 rTPos;
+      UInt32 bsBuff;
+      Int32 bsLive;
+      Int32 blockSize100k;
+      Bool smallDecompress;
+      Int32 currBlockNo;
+      Int32 verbosity;
+      Int32 origPtr;
+      UInt32 tPos;
+      Int32 k0;
+      Int32 unzftab[256];
+      Int32 nblock_used;
+      Int32 cftab[257];
+      Int32 cftabCopy[257];
+      UInt32 *tt;
+      UInt16 *ll16;
+      UChar *ll4;
+      UInt32 storedBlockCRC;
+      UInt32 storedCombinedCRC;
+      UInt32 calculatedBlockCRC;
+      UInt32 calculatedCombinedCRC;
+      Int32 nInUse;
+      Bool inUse[256];
+      Bool inUse16[16];
+      UChar seqToUnseq[256];
+      UChar mtfa [4096];
+      Int32 mtfbase[256 / 16];
+      UChar selector [(2 + (900000 / 50))];
+      UChar selectorMtf[(2 + (900000 / 50))];
+      UChar len [6][258];
+      Int32 limit [6][258];
+      Int32 base [6][258];
+      Int32 perm [6][258];
+      Int32 minLens[6];
+      Int32 save_i;
+      Int32 save_j;
+      Int32 save_t;
+      Int32 save_alphaSize;
+      Int32 save_nGroups;
+      Int32 save_nSelectors;
+      Int32 save_EOB;
+      Int32 save_groupNo;
+      Int32 save_groupPos;
+      Int32 save_nextSym;
+      Int32 save_nblockMAX;
+      Int32 save_nblock;
+      Int32 save_es;
+      Int32 save_N;
+      Int32 save_curr;
+      Int32 save_zt;
+      Int32 save_zn;
+      Int32 save_zvec;
+      Int32 save_zj;
+      Int32 save_gSel;
+      Int32 save_gMinlen;
+      Int32* save_gLimit;
+      Int32* save_gBase;
+      Int32* save_gPerm;
+   }
+   DState;
 extern Int32
 BZ2_indexIntoF ( Int32, Int32* );
 extern Int32
@@ -1237,79 +1237,44 @@ void fallbackSimpleSort ( UInt32* fmap,
                           Int32 lo,
                           Int32 hi )
 {
-  Int32 i, j, tmp;
-  UInt32 ec_tmp;
-  if (lo == hi) return;
-  if (hi - lo > 3) {
-    __asm__("TRACK3_BEGIN: nop\n\t" 
-	    "   lea	TRACK3_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK3_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK3_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for ( i = hi-4; i >= lo; i-- ) {
-      __asm__("TRACK2_BEGIN: nop\n\t" 
-	      "   lea	TRACK2_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK2_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK2_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      tmp = fmap[i];
-      ec_tmp = eclass[tmp];
-      for ( j = i+4; j <= hi && ec_tmp > eclass[fmap[j]]; j += 4 )
-	{
-	  __asm__("TRACK1_BEGIN: nop\n\t" 
-		  "   lea	TRACK1_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fmap[j-4] = fmap[j];
-	}
-      fmap[j-4] = tmp;
-    }
-  }
-  for ( i = hi-1; i >= lo; i-- ) {
-    __asm__("TRACK5_BEGIN: nop\n\t" 
-	    "   lea	TRACK5_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK5_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK5_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+   Int32 i, j, tmp;
+   UInt32 ec_tmp;
+   if (lo == hi) return;
+   if (hi - lo > 3) {
+  TRACK3_BEGIN: track(&&TRACK3_BEGIN, &&TRACK3_END);
+  TRACK3_END:  __asm__("nop;");
+   
+  for ( i = hi-4; i >= lo; i-- ) {
+    TRACK2_BEGIN: track(&&TRACK2_BEGIN, &&TRACK2_END);
+    TRACK2_END:  __asm__("nop;");
+     
     tmp = fmap[i];
-    ec_tmp = eclass[tmp];
-    for ( j = i+1; j <= hi && ec_tmp > eclass[fmap[j]]; j++ )
-      {
-	__asm__("TRACK4_BEGIN: nop\n\t" 
-  		"   lea	TRACK4_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK4_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK4_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fmap[j-1] = fmap[j];
-      }
-    fmap[j-1] = tmp;
+             ec_tmp = eclass[tmp];
+             for ( j = i+4; j <= hi && ec_tmp > eclass[fmap[j]]; j += 4 )
+                 {
+    TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
+    TRACK1_END:  __asm__("nop;");
+     
+    fmap[j-4] = fmap[j];
+    }
+             fmap[j-4] = tmp;
   }
+}
+   for ( i = hi-1; i >= lo; i-- ) {
+  TRACK5_BEGIN: track(&&TRACK5_BEGIN, &&TRACK5_END);
+  TRACK5_END:  __asm__("nop;");
+   
+  tmp = fmap[i];
+        ec_tmp = eclass[tmp];
+        for ( j = i+1; j <= hi && ec_tmp > eclass[fmap[j]]; j++ )
+            {
+  TRACK4_BEGIN: track(&&TRACK4_BEGIN, &&TRACK4_END);
+  TRACK4_END:  __asm__("nop;");
+   
+  fmap[j-1] = fmap[j];
+  }
+        fmap[j-1] = tmp;
+}
 }
 static
 void fallbackQSort3 ( UInt32* fmap,
@@ -1317,242 +1282,130 @@ void fallbackQSort3 ( UInt32* fmap,
                       Int32 loSt,
                       Int32 hiSt )
 {
-  Int32 unLo, unHi, ltLo, gtHi, n, m;
-  Int32 sp, lo, hi;
-  UInt32 med, r, r3;
-  Int32 stackLo[100];
-  Int32 stackHi[100];
-  r = 0;
-  sp = 0;
-  { stackLo[sp] = loSt; stackHi[sp] = hiSt; sp++; };
-  while (sp > 0) {
-    __asm__("TRACK21_BEGIN: nop\n\t" 
-	    "   lea	TRACK21_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK21_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK21_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    { if (!(sp < 100))  {
-	__asm__("TRACK6_BEGIN: nop\n\t" 
-  		"   lea	TRACK6_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK6_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK6_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 1004 );
-      } };
-    { sp--; lo = stackLo[sp]; hi = stackHi[sp]; };
-    if (hi - lo < 10) {
-      __asm__("TRACK7_BEGIN: nop\n\t" 
-	      "   lea	TRACK7_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK7_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK7_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fallbackSimpleSort ( fmap, eclass, lo, hi );
-      continue;
-    }
-    r = ((r * 7621) + 1) % 32768;
-    r3 = r % 3;
-    if (r3 == 0)  {
-      __asm__("TRACK8_BEGIN: nop\n\t" 
-	      "   lea	TRACK8_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK8_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK8_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      med = eclass[fmap[lo]];
-    } else
-      {
-	__asm__("TRACK11_BEGIN: nop\n\t" 
-  		"   lea	TRACK11_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK11_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK11_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	if (r3 == 1)  {
-	  __asm__("TRACK9_BEGIN: nop\n\t" 
-		  "   lea	TRACK9_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK9_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK9_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  med = eclass[fmap[(lo+hi)>>1]];
-	} else
-	  {
-	    __asm__("TRACK10_BEGIN: nop\n\t" 
-		    "   lea	TRACK10_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK10_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK10_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    med = eclass[fmap[hi]];
-	  }
-      }
-    unLo = ltLo = lo;
-    unHi = gtHi = hi;
-    while (1) {
-      __asm__("TRACK16_BEGIN: nop\n\t" 
-	      "   lea	TRACK16_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK16_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK16_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (1) {
-	__asm__("TRACK13_BEGIN: nop\n\t" 
-      		"   lea	TRACK13_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK13_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK13_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (unLo > unHi) break;
-	n = (Int32)eclass[fmap[unLo]] - (Int32)med;
-	if (n == 0) {
-	  __asm__("TRACK12_BEGIN: nop\n\t" 
-		  "   lea	TRACK12_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK12_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK12_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[ltLo]; fmap[ltLo] = zztmp; };
-	  ltLo++; unLo++;
-	  continue;
-	};
-	if (n > 0) break;
-	unLo++;
-      }
-      while (1) {
-	__asm__("TRACK15_BEGIN: nop\n\t" 
-      		"   lea	TRACK15_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK15_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK15_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (unLo > unHi) break;
-	n = (Int32)eclass[fmap[unHi]] - (Int32)med;
-	if (n == 0) {
-	  __asm__("TRACK14_BEGIN: nop\n\t" 
-		  "   lea	TRACK14_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK14_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK14_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { Int32 zztmp = fmap[unHi]; fmap[unHi] = fmap[gtHi]; fmap[gtHi] = zztmp; };
-	  gtHi--; unHi--;
-	  continue;
-	};
-	if (n < 0) break;
-	unHi--;
-      }
-      if (unLo > unHi) break;
-      { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[unHi]; fmap[unHi] = zztmp; }; unLo++; unHi--;
-    }
-    ;
-    if (gtHi < ltLo) continue;
-    n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
-        __asm__("TRACK17_BEGIN: nop\n\t" 
-    		"   lea	TRACK17_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK17_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK17_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
-      } };
-    m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
-        __asm__("TRACK18_BEGIN: nop\n\t" 
-    		"   lea	TRACK18_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK18_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK18_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
-      } };
-    n = lo + unLo - ltLo - 1;
-    m = hi - (gtHi - unHi) + 1;
-    if (n - lo > hi - m) {
-      __asm__("TRACK19_BEGIN: nop\n\t" 
-	      "   lea	TRACK19_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK19_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK19_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
-      { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
-    } else {
-      __asm__("TRACK20_BEGIN: nop\n\t" 
-	      "   lea	TRACK20_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK20_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK20_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
-      { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
-    }
+   Int32 unLo, unHi, ltLo, gtHi, n, m;
+   Int32 sp, lo, hi;
+   UInt32 med, r, r3;
+   Int32 stackLo[100];
+   Int32 stackHi[100];
+   r = 0;
+   sp = 0;
+   { stackLo[sp] = loSt; stackHi[sp] = hiSt; sp++; };
+   while (sp > 0) {
+  TRACK21_BEGIN: track(&&TRACK21_BEGIN, &&TRACK21_END);
+  TRACK21_END:  __asm__("nop;");
+   
+  { if (!(sp < 100))  {
+  TRACK6_BEGIN: track(&&TRACK6_BEGIN, &&TRACK6_END);
+  TRACK6_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 1004 );
+  } };
+        { sp--; lo = stackLo[sp]; hi = stackHi[sp]; };
+        if (hi - lo < 10) {
+    TRACK7_BEGIN: track(&&TRACK7_BEGIN, &&TRACK7_END);
+    TRACK7_END:  __asm__("nop;");
+     
+    fallbackSimpleSort ( fmap, eclass, lo, hi );
+             continue;
   }
+        r = ((r * 7621) + 1) % 32768;
+        r3 = r % 3;
+        if (r3 == 0)  {
+  TRACK8_BEGIN: track(&&TRACK8_BEGIN, &&TRACK8_END);
+  TRACK8_END:  __asm__("nop;");
+   
+  med = eclass[fmap[lo]];
+  } else
+         {
+  TRACK11_BEGIN: track(&&TRACK11_BEGIN, &&TRACK11_END);
+  TRACK11_END:  __asm__("nop;");
+   
+  if (r3 == 1)  {
+  TRACK9_BEGIN: track(&&TRACK9_BEGIN, &&TRACK9_END);
+  TRACK9_END:  __asm__("nop;");
+   
+  med = eclass[fmap[(lo+hi)>>1]];
+  } else
+                      {
+  TRACK10_BEGIN: track(&&TRACK10_BEGIN, &&TRACK10_END);
+  TRACK10_END:  __asm__("nop;");
+   
+  med = eclass[fmap[hi]];
+  }
+  }
+        unLo = ltLo = lo;
+        unHi = gtHi = hi;
+        while (1) {
+    TRACK16_BEGIN: track(&&TRACK16_BEGIN, &&TRACK16_END);
+    TRACK16_END:  __asm__("nop;");
+     
+    while (1) {
+      TRACK13_BEGIN: track(&&TRACK13_BEGIN, &&TRACK13_END);
+      TRACK13_END:  __asm__("nop;");
+       
+      if (unLo > unHi) break;
+                  n = (Int32)eclass[fmap[unLo]] - (Int32)med;
+                  if (n == 0) {
+        TRACK12_BEGIN: track(&&TRACK12_BEGIN, &&TRACK12_END);
+        TRACK12_END:  __asm__("nop;");
+         
+        { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[ltLo]; fmap[ltLo] = zztmp; };
+                       ltLo++; unLo++;
+                       continue;
+      };
+                  if (n > 0) break;
+                  unLo++;
+    }
+             while (1) {
+      TRACK15_BEGIN: track(&&TRACK15_BEGIN, &&TRACK15_END);
+      TRACK15_END:  __asm__("nop;");
+       
+      if (unLo > unHi) break;
+                  n = (Int32)eclass[fmap[unHi]] - (Int32)med;
+                  if (n == 0) {
+        TRACK14_BEGIN: track(&&TRACK14_BEGIN, &&TRACK14_END);
+        TRACK14_END:  __asm__("nop;");
+         
+        { Int32 zztmp = fmap[unHi]; fmap[unHi] = fmap[gtHi]; fmap[gtHi] = zztmp; };
+                       gtHi--; unHi--;
+                       continue;
+      };
+                  if (n < 0) break;
+                  unHi--;
+    }
+             if (unLo > unHi) break;
+             { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[unHi]; fmap[unHi] = zztmp; }; unLo++; unHi--;
+  }
+        ;
+        if (gtHi < ltLo) continue;
+        n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
+    TRACK17_BEGIN: track(&&TRACK17_BEGIN, &&TRACK17_END);
+    TRACK17_END:  __asm__("nop;");
+     
+    { Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
+  } };
+        m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
+    TRACK18_BEGIN: track(&&TRACK18_BEGIN, &&TRACK18_END);
+    TRACK18_END:  __asm__("nop;");
+     
+    { Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
+  } };
+        n = lo + unLo - ltLo - 1;
+        m = hi - (gtHi - unHi) + 1;
+        if (n - lo > hi - m) {
+    TRACK19_BEGIN: track(&&TRACK19_BEGIN, &&TRACK19_END);
+    TRACK19_END:  __asm__("nop;");
+     
+    { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
+             { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
+  } else {
+    TRACK20_BEGIN: track(&&TRACK20_BEGIN, &&TRACK20_END);
+    TRACK20_END:  __asm__("nop;");
+     
+    { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
+             { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
+  }
+}
 }
 static
 void fallbackSort ( UInt32* fmap,
@@ -1561,435 +1414,218 @@ void fallbackSort ( UInt32* fmap,
                     Int32 nblock,
                     Int32 verb )
 {
-  Int32 ftab[257];
-  Int32 ftabCopy[256];
-  Int32 H, i, j, k, l, r, cc, cc1;
-  Int32 nNotDone;
-  Int32 nBhtab;
-  UChar* eclass8 = (UChar*)eclass;
+   Int32 ftab[257];
+   Int32 ftabCopy[256];
+   Int32 H, i, j, k, l, r, cc, cc1;
+   Int32 nNotDone;
+   Int32 nBhtab;
+   UChar* eclass8 = (UChar*)eclass;
+   if (verb >= 4)
+       {
+TRACK22_BEGIN: track(&&TRACK22_BEGIN, &&TRACK22_END);
+TRACK22_END:  __asm__("nop;");
+ 
+fprintf(stderr,"        bucket sorting ...\n");
+}
+   for (i = 0; i < 257; i++)  {
+TRACK23_BEGIN: track(&&TRACK23_BEGIN, &&TRACK23_END);
+TRACK23_END:  __asm__("nop;");
+ 
+ftab[i] = 0;
+}
+   for (i = 0; i < nblock; i++)  {
+TRACK24_BEGIN: track(&&TRACK24_BEGIN, &&TRACK24_END);
+TRACK24_END:  __asm__("nop;");
+ 
+ftab[eclass8[i]]++;
+}
+   for (i = 0; i < 256; i++)  {
+TRACK25_BEGIN: track(&&TRACK25_BEGIN, &&TRACK25_END);
+TRACK25_END:  __asm__("nop;");
+ 
+ftabCopy[i] = ftab[i];
+}
+   for (i = 1; i < 257; i++)  {
+TRACK26_BEGIN: track(&&TRACK26_BEGIN, &&TRACK26_END);
+TRACK26_END:  __asm__("nop;");
+ 
+ftab[i] += ftab[i-1];
+}
+   for (i = 0; i < nblock; i++) {
+  TRACK27_BEGIN: track(&&TRACK27_BEGIN, &&TRACK27_END);
+  TRACK27_END:  __asm__("nop;");
+   
+  j = eclass8[i];
+        k = ftab[j] - 1;
+        ftab[j] = k;
+        fmap[k] = i;
+}
+   nBhtab = 2 + (nblock / 32);
+   for (i = 0; i < nBhtab; i++)  {
+TRACK28_BEGIN: track(&&TRACK28_BEGIN, &&TRACK28_END);
+TRACK28_END:  __asm__("nop;");
+ 
+bhtab[i] = 0;
+}
+   for (i = 0; i < 256; i++)  {
+TRACK29_BEGIN: track(&&TRACK29_BEGIN, &&TRACK29_END);
+TRACK29_END:  __asm__("nop;");
+ 
+bhtab[(ftab[i]) >> 5] |= (1 << ((ftab[i]) & 31));
+}
+   for (i = 0; i < 32; i++) {
+  TRACK30_BEGIN: track(&&TRACK30_BEGIN, &&TRACK30_END);
+  TRACK30_END:  __asm__("nop;");
+   
+  bhtab[(nblock + 2*i) >> 5] |= (1 << ((nblock + 2*i) & 31));
+        bhtab[(nblock + 2*i + 1) >> 5] &= ~(1 << ((nblock + 2*i + 1) & 31));
+}
+   H = 1;
+   while (1) {
+  TRACK48_BEGIN: track(&&TRACK48_BEGIN, &&TRACK48_END);
+  TRACK48_END:  __asm__("nop;");
+   
   if (verb >= 4)
-    {
-      __asm__("TRACK22_BEGIN: nop\n\t" 
-	      "   lea	TRACK22_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK22_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK22_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"        bucket sorting ...\n");
+            {
+  TRACK31_BEGIN: track(&&TRACK31_BEGIN, &&TRACK31_END);
+  TRACK31_END:  __asm__("nop;");
+   
+  fprintf(stderr,"        depth %6d has ",H);
+  }
+        j = 0;
+        for (i = 0; i < nblock; i++) {
+    TRACK34_BEGIN: track(&&TRACK34_BEGIN, &&TRACK34_END);
+    TRACK34_END:  __asm__("nop;");
+     
+    if ((bhtab[(i) >> 5] & (1 << ((i) & 31))))  {
+    TRACK32_BEGIN: track(&&TRACK32_BEGIN, &&TRACK32_END);
+    TRACK32_END:  __asm__("nop;");
+     
+    j = i;
     }
-  for (i = 0; i < 257; i++)  {
-    __asm__("TRACK23_BEGIN: nop\n\t" 
-	    "   lea	TRACK23_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK23_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK23_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftab[i] = 0;
-  }
-  for (i = 0; i < nblock; i++)  {
-    __asm__("TRACK24_BEGIN: nop\n\t" 
-	    "   lea	TRACK24_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK24_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK24_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftab[eclass8[i]]++;
-  }
-  for (i = 0; i < 256; i++)  {
-    __asm__("TRACK25_BEGIN: nop\n\t" 
-	    "   lea	TRACK25_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK25_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK25_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftabCopy[i] = ftab[i];
-  }
-  for (i = 1; i < 257; i++)  {
-    __asm__("TRACK26_BEGIN: nop\n\t" 
-	    "   lea	TRACK26_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK26_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK26_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftab[i] += ftab[i-1];
-  }
-  for (i = 0; i < nblock; i++) {
-    __asm__("TRACK27_BEGIN: nop\n\t" 
-	    "   lea	TRACK27_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK27_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK27_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    j = eclass8[i];
-    k = ftab[j] - 1;
-    ftab[j] = k;
-    fmap[k] = i;
-  }
-  nBhtab = 2 + (nblock / 32);
-  for (i = 0; i < nBhtab; i++)  {
-    __asm__("TRACK28_BEGIN: nop\n\t" 
-	    "   lea	TRACK28_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK28_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK28_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bhtab[i] = 0;
-  }
-  for (i = 0; i < 256; i++)  {
-    __asm__("TRACK29_BEGIN: nop\n\t" 
-	    "   lea	TRACK29_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK29_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK29_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bhtab[(ftab[i]) >> 5] |= (1 << ((ftab[i]) & 31));
-  }
-  for (i = 0; i < 32; i++) {
-    __asm__("TRACK30_BEGIN: nop\n\t" 
-	    "   lea	TRACK30_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK30_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK30_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bhtab[(nblock + 2*i) >> 5] |= (1 << ((nblock + 2*i) & 31));
-    bhtab[(nblock + 2*i + 1) >> 5] &= ~(1 << ((nblock + 2*i + 1) & 31));
-  }
-  H = 1;
-  while (1) {
-    __asm__("TRACK48_BEGIN: nop\n\t" 
-	    "   lea	TRACK48_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK48_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK48_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (verb >= 4)
-      {
-	__asm__("TRACK31_BEGIN: nop\n\t" 
-  		"   lea	TRACK31_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK31_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK31_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf(stderr,"        depth %6d has ",H);
-      }
-    j = 0;
-    for (i = 0; i < nblock; i++) {
-      __asm__("TRACK34_BEGIN: nop\n\t" 
-	      "   lea	TRACK34_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK34_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK34_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if ((bhtab[(i) >> 5] & (1 << ((i) & 31))))  {
-        __asm__("TRACK32_BEGIN: nop\n\t" 
-    		"   lea	TRACK32_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK32_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK32_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	j = i;
-      }
-      k = fmap[i] - H; if (k < 0)  {
-        __asm__("TRACK33_BEGIN: nop\n\t" 
-    		"   lea	TRACK33_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK33_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK33_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	k += nblock;
-      }
-      eclass[k] = j;
+             k = fmap[i] - H; if (k < 0)  {
+    TRACK33_BEGIN: track(&&TRACK33_BEGIN, &&TRACK33_END);
+    TRACK33_END:  __asm__("nop;");
+     
+    k += nblock;
     }
-    nNotDone = 0;
-    r = -1;
-    while (1) {
-      __asm__("TRACK46_BEGIN: nop\n\t" 
-	      "   lea	TRACK46_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK46_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK46_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      k = r + 1;
-      while ((bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
-        __asm__("TRACK35_BEGIN: nop\n\t" 
-    		"   lea	TRACK35_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK35_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK35_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	k++;
+             eclass[k] = j;
+  }
+        nNotDone = 0;
+        r = -1;
+        while (1) {
+    TRACK46_BEGIN: track(&&TRACK46_BEGIN, &&TRACK46_END);
+    TRACK46_END:  __asm__("nop;");
+     
+    k = r + 1;
+             while ((bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
+    TRACK35_BEGIN: track(&&TRACK35_BEGIN, &&TRACK35_END);
+    TRACK35_END:  __asm__("nop;");
+     
+    k++;
+    }
+             if ((bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
+      TRACK38_BEGIN: track(&&TRACK38_BEGIN, &&TRACK38_END);
+      TRACK38_END:  __asm__("nop;");
+       
+      while (bhtab[(k) >> 5] == 0xffffffff)  {
+      TRACK36_BEGIN: track(&&TRACK36_BEGIN, &&TRACK36_END);
+      TRACK36_END:  __asm__("nop;");
+       
+      k += 32;
       }
-      if ((bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
-	__asm__("TRACK38_BEGIN: nop\n\t" 
-      		"   lea	TRACK38_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK38_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK38_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	while (bhtab[(k) >> 5] == 0xffffffff)  {
-          __asm__("TRACK36_BEGIN: nop\n\t" 
-		  "   lea	TRACK36_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK36_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK36_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k += 32;
-	}
-	while ((bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
-          __asm__("TRACK37_BEGIN: nop\n\t" 
-		  "   lea	TRACK37_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK37_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK37_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k++;
-	}
-      }
-      l = k - 1;
-      if (l >= nblock) break;
-      while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
-        __asm__("TRACK39_BEGIN: nop\n\t" 
-    		"   lea	TRACK39_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK39_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK39_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	k++;
-      }
-      if (!(bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
-	__asm__("TRACK42_BEGIN: nop\n\t" 
-      		"   lea	TRACK42_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK42_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK42_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	while (bhtab[(k) >> 5] == 0x00000000)  {
-          __asm__("TRACK40_BEGIN: nop\n\t" 
-		  "   lea	TRACK40_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK40_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK40_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k += 32;
-	}
-	while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
-          __asm__("TRACK41_BEGIN: nop\n\t" 
-		  "   lea	TRACK41_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK41_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK41_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k++;
-	}
-      }
-      r = k - 1;
-      if (r >= nblock) break;
-      if (r > l) {
-	__asm__("TRACK45_BEGIN: nop\n\t" 
-      		"   lea	TRACK45_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK45_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK45_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	nNotDone += (r - l + 1);
-	fallbackQSort3 ( fmap, eclass, l, r );
-	cc = -1;
-	for (i = l; i <= r; i++) {
-	  __asm__("TRACK44_BEGIN: nop\n\t" 
-		  "   lea	TRACK44_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK44_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK44_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  cc1 = eclass[fmap[i]];
-	  if (cc != cc1) {
-	    __asm__("TRACK43_BEGIN: nop\n\t" 
-		    "   lea	TRACK43_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK43_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK43_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bhtab[(i) >> 5] |= (1 << ((i) & 31)); cc = cc1;
-	  };
-	}
+                  while ((bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
+      TRACK37_BEGIN: track(&&TRACK37_BEGIN, &&TRACK37_END);
+      TRACK37_END:  __asm__("nop;");
+       
+      k++;
       }
     }
-    if (verb >= 4)
-      {
-	__asm__("TRACK47_BEGIN: nop\n\t" 
-  		"   lea	TRACK47_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK47_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK47_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf(stderr,"%6d unresolved strings\n",nNotDone);
+             l = k - 1;
+             if (l >= nblock) break;
+             while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
+    TRACK39_BEGIN: track(&&TRACK39_BEGIN, &&TRACK39_END);
+    TRACK39_END:  __asm__("nop;");
+     
+    k++;
+    }
+             if (!(bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
+      TRACK42_BEGIN: track(&&TRACK42_BEGIN, &&TRACK42_END);
+      TRACK42_END:  __asm__("nop;");
+       
+      while (bhtab[(k) >> 5] == 0x00000000)  {
+      TRACK40_BEGIN: track(&&TRACK40_BEGIN, &&TRACK40_END);
+      TRACK40_END:  __asm__("nop;");
+       
+      k += 32;
       }
-    H *= 2;
-    if (H > nblock || nNotDone == 0) break;
-  }
-  if (verb >= 4)
-    {
-      __asm__("TRACK49_BEGIN: nop\n\t" 
-	      "   lea	TRACK49_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK49_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK49_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"        reconstructing block ...\n");
+                  while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
+      TRACK41_BEGIN: track(&&TRACK41_BEGIN, &&TRACK41_END);
+      TRACK41_END:  __asm__("nop;");
+       
+      k++;
+      }
     }
-  j = 0;
-  for (i = 0; i < nblock; i++) {
-    __asm__("TRACK51_BEGIN: nop\n\t" 
-	    "   lea	TRACK51_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK51_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK51_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    while (ftabCopy[j] == 0)  {
-      __asm__("TRACK50_BEGIN: nop\n\t" 
-	      "   lea	TRACK50_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK50_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK50_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      j++;
+             r = k - 1;
+             if (r >= nblock) break;
+             if (r > l) {
+      TRACK45_BEGIN: track(&&TRACK45_BEGIN, &&TRACK45_END);
+      TRACK45_END:  __asm__("nop;");
+       
+      nNotDone += (r - l + 1);
+                  fallbackQSort3 ( fmap, eclass, l, r );
+                  cc = -1;
+                  for (i = l; i <= r; i++) {
+        TRACK44_BEGIN: track(&&TRACK44_BEGIN, &&TRACK44_END);
+        TRACK44_END:  __asm__("nop;");
+         
+        cc1 = eclass[fmap[i]];
+                       if (cc != cc1) {
+          TRACK43_BEGIN: track(&&TRACK43_BEGIN, &&TRACK43_END);
+          TRACK43_END:  __asm__("nop;");
+           
+          bhtab[(i) >> 5] |= (1 << ((i) & 31)); cc = cc1;
+        };
+      }
     }
-    ftabCopy[j]--;
-    eclass8[fmap[i]] = (UChar)j;
   }
-  { if (!(j < 256))  {
-      __asm__("TRACK52_BEGIN: nop\n\t" 
-	      "   lea	TRACK52_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK52_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK52_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 1005 );
-    } };
+        if (verb >= 4)
+            {
+  TRACK47_BEGIN: track(&&TRACK47_BEGIN, &&TRACK47_END);
+  TRACK47_END:  __asm__("nop;");
+   
+  fprintf(stderr,"%6d unresolved strings\n",nNotDone);
+  }
+        H *= 2;
+        if (H > nblock || nNotDone == 0) break;
+}
+   if (verb >= 4)
+       {
+TRACK49_BEGIN: track(&&TRACK49_BEGIN, &&TRACK49_END);
+TRACK49_END:  __asm__("nop;");
+ 
+fprintf(stderr,"        reconstructing block ...\n");
+}
+   j = 0;
+   for (i = 0; i < nblock; i++) {
+  TRACK51_BEGIN: track(&&TRACK51_BEGIN, &&TRACK51_END);
+  TRACK51_END:  __asm__("nop;");
+   
+  while (ftabCopy[j] == 0)  {
+  TRACK50_BEGIN: track(&&TRACK50_BEGIN, &&TRACK50_END);
+  TRACK50_END:  __asm__("nop;");
+   
+  j++;
+  }
+        ftabCopy[j]--;
+        eclass8[fmap[i]] = (UChar)j;
+}
+   { if (!(j < 256))  {
+TRACK52_BEGIN: track(&&TRACK52_BEGIN, &&TRACK52_END);
+TRACK52_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 1005 );
+} };
 }
 static
 
@@ -2000,129 +1636,108 @@ Bool mainGtU ( UInt32 i1,
                UInt32 nblock,
                Int32* budget )
 {
-  Int32 k;
-  UChar c1, c2;
-  UInt16 s1, s2;
-  ;
+   Int32 k;
+   UChar c1, c2;
+   UInt16 s1, s2;
+   ;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   c1 = block[i1]; c2 = block[i2];
+   if (c1 != c2) return (c1 > c2);
+   i1++; i2++;
+   k = nblock + 8;
+   do {
+  TRACK55_BEGIN: track(&&TRACK55_BEGIN, &&TRACK55_END);
+  TRACK55_END:  __asm__("nop;");
+   
   c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  c1 = block[i1]; c2 = block[i2];
-  if (c1 != c2) return (c1 > c2);
-  i1++; i2++;
-  k = nblock + 8;
-  do {
-    __asm__("TRACK55_BEGIN: nop\n\t" 
-	    "   lea	TRACK55_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK55_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK55_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    c1 = block[i1]; c2 = block[i2];
-    if (c1 != c2) return (c1 > c2);
-    s1 = quadrant[i1]; s2 = quadrant[i2];
-    if (s1 != s2) return (s1 > s2);
-    i1++; i2++;
-    if (i1 >= nblock)  {
-      __asm__("TRACK53_BEGIN: nop\n\t" 
-	      "   lea	TRACK53_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK53_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK53_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      i1 -= nblock;
-    }
-    if (i2 >= nblock)  {
-      __asm__("TRACK54_BEGIN: nop\n\t" 
-	      "   lea	TRACK54_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK54_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK54_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      i2 -= nblock;
-    }
-    k -= 8;
-    (*budget)--;
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        c1 = block[i1]; c2 = block[i2];
+        if (c1 != c2) return (c1 > c2);
+        s1 = quadrant[i1]; s2 = quadrant[i2];
+        if (s1 != s2) return (s1 > s2);
+        i1++; i2++;
+        if (i1 >= nblock)  {
+  TRACK53_BEGIN: track(&&TRACK53_BEGIN, &&TRACK53_END);
+  TRACK53_END:  __asm__("nop;");
+   
+  i1 -= nblock;
   }
-  while (k >= 0);
-  return ((Bool)0);
+        if (i2 >= nblock)  {
+  TRACK54_BEGIN: track(&&TRACK54_BEGIN, &&TRACK54_END);
+  TRACK54_END:  __asm__("nop;");
+   
+  i2 -= nblock;
+  }
+        k -= 8;
+        (*budget)--;
+}
+      while (k >= 0);
+   return ((Bool)0);
 }
 static
 Int32 incs[14] = { 1, 4, 13, 40, 121, 364, 1093, 3280,
@@ -2138,164 +1753,101 @@ void mainSimpleSort ( UInt32* ptr,
                       Int32 d,
                       Int32* budget )
 {
-  Int32 i, j, h, bigN, hp;
-  UInt32 v;
-  bigN = hi - lo + 1;
-  if (bigN < 2) return;
-  hp = 0;
-  while (incs[hp] < bigN)  {
-    __asm__("TRACK56_BEGIN: nop\n\t" 
-	    "   lea	TRACK56_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK56_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK56_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    hp++;
-  }
-  hp--;
-  for (; hp >= 0; hp--) {
-    __asm__("TRACK61_BEGIN: nop\n\t" 
-	    "   lea	TRACK61_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK61_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK61_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    h = incs[hp];
-    i = lo + h;
-    while (((Bool)1)) {
-      __asm__("TRACK60_BEGIN: nop\n\t" 
-	      "   lea	TRACK60_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK60_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK60_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (i > hi) break;
-      v = ptr[i];
-      j = i;
-      while ( mainGtU (
-		       ptr[j-h]+d, v+d, block, quadrant, nblock, budget
-		       ) ) {
-	__asm__("TRACK57_BEGIN: nop\n\t" 
-      		"   lea	TRACK57_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK57_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK57_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	ptr[j] = ptr[j-h];
-	j = j - h;
-	if (j <= (lo + h - 1)) break;
-      }
-      ptr[j] = v;
-      i++;
-      if (i > hi) break;
-      v = ptr[i];
-      j = i;
-      while ( mainGtU (
-		       ptr[j-h]+d, v+d, block, quadrant, nblock, budget
-		       ) ) {
-	__asm__("TRACK58_BEGIN: nop\n\t" 
-      		"   lea	TRACK58_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK58_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK58_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	ptr[j] = ptr[j-h];
-	j = j - h;
-	if (j <= (lo + h - 1)) break;
-      }
-      ptr[j] = v;
-      i++;
-      if (i > hi) break;
-      v = ptr[i];
-      j = i;
-      while ( mainGtU (
-		       ptr[j-h]+d, v+d, block, quadrant, nblock, budget
-		       ) ) {
-	__asm__("TRACK59_BEGIN: nop\n\t" 
-      		"   lea	TRACK59_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK59_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK59_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	ptr[j] = ptr[j-h];
-	j = j - h;
-	if (j <= (lo + h - 1)) break;
-      }
-      ptr[j] = v;
-      i++;
-      if (*budget < 0) return;
+   Int32 i, j, h, bigN, hp;
+   UInt32 v;
+   bigN = hi - lo + 1;
+   if (bigN < 2) return;
+   hp = 0;
+   while (incs[hp] < bigN)  {
+TRACK56_BEGIN: track(&&TRACK56_BEGIN, &&TRACK56_END);
+TRACK56_END:  __asm__("nop;");
+ 
+hp++;
+}
+   hp--;
+   for (; hp >= 0; hp--) {
+  TRACK61_BEGIN: track(&&TRACK61_BEGIN, &&TRACK61_END);
+  TRACK61_END:  __asm__("nop;");
+   
+  h = incs[hp];
+        i = lo + h;
+        while (((Bool)1)) {
+    TRACK60_BEGIN: track(&&TRACK60_BEGIN, &&TRACK60_END);
+    TRACK60_END:  __asm__("nop;");
+     
+    if (i > hi) break;
+             v = ptr[i];
+             j = i;
+             while ( mainGtU (
+                        ptr[j-h]+d, v+d, block, quadrant, nblock, budget
+                     ) ) {
+      TRACK57_BEGIN: track(&&TRACK57_BEGIN, &&TRACK57_END);
+      TRACK57_END:  __asm__("nop;");
+       
+      ptr[j] = ptr[j-h];
+                  j = j - h;
+                  if (j <= (lo + h - 1)) break;
     }
+             ptr[j] = v;
+             i++;
+             if (i > hi) break;
+             v = ptr[i];
+             j = i;
+             while ( mainGtU (
+                        ptr[j-h]+d, v+d, block, quadrant, nblock, budget
+                     ) ) {
+      TRACK58_BEGIN: track(&&TRACK58_BEGIN, &&TRACK58_END);
+      TRACK58_END:  __asm__("nop;");
+       
+      ptr[j] = ptr[j-h];
+                  j = j - h;
+                  if (j <= (lo + h - 1)) break;
+    }
+             ptr[j] = v;
+             i++;
+             if (i > hi) break;
+             v = ptr[i];
+             j = i;
+             while ( mainGtU (
+                        ptr[j-h]+d, v+d, block, quadrant, nblock, budget
+                     ) ) {
+      TRACK59_BEGIN: track(&&TRACK59_BEGIN, &&TRACK59_END);
+      TRACK59_END:  __asm__("nop;");
+       
+      ptr[j] = ptr[j-h];
+                  j = j - h;
+                  if (j <= (lo + h - 1)) break;
+    }
+             ptr[j] = v;
+             i++;
+             if (*budget < 0) return;
   }
+}
 }
 static
 
 UChar mmed3 ( UChar a, UChar b, UChar c )
 {
-  UChar t;
-  if (a > b) {
-    __asm__("TRACK62_BEGIN: nop\n\t" 
-	    "   lea	TRACK62_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK62_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK62_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    t = a; a = b; b = t;
-  };
-  if (b > c) {
-    __asm__("TRACK64_BEGIN: nop\n\t" 
-	    "   lea	TRACK64_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK64_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK64_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    b = c;
-    if (a > b)  {
-      __asm__("TRACK63_BEGIN: nop\n\t" 
-	      "   lea	TRACK63_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK63_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK63_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      b = a;
-    }
+   UChar t;
+   if (a > b) {
+  TRACK62_BEGIN: track(&&TRACK62_BEGIN, &&TRACK62_END);
+  TRACK62_END:  __asm__("nop;");
+   
+  t = a; a = b; b = t;
+};
+   if (b > c) {
+  TRACK64_BEGIN: track(&&TRACK64_BEGIN, &&TRACK64_END);
+  TRACK64_END:  __asm__("nop;");
+   
+  b = c;
+        if (a > b)  {
+  TRACK63_BEGIN: track(&&TRACK63_BEGIN, &&TRACK63_END);
+  TRACK63_END:  __asm__("nop;");
+   
+  b = a;
   }
-  return b;
+}
+   return b;
 }
 static
 void mainQSort3 ( UInt32* ptr,
@@ -2307,231 +1859,133 @@ void mainQSort3 ( UInt32* ptr,
                   Int32 dSt,
                   Int32* budget )
 {
-  Int32 unLo, unHi, ltLo, gtHi, n, m, med;
-  Int32 sp, lo, hi, d;
-  Int32 stackLo[100];
-  Int32 stackHi[100];
-  Int32 stackD [100];
-  Int32 nextLo[3];
-  Int32 nextHi[3];
-  Int32 nextD [3];
-  sp = 0;
-  { stackLo[sp] = loSt; stackHi[sp] = hiSt; stackD [sp] = dSt; sp++; };
-  while (sp > 0) {
-    __asm__("TRACK78_BEGIN: nop\n\t" 
-	    "   lea	TRACK78_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK78_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK78_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    { if (!(sp < 100))  {
-	__asm__("TRACK65_BEGIN: nop\n\t" 
-  		"   lea	TRACK65_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK65_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK65_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 1001 );
-      } };
-    { sp--; lo = stackLo[sp]; hi = stackHi[sp]; d = stackD [sp]; };
-    if (hi - lo < 20 ||
-	d > (2 + 12)) {
-      __asm__("TRACK66_BEGIN: nop\n\t" 
-	      "   lea	TRACK66_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK66_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK66_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      mainSimpleSort ( ptr, block, quadrant, nblock, lo, hi, d, budget );
-      if (*budget < 0) return;
-      continue;
-    }
-    med = (Int32)
-      mmed3 ( block[ptr[ lo ]+d],
-	      block[ptr[ hi ]+d],
-	      block[ptr[ (lo+hi)>>1 ]+d] );
-    unLo = ltLo = lo;
-    unHi = gtHi = hi;
-    while (((Bool)1)) {
-      __asm__("TRACK71_BEGIN: nop\n\t" 
-	      "   lea	TRACK71_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK71_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK71_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (((Bool)1)) {
-	__asm__("TRACK68_BEGIN: nop\n\t" 
-      		"   lea	TRACK68_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK68_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK68_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (unLo > unHi) break;
-	n = ((Int32)block[ptr[unLo]+d]) - med;
-	if (n == 0) {
-	  __asm__("TRACK67_BEGIN: nop\n\t" 
-		  "   lea	TRACK67_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK67_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK67_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[ltLo]; ptr[ltLo] = zztmp; };
-	  ltLo++; unLo++; continue;
-	};
-	if (n > 0) break;
-	unLo++;
-      }
-      while (((Bool)1)) {
-	__asm__("TRACK70_BEGIN: nop\n\t" 
-      		"   lea	TRACK70_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK70_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK70_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (unLo > unHi) break;
-	n = ((Int32)block[ptr[unHi]+d]) - med;
-	if (n == 0) {
-	  __asm__("TRACK69_BEGIN: nop\n\t" 
-		  "   lea	TRACK69_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK69_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK69_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { Int32 zztmp = ptr[unHi]; ptr[unHi] = ptr[gtHi]; ptr[gtHi] = zztmp; };
-	  gtHi--; unHi--; continue;
-	};
-	if (n < 0) break;
-	unHi--;
-      }
-      if (unLo > unHi) break;
-      { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[unHi]; ptr[unHi] = zztmp; }; unLo++; unHi--;
-    }
-    ;
-    if (gtHi < ltLo) {
-      __asm__("TRACK72_BEGIN: nop\n\t" 
-	      "   lea	TRACK72_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK72_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK72_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { stackLo[sp] = lo; stackHi[sp] = hi; stackD [sp] = d+1; sp++; };
-      continue;
-    }
-    n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
-        __asm__("TRACK73_BEGIN: nop\n\t" 
-    		"   lea	TRACK73_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK73_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK73_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
-      } };
-    m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
-        __asm__("TRACK74_BEGIN: nop\n\t" 
-    		"   lea	TRACK74_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK74_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK74_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
-      } };
-    n = lo + unLo - ltLo - 1;
-    m = hi - (gtHi - unHi) + 1;
-    nextLo[0] = lo; nextHi[0] = n; nextD[0] = d;
-    nextLo[1] = m; nextHi[1] = hi; nextD[1] = d;
-    nextLo[2] = n+1; nextHi[2] = m-1; nextD[2] = d+1;
-    if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
-      __asm__("TRACK75_BEGIN: nop\n\t" 
-	      "   lea	TRACK75_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK75_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK75_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Int32 tz;
-      tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
-    };
-    if ((nextHi[1]-nextLo[1]) < (nextHi[2]-nextLo[2])) {
-      __asm__("TRACK76_BEGIN: nop\n\t" 
-	      "   lea	TRACK76_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK76_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK76_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Int32 tz;
-      tz = nextLo[1]; nextLo[1] = nextLo[2]; nextLo[2] = tz; tz = nextHi[1]; nextHi[1] = nextHi[2]; nextHi[2] = tz; tz = nextD [1]; nextD [1] = nextD [2]; nextD [2] = tz;
-    };
-    if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
-      __asm__("TRACK77_BEGIN: nop\n\t" 
-	      "   lea	TRACK77_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK77_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK77_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Int32 tz;
-      tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
-    };
-    ;
-    ;
-    { stackLo[sp] = nextLo[0]; stackHi[sp] = nextHi[0]; stackD [sp] = nextD[0]; sp++; };
-    { stackLo[sp] = nextLo[1]; stackHi[sp] = nextHi[1]; stackD [sp] = nextD[1]; sp++; };
-    { stackLo[sp] = nextLo[2]; stackHi[sp] = nextHi[2]; stackD [sp] = nextD[2]; sp++; };
+   Int32 unLo, unHi, ltLo, gtHi, n, m, med;
+   Int32 sp, lo, hi, d;
+   Int32 stackLo[100];
+   Int32 stackHi[100];
+   Int32 stackD [100];
+   Int32 nextLo[3];
+   Int32 nextHi[3];
+   Int32 nextD [3];
+   sp = 0;
+   { stackLo[sp] = loSt; stackHi[sp] = hiSt; stackD [sp] = dSt; sp++; };
+   while (sp > 0) {
+  TRACK78_BEGIN: track(&&TRACK78_BEGIN, &&TRACK78_END);
+  TRACK78_END:  __asm__("nop;");
+   
+  { if (!(sp < 100))  {
+  TRACK65_BEGIN: track(&&TRACK65_BEGIN, &&TRACK65_END);
+  TRACK65_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 1001 );
+  } };
+        { sp--; lo = stackLo[sp]; hi = stackHi[sp]; d = stackD [sp]; };
+        if (hi - lo < 20 ||
+            d > (2 + 12)) {
+    TRACK66_BEGIN: track(&&TRACK66_BEGIN, &&TRACK66_END);
+    TRACK66_END:  __asm__("nop;");
+     
+    mainSimpleSort ( ptr, block, quadrant, nblock, lo, hi, d, budget );
+             if (*budget < 0) return;
+             continue;
   }
+        med = (Int32)
+              mmed3 ( block[ptr[ lo ]+d],
+                      block[ptr[ hi ]+d],
+                      block[ptr[ (lo+hi)>>1 ]+d] );
+        unLo = ltLo = lo;
+        unHi = gtHi = hi;
+        while (((Bool)1)) {
+    TRACK71_BEGIN: track(&&TRACK71_BEGIN, &&TRACK71_END);
+    TRACK71_END:  __asm__("nop;");
+     
+    while (((Bool)1)) {
+      TRACK68_BEGIN: track(&&TRACK68_BEGIN, &&TRACK68_END);
+      TRACK68_END:  __asm__("nop;");
+       
+      if (unLo > unHi) break;
+                  n = ((Int32)block[ptr[unLo]+d]) - med;
+                  if (n == 0) {
+        TRACK67_BEGIN: track(&&TRACK67_BEGIN, &&TRACK67_END);
+        TRACK67_END:  __asm__("nop;");
+         
+        { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[ltLo]; ptr[ltLo] = zztmp; };
+                       ltLo++; unLo++; continue;
+      };
+                  if (n > 0) break;
+                  unLo++;
+    }
+             while (((Bool)1)) {
+      TRACK70_BEGIN: track(&&TRACK70_BEGIN, &&TRACK70_END);
+      TRACK70_END:  __asm__("nop;");
+       
+      if (unLo > unHi) break;
+                  n = ((Int32)block[ptr[unHi]+d]) - med;
+                  if (n == 0) {
+        TRACK69_BEGIN: track(&&TRACK69_BEGIN, &&TRACK69_END);
+        TRACK69_END:  __asm__("nop;");
+         
+        { Int32 zztmp = ptr[unHi]; ptr[unHi] = ptr[gtHi]; ptr[gtHi] = zztmp; };
+                       gtHi--; unHi--; continue;
+      };
+                  if (n < 0) break;
+                  unHi--;
+    }
+             if (unLo > unHi) break;
+             { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[unHi]; ptr[unHi] = zztmp; }; unLo++; unHi--;
+  }
+        ;
+        if (gtHi < ltLo) {
+    TRACK72_BEGIN: track(&&TRACK72_BEGIN, &&TRACK72_END);
+    TRACK72_END:  __asm__("nop;");
+     
+    { stackLo[sp] = lo; stackHi[sp] = hi; stackD [sp] = d+1; sp++; };
+             continue;
+  }
+        n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
+    TRACK73_BEGIN: track(&&TRACK73_BEGIN, &&TRACK73_END);
+    TRACK73_END:  __asm__("nop;");
+     
+    { Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
+  } };
+        m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
+    TRACK74_BEGIN: track(&&TRACK74_BEGIN, &&TRACK74_END);
+    TRACK74_END:  __asm__("nop;");
+     
+    { Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
+  } };
+        n = lo + unLo - ltLo - 1;
+        m = hi - (gtHi - unHi) + 1;
+        nextLo[0] = lo; nextHi[0] = n; nextD[0] = d;
+        nextLo[1] = m; nextHi[1] = hi; nextD[1] = d;
+        nextLo[2] = n+1; nextHi[2] = m-1; nextD[2] = d+1;
+        if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
+    Int32 tz;
+    TRACK75_BEGIN: track(&&TRACK75_BEGIN, &&TRACK75_END);
+    TRACK75_END:  __asm__("nop;");
+     
+    tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
+  };
+        if ((nextHi[1]-nextLo[1]) < (nextHi[2]-nextLo[2])) {
+    Int32 tz;
+    TRACK76_BEGIN: track(&&TRACK76_BEGIN, &&TRACK76_END);
+    TRACK76_END:  __asm__("nop;");
+     
+    tz = nextLo[1]; nextLo[1] = nextLo[2]; nextLo[2] = tz; tz = nextHi[1]; nextHi[1] = nextHi[2]; nextHi[2] = tz; tz = nextD [1]; nextD [1] = nextD [2]; nextD [2] = tz;
+  };
+        if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
+    Int32 tz;
+    TRACK77_BEGIN: track(&&TRACK77_BEGIN, &&TRACK77_END);
+    TRACK77_END:  __asm__("nop;");
+     
+    tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
+  };
+        ;
+        ;
+        { stackLo[sp] = nextLo[0]; stackHi[sp] = nextHi[0]; stackD [sp] = nextD[0]; sp++; };
+        { stackLo[sp] = nextLo[1]; stackHi[sp] = nextHi[1]; stackD [sp] = nextD[1]; sp++; };
+        { stackLo[sp] = nextLo[2]; stackHi[sp] = nextHi[2]; stackD [sp] = nextD[2]; sp++; };
+}
 }
 static
 void mainSort ( UInt32* ptr,
@@ -2542,958 +1996,510 @@ void mainSort ( UInt32* ptr,
                 Int32 verb,
                 Int32* budget )
 {
-  Int32 i, j, k, ss, sb;
-  Int32 runningOrder[256];
-  Bool bigDone[256];
-  Int32 copyStart[256];
-  Int32 copyEnd [256];
-  UChar c1;
-  Int32 numQSorted;
-  UInt16 s;
-  if (verb >= 4)  {
-    __asm__("TRACK79_BEGIN: nop\n\t" 
-	    "   lea	TRACK79_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK79_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK79_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf(stderr,"        main sort initialise ...\n");
-  }
-  for (i = 65536; i >= 0; i--)  {
-    __asm__("TRACK80_BEGIN: nop\n\t" 
-	    "   lea	TRACK80_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK80_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK80_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftab[i] = 0;
-  }
-  j = block[0] << 8;
-  i = nblock-1;
-  for (; i >= 3; i -= 4) {
-    __asm__("TRACK81_BEGIN: nop\n\t" 
-	    "   lea	TRACK81_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK81_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK81_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    quadrant[i] = 0;
-    j = (j >> 8) | ( ((UInt16)block[i]) << 8);
-    ftab[j]++;
-    quadrant[i-1] = 0;
-    j = (j >> 8) | ( ((UInt16)block[i-1]) << 8);
-    ftab[j]++;
-    quadrant[i-2] = 0;
-    j = (j >> 8) | ( ((UInt16)block[i-2]) << 8);
-    ftab[j]++;
-    quadrant[i-3] = 0;
-    j = (j >> 8) | ( ((UInt16)block[i-3]) << 8);
-    ftab[j]++;
-  }
-  for (; i >= 0; i--) {
-    __asm__("TRACK82_BEGIN: nop\n\t" 
-	    "   lea	TRACK82_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK82_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK82_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    quadrant[i] = 0;
-    j = (j >> 8) | ( ((UInt16)block[i]) << 8);
-    ftab[j]++;
-  }
-  for (i = 0; i < (2 + 12 + 18 + 2); i++) {
-    __asm__("TRACK83_BEGIN: nop\n\t" 
-	    "   lea	TRACK83_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK83_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK83_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    block [nblock+i] = block[i];
-    quadrant[nblock+i] = 0;
-  }
-  if (verb >= 4)  {
-    __asm__("TRACK84_BEGIN: nop\n\t" 
-	    "   lea	TRACK84_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK84_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK84_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf(stderr,"        bucket sorting ...\n");
-  }
-  for (i = 1; i <= 65536; i++)  {
-    __asm__("TRACK85_BEGIN: nop\n\t" 
-	    "   lea	TRACK85_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK85_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK85_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ftab[i] += ftab[i-1];
-  }
-  s = block[0] << 8;
-  i = nblock-1;
-  for (; i >= 3; i -= 4) {
-    __asm__("TRACK86_BEGIN: nop\n\t" 
-	    "   lea	TRACK86_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK86_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK86_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s = (s >> 8) | (block[i] << 8);
-    j = ftab[s] -1;
-    ftab[s] = j;
-    ptr[j] = i;
-    s = (s >> 8) | (block[i-1] << 8);
-    j = ftab[s] -1;
-    ftab[s] = j;
-    ptr[j] = i-1;
-    s = (s >> 8) | (block[i-2] << 8);
-    j = ftab[s] -1;
-    ftab[s] = j;
-    ptr[j] = i-2;
-    s = (s >> 8) | (block[i-3] << 8);
-    j = ftab[s] -1;
-    ftab[s] = j;
-    ptr[j] = i-3;
-  }
-  for (; i >= 0; i--) {
-    __asm__("TRACK87_BEGIN: nop\n\t" 
-	    "   lea	TRACK87_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK87_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK87_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s = (s >> 8) | (block[i] << 8);
-    j = ftab[s] -1;
-    ftab[s] = j;
-    ptr[j] = i;
-  }
-  for (i = 0; i <= 255; i++) {
-    __asm__("TRACK88_BEGIN: nop\n\t" 
-	    "   lea	TRACK88_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK88_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK88_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bigDone [i] = ((Bool)0);
-    runningOrder[i] = i;
-  }
-  {
-    Int32 vv;
-    Int32 h = 1;
-    do  {
-      __asm__("TRACK89_BEGIN: nop\n\t" 
-	      "   lea	TRACK89_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK89_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK89_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      h = 3 * h + 1;
-    } while (h <= 256);
-    do {
-      __asm__("TRACK93_BEGIN: nop\n\t" 
-	      "   lea	TRACK93_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK93_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK93_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      h = h / 3;
-      for (i = h; i <= 255; i++) {
-        __asm__("TRACK92_BEGIN: nop\n\t" 
-    		"   lea	TRACK92_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK92_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK92_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	vv = runningOrder[i];
-	j = i;
-	while ( (ftab[((runningOrder[j-h])+1) << 8] - ftab[(runningOrder[j-h]) << 8]) > (ftab[((vv)+1) << 8] - ftab[(vv) << 8]) ) {
-          __asm__("TRACK90_BEGIN: nop\n\t" 
-		  "   lea	TRACK90_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK90_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK90_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  runningOrder[j] = runningOrder[j-h];
-	  j = j - h;
-	  if (j <= (h - 1)) goto zero;
-	}
-      zero:
-	{
-	  __asm__("TRACK91_BEGIN: nop\n\t" 
-		  "   lea	TRACK91_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK91_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK91_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  runningOrder[j] = vv;
-	}
-      }
-    } while (h != 1);
-  }
-  numQSorted = 0;
-  for (i = 0; i <= 255; i++) {
-    __asm__("TRACK114_BEGIN: nop\n\t" 
-	    "   lea	TRACK114_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK114_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK114_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ss = runningOrder[i];
-    for (j = 0; j <= 255; j++) {
-      __asm__("TRACK98_BEGIN: nop\n\t" 
-	      "   lea	TRACK98_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK98_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK98_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (j != ss) {
-	__asm__("TRACK97_BEGIN: nop\n\t" 
-      		"   lea	TRACK97_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK97_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK97_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	sb = (ss << 8) + j;
-	if ( ! (ftab[sb] & (1 << 21)) ) {
-	  __asm__("TRACK96_BEGIN: nop\n\t" 
-		  "   lea	TRACK96_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK96_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK96_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  Int32 lo = ftab[sb] & (~((1 << 21)));
-	  Int32 hi = (ftab[sb+1] & (~((1 << 21)))) - 1;
-	  if (hi > lo) {
-	    __asm__("TRACK95_BEGIN: nop\n\t" 
-		    "   lea	TRACK95_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK95_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK95_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (verb >= 4)
-	      {
-		__asm__("TRACK94_BEGIN: nop\n\t" 
-          		"   lea	TRACK94_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK94_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK94_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		fprintf(stderr,"        qsort [0x%x, 0x%x]   " "done %d   this %d\n",ss,j,numQSorted,hi - lo + 1);
-	      }
-	    mainQSort3 (
-			ptr, block, quadrant, nblock,
-			lo, hi, 2, budget
-			);
-	    numQSorted += (hi - lo + 1);
-	    if (*budget < 0) return;
-	  }
-	}
-	ftab[sb] |= (1 << 21);
-      }
+   Int32 i, j, k, ss, sb;
+   Int32 runningOrder[256];
+   Bool bigDone[256];
+   Int32 copyStart[256];
+   Int32 copyEnd [256];
+   UChar c1;
+   Int32 numQSorted;
+   UInt16 s;
+   if (verb >= 4)  {
+TRACK79_BEGIN: track(&&TRACK79_BEGIN, &&TRACK79_END);
+TRACK79_END:  __asm__("nop;");
+ 
+fprintf(stderr,"        main sort initialise ...\n");
+}
+   for (i = 65536; i >= 0; i--)  {
+TRACK80_BEGIN: track(&&TRACK80_BEGIN, &&TRACK80_END);
+TRACK80_END:  __asm__("nop;");
+ 
+ftab[i] = 0;
+}
+   j = block[0] << 8;
+   i = nblock-1;
+   for (; i >= 3; i -= 4) {
+  TRACK81_BEGIN: track(&&TRACK81_BEGIN, &&TRACK81_END);
+  TRACK81_END:  __asm__("nop;");
+   
+  quadrant[i] = 0;
+        j = (j >> 8) | ( ((UInt16)block[i]) << 8);
+        ftab[j]++;
+        quadrant[i-1] = 0;
+        j = (j >> 8) | ( ((UInt16)block[i-1]) << 8);
+        ftab[j]++;
+        quadrant[i-2] = 0;
+        j = (j >> 8) | ( ((UInt16)block[i-2]) << 8);
+        ftab[j]++;
+        quadrant[i-3] = 0;
+        j = (j >> 8) | ( ((UInt16)block[i-3]) << 8);
+        ftab[j]++;
+}
+   for (; i >= 0; i--) {
+  TRACK82_BEGIN: track(&&TRACK82_BEGIN, &&TRACK82_END);
+  TRACK82_END:  __asm__("nop;");
+   
+  quadrant[i] = 0;
+        j = (j >> 8) | ( ((UInt16)block[i]) << 8);
+        ftab[j]++;
+}
+   for (i = 0; i < (2 + 12 + 18 + 2); i++) {
+  TRACK83_BEGIN: track(&&TRACK83_BEGIN, &&TRACK83_END);
+  TRACK83_END:  __asm__("nop;");
+   
+  block [nblock+i] = block[i];
+        quadrant[nblock+i] = 0;
+}
+   if (verb >= 4)  {
+TRACK84_BEGIN: track(&&TRACK84_BEGIN, &&TRACK84_END);
+TRACK84_END:  __asm__("nop;");
+ 
+fprintf(stderr,"        bucket sorting ...\n");
+}
+   for (i = 1; i <= 65536; i++)  {
+TRACK85_BEGIN: track(&&TRACK85_BEGIN, &&TRACK85_END);
+TRACK85_END:  __asm__("nop;");
+ 
+ftab[i] += ftab[i-1];
+}
+   s = block[0] << 8;
+   i = nblock-1;
+   for (; i >= 3; i -= 4) {
+  TRACK86_BEGIN: track(&&TRACK86_BEGIN, &&TRACK86_END);
+  TRACK86_END:  __asm__("nop;");
+   
+  s = (s >> 8) | (block[i] << 8);
+        j = ftab[s] -1;
+        ftab[s] = j;
+        ptr[j] = i;
+        s = (s >> 8) | (block[i-1] << 8);
+        j = ftab[s] -1;
+        ftab[s] = j;
+        ptr[j] = i-1;
+        s = (s >> 8) | (block[i-2] << 8);
+        j = ftab[s] -1;
+        ftab[s] = j;
+        ptr[j] = i-2;
+        s = (s >> 8) | (block[i-3] << 8);
+        j = ftab[s] -1;
+        ftab[s] = j;
+        ptr[j] = i-3;
+}
+   for (; i >= 0; i--) {
+  TRACK87_BEGIN: track(&&TRACK87_BEGIN, &&TRACK87_END);
+  TRACK87_END:  __asm__("nop;");
+   
+  s = (s >> 8) | (block[i] << 8);
+        j = ftab[s] -1;
+        ftab[s] = j;
+        ptr[j] = i;
+}
+   for (i = 0; i <= 255; i++) {
+  TRACK88_BEGIN: track(&&TRACK88_BEGIN, &&TRACK88_END);
+  TRACK88_END:  __asm__("nop;");
+   
+  bigDone [i] = ((Bool)0);
+        runningOrder[i] = i;
+}
+   {
+      Int32 vv;
+      Int32 h = 1;
+      do  {
+TRACK89_BEGIN: track(&&TRACK89_BEGIN, &&TRACK89_END);
+TRACK89_END:  __asm__("nop;");
+ 
+h = 3 * h + 1;
+} while (h <= 256);
+      do {
+  TRACK93_BEGIN: track(&&TRACK93_BEGIN, &&TRACK93_END);
+  TRACK93_END:  __asm__("nop;");
+   
+  h = h / 3;
+           for (i = h; i <= 255; i++) {
+    TRACK92_BEGIN: track(&&TRACK92_BEGIN, &&TRACK92_END);
+    TRACK92_END:  __asm__("nop;");
+     
+    vv = runningOrder[i];
+                j = i;
+                while ( (ftab[((runningOrder[j-h])+1) << 8] - ftab[(runningOrder[j-h]) << 8]) > (ftab[((vv)+1) << 8] - ftab[(vv) << 8]) ) {
+      TRACK90_BEGIN: track(&&TRACK90_BEGIN, &&TRACK90_END);
+      TRACK90_END:  __asm__("nop;");
+       
+      runningOrder[j] = runningOrder[j-h];
+                     j = j - h;
+                     if (j <= (h - 1)) goto zero;
     }
-    { if (!(!bigDone[ss]))  {
-	__asm__("TRACK99_BEGIN: nop\n\t" 
-  		"   lea	TRACK99_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK99_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK99_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 1006 );
-      } };
-    {
-      for (j = 0; j <= 255; j++) {
-        __asm__("TRACK100_BEGIN: nop\n\t" 
-    		"   lea	TRACK100_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK100_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK100_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	copyStart[j] = ftab[(j << 8) + ss] & (~((1 << 21)));
-	copyEnd [j] = (ftab[(j << 8) + ss + 1] & (~((1 << 21)))) - 1;
-      }
-      for (j = ftab[ss << 8] & (~((1 << 21))); j < copyStart[ss]; j++) {
-        __asm__("TRACK103_BEGIN: nop\n\t" 
-    		"   lea	TRACK103_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK103_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK103_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	k = ptr[j]-1; if (k < 0)  {
-	  __asm__("TRACK101_BEGIN: nop\n\t" 
-		  "   lea	TRACK101_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK101_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK101_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k += nblock;
-	}
-	c1 = block[k];
-	if (!bigDone[c1])
-	  {
-	    __asm__("TRACK102_BEGIN: nop\n\t" 
-		    "   lea	TRACK102_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK102_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK102_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    ptr[ copyStart[c1]++ ] = k;
-	  }
-      }
-      for (j = (ftab[(ss+1) << 8] & (~((1 << 21)))) - 1; j > copyEnd[ss]; j--) {
-        __asm__("TRACK106_BEGIN: nop\n\t" 
-    		"   lea	TRACK106_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK106_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK106_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	k = ptr[j]-1; if (k < 0)  {
-	  __asm__("TRACK104_BEGIN: nop\n\t" 
-		  "   lea	TRACK104_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK104_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK104_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k += nblock;
-	}
-	c1 = block[k];
-	if (!bigDone[c1])
-	  {
-	    __asm__("TRACK105_BEGIN: nop\n\t" 
-		    "   lea	TRACK105_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK105_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK105_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    ptr[ copyEnd[c1]-- ] = k;
-	  }
-      }
-    }
-    { if (!((copyStart[ss]-1 == copyEnd[ss]) || (copyStart[ss] == 0 && copyEnd[ss] == nblock-1)))  {
-	__asm__("TRACK107_BEGIN: nop\n\t" 
-  		"   lea	TRACK107_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK107_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK107_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 1007 );
-      } }
-    for (j = 0; j <= 255; j++)  {
-      __asm__("TRACK108_BEGIN: nop\n\t" 
-	      "   lea	TRACK108_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK108_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK108_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ftab[(j << 8) + ss] |= (1 << 21);
-    }
-    bigDone[ss] = ((Bool)1);
-    if (i < 255) {
-      __asm__("TRACK113_BEGIN: nop\n\t" 
-	      "   lea	TRACK113_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK113_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK113_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Int32 bbStart = ftab[ss << 8] & (~((1 << 21)));
-      Int32 bbSize = (ftab[(ss+1) << 8] & (~((1 << 21)))) - bbStart;
-      Int32 shifts = 0;
-      while ((bbSize >> shifts) > 65534)  {
-        __asm__("TRACK109_BEGIN: nop\n\t" 
-    		"   lea	TRACK109_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK109_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK109_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	shifts++;
-      }
-      for (j = bbSize-1; j >= 0; j--) {
-	__asm__("TRACK111_BEGIN: nop\n\t" 
-      		"   lea	TRACK111_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK111_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK111_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	Int32 a2update = ptr[bbStart + j];
-	UInt16 qVal = (UInt16)(j >> shifts);
-	quadrant[a2update] = qVal;
-	if (a2update < (2 + 12 + 18 + 2))
-	  {
-	    __asm__("TRACK110_BEGIN: nop\n\t" 
-		    "   lea	TRACK110_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK110_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK110_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    quadrant[a2update + nblock] = qVal;
-	  }
-      }
-      { if (!(((bbSize-1) >> shifts) <= 65535))  {
-	  __asm__("TRACK112_BEGIN: nop\n\t" 
-		  "   lea	TRACK112_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK112_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK112_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  BZ2_bz__AssertH__fail ( 1002 );
-	} };
+                zero:
+                 {
+    TRACK91_BEGIN: track(&&TRACK91_BEGIN, &&TRACK91_END);
+    TRACK91_END:  __asm__("nop;");
+     
+    runningOrder[j] = vv;
     }
   }
-  if (verb >= 4)
-    {
-      __asm__("TRACK115_BEGIN: nop\n\t" 
-	      "   lea	TRACK115_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK115_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK115_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"        %d pointers, %d sorted, %d scanned\n",nblock,numQSorted,nblock - numQSorted);
+} while (h != 1);
+   }
+   numQSorted = 0;
+   for (i = 0; i <= 255; i++) {
+  TRACK114_BEGIN: track(&&TRACK114_BEGIN, &&TRACK114_END);
+  TRACK114_END:  __asm__("nop;");
+   
+  ss = runningOrder[i];
+        for (j = 0; j <= 255; j++) {
+    TRACK98_BEGIN: track(&&TRACK98_BEGIN, &&TRACK98_END);
+    TRACK98_END:  __asm__("nop;");
+     
+    if (j != ss) {
+      TRACK97_BEGIN: track(&&TRACK97_BEGIN, &&TRACK97_END);
+      TRACK97_END:  __asm__("nop;");
+       
+      sb = (ss << 8) + j;
+                  if ( ! (ftab[sb] & (1 << 21)) ) {
+        Int32 lo = ftab[sb] & (~((1 << 21)));
+                       Int32 hi = (ftab[sb+1] & (~((1 << 21)))) - 1;
+        TRACK96_BEGIN: track(&&TRACK96_BEGIN, &&TRACK96_END);
+        TRACK96_END:  __asm__("nop;");
+         
+        if (hi > lo) {
+          TRACK95_BEGIN: track(&&TRACK95_BEGIN, &&TRACK95_END);
+          TRACK95_END:  __asm__("nop;");
+           
+          if (verb >= 4)
+                                {
+          TRACK94_BEGIN: track(&&TRACK94_BEGIN, &&TRACK94_END);
+          TRACK94_END:  __asm__("nop;");
+           
+          fprintf(stderr,"        qsort [0x%x, 0x%x]   " "done %d   this %d\n",ss,j,numQSorted,hi - lo + 1);
+          }
+                            mainQSort3 (
+                               ptr, block, quadrant, nblock,
+                               lo, hi, 2, budget
+                            );
+                            numQSorted += (hi - lo + 1);
+                            if (*budget < 0) return;
+        }
+      }
+                  ftab[sb] |= (1 << 21);
     }
+  }
+        { if (!(!bigDone[ss]))  {
+  TRACK99_BEGIN: track(&&TRACK99_BEGIN, &&TRACK99_END);
+  TRACK99_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 1006 );
+  } };
+        {
+           for (j = 0; j <= 255; j++) {
+    TRACK100_BEGIN: track(&&TRACK100_BEGIN, &&TRACK100_END);
+    TRACK100_END:  __asm__("nop;");
+     
+    copyStart[j] = ftab[(j << 8) + ss] & (~((1 << 21)));
+                copyEnd [j] = (ftab[(j << 8) + ss + 1] & (~((1 << 21)))) - 1;
+  }
+           for (j = ftab[ss << 8] & (~((1 << 21))); j < copyStart[ss]; j++) {
+    TRACK103_BEGIN: track(&&TRACK103_BEGIN, &&TRACK103_END);
+    TRACK103_END:  __asm__("nop;");
+     
+    k = ptr[j]-1; if (k < 0)  {
+    TRACK101_BEGIN: track(&&TRACK101_BEGIN, &&TRACK101_END);
+    TRACK101_END:  __asm__("nop;");
+     
+    k += nblock;
+    }
+                c1 = block[k];
+                if (!bigDone[c1])
+                    {
+    TRACK102_BEGIN: track(&&TRACK102_BEGIN, &&TRACK102_END);
+    TRACK102_END:  __asm__("nop;");
+     
+    ptr[ copyStart[c1]++ ] = k;
+    }
+  }
+           for (j = (ftab[(ss+1) << 8] & (~((1 << 21)))) - 1; j > copyEnd[ss]; j--) {
+    TRACK106_BEGIN: track(&&TRACK106_BEGIN, &&TRACK106_END);
+    TRACK106_END:  __asm__("nop;");
+     
+    k = ptr[j]-1; if (k < 0)  {
+    TRACK104_BEGIN: track(&&TRACK104_BEGIN, &&TRACK104_END);
+    TRACK104_END:  __asm__("nop;");
+     
+    k += nblock;
+    }
+                c1 = block[k];
+                if (!bigDone[c1])
+                    {
+    TRACK105_BEGIN: track(&&TRACK105_BEGIN, &&TRACK105_END);
+    TRACK105_END:  __asm__("nop;");
+     
+    ptr[ copyEnd[c1]-- ] = k;
+    }
+  }
+        }
+        { if (!((copyStart[ss]-1 == copyEnd[ss]) || (copyStart[ss] == 0 && copyEnd[ss] == nblock-1)))  {
+  TRACK107_BEGIN: track(&&TRACK107_BEGIN, &&TRACK107_END);
+  TRACK107_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 1007 );
+  } }
+        for (j = 0; j <= 255; j++)  {
+  TRACK108_BEGIN: track(&&TRACK108_BEGIN, &&TRACK108_END);
+  TRACK108_END:  __asm__("nop;");
+   
+  ftab[(j << 8) + ss] |= (1 << 21);
+  }
+        bigDone[ss] = ((Bool)1);
+        if (i < 255) {
+    Int32 bbStart = ftab[ss << 8] & (~((1 << 21)));
+             Int32 bbSize = (ftab[(ss+1) << 8] & (~((1 << 21)))) - bbStart;
+             Int32 shifts = 0;
+    TRACK113_BEGIN: track(&&TRACK113_BEGIN, &&TRACK113_END);
+    TRACK113_END:  __asm__("nop;");
+     
+    while ((bbSize >> shifts) > 65534)  {
+    TRACK109_BEGIN: track(&&TRACK109_BEGIN, &&TRACK109_END);
+    TRACK109_END:  __asm__("nop;");
+     
+    shifts++;
+    }
+             for (j = bbSize-1; j >= 0; j--) {
+      Int32 a2update = ptr[bbStart + j];
+                  UInt16 qVal = (UInt16)(j >> shifts);
+      TRACK111_BEGIN: track(&&TRACK111_BEGIN, &&TRACK111_END);
+      TRACK111_END:  __asm__("nop;");
+       
+      quadrant[a2update] = qVal;
+                  if (a2update < (2 + 12 + 18 + 2))
+                      {
+      TRACK110_BEGIN: track(&&TRACK110_BEGIN, &&TRACK110_END);
+      TRACK110_END:  __asm__("nop;");
+       
+      quadrant[a2update + nblock] = qVal;
+      }
+    }
+             { if (!(((bbSize-1) >> shifts) <= 65535))  {
+    TRACK112_BEGIN: track(&&TRACK112_BEGIN, &&TRACK112_END);
+    TRACK112_END:  __asm__("nop;");
+     
+    BZ2_bz__AssertH__fail ( 1002 );
+    } };
+  }
+}
+   if (verb >= 4)
+       {
+TRACK115_BEGIN: track(&&TRACK115_BEGIN, &&TRACK115_END);
+TRACK115_END:  __asm__("nop;");
+ 
+fprintf(stderr,"        %d pointers, %d sorted, %d scanned\n",nblock,numQSorted,nblock - numQSorted);
+}
 }
 void BZ2_blockSort ( EState* s )
 {
-  UInt32* ptr = s->ptr;
-  UChar* block = s->block;
-  UInt32* ftab = s->ftab;
-  Int32 nblock = s->nblock;
-  Int32 verb = s->verbosity;
-  Int32 wfact = s->workFactor;
-  UInt16* quadrant;
-  Int32 budget;
-  Int32 budgetInit;
-  Int32 i;
-  if (nblock < 10000) {
-    __asm__("TRACK116_BEGIN: nop\n\t" 
-	    "   lea	TRACK116_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK116_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK116_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
-  } else {
-    __asm__("TRACK123_BEGIN: nop\n\t" 
-	    "   lea	TRACK123_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK123_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK123_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    i = nblock+(2 + 12 + 18 + 2);
-    if (i & 1)  {
-      __asm__("TRACK117_BEGIN: nop\n\t" 
-	      "   lea	TRACK117_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK117_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK117_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      i++;
-    }
-    quadrant = (UInt16*)(&(block[i]));
-    if (wfact < 1 )  {
-      __asm__("TRACK118_BEGIN: nop\n\t" 
-	      "   lea	TRACK118_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK118_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK118_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      wfact = 1;
-    }
-    if (wfact > 100)  {
-      __asm__("TRACK119_BEGIN: nop\n\t" 
-	      "   lea	TRACK119_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK119_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK119_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      wfact = 100;
-    }
-    budgetInit = nblock * ((wfact-1) / 3);
-    budget = budgetInit;
-    mainSort ( ptr, block, quadrant, ftab, nblock, verb, &budget );
-    if (verb >= 3)
-      {
-	__asm__("TRACK120_BEGIN: nop\n\t" 
-  		"   lea	TRACK120_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK120_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK120_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf(stderr,"      %d work, %d block, ratio %5.2f\n",budgetInit - budget,nblock,(float)(budgetInit - budget) / (float)(nblock==0 ? 1 : nblock));
-      }
-    if (budget < 0) {
-      __asm__("TRACK122_BEGIN: nop\n\t" 
-	      "   lea	TRACK122_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK122_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK122_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (verb >= 2)
-	{
-	  __asm__("TRACK121_BEGIN: nop\n\t" 
-		  "   lea	TRACK121_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK121_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK121_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf(stderr,"    too repetitive; using fallback" " sorting algorithm\n");
-	}
-      fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
-    }
+   UInt32* ptr = s->ptr;
+   UChar* block = s->block;
+   UInt32* ftab = s->ftab;
+   Int32 nblock = s->nblock;
+   Int32 verb = s->verbosity;
+   Int32 wfact = s->workFactor;
+   UInt16* quadrant;
+   Int32 budget;
+   Int32 budgetInit;
+   Int32 i;
+   if (nblock < 10000) {
+  TRACK116_BEGIN: track(&&TRACK116_BEGIN, &&TRACK116_END);
+  TRACK116_END:  __asm__("nop;");
+   
+  fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
+} else {
+  TRACK123_BEGIN: track(&&TRACK123_BEGIN, &&TRACK123_END);
+  TRACK123_END:  __asm__("nop;");
+   
+  i = nblock+(2 + 12 + 18 + 2);
+        if (i & 1)  {
+  TRACK117_BEGIN: track(&&TRACK117_BEGIN, &&TRACK117_END);
+  TRACK117_END:  __asm__("nop;");
+   
+  i++;
   }
-  s->origPtr = -1;
-  for (i = 0; i < s->nblock; i++)
-    {
-      __asm__("TRACK125_BEGIN: nop\n\t" 
-	      "   lea	TRACK125_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK125_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK125_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (ptr[i] == 0)
-	{
-	  __asm__("TRACK124_BEGIN: nop\n\t" 
-		  "   lea	TRACK124_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK124_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK124_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->origPtr = i; break;
-	}
-    };
-  { if (!(s->origPtr != -1))  {
-      __asm__("TRACK126_BEGIN: nop\n\t" 
-	      "   lea	TRACK126_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK126_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK126_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 1003 );
-    } };
+        quadrant = (UInt16*)(&(block[i]));
+        if (wfact < 1 )  {
+  TRACK118_BEGIN: track(&&TRACK118_BEGIN, &&TRACK118_END);
+  TRACK118_END:  __asm__("nop;");
+   
+  wfact = 1;
+  }
+        if (wfact > 100)  {
+  TRACK119_BEGIN: track(&&TRACK119_BEGIN, &&TRACK119_END);
+  TRACK119_END:  __asm__("nop;");
+   
+  wfact = 100;
+  }
+        budgetInit = nblock * ((wfact-1) / 3);
+        budget = budgetInit;
+        mainSort ( ptr, block, quadrant, ftab, nblock, verb, &budget );
+        if (verb >= 3)
+            {
+  TRACK120_BEGIN: track(&&TRACK120_BEGIN, &&TRACK120_END);
+  TRACK120_END:  __asm__("nop;");
+   
+  fprintf(stderr,"      %d work, %d block, ratio %5.2f\n",budgetInit - budget,nblock,(float)(budgetInit - budget) / (float)(nblock==0 ? 1 : nblock));
+  }
+        if (budget < 0) {
+    TRACK122_BEGIN: track(&&TRACK122_BEGIN, &&TRACK122_END);
+    TRACK122_END:  __asm__("nop;");
+     
+    if (verb >= 2)
+                 {
+    TRACK121_BEGIN: track(&&TRACK121_BEGIN, &&TRACK121_END);
+    TRACK121_END:  __asm__("nop;");
+     
+    fprintf(stderr,"    too repetitive; using fallback" " sorting algorithm\n");
+    }
+             fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
+  }
+}
+   s->origPtr = -1;
+   for (i = 0; i < s->nblock; i++)
+       {
+TRACK125_BEGIN: track(&&TRACK125_BEGIN, &&TRACK125_END);
+TRACK125_END:  __asm__("nop;");
+ 
+if (ptr[i] == 0)
+         {
+  TRACK124_BEGIN: track(&&TRACK124_BEGIN, &&TRACK124_END);
+  TRACK124_END:  __asm__("nop;");
+   
+  s->origPtr = i; break;
+}
+};
+   { if (!(s->origPtr != -1))  {
+TRACK126_BEGIN: track(&&TRACK126_BEGIN, &&TRACK126_END);
+TRACK126_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 1003 );
+} };
 }
 void BZ2_hbMakeCodeLengths ( UChar *len,
                              Int32 *freq,
                              Int32 alphaSize,
                              Int32 maxLen )
 {
-  Int32 nNodes, nHeap, n1, n2, i, j, k;
-  Bool tooLong;
-  Int32 heap [ 258 + 2 ];
-  Int32 weight [ 258 * 2 ];
-  Int32 parent [ 258 * 2 ];
-  for (i = 0; i < alphaSize; i++)
-    {
-      __asm__("TRACK127_BEGIN: nop\n\t" 
-	      "   lea	TRACK127_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK127_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK127_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
+   Int32 nNodes, nHeap, n1, n2, i, j, k;
+   Bool tooLong;
+   Int32 heap [ 258 + 2 ];
+   Int32 weight [ 258 * 2 ];
+   Int32 parent [ 258 * 2 ];
+   for (i = 0; i < alphaSize; i++)
+       {
+TRACK127_BEGIN: track(&&TRACK127_BEGIN, &&TRACK127_END);
+TRACK127_END:  __asm__("nop;");
+ 
+weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
+}
+   while (((Bool)1)) {
+  TRACK142_BEGIN: track(&&TRACK142_BEGIN, &&TRACK142_END);
+  TRACK142_END:  __asm__("nop;");
+   
+  nNodes = alphaSize;
+        nHeap = 0;
+        heap[0] = 0;
+        weight[0] = 0;
+        parent[0] = -2;
+        for (i = 1; i <= alphaSize; i++) {
+    TRACK129_BEGIN: track(&&TRACK129_BEGIN, &&TRACK129_END);
+    TRACK129_END:  __asm__("nop;");
+     
+    parent[i] = -1;
+             nHeap++;
+             heap[nHeap] = i;
+             { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
+      TRACK128_BEGIN: track(&&TRACK128_BEGIN, &&TRACK128_END);
+      TRACK128_END:  __asm__("nop;");
+       
+      heap[zz] = heap[zz >> 1]; zz >>= 1;
+    } heap[zz] = tmp; };
+  }
+        { if (!(nHeap < (258 +2)))  {
+  TRACK130_BEGIN: track(&&TRACK130_BEGIN, &&TRACK130_END);
+  TRACK130_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 2001 );
+  } };
+        while (nHeap > 1) {
+    TRACK136_BEGIN: track(&&TRACK136_BEGIN, &&TRACK136_END);
+    TRACK136_END:  __asm__("nop;");
+     
+    n1 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
+      TRACK132_BEGIN: track(&&TRACK132_BEGIN, &&TRACK132_END);
+      TRACK132_END:  __asm__("nop;");
+       
+      yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
+      TRACK131_BEGIN: track(&&TRACK131_BEGIN, &&TRACK131_END);
+      TRACK131_END:  __asm__("nop;");
+       
+      yy++;
+      } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
+    } heap[zz] = tmp; };
+             n2 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
+      TRACK134_BEGIN: track(&&TRACK134_BEGIN, &&TRACK134_END);
+      TRACK134_END:  __asm__("nop;");
+       
+      yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
+      TRACK133_BEGIN: track(&&TRACK133_BEGIN, &&TRACK133_END);
+      TRACK133_END:  __asm__("nop;");
+       
+      yy++;
+      } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
+    } heap[zz] = tmp; };
+             nNodes++;
+             parent[n1] = parent[n2] = nNodes;
+             weight[nNodes] = (((weight[n1]) & 0xffffff00)+((weight[n2]) & 0xffffff00)) | (1 + ((((weight[n1]) & 0x000000ff)) > (((weight[n2]) & 0x000000ff)) ? (((weight[n1]) & 0x000000ff)) : (((weight[n2]) & 0x000000ff))));
+             parent[nNodes] = -1;
+             nHeap++;
+             heap[nHeap] = nNodes;
+             { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
+      TRACK135_BEGIN: track(&&TRACK135_BEGIN, &&TRACK135_END);
+      TRACK135_END:  __asm__("nop;");
+       
+      heap[zz] = heap[zz >> 1]; zz >>= 1;
+    } heap[zz] = tmp; };
+  }
+        { if (!(nNodes < (258 * 2)))  {
+  TRACK137_BEGIN: track(&&TRACK137_BEGIN, &&TRACK137_END);
+  TRACK137_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 2002 );
+  } };
+        tooLong = ((Bool)0);
+        for (i = 1; i <= alphaSize; i++) {
+    TRACK140_BEGIN: track(&&TRACK140_BEGIN, &&TRACK140_END);
+    TRACK140_END:  __asm__("nop;");
+     
+    j = 0;
+             k = i;
+             while (parent[k] >= 0) {
+      TRACK138_BEGIN: track(&&TRACK138_BEGIN, &&TRACK138_END);
+      TRACK138_END:  __asm__("nop;");
+       
+      k = parent[k]; j++;
     }
-  while (((Bool)1)) {
-    __asm__("TRACK142_BEGIN: nop\n\t" 
-	    "   lea	TRACK142_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK142_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK142_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    nNodes = alphaSize;
-    nHeap = 0;
-    heap[0] = 0;
-    weight[0] = 0;
-    parent[0] = -2;
-    for (i = 1; i <= alphaSize; i++) {
-      __asm__("TRACK129_BEGIN: nop\n\t" 
-	      "   lea	TRACK129_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK129_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK129_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      parent[i] = -1;
-      nHeap++;
-      heap[nHeap] = i;
-      { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
-          __asm__("TRACK128_BEGIN: nop\n\t" 
-		  "   lea	TRACK128_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK128_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK128_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  heap[zz] = heap[zz >> 1]; zz >>= 1;
-	} heap[zz] = tmp; };
-    }
-    { if (!(nHeap < (258 +2)))  {
-	__asm__("TRACK130_BEGIN: nop\n\t" 
-  		"   lea	TRACK130_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK130_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK130_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 2001 );
-      } };
-    while (nHeap > 1) {
-      __asm__("TRACK136_BEGIN: nop\n\t" 
-	      "   lea	TRACK136_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK136_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK136_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      n1 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
-          __asm__("TRACK132_BEGIN: nop\n\t" 
-		  "   lea	TRACK132_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK132_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK132_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
-	    __asm__("TRACK131_BEGIN: nop\n\t" 
-		    "   lea	TRACK131_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK131_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK131_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    yy++;
-	  } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
-	} heap[zz] = tmp; };
-      n2 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
-          __asm__("TRACK134_BEGIN: nop\n\t" 
-		  "   lea	TRACK134_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK134_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK134_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
-	    __asm__("TRACK133_BEGIN: nop\n\t" 
-		    "   lea	TRACK133_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK133_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK133_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    yy++;
-	  } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
-	} heap[zz] = tmp; };
-      nNodes++;
-      parent[n1] = parent[n2] = nNodes;
-      weight[nNodes] = (((weight[n1]) & 0xffffff00)+((weight[n2]) & 0xffffff00)) | (1 + ((((weight[n1]) & 0x000000ff)) > (((weight[n2]) & 0x000000ff)) ? (((weight[n1]) & 0x000000ff)) : (((weight[n2]) & 0x000000ff))));
-      parent[nNodes] = -1;
-      nHeap++;
-      heap[nHeap] = nNodes;
-      { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
-          __asm__("TRACK135_BEGIN: nop\n\t" 
-		  "   lea	TRACK135_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK135_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK135_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  heap[zz] = heap[zz >> 1]; zz >>= 1;
-	} heap[zz] = tmp; };
-    }
-    { if (!(nNodes < (258 * 2)))  {
-	__asm__("TRACK137_BEGIN: nop\n\t" 
-  		"   lea	TRACK137_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK137_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK137_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 2002 );
-      } };
-    tooLong = ((Bool)0);
-    for (i = 1; i <= alphaSize; i++) {
-      __asm__("TRACK140_BEGIN: nop\n\t" 
-	      "   lea	TRACK140_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK140_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK140_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      j = 0;
-      k = i;
-      while (parent[k] >= 0) {
-	__asm__("TRACK138_BEGIN: nop\n\t" 
-      		"   lea	TRACK138_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK138_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK138_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	k = parent[k]; j++;
-      }
-      len[i-1] = j;
-      if (j > maxLen)  {
-        __asm__("TRACK139_BEGIN: nop\n\t" 
-    		"   lea	TRACK139_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK139_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK139_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	tooLong = ((Bool)1);
-      }
-    }
-    if (! tooLong) break;
-    for (i = 1; i < alphaSize; i++) {
-      __asm__("TRACK141_BEGIN: nop\n\t" 
-	      "   lea	TRACK141_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK141_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK141_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      j = weight[i] >> 8;
-      j = 1 + (j / 2);
-      weight[i] = j << 8;
+             len[i-1] = j;
+             if (j > maxLen)  {
+    TRACK139_BEGIN: track(&&TRACK139_BEGIN, &&TRACK139_END);
+    TRACK139_END:  __asm__("nop;");
+     
+    tooLong = ((Bool)1);
     }
   }
+        if (! tooLong) break;
+        for (i = 1; i < alphaSize; i++) {
+    TRACK141_BEGIN: track(&&TRACK141_BEGIN, &&TRACK141_END);
+    TRACK141_END:  __asm__("nop;");
+     
+    j = weight[i] >> 8;
+             j = 1 + (j / 2);
+             weight[i] = j << 8;
+  }
+}
 }
 void BZ2_hbAssignCodes ( Int32 *code,
                          UChar *length,
@@ -3501,47 +2507,26 @@ void BZ2_hbAssignCodes ( Int32 *code,
                          Int32 maxLen,
                          Int32 alphaSize )
 {
-  Int32 n, vec, i;
-  vec = 0;
-  for (n = minLen; n <= maxLen; n++) {
-    __asm__("TRACK145_BEGIN: nop\n\t" 
-	    "   lea	TRACK145_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK145_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK145_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for (i = 0; i < alphaSize; i++)
-      {
-	__asm__("TRACK144_BEGIN: nop\n\t" 
-  		"   lea	TRACK144_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK144_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK144_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	if (length[i] == n) {
-	  __asm__("TRACK143_BEGIN: nop\n\t" 
-		  "   lea	TRACK143_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK143_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK143_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  code[i] = vec; vec++;
-	}
-      };
-    vec <<= 1;
+   Int32 n, vec, i;
+   vec = 0;
+   for (n = minLen; n <= maxLen; n++) {
+  TRACK145_BEGIN: track(&&TRACK145_BEGIN, &&TRACK145_END);
+  TRACK145_END:  __asm__("nop;");
+   
+  for (i = 0; i < alphaSize; i++)
+            {
+  TRACK144_BEGIN: track(&&TRACK144_BEGIN, &&TRACK144_END);
+  TRACK144_END:  __asm__("nop;");
+   
+  if (length[i] == n) {
+    TRACK143_BEGIN: track(&&TRACK143_BEGIN, &&TRACK143_END);
+    TRACK143_END:  __asm__("nop;");
+     
+    code[i] = vec; vec++;
   }
+  };
+        vec <<= 1;
+}
 }
 void BZ2_hbCreateDecodeTables ( Int32 *limit,
                                 Int32 *base,
@@ -3551,10804 +2536,5561 @@ void BZ2_hbCreateDecodeTables ( Int32 *limit,
                                 Int32 maxLen,
                                 Int32 alphaSize )
 {
-  Int32 pp, i, j, vec;
-  pp = 0;
-  for (i = minLen; i <= maxLen; i++)
-    {
-      __asm__("TRACK148_BEGIN: nop\n\t" 
-	      "   lea	TRACK148_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK148_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK148_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (j = 0; j < alphaSize; j++)
-	{
-	  __asm__("TRACK147_BEGIN: nop\n\t" 
-		  "   lea	TRACK147_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK147_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK147_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (length[j] == i) {
-	    __asm__("TRACK146_BEGIN: nop\n\t" 
-		    "   lea	TRACK146_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK146_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK146_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    perm[pp] = j; pp++;
-	  }
-	}
-    };
-  for (i = 0; i < 23; i++)  {
-    __asm__("TRACK149_BEGIN: nop\n\t" 
-	    "   lea	TRACK149_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK149_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK149_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    base[i] = 0;
-  }
-  for (i = 0; i < alphaSize; i++)  {
-    __asm__("TRACK150_BEGIN: nop\n\t" 
-	    "   lea	TRACK150_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK150_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK150_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    base[length[i]+1]++;
-  }
-  for (i = 1; i < 23; i++)  {
-    __asm__("TRACK151_BEGIN: nop\n\t" 
-	    "   lea	TRACK151_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK151_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK151_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    base[i] += base[i-1];
-  }
-  for (i = 0; i < 23; i++)  {
-    __asm__("TRACK152_BEGIN: nop\n\t" 
-	    "   lea	TRACK152_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK152_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK152_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    limit[i] = 0;
-  }
-  vec = 0;
-  for (i = minLen; i <= maxLen; i++) {
-    __asm__("TRACK153_BEGIN: nop\n\t" 
-	    "   lea	TRACK153_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK153_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK153_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    vec += (base[i+1] - base[i]);
-    limit[i] = vec-1;
-    vec <<= 1;
-  }
-  for (i = minLen + 1; i <= maxLen; i++)
-    {
-      __asm__("TRACK154_BEGIN: nop\n\t" 
-	      "   lea	TRACK154_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK154_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK154_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      base[i] = ((limit[i-1] + 1) << 1) - base[i];
-    }
+   Int32 pp, i, j, vec;
+   pp = 0;
+   for (i = minLen; i <= maxLen; i++)
+       {
+TRACK148_BEGIN: track(&&TRACK148_BEGIN, &&TRACK148_END);
+TRACK148_END:  __asm__("nop;");
+ 
+for (j = 0; j < alphaSize; j++)
+          {
+TRACK147_BEGIN: track(&&TRACK147_BEGIN, &&TRACK147_END);
+TRACK147_END:  __asm__("nop;");
+ 
+if (length[j] == i) {
+  TRACK146_BEGIN: track(&&TRACK146_BEGIN, &&TRACK146_END);
+  TRACK146_END:  __asm__("nop;");
+   
+  perm[pp] = j; pp++;
+}
+}
+};
+   for (i = 0; i < 23; i++)  {
+TRACK149_BEGIN: track(&&TRACK149_BEGIN, &&TRACK149_END);
+TRACK149_END:  __asm__("nop;");
+ 
+base[i] = 0;
+}
+   for (i = 0; i < alphaSize; i++)  {
+TRACK150_BEGIN: track(&&TRACK150_BEGIN, &&TRACK150_END);
+TRACK150_END:  __asm__("nop;");
+ 
+base[length[i]+1]++;
+}
+   for (i = 1; i < 23; i++)  {
+TRACK151_BEGIN: track(&&TRACK151_BEGIN, &&TRACK151_END);
+TRACK151_END:  __asm__("nop;");
+ 
+base[i] += base[i-1];
+}
+   for (i = 0; i < 23; i++)  {
+TRACK152_BEGIN: track(&&TRACK152_BEGIN, &&TRACK152_END);
+TRACK152_END:  __asm__("nop;");
+ 
+limit[i] = 0;
+}
+   vec = 0;
+   for (i = minLen; i <= maxLen; i++) {
+  TRACK153_BEGIN: track(&&TRACK153_BEGIN, &&TRACK153_END);
+  TRACK153_END:  __asm__("nop;");
+   
+  vec += (base[i+1] - base[i]);
+        limit[i] = vec-1;
+        vec <<= 1;
+}
+   for (i = minLen + 1; i <= maxLen; i++)
+       {
+TRACK154_BEGIN: track(&&TRACK154_BEGIN, &&TRACK154_END);
+TRACK154_END:  __asm__("nop;");
+ 
+base[i] = ((limit[i-1] + 1) << 1) - base[i];
+}
 }
 UInt32 BZ2_crc32Table[256] = {
-  0x00000000L, 0x04c11db7L, 0x09823b6eL, 0x0d4326d9L,
-  0x130476dcL, 0x17c56b6bL, 0x1a864db2L, 0x1e475005L,
-  0x2608edb8L, 0x22c9f00fL, 0x2f8ad6d6L, 0x2b4bcb61L,
-  0x350c9b64L, 0x31cd86d3L, 0x3c8ea00aL, 0x384fbdbdL,
-  0x4c11db70L, 0x48d0c6c7L, 0x4593e01eL, 0x4152fda9L,
-  0x5f15adacL, 0x5bd4b01bL, 0x569796c2L, 0x52568b75L,
-  0x6a1936c8L, 0x6ed82b7fL, 0x639b0da6L, 0x675a1011L,
-  0x791d4014L, 0x7ddc5da3L, 0x709f7b7aL, 0x745e66cdL,
-  0x9823b6e0L, 0x9ce2ab57L, 0x91a18d8eL, 0x95609039L,
-  0x8b27c03cL, 0x8fe6dd8bL, 0x82a5fb52L, 0x8664e6e5L,
-  0xbe2b5b58L, 0xbaea46efL, 0xb7a96036L, 0xb3687d81L,
-  0xad2f2d84L, 0xa9ee3033L, 0xa4ad16eaL, 0xa06c0b5dL,
-  0xd4326d90L, 0xd0f37027L, 0xddb056feL, 0xd9714b49L,
-  0xc7361b4cL, 0xc3f706fbL, 0xceb42022L, 0xca753d95L,
-  0xf23a8028L, 0xf6fb9d9fL, 0xfbb8bb46L, 0xff79a6f1L,
-  0xe13ef6f4L, 0xe5ffeb43L, 0xe8bccd9aL, 0xec7dd02dL,
-  0x34867077L, 0x30476dc0L, 0x3d044b19L, 0x39c556aeL,
-  0x278206abL, 0x23431b1cL, 0x2e003dc5L, 0x2ac12072L,
-  0x128e9dcfL, 0x164f8078L, 0x1b0ca6a1L, 0x1fcdbb16L,
-  0x018aeb13L, 0x054bf6a4L, 0x0808d07dL, 0x0cc9cdcaL,
-  0x7897ab07L, 0x7c56b6b0L, 0x71159069L, 0x75d48ddeL,
-  0x6b93dddbL, 0x6f52c06cL, 0x6211e6b5L, 0x66d0fb02L,
-  0x5e9f46bfL, 0x5a5e5b08L, 0x571d7dd1L, 0x53dc6066L,
-  0x4d9b3063L, 0x495a2dd4L, 0x44190b0dL, 0x40d816baL,
-  0xaca5c697L, 0xa864db20L, 0xa527fdf9L, 0xa1e6e04eL,
-  0xbfa1b04bL, 0xbb60adfcL, 0xb6238b25L, 0xb2e29692L,
-  0x8aad2b2fL, 0x8e6c3698L, 0x832f1041L, 0x87ee0df6L,
-  0x99a95df3L, 0x9d684044L, 0x902b669dL, 0x94ea7b2aL,
-  0xe0b41de7L, 0xe4750050L, 0xe9362689L, 0xedf73b3eL,
-  0xf3b06b3bL, 0xf771768cL, 0xfa325055L, 0xfef34de2L,
-  0xc6bcf05fL, 0xc27dede8L, 0xcf3ecb31L, 0xcbffd686L,
-  0xd5b88683L, 0xd1799b34L, 0xdc3abdedL, 0xd8fba05aL,
-  0x690ce0eeL, 0x6dcdfd59L, 0x608edb80L, 0x644fc637L,
-  0x7a089632L, 0x7ec98b85L, 0x738aad5cL, 0x774bb0ebL,
-  0x4f040d56L, 0x4bc510e1L, 0x46863638L, 0x42472b8fL,
-  0x5c007b8aL, 0x58c1663dL, 0x558240e4L, 0x51435d53L,
-  0x251d3b9eL, 0x21dc2629L, 0x2c9f00f0L, 0x285e1d47L,
-  0x36194d42L, 0x32d850f5L, 0x3f9b762cL, 0x3b5a6b9bL,
-  0x0315d626L, 0x07d4cb91L, 0x0a97ed48L, 0x0e56f0ffL,
-  0x1011a0faL, 0x14d0bd4dL, 0x19939b94L, 0x1d528623L,
-  0xf12f560eL, 0xf5ee4bb9L, 0xf8ad6d60L, 0xfc6c70d7L,
-  0xe22b20d2L, 0xe6ea3d65L, 0xeba91bbcL, 0xef68060bL,
-  0xd727bbb6L, 0xd3e6a601L, 0xdea580d8L, 0xda649d6fL,
-  0xc423cd6aL, 0xc0e2d0ddL, 0xcda1f604L, 0xc960ebb3L,
-  0xbd3e8d7eL, 0xb9ff90c9L, 0xb4bcb610L, 0xb07daba7L,
-  0xae3afba2L, 0xaafbe615L, 0xa7b8c0ccL, 0xa379dd7bL,
-  0x9b3660c6L, 0x9ff77d71L, 0x92b45ba8L, 0x9675461fL,
-  0x8832161aL, 0x8cf30badL, 0x81b02d74L, 0x857130c3L,
-  0x5d8a9099L, 0x594b8d2eL, 0x5408abf7L, 0x50c9b640L,
-  0x4e8ee645L, 0x4a4ffbf2L, 0x470cdd2bL, 0x43cdc09cL,
-  0x7b827d21L, 0x7f436096L, 0x7200464fL, 0x76c15bf8L,
-  0x68860bfdL, 0x6c47164aL, 0x61043093L, 0x65c52d24L,
-  0x119b4be9L, 0x155a565eL, 0x18197087L, 0x1cd86d30L,
-  0x029f3d35L, 0x065e2082L, 0x0b1d065bL, 0x0fdc1becL,
-  0x3793a651L, 0x3352bbe6L, 0x3e119d3fL, 0x3ad08088L,
-  0x2497d08dL, 0x2056cd3aL, 0x2d15ebe3L, 0x29d4f654L,
-  0xc5a92679L, 0xc1683bceL, 0xcc2b1d17L, 0xc8ea00a0L,
-  0xd6ad50a5L, 0xd26c4d12L, 0xdf2f6bcbL, 0xdbee767cL,
-  0xe3a1cbc1L, 0xe760d676L, 0xea23f0afL, 0xeee2ed18L,
-  0xf0a5bd1dL, 0xf464a0aaL, 0xf9278673L, 0xfde69bc4L,
-  0x89b8fd09L, 0x8d79e0beL, 0x803ac667L, 0x84fbdbd0L,
-  0x9abc8bd5L, 0x9e7d9662L, 0x933eb0bbL, 0x97ffad0cL,
-  0xafb010b1L, 0xab710d06L, 0xa6322bdfL, 0xa2f33668L,
-  0xbcb4666dL, 0xb8757bdaL, 0xb5365d03L, 0xb1f740b4L
+   0x00000000L, 0x04c11db7L, 0x09823b6eL, 0x0d4326d9L,
+   0x130476dcL, 0x17c56b6bL, 0x1a864db2L, 0x1e475005L,
+   0x2608edb8L, 0x22c9f00fL, 0x2f8ad6d6L, 0x2b4bcb61L,
+   0x350c9b64L, 0x31cd86d3L, 0x3c8ea00aL, 0x384fbdbdL,
+   0x4c11db70L, 0x48d0c6c7L, 0x4593e01eL, 0x4152fda9L,
+   0x5f15adacL, 0x5bd4b01bL, 0x569796c2L, 0x52568b75L,
+   0x6a1936c8L, 0x6ed82b7fL, 0x639b0da6L, 0x675a1011L,
+   0x791d4014L, 0x7ddc5da3L, 0x709f7b7aL, 0x745e66cdL,
+   0x9823b6e0L, 0x9ce2ab57L, 0x91a18d8eL, 0x95609039L,
+   0x8b27c03cL, 0x8fe6dd8bL, 0x82a5fb52L, 0x8664e6e5L,
+   0xbe2b5b58L, 0xbaea46efL, 0xb7a96036L, 0xb3687d81L,
+   0xad2f2d84L, 0xa9ee3033L, 0xa4ad16eaL, 0xa06c0b5dL,
+   0xd4326d90L, 0xd0f37027L, 0xddb056feL, 0xd9714b49L,
+   0xc7361b4cL, 0xc3f706fbL, 0xceb42022L, 0xca753d95L,
+   0xf23a8028L, 0xf6fb9d9fL, 0xfbb8bb46L, 0xff79a6f1L,
+   0xe13ef6f4L, 0xe5ffeb43L, 0xe8bccd9aL, 0xec7dd02dL,
+   0x34867077L, 0x30476dc0L, 0x3d044b19L, 0x39c556aeL,
+   0x278206abL, 0x23431b1cL, 0x2e003dc5L, 0x2ac12072L,
+   0x128e9dcfL, 0x164f8078L, 0x1b0ca6a1L, 0x1fcdbb16L,
+   0x018aeb13L, 0x054bf6a4L, 0x0808d07dL, 0x0cc9cdcaL,
+   0x7897ab07L, 0x7c56b6b0L, 0x71159069L, 0x75d48ddeL,
+   0x6b93dddbL, 0x6f52c06cL, 0x6211e6b5L, 0x66d0fb02L,
+   0x5e9f46bfL, 0x5a5e5b08L, 0x571d7dd1L, 0x53dc6066L,
+   0x4d9b3063L, 0x495a2dd4L, 0x44190b0dL, 0x40d816baL,
+   0xaca5c697L, 0xa864db20L, 0xa527fdf9L, 0xa1e6e04eL,
+   0xbfa1b04bL, 0xbb60adfcL, 0xb6238b25L, 0xb2e29692L,
+   0x8aad2b2fL, 0x8e6c3698L, 0x832f1041L, 0x87ee0df6L,
+   0x99a95df3L, 0x9d684044L, 0x902b669dL, 0x94ea7b2aL,
+   0xe0b41de7L, 0xe4750050L, 0xe9362689L, 0xedf73b3eL,
+   0xf3b06b3bL, 0xf771768cL, 0xfa325055L, 0xfef34de2L,
+   0xc6bcf05fL, 0xc27dede8L, 0xcf3ecb31L, 0xcbffd686L,
+   0xd5b88683L, 0xd1799b34L, 0xdc3abdedL, 0xd8fba05aL,
+   0x690ce0eeL, 0x6dcdfd59L, 0x608edb80L, 0x644fc637L,
+   0x7a089632L, 0x7ec98b85L, 0x738aad5cL, 0x774bb0ebL,
+   0x4f040d56L, 0x4bc510e1L, 0x46863638L, 0x42472b8fL,
+   0x5c007b8aL, 0x58c1663dL, 0x558240e4L, 0x51435d53L,
+   0x251d3b9eL, 0x21dc2629L, 0x2c9f00f0L, 0x285e1d47L,
+   0x36194d42L, 0x32d850f5L, 0x3f9b762cL, 0x3b5a6b9bL,
+   0x0315d626L, 0x07d4cb91L, 0x0a97ed48L, 0x0e56f0ffL,
+   0x1011a0faL, 0x14d0bd4dL, 0x19939b94L, 0x1d528623L,
+   0xf12f560eL, 0xf5ee4bb9L, 0xf8ad6d60L, 0xfc6c70d7L,
+   0xe22b20d2L, 0xe6ea3d65L, 0xeba91bbcL, 0xef68060bL,
+   0xd727bbb6L, 0xd3e6a601L, 0xdea580d8L, 0xda649d6fL,
+   0xc423cd6aL, 0xc0e2d0ddL, 0xcda1f604L, 0xc960ebb3L,
+   0xbd3e8d7eL, 0xb9ff90c9L, 0xb4bcb610L, 0xb07daba7L,
+   0xae3afba2L, 0xaafbe615L, 0xa7b8c0ccL, 0xa379dd7bL,
+   0x9b3660c6L, 0x9ff77d71L, 0x92b45ba8L, 0x9675461fL,
+   0x8832161aL, 0x8cf30badL, 0x81b02d74L, 0x857130c3L,
+   0x5d8a9099L, 0x594b8d2eL, 0x5408abf7L, 0x50c9b640L,
+   0x4e8ee645L, 0x4a4ffbf2L, 0x470cdd2bL, 0x43cdc09cL,
+   0x7b827d21L, 0x7f436096L, 0x7200464fL, 0x76c15bf8L,
+   0x68860bfdL, 0x6c47164aL, 0x61043093L, 0x65c52d24L,
+   0x119b4be9L, 0x155a565eL, 0x18197087L, 0x1cd86d30L,
+   0x029f3d35L, 0x065e2082L, 0x0b1d065bL, 0x0fdc1becL,
+   0x3793a651L, 0x3352bbe6L, 0x3e119d3fL, 0x3ad08088L,
+   0x2497d08dL, 0x2056cd3aL, 0x2d15ebe3L, 0x29d4f654L,
+   0xc5a92679L, 0xc1683bceL, 0xcc2b1d17L, 0xc8ea00a0L,
+   0xd6ad50a5L, 0xd26c4d12L, 0xdf2f6bcbL, 0xdbee767cL,
+   0xe3a1cbc1L, 0xe760d676L, 0xea23f0afL, 0xeee2ed18L,
+   0xf0a5bd1dL, 0xf464a0aaL, 0xf9278673L, 0xfde69bc4L,
+   0x89b8fd09L, 0x8d79e0beL, 0x803ac667L, 0x84fbdbd0L,
+   0x9abc8bd5L, 0x9e7d9662L, 0x933eb0bbL, 0x97ffad0cL,
+   0xafb010b1L, 0xab710d06L, 0xa6322bdfL, 0xa2f33668L,
+   0xbcb4666dL, 0xb8757bdaL, 0xb5365d03L, 0xb1f740b4L
 };
 Int32 BZ2_rNums[512] = {
-  619, 720, 127, 481, 931, 816, 813, 233, 566, 247,
-  985, 724, 205, 454, 863, 491, 741, 242, 949, 214,
-  733, 859, 335, 708, 621, 574, 73, 654, 730, 472,
-  419, 436, 278, 496, 867, 210, 399, 680, 480, 51,
-  878, 465, 811, 169, 869, 675, 611, 697, 867, 561,
-  862, 687, 507, 283, 482, 129, 807, 591, 733, 623,
-  150, 238, 59, 379, 684, 877, 625, 169, 643, 105,
-  170, 607, 520, 932, 727, 476, 693, 425, 174, 647,
-  73, 122, 335, 530, 442, 853, 695, 249, 445, 515,
-  909, 545, 703, 919, 874, 474, 882, 500, 594, 612,
-  641, 801, 220, 162, 819, 984, 589, 513, 495, 799,
-  161, 604, 958, 533, 221, 400, 386, 867, 600, 782,
-  382, 596, 414, 171, 516, 375, 682, 485, 911, 276,
-  98, 553, 163, 354, 666, 933, 424, 341, 533, 870,
-  227, 730, 475, 186, 263, 647, 537, 686, 600, 224,
-  469, 68, 770, 919, 190, 373, 294, 822, 808, 206,
-  184, 943, 795, 384, 383, 461, 404, 758, 839, 887,
-  715, 67, 618, 276, 204, 918, 873, 777, 604, 560,
-  951, 160, 578, 722, 79, 804, 96, 409, 713, 940,
-  652, 934, 970, 447, 318, 353, 859, 672, 112, 785,
-  645, 863, 803, 350, 139, 93, 354, 99, 820, 908,
-  609, 772, 154, 274, 580, 184, 79, 626, 630, 742,
-  653, 282, 762, 623, 680, 81, 927, 626, 789, 125,
-  411, 521, 938, 300, 821, 78, 343, 175, 128, 250,
-  170, 774, 972, 275, 999, 639, 495, 78, 352, 126,
-  857, 956, 358, 619, 580, 124, 737, 594, 701, 612,
-  669, 112, 134, 694, 363, 992, 809, 743, 168, 974,
-  944, 375, 748, 52, 600, 747, 642, 182, 862, 81,
-  344, 805, 988, 739, 511, 655, 814, 334, 249, 515,
-  897, 955, 664, 981, 649, 113, 974, 459, 893, 228,
-  433, 837, 553, 268, 926, 240, 102, 654, 459, 51,
-  686, 754, 806, 760, 493, 403, 415, 394, 687, 700,
-  946, 670, 656, 610, 738, 392, 760, 799, 887, 653,
-  978, 321, 576, 617, 626, 502, 894, 679, 243, 440,
-  680, 879, 194, 572, 640, 724, 926, 56, 204, 700,
-  707, 151, 457, 449, 797, 195, 791, 558, 945, 679,
-  297, 59, 87, 824, 713, 663, 412, 693, 342, 606,
-  134, 108, 571, 364, 631, 212, 174, 643, 304, 329,
-  343, 97, 430, 751, 497, 314, 983, 374, 822, 928,
-  140, 206, 73, 263, 980, 736, 876, 478, 430, 305,
-  170, 514, 364, 692, 829, 82, 855, 953, 676, 246,
-  369, 970, 294, 750, 807, 827, 150, 790, 288, 923,
-  804, 378, 215, 828, 592, 281, 565, 555, 710, 82,
-  896, 831, 547, 261, 524, 462, 293, 465, 502, 56,
-  661, 821, 976, 991, 658, 869, 905, 758, 745, 193,
-  768, 550, 608, 933, 378, 286, 215, 979, 792, 961,
-  61, 688, 793, 644, 986, 403, 106, 366, 905, 644,
-  372, 567, 466, 434, 645, 210, 389, 550, 919, 135,
-  780, 773, 635, 389, 707, 100, 626, 958, 165, 504,
-  920, 176, 193, 713, 857, 265, 203, 50, 668, 108,
-  645, 990, 626, 197, 510, 357, 358, 850, 858, 364,
-  936, 638
+   619, 720, 127, 481, 931, 816, 813, 233, 566, 247,
+   985, 724, 205, 454, 863, 491, 741, 242, 949, 214,
+   733, 859, 335, 708, 621, 574, 73, 654, 730, 472,
+   419, 436, 278, 496, 867, 210, 399, 680, 480, 51,
+   878, 465, 811, 169, 869, 675, 611, 697, 867, 561,
+   862, 687, 507, 283, 482, 129, 807, 591, 733, 623,
+   150, 238, 59, 379, 684, 877, 625, 169, 643, 105,
+   170, 607, 520, 932, 727, 476, 693, 425, 174, 647,
+   73, 122, 335, 530, 442, 853, 695, 249, 445, 515,
+   909, 545, 703, 919, 874, 474, 882, 500, 594, 612,
+   641, 801, 220, 162, 819, 984, 589, 513, 495, 799,
+   161, 604, 958, 533, 221, 400, 386, 867, 600, 782,
+   382, 596, 414, 171, 516, 375, 682, 485, 911, 276,
+   98, 553, 163, 354, 666, 933, 424, 341, 533, 870,
+   227, 730, 475, 186, 263, 647, 537, 686, 600, 224,
+   469, 68, 770, 919, 190, 373, 294, 822, 808, 206,
+   184, 943, 795, 384, 383, 461, 404, 758, 839, 887,
+   715, 67, 618, 276, 204, 918, 873, 777, 604, 560,
+   951, 160, 578, 722, 79, 804, 96, 409, 713, 940,
+   652, 934, 970, 447, 318, 353, 859, 672, 112, 785,
+   645, 863, 803, 350, 139, 93, 354, 99, 820, 908,
+   609, 772, 154, 274, 580, 184, 79, 626, 630, 742,
+   653, 282, 762, 623, 680, 81, 927, 626, 789, 125,
+   411, 521, 938, 300, 821, 78, 343, 175, 128, 250,
+   170, 774, 972, 275, 999, 639, 495, 78, 352, 126,
+   857, 956, 358, 619, 580, 124, 737, 594, 701, 612,
+   669, 112, 134, 694, 363, 992, 809, 743, 168, 974,
+   944, 375, 748, 52, 600, 747, 642, 182, 862, 81,
+   344, 805, 988, 739, 511, 655, 814, 334, 249, 515,
+   897, 955, 664, 981, 649, 113, 974, 459, 893, 228,
+   433, 837, 553, 268, 926, 240, 102, 654, 459, 51,
+   686, 754, 806, 760, 493, 403, 415, 394, 687, 700,
+   946, 670, 656, 610, 738, 392, 760, 799, 887, 653,
+   978, 321, 576, 617, 626, 502, 894, 679, 243, 440,
+   680, 879, 194, 572, 640, 724, 926, 56, 204, 700,
+   707, 151, 457, 449, 797, 195, 791, 558, 945, 679,
+   297, 59, 87, 824, 713, 663, 412, 693, 342, 606,
+   134, 108, 571, 364, 631, 212, 174, 643, 304, 329,
+   343, 97, 430, 751, 497, 314, 983, 374, 822, 928,
+   140, 206, 73, 263, 980, 736, 876, 478, 430, 305,
+   170, 514, 364, 692, 829, 82, 855, 953, 676, 246,
+   369, 970, 294, 750, 807, 827, 150, 790, 288, 923,
+   804, 378, 215, 828, 592, 281, 565, 555, 710, 82,
+   896, 831, 547, 261, 524, 462, 293, 465, 502, 56,
+   661, 821, 976, 991, 658, 869, 905, 758, 745, 193,
+   768, 550, 608, 933, 378, 286, 215, 979, 792, 961,
+   61, 688, 793, 644, 986, 403, 106, 366, 905, 644,
+   372, 567, 466, 434, 645, 210, 389, 550, 919, 135,
+   780, 773, 635, 389, 707, 100, 626, 958, 165, 504,
+   920, 176, 193, 713, 857, 265, 203, 50, 668, 108,
+   645, 990, 626, 197, 510, 357, 358, 850, 858, 364,
+   936, 638
 };
 void BZ2_bsInitWrite ( EState* s )
 {
-  s->bsLive = 0;
-  s->bsBuff = 0;
+   s->bsLive = 0;
+   s->bsBuff = 0;
 }
 static
 void bsFinishWrite ( EState* s )
 {
-  while (s->bsLive > 0) {
-    __asm__("TRACK155_BEGIN: nop\n\t" 
-	    "   lea	TRACK155_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK155_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK155_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24);
-    s->numZ++;
-    s->bsBuff <<= 8;
-    s->bsLive -= 8;
-  }
+   while (s->bsLive > 0) {
+  TRACK155_BEGIN: track(&&TRACK155_BEGIN, &&TRACK155_END);
+  TRACK155_END:  __asm__("nop;");
+   
+  s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24);
+        s->numZ++;
+        s->bsBuff <<= 8;
+        s->bsLive -= 8;
+}
 }
 static
 
 void bsW ( EState* s, Int32 n, UInt32 v )
 {
-  { while (s->bsLive >= 8) {
-      __asm__("TRACK156_BEGIN: nop\n\t" 
-	      "   lea	TRACK156_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK156_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK156_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24); s->numZ++; s->bsBuff <<= 8; s->bsLive -= 8;
-    } };
-  s->bsBuff |= (v << (32 - s->bsLive - n));
-  s->bsLive += n;
+   { while (s->bsLive >= 8) {
+  TRACK156_BEGIN: track(&&TRACK156_BEGIN, &&TRACK156_END);
+  TRACK156_END:  __asm__("nop;");
+   
+  s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24); s->numZ++; s->bsBuff <<= 8; s->bsLive -= 8;
+} };
+   s->bsBuff |= (v << (32 - s->bsLive - n));
+   s->bsLive += n;
 }
 static
 void bsPutUInt32 ( EState* s, UInt32 u )
 {
-  bsW ( s, 8, (u >> 24) & 0xffL );
-  bsW ( s, 8, (u >> 16) & 0xffL );
-  bsW ( s, 8, (u >> 8) & 0xffL );
-  bsW ( s, 8, u & 0xffL );
+   bsW ( s, 8, (u >> 24) & 0xffL );
+   bsW ( s, 8, (u >> 16) & 0xffL );
+   bsW ( s, 8, (u >> 8) & 0xffL );
+   bsW ( s, 8, u & 0xffL );
 }
 static
 void bsPutUChar ( EState* s, UChar c )
 {
-  bsW( s, 8, (UInt32)c );
+   bsW( s, 8, (UInt32)c );
 }
 static
 void makeMaps_e ( EState* s )
 {
-  Int32 i;
-  s->nInUse = 0;
-  for (i = 0; i < 256; i++)
-    {
-      __asm__("TRACK158_BEGIN: nop\n\t" 
-	      "   lea	TRACK158_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK158_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK158_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->inUse[i]) {
-	__asm__("TRACK157_BEGIN: nop\n\t" 
-  		"   lea	TRACK157_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK157_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK157_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->unseqToSeq[i] = s->nInUse;
-	s->nInUse++;
-      }
-    }
+   Int32 i;
+   s->nInUse = 0;
+   for (i = 0; i < 256; i++)
+       {
+TRACK158_BEGIN: track(&&TRACK158_BEGIN, &&TRACK158_END);
+TRACK158_END:  __asm__("nop;");
+ 
+if (s->inUse[i]) {
+  TRACK157_BEGIN: track(&&TRACK157_BEGIN, &&TRACK157_END);
+  TRACK157_END:  __asm__("nop;");
+   
+  s->unseqToSeq[i] = s->nInUse;
+           s->nInUse++;
+}
+}
 }
 static
 void generateMTFValues ( EState* s )
 {
-  UChar yy[256];
-  Int32 i, j;
-  Int32 zPend;
-  Int32 wr;
-  Int32 EOB;
-  UInt32* ptr = s->ptr;
-  UChar* block = s->block;
-  UInt16* mtfv = s->mtfv;
-  makeMaps_e ( s );
-  EOB = s->nInUse+1;
-  for (i = 0; i <= EOB; i++)  {
-    __asm__("TRACK159_BEGIN: nop\n\t" 
-	    "   lea	TRACK159_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK159_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK159_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->mtfFreq[i] = 0;
+   UChar yy[256];
+   Int32 i, j;
+   Int32 zPend;
+   Int32 wr;
+   Int32 EOB;
+   UInt32* ptr = s->ptr;
+   UChar* block = s->block;
+   UInt16* mtfv = s->mtfv;
+   makeMaps_e ( s );
+   EOB = s->nInUse+1;
+   for (i = 0; i <= EOB; i++)  {
+TRACK159_BEGIN: track(&&TRACK159_BEGIN, &&TRACK159_END);
+TRACK159_END:  __asm__("nop;");
+ 
+s->mtfFreq[i] = 0;
+}
+   wr = 0;
+   zPend = 0;
+   for (i = 0; i < s->nInUse; i++)  {
+TRACK160_BEGIN: track(&&TRACK160_BEGIN, &&TRACK160_END);
+TRACK160_END:  __asm__("nop;");
+ 
+yy[i] = (UChar) i;
+}
+   for (i = 0; i < s->nblock; i++) {
+  UChar ll_i;
+  TRACK169_BEGIN: track(&&TRACK169_BEGIN, &&TRACK169_END);
+  TRACK169_END:  __asm__("nop;");
+   
+  ;
+        j = ptr[i]-1; if (j < 0)  {
+  TRACK161_BEGIN: track(&&TRACK161_BEGIN, &&TRACK161_END);
+  TRACK161_END:  __asm__("nop;");
+   
+  j += s->nblock;
   }
-  wr = 0;
-  zPend = 0;
-  for (i = 0; i < s->nInUse; i++)  {
-    __asm__("TRACK160_BEGIN: nop\n\t" 
-	    "   lea	TRACK160_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK160_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK160_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    yy[i] = (UChar) i;
-  }
-  for (i = 0; i < s->nblock; i++) {
-    __asm__("TRACK169_BEGIN: nop\n\t" 
-	    "   lea	TRACK169_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK169_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK169_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    UChar ll_i;
-    ;
-    j = ptr[i]-1; if (j < 0)  {
-      __asm__("TRACK161_BEGIN: nop\n\t" 
-	      "   lea	TRACK161_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK161_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK161_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      j += s->nblock;
+        ll_i = s->unseqToSeq[block[j]];
+        ;
+        if (yy[0] == ll_i) {
+    TRACK162_BEGIN: track(&&TRACK162_BEGIN, &&TRACK162_END);
+    TRACK162_END:  __asm__("nop;");
+     
+    zPend++;
+  } else {
+    TRACK168_BEGIN: track(&&TRACK168_BEGIN, &&TRACK168_END);
+    TRACK168_END:  __asm__("nop;");
+     
+    if (zPend > 0) {
+      TRACK166_BEGIN: track(&&TRACK166_BEGIN, &&TRACK166_END);
+      TRACK166_END:  __asm__("nop;");
+       
+      zPend--;
+                  while (((Bool)1)) {
+        TRACK165_BEGIN: track(&&TRACK165_BEGIN, &&TRACK165_END);
+        TRACK165_END:  __asm__("nop;");
+         
+        if (zPend & 1) {
+          TRACK163_BEGIN: track(&&TRACK163_BEGIN, &&TRACK163_END);
+          TRACK163_END:  __asm__("nop;");
+           
+          mtfv[wr] = 1; wr++;
+                            s->mtfFreq[1]++;
+        } else {
+          TRACK164_BEGIN: track(&&TRACK164_BEGIN, &&TRACK164_END);
+          TRACK164_END:  __asm__("nop;");
+           
+          mtfv[wr] = 0; wr++;
+                            s->mtfFreq[0]++;
+        }
+                       if (zPend < 2) break;
+                       zPend = (zPend - 2) / 2;
+      };
+                  zPend = 0;
     }
-    ll_i = s->unseqToSeq[block[j]];
-    ;
-    if (yy[0] == ll_i) {
-      __asm__("TRACK162_BEGIN: nop\n\t" 
-	      "   lea	TRACK162_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK162_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK162_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      zPend++;
-    } else {
-      __asm__("TRACK168_BEGIN: nop\n\t" 
-	      "   lea	TRACK168_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK168_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK168_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (zPend > 0) {
-	__asm__("TRACK166_BEGIN: nop\n\t" 
-      		"   lea	TRACK166_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK166_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK166_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	zPend--;
-	while (((Bool)1)) {
-	  __asm__("TRACK165_BEGIN: nop\n\t" 
-		  "   lea	TRACK165_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK165_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK165_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (zPend & 1) {
-	    __asm__("TRACK163_BEGIN: nop\n\t" 
-		    "   lea	TRACK163_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK163_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK163_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    mtfv[wr] = 1; wr++;
-	    s->mtfFreq[1]++;
-	  } else {
-	    __asm__("TRACK164_BEGIN: nop\n\t" 
-		    "   lea	TRACK164_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK164_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK164_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    mtfv[wr] = 0; wr++;
-	    s->mtfFreq[0]++;
-	  }
-	  if (zPend < 2) break;
-	  zPend = (zPend - 2) / 2;
-	};
-	zPend = 0;
-      }
-      {
-	register UChar rtmp;
-	register UChar* ryy_j;
-	register UChar rll_i;
-	rtmp = yy[1];
-	yy[1] = yy[0];
-	ryy_j = &(yy[1]);
-	rll_i = ll_i;
-	while ( rll_i != rtmp ) {
-          __asm__("TRACK167_BEGIN: nop\n\t" 
-		  "   lea	TRACK167_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK167_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK167_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  register UChar rtmp2;
-	  ryy_j++;
-	  rtmp2 = rtmp;
-	  rtmp = *ryy_j;
-	  *ryy_j = rtmp2;
-	};
-	yy[0] = rtmp;
-	j = ryy_j - &(yy[0]);
-	mtfv[wr] = j+1; wr++; s->mtfFreq[j+1]++;
-      }
-    }
-  }
-  if (zPend > 0) {
-    __asm__("TRACK173_BEGIN: nop\n\t" 
-	    "   lea	TRACK173_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK173_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK173_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    zPend--;
-    while (((Bool)1)) {
-      __asm__("TRACK172_BEGIN: nop\n\t" 
-	      "   lea	TRACK172_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK172_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK172_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (zPend & 1) {
-	__asm__("TRACK170_BEGIN: nop\n\t" 
-      		"   lea	TRACK170_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK170_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK170_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	mtfv[wr] = 1; wr++;
-	s->mtfFreq[1]++;
-      } else {
-	__asm__("TRACK171_BEGIN: nop\n\t" 
-      		"   lea	TRACK171_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK171_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK171_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	mtfv[wr] = 0; wr++;
-	s->mtfFreq[0]++;
-      }
-      if (zPend < 2) break;
-      zPend = (zPend - 2) / 2;
+             {
+                register UChar rtmp;
+                register UChar* ryy_j;
+                register UChar rll_i;
+                rtmp = yy[1];
+                yy[1] = yy[0];
+                ryy_j = &(yy[1]);
+                rll_i = ll_i;
+                while ( rll_i != rtmp ) {
+      register UChar rtmp2;
+      TRACK167_BEGIN: track(&&TRACK167_BEGIN, &&TRACK167_END);
+      TRACK167_END:  __asm__("nop;");
+       
+      ryy_j++;
+                     rtmp2 = rtmp;
+                     rtmp = *ryy_j;
+                     *ryy_j = rtmp2;
     };
-    zPend = 0;
+                yy[0] = rtmp;
+                j = ryy_j - &(yy[0]);
+                mtfv[wr] = j+1; wr++; s->mtfFreq[j+1]++;
+             }
   }
-  mtfv[wr] = EOB; wr++; s->mtfFreq[EOB]++;
-  s->nMTF = wr;
+}
+   if (zPend > 0) {
+  TRACK173_BEGIN: track(&&TRACK173_BEGIN, &&TRACK173_END);
+  TRACK173_END:  __asm__("nop;");
+   
+  zPend--;
+        while (((Bool)1)) {
+    TRACK172_BEGIN: track(&&TRACK172_BEGIN, &&TRACK172_END);
+    TRACK172_END:  __asm__("nop;");
+     
+    if (zPend & 1) {
+      TRACK170_BEGIN: track(&&TRACK170_BEGIN, &&TRACK170_END);
+      TRACK170_END:  __asm__("nop;");
+       
+      mtfv[wr] = 1; wr++;
+                  s->mtfFreq[1]++;
+    } else {
+      TRACK171_BEGIN: track(&&TRACK171_BEGIN, &&TRACK171_END);
+      TRACK171_END:  __asm__("nop;");
+       
+      mtfv[wr] = 0; wr++;
+                  s->mtfFreq[0]++;
+    }
+             if (zPend < 2) break;
+             zPend = (zPend - 2) / 2;
+  };
+        zPend = 0;
+}
+   mtfv[wr] = EOB; wr++; s->mtfFreq[EOB]++;
+   s->nMTF = wr;
 }
 static
 void sendMTFValues ( EState* s )
 {
-  Int32 v, t, i, j, gs, ge, totc, bt, bc, iter;
-  Int32 nSelectors, alphaSize, minLen, maxLen, selCtr;
-  Int32 nGroups, nBytes;
-  UInt16 cost[6];
-  Int32 fave[6];
-  UInt16* mtfv = s->mtfv;
-  if (s->verbosity >= 3)
+   Int32 v, t, i, j, gs, ge, totc, bt, bc, iter;
+   Int32 nSelectors, alphaSize, minLen, maxLen, selCtr;
+   Int32 nGroups, nBytes;
+   UInt16 cost[6];
+   Int32 fave[6];
+   UInt16* mtfv = s->mtfv;
+   if (s->verbosity >= 3)
+       {
+TRACK174_BEGIN: track(&&TRACK174_BEGIN, &&TRACK174_END);
+TRACK174_END:  __asm__("nop;");
+ 
+fprintf(stderr,"      %d in block, %d after MTF & 1-2 coding, " "%d+2 syms in use\n",s->nblock,s->nMTF,s->nInUse);
+}
+   alphaSize = s->nInUse+2;
+   for (t = 0; t < 6; t++)
+       {
+TRACK176_BEGIN: track(&&TRACK176_BEGIN, &&TRACK176_END);
+TRACK176_END:  __asm__("nop;");
+ 
+for (v = 0; v < alphaSize; v++)
+          {
+TRACK175_BEGIN: track(&&TRACK175_BEGIN, &&TRACK175_END);
+TRACK175_END:  __asm__("nop;");
+ 
+s->len[t][v] = 15;
+}
+}
+   { if (!(s->nMTF > 0))  {
+TRACK177_BEGIN: track(&&TRACK177_BEGIN, &&TRACK177_END);
+TRACK177_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 3001 );
+} };
+   if (s->nMTF < 200)  {
+TRACK178_BEGIN: track(&&TRACK178_BEGIN, &&TRACK178_END);
+TRACK178_END:  __asm__("nop;");
+ 
+nGroups = 2;
+} else
     {
-      __asm__("TRACK174_BEGIN: nop\n\t" 
-	      "   lea	TRACK174_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK174_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK174_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"      %d in block, %d after MTF & 1-2 coding, " "%d+2 syms in use\n",s->nblock,s->nMTF,s->nInUse);
-    }
-  alphaSize = s->nInUse+2;
-  for (t = 0; t < 6; t++)
+TRACK185_BEGIN: track(&&TRACK185_BEGIN, &&TRACK185_END);
+TRACK185_END:  __asm__("nop;");
+ 
+if (s->nMTF < 600)  {
+TRACK179_BEGIN: track(&&TRACK179_BEGIN, &&TRACK179_END);
+TRACK179_END:  __asm__("nop;");
+ 
+nGroups = 3;
+} else
     {
-      __asm__("TRACK176_BEGIN: nop\n\t" 
-	      "   lea	TRACK176_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK176_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK176_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (v = 0; v < alphaSize; v++)
-	{
-	  __asm__("TRACK175_BEGIN: nop\n\t" 
-		  "   lea	TRACK175_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK175_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK175_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->len[t][v] = 15;
-	}
-    }
-  { if (!(s->nMTF > 0))  {
-      __asm__("TRACK177_BEGIN: nop\n\t" 
-	      "   lea	TRACK177_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK177_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK177_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 3001 );
-    } };
-  if (s->nMTF < 200)  {
-    __asm__("TRACK178_BEGIN: nop\n\t" 
-	    "   lea	TRACK178_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK178_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK178_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    nGroups = 2;
+TRACK184_BEGIN: track(&&TRACK184_BEGIN, &&TRACK184_END);
+TRACK184_END:  __asm__("nop;");
+ 
+if (s->nMTF < 1200)  {
+TRACK180_BEGIN: track(&&TRACK180_BEGIN, &&TRACK180_END);
+TRACK180_END:  __asm__("nop;");
+ 
+nGroups = 4;
+} else
+    {
+TRACK183_BEGIN: track(&&TRACK183_BEGIN, &&TRACK183_END);
+TRACK183_END:  __asm__("nop;");
+ 
+if (s->nMTF < 2400)  {
+TRACK181_BEGIN: track(&&TRACK181_BEGIN, &&TRACK181_END);
+TRACK181_END:  __asm__("nop;");
+ 
+nGroups = 5;
+} else
+                        {
+TRACK182_BEGIN: track(&&TRACK182_BEGIN, &&TRACK182_END);
+TRACK182_END:  __asm__("nop;");
+ 
+nGroups = 6;
+}
+}
+}
+}
+   {
+      Int32 nPart, remF, tFreq, aFreq;
+      nPart = nGroups;
+      remF = s->nMTF;
+      gs = 0;
+      while (nPart > 0) {
+  TRACK192_BEGIN: track(&&TRACK192_BEGIN, &&TRACK192_END);
+  TRACK192_END:  __asm__("nop;");
+   
+  tFreq = remF / nPart;
+           ge = gs-1;
+           aFreq = 0;
+           while (aFreq < tFreq && ge < alphaSize-1) {
+    TRACK186_BEGIN: track(&&TRACK186_BEGIN, &&TRACK186_END);
+    TRACK186_END:  __asm__("nop;");
+     
+    ge++;
+                aFreq += s->mtfFreq[ge];
+  }
+           if (ge > gs
+               && nPart != nGroups && nPart != 1
+               && ((nGroups-nPart) % 2 == 1)) {
+    TRACK187_BEGIN: track(&&TRACK187_BEGIN, &&TRACK187_END);
+    TRACK187_END:  __asm__("nop;");
+     
+    aFreq -= s->mtfFreq[ge];
+                ge--;
+  }
+           if (s->verbosity >= 3)
+               {
+  TRACK188_BEGIN: track(&&TRACK188_BEGIN, &&TRACK188_END);
+  TRACK188_END:  __asm__("nop;");
+   
+  fprintf(stderr,"      initial group %d, [%d .. %d], " "has %d syms (%4.1f%%)\n",nPart,gs,ge,aFreq,(100.0 * (float)aFreq) / (float)(s->nMTF));
+  }
+           for (v = 0; v < alphaSize; v++)
+               {
+  TRACK191_BEGIN: track(&&TRACK191_BEGIN, &&TRACK191_END);
+  TRACK191_END:  __asm__("nop;");
+   
+  if (v >= gs && v <= ge)
+                  {
+  TRACK189_BEGIN: track(&&TRACK189_BEGIN, &&TRACK189_END);
+  TRACK189_END:  __asm__("nop;");
+   
+  s->len[nPart-1][v] = 0;
   } else
-    {
-      __asm__("TRACK185_BEGIN: nop\n\t" 
-	      "   lea	TRACK185_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK185_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK185_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->nMTF < 600)  {
-	__asm__("TRACK179_BEGIN: nop\n\t" 
-		"   lea	TRACK179_BEGIN, %%eax\n\t"   
-		"   lea	TRACK179_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK179_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	nGroups = 3;
-      } else
-	{
-	  __asm__("TRACK184_BEGIN: nop\n\t" 
-		  "   lea	TRACK184_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK184_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK184_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (s->nMTF < 1200)  {
-	    __asm__("TRACK180_BEGIN: nop\n\t" 
-		    "   lea	TRACK180_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK180_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK180_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    nGroups = 4;
-	  } else
-	    {
-	      __asm__("TRACK183_BEGIN: nop\n\t" 
-		      "   lea	TRACK183_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK183_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK183_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (s->nMTF < 2400)  {
-		__asm__("TRACK181_BEGIN: nop\n\t" 
-			"   lea	TRACK181_BEGIN, %%eax\n\t"   
-			"   lea	TRACK181_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK181_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		nGroups = 5;
-	      } else
-		{
-		  __asm__("TRACK182_BEGIN: nop\n\t" 
-			  "   lea	TRACK182_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK182_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK182_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  nGroups = 6;
-		}
-	    }
-	}
-    }
-  {
-    Int32 nPart, remF, tFreq, aFreq;
-    nPart = nGroups;
-    remF = s->nMTF;
-    gs = 0;
-    while (nPart > 0) {
-      __asm__("TRACK192_BEGIN: nop\n\t" 
-	      "   lea	TRACK192_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK192_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK192_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      tFreq = remF / nPart;
-      ge = gs-1;
-      aFreq = 0;
-      while (aFreq < tFreq && ge < alphaSize-1) {
-        __asm__("TRACK186_BEGIN: nop\n\t" 
-    		"   lea	TRACK186_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK186_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK186_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	ge++;
-	aFreq += s->mtfFreq[ge];
-      }
-      if (ge > gs
-	  && nPart != nGroups && nPart != 1
-	  && ((nGroups-nPart) % 2 == 1)) {
-        __asm__("TRACK187_BEGIN: nop\n\t" 
-    		"   lea	TRACK187_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK187_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK187_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	aFreq -= s->mtfFreq[ge];
-	ge--;
-      }
-      if (s->verbosity >= 3)
-	{
-	  __asm__("TRACK188_BEGIN: nop\n\t" 
-		  "   lea	TRACK188_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK188_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK188_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf(stderr,"      initial group %d, [%d .. %d], " "has %d syms (%4.1f%%)\n",nPart,gs,ge,aFreq,(100.0 * (float)aFreq) / (float)(s->nMTF));
-	}
-      for (v = 0; v < alphaSize; v++)
-	{
-	  __asm__("TRACK191_BEGIN: nop\n\t" 
-		  "   lea	TRACK191_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK191_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK191_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (v >= gs && v <= ge)
-	    {
-	      __asm__("TRACK189_BEGIN: nop\n\t" 
-		      "   lea	TRACK189_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK189_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK189_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->len[nPart-1][v] = 0;
-	    } else
-	    {
-	      __asm__("TRACK190_BEGIN: nop\n\t" 
-		      "   lea	TRACK190_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK190_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK190_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->len[nPart-1][v] = 15;
-	    }
-	}
-      nPart--;
-      gs = ge+1;
-      remF -= aFreq;
+                  {
+  TRACK190_BEGIN: track(&&TRACK190_BEGIN, &&TRACK190_END);
+  TRACK190_END:  __asm__("nop;");
+   
+  s->len[nPart-1][v] = 15;
+  }
+  }
+           nPart--;
+           gs = ge+1;
+           remF -= aFreq;
+}
+   }
+   for (iter = 0; iter < 4; iter++) {
+  TRACK213_BEGIN: track(&&TRACK213_BEGIN, &&TRACK213_END);
+  TRACK213_END:  __asm__("nop;");
+   
+  for (t = 0; t < nGroups; t++)  {
+  TRACK193_BEGIN: track(&&TRACK193_BEGIN, &&TRACK193_END);
+  TRACK193_END:  __asm__("nop;");
+   
+  fave[t] = 0;
+  }
+        for (t = 0; t < nGroups; t++)
+            {
+  TRACK195_BEGIN: track(&&TRACK195_BEGIN, &&TRACK195_END);
+  TRACK195_END:  __asm__("nop;");
+   
+  for (v = 0; v < alphaSize; v++)
+               {
+  TRACK194_BEGIN: track(&&TRACK194_BEGIN, &&TRACK194_END);
+  TRACK194_END:  __asm__("nop;");
+   
+  s->rfreq[t][v] = 0;
+  }
+  }
+        if (nGroups == 6) {
+    TRACK197_BEGIN: track(&&TRACK197_BEGIN, &&TRACK197_END);
+    TRACK197_END:  __asm__("nop;");
+     
+    for (v = 0; v < alphaSize; v++) {
+      TRACK196_BEGIN: track(&&TRACK196_BEGIN, &&TRACK196_END);
+      TRACK196_END:  __asm__("nop;");
+       
+      s->len_pack[v][0] = (s->len[1][v] << 16) | s->len[0][v];
+                  s->len_pack[v][1] = (s->len[3][v] << 16) | s->len[2][v];
+                  s->len_pack[v][2] = (s->len[5][v] << 16) | s->len[4][v];
     }
   }
-  for (iter = 0; iter < 4; iter++) {
-    __asm__("TRACK213_BEGIN: nop\n\t" 
-	    "   lea	TRACK213_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK213_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK213_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for (t = 0; t < nGroups; t++)  {
-      __asm__("TRACK193_BEGIN: nop\n\t" 
-	      "   lea	TRACK193_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK193_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK193_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fave[t] = 0;
-    }
-    for (t = 0; t < nGroups; t++)
-      {
-	__asm__("TRACK195_BEGIN: nop\n\t" 
-  		"   lea	TRACK195_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK195_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK195_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	for (v = 0; v < alphaSize; v++)
-	  {
-	    __asm__("TRACK194_BEGIN: nop\n\t" 
-		    "   lea	TRACK194_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK194_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK194_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->rfreq[t][v] = 0;
-	  }
-      }
-    if (nGroups == 6) {
-      __asm__("TRACK197_BEGIN: nop\n\t" 
-	      "   lea	TRACK197_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK197_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK197_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (v = 0; v < alphaSize; v++) {
-	__asm__("TRACK196_BEGIN: nop\n\t" 
-      		"   lea	TRACK196_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK196_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK196_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->len_pack[v][0] = (s->len[1][v] << 16) | s->len[0][v];
-	s->len_pack[v][1] = (s->len[3][v] << 16) | s->len[2][v];
-	s->len_pack[v][2] = (s->len[5][v] << 16) | s->len[4][v];
-      }
-    }
-    nSelectors = 0;
-    totc = 0;
-    gs = 0;
-    while (((Bool)1)) {
-      __asm__("TRACK209_BEGIN: nop\n\t" 
-	      "   lea	TRACK209_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK209_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK209_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (gs >= s->nMTF) break;
-      ge = gs + 50 - 1;
-      if (ge >= s->nMTF)  {
-        __asm__("TRACK198_BEGIN: nop\n\t" 
-    		"   lea	TRACK198_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK198_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK198_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	ge = s->nMTF-1;
-      }
-      for (t = 0; t < nGroups; t++)  {
-        __asm__("TRACK199_BEGIN: nop\n\t" 
-    		"   lea	TRACK199_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK199_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK199_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	cost[t] = 0;
-      }
-      if (nGroups == 6 && 50 == ge-gs+1) {
-	__asm__("TRACK200_BEGIN: nop\n\t" 
-      		"   lea	TRACK200_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK200_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK200_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	register UInt32 cost01, cost23, cost45;
-	register UInt16 icv;
-	cost01 = cost23 = cost45 = 0;
-	icv = mtfv[gs+(0)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(1)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(2)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(3)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(4)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(5)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(6)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(7)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(8)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(9)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(10)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(11)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(12)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(13)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(14)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(15)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(16)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(17)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(18)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(19)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(20)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(21)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(22)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(23)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(24)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(25)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(26)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(27)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(28)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(29)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(30)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(31)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(32)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(33)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(34)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(35)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(36)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(37)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(38)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(39)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(40)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(41)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(42)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(43)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(44)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	icv = mtfv[gs+(45)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(46)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(47)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(48)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(49)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
-	cost[0] = cost01 & 0xffff; cost[1] = cost01 >> 16;
-	cost[2] = cost23 & 0xffff; cost[3] = cost23 >> 16;
-	cost[4] = cost45 & 0xffff; cost[5] = cost45 >> 16;
-      } else {
-	__asm__("TRACK203_BEGIN: nop\n\t" 
-      		"   lea	TRACK203_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK203_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK203_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	for (i = gs; i <= ge; i++) {
-	  __asm__("TRACK202_BEGIN: nop\n\t" 
-		  "   lea	TRACK202_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK202_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK202_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UInt16 icv = mtfv[i];
-	  for (t = 0; t < nGroups; t++)  {
-            __asm__("TRACK201_BEGIN: nop\n\t" 
-		    "   lea	TRACK201_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK201_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK201_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    cost[t] += s->len[t][icv];
-	  }
-	}
-      }
-      bc = 999999999; bt = -1;
-      for (t = 0; t < nGroups; t++)
-	{
-	  __asm__("TRACK205_BEGIN: nop\n\t" 
-		  "   lea	TRACK205_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK205_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK205_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (cost[t] < bc) {
-	    __asm__("TRACK204_BEGIN: nop\n\t" 
-		    "   lea	TRACK204_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK204_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK204_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bc = cost[t]; bt = t;
-	  }
-	};
-      totc += bc;
-      fave[bt]++;
-      s->selector[nSelectors] = bt;
-      nSelectors++;
-      if (nGroups == 6 && 50 == ge-gs+1) {
-	__asm__("TRACK206_BEGIN: nop\n\t" 
-      		"   lea	TRACK206_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK206_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK206_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rfreq[bt][ mtfv[gs+(0)] ]++; s->rfreq[bt][ mtfv[gs+(1)] ]++; s->rfreq[bt][ mtfv[gs+(2)] ]++; s->rfreq[bt][ mtfv[gs+(3)] ]++; s->rfreq[bt][ mtfv[gs+(4)] ]++;
-	s->rfreq[bt][ mtfv[gs+(5)] ]++; s->rfreq[bt][ mtfv[gs+(6)] ]++; s->rfreq[bt][ mtfv[gs+(7)] ]++; s->rfreq[bt][ mtfv[gs+(8)] ]++; s->rfreq[bt][ mtfv[gs+(9)] ]++;
-	s->rfreq[bt][ mtfv[gs+(10)] ]++; s->rfreq[bt][ mtfv[gs+(11)] ]++; s->rfreq[bt][ mtfv[gs+(12)] ]++; s->rfreq[bt][ mtfv[gs+(13)] ]++; s->rfreq[bt][ mtfv[gs+(14)] ]++;
-	s->rfreq[bt][ mtfv[gs+(15)] ]++; s->rfreq[bt][ mtfv[gs+(16)] ]++; s->rfreq[bt][ mtfv[gs+(17)] ]++; s->rfreq[bt][ mtfv[gs+(18)] ]++; s->rfreq[bt][ mtfv[gs+(19)] ]++;
-	s->rfreq[bt][ mtfv[gs+(20)] ]++; s->rfreq[bt][ mtfv[gs+(21)] ]++; s->rfreq[bt][ mtfv[gs+(22)] ]++; s->rfreq[bt][ mtfv[gs+(23)] ]++; s->rfreq[bt][ mtfv[gs+(24)] ]++;
-	s->rfreq[bt][ mtfv[gs+(25)] ]++; s->rfreq[bt][ mtfv[gs+(26)] ]++; s->rfreq[bt][ mtfv[gs+(27)] ]++; s->rfreq[bt][ mtfv[gs+(28)] ]++; s->rfreq[bt][ mtfv[gs+(29)] ]++;
-	s->rfreq[bt][ mtfv[gs+(30)] ]++; s->rfreq[bt][ mtfv[gs+(31)] ]++; s->rfreq[bt][ mtfv[gs+(32)] ]++; s->rfreq[bt][ mtfv[gs+(33)] ]++; s->rfreq[bt][ mtfv[gs+(34)] ]++;
-	s->rfreq[bt][ mtfv[gs+(35)] ]++; s->rfreq[bt][ mtfv[gs+(36)] ]++; s->rfreq[bt][ mtfv[gs+(37)] ]++; s->rfreq[bt][ mtfv[gs+(38)] ]++; s->rfreq[bt][ mtfv[gs+(39)] ]++;
-	s->rfreq[bt][ mtfv[gs+(40)] ]++; s->rfreq[bt][ mtfv[gs+(41)] ]++; s->rfreq[bt][ mtfv[gs+(42)] ]++; s->rfreq[bt][ mtfv[gs+(43)] ]++; s->rfreq[bt][ mtfv[gs+(44)] ]++;
-	s->rfreq[bt][ mtfv[gs+(45)] ]++; s->rfreq[bt][ mtfv[gs+(46)] ]++; s->rfreq[bt][ mtfv[gs+(47)] ]++; s->rfreq[bt][ mtfv[gs+(48)] ]++; s->rfreq[bt][ mtfv[gs+(49)] ]++;
-      } else {
-	__asm__("TRACK208_BEGIN: nop\n\t" 
-      		"   lea	TRACK208_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK208_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK208_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	for (i = gs; i <= ge; i++)
-	  {
-	    __asm__("TRACK207_BEGIN: nop\n\t" 
-		    "   lea	TRACK207_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK207_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK207_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->rfreq[bt][ mtfv[i] ]++;
-	  }
-      }
-      gs = ge+1;
-    }
-    if (s->verbosity >= 3) {
-      __asm__("TRACK211_BEGIN: nop\n\t" 
-	      "   lea	TRACK211_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK211_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK211_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"      pass %d: size is %d, grp uses are ",iter+1,totc/8);
-      for (t = 0; t < nGroups; t++)
-	{
-	  __asm__("TRACK210_BEGIN: nop\n\t" 
-		  "   lea	TRACK210_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK210_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK210_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf(stderr,"%d ",fave[t]);
-	}
-      fprintf(stderr,"\n");
-    }
-    for (t = 0; t < nGroups; t++)
-      {
-	__asm__("TRACK212_BEGIN: nop\n\t" 
-  		"   lea	TRACK212_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK212_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK212_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_hbMakeCodeLengths ( &(s->len[t][0]), &(s->rfreq[t][0]),
-				alphaSize, 20 );
-      }
-  }
-  { if (!(nGroups < 8))  {
-      __asm__("TRACK214_BEGIN: nop\n\t" 
-	      "   lea	TRACK214_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK214_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK214_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 3002 );
-    } };
-  { if (!(nSelectors < 32768 && nSelectors <= (2 + (900000 / 50))))  {
-      __asm__("TRACK215_BEGIN: nop\n\t" 
-	      "   lea	TRACK215_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK215_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK215_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 3003 );
-    } };
-  {
-    UChar pos[6], ll_i, tmp2, tmp;
-    for (i = 0; i < nGroups; i++)  {
-      __asm__("TRACK216_BEGIN: nop\n\t" 
-	      "   lea	TRACK216_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK216_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK216_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      pos[i] = i;
-    }
-    for (i = 0; i < nSelectors; i++) {
-      __asm__("TRACK218_BEGIN: nop\n\t" 
-	      "   lea	TRACK218_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK218_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK218_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ll_i = s->selector[i];
-      j = 0;
-      tmp = pos[j];
-      while ( ll_i != tmp ) {
-        __asm__("TRACK217_BEGIN: nop\n\t" 
-    		"   lea	TRACK217_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK217_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK217_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	j++;
-	tmp2 = tmp;
-	tmp = pos[j];
-	pos[j] = tmp2;
-      };
-      pos[0] = tmp;
-      s->selectorMtf[i] = j;
-    }
-  };
-  for (t = 0; t < nGroups; t++) {
-    __asm__("TRACK224_BEGIN: nop\n\t" 
-	    "   lea	TRACK224_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK224_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK224_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    minLen = 32;
-    maxLen = 0;
-    for (i = 0; i < alphaSize; i++) {
-      __asm__("TRACK221_BEGIN: nop\n\t" 
-	      "   lea	TRACK221_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK221_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK221_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->len[t][i] > maxLen)  {
-        __asm__("TRACK219_BEGIN: nop\n\t" 
-    		"   lea	TRACK219_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK219_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK219_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	maxLen = s->len[t][i];
-      }
-      if (s->len[t][i] < minLen)  {
-        __asm__("TRACK220_BEGIN: nop\n\t" 
-    		"   lea	TRACK220_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK220_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK220_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	minLen = s->len[t][i];
-      }
-    }
-    { if (!(!(maxLen > 20)))  {
-	__asm__("TRACK222_BEGIN: nop\n\t" 
-  		"   lea	TRACK222_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK222_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK222_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 3004 );
-      } };
-    { if (!(!(minLen < 1)))  {
-	__asm__("TRACK223_BEGIN: nop\n\t" 
-  		"   lea	TRACK223_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK223_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK223_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 3005 );
-      } };
-    BZ2_hbAssignCodes ( &(s->code[t][0]), &(s->len[t][0]),
-			minLen, maxLen, alphaSize );
-  }
-  {
-    Bool inUse16[16];
-    for (i = 0; i < 16; i++) {
-      __asm__("TRACK227_BEGIN: nop\n\t" 
-	      "   lea	TRACK227_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK227_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK227_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      inUse16[i] = ((Bool)0);
-      for (j = 0; j < 16; j++)
-	{
-	  __asm__("TRACK226_BEGIN: nop\n\t" 
-		  "   lea	TRACK226_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK226_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK226_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (s->inUse[i * 16 + j])  {
-	    __asm__("TRACK225_BEGIN: nop\n\t" 
-		    "   lea	TRACK225_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK225_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK225_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    inUse16[i] = ((Bool)1);
-	  }
-	}
-    }
-    nBytes = s->numZ;
-    for (i = 0; i < 16; i++)
-      {
-	__asm__("TRACK230_BEGIN: nop\n\t" 
-		"   lea	TRACK230_BEGIN, %%eax\n\t"   
-		"   lea	TRACK230_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK230_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	if (inUse16[i])  {
-	  __asm__("TRACK228_BEGIN: nop\n\t" 
-		  "   lea	TRACK228_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK228_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK228_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bsW(s,1,1);
-	} else  {
-	  __asm__("TRACK229_BEGIN: nop\n\t" 
-		  "   lea	TRACK229_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK229_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK229_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bsW(s,1,0);
-	}
-      }
-    for (i = 0; i < 16; i++)
-      {
-	__asm__("TRACK235_BEGIN: nop\n\t" 
-		"   lea	TRACK235_BEGIN, %%eax\n\t"   
-		"   lea	TRACK235_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK235_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	if (inUse16[i])
-	  {
-	    __asm__("TRACK234_BEGIN: nop\n\t" 
-		    "   lea	TRACK234_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK234_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK234_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    for (j = 0; j < 16; j++) {
-	      __asm__("TRACK233_BEGIN: nop\n\t" 
-		      "   lea	TRACK233_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK233_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK233_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (s->inUse[i * 16 + j])  {
-		__asm__("TRACK231_BEGIN: nop\n\t" 
-			"   lea	TRACK231_BEGIN, %%eax\n\t"   
-			"   lea	TRACK231_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK231_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		bsW(s,1,1);
-	      } else  {
-		__asm__("TRACK232_BEGIN: nop\n\t" 
-			"   lea	TRACK232_BEGIN, %%eax\n\t"   
-			"   lea	TRACK232_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK232_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		bsW(s,1,0);
-	      }
-	    }
-	  }
-      }
-    if (s->verbosity >= 3)
-      {
-	__asm__("TRACK236_BEGIN: nop\n\t" 
-		"   lea	TRACK236_BEGIN, %%eax\n\t"   
-		"   lea	TRACK236_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK236_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	fprintf(stderr,"      bytes: mapping %d, ",s->numZ-nBytes);
-      }
-  }
-  nBytes = s->numZ;
-  bsW ( s, 3, nGroups );
-  bsW ( s, 15, nSelectors );
-  for (i = 0; i < nSelectors; i++) {
-    __asm__("TRACK238_BEGIN: nop\n\t" 
-	    "   lea	TRACK238_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK238_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK238_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    for (j = 0; j < s->selectorMtf[i]; j++)  {
-      __asm__("TRACK237_BEGIN: nop\n\t" 
-	      "   lea	TRACK237_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK237_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK237_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bsW(s,1,1);
-    }
-    bsW(s,1,0);
-  }
-  if (s->verbosity >= 3)
-    {
-      __asm__("TRACK239_BEGIN: nop\n\t" 
-	      "   lea	TRACK239_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK239_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK239_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"selectors %d, ",s->numZ-nBytes);
-    }
-  nBytes = s->numZ;
-  for (t = 0; t < nGroups; t++) {
-    __asm__("TRACK243_BEGIN: nop\n\t" 
-	    "   lea	TRACK243_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK243_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK243_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    Int32 curr = s->len[t][0];
-    bsW ( s, 5, curr );
-    for (i = 0; i < alphaSize; i++) {
-      __asm__("TRACK242_BEGIN: nop\n\t" 
-	      "   lea	TRACK242_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK242_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK242_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (curr < s->len[t][i]) {
-	__asm__("TRACK240_BEGIN: nop\n\t" 
-      		"   lea	TRACK240_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK240_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK240_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	bsW(s,2,2); curr++;
-      };
-      while (curr > s->len[t][i]) {
-	__asm__("TRACK241_BEGIN: nop\n\t" 
-      		"   lea	TRACK241_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK241_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK241_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	bsW(s,2,3); curr--;
-      };
-      bsW ( s, 1, 0 );
-    }
-  }
-  if (s->verbosity >= 3)
-    {
-      __asm__("TRACK244_BEGIN: nop\n\t" 
-	      "   lea	TRACK244_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK244_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK244_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
-    }
-  nBytes = s->numZ;
-  selCtr = 0;
-  gs = 0;
-  while (((Bool)1)) {
-    __asm__("TRACK250_BEGIN: nop\n\t" 
-	    "   lea	TRACK250_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK250_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK250_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+        nSelectors = 0;
+        totc = 0;
+        gs = 0;
+        while (((Bool)1)) {
+    TRACK209_BEGIN: track(&&TRACK209_BEGIN, &&TRACK209_END);
+    TRACK209_END:  __asm__("nop;");
+     
     if (gs >= s->nMTF) break;
-    ge = gs + 50 - 1;
-    if (ge >= s->nMTF)  {
-      __asm__("TRACK245_BEGIN: nop\n\t" 
-	      "   lea	TRACK245_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK245_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK245_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ge = s->nMTF-1;
+             ge = gs + 50 - 1;
+             if (ge >= s->nMTF)  {
+    TRACK198_BEGIN: track(&&TRACK198_BEGIN, &&TRACK198_END);
+    TRACK198_END:  __asm__("nop;");
+     
+    ge = s->nMTF-1;
     }
-    { if (!(s->selector[selCtr] < nGroups))  {
-	__asm__("TRACK246_BEGIN: nop\n\t" 
-  		"   lea	TRACK246_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK246_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK246_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	BZ2_bz__AssertH__fail ( 3006 );
-      } };
-    if (nGroups == 6 && 50 == ge-gs+1) {
-      __asm__("TRACK247_BEGIN: nop\n\t" 
-	      "   lea	TRACK247_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK247_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK247_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      UInt16 mtfv_i;
-      UChar* s_len_sel_selCtr
-	= &(s->len[s->selector[selCtr]][0]);
-      Int32* s_code_sel_selCtr
-	= &(s->code[s->selector[selCtr]][0]);
-      mtfv_i = mtfv[gs+(0)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(1)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(2)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(3)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(4)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(5)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(6)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(7)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(8)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(9)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(10)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(11)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(12)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(13)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(14)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(15)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(16)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(17)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(18)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(19)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(20)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(21)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(22)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(23)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(24)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(25)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(26)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(27)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(28)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(29)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(30)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(31)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(32)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(33)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(34)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(35)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(36)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(37)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(38)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(39)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(40)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(41)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(42)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(43)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(44)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
-      mtfv_i = mtfv[gs+(45)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(46)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(47)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(48)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(49)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+             for (t = 0; t < nGroups; t++)  {
+    TRACK199_BEGIN: track(&&TRACK199_BEGIN, &&TRACK199_END);
+    TRACK199_END:  __asm__("nop;");
+     
+    cost[t] = 0;
+    }
+             if (nGroups == 6 && 50 == ge-gs+1) {
+      register UInt32 cost01, cost23, cost45;
+                  register UInt16 icv;
+      TRACK200_BEGIN: track(&&TRACK200_BEGIN, &&TRACK200_END);
+      TRACK200_END:  __asm__("nop;");
+       
+      cost01 = cost23 = cost45 = 0;
+                  icv = mtfv[gs+(0)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(1)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(2)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(3)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(4)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(5)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(6)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(7)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(8)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(9)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(10)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(11)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(12)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(13)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(14)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(15)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(16)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(17)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(18)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(19)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(20)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(21)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(22)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(23)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(24)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(25)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(26)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(27)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(28)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(29)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(30)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(31)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(32)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(33)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(34)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(35)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(36)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(37)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(38)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(39)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(40)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(41)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(42)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(43)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(44)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  icv = mtfv[gs+(45)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(46)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(47)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(48)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(49)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
+                  cost[0] = cost01 & 0xffff; cost[1] = cost01 >> 16;
+                  cost[2] = cost23 & 0xffff; cost[3] = cost23 >> 16;
+                  cost[4] = cost45 & 0xffff; cost[5] = cost45 >> 16;
     } else {
-      __asm__("TRACK249_BEGIN: nop\n\t" 
-	      "   lea	TRACK249_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK249_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK249_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
+      TRACK203_BEGIN: track(&&TRACK203_BEGIN, &&TRACK203_END);
+      TRACK203_END:  __asm__("nop;");
+       
       for (i = gs; i <= ge; i++) {
-	__asm__("TRACK248_BEGIN: nop\n\t" 
-      		"   lea	TRACK248_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK248_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK248_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	bsW ( s,
-	      s->len [s->selector[selCtr]] [mtfv[i]],
-	      s->code [s->selector[selCtr]] [mtfv[i]] );
+        UInt16 icv = mtfv[i];
+        TRACK202_BEGIN: track(&&TRACK202_BEGIN, &&TRACK202_END);
+        TRACK202_END:  __asm__("nop;");
+         
+        for (t = 0; t < nGroups; t++)  {
+        TRACK201_BEGIN: track(&&TRACK201_BEGIN, &&TRACK201_END);
+        TRACK201_END:  __asm__("nop;");
+         
+        cost[t] += s->len[t][icv];
+        }
       }
     }
-    gs = ge+1;
-    selCtr++;
-  }
-  { if (!(selCtr == nSelectors))  {
-      __asm__("TRACK251_BEGIN: nop\n\t" 
-	      "   lea	TRACK251_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK251_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK251_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 3007 );
-    } };
-  if (s->verbosity >= 3)
-    {
-      __asm__("TRACK252_BEGIN: nop\n\t" 
-	      "   lea	TRACK252_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK252_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK252_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"codes %d\n",s->numZ-nBytes);
+             bc = 999999999; bt = -1;
+             for (t = 0; t < nGroups; t++)
+                 {
+    TRACK205_BEGIN: track(&&TRACK205_BEGIN, &&TRACK205_END);
+    TRACK205_END:  __asm__("nop;");
+     
+    if (cost[t] < bc) {
+      TRACK204_BEGIN: track(&&TRACK204_BEGIN, &&TRACK204_END);
+      TRACK204_END:  __asm__("nop;");
+       
+      bc = cost[t]; bt = t;
     }
+    };
+             totc += bc;
+             fave[bt]++;
+             s->selector[nSelectors] = bt;
+             nSelectors++;
+             if (nGroups == 6 && 50 == ge-gs+1) {
+      TRACK206_BEGIN: track(&&TRACK206_BEGIN, &&TRACK206_END);
+      TRACK206_END:  __asm__("nop;");
+       
+      s->rfreq[bt][ mtfv[gs+(0)] ]++; s->rfreq[bt][ mtfv[gs+(1)] ]++; s->rfreq[bt][ mtfv[gs+(2)] ]++; s->rfreq[bt][ mtfv[gs+(3)] ]++; s->rfreq[bt][ mtfv[gs+(4)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(5)] ]++; s->rfreq[bt][ mtfv[gs+(6)] ]++; s->rfreq[bt][ mtfv[gs+(7)] ]++; s->rfreq[bt][ mtfv[gs+(8)] ]++; s->rfreq[bt][ mtfv[gs+(9)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(10)] ]++; s->rfreq[bt][ mtfv[gs+(11)] ]++; s->rfreq[bt][ mtfv[gs+(12)] ]++; s->rfreq[bt][ mtfv[gs+(13)] ]++; s->rfreq[bt][ mtfv[gs+(14)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(15)] ]++; s->rfreq[bt][ mtfv[gs+(16)] ]++; s->rfreq[bt][ mtfv[gs+(17)] ]++; s->rfreq[bt][ mtfv[gs+(18)] ]++; s->rfreq[bt][ mtfv[gs+(19)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(20)] ]++; s->rfreq[bt][ mtfv[gs+(21)] ]++; s->rfreq[bt][ mtfv[gs+(22)] ]++; s->rfreq[bt][ mtfv[gs+(23)] ]++; s->rfreq[bt][ mtfv[gs+(24)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(25)] ]++; s->rfreq[bt][ mtfv[gs+(26)] ]++; s->rfreq[bt][ mtfv[gs+(27)] ]++; s->rfreq[bt][ mtfv[gs+(28)] ]++; s->rfreq[bt][ mtfv[gs+(29)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(30)] ]++; s->rfreq[bt][ mtfv[gs+(31)] ]++; s->rfreq[bt][ mtfv[gs+(32)] ]++; s->rfreq[bt][ mtfv[gs+(33)] ]++; s->rfreq[bt][ mtfv[gs+(34)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(35)] ]++; s->rfreq[bt][ mtfv[gs+(36)] ]++; s->rfreq[bt][ mtfv[gs+(37)] ]++; s->rfreq[bt][ mtfv[gs+(38)] ]++; s->rfreq[bt][ mtfv[gs+(39)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(40)] ]++; s->rfreq[bt][ mtfv[gs+(41)] ]++; s->rfreq[bt][ mtfv[gs+(42)] ]++; s->rfreq[bt][ mtfv[gs+(43)] ]++; s->rfreq[bt][ mtfv[gs+(44)] ]++;
+                  s->rfreq[bt][ mtfv[gs+(45)] ]++; s->rfreq[bt][ mtfv[gs+(46)] ]++; s->rfreq[bt][ mtfv[gs+(47)] ]++; s->rfreq[bt][ mtfv[gs+(48)] ]++; s->rfreq[bt][ mtfv[gs+(49)] ]++;
+    } else {
+      TRACK208_BEGIN: track(&&TRACK208_BEGIN, &&TRACK208_END);
+      TRACK208_END:  __asm__("nop;");
+       
+      for (i = gs; i <= ge; i++)
+                      {
+      TRACK207_BEGIN: track(&&TRACK207_BEGIN, &&TRACK207_END);
+      TRACK207_END:  __asm__("nop;");
+       
+      s->rfreq[bt][ mtfv[i] ]++;
+      }
+    }
+             gs = ge+1;
+  }
+        if (s->verbosity >= 3) {
+    TRACK211_BEGIN: track(&&TRACK211_BEGIN, &&TRACK211_END);
+    TRACK211_END:  __asm__("nop;");
+     
+    fprintf(stderr,"      pass %d: size is %d, grp uses are ",iter+1,totc/8);
+             for (t = 0; t < nGroups; t++)
+                 {
+    TRACK210_BEGIN: track(&&TRACK210_BEGIN, &&TRACK210_END);
+    TRACK210_END:  __asm__("nop;");
+     
+    fprintf(stderr,"%d ",fave[t]);
+    }
+             fprintf(stderr,"\n");
+  }
+        for (t = 0; t < nGroups; t++)
+            {
+  TRACK212_BEGIN: track(&&TRACK212_BEGIN, &&TRACK212_END);
+  TRACK212_END:  __asm__("nop;");
+   
+  BZ2_hbMakeCodeLengths ( &(s->len[t][0]), &(s->rfreq[t][0]),
+                                   alphaSize, 20 );
+  }
+}
+   { if (!(nGroups < 8))  {
+TRACK214_BEGIN: track(&&TRACK214_BEGIN, &&TRACK214_END);
+TRACK214_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 3002 );
+} };
+   { if (!(nSelectors < 32768 && nSelectors <= (2 + (900000 / 50))))  {
+TRACK215_BEGIN: track(&&TRACK215_BEGIN, &&TRACK215_END);
+TRACK215_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 3003 );
+} };
+   {
+      UChar pos[6], ll_i, tmp2, tmp;
+      for (i = 0; i < nGroups; i++)  {
+TRACK216_BEGIN: track(&&TRACK216_BEGIN, &&TRACK216_END);
+TRACK216_END:  __asm__("nop;");
+ 
+pos[i] = i;
+}
+      for (i = 0; i < nSelectors; i++) {
+  TRACK218_BEGIN: track(&&TRACK218_BEGIN, &&TRACK218_END);
+  TRACK218_END:  __asm__("nop;");
+   
+  ll_i = s->selector[i];
+           j = 0;
+           tmp = pos[j];
+           while ( ll_i != tmp ) {
+    TRACK217_BEGIN: track(&&TRACK217_BEGIN, &&TRACK217_END);
+    TRACK217_END:  __asm__("nop;");
+     
+    j++;
+                tmp2 = tmp;
+                tmp = pos[j];
+                pos[j] = tmp2;
+  };
+           pos[0] = tmp;
+           s->selectorMtf[i] = j;
+}
+   };
+   for (t = 0; t < nGroups; t++) {
+  TRACK224_BEGIN: track(&&TRACK224_BEGIN, &&TRACK224_END);
+  TRACK224_END:  __asm__("nop;");
+   
+  minLen = 32;
+        maxLen = 0;
+        for (i = 0; i < alphaSize; i++) {
+    TRACK221_BEGIN: track(&&TRACK221_BEGIN, &&TRACK221_END);
+    TRACK221_END:  __asm__("nop;");
+     
+    if (s->len[t][i] > maxLen)  {
+    TRACK219_BEGIN: track(&&TRACK219_BEGIN, &&TRACK219_END);
+    TRACK219_END:  __asm__("nop;");
+     
+    maxLen = s->len[t][i];
+    }
+             if (s->len[t][i] < minLen)  {
+    TRACK220_BEGIN: track(&&TRACK220_BEGIN, &&TRACK220_END);
+    TRACK220_END:  __asm__("nop;");
+     
+    minLen = s->len[t][i];
+    }
+  }
+        { if (!(!(maxLen > 20)))  {
+  TRACK222_BEGIN: track(&&TRACK222_BEGIN, &&TRACK222_END);
+  TRACK222_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 3004 );
+  } };
+        { if (!(!(minLen < 1)))  {
+  TRACK223_BEGIN: track(&&TRACK223_BEGIN, &&TRACK223_END);
+  TRACK223_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 3005 );
+  } };
+        BZ2_hbAssignCodes ( &(s->code[t][0]), &(s->len[t][0]),
+                            minLen, maxLen, alphaSize );
+}
+   {
+      Bool inUse16[16];
+      for (i = 0; i < 16; i++) {
+  TRACK227_BEGIN: track(&&TRACK227_BEGIN, &&TRACK227_END);
+  TRACK227_END:  __asm__("nop;");
+   
+  inUse16[i] = ((Bool)0);
+            for (j = 0; j < 16; j++)
+                {
+  TRACK226_BEGIN: track(&&TRACK226_BEGIN, &&TRACK226_END);
+  TRACK226_END:  __asm__("nop;");
+   
+  if (s->inUse[i * 16 + j])  {
+  TRACK225_BEGIN: track(&&TRACK225_BEGIN, &&TRACK225_END);
+  TRACK225_END:  __asm__("nop;");
+   
+  inUse16[i] = ((Bool)1);
+  }
+  }
+}
+      nBytes = s->numZ;
+      for (i = 0; i < 16; i++)
+          {
+TRACK230_BEGIN: track(&&TRACK230_BEGIN, &&TRACK230_END);
+TRACK230_END:  __asm__("nop;");
+ 
+if (inUse16[i])  {
+TRACK228_BEGIN: track(&&TRACK228_BEGIN, &&TRACK228_END);
+TRACK228_END:  __asm__("nop;");
+ 
+bsW(s,1,1);
+} else  {
+TRACK229_BEGIN: track(&&TRACK229_BEGIN, &&TRACK229_END);
+TRACK229_END:  __asm__("nop;");
+ 
+bsW(s,1,0);
+}
+}
+      for (i = 0; i < 16; i++)
+          {
+TRACK235_BEGIN: track(&&TRACK235_BEGIN, &&TRACK235_END);
+TRACK235_END:  __asm__("nop;");
+ 
+if (inUse16[i])
+             {
+TRACK234_BEGIN: track(&&TRACK234_BEGIN, &&TRACK234_END);
+TRACK234_END:  __asm__("nop;");
+ 
+for (j = 0; j < 16; j++) {
+  TRACK233_BEGIN: track(&&TRACK233_BEGIN, &&TRACK233_END);
+  TRACK233_END:  __asm__("nop;");
+   
+  if (s->inUse[i * 16 + j])  {
+  TRACK231_BEGIN: track(&&TRACK231_BEGIN, &&TRACK231_END);
+  TRACK231_END:  __asm__("nop;");
+   
+  bsW(s,1,1);
+  } else  {
+  TRACK232_BEGIN: track(&&TRACK232_BEGIN, &&TRACK232_END);
+  TRACK232_END:  __asm__("nop;");
+   
+  bsW(s,1,0);
+  }
+}
+}
+}
+      if (s->verbosity >= 3)
+          {
+TRACK236_BEGIN: track(&&TRACK236_BEGIN, &&TRACK236_END);
+TRACK236_END:  __asm__("nop;");
+ 
+fprintf(stderr,"      bytes: mapping %d, ",s->numZ-nBytes);
+}
+   }
+   nBytes = s->numZ;
+   bsW ( s, 3, nGroups );
+   bsW ( s, 15, nSelectors );
+   for (i = 0; i < nSelectors; i++) {
+  TRACK238_BEGIN: track(&&TRACK238_BEGIN, &&TRACK238_END);
+  TRACK238_END:  __asm__("nop;");
+   
+  for (j = 0; j < s->selectorMtf[i]; j++)  {
+  TRACK237_BEGIN: track(&&TRACK237_BEGIN, &&TRACK237_END);
+  TRACK237_END:  __asm__("nop;");
+   
+  bsW(s,1,1);
+  }
+        bsW(s,1,0);
+}
+   if (s->verbosity >= 3)
+       {
+TRACK239_BEGIN: track(&&TRACK239_BEGIN, &&TRACK239_END);
+TRACK239_END:  __asm__("nop;");
+ 
+fprintf(stderr,"selectors %d, ",s->numZ-nBytes);
+}
+   nBytes = s->numZ;
+   for (t = 0; t < nGroups; t++) {
+  Int32 curr = s->len[t][0];
+  TRACK243_BEGIN: track(&&TRACK243_BEGIN, &&TRACK243_END);
+  TRACK243_END:  __asm__("nop;");
+   
+  bsW ( s, 5, curr );
+        for (i = 0; i < alphaSize; i++) {
+    TRACK242_BEGIN: track(&&TRACK242_BEGIN, &&TRACK242_END);
+    TRACK242_END:  __asm__("nop;");
+     
+    while (curr < s->len[t][i]) {
+      TRACK240_BEGIN: track(&&TRACK240_BEGIN, &&TRACK240_END);
+      TRACK240_END:  __asm__("nop;");
+       
+      bsW(s,2,2); curr++;
+    };
+             while (curr > s->len[t][i]) {
+      TRACK241_BEGIN: track(&&TRACK241_BEGIN, &&TRACK241_END);
+      TRACK241_END:  __asm__("nop;");
+       
+      bsW(s,2,3); curr--;
+    };
+             bsW ( s, 1, 0 );
+  }
+}
+   if (s->verbosity >= 3)
+       {
+TRACK244_BEGIN: track(&&TRACK244_BEGIN, &&TRACK244_END);
+TRACK244_END:  __asm__("nop;");
+ 
+fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
+}
+   nBytes = s->numZ;
+   selCtr = 0;
+   gs = 0;
+   while (((Bool)1)) {
+  TRACK250_BEGIN: track(&&TRACK250_BEGIN, &&TRACK250_END);
+  TRACK250_END:  __asm__("nop;");
+   
+  if (gs >= s->nMTF) break;
+        ge = gs + 50 - 1;
+        if (ge >= s->nMTF)  {
+  TRACK245_BEGIN: track(&&TRACK245_BEGIN, &&TRACK245_END);
+  TRACK245_END:  __asm__("nop;");
+   
+  ge = s->nMTF-1;
+  }
+        { if (!(s->selector[selCtr] < nGroups))  {
+  TRACK246_BEGIN: track(&&TRACK246_BEGIN, &&TRACK246_END);
+  TRACK246_END:  __asm__("nop;");
+   
+  BZ2_bz__AssertH__fail ( 3006 );
+  } };
+        if (nGroups == 6 && 50 == ge-gs+1) {
+    UInt16 mtfv_i;
+                UChar* s_len_sel_selCtr
+                   = &(s->len[s->selector[selCtr]][0]);
+                Int32* s_code_sel_selCtr
+                   = &(s->code[s->selector[selCtr]][0]);
+    TRACK247_BEGIN: track(&&TRACK247_BEGIN, &&TRACK247_END);
+    TRACK247_END:  __asm__("nop;");
+     
+    mtfv_i = mtfv[gs+(0)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(1)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(2)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(3)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(4)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(5)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(6)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(7)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(8)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(9)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(10)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(11)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(12)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(13)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(14)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(15)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(16)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(17)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(18)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(19)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(20)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(21)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(22)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(23)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(24)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(25)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(26)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(27)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(28)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(29)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(30)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(31)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(32)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(33)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(34)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(35)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(36)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(37)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(38)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(39)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(40)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(41)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(42)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(43)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(44)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+                mtfv_i = mtfv[gs+(45)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(46)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(47)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(48)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(49)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
+  } else {
+    TRACK249_BEGIN: track(&&TRACK249_BEGIN, &&TRACK249_END);
+    TRACK249_END:  __asm__("nop;");
+     
+    for (i = gs; i <= ge; i++) {
+      TRACK248_BEGIN: track(&&TRACK248_BEGIN, &&TRACK248_END);
+      TRACK248_END:  __asm__("nop;");
+       
+      bsW ( s,
+                        s->len [s->selector[selCtr]] [mtfv[i]],
+                        s->code [s->selector[selCtr]] [mtfv[i]] );
+    }
+  }
+        gs = ge+1;
+        selCtr++;
+}
+   { if (!(selCtr == nSelectors))  {
+TRACK251_BEGIN: track(&&TRACK251_BEGIN, &&TRACK251_END);
+TRACK251_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 3007 );
+} };
+   if (s->verbosity >= 3)
+       {
+TRACK252_BEGIN: track(&&TRACK252_BEGIN, &&TRACK252_END);
+TRACK252_END:  __asm__("nop;");
+ 
+fprintf(stderr,"codes %d\n",s->numZ-nBytes);
+}
 }
 void BZ2_compressBlock ( EState* s, Bool is_last_block )
 {
-  if (s->nblock > 0) {
-    __asm__("TRACK255_BEGIN: nop\n\t" 
-	    "   lea	TRACK255_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK255_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK255_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    { s->blockCRC = ~(s->blockCRC); };
-    s->combinedCRC = (s->combinedCRC << 1) | (s->combinedCRC >> 31);
-    s->combinedCRC ^= s->blockCRC;
-    if (s->blockNo > 1)  {
-      __asm__("TRACK253_BEGIN: nop\n\t" 
-	      "   lea	TRACK253_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK253_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK253_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->numZ = 0;
-    }
-    if (s->verbosity >= 2)
-      {
-	__asm__("TRACK254_BEGIN: nop\n\t" 
-  		"   lea	TRACK254_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK254_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK254_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf(stderr,"    block %d: crc = 0x%8x, " "combined CRC = 0x%8x, size = %d\n",s->blockNo,s->blockCRC,s->combinedCRC,s->nblock);
-      }
-    BZ2_blockSort ( s );
+   if (s->nblock > 0) {
+  TRACK255_BEGIN: track(&&TRACK255_BEGIN, &&TRACK255_END);
+  TRACK255_END:  __asm__("nop;");
+   
+  { s->blockCRC = ~(s->blockCRC); };
+        s->combinedCRC = (s->combinedCRC << 1) | (s->combinedCRC >> 31);
+        s->combinedCRC ^= s->blockCRC;
+        if (s->blockNo > 1)  {
+  TRACK253_BEGIN: track(&&TRACK253_BEGIN, &&TRACK253_END);
+  TRACK253_END:  __asm__("nop;");
+   
+  s->numZ = 0;
   }
-  s->zbits = (UChar*) (&((UChar*)s->arr2)[s->nblock]);
-  if (s->blockNo == 1) {
-    __asm__("TRACK256_BEGIN: nop\n\t" 
-	    "   lea	TRACK256_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK256_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK256_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    BZ2_bsInitWrite ( s );
-    bsPutUChar ( s, 0x42 );
-    bsPutUChar ( s, 0x5a );
-    bsPutUChar ( s, 0x68 );
-    bsPutUChar ( s, (UChar)(0x30 + s->blockSize100k) );
+        if (s->verbosity >= 2)
+            {
+  TRACK254_BEGIN: track(&&TRACK254_BEGIN, &&TRACK254_END);
+  TRACK254_END:  __asm__("nop;");
+   
+  fprintf(stderr,"    block %d: crc = 0x%8x, " "combined CRC = 0x%8x, size = %d\n",s->blockNo,s->blockCRC,s->combinedCRC,s->nblock);
   }
-  if (s->nblock > 0) {
-    __asm__("TRACK257_BEGIN: nop\n\t" 
-	    "   lea	TRACK257_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK257_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK257_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bsPutUChar ( s, 0x31 ); bsPutUChar ( s, 0x41 );
-    bsPutUChar ( s, 0x59 ); bsPutUChar ( s, 0x26 );
-    bsPutUChar ( s, 0x53 ); bsPutUChar ( s, 0x59 );
-    bsPutUInt32 ( s, s->blockCRC );
-    bsW(s,1,0);
-    bsW ( s, 24, s->origPtr );
-    generateMTFValues ( s );
-    sendMTFValues ( s );
+        BZ2_blockSort ( s );
+}
+   s->zbits = (UChar*) (&((UChar*)s->arr2)[s->nblock]);
+   if (s->blockNo == 1) {
+  TRACK256_BEGIN: track(&&TRACK256_BEGIN, &&TRACK256_END);
+  TRACK256_END:  __asm__("nop;");
+   
+  BZ2_bsInitWrite ( s );
+        bsPutUChar ( s, 0x42 );
+        bsPutUChar ( s, 0x5a );
+        bsPutUChar ( s, 0x68 );
+        bsPutUChar ( s, (UChar)(0x30 + s->blockSize100k) );
+}
+   if (s->nblock > 0) {
+  TRACK257_BEGIN: track(&&TRACK257_BEGIN, &&TRACK257_END);
+  TRACK257_END:  __asm__("nop;");
+   
+  bsPutUChar ( s, 0x31 ); bsPutUChar ( s, 0x41 );
+        bsPutUChar ( s, 0x59 ); bsPutUChar ( s, 0x26 );
+        bsPutUChar ( s, 0x53 ); bsPutUChar ( s, 0x59 );
+        bsPutUInt32 ( s, s->blockCRC );
+        bsW(s,1,0);
+        bsW ( s, 24, s->origPtr );
+        generateMTFValues ( s );
+        sendMTFValues ( s );
+}
+   if (is_last_block) {
+  TRACK259_BEGIN: track(&&TRACK259_BEGIN, &&TRACK259_END);
+  TRACK259_END:  __asm__("nop;");
+   
+  bsPutUChar ( s, 0x17 ); bsPutUChar ( s, 0x72 );
+        bsPutUChar ( s, 0x45 ); bsPutUChar ( s, 0x38 );
+        bsPutUChar ( s, 0x50 ); bsPutUChar ( s, 0x90 );
+        bsPutUInt32 ( s, s->combinedCRC );
+        if (s->verbosity >= 2)
+            {
+  TRACK258_BEGIN: track(&&TRACK258_BEGIN, &&TRACK258_END);
+  TRACK258_END:  __asm__("nop;");
+   
+  fprintf(stderr,"    final combined CRC = 0x%x\n   ",s->combinedCRC);
   }
-  if (is_last_block) {
-    __asm__("TRACK259_BEGIN: nop\n\t" 
-	    "   lea	TRACK259_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK259_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK259_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bsPutUChar ( s, 0x17 ); bsPutUChar ( s, 0x72 );
-    bsPutUChar ( s, 0x45 ); bsPutUChar ( s, 0x38 );
-    bsPutUChar ( s, 0x50 ); bsPutUChar ( s, 0x90 );
-    bsPutUInt32 ( s, s->combinedCRC );
-    if (s->verbosity >= 2)
-      {
-	__asm__("TRACK258_BEGIN: nop\n\t" 
-  		"   lea	TRACK258_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK258_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK258_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf(stderr,"    final combined CRC = 0x%x\n   ",s->combinedCRC);
-      }
-    bsFinishWrite ( s );
-  }
+        bsFinishWrite ( s );
+}
 }
 static
 void makeMaps_d ( DState* s )
 {
-  Int32 i;
-  s->nInUse = 0;
-  for (i = 0; i < 256; i++)
-    {
-      __asm__("TRACK261_BEGIN: nop\n\t" 
-	      "   lea	TRACK261_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK261_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK261_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->inUse[i]) {
-	__asm__("TRACK260_BEGIN: nop\n\t" 
-  		"   lea	TRACK260_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK260_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK260_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->seqToUnseq[s->nInUse] = i;
-	s->nInUse++;
-      }
-    }
+   Int32 i;
+   s->nInUse = 0;
+   for (i = 0; i < 256; i++)
+       {
+TRACK261_BEGIN: track(&&TRACK261_BEGIN, &&TRACK261_END);
+TRACK261_END:  __asm__("nop;");
+ 
+if (s->inUse[i]) {
+  TRACK260_BEGIN: track(&&TRACK260_BEGIN, &&TRACK260_END);
+  TRACK260_END:  __asm__("nop;");
+   
+  s->seqToUnseq[s->nInUse] = i;
+           s->nInUse++;
+}
+}
 }
 Int32 BZ2_decompress ( DState* s )
 {
-  UChar uc;
-  Int32 retVal;
-  Int32 minLen, maxLen;
-  bz_stream* strm = s->strm;
-  Int32 i;
-  Int32 j;
-  Int32 t;
-  Int32 alphaSize;
-  Int32 nGroups;
-  Int32 nSelectors;
-  Int32 EOB;
-  Int32 groupNo;
-  Int32 groupPos;
-  Int32 nextSym;
-  Int32 nblockMAX;
-  Int32 nblock;
-  Int32 es;
-  Int32 N;
-  Int32 curr;
-  Int32 zt;
-  Int32 zn;
-  Int32 zvec;
-  Int32 zj;
-  Int32 gSel;
-  Int32 gMinlen;
-  Int32* gLimit;
-  Int32* gBase;
-  Int32* gPerm;
-  if (s->state == 10) {
-    __asm__("TRACK262_BEGIN: nop\n\t" 
-	    "   lea	TRACK262_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK262_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK262_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->save_i = 0;
-    s->save_j = 0;
-    s->save_t = 0;
-    s->save_alphaSize = 0;
-    s->save_nGroups = 0;
-    s->save_nSelectors = 0;
-    s->save_EOB = 0;
-    s->save_groupNo = 0;
-    s->save_groupPos = 0;
-    s->save_nextSym = 0;
-    s->save_nblockMAX = 0;
-    s->save_nblock = 0;
-    s->save_es = 0;
-    s->save_N = 0;
-    s->save_curr = 0;
-    s->save_zt = 0;
-    s->save_zn = 0;
-    s->save_zvec = 0;
-    s->save_zj = 0;
-    s->save_gSel = 0;
-    s->save_gMinlen = 0;
-    s->save_gLimit = ((void *)0);
-    s->save_gBase = ((void *)0);
-    s->save_gPerm = ((void *)0);
-  }
-  i = s->save_i;
-  j = s->save_j;
-  t = s->save_t;
-  alphaSize = s->save_alphaSize;
-  nGroups = s->save_nGroups;
-  nSelectors = s->save_nSelectors;
-  EOB = s->save_EOB;
-  groupNo = s->save_groupNo;
-  groupPos = s->save_groupPos;
-  nextSym = s->save_nextSym;
-  nblockMAX = s->save_nblockMAX;
-  nblock = s->save_nblock;
-  es = s->save_es;
-  N = s->save_N;
-  curr = s->save_curr;
-  zt = s->save_zt;
-  zn = s->save_zn;
-  zvec = s->save_zvec;
-  zj = s->save_zj;
-  gSel = s->save_gSel;
-  gMinlen = s->save_gMinlen;
-  gLimit = s->save_gLimit;
-  gBase = s->save_gBase;
-  gPerm = s->save_gPerm;
-  retVal = 0;
-  switch (s->state) {
+   UChar uc;
+   Int32 retVal;
+   Int32 minLen, maxLen;
+   bz_stream* strm = s->strm;
+   Int32 i;
+   Int32 j;
+   Int32 t;
+   Int32 alphaSize;
+   Int32 nGroups;
+   Int32 nSelectors;
+   Int32 EOB;
+   Int32 groupNo;
+   Int32 groupPos;
+   Int32 nextSym;
+   Int32 nblockMAX;
+   Int32 nblock;
+   Int32 es;
+   Int32 N;
+   Int32 curr;
+   Int32 zt;
+   Int32 zn;
+   Int32 zvec;
+   Int32 zj;
+   Int32 gSel;
+   Int32 gMinlen;
+   Int32* gLimit;
+   Int32* gBase;
+   Int32* gPerm;
+   if (s->state == 10) {
+  TRACK262_BEGIN: track(&&TRACK262_BEGIN, &&TRACK262_END);
+  TRACK262_END:  __asm__("nop;");
+   
+  s->save_i = 0;
+        s->save_j = 0;
+        s->save_t = 0;
+        s->save_alphaSize = 0;
+        s->save_nGroups = 0;
+        s->save_nSelectors = 0;
+        s->save_EOB = 0;
+        s->save_groupNo = 0;
+        s->save_groupPos = 0;
+        s->save_nextSym = 0;
+        s->save_nblockMAX = 0;
+        s->save_nblock = 0;
+        s->save_es = 0;
+        s->save_N = 0;
+        s->save_curr = 0;
+        s->save_zt = 0;
+        s->save_zn = 0;
+        s->save_zvec = 0;
+        s->save_zj = 0;
+        s->save_gSel = 0;
+        s->save_gMinlen = 0;
+        s->save_gLimit = ((void *)0);
+        s->save_gBase = ((void *)0);
+        s->save_gPerm = ((void *)0);
+}
+   i = s->save_i;
+   j = s->save_j;
+   t = s->save_t;
+   alphaSize = s->save_alphaSize;
+   nGroups = s->save_nGroups;
+   nSelectors = s->save_nSelectors;
+   EOB = s->save_EOB;
+   groupNo = s->save_groupNo;
+   groupPos = s->save_groupPos;
+   nextSym = s->save_nextSym;
+   nblockMAX = s->save_nblockMAX;
+   nblock = s->save_nblock;
+   es = s->save_es;
+   N = s->save_N;
+   curr = s->save_curr;
+   zt = s->save_zt;
+   zn = s->save_zn;
+   zvec = s->save_zvec;
+   zj = s->save_zj;
+   gSel = s->save_gSel;
+   gMinlen = s->save_gMinlen;
+   gLimit = s->save_gLimit;
+   gBase = s->save_gBase;
+   gPerm = s->save_gPerm;
+   retVal = 0;
+   switch (s->state) {
        
   case 10:
-    __asm__("TRACK263_BEGIN: nop\n\t" 
-	    "   lea	TRACK263_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK263_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK263_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 10; while (((Bool)1)) {
-      __asm__("TRACK267_BEGIN: nop\n\t" 
-	      "   lea	TRACK267_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK267_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK267_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK264_BEGIN: nop\n\t" 
-    		"   lea	TRACK264_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK264_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK264_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK265_BEGIN: nop\n\t" 
-    		"   lea	TRACK265_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK265_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK265_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK266_BEGIN: nop\n\t" 
-  		"   lea	TRACK266_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK266_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK266_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x42) {
-      __asm__("TRACK268_BEGIN: nop\n\t" 
-	      "   lea	TRACK268_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK268_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK268_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-5); goto save_state_and_return;
-    };;
+	TRACK263_BEGIN: track(&&TRACK263_BEGIN, &&TRACK263_END);
+	TRACK263_END:  __asm__("nop;");
+	 
+	s->state = 10; while (((Bool)1)) {
+  TRACK267_BEGIN: track(&&TRACK267_BEGIN, &&TRACK267_END);
+  TRACK267_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK264_BEGIN: track(&&TRACK264_BEGIN, &&TRACK264_END);
+    TRACK264_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK265_BEGIN: track(&&TRACK265_BEGIN, &&TRACK265_END);
+    TRACK265_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK266_BEGIN: track(&&TRACK266_BEGIN, &&TRACK266_END);
+  TRACK266_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x42) {
+  TRACK268_BEGIN: track(&&TRACK268_BEGIN, &&TRACK268_END);
+  TRACK268_END:  __asm__("nop;");
+   
+  retVal = (-5); goto save_state_and_return;
+};;
        
   case 11:
-    __asm__("TRACK269_BEGIN: nop\n\t" 
-	    "   lea	TRACK269_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK269_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK269_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 11; while (((Bool)1)) {
-      __asm__("TRACK273_BEGIN: nop\n\t" 
-	      "   lea	TRACK273_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK273_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK273_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK270_BEGIN: nop\n\t" 
-    		"   lea	TRACK270_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK270_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK270_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK271_BEGIN: nop\n\t" 
-    		"   lea	TRACK271_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK271_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK271_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK272_BEGIN: nop\n\t" 
-  		"   lea	TRACK272_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK272_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK272_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x5a) {
-      __asm__("TRACK274_BEGIN: nop\n\t" 
-	      "   lea	TRACK274_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK274_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK274_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-5); goto save_state_and_return;
-    };;
+	TRACK269_BEGIN: track(&&TRACK269_BEGIN, &&TRACK269_END);
+	TRACK269_END:  __asm__("nop;");
+	 
+	s->state = 11; while (((Bool)1)) {
+  TRACK273_BEGIN: track(&&TRACK273_BEGIN, &&TRACK273_END);
+  TRACK273_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK270_BEGIN: track(&&TRACK270_BEGIN, &&TRACK270_END);
+    TRACK270_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK271_BEGIN: track(&&TRACK271_BEGIN, &&TRACK271_END);
+    TRACK271_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK272_BEGIN: track(&&TRACK272_BEGIN, &&TRACK272_END);
+  TRACK272_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x5a) {
+  TRACK274_BEGIN: track(&&TRACK274_BEGIN, &&TRACK274_END);
+  TRACK274_END:  __asm__("nop;");
+   
+  retVal = (-5); goto save_state_and_return;
+};;
        
   case 12:
-    __asm__("TRACK275_BEGIN: nop\n\t" 
-	    "   lea	TRACK275_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK275_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK275_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 12; while (((Bool)1)) {
-      __asm__("TRACK279_BEGIN: nop\n\t" 
-	      "   lea	TRACK279_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK279_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK279_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK276_BEGIN: nop\n\t" 
-    		"   lea	TRACK276_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK276_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK276_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK277_BEGIN: nop\n\t" 
-    		"   lea	TRACK277_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK277_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK277_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK278_BEGIN: nop\n\t" 
-  		"   lea	TRACK278_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK278_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK278_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    }
-    if (uc != 0x68) {
-      __asm__("TRACK280_BEGIN: nop\n\t" 
-	      "   lea	TRACK280_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK280_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK280_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-5); goto save_state_and_return;
-    };;
+	TRACK275_BEGIN: track(&&TRACK275_BEGIN, &&TRACK275_END);
+	TRACK275_END:  __asm__("nop;");
+	 
+	s->state = 12; while (((Bool)1)) {
+  TRACK279_BEGIN: track(&&TRACK279_BEGIN, &&TRACK279_END);
+  TRACK279_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK276_BEGIN: track(&&TRACK276_BEGIN, &&TRACK276_END);
+    TRACK276_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK277_BEGIN: track(&&TRACK277_BEGIN, &&TRACK277_END);
+    TRACK277_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK278_BEGIN: track(&&TRACK278_BEGIN, &&TRACK278_END);
+  TRACK278_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+}
+      if (uc != 0x68) {
+  TRACK280_BEGIN: track(&&TRACK280_BEGIN, &&TRACK280_END);
+  TRACK280_END:  __asm__("nop;");
+   
+  retVal = (-5); goto save_state_and_return;
+};;
        
   case 13:
-    __asm__("TRACK281_BEGIN: nop\n\t" 
-	    "   lea	TRACK281_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK281_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK281_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 13; while (((Bool)1)) {
-      __asm__("TRACK285_BEGIN: nop\n\t" 
-	      "   lea	TRACK285_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK285_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK285_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK282_BEGIN: nop\n\t" 
-    		"   lea	TRACK282_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK282_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK282_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; s->blockSize100k = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK283_BEGIN: nop\n\t" 
-    		"   lea	TRACK283_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK283_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK283_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK284_BEGIN: nop\n\t" 
-  		"   lea	TRACK284_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK284_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK284_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    }
-    if (s->blockSize100k < (0x30 + 1) ||
-	s->blockSize100k > (0x30 + 9)) {
-      __asm__("TRACK286_BEGIN: nop\n\t" 
-	      "   lea	TRACK286_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK286_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK286_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-5); goto save_state_and_return;
-    };;
-    s->blockSize100k -= 0x30;
-    if (s->smallDecompress) {
-      __asm__("TRACK288_BEGIN: nop\n\t" 
-	      "   lea	TRACK288_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK288_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK288_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->ll16 = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(UInt16)),1);
-      s->ll4 = (strm->bzalloc)(strm->opaque,(((1 + s->blockSize100k * 100000) >> 1) * sizeof(UChar)),1);
-      if (s->ll16 == ((void *)0) || s->ll4 == ((void *)0)) {
-        __asm__("TRACK287_BEGIN: nop\n\t" 
-    		"   lea	TRACK287_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK287_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK287_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = (-3); goto save_state_and_return;
-      };;
-    } else {
-      __asm__("TRACK290_BEGIN: nop\n\t" 
-	      "   lea	TRACK290_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK290_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK290_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->tt = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(Int32)),1);
-      if (s->tt == ((void *)0)) {
-        __asm__("TRACK289_BEGIN: nop\n\t" 
-    		"   lea	TRACK289_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK289_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK289_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = (-3); goto save_state_and_return;
-      };;
-    }
+	TRACK281_BEGIN: track(&&TRACK281_BEGIN, &&TRACK281_END);
+	TRACK281_END:  __asm__("nop;");
+	 
+	s->state = 13; while (((Bool)1)) {
+  TRACK285_BEGIN: track(&&TRACK285_BEGIN, &&TRACK285_END);
+  TRACK285_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK282_BEGIN: track(&&TRACK282_BEGIN, &&TRACK282_END);
+    TRACK282_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; s->blockSize100k = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK283_BEGIN: track(&&TRACK283_BEGIN, &&TRACK283_END);
+    TRACK283_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK284_BEGIN: track(&&TRACK284_BEGIN, &&TRACK284_END);
+  TRACK284_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+}
+      if (s->blockSize100k < (0x30 + 1) ||
+          s->blockSize100k > (0x30 + 9)) {
+  TRACK286_BEGIN: track(&&TRACK286_BEGIN, &&TRACK286_END);
+  TRACK286_END:  __asm__("nop;");
+   
+  retVal = (-5); goto save_state_and_return;
+};;
+      s->blockSize100k -= 0x30;
+      if (s->smallDecompress) {
+  TRACK288_BEGIN: track(&&TRACK288_BEGIN, &&TRACK288_END);
+  TRACK288_END:  __asm__("nop;");
+   
+  s->ll16 = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(UInt16)),1);
+           s->ll4 = (strm->bzalloc)(strm->opaque,(((1 + s->blockSize100k * 100000) >> 1) * sizeof(UChar)),1);
+           if (s->ll16 == ((void *)0) || s->ll4 == ((void *)0)) {
+    TRACK287_BEGIN: track(&&TRACK287_BEGIN, &&TRACK287_END);
+    TRACK287_END:  __asm__("nop;");
+     
+    retVal = (-3); goto save_state_and_return;
+  };;
+} else {
+  TRACK290_BEGIN: track(&&TRACK290_BEGIN, &&TRACK290_END);
+  TRACK290_END:  __asm__("nop;");
+   
+  s->tt = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(Int32)),1);
+           if (s->tt == ((void *)0)) {
+    TRACK289_BEGIN: track(&&TRACK289_BEGIN, &&TRACK289_END);
+    TRACK289_END:  __asm__("nop;");
+     
+    retVal = (-3); goto save_state_and_return;
+  };;
+}
        
   case 14:
-    __asm__("TRACK291_BEGIN: nop\n\t" 
-	    "   lea	TRACK291_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK291_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK291_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 14; while (((Bool)1)) {
-      __asm__("TRACK295_BEGIN: nop\n\t" 
-	      "   lea	TRACK295_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK295_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK295_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK292_BEGIN: nop\n\t" 
-    		"   lea	TRACK292_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK292_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK292_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK293_BEGIN: nop\n\t" 
-    		"   lea	TRACK293_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK293_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK293_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK294_BEGIN: nop\n\t" 
-  		"   lea	TRACK294_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK294_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK294_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc == 0x17) goto endhdr_2;
-    if (uc != 0x31) {
-      __asm__("TRACK296_BEGIN: nop\n\t" 
-	      "   lea	TRACK296_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK296_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK296_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK291_BEGIN: track(&&TRACK291_BEGIN, &&TRACK291_END);
+	TRACK291_END:  __asm__("nop;");
+	 
+	s->state = 14; while (((Bool)1)) {
+  TRACK295_BEGIN: track(&&TRACK295_BEGIN, &&TRACK295_END);
+  TRACK295_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK292_BEGIN: track(&&TRACK292_BEGIN, &&TRACK292_END);
+    TRACK292_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK293_BEGIN: track(&&TRACK293_BEGIN, &&TRACK293_END);
+    TRACK293_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK294_BEGIN: track(&&TRACK294_BEGIN, &&TRACK294_END);
+  TRACK294_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc == 0x17) goto endhdr_2;
+      if (uc != 0x31) {
+  TRACK296_BEGIN: track(&&TRACK296_BEGIN, &&TRACK296_END);
+  TRACK296_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 15:
-    __asm__("TRACK297_BEGIN: nop\n\t" 
-	    "   lea	TRACK297_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK297_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK297_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 15; while (((Bool)1)) {
-      __asm__("TRACK301_BEGIN: nop\n\t" 
-	      "   lea	TRACK301_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK301_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK301_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK298_BEGIN: nop\n\t" 
-    		"   lea	TRACK298_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK298_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK298_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK299_BEGIN: nop\n\t" 
-    		"   lea	TRACK299_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK299_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK299_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK300_BEGIN: nop\n\t" 
-  		"   lea	TRACK300_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK300_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK300_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x41) {
-      __asm__("TRACK302_BEGIN: nop\n\t" 
-	      "   lea	TRACK302_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK302_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK302_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK297_BEGIN: track(&&TRACK297_BEGIN, &&TRACK297_END);
+	TRACK297_END:  __asm__("nop;");
+	 
+	s->state = 15; while (((Bool)1)) {
+  TRACK301_BEGIN: track(&&TRACK301_BEGIN, &&TRACK301_END);
+  TRACK301_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK298_BEGIN: track(&&TRACK298_BEGIN, &&TRACK298_END);
+    TRACK298_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK299_BEGIN: track(&&TRACK299_BEGIN, &&TRACK299_END);
+    TRACK299_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK300_BEGIN: track(&&TRACK300_BEGIN, &&TRACK300_END);
+  TRACK300_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x41) {
+  TRACK302_BEGIN: track(&&TRACK302_BEGIN, &&TRACK302_END);
+  TRACK302_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 16:
-    __asm__("TRACK303_BEGIN: nop\n\t" 
-	    "   lea	TRACK303_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK303_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK303_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 16; while (((Bool)1)) {
-      __asm__("TRACK307_BEGIN: nop\n\t" 
-	      "   lea	TRACK307_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK307_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK307_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK304_BEGIN: nop\n\t" 
-    		"   lea	TRACK304_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK304_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK304_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK305_BEGIN: nop\n\t" 
-    		"   lea	TRACK305_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK305_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK305_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK306_BEGIN: nop\n\t" 
-  		"   lea	TRACK306_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK306_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK306_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x59) {
-      __asm__("TRACK308_BEGIN: nop\n\t" 
-	      "   lea	TRACK308_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK308_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK308_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK303_BEGIN: track(&&TRACK303_BEGIN, &&TRACK303_END);
+	TRACK303_END:  __asm__("nop;");
+	 
+	s->state = 16; while (((Bool)1)) {
+  TRACK307_BEGIN: track(&&TRACK307_BEGIN, &&TRACK307_END);
+  TRACK307_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK304_BEGIN: track(&&TRACK304_BEGIN, &&TRACK304_END);
+    TRACK304_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK305_BEGIN: track(&&TRACK305_BEGIN, &&TRACK305_END);
+    TRACK305_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK306_BEGIN: track(&&TRACK306_BEGIN, &&TRACK306_END);
+  TRACK306_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x59) {
+  TRACK308_BEGIN: track(&&TRACK308_BEGIN, &&TRACK308_END);
+  TRACK308_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 17:
-    __asm__("TRACK309_BEGIN: nop\n\t" 
-	    "   lea	TRACK309_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK309_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK309_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 17; while (((Bool)1)) {
-      __asm__("TRACK313_BEGIN: nop\n\t" 
-	      "   lea	TRACK313_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK313_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK313_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK310_BEGIN: nop\n\t" 
-    		"   lea	TRACK310_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK310_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK310_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK311_BEGIN: nop\n\t" 
-    		"   lea	TRACK311_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK311_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK311_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK312_BEGIN: nop\n\t" 
-  		"   lea	TRACK312_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK312_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK312_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x26) {
-      __asm__("TRACK314_BEGIN: nop\n\t" 
-	      "   lea	TRACK314_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK314_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK314_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK309_BEGIN: track(&&TRACK309_BEGIN, &&TRACK309_END);
+	TRACK309_END:  __asm__("nop;");
+	 
+	s->state = 17; while (((Bool)1)) {
+  TRACK313_BEGIN: track(&&TRACK313_BEGIN, &&TRACK313_END);
+  TRACK313_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK310_BEGIN: track(&&TRACK310_BEGIN, &&TRACK310_END);
+    TRACK310_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK311_BEGIN: track(&&TRACK311_BEGIN, &&TRACK311_END);
+    TRACK311_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK312_BEGIN: track(&&TRACK312_BEGIN, &&TRACK312_END);
+  TRACK312_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x26) {
+  TRACK314_BEGIN: track(&&TRACK314_BEGIN, &&TRACK314_END);
+  TRACK314_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 18:
-    __asm__("TRACK315_BEGIN: nop\n\t" 
-	    "   lea	TRACK315_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK315_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK315_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 18; while (((Bool)1)) {
-      __asm__("TRACK319_BEGIN: nop\n\t" 
-	      "   lea	TRACK319_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK319_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK319_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK316_BEGIN: nop\n\t" 
-    		"   lea	TRACK316_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK316_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK316_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK317_BEGIN: nop\n\t" 
-    		"   lea	TRACK317_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK317_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK317_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK318_BEGIN: nop\n\t" 
-  		"   lea	TRACK318_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK318_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK318_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x53) {
-      __asm__("TRACK320_BEGIN: nop\n\t" 
-	      "   lea	TRACK320_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK320_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK320_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK315_BEGIN: track(&&TRACK315_BEGIN, &&TRACK315_END);
+	TRACK315_END:  __asm__("nop;");
+	 
+	s->state = 18; while (((Bool)1)) {
+  TRACK319_BEGIN: track(&&TRACK319_BEGIN, &&TRACK319_END);
+  TRACK319_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK316_BEGIN: track(&&TRACK316_BEGIN, &&TRACK316_END);
+    TRACK316_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK317_BEGIN: track(&&TRACK317_BEGIN, &&TRACK317_END);
+    TRACK317_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK318_BEGIN: track(&&TRACK318_BEGIN, &&TRACK318_END);
+  TRACK318_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x53) {
+  TRACK320_BEGIN: track(&&TRACK320_BEGIN, &&TRACK320_END);
+  TRACK320_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 19:
-    __asm__("TRACK321_BEGIN: nop\n\t" 
-	    "   lea	TRACK321_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK321_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK321_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 19; while (((Bool)1)) {
-      __asm__("TRACK325_BEGIN: nop\n\t" 
-	      "   lea	TRACK325_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK325_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK325_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK322_BEGIN: nop\n\t" 
-    		"   lea	TRACK322_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK322_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK322_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK323_BEGIN: nop\n\t" 
-    		"   lea	TRACK323_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK323_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK323_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK324_BEGIN: nop\n\t" 
-  		"   lea	TRACK324_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK324_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK324_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x59) {
-      __asm__("TRACK326_BEGIN: nop\n\t" 
-	      "   lea	TRACK326_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK326_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK326_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
-    s->currBlockNo++;
-    if (s->verbosity >= 2)
-      {
-	__asm__("TRACK327_BEGIN: nop\n\t" 
-		"   lea	TRACK327_BEGIN, %%eax\n\t"   
-		"   lea	TRACK327_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK327_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	fprintf(stderr,"\n    [%d: huff+mtf ",s->currBlockNo);
-      }
-    s->storedBlockCRC = 0;
+	TRACK321_BEGIN: track(&&TRACK321_BEGIN, &&TRACK321_END);
+	TRACK321_END:  __asm__("nop;");
+	 
+	s->state = 19; while (((Bool)1)) {
+  TRACK325_BEGIN: track(&&TRACK325_BEGIN, &&TRACK325_END);
+  TRACK325_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK322_BEGIN: track(&&TRACK322_BEGIN, &&TRACK322_END);
+    TRACK322_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK323_BEGIN: track(&&TRACK323_BEGIN, &&TRACK323_END);
+    TRACK323_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK324_BEGIN: track(&&TRACK324_BEGIN, &&TRACK324_END);
+  TRACK324_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x59) {
+  TRACK326_BEGIN: track(&&TRACK326_BEGIN, &&TRACK326_END);
+  TRACK326_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      s->currBlockNo++;
+      if (s->verbosity >= 2)
+          {
+TRACK327_BEGIN: track(&&TRACK327_BEGIN, &&TRACK327_END);
+TRACK327_END:  __asm__("nop;");
+ 
+fprintf(stderr,"\n    [%d: huff+mtf ",s->currBlockNo);
+}
+      s->storedBlockCRC = 0;
        
   case 20:
-    __asm__("TRACK328_BEGIN: nop\n\t" 
-	    "   lea	TRACK328_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK328_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK328_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 20; while (((Bool)1)) {
-      __asm__("TRACK332_BEGIN: nop\n\t" 
-	      "   lea	TRACK332_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK332_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK332_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK329_BEGIN: nop\n\t" 
-    		"   lea	TRACK329_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK329_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK329_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK330_BEGIN: nop\n\t" 
-    		"   lea	TRACK330_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK330_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK330_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK331_BEGIN: nop\n\t" 
-  		"   lea	TRACK331_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK331_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK331_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
+	TRACK328_BEGIN: track(&&TRACK328_BEGIN, &&TRACK328_END);
+	TRACK328_END:  __asm__("nop;");
+	 
+	s->state = 20; while (((Bool)1)) {
+  TRACK332_BEGIN: track(&&TRACK332_BEGIN, &&TRACK332_END);
+  TRACK332_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK329_BEGIN: track(&&TRACK329_BEGIN, &&TRACK329_END);
+    TRACK329_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK330_BEGIN: track(&&TRACK330_BEGIN, &&TRACK330_END);
+    TRACK330_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK331_BEGIN: track(&&TRACK331_BEGIN, &&TRACK331_END);
+  TRACK331_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 21:
-    __asm__("TRACK333_BEGIN: nop\n\t" 
-	    "   lea	TRACK333_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK333_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK333_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 21; while (((Bool)1)) {
-      __asm__("TRACK337_BEGIN: nop\n\t" 
-	      "   lea	TRACK337_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK337_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK337_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK334_BEGIN: nop\n\t" 
-    		"   lea	TRACK334_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK334_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK334_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK335_BEGIN: nop\n\t" 
-    		"   lea	TRACK335_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK335_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK335_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK336_BEGIN: nop\n\t" 
-  		"   lea	TRACK336_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK336_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK336_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
+	TRACK333_BEGIN: track(&&TRACK333_BEGIN, &&TRACK333_END);
+	TRACK333_END:  __asm__("nop;");
+	 
+	s->state = 21; while (((Bool)1)) {
+  TRACK337_BEGIN: track(&&TRACK337_BEGIN, &&TRACK337_END);
+  TRACK337_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK334_BEGIN: track(&&TRACK334_BEGIN, &&TRACK334_END);
+    TRACK334_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK335_BEGIN: track(&&TRACK335_BEGIN, &&TRACK335_END);
+    TRACK335_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK336_BEGIN: track(&&TRACK336_BEGIN, &&TRACK336_END);
+  TRACK336_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 22:
-    __asm__("TRACK338_BEGIN: nop\n\t" 
-	    "   lea	TRACK338_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK338_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK338_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 22; while (((Bool)1)) {
-      __asm__("TRACK342_BEGIN: nop\n\t" 
-	      "   lea	TRACK342_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK342_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK342_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK339_BEGIN: nop\n\t" 
-    		"   lea	TRACK339_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK339_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK339_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK340_BEGIN: nop\n\t" 
-    		"   lea	TRACK340_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK340_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK340_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK341_BEGIN: nop\n\t" 
-  		"   lea	TRACK341_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK341_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK341_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
+	TRACK338_BEGIN: track(&&TRACK338_BEGIN, &&TRACK338_END);
+	TRACK338_END:  __asm__("nop;");
+	 
+	s->state = 22; while (((Bool)1)) {
+  TRACK342_BEGIN: track(&&TRACK342_BEGIN, &&TRACK342_END);
+  TRACK342_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK339_BEGIN: track(&&TRACK339_BEGIN, &&TRACK339_END);
+    TRACK339_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK340_BEGIN: track(&&TRACK340_BEGIN, &&TRACK340_END);
+    TRACK340_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK341_BEGIN: track(&&TRACK341_BEGIN, &&TRACK341_END);
+  TRACK341_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 23:
-    __asm__("TRACK343_BEGIN: nop\n\t" 
-	    "   lea	TRACK343_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK343_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK343_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 23; while (((Bool)1)) {
-      __asm__("TRACK347_BEGIN: nop\n\t" 
-	      "   lea	TRACK347_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK347_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK347_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK344_BEGIN: nop\n\t" 
-    		"   lea	TRACK344_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK344_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK344_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK345_BEGIN: nop\n\t" 
-    		"   lea	TRACK345_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK345_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK345_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK346_BEGIN: nop\n\t" 
-  		"   lea	TRACK346_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK346_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK346_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
+	TRACK343_BEGIN: track(&&TRACK343_BEGIN, &&TRACK343_END);
+	TRACK343_END:  __asm__("nop;");
+	 
+	s->state = 23; while (((Bool)1)) {
+  TRACK347_BEGIN: track(&&TRACK347_BEGIN, &&TRACK347_END);
+  TRACK347_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK344_BEGIN: track(&&TRACK344_BEGIN, &&TRACK344_END);
+    TRACK344_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK345_BEGIN: track(&&TRACK345_BEGIN, &&TRACK345_END);
+    TRACK345_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK346_BEGIN: track(&&TRACK346_BEGIN, &&TRACK346_END);
+  TRACK346_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 24:
-    __asm__("TRACK348_BEGIN: nop\n\t" 
-	    "   lea	TRACK348_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK348_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK348_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 24; while (((Bool)1)) {
-      __asm__("TRACK352_BEGIN: nop\n\t" 
-	      "   lea	TRACK352_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK352_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK352_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 1) {
-        __asm__("TRACK349_BEGIN: nop\n\t" 
-    		"   lea	TRACK349_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK349_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK349_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; s->blockRandomised = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK350_BEGIN: nop\n\t" 
-    		"   lea	TRACK350_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK350_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK350_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK351_BEGIN: nop\n\t" 
-  		"   lea	TRACK351_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK351_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK351_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->origPtr = 0;
+	TRACK348_BEGIN: track(&&TRACK348_BEGIN, &&TRACK348_END);
+	TRACK348_END:  __asm__("nop;");
+	 
+	s->state = 24; while (((Bool)1)) {
+  TRACK352_BEGIN: track(&&TRACK352_BEGIN, &&TRACK352_END);
+  TRACK352_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 1) {
+    UInt32 v;
+    TRACK349_BEGIN: track(&&TRACK349_BEGIN, &&TRACK349_END);
+    TRACK349_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; s->blockRandomised = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK350_BEGIN: track(&&TRACK350_BEGIN, &&TRACK350_END);
+    TRACK350_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK351_BEGIN: track(&&TRACK351_BEGIN, &&TRACK351_END);
+  TRACK351_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->origPtr = 0;
        
   case 25:
-    __asm__("TRACK353_BEGIN: nop\n\t" 
-	    "   lea	TRACK353_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK353_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK353_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 25; while (((Bool)1)) {
-      __asm__("TRACK357_BEGIN: nop\n\t" 
-	      "   lea	TRACK357_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK357_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK357_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK354_BEGIN: nop\n\t" 
-    		"   lea	TRACK354_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK354_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK354_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK355_BEGIN: nop\n\t" 
-    		"   lea	TRACK355_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK355_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK355_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK356_BEGIN: nop\n\t" 
-  		"   lea	TRACK356_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK356_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK356_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->origPtr = (s->origPtr << 8) | ((Int32)uc);
+	TRACK353_BEGIN: track(&&TRACK353_BEGIN, &&TRACK353_END);
+	TRACK353_END:  __asm__("nop;");
+	 
+	s->state = 25; while (((Bool)1)) {
+  TRACK357_BEGIN: track(&&TRACK357_BEGIN, &&TRACK357_END);
+  TRACK357_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK354_BEGIN: track(&&TRACK354_BEGIN, &&TRACK354_END);
+    TRACK354_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK355_BEGIN: track(&&TRACK355_BEGIN, &&TRACK355_END);
+    TRACK355_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK356_BEGIN: track(&&TRACK356_BEGIN, &&TRACK356_END);
+  TRACK356_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->origPtr = (s->origPtr << 8) | ((Int32)uc);
        
   case 26:
-    __asm__("TRACK358_BEGIN: nop\n\t" 
-	    "   lea	TRACK358_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK358_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK358_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 26; while (((Bool)1)) {
-      __asm__("TRACK362_BEGIN: nop\n\t" 
-	      "   lea	TRACK362_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK362_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK362_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK359_BEGIN: nop\n\t" 
-    		"   lea	TRACK359_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK359_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK359_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK360_BEGIN: nop\n\t" 
-    		"   lea	TRACK360_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK360_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK360_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK361_BEGIN: nop\n\t" 
-  		"   lea	TRACK361_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK361_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK361_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->origPtr = (s->origPtr << 8) | ((Int32)uc);
+	TRACK358_BEGIN: track(&&TRACK358_BEGIN, &&TRACK358_END);
+	TRACK358_END:  __asm__("nop;");
+	 
+	s->state = 26; while (((Bool)1)) {
+  TRACK362_BEGIN: track(&&TRACK362_BEGIN, &&TRACK362_END);
+  TRACK362_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK359_BEGIN: track(&&TRACK359_BEGIN, &&TRACK359_END);
+    TRACK359_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK360_BEGIN: track(&&TRACK360_BEGIN, &&TRACK360_END);
+    TRACK360_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK361_BEGIN: track(&&TRACK361_BEGIN, &&TRACK361_END);
+  TRACK361_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->origPtr = (s->origPtr << 8) | ((Int32)uc);
        
   case 27:
-    __asm__("TRACK363_BEGIN: nop\n\t" 
-	    "   lea	TRACK363_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK363_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK363_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 27; while (((Bool)1)) {
-      __asm__("TRACK367_BEGIN: nop\n\t" 
-	      "   lea	TRACK367_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK367_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK367_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK364_BEGIN: nop\n\t" 
-    		"   lea	TRACK364_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK364_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK364_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK365_BEGIN: nop\n\t" 
-    		"   lea	TRACK365_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK365_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK365_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK366_BEGIN: nop\n\t" 
-  		"   lea	TRACK366_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK366_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK366_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->origPtr = (s->origPtr << 8) | ((Int32)uc);
-    if (s->origPtr < 0)
-      {
-	__asm__("TRACK368_BEGIN: nop\n\t" 
-  		"   lea	TRACK368_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK368_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK368_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	retVal = (-4); goto save_state_and_return;
-      };;
-    if (s->origPtr > 10 + 100000*s->blockSize100k)
-      {
-	__asm__("TRACK369_BEGIN: nop\n\t" 
-  		"   lea	TRACK369_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK369_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK369_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	retVal = (-4); goto save_state_and_return;
-      };;
-    for (i = 0; i < 16; i++) {
-      __asm__("TRACK377_BEGIN: nop\n\t" 
-	      "   lea	TRACK377_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK377_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK377_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
+	TRACK363_BEGIN: track(&&TRACK363_BEGIN, &&TRACK363_END);
+	TRACK363_END:  __asm__("nop;");
+	 
+	s->state = 27; while (((Bool)1)) {
+  TRACK367_BEGIN: track(&&TRACK367_BEGIN, &&TRACK367_END);
+  TRACK367_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK364_BEGIN: track(&&TRACK364_BEGIN, &&TRACK364_END);
+    TRACK364_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK365_BEGIN: track(&&TRACK365_BEGIN, &&TRACK365_END);
+    TRACK365_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK366_BEGIN: track(&&TRACK366_BEGIN, &&TRACK366_END);
+  TRACK366_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->origPtr = (s->origPtr << 8) | ((Int32)uc);
+      if (s->origPtr < 0)
+         {
+  TRACK368_BEGIN: track(&&TRACK368_BEGIN, &&TRACK368_END);
+  TRACK368_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      if (s->origPtr > 10 + 100000*s->blockSize100k)
+         {
+  TRACK369_BEGIN: track(&&TRACK369_BEGIN, &&TRACK369_END);
+  TRACK369_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      for (i = 0; i < 16; i++) {
+  TRACK377_BEGIN: track(&&TRACK377_BEGIN, &&TRACK377_END);
+  TRACK377_END:  __asm__("nop;");
+   
    
     case 28:
-      __asm__("TRACK370_BEGIN: nop\n\t" 
-	      "   lea	TRACK370_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK370_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK370_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->state = 28; while (((Bool)1)) {
-        __asm__("TRACK374_BEGIN: nop\n\t" 
-    		"   lea	TRACK374_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK374_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK374_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	if (s->bsLive >= 1) {
-          __asm__("TRACK371_BEGIN: nop\n\t" 
-		  "   lea	TRACK371_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK371_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK371_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UInt32 v;
-	  v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-	} if (s->strm->avail_in == 0) {
-          __asm__("TRACK372_BEGIN: nop\n\t" 
-		  "   lea	TRACK372_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK372_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK372_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = 0; goto save_state_and_return;
-	};; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	  __asm__("TRACK373_BEGIN: nop\n\t" 
-		  "   lea	TRACK373_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK373_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK373_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_in_hi32++;
-	}
-      };
-      if (uc == 1)
-	{
-	  __asm__("TRACK375_BEGIN: nop\n\t" 
-		  "   lea	TRACK375_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK375_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK375_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->inUse16[i] = ((Bool)1);
-	} else
-	{
-	  __asm__("TRACK376_BEGIN: nop\n\t" 
-		  "   lea	TRACK376_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK376_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK376_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->inUse16[i] = ((Bool)0);
-	}
+  	TRACK370_BEGIN: track(&&TRACK370_BEGIN, &&TRACK370_END);
+  	TRACK370_END:  __asm__("nop;");
+  	 
+  	s->state = 28; while (((Bool)1)) {
+    TRACK374_BEGIN: track(&&TRACK374_BEGIN, &&TRACK374_END);
+    TRACK374_END:  __asm__("nop;");
+     
+    if (s->bsLive >= 1) {
+      UInt32 v;
+      TRACK371_BEGIN: track(&&TRACK371_BEGIN, &&TRACK371_END);
+      TRACK371_END:  __asm__("nop;");
+       
+      v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+    } if (s->strm->avail_in == 0) {
+      TRACK372_BEGIN: track(&&TRACK372_BEGIN, &&TRACK372_END);
+      TRACK372_END:  __asm__("nop;");
+       
+      retVal = 0; goto save_state_and_return;
+    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+    TRACK373_BEGIN: track(&&TRACK373_BEGIN, &&TRACK373_END);
+    TRACK373_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
     }
-    for (i = 0; i < 256; i++)  {
-      __asm__("TRACK378_BEGIN: nop\n\t" 
-	      "   lea	TRACK378_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK378_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK378_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->inUse[i] = ((Bool)0);
-    }
-    for (i = 0; i < 16; i++)
-      {
-	__asm__("TRACK387_BEGIN: nop\n\t" 
-		"   lea	TRACK387_BEGIN, %%eax\n\t"   
-		"   lea	TRACK387_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK387_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	if (s->inUse16[i])
-	  {
-	    __asm__("TRACK386_BEGIN: nop\n\t" 
-		    "   lea	TRACK386_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK386_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK386_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    for (j = 0; j < 16; j++) {
-	      __asm__("TRACK385_BEGIN: nop\n\t" 
-		      "   lea	TRACK385_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK385_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK385_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
+  };
+           if (uc == 1)
+               {
+  TRACK375_BEGIN: track(&&TRACK375_BEGIN, &&TRACK375_END);
+  TRACK375_END:  __asm__("nop;");
    
-	    case 29:
-	      __asm__("TRACK379_BEGIN: nop\n\t" 
-		      "   lea	TRACK379_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK379_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK379_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->state = 29; while (((Bool)1)) {
-		__asm__("TRACK383_BEGIN: nop\n\t" 
-			"   lea	TRACK383_BEGIN, %%eax\n\t"   
-			"   lea	TRACK383_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK383_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		if (s->bsLive >= 1) {
-		  __asm__("TRACK380_BEGIN: nop\n\t" 
-			  "   lea	TRACK380_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK380_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK380_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  UInt32 v;
-		  v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-		} if (s->strm->avail_in == 0) {
-		  __asm__("TRACK381_BEGIN: nop\n\t" 
-			  "   lea	TRACK381_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK381_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK381_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  retVal = 0; goto save_state_and_return;
-		};; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-		  __asm__("TRACK382_BEGIN: nop\n\t" 
-			  "   lea	TRACK382_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK382_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK382_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  s->strm->total_in_hi32++;
-		}
-	      };
-	      if (uc == 1)  {
-		__asm__("TRACK384_BEGIN: nop\n\t" 
-			"   lea	TRACK384_BEGIN, %%eax\n\t"   
-			"   lea	TRACK384_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK384_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		s->inUse[i * 16 + j] = ((Bool)1);
-	      }
-	    }
-	  }
-      }
-    makeMaps_d ( s );
-    if (s->nInUse == 0) {
-      __asm__("TRACK388_BEGIN: nop\n\t" 
-	      "   lea	TRACK388_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK388_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK388_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
-    alphaSize = s->nInUse+2;
+  s->inUse16[i] = ((Bool)1);
+  } else
+               {
+  TRACK376_BEGIN: track(&&TRACK376_BEGIN, &&TRACK376_END);
+  TRACK376_END:  __asm__("nop;");
+   
+  s->inUse16[i] = ((Bool)0);
+  }
+}
+      for (i = 0; i < 256; i++)  {
+TRACK378_BEGIN: track(&&TRACK378_BEGIN, &&TRACK378_END);
+TRACK378_END:  __asm__("nop;");
+ 
+s->inUse[i] = ((Bool)0);
+}
+      for (i = 0; i < 16; i++)
+          {
+TRACK387_BEGIN: track(&&TRACK387_BEGIN, &&TRACK387_END);
+TRACK387_END:  __asm__("nop;");
+ 
+if (s->inUse16[i])
+             {
+TRACK386_BEGIN: track(&&TRACK386_BEGIN, &&TRACK386_END);
+TRACK386_END:  __asm__("nop;");
+ 
+for (j = 0; j < 16; j++) {
+  TRACK385_BEGIN: track(&&TRACK385_BEGIN, &&TRACK385_END);
+  TRACK385_END:  __asm__("nop;");
+   
+   
+    case 29:
+  	TRACK379_BEGIN: track(&&TRACK379_BEGIN, &&TRACK379_END);
+  	TRACK379_END:  __asm__("nop;");
+  	 
+  	s->state = 29; while (((Bool)1)) {
+    TRACK383_BEGIN: track(&&TRACK383_BEGIN, &&TRACK383_END);
+    TRACK383_END:  __asm__("nop;");
+     
+    if (s->bsLive >= 1) {
+      UInt32 v;
+      TRACK380_BEGIN: track(&&TRACK380_BEGIN, &&TRACK380_END);
+      TRACK380_END:  __asm__("nop;");
+       
+      v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+    } if (s->strm->avail_in == 0) {
+      TRACK381_BEGIN: track(&&TRACK381_BEGIN, &&TRACK381_END);
+      TRACK381_END:  __asm__("nop;");
+       
+      retVal = 0; goto save_state_and_return;
+    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+    TRACK382_BEGIN: track(&&TRACK382_BEGIN, &&TRACK382_END);
+    TRACK382_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
+    }
+  };
+                 if (uc == 1)  {
+  TRACK384_BEGIN: track(&&TRACK384_BEGIN, &&TRACK384_END);
+  TRACK384_END:  __asm__("nop;");
+   
+  s->inUse[i * 16 + j] = ((Bool)1);
+  }
+}
+}
+}
+      makeMaps_d ( s );
+      if (s->nInUse == 0) {
+  TRACK388_BEGIN: track(&&TRACK388_BEGIN, &&TRACK388_END);
+  TRACK388_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      alphaSize = s->nInUse+2;
        
   case 30:
-    __asm__("TRACK389_BEGIN: nop\n\t" 
-	    "   lea	TRACK389_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK389_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK389_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 30; while (((Bool)1)) {
-      __asm__("TRACK393_BEGIN: nop\n\t" 
-	      "   lea	TRACK393_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK393_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK393_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 3) {
-        __asm__("TRACK390_BEGIN: nop\n\t" 
-    		"   lea	TRACK390_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK390_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK390_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-3)) & ((1 << 3)-1); s->bsLive -= 3; nGroups = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK391_BEGIN: nop\n\t" 
-    		"   lea	TRACK391_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK391_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK391_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK392_BEGIN: nop\n\t" 
-  		"   lea	TRACK392_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK392_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK392_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (nGroups < 2 || nGroups > 6) {
-      __asm__("TRACK394_BEGIN: nop\n\t" 
-	      "   lea	TRACK394_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK394_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK394_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK389_BEGIN: track(&&TRACK389_BEGIN, &&TRACK389_END);
+	TRACK389_END:  __asm__("nop;");
+	 
+	s->state = 30; while (((Bool)1)) {
+  TRACK393_BEGIN: track(&&TRACK393_BEGIN, &&TRACK393_END);
+  TRACK393_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 3) {
+    UInt32 v;
+    TRACK390_BEGIN: track(&&TRACK390_BEGIN, &&TRACK390_END);
+    TRACK390_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-3)) & ((1 << 3)-1); s->bsLive -= 3; nGroups = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK391_BEGIN: track(&&TRACK391_BEGIN, &&TRACK391_END);
+    TRACK391_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK392_BEGIN: track(&&TRACK392_BEGIN, &&TRACK392_END);
+  TRACK392_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (nGroups < 2 || nGroups > 6) {
+  TRACK394_BEGIN: track(&&TRACK394_BEGIN, &&TRACK394_END);
+  TRACK394_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 31:
-    __asm__("TRACK395_BEGIN: nop\n\t" 
-	    "   lea	TRACK395_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK395_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK395_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 31; while (((Bool)1)) {
-      __asm__("TRACK399_BEGIN: nop\n\t" 
-	      "   lea	TRACK399_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK399_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK399_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 15) {
-        __asm__("TRACK396_BEGIN: nop\n\t" 
-    		"   lea	TRACK396_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK396_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK396_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-15)) & ((1 << 15)-1); s->bsLive -= 15; nSelectors = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK397_BEGIN: nop\n\t" 
-    		"   lea	TRACK397_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK397_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK397_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK398_BEGIN: nop\n\t" 
-  		"   lea	TRACK398_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK398_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK398_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (nSelectors < 1) {
-      __asm__("TRACK400_BEGIN: nop\n\t" 
-	      "   lea	TRACK400_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK400_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK400_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
-    for (i = 0; i < nSelectors; i++) {
-      __asm__("TRACK408_BEGIN: nop\n\t" 
-	      "   lea	TRACK408_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK408_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK408_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      j = 0;
-      while (((Bool)1)) {
-        __asm__("TRACK407_BEGIN: nop\n\t" 
-    		"   lea	TRACK407_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK407_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK407_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
+	TRACK395_BEGIN: track(&&TRACK395_BEGIN, &&TRACK395_END);
+	TRACK395_END:  __asm__("nop;");
+	 
+	s->state = 31; while (((Bool)1)) {
+  TRACK399_BEGIN: track(&&TRACK399_BEGIN, &&TRACK399_END);
+  TRACK399_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 15) {
+    UInt32 v;
+    TRACK396_BEGIN: track(&&TRACK396_BEGIN, &&TRACK396_END);
+    TRACK396_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-15)) & ((1 << 15)-1); s->bsLive -= 15; nSelectors = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK397_BEGIN: track(&&TRACK397_BEGIN, &&TRACK397_END);
+    TRACK397_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK398_BEGIN: track(&&TRACK398_BEGIN, &&TRACK398_END);
+  TRACK398_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (nSelectors < 1) {
+  TRACK400_BEGIN: track(&&TRACK400_BEGIN, &&TRACK400_END);
+  TRACK400_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      for (i = 0; i < nSelectors; i++) {
+  TRACK408_BEGIN: track(&&TRACK408_BEGIN, &&TRACK408_END);
+  TRACK408_END:  __asm__("nop;");
+   
+  j = 0;
+           while (((Bool)1)) {
+    TRACK407_BEGIN: track(&&TRACK407_BEGIN, &&TRACK407_END);
+    TRACK407_END:  __asm__("nop;");
+     
      
       case 32:
-	__asm__("TRACK401_BEGIN: nop\n\t" 
-		"   lea	TRACK401_BEGIN, %%eax\n\t"   
-		"   lea	TRACK401_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK401_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
+    	TRACK401_BEGIN: track(&&TRACK401_BEGIN, &&TRACK401_END);
+    	TRACK401_END:  __asm__("nop;");
+    	 
     	s->state = 32; while (((Bool)1)) {
-          __asm__("TRACK405_BEGIN: nop\n\t" 
-		  "   lea	TRACK405_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK405_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK405_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (s->bsLive >= 1) {
-            __asm__("TRACK402_BEGIN: nop\n\t" 
-		    "   lea	TRACK402_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK402_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK402_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    UInt32 v;
-	    v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-	  } if (s->strm->avail_in == 0) {
-            __asm__("TRACK403_BEGIN: nop\n\t" 
-		    "   lea	TRACK403_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK403_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK403_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    retVal = 0; goto save_state_and_return;
-	  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	    __asm__("TRACK404_BEGIN: nop\n\t" 
-		    "   lea	TRACK404_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK404_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK404_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->strm->total_in_hi32++;
-	  }
-	};
-	if (uc == 0) break;
-	j++;
-	if (j >= nGroups) {
-          __asm__("TRACK406_BEGIN: nop\n\t" 
-		  "   lea	TRACK406_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK406_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK406_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = (-4); goto save_state_and_return;
-	};;
+      TRACK405_BEGIN: track(&&TRACK405_BEGIN, &&TRACK405_END);
+      TRACK405_END:  __asm__("nop;");
+       
+      if (s->bsLive >= 1) {
+        UInt32 v;
+        TRACK402_BEGIN: track(&&TRACK402_BEGIN, &&TRACK402_END);
+        TRACK402_END:  __asm__("nop;");
+         
+        v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+      } if (s->strm->avail_in == 0) {
+        TRACK403_BEGIN: track(&&TRACK403_BEGIN, &&TRACK403_END);
+        TRACK403_END:  __asm__("nop;");
+         
+        retVal = 0; goto save_state_and_return;
+      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+      TRACK404_BEGIN: track(&&TRACK404_BEGIN, &&TRACK404_END);
+      TRACK404_END:  __asm__("nop;");
+       
+      s->strm->total_in_hi32++;
       }
-      s->selectorMtf[i] = j;
-    }
-    {
-      UChar pos[6], tmp, v;
-      for (v = 0; v < nGroups; v++)  {
-	__asm__("TRACK409_BEGIN: nop\n\t" 
-		"   lea	TRACK409_BEGIN, %%eax\n\t"   
-		"   lea	TRACK409_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK409_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	pos[v] = v;
+    };
+                if (uc == 0) break;
+                j++;
+                if (j >= nGroups) {
+      TRACK406_BEGIN: track(&&TRACK406_BEGIN, &&TRACK406_END);
+      TRACK406_END:  __asm__("nop;");
+       
+      retVal = (-4); goto save_state_and_return;
+    };;
+  }
+           s->selectorMtf[i] = j;
+}
+      {
+         UChar pos[6], tmp, v;
+         for (v = 0; v < nGroups; v++)  {
+TRACK409_BEGIN: track(&&TRACK409_BEGIN, &&TRACK409_END);
+TRACK409_END:  __asm__("nop;");
+ 
+pos[v] = v;
+}
+         for (i = 0; i < nSelectors; i++) {
+  TRACK411_BEGIN: track(&&TRACK411_BEGIN, &&TRACK411_END);
+  TRACK411_END:  __asm__("nop;");
+   
+  v = s->selectorMtf[i];
+              tmp = pos[v];
+              while (v > 0) {
+    TRACK410_BEGIN: track(&&TRACK410_BEGIN, &&TRACK410_END);
+    TRACK410_END:  __asm__("nop;");
+     
+    pos[v] = pos[v-1]; v--;
+  }
+              pos[0] = tmp;
+              s->selector[i] = tmp;
+}
       }
-      for (i = 0; i < nSelectors; i++) {
-	__asm__("TRACK411_BEGIN: nop\n\t" 
-  		"   lea	TRACK411_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK411_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK411_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	v = s->selectorMtf[i];
-	tmp = pos[v];
-	while (v > 0) {
-	  __asm__("TRACK410_BEGIN: nop\n\t" 
-		  "   lea	TRACK410_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK410_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK410_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  pos[v] = pos[v-1]; v--;
-	}
-	pos[0] = tmp;
-	s->selector[i] = tmp;
-      }
-    }
-    for (t = 0; t < nGroups; t++) {
-      __asm__("TRACK432_BEGIN: nop\n\t" 
-	      "   lea	TRACK432_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK432_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK432_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
+      for (t = 0; t < nGroups; t++) {
+  TRACK432_BEGIN: track(&&TRACK432_BEGIN, &&TRACK432_END);
+  TRACK432_END:  __asm__("nop;");
+   
    
     case 33:
-      __asm__("TRACK412_BEGIN: nop\n\t" 
-	      "   lea	TRACK412_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK412_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK412_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->state = 33; while (((Bool)1)) {
-        __asm__("TRACK416_BEGIN: nop\n\t" 
-    		"   lea	TRACK416_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK416_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK416_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	if (s->bsLive >= 5) {
-          __asm__("TRACK413_BEGIN: nop\n\t" 
-		  "   lea	TRACK413_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK413_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK413_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UInt32 v;
-	  v = (s->bsBuff >> (s->bsLive-5)) & ((1 << 5)-1); s->bsLive -= 5; curr = v; break;
-	} if (s->strm->avail_in == 0) {
-          __asm__("TRACK414_BEGIN: nop\n\t" 
-		  "   lea	TRACK414_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK414_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK414_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = 0; goto save_state_and_return;
-	};; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	  __asm__("TRACK415_BEGIN: nop\n\t" 
-		  "   lea	TRACK415_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK415_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK415_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_in_hi32++;
-	}
-      };
-      for (i = 0; i < alphaSize; i++) {
-        __asm__("TRACK431_BEGIN: nop\n\t" 
-    		"   lea	TRACK431_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK431_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK431_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	while (((Bool)1)) {
-          __asm__("TRACK430_BEGIN: nop\n\t" 
-		  "   lea	TRACK430_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK430_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK430_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (curr < 1 || curr > 20) {
-            __asm__("TRACK417_BEGIN: nop\n\t" 
-		    "   lea	TRACK417_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK417_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK417_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    retVal = (-4); goto save_state_and_return;
-	  };;
+  	TRACK412_BEGIN: track(&&TRACK412_BEGIN, &&TRACK412_END);
+  	TRACK412_END:  __asm__("nop;");
+  	 
+  	s->state = 33; while (((Bool)1)) {
+    TRACK416_BEGIN: track(&&TRACK416_BEGIN, &&TRACK416_END);
+    TRACK416_END:  __asm__("nop;");
+     
+    if (s->bsLive >= 5) {
+      UInt32 v;
+      TRACK413_BEGIN: track(&&TRACK413_BEGIN, &&TRACK413_END);
+      TRACK413_END:  __asm__("nop;");
+       
+      v = (s->bsBuff >> (s->bsLive-5)) & ((1 << 5)-1); s->bsLive -= 5; curr = v; break;
+    } if (s->strm->avail_in == 0) {
+      TRACK414_BEGIN: track(&&TRACK414_BEGIN, &&TRACK414_END);
+      TRACK414_END:  __asm__("nop;");
+       
+      retVal = 0; goto save_state_and_return;
+    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+    TRACK415_BEGIN: track(&&TRACK415_BEGIN, &&TRACK415_END);
+    TRACK415_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
+    }
+  };
+           for (i = 0; i < alphaSize; i++) {
+    TRACK431_BEGIN: track(&&TRACK431_BEGIN, &&TRACK431_END);
+    TRACK431_END:  __asm__("nop;");
+     
+    while (((Bool)1)) {
+      TRACK430_BEGIN: track(&&TRACK430_BEGIN, &&TRACK430_END);
+      TRACK430_END:  __asm__("nop;");
+       
+      if (curr < 1 || curr > 20) {
+        TRACK417_BEGIN: track(&&TRACK417_BEGIN, &&TRACK417_END);
+        TRACK417_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
+      };;
                       
         case 34:
-	  __asm__("TRACK418_BEGIN: nop\n\t" 
-		  "   lea	TRACK418_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK418_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK418_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->state = 34; while (((Bool)1)) {
-            __asm__("TRACK422_BEGIN: nop\n\t" 
-		    "   lea	TRACK422_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK422_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK422_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (s->bsLive >= 1) {
-              __asm__("TRACK419_BEGIN: nop\n\t" 
-		      "   lea	TRACK419_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK419_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK419_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      UInt32 v;
-	      v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-	    } if (s->strm->avail_in == 0) {
-              __asm__("TRACK420_BEGIN: nop\n\t" 
-		      "   lea	TRACK420_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK420_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK420_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = 0; goto save_state_and_return;
-	    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	      __asm__("TRACK421_BEGIN: nop\n\t" 
-		      "   lea	TRACK421_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK421_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK421_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->strm->total_in_hi32++;
-	    }
-	  };
-	  if (uc == 0) break;
+      	TRACK418_BEGIN: track(&&TRACK418_BEGIN, &&TRACK418_END);
+      	TRACK418_END:  __asm__("nop;");
+      	 
+      	s->state = 34; while (((Bool)1)) {
+        TRACK422_BEGIN: track(&&TRACK422_BEGIN, &&TRACK422_END);
+        TRACK422_END:  __asm__("nop;");
+         
+        if (s->bsLive >= 1) {
+          UInt32 v;
+          TRACK419_BEGIN: track(&&TRACK419_BEGIN, &&TRACK419_END);
+          TRACK419_END:  __asm__("nop;");
+           
+          v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+        } if (s->strm->avail_in == 0) {
+          TRACK420_BEGIN: track(&&TRACK420_BEGIN, &&TRACK420_END);
+          TRACK420_END:  __asm__("nop;");
+           
+          retVal = 0; goto save_state_and_return;
+        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+        TRACK421_BEGIN: track(&&TRACK421_BEGIN, &&TRACK421_END);
+        TRACK421_END:  __asm__("nop;");
+         
+        s->strm->total_in_hi32++;
+        }
+      };
+                     if (uc == 0) break;
                       
         case 35:
-	  __asm__("TRACK423_BEGIN: nop\n\t" 
-		  "   lea	TRACK423_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK423_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK423_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->state = 35; while (((Bool)1)) {
-            __asm__("TRACK427_BEGIN: nop\n\t" 
-		    "   lea	TRACK427_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK427_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK427_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (s->bsLive >= 1) {
-              __asm__("TRACK424_BEGIN: nop\n\t" 
-		      "   lea	TRACK424_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK424_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK424_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      UInt32 v;
-	      v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-	    } if (s->strm->avail_in == 0) {
-              __asm__("TRACK425_BEGIN: nop\n\t" 
-		      "   lea	TRACK425_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK425_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK425_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = 0; goto save_state_and_return;
-	    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	      __asm__("TRACK426_BEGIN: nop\n\t" 
-		      "   lea	TRACK426_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK426_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK426_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->strm->total_in_hi32++;
-	    }
-	  };
-	  if (uc == 0)  {
-	    __asm__("TRACK428_BEGIN: nop\n\t" 
-		    "   lea	TRACK428_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK428_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK428_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    curr++;
-	  } else  {
-	    __asm__("TRACK429_BEGIN: nop\n\t" 
-		    "   lea	TRACK429_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK429_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK429_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    curr--;
-	  }
-	}
-	s->len[t][i] = curr;
+      	TRACK423_BEGIN: track(&&TRACK423_BEGIN, &&TRACK423_END);
+      	TRACK423_END:  __asm__("nop;");
+      	 
+      	s->state = 35; while (((Bool)1)) {
+        TRACK427_BEGIN: track(&&TRACK427_BEGIN, &&TRACK427_END);
+        TRACK427_END:  __asm__("nop;");
+         
+        if (s->bsLive >= 1) {
+          UInt32 v;
+          TRACK424_BEGIN: track(&&TRACK424_BEGIN, &&TRACK424_END);
+          TRACK424_END:  __asm__("nop;");
+           
+          v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+        } if (s->strm->avail_in == 0) {
+          TRACK425_BEGIN: track(&&TRACK425_BEGIN, &&TRACK425_END);
+          TRACK425_END:  __asm__("nop;");
+           
+          retVal = 0; goto save_state_and_return;
+        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+        TRACK426_BEGIN: track(&&TRACK426_BEGIN, &&TRACK426_END);
+        TRACK426_END:  __asm__("nop;");
+         
+        s->strm->total_in_hi32++;
+        }
+      };
+                     if (uc == 0)  {
+      TRACK428_BEGIN: track(&&TRACK428_BEGIN, &&TRACK428_END);
+      TRACK428_END:  __asm__("nop;");
+       
+      curr++;
+      } else  {
+      TRACK429_BEGIN: track(&&TRACK429_BEGIN, &&TRACK429_END);
+      TRACK429_END:  __asm__("nop;");
+       
+      curr--;
       }
     }
-    for (t = 0; t < nGroups; t++) {
-      __asm__("TRACK436_BEGIN: nop\n\t" 
-	      "   lea	TRACK436_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK436_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK436_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      minLen = 32;
-      maxLen = 0;
-      for (i = 0; i < alphaSize; i++) {
-        __asm__("TRACK435_BEGIN: nop\n\t" 
-    		"   lea	TRACK435_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK435_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK435_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	if (s->len[t][i] > maxLen)  {
-	  __asm__("TRACK433_BEGIN: nop\n\t" 
-		  "   lea	TRACK433_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK433_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK433_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  maxLen = s->len[t][i];
-	}
-	if (s->len[t][i] < minLen)  {
-	  __asm__("TRACK434_BEGIN: nop\n\t" 
-		  "   lea	TRACK434_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK434_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK434_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  minLen = s->len[t][i];
-	}
-      }
-      BZ2_hbCreateDecodeTables (
-				&(s->limit[t][0]),
-				&(s->base[t][0]),
-				&(s->perm[t][0]),
-				&(s->len[t][0]),
-				minLen, maxLen, alphaSize
-				);
-      s->minLens[t] = minLen;
+                s->len[t][i] = curr;
+  }
+}
+      for (t = 0; t < nGroups; t++) {
+  TRACK436_BEGIN: track(&&TRACK436_BEGIN, &&TRACK436_END);
+  TRACK436_END:  __asm__("nop;");
+   
+  minLen = 32;
+           maxLen = 0;
+           for (i = 0; i < alphaSize; i++) {
+    TRACK435_BEGIN: track(&&TRACK435_BEGIN, &&TRACK435_END);
+    TRACK435_END:  __asm__("nop;");
+     
+    if (s->len[t][i] > maxLen)  {
+    TRACK433_BEGIN: track(&&TRACK433_BEGIN, &&TRACK433_END);
+    TRACK433_END:  __asm__("nop;");
+     
+    maxLen = s->len[t][i];
     }
-    EOB = s->nInUse+1;
-    nblockMAX = 100000 * s->blockSize100k;
-    groupNo = -1;
-    groupPos = 0;
-    for (i = 0; i <= 255; i++)  {
-      __asm__("TRACK437_BEGIN: nop\n\t" 
-	      "   lea	TRACK437_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK437_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK437_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->unzftab[i] = 0;
+                if (s->len[t][i] < minLen)  {
+    TRACK434_BEGIN: track(&&TRACK434_BEGIN, &&TRACK434_END);
+    TRACK434_END:  __asm__("nop;");
+     
+    minLen = s->len[t][i];
     }
-    {
-      Int32 ii, jj, kk;
-      kk = 4096 -1;
-      for (ii = 256 / 16 - 1; ii >= 0; ii--) {
-	__asm__("TRACK439_BEGIN: nop\n\t" 
-  		"   lea	TRACK439_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK439_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK439_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	for (jj = 16 -1; jj >= 0; jj--) {
-	  __asm__("TRACK438_BEGIN: nop\n\t" 
-		  "   lea	TRACK438_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK438_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK438_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->mtfa[kk] = (UChar)(ii * 16 + jj);
-	  kk--;
-	}
-	s->mtfbase[ii] = kk + 1;
-      }
-    }
-    nblock = 0;
-    { if (groupPos == 0) {
-	__asm__("TRACK441_BEGIN: nop\n\t" 
-  		"   lea	TRACK441_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK441_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK441_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	groupNo++; if (groupNo >= nSelectors) {
-	  __asm__("TRACK440_BEGIN: nop\n\t" 
-		  "   lea	TRACK440_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK440_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK440_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = (-4); goto save_state_and_return;
-	};; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
-      } groupPos--; zn = gMinlen;  
-    case 36:
-      __asm__("TRACK442_BEGIN: nop\n\t" 
-	      "   lea	TRACK442_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK442_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK442_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->state = 36; while (((Bool)1)) {
-	__asm__("TRACK446_BEGIN: nop\n\t" 
-  		"   lea	TRACK446_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK446_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK446_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	if (s->bsLive >= zn) {
-	  __asm__("TRACK443_BEGIN: nop\n\t" 
-		  "   lea	TRACK443_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK443_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK443_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UInt32 v;
-	  v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
-	} if (s->strm->avail_in == 0) {
-	  __asm__("TRACK444_BEGIN: nop\n\t" 
-		  "   lea	TRACK444_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK444_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK444_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = 0; goto save_state_and_return;
-	};; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	  __asm__("TRACK445_BEGIN: nop\n\t" 
-		  "   lea	TRACK445_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK445_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK445_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_in_hi32++;
-	}
-      }; while (1) {
-	__asm__("TRACK453_BEGIN: nop\n\t" 
-  		"   lea	TRACK453_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK453_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK453_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	if (zn > 20 ) {
-	  __asm__("TRACK447_BEGIN: nop\n\t" 
-		  "   lea	TRACK447_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK447_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK447_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = (-4); goto save_state_and_return;
-	};; if (zvec <= gLimit[zn]) break; zn++;  
-      case 37:
-	__asm__("TRACK448_BEGIN: nop\n\t" 
-		"   lea	TRACK448_BEGIN, %%eax\n\t"   
-		"   lea	TRACK448_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK448_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-  	s->state = 37; while (((Bool)1)) {
-	  __asm__("TRACK452_BEGIN: nop\n\t" 
-		  "   lea	TRACK452_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK452_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK452_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (s->bsLive >= 1) {
-	    __asm__("TRACK449_BEGIN: nop\n\t" 
-		    "   lea	TRACK449_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK449_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK449_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    UInt32 v;
-	    v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
-	  } if (s->strm->avail_in == 0) {
-	    __asm__("TRACK450_BEGIN: nop\n\t" 
-		    "   lea	TRACK450_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK450_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK450_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    retVal = 0; goto save_state_and_return;
-	  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	    __asm__("TRACK451_BEGIN: nop\n\t" 
-		    "   lea	TRACK451_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK451_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK451_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->strm->total_in_hi32++;
-	  }
-	}; zvec = (zvec << 1) | zj;
-      }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-	__asm__("TRACK454_BEGIN: nop\n\t" 
-  		"   lea	TRACK454_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK454_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK454_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	retVal = (-4); goto save_state_and_return;
-      };; nextSym = gPerm[zvec - gBase[zn]]; };
-    while (((Bool)1)) {
-      __asm__("TRACK509_BEGIN: nop\n\t" 
-	      "   lea	TRACK509_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK509_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK509_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (nextSym == EOB) break;
-      if (nextSym == 0 || nextSym == 1) {
-        __asm__("TRACK480_BEGIN: nop\n\t" 
-    		"   lea	TRACK480_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK480_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK480_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	es = -1;
-	N = 1;
-	do {
-          __asm__("TRACK473_BEGIN: nop\n\t" 
-		  "   lea	TRACK473_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK473_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK473_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (nextSym == 0)  {
-	    __asm__("TRACK455_BEGIN: nop\n\t" 
-		    "   lea	TRACK455_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK455_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK455_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    es = es + (0+1) * N;
-	  } else
-	    {
-	      __asm__("TRACK457_BEGIN: nop\n\t" 
-		      "   lea	TRACK457_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK457_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK457_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (nextSym == 1)  {
-		__asm__("TRACK456_BEGIN: nop\n\t" 
-			"   lea	TRACK456_BEGIN, %%eax\n\t"   
-			"   lea	TRACK456_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK456_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		es = es + (1+1) * N;
-	      }
-	    }
-	  N = N * 2;
-	  { if (groupPos == 0) {
-	      __asm__("TRACK459_BEGIN: nop\n\t" 
-		      "   lea	TRACK459_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK459_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK459_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      groupNo++; if (groupNo >= nSelectors) {
-		__asm__("TRACK458_BEGIN: nop\n\t" 
-          		"   lea	TRACK458_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK458_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK458_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		retVal = (-4); goto save_state_and_return;
-	      };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
-	    } groupPos--; zn = gMinlen;  
-	  case 38:
-      	    __asm__("TRACK460_BEGIN: nop\n\t" 
-		    "   lea	TRACK460_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK460_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK460_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->state = 38; while (((Bool)1)) {
-	      __asm__("TRACK464_BEGIN: nop\n\t" 
-		      "   lea	TRACK464_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK464_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK464_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (s->bsLive >= zn) {
-		__asm__("TRACK461_BEGIN: nop\n\t" 
-          		"   lea	TRACK461_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK461_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK461_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		UInt32 v;
-		v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
-	      } if (s->strm->avail_in == 0) {
-		__asm__("TRACK462_BEGIN: nop\n\t" 
-          		"   lea	TRACK462_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK462_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK462_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		retVal = 0; goto save_state_and_return;
-	      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-		__asm__("TRACK463_BEGIN: nop\n\t" 
-        		"   lea	TRACK463_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK463_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK463_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		s->strm->total_in_hi32++;
-	      }
-	    }; while (1) {
-	      __asm__("TRACK471_BEGIN: nop\n\t" 
-		      "   lea	TRACK471_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK471_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK471_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (zn > 20 ) {
-		__asm__("TRACK465_BEGIN: nop\n\t" 
-          		"   lea	TRACK465_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK465_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK465_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		retVal = (-4); goto save_state_and_return;
-	      };; if (zvec <= gLimit[zn]) break; zn++;  
-	    case 39:
-	      __asm__("TRACK466_BEGIN: nop\n\t" 
-		      "   lea	TRACK466_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK466_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK466_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->state = 39; while (((Bool)1)) {
-		__asm__("TRACK470_BEGIN: nop\n\t" 
-          		"   lea	TRACK470_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK470_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK470_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		if (s->bsLive >= 1) {
-		  __asm__("TRACK467_BEGIN: nop\n\t" 
-			  "   lea	TRACK467_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK467_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK467_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  UInt32 v;
-		  v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
-		} if (s->strm->avail_in == 0) {
-		  __asm__("TRACK468_BEGIN: nop\n\t" 
-			  "   lea	TRACK468_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK468_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK468_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  retVal = 0; goto save_state_and_return;
-		};; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-		  __asm__("TRACK469_BEGIN: nop\n\t" 
-			  "   lea	TRACK469_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK469_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK469_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  s->strm->total_in_hi32++;
-		}
-	      }; zvec = (zvec << 1) | zj;
-	    }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-	      __asm__("TRACK472_BEGIN: nop\n\t" 
-		      "   lea	TRACK472_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK472_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK472_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = (-4); goto save_state_and_return;
-	    };; nextSym = gPerm[zvec - gBase[zn]]; };
-	}
-	while (nextSym == 0 || nextSym == 1);
-	es++;
-	uc = s->seqToUnseq[ s->mtfa[s->mtfbase[0]] ];
-	s->unzftab[uc] += es;
-	if (s->smallDecompress)
-	  {
-	    __asm__("TRACK476_BEGIN: nop\n\t" 
-		    "   lea	TRACK476_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK476_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK476_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    while (es > 0) {
-	      __asm__("TRACK475_BEGIN: nop\n\t" 
-		      "   lea	TRACK475_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK475_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK475_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (nblock >= nblockMAX) {
-		__asm__("TRACK474_BEGIN: nop\n\t" 
-        		"   lea	TRACK474_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK474_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK474_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		retVal = (-4); goto save_state_and_return;
-	      };;
-	      s->ll16[nblock] = (UInt16)uc;
-	      nblock++;
-	      es--;
-	    }
-	  }
-	else
-	  {
-	    __asm__("TRACK479_BEGIN: nop\n\t" 
-		    "   lea	TRACK479_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK479_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK479_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    while (es > 0) {
-	      __asm__("TRACK478_BEGIN: nop\n\t" 
-		      "   lea	TRACK478_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK478_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK478_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (nblock >= nblockMAX) {
-		__asm__("TRACK477_BEGIN: nop\n\t" 
-        		"   lea	TRACK477_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK477_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK477_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		retVal = (-4); goto save_state_and_return;
-	      };;
-	      s->tt[nblock] = (UInt32)uc;
-	      nblock++;
-	      es--;
-	    }
-	  };
-	continue;
-      } else {
-        __asm__("TRACK508_BEGIN: nop\n\t" 
-    		"   lea	TRACK508_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK508_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK508_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	if (nblock >= nblockMAX) {
-          __asm__("TRACK481_BEGIN: nop\n\t" 
-		  "   lea	TRACK481_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK481_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK481_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  retVal = (-4); goto save_state_and_return;
-	};;
-	{
-	  Int32 ii, jj, kk, pp, lno, off;
-	  UInt32 nn;
-	  nn = (UInt32)(nextSym - 1);
-	  if (nn < 16) {
-	    __asm__("TRACK484_BEGIN: nop\n\t" 
-		    "   lea	TRACK484_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK484_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK484_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    pp = s->mtfbase[0];
-	    uc = s->mtfa[pp+nn];
-	    while (nn > 3) {
-	      __asm__("TRACK482_BEGIN: nop\n\t" 
-		      "   lea	TRACK482_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK482_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK482_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      Int32 z = pp+nn;
-	      s->mtfa[(z) ] = s->mtfa[(z)-1];
-	      s->mtfa[(z)-1] = s->mtfa[(z)-2];
-	      s->mtfa[(z)-2] = s->mtfa[(z)-3];
-	      s->mtfa[(z)-3] = s->mtfa[(z)-4];
-	      nn -= 4;
-	    }
-	    while (nn > 0) {
-	      __asm__("TRACK483_BEGIN: nop\n\t" 
-		      "   lea	TRACK483_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK483_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK483_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->mtfa[(pp+nn)] = s->mtfa[(pp+nn)-1]; nn--;
-	    };
-	    s->mtfa[pp] = uc;
-	  } else {
-	    __asm__("TRACK490_BEGIN: nop\n\t" 
-		    "   lea	TRACK490_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK490_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK490_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    lno = nn / 16;
-	    off = nn % 16;
-	    pp = s->mtfbase[lno] + off;
-	    uc = s->mtfa[pp];
-	    while (pp > s->mtfbase[lno]) {
-	      __asm__("TRACK485_BEGIN: nop\n\t" 
-		      "   lea	TRACK485_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK485_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK485_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->mtfa[pp] = s->mtfa[pp-1]; pp--;
-	    };
-	    s->mtfbase[lno]++;
-	    while (lno > 0) {
-	      __asm__("TRACK486_BEGIN: nop\n\t" 
-		      "   lea	TRACK486_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK486_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK486_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->mtfbase[lno]--;
-	      s->mtfa[s->mtfbase[lno]]
-		= s->mtfa[s->mtfbase[lno-1] + 16 - 1];
-	      lno--;
-	    }
-	    s->mtfbase[0]--;
-	    s->mtfa[s->mtfbase[0]] = uc;
-	    if (s->mtfbase[0] == 0) {
-	      __asm__("TRACK489_BEGIN: nop\n\t" 
-		      "   lea	TRACK489_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK489_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK489_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      kk = 4096 -1;
-	      for (ii = 256 / 16 -1; ii >= 0; ii--) {
-		__asm__("TRACK488_BEGIN: nop\n\t" 
-          		"   lea	TRACK488_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK488_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK488_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		for (jj = 16 -1; jj >= 0; jj--) {
-		  __asm__("TRACK487_BEGIN: nop\n\t" 
-			  "   lea	TRACK487_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK487_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK487_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  s->mtfa[kk] = s->mtfa[s->mtfbase[ii] + jj];
-		  kk--;
-		}
-		s->mtfbase[ii] = kk + 1;
-	      }
-	    }
-	  }
-	}
-	s->unzftab[s->seqToUnseq[uc]]++;
-	if (s->smallDecompress)
-	  {
-	    __asm__("TRACK491_BEGIN: nop\n\t" 
-		    "   lea	TRACK491_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK491_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK491_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->ll16[nblock] = (UInt16)(s->seqToUnseq[uc]);
-	  } else
-	  {
-	    __asm__("TRACK492_BEGIN: nop\n\t" 
-		    "   lea	TRACK492_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK492_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK492_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->tt[nblock] = (UInt32)(s->seqToUnseq[uc]);
-	  }
-	nblock++;
-	{ if (groupPos == 0) {
-	    __asm__("TRACK494_BEGIN: nop\n\t" 
-		    "   lea	TRACK494_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK494_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK494_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    groupNo++; if (groupNo >= nSelectors) {
-	      __asm__("TRACK493_BEGIN: nop\n\t" 
-		      "   lea	TRACK493_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK493_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK493_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = (-4); goto save_state_and_return;
-	    };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
-	  } groupPos--; zn = gMinlen;  
-	case 40:
-	  __asm__("TRACK495_BEGIN: nop\n\t" 
-		  "   lea	TRACK495_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK495_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK495_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->state = 40; while (((Bool)1)) {
-	    __asm__("TRACK499_BEGIN: nop\n\t" 
-		    "   lea	TRACK499_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK499_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK499_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (s->bsLive >= zn) {
-	      __asm__("TRACK496_BEGIN: nop\n\t" 
-		      "   lea	TRACK496_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK496_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK496_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      UInt32 v;
-	      v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
-	    } if (s->strm->avail_in == 0) {
-	      __asm__("TRACK497_BEGIN: nop\n\t" 
-		      "   lea	TRACK497_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK497_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK497_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = 0; goto save_state_and_return;
-	    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	      __asm__("TRACK498_BEGIN: nop\n\t" 
-		      "   lea	TRACK498_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK498_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK498_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->strm->total_in_hi32++;
-	    }
-	  }; while (1) {
-	    __asm__("TRACK506_BEGIN: nop\n\t" 
-		    "   lea	TRACK506_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK506_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK506_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (zn > 20 ) {
-	      __asm__("TRACK500_BEGIN: nop\n\t" 
-		      "   lea	TRACK500_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK500_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK500_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      retVal = (-4); goto save_state_and_return;
-	    };; if (zvec <= gLimit[zn]) break; zn++;  
-	  case 41:
-      	    __asm__("TRACK501_BEGIN: nop\n\t" 
-		    "   lea	TRACK501_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK501_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK501_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->state = 41; while (((Bool)1)) {
-	      __asm__("TRACK505_BEGIN: nop\n\t" 
-		      "   lea	TRACK505_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK505_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK505_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (s->bsLive >= 1) {
-		__asm__("TRACK502_BEGIN: nop\n\t" 
-          		"   lea	TRACK502_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK502_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK502_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		UInt32 v;
-		v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
-	      } if (s->strm->avail_in == 0) {
-		__asm__("TRACK503_BEGIN: nop\n\t" 
-          		"   lea	TRACK503_BEGIN, %%eax\n\t"   
-          		"   lea	TRACK503_END, %%ecx\n\t" 
-          		"   mov	%%eax, (%%esp)\n\t" 
-          		"   mov    %%ecx, 4(%%esp)\n\t" 
-          		" calll track\n\t" 
-          		"TRACK503_END: nop\n\t" 
-          		: 
-          		: 
-          		: "eax", "ecx", "esp");
-		retVal = 0; goto save_state_and_return;
-	      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-		__asm__("TRACK504_BEGIN: nop\n\t" 
-        		"   lea	TRACK504_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK504_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK504_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		s->strm->total_in_hi32++;
-	      }
-	    }; zvec = (zvec << 1) | zj;
-	  }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-	    __asm__("TRACK507_BEGIN: nop\n\t" 
-		    "   lea	TRACK507_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK507_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK507_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    retVal = (-4); goto save_state_and_return;
-	  };; nextSym = gPerm[zvec - gBase[zn]]; };
-	continue;
-      }
-    }
-    if (s->origPtr < 0 || s->origPtr >= nblock)
+  }
+           BZ2_hbCreateDecodeTables (
+              &(s->limit[t][0]),
+              &(s->base[t][0]),
+              &(s->perm[t][0]),
+              &(s->len[t][0]),
+              minLen, maxLen, alphaSize
+           );
+           s->minLens[t] = minLen;
+}
+      EOB = s->nInUse+1;
+      nblockMAX = 100000 * s->blockSize100k;
+      groupNo = -1;
+      groupPos = 0;
+      for (i = 0; i <= 255; i++)  {
+TRACK437_BEGIN: track(&&TRACK437_BEGIN, &&TRACK437_END);
+TRACK437_END:  __asm__("nop;");
+ 
+s->unzftab[i] = 0;
+}
       {
-	__asm__("TRACK510_BEGIN: nop\n\t" 
-  		"   lea	TRACK510_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK510_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK510_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	retVal = (-4); goto save_state_and_return;
+         Int32 ii, jj, kk;
+         kk = 4096 -1;
+         for (ii = 256 / 16 - 1; ii >= 0; ii--) {
+  TRACK439_BEGIN: track(&&TRACK439_BEGIN, &&TRACK439_END);
+  TRACK439_END:  __asm__("nop;");
+   
+  for (jj = 16 -1; jj >= 0; jj--) {
+    TRACK438_BEGIN: track(&&TRACK438_BEGIN, &&TRACK438_END);
+    TRACK438_END:  __asm__("nop;");
+     
+    s->mtfa[kk] = (UChar)(ii * 16 + jj);
+                   kk--;
+  }
+              s->mtfbase[ii] = kk + 1;
+}
+      }
+      nblock = 0;
+      { if (groupPos == 0) {
+  TRACK441_BEGIN: track(&&TRACK441_BEGIN, &&TRACK441_END);
+  TRACK441_END:  __asm__("nop;");
+   
+  groupNo++; if (groupNo >= nSelectors) {
+    TRACK440_BEGIN: track(&&TRACK440_BEGIN, &&TRACK440_END);
+    TRACK440_END:  __asm__("nop;");
+     
+    retVal = (-4); goto save_state_and_return;
+  };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
+} groupPos--; zn = gMinlen;  
+  case 36:
+	TRACK442_BEGIN: track(&&TRACK442_BEGIN, &&TRACK442_END);
+	TRACK442_END:  __asm__("nop;");
+	 
+	s->state = 36; while (((Bool)1)) {
+  TRACK446_BEGIN: track(&&TRACK446_BEGIN, &&TRACK446_END);
+  TRACK446_END:  __asm__("nop;");
+   
+  if (s->bsLive >= zn) {
+    UInt32 v;
+    TRACK443_BEGIN: track(&&TRACK443_BEGIN, &&TRACK443_END);
+    TRACK443_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK444_BEGIN: track(&&TRACK444_BEGIN, &&TRACK444_END);
+    TRACK444_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK445_BEGIN: track(&&TRACK445_BEGIN, &&TRACK445_END);
+  TRACK445_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+}; while (1) {
+  TRACK453_BEGIN: track(&&TRACK453_BEGIN, &&TRACK453_END);
+  TRACK453_END:  __asm__("nop;");
+   
+  if (zn > 20 ) {
+    TRACK447_BEGIN: track(&&TRACK447_BEGIN, &&TRACK447_END);
+    TRACK447_END:  __asm__("nop;");
+     
+    retVal = (-4); goto save_state_and_return;
+  };; if (zvec <= gLimit[zn]) break; zn++;  
+    case 37:
+  	TRACK448_BEGIN: track(&&TRACK448_BEGIN, &&TRACK448_END);
+  	TRACK448_END:  __asm__("nop;");
+  	 
+  	s->state = 37; while (((Bool)1)) {
+    TRACK452_BEGIN: track(&&TRACK452_BEGIN, &&TRACK452_END);
+    TRACK452_END:  __asm__("nop;");
+     
+    if (s->bsLive >= 1) {
+      UInt32 v;
+      TRACK449_BEGIN: track(&&TRACK449_BEGIN, &&TRACK449_END);
+      TRACK449_END:  __asm__("nop;");
+       
+      v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
+    } if (s->strm->avail_in == 0) {
+      TRACK450_BEGIN: track(&&TRACK450_BEGIN, &&TRACK450_END);
+      TRACK450_END:  __asm__("nop;");
+       
+      retVal = 0; goto save_state_and_return;
+    };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+    TRACK451_BEGIN: track(&&TRACK451_BEGIN, &&TRACK451_END);
+    TRACK451_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
+    }
+  }; zvec = (zvec << 1) | zj;
+}; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
+  TRACK454_BEGIN: track(&&TRACK454_BEGIN, &&TRACK454_END);
+  TRACK454_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};; nextSym = gPerm[zvec - gBase[zn]]; };
+      while (((Bool)1)) {
+  TRACK509_BEGIN: track(&&TRACK509_BEGIN, &&TRACK509_END);
+  TRACK509_END:  __asm__("nop;");
+   
+  if (nextSym == EOB) break;
+           if (nextSym == 0 || nextSym == 1) {
+    TRACK480_BEGIN: track(&&TRACK480_BEGIN, &&TRACK480_END);
+    TRACK480_END:  __asm__("nop;");
+     
+    es = -1;
+                N = 1;
+                do {
+      TRACK473_BEGIN: track(&&TRACK473_BEGIN, &&TRACK473_END);
+      TRACK473_END:  __asm__("nop;");
+       
+      if (nextSym == 0)  {
+      TRACK455_BEGIN: track(&&TRACK455_BEGIN, &&TRACK455_END);
+      TRACK455_END:  __asm__("nop;");
+       
+      es = es + (0+1) * N;
+      } else
+                      {
+      TRACK457_BEGIN: track(&&TRACK457_BEGIN, &&TRACK457_END);
+      TRACK457_END:  __asm__("nop;");
+       
+      if (nextSym == 1)  {
+      TRACK456_BEGIN: track(&&TRACK456_BEGIN, &&TRACK456_END);
+      TRACK456_END:  __asm__("nop;");
+       
+      es = es + (1+1) * N;
+      }
+      }
+                     N = N * 2;
+                     { if (groupPos == 0) {
+        TRACK459_BEGIN: track(&&TRACK459_BEGIN, &&TRACK459_END);
+        TRACK459_END:  __asm__("nop;");
+         
+        groupNo++; if (groupNo >= nSelectors) {
+          TRACK458_BEGIN: track(&&TRACK458_BEGIN, &&TRACK458_END);
+          TRACK458_END:  __asm__("nop;");
+           
+          retVal = (-4); goto save_state_and_return;
+        };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
+      } groupPos--; zn = gMinlen;  
+        case 38:
+      	TRACK460_BEGIN: track(&&TRACK460_BEGIN, &&TRACK460_END);
+      	TRACK460_END:  __asm__("nop;");
+      	 
+      	s->state = 38; while (((Bool)1)) {
+        TRACK464_BEGIN: track(&&TRACK464_BEGIN, &&TRACK464_END);
+        TRACK464_END:  __asm__("nop;");
+         
+        if (s->bsLive >= zn) {
+          UInt32 v;
+          TRACK461_BEGIN: track(&&TRACK461_BEGIN, &&TRACK461_END);
+          TRACK461_END:  __asm__("nop;");
+           
+          v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
+        } if (s->strm->avail_in == 0) {
+          TRACK462_BEGIN: track(&&TRACK462_BEGIN, &&TRACK462_END);
+          TRACK462_END:  __asm__("nop;");
+           
+          retVal = 0; goto save_state_and_return;
+        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+        TRACK463_BEGIN: track(&&TRACK463_BEGIN, &&TRACK463_END);
+        TRACK463_END:  __asm__("nop;");
+         
+        s->strm->total_in_hi32++;
+        }
+      }; while (1) {
+        TRACK471_BEGIN: track(&&TRACK471_BEGIN, &&TRACK471_END);
+        TRACK471_END:  __asm__("nop;");
+         
+        if (zn > 20 ) {
+          TRACK465_BEGIN: track(&&TRACK465_BEGIN, &&TRACK465_END);
+          TRACK465_END:  __asm__("nop;");
+           
+          retVal = (-4); goto save_state_and_return;
+        };; if (zvec <= gLimit[zn]) break; zn++;  
+          case 39:
+        	TRACK466_BEGIN: track(&&TRACK466_BEGIN, &&TRACK466_END);
+        	TRACK466_END:  __asm__("nop;");
+        	 
+        	s->state = 39; while (((Bool)1)) {
+          TRACK470_BEGIN: track(&&TRACK470_BEGIN, &&TRACK470_END);
+          TRACK470_END:  __asm__("nop;");
+           
+          if (s->bsLive >= 1) {
+            UInt32 v;
+            TRACK467_BEGIN: track(&&TRACK467_BEGIN, &&TRACK467_END);
+            TRACK467_END:  __asm__("nop;");
+             
+            v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
+          } if (s->strm->avail_in == 0) {
+            TRACK468_BEGIN: track(&&TRACK468_BEGIN, &&TRACK468_END);
+            TRACK468_END:  __asm__("nop;");
+             
+            retVal = 0; goto save_state_and_return;
+          };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+          TRACK469_BEGIN: track(&&TRACK469_BEGIN, &&TRACK469_END);
+          TRACK469_END:  __asm__("nop;");
+           
+          s->strm->total_in_hi32++;
+          }
+        }; zvec = (zvec << 1) | zj;
+      }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
+        TRACK472_BEGIN: track(&&TRACK472_BEGIN, &&TRACK472_END);
+        TRACK472_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
+      };; nextSym = gPerm[zvec - gBase[zn]]; };
+    }
+                   while (nextSym == 0 || nextSym == 1);
+                es++;
+                uc = s->seqToUnseq[ s->mtfa[s->mtfbase[0]] ];
+                s->unzftab[uc] += es;
+                if (s->smallDecompress)
+                    {
+    TRACK476_BEGIN: track(&&TRACK476_BEGIN, &&TRACK476_END);
+    TRACK476_END:  __asm__("nop;");
+     
+    while (es > 0) {
+      TRACK475_BEGIN: track(&&TRACK475_BEGIN, &&TRACK475_END);
+      TRACK475_END:  __asm__("nop;");
+       
+      if (nblock >= nblockMAX) {
+        TRACK474_BEGIN: track(&&TRACK474_BEGIN, &&TRACK474_END);
+        TRACK474_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
       };;
-    s->state_out_len = 0;
-    s->state_out_ch = 0;
-    { s->calculatedBlockCRC = 0xffffffffL; };
-    s->state = 2;
-    if (s->verbosity >= 2)  {
-      __asm__("TRACK511_BEGIN: nop\n\t" 
-	      "   lea	TRACK511_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK511_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK511_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf(stderr,"rt+rld");
+                        s->ll16[nblock] = (UInt16)uc;
+                        nblock++;
+                        es--;
     }
-    s->cftab[0] = 0;
-    for (i = 1; i <= 256; i++)  {
-      __asm__("TRACK512_BEGIN: nop\n\t" 
-	      "   lea	TRACK512_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK512_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK512_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->cftab[i] = s->unzftab[i-1];
     }
-    for (i = 1; i <= 256; i++)  {
-      __asm__("TRACK513_BEGIN: nop\n\t" 
-	      "   lea	TRACK513_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK513_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK513_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->cftab[i] += s->cftab[i-1];
+                else
+                    {
+    TRACK479_BEGIN: track(&&TRACK479_BEGIN, &&TRACK479_END);
+    TRACK479_END:  __asm__("nop;");
+     
+    while (es > 0) {
+      TRACK478_BEGIN: track(&&TRACK478_BEGIN, &&TRACK478_END);
+      TRACK478_END:  __asm__("nop;");
+       
+      if (nblock >= nblockMAX) {
+        TRACK477_BEGIN: track(&&TRACK477_BEGIN, &&TRACK477_END);
+        TRACK477_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
+      };;
+                        s->tt[nblock] = (UInt32)uc;
+                        nblock++;
+                        es--;
     }
-    if (s->smallDecompress) {
-      __asm__("TRACK525_BEGIN: nop\n\t" 
-	      "   lea	TRACK525_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK525_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK525_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (i = 0; i <= 256; i++)  {
-	__asm__("TRACK514_BEGIN: nop\n\t" 
-  		"   lea	TRACK514_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK514_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK514_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->cftabCopy[i] = s->cftab[i];
+    };
+                continue;
+  } else {
+    TRACK508_BEGIN: track(&&TRACK508_BEGIN, &&TRACK508_END);
+    TRACK508_END:  __asm__("nop;");
+     
+    if (nblock >= nblockMAX) {
+      TRACK481_BEGIN: track(&&TRACK481_BEGIN, &&TRACK481_END);
+      TRACK481_END:  __asm__("nop;");
+       
+      retVal = (-4); goto save_state_and_return;
+    };;
+                {
+                   Int32 ii, jj, kk, pp, lno, off;
+                   UInt32 nn;
+                   nn = (UInt32)(nextSym - 1);
+                   if (nn < 16) {
+      TRACK484_BEGIN: track(&&TRACK484_BEGIN, &&TRACK484_END);
+      TRACK484_END:  __asm__("nop;");
+       
+      pp = s->mtfbase[0];
+                        uc = s->mtfa[pp+nn];
+                        while (nn > 3) {
+        Int32 z = pp+nn;
+        TRACK482_BEGIN: track(&&TRACK482_BEGIN, &&TRACK482_END);
+        TRACK482_END:  __asm__("nop;");
+         
+        s->mtfa[(z) ] = s->mtfa[(z)-1];
+                             s->mtfa[(z)-1] = s->mtfa[(z)-2];
+                             s->mtfa[(z)-2] = s->mtfa[(z)-3];
+                             s->mtfa[(z)-3] = s->mtfa[(z)-4];
+                             nn -= 4;
       }
-      for (i = 0; i < nblock; i++) {
-        __asm__("TRACK517_BEGIN: nop\n\t" 
-    		"   lea	TRACK517_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK517_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK517_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	uc = (UChar)(s->ll16[i]);
-	{ s->ll16[i] = (UInt16)(s->cftabCopy[uc] & 0x0000ffff); { if (((i) & 0x1) == 0)  {
-	      __asm__("TRACK515_BEGIN: nop\n\t" 
-		      "   lea	TRACK515_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK515_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK515_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0xf0) | (s->cftabCopy[uc] >> 16);
-	    } else  {
-	      __asm__("TRACK516_BEGIN: nop\n\t" 
-		      "   lea	TRACK516_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK516_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK516_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0x0f) | ((s->cftabCopy[uc] >> 16) << 4);
-	    } }; };
-	s->cftabCopy[uc]++;
-      }
-      i = s->origPtr;
-      j = (((UInt32)s->ll16[i]) | (((((UInt32)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF) << 16));
-      do {
-        __asm__("TRACK520_BEGIN: nop\n\t" 
-    		"   lea	TRACK520_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK520_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK520_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	Int32 tmp = (((UInt32)s->ll16[j]) | (((((UInt32)(s->ll4[(j) >> 1])) >> (((j) << 2) & 0x4)) & 0xF) << 16));
-	{ s->ll16[j] = (UInt16)(i & 0x0000ffff); { if (((j) & 0x1) == 0)  {
-	      __asm__("TRACK518_BEGIN: nop\n\t" 
-		      "   lea	TRACK518_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK518_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK518_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0xf0) | (i >> 16);
-	    } else  {
-	      __asm__("TRACK519_BEGIN: nop\n\t" 
-		      "   lea	TRACK519_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK519_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK519_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0x0f) | ((i >> 16) << 4);
-	    } }; };
-	i = j;
-	j = tmp;
-      }
-      while (i != s->origPtr);
-      s->tPos = s->origPtr;
-      s->nblock_used = 0;
-      if (s->blockRandomised) {
-        __asm__("TRACK523_BEGIN: nop\n\t" 
-    		"   lea	TRACK523_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK523_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK523_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->rNToGo = 0; s->rTPos = 0;
-	s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-	if (s->rNToGo == 0) {
-          __asm__("TRACK522_BEGIN: nop\n\t" 
-		  "   lea	TRACK522_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK522_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK522_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-	    __asm__("TRACK521_BEGIN: nop\n\t" 
-		    "   lea	TRACK521_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK521_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK521_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->rTPos = 0;
-	  }
-	} s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
-      } else {
-        __asm__("TRACK524_BEGIN: nop\n\t" 
-    		"   lea	TRACK524_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK524_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK524_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-      }
+                        while (nn > 0) {
+        TRACK483_BEGIN: track(&&TRACK483_BEGIN, &&TRACK483_END);
+        TRACK483_END:  __asm__("nop;");
+         
+        s->mtfa[(pp+nn)] = s->mtfa[(pp+nn)-1]; nn--;
+      };
+                        s->mtfa[pp] = uc;
     } else {
-      __asm__("TRACK531_BEGIN: nop\n\t" 
-	      "   lea	TRACK531_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK531_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK531_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (i = 0; i < nblock; i++) {
-        __asm__("TRACK526_BEGIN: nop\n\t" 
-    		"   lea	TRACK526_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK526_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK526_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	uc = (UChar)(s->tt[i] & 0xff);
-	s->tt[s->cftab[uc]] |= (i << 8);
-	s->cftab[uc]++;
+      TRACK490_BEGIN: track(&&TRACK490_BEGIN, &&TRACK490_END);
+      TRACK490_END:  __asm__("nop;");
+       
+      lno = nn / 16;
+                        off = nn % 16;
+                        pp = s->mtfbase[lno] + off;
+                        uc = s->mtfa[pp];
+                        while (pp > s->mtfbase[lno]) {
+        TRACK485_BEGIN: track(&&TRACK485_BEGIN, &&TRACK485_END);
+        TRACK485_END:  __asm__("nop;");
+         
+        s->mtfa[pp] = s->mtfa[pp-1]; pp--;
+      };
+                        s->mtfbase[lno]++;
+                        while (lno > 0) {
+        TRACK486_BEGIN: track(&&TRACK486_BEGIN, &&TRACK486_END);
+        TRACK486_END:  __asm__("nop;");
+         
+        s->mtfbase[lno]--;
+                             s->mtfa[s->mtfbase[lno]]
+                                = s->mtfa[s->mtfbase[lno-1] + 16 - 1];
+                             lno--;
       }
-      s->tPos = s->tt[s->origPtr] >> 8;
-      s->nblock_used = 0;
-      if (s->blockRandomised) {
-        __asm__("TRACK529_BEGIN: nop\n\t" 
-    		"   lea	TRACK529_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK529_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK529_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->rNToGo = 0; s->rTPos = 0;
-	s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
-	if (s->rNToGo == 0) {
-          __asm__("TRACK528_BEGIN: nop\n\t" 
-		  "   lea	TRACK528_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK528_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK528_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-	    __asm__("TRACK527_BEGIN: nop\n\t" 
-		    "   lea	TRACK527_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK527_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK527_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->rTPos = 0;
-	  }
-	} s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
-      } else {
-        __asm__("TRACK530_BEGIN: nop\n\t" 
-    		"   lea	TRACK530_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK530_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK530_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
+                        s->mtfbase[0]--;
+                        s->mtfa[s->mtfbase[0]] = uc;
+                        if (s->mtfbase[0] == 0) {
+        TRACK489_BEGIN: track(&&TRACK489_BEGIN, &&TRACK489_END);
+        TRACK489_END:  __asm__("nop;");
+         
+        kk = 4096 -1;
+                             for (ii = 256 / 16 -1; ii >= 0; ii--) {
+          TRACK488_BEGIN: track(&&TRACK488_BEGIN, &&TRACK488_END);
+          TRACK488_END:  __asm__("nop;");
+           
+          for (jj = 16 -1; jj >= 0; jj--) {
+            TRACK487_BEGIN: track(&&TRACK487_BEGIN, &&TRACK487_END);
+            TRACK487_END:  __asm__("nop;");
+             
+            s->mtfa[kk] = s->mtfa[s->mtfbase[ii] + jj];
+                                       kk--;
+          }
+                                  s->mtfbase[ii] = kk + 1;
+        }
       }
     }
-    { retVal = 0; goto save_state_and_return; };;
-  endhdr_2:
+                }
+                s->unzftab[s->seqToUnseq[uc]]++;
+                if (s->smallDecompress)
+                    {
+    TRACK491_BEGIN: track(&&TRACK491_BEGIN, &&TRACK491_END);
+    TRACK491_END:  __asm__("nop;");
+     
+    s->ll16[nblock] = (UInt16)(s->seqToUnseq[uc]);
+    } else
+                    {
+    TRACK492_BEGIN: track(&&TRACK492_BEGIN, &&TRACK492_END);
+    TRACK492_END:  __asm__("nop;");
+     
+    s->tt[nblock] = (UInt32)(s->seqToUnseq[uc]);
+    }
+                nblock++;
+                { if (groupPos == 0) {
+      TRACK494_BEGIN: track(&&TRACK494_BEGIN, &&TRACK494_END);
+      TRACK494_END:  __asm__("nop;");
+       
+      groupNo++; if (groupNo >= nSelectors) {
+        TRACK493_BEGIN: track(&&TRACK493_BEGIN, &&TRACK493_END);
+        TRACK493_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
+      };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
+    } groupPos--; zn = gMinlen;  
+      case 40:
+    	TRACK495_BEGIN: track(&&TRACK495_BEGIN, &&TRACK495_END);
+    	TRACK495_END:  __asm__("nop;");
+    	 
+    	s->state = 40; while (((Bool)1)) {
+      TRACK499_BEGIN: track(&&TRACK499_BEGIN, &&TRACK499_END);
+      TRACK499_END:  __asm__("nop;");
+       
+      if (s->bsLive >= zn) {
+        UInt32 v;
+        TRACK496_BEGIN: track(&&TRACK496_BEGIN, &&TRACK496_END);
+        TRACK496_END:  __asm__("nop;");
+         
+        v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
+      } if (s->strm->avail_in == 0) {
+        TRACK497_BEGIN: track(&&TRACK497_BEGIN, &&TRACK497_END);
+        TRACK497_END:  __asm__("nop;");
+         
+        retVal = 0; goto save_state_and_return;
+      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+      TRACK498_BEGIN: track(&&TRACK498_BEGIN, &&TRACK498_END);
+      TRACK498_END:  __asm__("nop;");
+       
+      s->strm->total_in_hi32++;
+      }
+    }; while (1) {
+      TRACK506_BEGIN: track(&&TRACK506_BEGIN, &&TRACK506_END);
+      TRACK506_END:  __asm__("nop;");
+       
+      if (zn > 20 ) {
+        TRACK500_BEGIN: track(&&TRACK500_BEGIN, &&TRACK500_END);
+        TRACK500_END:  __asm__("nop;");
+         
+        retVal = (-4); goto save_state_and_return;
+      };; if (zvec <= gLimit[zn]) break; zn++;  
+        case 41:
+      	TRACK501_BEGIN: track(&&TRACK501_BEGIN, &&TRACK501_END);
+      	TRACK501_END:  __asm__("nop;");
+      	 
+      	s->state = 41; while (((Bool)1)) {
+        TRACK505_BEGIN: track(&&TRACK505_BEGIN, &&TRACK505_END);
+        TRACK505_END:  __asm__("nop;");
+         
+        if (s->bsLive >= 1) {
+          UInt32 v;
+          TRACK502_BEGIN: track(&&TRACK502_BEGIN, &&TRACK502_END);
+          TRACK502_END:  __asm__("nop;");
+           
+          v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
+        } if (s->strm->avail_in == 0) {
+          TRACK503_BEGIN: track(&&TRACK503_BEGIN, &&TRACK503_END);
+          TRACK503_END:  __asm__("nop;");
+           
+          retVal = 0; goto save_state_and_return;
+        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+        TRACK504_BEGIN: track(&&TRACK504_BEGIN, &&TRACK504_END);
+        TRACK504_END:  __asm__("nop;");
+         
+        s->strm->total_in_hi32++;
+        }
+      }; zvec = (zvec << 1) | zj;
+    }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
+      TRACK507_BEGIN: track(&&TRACK507_BEGIN, &&TRACK507_END);
+      TRACK507_END:  __asm__("nop;");
+       
+      retVal = (-4); goto save_state_and_return;
+    };; nextSym = gPerm[zvec - gBase[zn]]; };
+                continue;
+  }
+}
+      if (s->origPtr < 0 || s->origPtr >= nblock)
+         {
+  TRACK510_BEGIN: track(&&TRACK510_BEGIN, &&TRACK510_END);
+  TRACK510_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      s->state_out_len = 0;
+      s->state_out_ch = 0;
+      { s->calculatedBlockCRC = 0xffffffffL; };
+      s->state = 2;
+      if (s->verbosity >= 2)  {
+TRACK511_BEGIN: track(&&TRACK511_BEGIN, &&TRACK511_END);
+TRACK511_END:  __asm__("nop;");
+ 
+fprintf(stderr,"rt+rld");
+}
+      s->cftab[0] = 0;
+      for (i = 1; i <= 256; i++)  {
+TRACK512_BEGIN: track(&&TRACK512_BEGIN, &&TRACK512_END);
+TRACK512_END:  __asm__("nop;");
+ 
+s->cftab[i] = s->unzftab[i-1];
+}
+      for (i = 1; i <= 256; i++)  {
+TRACK513_BEGIN: track(&&TRACK513_BEGIN, &&TRACK513_END);
+TRACK513_END:  __asm__("nop;");
+ 
+s->cftab[i] += s->cftab[i-1];
+}
+      if (s->smallDecompress) {
+  TRACK525_BEGIN: track(&&TRACK525_BEGIN, &&TRACK525_END);
+  TRACK525_END:  __asm__("nop;");
+   
+  for (i = 0; i <= 256; i++)  {
+  TRACK514_BEGIN: track(&&TRACK514_BEGIN, &&TRACK514_END);
+  TRACK514_END:  __asm__("nop;");
+   
+  s->cftabCopy[i] = s->cftab[i];
+  }
+           for (i = 0; i < nblock; i++) {
+    TRACK517_BEGIN: track(&&TRACK517_BEGIN, &&TRACK517_END);
+    TRACK517_END:  __asm__("nop;");
+     
+    uc = (UChar)(s->ll16[i]);
+                { s->ll16[i] = (UInt16)(s->cftabCopy[uc] & 0x0000ffff); { if (((i) & 0x1) == 0)  {
+    TRACK515_BEGIN: track(&&TRACK515_BEGIN, &&TRACK515_END);
+    TRACK515_END:  __asm__("nop;");
+     
+    s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0xf0) | (s->cftabCopy[uc] >> 16);
+    } else  {
+    TRACK516_BEGIN: track(&&TRACK516_BEGIN, &&TRACK516_END);
+    TRACK516_END:  __asm__("nop;");
+     
+    s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0x0f) | ((s->cftabCopy[uc] >> 16) << 4);
+    } }; };
+                s->cftabCopy[uc]++;
+  }
+           i = s->origPtr;
+           j = (((UInt32)s->ll16[i]) | (((((UInt32)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF) << 16));
+           do {
+    Int32 tmp = (((UInt32)s->ll16[j]) | (((((UInt32)(s->ll4[(j) >> 1])) >> (((j) << 2) & 0x4)) & 0xF) << 16));
+    TRACK520_BEGIN: track(&&TRACK520_BEGIN, &&TRACK520_END);
+    TRACK520_END:  __asm__("nop;");
+     
+    { s->ll16[j] = (UInt16)(i & 0x0000ffff); { if (((j) & 0x1) == 0)  {
+    TRACK518_BEGIN: track(&&TRACK518_BEGIN, &&TRACK518_END);
+    TRACK518_END:  __asm__("nop;");
+     
+    s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0xf0) | (i >> 16);
+    } else  {
+    TRACK519_BEGIN: track(&&TRACK519_BEGIN, &&TRACK519_END);
+    TRACK519_END:  __asm__("nop;");
+     
+    s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0x0f) | ((i >> 16) << 4);
+    } }; };
+                i = j;
+                j = tmp;
+  }
+              while (i != s->origPtr);
+           s->tPos = s->origPtr;
+           s->nblock_used = 0;
+           if (s->blockRandomised) {
+    TRACK523_BEGIN: track(&&TRACK523_BEGIN, &&TRACK523_END);
+    TRACK523_END:  __asm__("nop;");
+     
+    s->rNToGo = 0; s->rTPos = 0;
+                s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+                if (s->rNToGo == 0) {
+      TRACK522_BEGIN: track(&&TRACK522_BEGIN, &&TRACK522_END);
+      TRACK522_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK521_BEGIN: track(&&TRACK521_BEGIN, &&TRACK521_END);
+      TRACK521_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
+  } else {
+    TRACK524_BEGIN: track(&&TRACK524_BEGIN, &&TRACK524_END);
+    TRACK524_END:  __asm__("nop;");
+     
+    s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+  }
+} else {
+  TRACK531_BEGIN: track(&&TRACK531_BEGIN, &&TRACK531_END);
+  TRACK531_END:  __asm__("nop;");
+   
+  for (i = 0; i < nblock; i++) {
+    TRACK526_BEGIN: track(&&TRACK526_BEGIN, &&TRACK526_END);
+    TRACK526_END:  __asm__("nop;");
+     
+    uc = (UChar)(s->tt[i] & 0xff);
+                s->tt[s->cftab[uc]] |= (i << 8);
+                s->cftab[uc]++;
+  }
+           s->tPos = s->tt[s->origPtr] >> 8;
+           s->nblock_used = 0;
+           if (s->blockRandomised) {
+    TRACK529_BEGIN: track(&&TRACK529_BEGIN, &&TRACK529_END);
+    TRACK529_END:  __asm__("nop;");
+     
+    s->rNToGo = 0; s->rTPos = 0;
+                s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
+                if (s->rNToGo == 0) {
+      TRACK528_BEGIN: track(&&TRACK528_BEGIN, &&TRACK528_END);
+      TRACK528_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK527_BEGIN: track(&&TRACK527_BEGIN, &&TRACK527_END);
+      TRACK527_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
+  } else {
+    TRACK530_BEGIN: track(&&TRACK530_BEGIN, &&TRACK530_END);
+    TRACK530_END:  __asm__("nop;");
+     
+    s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
+  }
+}
+      { retVal = 0; goto save_state_and_return; };;
+    endhdr_2:
        
   case 42:
-    __asm__("TRACK532_BEGIN: nop\n\t" 
-	    "   lea	TRACK532_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK532_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK532_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 42; while (((Bool)1)) {
-      __asm__("TRACK536_BEGIN: nop\n\t" 
-	      "   lea	TRACK536_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK536_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK536_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK533_BEGIN: nop\n\t" 
-    		"   lea	TRACK533_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK533_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK533_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK534_BEGIN: nop\n\t" 
-    		"   lea	TRACK534_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK534_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK534_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK535_BEGIN: nop\n\t" 
-  		"   lea	TRACK535_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK535_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK535_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x72) {
-      __asm__("TRACK537_BEGIN: nop\n\t" 
-	      "   lea	TRACK537_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK537_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK537_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK532_BEGIN: track(&&TRACK532_BEGIN, &&TRACK532_END);
+	TRACK532_END:  __asm__("nop;");
+	 
+	s->state = 42; while (((Bool)1)) {
+  TRACK536_BEGIN: track(&&TRACK536_BEGIN, &&TRACK536_END);
+  TRACK536_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK533_BEGIN: track(&&TRACK533_BEGIN, &&TRACK533_END);
+    TRACK533_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK534_BEGIN: track(&&TRACK534_BEGIN, &&TRACK534_END);
+    TRACK534_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK535_BEGIN: track(&&TRACK535_BEGIN, &&TRACK535_END);
+  TRACK535_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x72) {
+  TRACK537_BEGIN: track(&&TRACK537_BEGIN, &&TRACK537_END);
+  TRACK537_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 43:
-    __asm__("TRACK538_BEGIN: nop\n\t" 
-	    "   lea	TRACK538_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK538_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK538_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 43; while (((Bool)1)) {
-      __asm__("TRACK542_BEGIN: nop\n\t" 
-	      "   lea	TRACK542_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK542_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK542_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK539_BEGIN: nop\n\t" 
-    		"   lea	TRACK539_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK539_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK539_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK540_BEGIN: nop\n\t" 
-    		"   lea	TRACK540_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK540_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK540_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK541_BEGIN: nop\n\t" 
-  		"   lea	TRACK541_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK541_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK541_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x45) {
-      __asm__("TRACK543_BEGIN: nop\n\t" 
-	      "   lea	TRACK543_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK543_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK543_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK538_BEGIN: track(&&TRACK538_BEGIN, &&TRACK538_END);
+	TRACK538_END:  __asm__("nop;");
+	 
+	s->state = 43; while (((Bool)1)) {
+  TRACK542_BEGIN: track(&&TRACK542_BEGIN, &&TRACK542_END);
+  TRACK542_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK539_BEGIN: track(&&TRACK539_BEGIN, &&TRACK539_END);
+    TRACK539_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK540_BEGIN: track(&&TRACK540_BEGIN, &&TRACK540_END);
+    TRACK540_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK541_BEGIN: track(&&TRACK541_BEGIN, &&TRACK541_END);
+  TRACK541_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x45) {
+  TRACK543_BEGIN: track(&&TRACK543_BEGIN, &&TRACK543_END);
+  TRACK543_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 44:
-    __asm__("TRACK544_BEGIN: nop\n\t" 
-	    "   lea	TRACK544_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK544_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK544_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 44; while (((Bool)1)) {
-      __asm__("TRACK548_BEGIN: nop\n\t" 
-	      "   lea	TRACK548_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK548_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK548_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK545_BEGIN: nop\n\t" 
-    		"   lea	TRACK545_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK545_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK545_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK546_BEGIN: nop\n\t" 
-    		"   lea	TRACK546_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK546_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK546_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK547_BEGIN: nop\n\t" 
-  		"   lea	TRACK547_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK547_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK547_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x38) {
-      __asm__("TRACK549_BEGIN: nop\n\t" 
-	      "   lea	TRACK549_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK549_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK549_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK544_BEGIN: track(&&TRACK544_BEGIN, &&TRACK544_END);
+	TRACK544_END:  __asm__("nop;");
+	 
+	s->state = 44; while (((Bool)1)) {
+  TRACK548_BEGIN: track(&&TRACK548_BEGIN, &&TRACK548_END);
+  TRACK548_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK545_BEGIN: track(&&TRACK545_BEGIN, &&TRACK545_END);
+    TRACK545_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK546_BEGIN: track(&&TRACK546_BEGIN, &&TRACK546_END);
+    TRACK546_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK547_BEGIN: track(&&TRACK547_BEGIN, &&TRACK547_END);
+  TRACK547_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x38) {
+  TRACK549_BEGIN: track(&&TRACK549_BEGIN, &&TRACK549_END);
+  TRACK549_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 45:
-    __asm__("TRACK550_BEGIN: nop\n\t" 
-	    "   lea	TRACK550_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK550_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK550_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 45; while (((Bool)1)) {
-      __asm__("TRACK554_BEGIN: nop\n\t" 
-	      "   lea	TRACK554_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK554_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK554_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK551_BEGIN: nop\n\t" 
-    		"   lea	TRACK551_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK551_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK551_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK552_BEGIN: nop\n\t" 
-    		"   lea	TRACK552_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK552_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK552_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK553_BEGIN: nop\n\t" 
-  		"   lea	TRACK553_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK553_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK553_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x50) {
-      __asm__("TRACK555_BEGIN: nop\n\t" 
-	      "   lea	TRACK555_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK555_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK555_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
+	TRACK550_BEGIN: track(&&TRACK550_BEGIN, &&TRACK550_END);
+	TRACK550_END:  __asm__("nop;");
+	 
+	s->state = 45; while (((Bool)1)) {
+  TRACK554_BEGIN: track(&&TRACK554_BEGIN, &&TRACK554_END);
+  TRACK554_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK551_BEGIN: track(&&TRACK551_BEGIN, &&TRACK551_END);
+    TRACK551_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK552_BEGIN: track(&&TRACK552_BEGIN, &&TRACK552_END);
+    TRACK552_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK553_BEGIN: track(&&TRACK553_BEGIN, &&TRACK553_END);
+  TRACK553_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x50) {
+  TRACK555_BEGIN: track(&&TRACK555_BEGIN, &&TRACK555_END);
+  TRACK555_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
        
   case 46:
-    __asm__("TRACK556_BEGIN: nop\n\t" 
-	    "   lea	TRACK556_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK556_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK556_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 46; while (((Bool)1)) {
-      __asm__("TRACK560_BEGIN: nop\n\t" 
-	      "   lea	TRACK560_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK560_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK560_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK557_BEGIN: nop\n\t" 
-    		"   lea	TRACK557_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK557_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK557_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK558_BEGIN: nop\n\t" 
-    		"   lea	TRACK558_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK558_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK558_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK559_BEGIN: nop\n\t" 
-  		"   lea	TRACK559_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK559_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK559_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    if (uc != 0x90) {
-      __asm__("TRACK561_BEGIN: nop\n\t" 
-	      "   lea	TRACK561_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK561_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK561_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      retVal = (-4); goto save_state_and_return;
-    };;
-    s->storedCombinedCRC = 0;
+	TRACK556_BEGIN: track(&&TRACK556_BEGIN, &&TRACK556_END);
+	TRACK556_END:  __asm__("nop;");
+	 
+	s->state = 46; while (((Bool)1)) {
+  TRACK560_BEGIN: track(&&TRACK560_BEGIN, &&TRACK560_END);
+  TRACK560_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK557_BEGIN: track(&&TRACK557_BEGIN, &&TRACK557_END);
+    TRACK557_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK558_BEGIN: track(&&TRACK558_BEGIN, &&TRACK558_END);
+    TRACK558_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK559_BEGIN: track(&&TRACK559_BEGIN, &&TRACK559_END);
+  TRACK559_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      if (uc != 0x90) {
+  TRACK561_BEGIN: track(&&TRACK561_BEGIN, &&TRACK561_END);
+  TRACK561_END:  __asm__("nop;");
+   
+  retVal = (-4); goto save_state_and_return;
+};;
+      s->storedCombinedCRC = 0;
        
   case 47:
-    __asm__("TRACK562_BEGIN: nop\n\t" 
-	    "   lea	TRACK562_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK562_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK562_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 47; while (((Bool)1)) {
-      __asm__("TRACK566_BEGIN: nop\n\t" 
-	      "   lea	TRACK566_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK566_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK566_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK563_BEGIN: nop\n\t" 
-    		"   lea	TRACK563_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK563_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK563_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK564_BEGIN: nop\n\t" 
-    		"   lea	TRACK564_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK564_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK564_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK565_BEGIN: nop\n\t" 
-  		"   lea	TRACK565_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK565_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK565_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
+	TRACK562_BEGIN: track(&&TRACK562_BEGIN, &&TRACK562_END);
+	TRACK562_END:  __asm__("nop;");
+	 
+	s->state = 47; while (((Bool)1)) {
+  TRACK566_BEGIN: track(&&TRACK566_BEGIN, &&TRACK566_END);
+  TRACK566_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK563_BEGIN: track(&&TRACK563_BEGIN, &&TRACK563_END);
+    TRACK563_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK564_BEGIN: track(&&TRACK564_BEGIN, &&TRACK564_END);
+    TRACK564_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK565_BEGIN: track(&&TRACK565_BEGIN, &&TRACK565_END);
+  TRACK565_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 48:
-    __asm__("TRACK567_BEGIN: nop\n\t" 
-	    "   lea	TRACK567_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK567_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK567_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 48; while (((Bool)1)) {
-      __asm__("TRACK571_BEGIN: nop\n\t" 
-	      "   lea	TRACK571_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK571_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK571_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK568_BEGIN: nop\n\t" 
-    		"   lea	TRACK568_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK568_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK568_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK569_BEGIN: nop\n\t" 
-    		"   lea	TRACK569_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK569_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK569_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK570_BEGIN: nop\n\t" 
-  		"   lea	TRACK570_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK570_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK570_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
+	TRACK567_BEGIN: track(&&TRACK567_BEGIN, &&TRACK567_END);
+	TRACK567_END:  __asm__("nop;");
+	 
+	s->state = 48; while (((Bool)1)) {
+  TRACK571_BEGIN: track(&&TRACK571_BEGIN, &&TRACK571_END);
+  TRACK571_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK568_BEGIN: track(&&TRACK568_BEGIN, &&TRACK568_END);
+    TRACK568_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK569_BEGIN: track(&&TRACK569_BEGIN, &&TRACK569_END);
+    TRACK569_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK570_BEGIN: track(&&TRACK570_BEGIN, &&TRACK570_END);
+  TRACK570_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 49:
-    __asm__("TRACK572_BEGIN: nop\n\t" 
-	    "   lea	TRACK572_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK572_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK572_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 49; while (((Bool)1)) {
-      __asm__("TRACK576_BEGIN: nop\n\t" 
-	      "   lea	TRACK576_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK576_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK576_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK573_BEGIN: nop\n\t" 
-    		"   lea	TRACK573_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK573_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK573_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK574_BEGIN: nop\n\t" 
-    		"   lea	TRACK574_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK574_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK574_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK575_BEGIN: nop\n\t" 
-  		"   lea	TRACK575_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK575_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK575_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
+	TRACK572_BEGIN: track(&&TRACK572_BEGIN, &&TRACK572_END);
+	TRACK572_END:  __asm__("nop;");
+	 
+	s->state = 49; while (((Bool)1)) {
+  TRACK576_BEGIN: track(&&TRACK576_BEGIN, &&TRACK576_END);
+  TRACK576_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK573_BEGIN: track(&&TRACK573_BEGIN, &&TRACK573_END);
+    TRACK573_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK574_BEGIN: track(&&TRACK574_BEGIN, &&TRACK574_END);
+    TRACK574_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK575_BEGIN: track(&&TRACK575_BEGIN, &&TRACK575_END);
+  TRACK575_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 50:
-    __asm__("TRACK577_BEGIN: nop\n\t" 
-	    "   lea	TRACK577_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK577_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK577_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->state = 50; while (((Bool)1)) {
-      __asm__("TRACK581_BEGIN: nop\n\t" 
-	      "   lea	TRACK581_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK581_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK581_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->bsLive >= 8) {
-        __asm__("TRACK578_BEGIN: nop\n\t" 
-    		"   lea	TRACK578_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK578_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK578_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	UInt32 v;
-	v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
-      } if (s->strm->avail_in == 0) {
-        __asm__("TRACK579_BEGIN: nop\n\t" 
-    		"   lea	TRACK579_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK579_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK579_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	retVal = 0; goto save_state_and_return;
-      };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-	__asm__("TRACK580_BEGIN: nop\n\t" 
-  		"   lea	TRACK580_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK580_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK580_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-    };
-    s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
-    s->state = 1;
-    { retVal = 4; goto save_state_and_return; };;
+	TRACK577_BEGIN: track(&&TRACK577_BEGIN, &&TRACK577_END);
+	TRACK577_END:  __asm__("nop;");
+	 
+	s->state = 50; while (((Bool)1)) {
+  TRACK581_BEGIN: track(&&TRACK581_BEGIN, &&TRACK581_END);
+  TRACK581_END:  __asm__("nop;");
+   
+  if (s->bsLive >= 8) {
+    UInt32 v;
+    TRACK578_BEGIN: track(&&TRACK578_BEGIN, &&TRACK578_END);
+    TRACK578_END:  __asm__("nop;");
+     
+    v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
+  } if (s->strm->avail_in == 0) {
+    TRACK579_BEGIN: track(&&TRACK579_BEGIN, &&TRACK579_END);
+    TRACK579_END:  __asm__("nop;");
+     
+    retVal = 0; goto save_state_and_return;
+  };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+  TRACK580_BEGIN: track(&&TRACK580_BEGIN, &&TRACK580_END);
+  TRACK580_END:  __asm__("nop;");
+   
+  s->strm->total_in_hi32++;
+  }
+};
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
+      s->state = 1;
+      { retVal = 4; goto save_state_and_return; };;
        
   default:
-    __asm__("TRACK583_BEGIN: nop\n\t" 
-	    "   lea	TRACK583_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK583_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK583_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    { if (!(((Bool)0)))  {
-	__asm__("TRACK582_BEGIN: nop\n\t" 
-		"   lea	TRACK582_BEGIN, %%eax\n\t"   
-		"   lea	TRACK582_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK582_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
+	TRACK583_BEGIN: track(&&TRACK583_BEGIN, &&TRACK583_END);
+	TRACK583_END:  __asm__("nop;");
+	 
+	{ if (!(((Bool)0)))  {
+	TRACK582_BEGIN: track(&&TRACK582_BEGIN, &&TRACK582_END);
+	TRACK582_END:  __asm__("nop;");
+	 
 	BZ2_bz__AssertH__fail ( 4001 );
-      } };
-  }
-  { if (!(((Bool)0)))  {
-      __asm__("TRACK584_BEGIN: nop\n\t" 
-	      "   lea	TRACK584_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK584_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK584_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 4002 );
-    } };
- save_state_and_return:
-  s->save_i = i;
-  s->save_j = j;
-  s->save_t = t;
-  s->save_alphaSize = alphaSize;
-  s->save_nGroups = nGroups;
-  s->save_nSelectors = nSelectors;
-  s->save_EOB = EOB;
-  s->save_groupNo = groupNo;
-  s->save_groupPos = groupPos;
-  s->save_nextSym = nextSym;
-  s->save_nblockMAX = nblockMAX;
-  s->save_nblock = nblock;
-  s->save_es = es;
-  s->save_N = N;
-  s->save_curr = curr;
-  s->save_zt = zt;
-  s->save_zn = zn;
-  s->save_zvec = zvec;
-  s->save_zj = zj;
-  s->save_gSel = gSel;
-  s->save_gMinlen = gMinlen;
-  s->save_gLimit = gLimit;
-  s->save_gBase = gBase;
-  s->save_gPerm = gPerm;
-  return retVal;
+	} };
+   }
+   { if (!(((Bool)0)))  {
+TRACK584_BEGIN: track(&&TRACK584_BEGIN, &&TRACK584_END);
+TRACK584_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 4002 );
+} };
+   save_state_and_return:
+   s->save_i = i;
+   s->save_j = j;
+   s->save_t = t;
+   s->save_alphaSize = alphaSize;
+   s->save_nGroups = nGroups;
+   s->save_nSelectors = nSelectors;
+   s->save_EOB = EOB;
+   s->save_groupNo = groupNo;
+   s->save_groupPos = groupPos;
+   s->save_nextSym = nextSym;
+   s->save_nblockMAX = nblockMAX;
+   s->save_nblock = nblock;
+   s->save_es = es;
+   s->save_N = N;
+   s->save_curr = curr;
+   s->save_zt = zt;
+   s->save_zn = zn;
+   s->save_zvec = zvec;
+   s->save_zj = zj;
+   s->save_gSel = gSel;
+   s->save_gMinlen = gMinlen;
+   s->save_gLimit = gLimit;
+   s->save_gBase = gBase;
+   s->save_gPerm = gPerm;
+   return retVal;
 }
 void BZ2_bz__AssertH__fail ( int errcode )
 {
+   fprintf(stderr,
+      "\n\nbzip2/libbzip2: internal error number %d.\n"
+      "This is a bug in bzip2/libbzip2, %s.\n"
+      "Please report it to me at: jseward@acm.org.  If this happened\n"
+      "when you were using some program which uses libbzip2 as a\n"
+      "component, you should also report this bug to the author(s)\n"
+      "of that program.  Please make an effort to report this bug;\n"
+      "timely and accurate bug reports eventually lead to higher\n"
+      "quality software.  Thanks.  Julian Seward, 30 December 2001.\n\n",
+      errcode,
+      BZ2_bzlibVersion()
+   );
+   if (errcode == 1007) {
+  TRACK585_BEGIN: track(&&TRACK585_BEGIN, &&TRACK585_END);
+  TRACK585_END:  __asm__("nop;");
+   
   fprintf(stderr,
-	  "\n\nbzip2/libbzip2: internal error number %d.\n"
-	  "This is a bug in bzip2/libbzip2, %s.\n"
-	  "Please report it to me at: jseward@acm.org.  If this happened\n"
-	  "when you were using some program which uses libbzip2 as a\n"
-	  "component, you should also report this bug to the author(s)\n"
-	  "of that program.  Please make an effort to report this bug;\n"
-	  "timely and accurate bug reports eventually lead to higher\n"
-	  "quality software.  Thanks.  Julian Seward, 30 December 2001.\n\n",
-	  errcode,
-	  BZ2_bzlibVersion()
-	  );
-  if (errcode == 1007) {
-    __asm__("TRACK585_BEGIN: nop\n\t" 
-	    "   lea	TRACK585_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK585_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK585_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf(stderr,
-	    "\n*** A special note about internal error number 1007 ***\n"
-	    "\n"
-	    "Experience suggests that a common cause of i.e. 1007\n"
-	    "is unreliable memory or other hardware.  The 1007 assertion\n"
-	    "just happens to cross-check the results of huge numbers of\n"
-	    "memory reads/writes, and so acts (unintendedly) as a stress\n"
-	    "test of your memory system.\n"
-	    "\n"
-	    "I suggest the following: try compressing the file again,\n"
-	    "possibly monitoring progress in detail with the -vv flag.\n"
-	    "\n"
-	    "* If the error cannot be reproduced, and/or happens at different\n"
-	    "  points in compression, you may have a flaky memory system.\n"
-	    "  Try a memory-test program.  I have used Memtest86\n"
-	    "  (www.memtest86.com).  At the time of writing it is free (GPLd).\n"
-	    "  Memtest86 tests memory much more thorougly than your BIOSs\n"
-	    "  power-on test, and may find failures that the BIOS doesn't.\n"
-	    "\n"
-	    "* If the error can be repeatably reproduced, this is a bug in\n"
-	    "  bzip2, and I would very much like to hear about it.  Please\n"
-	    "  let me know, and, ideally, save a copy of the file causing the\n"
-	    "  problem -- without which I will be unable to investigate it.\n"
-	    "\n"
-	    );
-  }
-  exit(3);
+        "\n*** A special note about internal error number 1007 ***\n"
+        "\n"
+        "Experience suggests that a common cause of i.e. 1007\n"
+        "is unreliable memory or other hardware.  The 1007 assertion\n"
+        "just happens to cross-check the results of huge numbers of\n"
+        "memory reads/writes, and so acts (unintendedly) as a stress\n"
+        "test of your memory system.\n"
+        "\n"
+        "I suggest the following: try compressing the file again,\n"
+        "possibly monitoring progress in detail with the -vv flag.\n"
+        "\n"
+        "* If the error cannot be reproduced, and/or happens at different\n"
+        "  points in compression, you may have a flaky memory system.\n"
+        "  Try a memory-test program.  I have used Memtest86\n"
+        "  (www.memtest86.com).  At the time of writing it is free (GPLd).\n"
+        "  Memtest86 tests memory much more thorougly than your BIOSs\n"
+        "  power-on test, and may find failures that the BIOS doesn't.\n"
+        "\n"
+        "* If the error can be repeatably reproduced, this is a bug in\n"
+        "  bzip2, and I would very much like to hear about it.  Please\n"
+        "  let me know, and, ideally, save a copy of the file causing the\n"
+        "  problem -- without which I will be unable to investigate it.\n"
+        "\n"
+     );
+}
+   exit(3);
 }
 static
 int bz_config_ok ( void )
 {
-  if (sizeof(int) != 4) return 0;
-  if (sizeof(short) != 2) return 0;
-  if (sizeof(char) != 1) return 0;
-  return 1;
+   if (sizeof(int) != 4) return 0;
+   if (sizeof(short) != 2) return 0;
+   if (sizeof(char) != 1) return 0;
+   return 1;
 }
 static
 void* default_bzalloc ( void* opaque, Int32 items, Int32 size )
 {
-  void* v = malloc ( items * size );
-  return v;
+   void* v = malloc ( items * size );
+   return v;
 }
 static
 void default_bzfree ( void* opaque, void* addr )
 {
-  if (addr != ((void *)0))  {
-    __asm__("TRACK586_BEGIN: nop\n\t" 
-	    "   lea	TRACK586_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK586_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK586_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    free ( addr );
-  }
+   if (addr != ((void *)0))  {
+TRACK586_BEGIN: track(&&TRACK586_BEGIN, &&TRACK586_END);
+TRACK586_END:  __asm__("nop;");
+ 
+free ( addr );
+}
 }
 static
 void prepare_new_block ( EState* s )
 {
-  Int32 i;
-  s->nblock = 0;
-  s->numZ = 0;
-  s->state_out_pos = 0;
-  { s->blockCRC = 0xffffffffL; };
-  for (i = 0; i < 256; i++)  {
-    __asm__("TRACK587_BEGIN: nop\n\t" 
-	    "   lea	TRACK587_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK587_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK587_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->inUse[i] = ((Bool)0);
-  }
-  s->blockNo++;
+   Int32 i;
+   s->nblock = 0;
+   s->numZ = 0;
+   s->state_out_pos = 0;
+   { s->blockCRC = 0xffffffffL; };
+   for (i = 0; i < 256; i++)  {
+TRACK587_BEGIN: track(&&TRACK587_BEGIN, &&TRACK587_END);
+TRACK587_END:  __asm__("nop;");
+ 
+s->inUse[i] = ((Bool)0);
+}
+   s->blockNo++;
 }
 static
 void init_RL ( EState* s )
 {
-  s->state_in_ch = 256;
-  s->state_in_len = 0;
+   s->state_in_ch = 256;
+   s->state_in_len = 0;
 }
 static
 Bool isempty_RL ( EState* s )
 {
-  if (s->state_in_ch < 256 && s->state_in_len > 0)
-    return ((Bool)0); else
-    return ((Bool)1);
+   if (s->state_in_ch < 256 && s->state_in_len > 0)
+      return ((Bool)0); else
+      return ((Bool)1);
 }
 int BZ2_bzCompressInit
-( bz_stream* strm,
-  int blockSize100k,
-  int verbosity,
-  int workFactor )
+                    ( bz_stream* strm,
+                     int blockSize100k,
+                     int verbosity,
+                     int workFactor )
 {
-  Int32 n;
-  EState* s;
-  if (!bz_config_ok()) return (-9);
-  if (strm == ((void *)0) ||
-      blockSize100k < 1 || blockSize100k > 9 ||
-      workFactor < 0 || workFactor > 250)
-    return (-2);
-  if (workFactor == 0)  {
-    __asm__("TRACK588_BEGIN: nop\n\t" 
-	    "   lea	TRACK588_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK588_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK588_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    workFactor = 30;
+   Int32 n;
+   EState* s;
+   if (!bz_config_ok()) return (-9);
+   if (strm == ((void *)0) ||
+       blockSize100k < 1 || blockSize100k > 9 ||
+       workFactor < 0 || workFactor > 250)
+     return (-2);
+   if (workFactor == 0)  {
+TRACK588_BEGIN: track(&&TRACK588_BEGIN, &&TRACK588_END);
+TRACK588_END:  __asm__("nop;");
+ 
+workFactor = 30;
+}
+   if (strm->bzalloc == ((void *)0))  {
+TRACK589_BEGIN: track(&&TRACK589_BEGIN, &&TRACK589_END);
+TRACK589_END:  __asm__("nop;");
+ 
+strm->bzalloc = default_bzalloc;
+}
+   if (strm->bzfree == ((void *)0))  {
+TRACK590_BEGIN: track(&&TRACK590_BEGIN, &&TRACK590_END);
+TRACK590_END:  __asm__("nop;");
+ 
+strm->bzfree = default_bzfree;
+}
+   s = (strm->bzalloc)(strm->opaque,(sizeof(EState)),1);
+   if (s == ((void *)0)) return (-3);
+   s->strm = strm;
+   s->arr1 = ((void *)0);
+   s->arr2 = ((void *)0);
+   s->ftab = ((void *)0);
+   n = 100000 * blockSize100k;
+   s->arr1 = (strm->bzalloc)(strm->opaque,(n * sizeof(UInt32)),1);
+   s->arr2 = (strm->bzalloc)(strm->opaque,((n+(2 + 12 + 18 + 2)) * sizeof(UInt32)),1);
+   s->ftab = (strm->bzalloc)(strm->opaque,(65537 * sizeof(UInt32)),1);
+   if (s->arr1 == ((void *)0) || s->arr2 == ((void *)0) || s->ftab == ((void *)0)) {
+  TRACK595_BEGIN: track(&&TRACK595_BEGIN, &&TRACK595_END);
+  TRACK595_END:  __asm__("nop;");
+   
+  if (s->arr1 != ((void *)0))  {
+  TRACK591_BEGIN: track(&&TRACK591_BEGIN, &&TRACK591_END);
+  TRACK591_END:  __asm__("nop;");
+   
+  (strm->bzfree)(strm->opaque,(s->arr1));
   }
-  if (strm->bzalloc == ((void *)0))  {
-    __asm__("TRACK589_BEGIN: nop\n\t" 
-	    "   lea	TRACK589_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK589_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK589_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    strm->bzalloc = default_bzalloc;
+        if (s->arr2 != ((void *)0))  {
+  TRACK592_BEGIN: track(&&TRACK592_BEGIN, &&TRACK592_END);
+  TRACK592_END:  __asm__("nop;");
+   
+  (strm->bzfree)(strm->opaque,(s->arr2));
   }
-  if (strm->bzfree == ((void *)0))  {
-    __asm__("TRACK590_BEGIN: nop\n\t" 
-	    "   lea	TRACK590_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK590_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK590_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    strm->bzfree = default_bzfree;
+        if (s->ftab != ((void *)0))  {
+  TRACK593_BEGIN: track(&&TRACK593_BEGIN, &&TRACK593_END);
+  TRACK593_END:  __asm__("nop;");
+   
+  (strm->bzfree)(strm->opaque,(s->ftab));
   }
-  s = (strm->bzalloc)(strm->opaque,(sizeof(EState)),1);
-  if (s == ((void *)0)) return (-3);
-  s->strm = strm;
-  s->arr1 = ((void *)0);
-  s->arr2 = ((void *)0);
-  s->ftab = ((void *)0);
-  n = 100000 * blockSize100k;
-  s->arr1 = (strm->bzalloc)(strm->opaque,(n * sizeof(UInt32)),1);
-  s->arr2 = (strm->bzalloc)(strm->opaque,((n+(2 + 12 + 18 + 2)) * sizeof(UInt32)),1);
-  s->ftab = (strm->bzalloc)(strm->opaque,(65537 * sizeof(UInt32)),1);
-  if (s->arr1 == ((void *)0) || s->arr2 == ((void *)0) || s->ftab == ((void *)0)) {
-    __asm__("TRACK595_BEGIN: nop\n\t" 
-	    "   lea	TRACK595_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK595_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK595_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (s->arr1 != ((void *)0))  {
-      __asm__("TRACK591_BEGIN: nop\n\t" 
-	      "   lea	TRACK591_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK591_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK591_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      (strm->bzfree)(strm->opaque,(s->arr1));
-    }
-    if (s->arr2 != ((void *)0))  {
-      __asm__("TRACK592_BEGIN: nop\n\t" 
-	      "   lea	TRACK592_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK592_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK592_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      (strm->bzfree)(strm->opaque,(s->arr2));
-    }
-    if (s->ftab != ((void *)0))  {
-      __asm__("TRACK593_BEGIN: nop\n\t" 
-	      "   lea	TRACK593_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK593_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK593_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      (strm->bzfree)(strm->opaque,(s->ftab));
-    }
-    if (s != ((void *)0))  {
-      __asm__("TRACK594_BEGIN: nop\n\t" 
-	      "   lea	TRACK594_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK594_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK594_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      (strm->bzfree)(strm->opaque,(s));
-    }
-    return (-3);
+        if (s != ((void *)0))  {
+  TRACK594_BEGIN: track(&&TRACK594_BEGIN, &&TRACK594_END);
+  TRACK594_END:  __asm__("nop;");
+   
+  (strm->bzfree)(strm->opaque,(s));
   }
-  s->blockNo = 0;
-  s->state = 2;
-  s->mode = 2;
-  s->combinedCRC = 0;
-  s->blockSize100k = blockSize100k;
-  s->nblockMAX = 100000 * blockSize100k - 19;
-  s->verbosity = verbosity;
-  s->workFactor = workFactor;
-  s->block = (UChar*)s->arr2;
-  s->mtfv = (UInt16*)s->arr1;
-  s->zbits = ((void *)0);
-  s->ptr = (UInt32*)s->arr1;
-  strm->state = s;
-  strm->total_in_lo32 = 0;
-  strm->total_in_hi32 = 0;
-  strm->total_out_lo32 = 0;
-  strm->total_out_hi32 = 0;
-  init_RL ( s );
-  prepare_new_block ( s );
-  return 0;
+        return (-3);
+}
+   s->blockNo = 0;
+   s->state = 2;
+   s->mode = 2;
+   s->combinedCRC = 0;
+   s->blockSize100k = blockSize100k;
+   s->nblockMAX = 100000 * blockSize100k - 19;
+   s->verbosity = verbosity;
+   s->workFactor = workFactor;
+   s->block = (UChar*)s->arr2;
+   s->mtfv = (UInt16*)s->arr1;
+   s->zbits = ((void *)0);
+   s->ptr = (UInt32*)s->arr1;
+   strm->state = s;
+   strm->total_in_lo32 = 0;
+   strm->total_in_hi32 = 0;
+   strm->total_out_lo32 = 0;
+   strm->total_out_hi32 = 0;
+   init_RL ( s );
+   prepare_new_block ( s );
+   return 0;
 }
 static
 void add_pair_to_block ( EState* s )
 {
-  Int32 i;
-  UChar ch = (UChar)(s->state_in_ch);
-  for (i = 0; i < s->state_in_len; i++) {
-    __asm__("TRACK596_BEGIN: nop\n\t" 
-	    "   lea	TRACK596_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK596_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK596_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; };
-  }
-  s->inUse[s->state_in_ch] = ((Bool)1);
-  switch (s->state_in_len) {
+   Int32 i;
+   UChar ch = (UChar)(s->state_in_ch);
+   for (i = 0; i < s->state_in_len; i++) {
+  TRACK596_BEGIN: track(&&TRACK596_BEGIN, &&TRACK596_END);
+  TRACK596_END:  __asm__("nop;");
+   
+  { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; };
+}
+   s->inUse[s->state_in_ch] = ((Bool)1);
+   switch (s->state_in_len) {
        
   case 1:
-    __asm__("TRACK597_BEGIN: nop\n\t" 
-	    "   lea	TRACK597_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK597_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK597_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    break;
+	TRACK597_BEGIN: track(&&TRACK597_BEGIN, &&TRACK597_END);
+	TRACK597_END:  __asm__("nop;");
+	 
+	s->block[s->nblock] = (UChar)ch; s->nblock++;
+         break;
        
   case 2:
-    __asm__("TRACK598_BEGIN: nop\n\t" 
-	    "   lea	TRACK598_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK598_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK598_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    break;
+	TRACK598_BEGIN: track(&&TRACK598_BEGIN, &&TRACK598_END);
+	TRACK598_END:  __asm__("nop;");
+	 
+	s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         break;
        
   case 3:
-    __asm__("TRACK599_BEGIN: nop\n\t" 
-	    "   lea	TRACK599_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK599_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK599_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    break;
+	TRACK599_BEGIN: track(&&TRACK599_BEGIN, &&TRACK599_END);
+	TRACK599_END:  __asm__("nop;");
+	 
+	s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         break;
        
   default:
-    __asm__("TRACK600_BEGIN: nop\n\t" 
-	    "   lea	TRACK600_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK600_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK600_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    s->inUse[s->state_in_len-4] = ((Bool)1);
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = (UChar)ch; s->nblock++;
-    s->block[s->nblock] = ((UChar)(s->state_in_len-4));
-    s->nblock++;
-    break;
-  }
+	TRACK600_BEGIN: track(&&TRACK600_BEGIN, &&TRACK600_END);
+	TRACK600_END:  __asm__("nop;");
+	 
+	s->inUse[s->state_in_len-4] = ((Bool)1);
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = ((UChar)(s->state_in_len-4));
+         s->nblock++;
+         break;
+   }
 }
 static
 void flush_RL ( EState* s )
 {
-  if (s->state_in_ch < 256)  {
-    __asm__("TRACK601_BEGIN: nop\n\t" 
-	    "   lea	TRACK601_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK601_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK601_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    add_pair_to_block ( s );
-  }
-  init_RL ( s );
+   if (s->state_in_ch < 256)  {
+TRACK601_BEGIN: track(&&TRACK601_BEGIN, &&TRACK601_END);
+TRACK601_END:  __asm__("nop;");
+ 
+add_pair_to_block ( s );
+}
+   init_RL ( s );
 }
 static
 Bool copy_input_until_stop ( EState* s )
 {
-  Bool progress_in = ((Bool)0);
-  if (s->mode == 2) {
-    __asm__("TRACK609_BEGIN: nop\n\t" 
-	    "   lea	TRACK609_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK609_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK609_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    while (((Bool)1)) {
-      __asm__("TRACK608_BEGIN: nop\n\t" 
-	      "   lea	TRACK608_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK608_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK608_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->nblock >= s->nblockMAX) break;
-      if (s->strm->avail_in == 0) break;
-      progress_in = ((Bool)1);
-      { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
-          __asm__("TRACK602_BEGIN: nop\n\t" 
-		  "   lea	TRACK602_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK602_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK602_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UChar ch = (UChar)(s->state_in_ch);
-	  { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
-	} else  {
-	  __asm__("TRACK606_BEGIN: nop\n\t" 
-		  "   lea	TRACK606_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK606_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK606_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (zchh != s->state_in_ch || s->state_in_len == 255) {
-	    __asm__("TRACK604_BEGIN: nop\n\t" 
-		    "   lea	TRACK604_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK604_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK604_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (s->state_in_ch < 256)  {
-	      __asm__("TRACK603_BEGIN: nop\n\t" 
-		      "   lea	TRACK603_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK603_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK603_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      add_pair_to_block ( s );
-	    } s->state_in_ch = zchh; s->state_in_len = 1;
-	  } else {
-	    __asm__("TRACK605_BEGIN: nop\n\t" 
-		    "   lea	TRACK605_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK605_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK605_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->state_in_len++;
-	  }
-	} };
-      s->strm->next_in++;
-      s->strm->avail_in--;
-      s->strm->total_in_lo32++;
-      if (s->strm->total_in_lo32 == 0)  {
-        __asm__("TRACK607_BEGIN: nop\n\t" 
-    		"   lea	TRACK607_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK607_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK607_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
+   Bool progress_in = ((Bool)0);
+   if (s->mode == 2) {
+  TRACK609_BEGIN: track(&&TRACK609_BEGIN, &&TRACK609_END);
+  TRACK609_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK608_BEGIN: track(&&TRACK608_BEGIN, &&TRACK608_END);
+    TRACK608_END:  __asm__("nop;");
+     
+    if (s->nblock >= s->nblockMAX) break;
+             if (s->strm->avail_in == 0) break;
+             progress_in = ((Bool)1);
+             { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
+      UChar ch = (UChar)(s->state_in_ch);
+      TRACK602_BEGIN: track(&&TRACK602_BEGIN, &&TRACK602_END);
+      TRACK602_END:  __asm__("nop;");
+       
+      { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
+    } else  {
+    TRACK606_BEGIN: track(&&TRACK606_BEGIN, &&TRACK606_END);
+    TRACK606_END:  __asm__("nop;");
+     
+    if (zchh != s->state_in_ch || s->state_in_len == 255) {
+      TRACK604_BEGIN: track(&&TRACK604_BEGIN, &&TRACK604_END);
+      TRACK604_END:  __asm__("nop;");
+       
+      if (s->state_in_ch < 256)  {
+      TRACK603_BEGIN: track(&&TRACK603_BEGIN, &&TRACK603_END);
+      TRACK603_END:  __asm__("nop;");
+       
+      add_pair_to_block ( s );
+      } s->state_in_ch = zchh; s->state_in_len = 1;
+    } else {
+      TRACK605_BEGIN: track(&&TRACK605_BEGIN, &&TRACK605_END);
+      TRACK605_END:  __asm__("nop;");
+       
+      s->state_in_len++;
     }
-  } else {
-    __asm__("TRACK617_BEGIN: nop\n\t" 
-	    "   lea	TRACK617_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK617_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK617_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    while (((Bool)1)) {
-      __asm__("TRACK616_BEGIN: nop\n\t" 
-	      "   lea	TRACK616_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK616_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK616_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->nblock >= s->nblockMAX) break;
-      if (s->strm->avail_in == 0) break;
-      if (s->avail_in_expect == 0) break;
-      progress_in = ((Bool)1);
-      { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
-          __asm__("TRACK610_BEGIN: nop\n\t" 
-		  "   lea	TRACK610_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK610_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK610_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  UChar ch = (UChar)(s->state_in_ch);
-	  { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
-	} else  {
-	  __asm__("TRACK614_BEGIN: nop\n\t" 
-		  "   lea	TRACK614_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK614_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK614_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (zchh != s->state_in_ch || s->state_in_len == 255) {
-	    __asm__("TRACK612_BEGIN: nop\n\t" 
-		    "   lea	TRACK612_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK612_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK612_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (s->state_in_ch < 256)  {
-	      __asm__("TRACK611_BEGIN: nop\n\t" 
-		      "   lea	TRACK611_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK611_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK611_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      add_pair_to_block ( s );
-	    } s->state_in_ch = zchh; s->state_in_len = 1;
-	  } else {
-	    __asm__("TRACK613_BEGIN: nop\n\t" 
-		    "   lea	TRACK613_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK613_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK613_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    s->state_in_len++;
-	  }
-	} };
-      s->strm->next_in++;
-      s->strm->avail_in--;
-      s->strm->total_in_lo32++;
-      if (s->strm->total_in_lo32 == 0)  {
-        __asm__("TRACK615_BEGIN: nop\n\t" 
-    		"   lea	TRACK615_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK615_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK615_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	s->strm->total_in_hi32++;
-      }
-      s->avail_in_expect--;
+    } };
+             s->strm->next_in++;
+             s->strm->avail_in--;
+             s->strm->total_in_lo32++;
+             if (s->strm->total_in_lo32 == 0)  {
+    TRACK607_BEGIN: track(&&TRACK607_BEGIN, &&TRACK607_END);
+    TRACK607_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
     }
   }
-  return progress_in;
+} else {
+  TRACK617_BEGIN: track(&&TRACK617_BEGIN, &&TRACK617_END);
+  TRACK617_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK616_BEGIN: track(&&TRACK616_BEGIN, &&TRACK616_END);
+    TRACK616_END:  __asm__("nop;");
+     
+    if (s->nblock >= s->nblockMAX) break;
+             if (s->strm->avail_in == 0) break;
+             if (s->avail_in_expect == 0) break;
+             progress_in = ((Bool)1);
+             { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
+      UChar ch = (UChar)(s->state_in_ch);
+      TRACK610_BEGIN: track(&&TRACK610_BEGIN, &&TRACK610_END);
+      TRACK610_END:  __asm__("nop;");
+       
+      { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
+    } else  {
+    TRACK614_BEGIN: track(&&TRACK614_BEGIN, &&TRACK614_END);
+    TRACK614_END:  __asm__("nop;");
+     
+    if (zchh != s->state_in_ch || s->state_in_len == 255) {
+      TRACK612_BEGIN: track(&&TRACK612_BEGIN, &&TRACK612_END);
+      TRACK612_END:  __asm__("nop;");
+       
+      if (s->state_in_ch < 256)  {
+      TRACK611_BEGIN: track(&&TRACK611_BEGIN, &&TRACK611_END);
+      TRACK611_END:  __asm__("nop;");
+       
+      add_pair_to_block ( s );
+      } s->state_in_ch = zchh; s->state_in_len = 1;
+    } else {
+      TRACK613_BEGIN: track(&&TRACK613_BEGIN, &&TRACK613_END);
+      TRACK613_END:  __asm__("nop;");
+       
+      s->state_in_len++;
+    }
+    } };
+             s->strm->next_in++;
+             s->strm->avail_in--;
+             s->strm->total_in_lo32++;
+             if (s->strm->total_in_lo32 == 0)  {
+    TRACK615_BEGIN: track(&&TRACK615_BEGIN, &&TRACK615_END);
+    TRACK615_END:  __asm__("nop;");
+     
+    s->strm->total_in_hi32++;
+    }
+             s->avail_in_expect--;
+  }
+}
+   return progress_in;
 }
 static
 Bool copy_output_until_stop ( EState* s )
 {
-  Bool progress_out = ((Bool)0);
-  while (((Bool)1)) {
-    __asm__("TRACK619_BEGIN: nop\n\t" 
-	    "   lea	TRACK619_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK619_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK619_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (s->strm->avail_out == 0) break;
-    if (s->state_out_pos >= s->numZ) break;
-    progress_out = ((Bool)1);
-    *(s->strm->next_out) = s->zbits[s->state_out_pos];
-    s->state_out_pos++;
-    s->strm->avail_out--;
-    s->strm->next_out++;
-    s->strm->total_out_lo32++;
-    if (s->strm->total_out_lo32 == 0)  {
-      __asm__("TRACK618_BEGIN: nop\n\t" 
-	      "   lea	TRACK618_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK618_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK618_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->strm->total_out_hi32++;
-    }
+   Bool progress_out = ((Bool)0);
+   while (((Bool)1)) {
+  TRACK619_BEGIN: track(&&TRACK619_BEGIN, &&TRACK619_END);
+  TRACK619_END:  __asm__("nop;");
+   
+  if (s->strm->avail_out == 0) break;
+        if (s->state_out_pos >= s->numZ) break;
+        progress_out = ((Bool)1);
+        *(s->strm->next_out) = s->zbits[s->state_out_pos];
+        s->state_out_pos++;
+        s->strm->avail_out--;
+        s->strm->next_out++;
+        s->strm->total_out_lo32++;
+        if (s->strm->total_out_lo32 == 0)  {
+  TRACK618_BEGIN: track(&&TRACK618_BEGIN, &&TRACK618_END);
+  TRACK618_END:  __asm__("nop;");
+   
+  s->strm->total_out_hi32++;
   }
-  return progress_out;
+}
+   return progress_out;
 }
 static
 Bool handle_compress ( bz_stream* strm )
 {
-  Bool progress_in = ((Bool)0);
-  Bool progress_out = ((Bool)0);
-  EState* s = strm->state;
-  while (((Bool)1)) {
-    __asm__("TRACK627_BEGIN: nop\n\t" 
-	    "   lea	TRACK627_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK627_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK627_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (s->state == 1) {
-      __asm__("TRACK620_BEGIN: nop\n\t" 
-	      "   lea	TRACK620_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK620_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK620_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      progress_out |= copy_output_until_stop ( s );
-      if (s->state_out_pos < s->numZ) break;
-      if (s->mode == 4 &&
-	  s->avail_in_expect == 0 &&
-	  isempty_RL(s)) break;
-      prepare_new_block ( s );
-      s->state = 2;
-      if (s->mode == 3 &&
-	  s->avail_in_expect == 0 &&
-	  isempty_RL(s)) break;
+   Bool progress_in = ((Bool)0);
+   Bool progress_out = ((Bool)0);
+   EState* s = strm->state;
+   while (((Bool)1)) {
+  TRACK627_BEGIN: track(&&TRACK627_BEGIN, &&TRACK627_END);
+  TRACK627_END:  __asm__("nop;");
+   
+  if (s->state == 1) {
+    TRACK620_BEGIN: track(&&TRACK620_BEGIN, &&TRACK620_END);
+    TRACK620_END:  __asm__("nop;");
+     
+    progress_out |= copy_output_until_stop ( s );
+             if (s->state_out_pos < s->numZ) break;
+             if (s->mode == 4 &&
+                 s->avail_in_expect == 0 &&
+                 isempty_RL(s)) break;
+             prepare_new_block ( s );
+             s->state = 2;
+             if (s->mode == 3 &&
+                 s->avail_in_expect == 0 &&
+                 isempty_RL(s)) break;
+  }
+        if (s->state == 2) {
+    TRACK626_BEGIN: track(&&TRACK626_BEGIN, &&TRACK626_END);
+    TRACK626_END:  __asm__("nop;");
+     
+    progress_in |= copy_input_until_stop ( s );
+             if (s->mode != 2 && s->avail_in_expect == 0) {
+      TRACK621_BEGIN: track(&&TRACK621_BEGIN, &&TRACK621_END);
+      TRACK621_END:  __asm__("nop;");
+       
+      flush_RL ( s );
+                  BZ2_compressBlock ( s, (Bool)(s->mode == 4) );
+                  s->state = 1;
     }
-    if (s->state == 2) {
-      __asm__("TRACK626_BEGIN: nop\n\t" 
-	      "   lea	TRACK626_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK626_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK626_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      progress_in |= copy_input_until_stop ( s );
-      if (s->mode != 2 && s->avail_in_expect == 0) {
-	__asm__("TRACK621_BEGIN: nop\n\t" 
-      		"   lea	TRACK621_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK621_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK621_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	flush_RL ( s );
-	BZ2_compressBlock ( s, (Bool)(s->mode == 4) );
-	s->state = 1;
-      }
-      else
-	{
-	  __asm__("TRACK625_BEGIN: nop\n\t" 
-		  "   lea	TRACK625_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK625_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK625_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (s->nblock >= s->nblockMAX) {
-	    __asm__("TRACK622_BEGIN: nop\n\t" 
-		    "   lea	TRACK622_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK622_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK622_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    BZ2_compressBlock ( s, ((Bool)0) );
-	    s->state = 1;
-	  }
-	  else
-	    {
-	      __asm__("TRACK624_BEGIN: nop\n\t" 
-		      "   lea	TRACK624_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK624_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK624_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      if (s->strm->avail_in == 0) {
-		__asm__("TRACK623_BEGIN: nop\n\t" 
-			"   lea	TRACK623_BEGIN, %%eax\n\t"   
-			"   lea	TRACK623_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK623_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		break;
-	      }
-	    }
-	}
+             else
+              {
+    TRACK625_BEGIN: track(&&TRACK625_BEGIN, &&TRACK625_END);
+    TRACK625_END:  __asm__("nop;");
+     
+    if (s->nblock >= s->nblockMAX) {
+      TRACK622_BEGIN: track(&&TRACK622_BEGIN, &&TRACK622_END);
+      TRACK622_END:  __asm__("nop;");
+       
+      BZ2_compressBlock ( s, ((Bool)0) );
+                  s->state = 1;
+    }
+             else
+              {
+    TRACK624_BEGIN: track(&&TRACK624_BEGIN, &&TRACK624_END);
+    TRACK624_END:  __asm__("nop;");
+     
+    if (s->strm->avail_in == 0) {
+      TRACK623_BEGIN: track(&&TRACK623_BEGIN, &&TRACK623_END);
+      TRACK623_END:  __asm__("nop;");
+       
+      break;
+    }
+    }
     }
   }
-  return progress_in || progress_out;
+}
+   return progress_in || progress_out;
 }
 int BZ2_bzCompress ( bz_stream *strm, int action )
 {
-  Bool progress;
-  EState* s;
-  if (strm == ((void *)0)) return (-2);
-  s = strm->state;
-  if (s == ((void *)0)) return (-2);
-  if (s->strm != strm) return (-2);
- preswitch:
-  switch (s->mode) {
+   Bool progress;
+   EState* s;
+   if (strm == ((void *)0)) return (-2);
+   s = strm->state;
+   if (s == ((void *)0)) return (-2);
+   if (s->strm != strm) return (-2);
+   preswitch:
+   switch (s->mode) {
        
   case 1:
-    __asm__("TRACK628_BEGIN: nop\n\t" 
-	    "   lea	TRACK628_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK628_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK628_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return (-1);
+	TRACK628_BEGIN: track(&&TRACK628_BEGIN, &&TRACK628_END);
+	TRACK628_END:  __asm__("nop;");
+	 
+	return (-1);
        
   case 2:
-    __asm__("TRACK634_BEGIN: nop\n\t" 
-	    "   lea	TRACK634_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK634_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK634_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (action == 0) {
-      __asm__("TRACK629_BEGIN: nop\n\t" 
-	      "   lea	TRACK629_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK629_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK629_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      progress = handle_compress ( strm );
-      return progress ? 1 : (-2);
-    }
-    else
-      {
-	__asm__("TRACK633_BEGIN: nop\n\t" 
-		"   lea	TRACK633_BEGIN, %%eax\n\t"   
-		"   lea	TRACK633_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK633_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	if (action == 1) {
-	  __asm__("TRACK630_BEGIN: nop\n\t" 
-		  "   lea	TRACK630_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK630_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK630_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->avail_in_expect = strm->avail_in;
-	  s->mode = 3;
-	  goto preswitch;
+	TRACK634_BEGIN: track(&&TRACK634_BEGIN, &&TRACK634_END);
+	TRACK634_END:  __asm__("nop;");
+	 
+	if (action == 0) {
+	  TRACK629_BEGIN: track(&&TRACK629_BEGIN, &&TRACK629_END);
+	  TRACK629_END:  __asm__("nop;");
+	   
+	  progress = handle_compress ( strm );
+	              return progress ? 1 : (-2);
 	}
-	else
-	  {
-	    __asm__("TRACK632_BEGIN: nop\n\t" 
-		    "   lea	TRACK632_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK632_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK632_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if (action == 2) {
-	      __asm__("TRACK631_BEGIN: nop\n\t" 
-		      "   lea	TRACK631_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK631_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK631_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      s->avail_in_expect = strm->avail_in;
-	      s->mode = 4;
-	      goto preswitch;
-	    }
-	    else
-	      return (-2);
-	  }
-      }
+	         else
+	   {
+	TRACK633_BEGIN: track(&&TRACK633_BEGIN, &&TRACK633_END);
+	TRACK633_END:  __asm__("nop;");
+	 
+	if (action == 1) {
+	  TRACK630_BEGIN: track(&&TRACK630_BEGIN, &&TRACK630_END);
+	  TRACK630_END:  __asm__("nop;");
+	   
+	  s->avail_in_expect = strm->avail_in;
+	              s->mode = 3;
+	              goto preswitch;
+	}
+	         else
+	          {
+	TRACK632_BEGIN: track(&&TRACK632_BEGIN, &&TRACK632_END);
+	TRACK632_END:  __asm__("nop;");
+	 
+	if (action == 2) {
+	  TRACK631_BEGIN: track(&&TRACK631_BEGIN, &&TRACK631_END);
+	  TRACK631_END:  __asm__("nop;");
+	   
+	  s->avail_in_expect = strm->avail_in;
+	              s->mode = 4;
+	              goto preswitch;
+	}
+	         else
+	            return (-2);
+	}
+	}
        
   case 3:
-    __asm__("TRACK635_BEGIN: nop\n\t" 
-	    "   lea	TRACK635_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK635_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK635_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (action != 1) return (-1);
-    if (s->avail_in_expect != s->strm->avail_in)
-      return (-1);
-    progress = handle_compress ( strm );
-    if (s->avail_in_expect > 0 || !isempty_RL(s) ||
-	s->state_out_pos < s->numZ) return 2;
-    s->mode = 2;
-    return 1;
+	TRACK635_BEGIN: track(&&TRACK635_BEGIN, &&TRACK635_END);
+	TRACK635_END:  __asm__("nop;");
+	 
+	if (action != 1) return (-1);
+         if (s->avail_in_expect != s->strm->avail_in)
+            return (-1);
+         progress = handle_compress ( strm );
+         if (s->avail_in_expect > 0 || !isempty_RL(s) ||
+             s->state_out_pos < s->numZ) return 2;
+         s->mode = 2;
+         return 1;
        
   case 4:
-    __asm__("TRACK636_BEGIN: nop\n\t" 
-	    "   lea	TRACK636_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK636_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK636_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (action != 2) return (-1);
-    if (s->avail_in_expect != s->strm->avail_in)
-      return (-1);
-    progress = handle_compress ( strm );
-    if (!progress) return (-1);
-    if (s->avail_in_expect > 0 || !isempty_RL(s) ||
-	s->state_out_pos < s->numZ) return 3;
-    s->mode = 1;
-    return 4;
-  }
-  return 0;
+	TRACK636_BEGIN: track(&&TRACK636_BEGIN, &&TRACK636_END);
+	TRACK636_END:  __asm__("nop;");
+	 
+	if (action != 2) return (-1);
+         if (s->avail_in_expect != s->strm->avail_in)
+            return (-1);
+         progress = handle_compress ( strm );
+         if (!progress) return (-1);
+         if (s->avail_in_expect > 0 || !isempty_RL(s) ||
+             s->state_out_pos < s->numZ) return 3;
+         s->mode = 1;
+         return 4;
+   }
+   return 0;
 }
 int BZ2_bzCompressEnd ( bz_stream *strm )
 {
-  EState* s;
-  if (strm == ((void *)0)) return (-2);
-  s = strm->state;
-  if (s == ((void *)0)) return (-2);
-  if (s->strm != strm) return (-2);
-  if (s->arr1 != ((void *)0))  {
-    __asm__("TRACK637_BEGIN: nop\n\t" 
-	    "   lea	TRACK637_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK637_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK637_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->arr1));
-  }
-  if (s->arr2 != ((void *)0))  {
-    __asm__("TRACK638_BEGIN: nop\n\t" 
-	    "   lea	TRACK638_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK638_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK638_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->arr2));
-  }
-  if (s->ftab != ((void *)0))  {
-    __asm__("TRACK639_BEGIN: nop\n\t" 
-	    "   lea	TRACK639_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK639_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK639_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->ftab));
-  }
-  (strm->bzfree)(strm->opaque,(strm->state));
-  strm->state = ((void *)0);
-  return 0;
+   EState* s;
+   if (strm == ((void *)0)) return (-2);
+   s = strm->state;
+   if (s == ((void *)0)) return (-2);
+   if (s->strm != strm) return (-2);
+   if (s->arr1 != ((void *)0))  {
+TRACK637_BEGIN: track(&&TRACK637_BEGIN, &&TRACK637_END);
+TRACK637_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->arr1));
+}
+   if (s->arr2 != ((void *)0))  {
+TRACK638_BEGIN: track(&&TRACK638_BEGIN, &&TRACK638_END);
+TRACK638_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->arr2));
+}
+   if (s->ftab != ((void *)0))  {
+TRACK639_BEGIN: track(&&TRACK639_BEGIN, &&TRACK639_END);
+TRACK639_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->ftab));
+}
+   (strm->bzfree)(strm->opaque,(strm->state));
+   strm->state = ((void *)0);
+   return 0;
 }
 int BZ2_bzDecompressInit
-( bz_stream* strm,
-  int verbosity,
-  int small )
+                     ( bz_stream* strm,
+                       int verbosity,
+                       int small )
 {
-  DState* s;
-  if (!bz_config_ok()) return (-9);
-  if (strm == ((void *)0)) return (-2);
-  if (small != 0 && small != 1) return (-2);
-  if (verbosity < 0 || verbosity > 4) return (-2);
-  if (strm->bzalloc == ((void *)0))  {
-    __asm__("TRACK640_BEGIN: nop\n\t" 
-	    "   lea	TRACK640_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK640_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK640_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    strm->bzalloc = default_bzalloc;
-  }
-  if (strm->bzfree == ((void *)0))  {
-    __asm__("TRACK641_BEGIN: nop\n\t" 
-	    "   lea	TRACK641_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK641_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK641_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    strm->bzfree = default_bzfree;
-  }
-  s = (strm->bzalloc)(strm->opaque,(sizeof(DState)),1);
-  if (s == ((void *)0)) return (-3);
-  s->strm = strm;
-  strm->state = s;
-  s->state = 10;
-  s->bsLive = 0;
-  s->bsBuff = 0;
-  s->calculatedCombinedCRC = 0;
-  strm->total_in_lo32 = 0;
-  strm->total_in_hi32 = 0;
-  strm->total_out_lo32 = 0;
-  strm->total_out_hi32 = 0;
-  s->smallDecompress = (Bool)small;
-  s->ll4 = ((void *)0);
-  s->ll16 = ((void *)0);
-  s->tt = ((void *)0);
-  s->currBlockNo = 0;
-  s->verbosity = verbosity;
-  return 0;
+   DState* s;
+   if (!bz_config_ok()) return (-9);
+   if (strm == ((void *)0)) return (-2);
+   if (small != 0 && small != 1) return (-2);
+   if (verbosity < 0 || verbosity > 4) return (-2);
+   if (strm->bzalloc == ((void *)0))  {
+TRACK640_BEGIN: track(&&TRACK640_BEGIN, &&TRACK640_END);
+TRACK640_END:  __asm__("nop;");
+ 
+strm->bzalloc = default_bzalloc;
+}
+   if (strm->bzfree == ((void *)0))  {
+TRACK641_BEGIN: track(&&TRACK641_BEGIN, &&TRACK641_END);
+TRACK641_END:  __asm__("nop;");
+ 
+strm->bzfree = default_bzfree;
+}
+   s = (strm->bzalloc)(strm->opaque,(sizeof(DState)),1);
+   if (s == ((void *)0)) return (-3);
+   s->strm = strm;
+   strm->state = s;
+   s->state = 10;
+   s->bsLive = 0;
+   s->bsBuff = 0;
+   s->calculatedCombinedCRC = 0;
+   strm->total_in_lo32 = 0;
+   strm->total_in_hi32 = 0;
+   strm->total_out_lo32 = 0;
+   strm->total_out_hi32 = 0;
+   s->smallDecompress = (Bool)small;
+   s->ll4 = ((void *)0);
+   s->ll16 = ((void *)0);
+   s->tt = ((void *)0);
+   s->currBlockNo = 0;
+   s->verbosity = verbosity;
+   return 0;
 }
 static
 void unRLE_obuf_to_output_FAST ( DState* s )
 {
-  UChar k1;
-  if (s->blockRandomised) {
-    __asm__("TRACK658_BEGIN: nop\n\t" 
-	    "   lea	TRACK658_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK658_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK658_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+   UChar k1;
+   if (s->blockRandomised) {
+  TRACK658_BEGIN: track(&&TRACK658_BEGIN, &&TRACK658_END);
+  TRACK658_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK657_BEGIN: track(&&TRACK657_BEGIN, &&TRACK657_END);
+    TRACK657_END:  __asm__("nop;");
+     
     while (((Bool)1)) {
-      __asm__("TRACK657_BEGIN: nop\n\t" 
-	      "   lea	TRACK657_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK657_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK657_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (((Bool)1)) {
-	__asm__("TRACK643_BEGIN: nop\n\t" 
-      		"   lea	TRACK643_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK643_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK643_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (s->strm->avail_out == 0) return;
-	if (s->state_out_len == 0) break;
-	*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
-	{ s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
-	s->state_out_len--;
-	s->strm->next_out++;
-	s->strm->avail_out--;
-	s->strm->total_out_lo32++;
-	if (s->strm->total_out_lo32 == 0)  {
-          __asm__("TRACK642_BEGIN: nop\n\t" 
-		  "   lea	TRACK642_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK642_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK642_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_out_hi32++;
-	}
+      TRACK643_BEGIN: track(&&TRACK643_BEGIN, &&TRACK643_END);
+      TRACK643_END:  __asm__("nop;");
+       
+      if (s->strm->avail_out == 0) return;
+                  if (s->state_out_len == 0) break;
+                  *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+                  { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
+                  s->state_out_len--;
+                  s->strm->next_out++;
+                  s->strm->avail_out--;
+                  s->strm->total_out_lo32++;
+                  if (s->strm->total_out_lo32 == 0)  {
+      TRACK642_BEGIN: track(&&TRACK642_BEGIN, &&TRACK642_END);
+      TRACK642_END:  __asm__("nop;");
+       
+      s->strm->total_out_hi32++;
       }
-      if (s->nblock_used == s->save_nblock+1) return;
-      s->state_out_len = 1;
-      s->state_out_ch = s->k0;
-      s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-	__asm__("TRACK645_BEGIN: nop\n\t" 
-      		"   lea	TRACK645_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK645_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK645_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK644_BEGIN: nop\n\t" 
-		  "   lea	TRACK644_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK644_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK644_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK646_BEGIN: nop\n\t" 
-      		"   lea	TRACK646_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK646_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK646_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 2;
-      s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-	__asm__("TRACK648_BEGIN: nop\n\t" 
-      		"   lea	TRACK648_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK648_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK648_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK647_BEGIN: nop\n\t" 
-		  "   lea	TRACK647_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK647_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK647_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK649_BEGIN: nop\n\t" 
-      		"   lea	TRACK649_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK649_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK649_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 3;
-      s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-	__asm__("TRACK651_BEGIN: nop\n\t" 
-      		"   lea	TRACK651_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK651_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK651_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK650_BEGIN: nop\n\t" 
-		  "   lea	TRACK650_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK650_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK650_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK652_BEGIN: nop\n\t" 
-      		"   lea	TRACK652_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK652_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK652_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-	__asm__("TRACK654_BEGIN: nop\n\t" 
-      		"   lea	TRACK654_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK654_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK654_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK653_BEGIN: nop\n\t" 
-		  "   lea	TRACK653_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK653_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK653_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      s->state_out_len = ((Int32)k1) + 4;
-      s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-	__asm__("TRACK656_BEGIN: nop\n\t" 
-      		"   lea	TRACK656_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK656_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK656_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK655_BEGIN: nop\n\t" 
-		  "   lea	TRACK655_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK655_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK655_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      s->k0 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
     }
-  } else {
-    __asm__("TRACK681_BEGIN: nop\n\t" 
-	    "   lea	TRACK681_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK681_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK681_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    UInt32 c_calculatedBlockCRC = s->calculatedBlockCRC;
-    UChar c_state_out_ch = s->state_out_ch;
-    Int32 c_state_out_len = s->state_out_len;
-    Int32 c_nblock_used = s->nblock_used;
-    Int32 c_k0 = s->k0;
-    UInt32* c_tt = s->tt;
-    UInt32 c_tPos = s->tPos;
-    char* cs_next_out = s->strm->next_out;
-    unsigned int cs_avail_out = s->strm->avail_out;
-    UInt32 avail_out_INIT = cs_avail_out;
-    Int32 s_save_nblockPP = s->save_nblock+1;
-    unsigned int total_out_lo32_old;
-    while (((Bool)1)) {
-      __asm__("TRACK667_BEGIN: nop\n\t" 
-	      "   lea	TRACK667_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK667_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK667_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (c_state_out_len > 0) {
-	__asm__("TRACK662_BEGIN: nop\n\t" 
-      		"   lea	TRACK662_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK662_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK662_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	while (((Bool)1)) {
-	  __asm__("TRACK659_BEGIN: nop\n\t" 
-		  "   lea	TRACK659_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK659_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK659_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (cs_avail_out == 0) goto return_notr;
-	  if (c_state_out_len == 1) break;
-	  *( (UChar*)(cs_next_out) ) = c_state_out_ch;
-	  { c_calculatedBlockCRC = (c_calculatedBlockCRC << 8) ^ BZ2_crc32Table[(c_calculatedBlockCRC >> 24) ^ ((UChar)c_state_out_ch)]; };
-	  c_state_out_len--;
-	  cs_next_out++;
-	  cs_avail_out--;
-	}
-      s_state_out_len_eq_one:
-	{
-	  __asm__("TRACK661_BEGIN: nop\n\t" 
-		  "   lea	TRACK661_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK661_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK661_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  if (cs_avail_out == 0) {
-	    __asm__("TRACK660_BEGIN: nop\n\t" 
-		    "   lea	TRACK660_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK660_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK660_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    c_state_out_len = 1; goto return_notr;
-	  };
-	  *( (UChar*)(cs_next_out) ) = c_state_out_ch;
-	  { c_calculatedBlockCRC = (c_calculatedBlockCRC << 8) ^ BZ2_crc32Table[(c_calculatedBlockCRC >> 24) ^ ((UChar)c_state_out_ch)]; };
-	  cs_next_out++;
-	  cs_avail_out--;
-	}
+             if (s->nblock_used == s->save_nblock+1) return;
+             s->state_out_len = 1;
+             s->state_out_ch = s->k0;
+             s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
+      TRACK645_BEGIN: track(&&TRACK645_BEGIN, &&TRACK645_END);
+      TRACK645_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK644_BEGIN: track(&&TRACK644_BEGIN, &&TRACK644_END);
+      TRACK644_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
       }
-      if (c_nblock_used == s_save_nblockPP) {
-	__asm__("TRACK663_BEGIN: nop\n\t" 
-      		"   lea	TRACK663_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK663_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK663_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	c_state_out_len = 0; goto return_notr;
-      };
-      c_state_out_ch = c_k0;
-      c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-      if (k1 != c_k0) {
-	__asm__("TRACK664_BEGIN: nop\n\t" 
-      		"   lea	TRACK664_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK664_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK664_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	c_k0 = k1; goto s_state_out_len_eq_one;
-      };
-      if (c_nblock_used == s_save_nblockPP)
-	goto s_state_out_len_eq_one;
-      c_state_out_len = 2;
-      c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-      if (c_nblock_used == s_save_nblockPP) continue;
-      if (k1 != c_k0) {
-	__asm__("TRACK665_BEGIN: nop\n\t" 
-      		"   lea	TRACK665_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK665_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK665_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	c_k0 = k1; continue;
-      };
-      c_state_out_len = 3;
-      c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-      if (c_nblock_used == s_save_nblockPP) continue;
-      if (k1 != c_k0) {
-	__asm__("TRACK666_BEGIN: nop\n\t" 
-      		"   lea	TRACK666_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK666_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK666_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	c_k0 = k1; continue;
-      };
-      c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-      c_state_out_len = ((Int32)k1) + 4;
-      c_tPos = c_tt[c_tPos]; c_k0 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-    }
-  return_notr:
-    {
-      __asm__("TRACK668_BEGIN: nop\n\t" 
-	      "   lea	TRACK668_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK668_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK668_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      total_out_lo32_old = s->strm->total_out_lo32;
-    }
-    {
-      __asm__("TRACK669_BEGIN: nop\n\t" 
-	      "   lea	TRACK669_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK669_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK669_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->strm->total_out_lo32 += (avail_out_INIT - cs_avail_out);
-    }
-    {
-      __asm__("TRACK671_BEGIN: nop\n\t" 
-	      "   lea	TRACK671_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK671_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK671_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->strm->total_out_lo32 < total_out_lo32_old)
-	{
-	  __asm__("TRACK670_BEGIN: nop\n\t" 
-		  "   lea	TRACK670_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK670_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK670_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_out_hi32++;
-	}
-    }
-    {
-      __asm__("TRACK672_BEGIN: nop\n\t" 
-	      "   lea	TRACK672_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK672_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK672_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->calculatedBlockCRC = c_calculatedBlockCRC;
-    }
-    {
-      __asm__("TRACK673_BEGIN: nop\n\t" 
-	      "   lea	TRACK673_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK673_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK673_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->state_out_ch = c_state_out_ch;
-    }
-    {
-      __asm__("TRACK674_BEGIN: nop\n\t" 
-	      "   lea	TRACK674_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK674_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK674_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->state_out_len = c_state_out_len;
-    }
-    {
-      __asm__("TRACK675_BEGIN: nop\n\t" 
-	      "   lea	TRACK675_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK675_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK675_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->nblock_used = c_nblock_used;
-    }
-    {
-      __asm__("TRACK676_BEGIN: nop\n\t" 
-	      "   lea	TRACK676_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK676_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK676_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->k0 = c_k0;
-    }
-    {
-      __asm__("TRACK677_BEGIN: nop\n\t" 
-	      "   lea	TRACK677_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK677_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK677_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->tt = c_tt;
-    }
-    {
-      __asm__("TRACK678_BEGIN: nop\n\t" 
-	      "   lea	TRACK678_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK678_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK678_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->tPos = c_tPos;
-    }
-    {
-      __asm__("TRACK679_BEGIN: nop\n\t" 
-	      "   lea	TRACK679_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK679_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK679_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->strm->next_out = cs_next_out;
-    }
-    {
-      __asm__("TRACK680_BEGIN: nop\n\t" 
-	      "   lea	TRACK680_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK680_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK680_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      s->strm->avail_out = cs_avail_out;
-    }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK646_BEGIN: track(&&TRACK646_BEGIN, &&TRACK646_END);
+      TRACK646_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 2;
+             s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
+      TRACK648_BEGIN: track(&&TRACK648_BEGIN, &&TRACK648_END);
+      TRACK648_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK647_BEGIN: track(&&TRACK647_BEGIN, &&TRACK647_END);
+      TRACK647_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK649_BEGIN: track(&&TRACK649_BEGIN, &&TRACK649_END);
+      TRACK649_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 3;
+             s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
+      TRACK651_BEGIN: track(&&TRACK651_BEGIN, &&TRACK651_END);
+      TRACK651_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK650_BEGIN: track(&&TRACK650_BEGIN, &&TRACK650_END);
+      TRACK650_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK652_BEGIN: track(&&TRACK652_BEGIN, &&TRACK652_END);
+      TRACK652_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
+      TRACK654_BEGIN: track(&&TRACK654_BEGIN, &&TRACK654_END);
+      TRACK654_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK653_BEGIN: track(&&TRACK653_BEGIN, &&TRACK653_END);
+      TRACK653_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             s->state_out_len = ((Int32)k1) + 4;
+             s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
+      TRACK656_BEGIN: track(&&TRACK656_BEGIN, &&TRACK656_END);
+      TRACK656_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK655_BEGIN: track(&&TRACK655_BEGIN, &&TRACK655_END);
+      TRACK655_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             s->k0 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
   }
+} else {
+  UInt32 c_calculatedBlockCRC = s->calculatedBlockCRC;
+        UChar c_state_out_ch = s->state_out_ch;
+        Int32 c_state_out_len = s->state_out_len;
+        Int32 c_nblock_used = s->nblock_used;
+        Int32 c_k0 = s->k0;
+        UInt32* c_tt = s->tt;
+        UInt32 c_tPos = s->tPos;
+        char* cs_next_out = s->strm->next_out;
+        unsigned int cs_avail_out = s->strm->avail_out;
+        UInt32 avail_out_INIT = cs_avail_out;
+        Int32 s_save_nblockPP = s->save_nblock+1;
+        unsigned int total_out_lo32_old;
+  TRACK681_BEGIN: track(&&TRACK681_BEGIN, &&TRACK681_END);
+  TRACK681_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK667_BEGIN: track(&&TRACK667_BEGIN, &&TRACK667_END);
+    TRACK667_END:  __asm__("nop;");
+     
+    if (c_state_out_len > 0) {
+      TRACK662_BEGIN: track(&&TRACK662_BEGIN, &&TRACK662_END);
+      TRACK662_END:  __asm__("nop;");
+       
+      while (((Bool)1)) {
+        TRACK659_BEGIN: track(&&TRACK659_BEGIN, &&TRACK659_END);
+        TRACK659_END:  __asm__("nop;");
+         
+        if (cs_avail_out == 0) goto return_notr;
+                       if (c_state_out_len == 1) break;
+                       *( (UChar*)(cs_next_out) ) = c_state_out_ch;
+                       { c_calculatedBlockCRC = (c_calculatedBlockCRC << 8) ^ BZ2_crc32Table[(c_calculatedBlockCRC >> 24) ^ ((UChar)c_state_out_ch)]; };
+                       c_state_out_len--;
+                       cs_next_out++;
+                       cs_avail_out--;
+      }
+                  s_state_out_len_eq_one:
+                  {
+        TRACK661_BEGIN: track(&&TRACK661_BEGIN, &&TRACK661_END);
+        TRACK661_END:  __asm__("nop;");
+         
+        if (cs_avail_out == 0) {
+          TRACK660_BEGIN: track(&&TRACK660_BEGIN, &&TRACK660_END);
+          TRACK660_END:  __asm__("nop;");
+           
+          c_state_out_len = 1; goto return_notr;
+        };
+                       *( (UChar*)(cs_next_out) ) = c_state_out_ch;
+                       { c_calculatedBlockCRC = (c_calculatedBlockCRC << 8) ^ BZ2_crc32Table[(c_calculatedBlockCRC >> 24) ^ ((UChar)c_state_out_ch)]; };
+                       cs_next_out++;
+                       cs_avail_out--;
+      }
+    }
+             if (c_nblock_used == s_save_nblockPP) {
+      TRACK663_BEGIN: track(&&TRACK663_BEGIN, &&TRACK663_END);
+      TRACK663_END:  __asm__("nop;");
+       
+      c_state_out_len = 0; goto return_notr;
+    };
+             c_state_out_ch = c_k0;
+             c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
+             if (k1 != c_k0) {
+      TRACK664_BEGIN: track(&&TRACK664_BEGIN, &&TRACK664_END);
+      TRACK664_END:  __asm__("nop;");
+       
+      c_k0 = k1; goto s_state_out_len_eq_one;
+    };
+             if (c_nblock_used == s_save_nblockPP)
+                goto s_state_out_len_eq_one;
+             c_state_out_len = 2;
+             c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
+             if (c_nblock_used == s_save_nblockPP) continue;
+             if (k1 != c_k0) {
+      TRACK665_BEGIN: track(&&TRACK665_BEGIN, &&TRACK665_END);
+      TRACK665_END:  __asm__("nop;");
+       
+      c_k0 = k1; continue;
+    };
+             c_state_out_len = 3;
+             c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
+             if (c_nblock_used == s_save_nblockPP) continue;
+             if (k1 != c_k0) {
+      TRACK666_BEGIN: track(&&TRACK666_BEGIN, &&TRACK666_END);
+      TRACK666_END:  __asm__("nop;");
+       
+      c_k0 = k1; continue;
+    };
+             c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
+             c_state_out_len = ((Int32)k1) + 4;
+             c_tPos = c_tt[c_tPos]; c_k0 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
+  }
+        return_notr:
+         {
+  TRACK668_BEGIN: track(&&TRACK668_BEGIN, &&TRACK668_END);
+  TRACK668_END:  __asm__("nop;");
+   
+  total_out_lo32_old = s->strm->total_out_lo32;
+  }
+         {
+  TRACK669_BEGIN: track(&&TRACK669_BEGIN, &&TRACK669_END);
+  TRACK669_END:  __asm__("nop;");
+   
+  s->strm->total_out_lo32 += (avail_out_INIT - cs_avail_out);
+  }
+         {
+  TRACK671_BEGIN: track(&&TRACK671_BEGIN, &&TRACK671_END);
+  TRACK671_END:  __asm__("nop;");
+   
+  if (s->strm->total_out_lo32 < total_out_lo32_old)
+            {
+  TRACK670_BEGIN: track(&&TRACK670_BEGIN, &&TRACK670_END);
+  TRACK670_END:  __asm__("nop;");
+   
+  s->strm->total_out_hi32++;
+  }
+  }
+         {
+  TRACK672_BEGIN: track(&&TRACK672_BEGIN, &&TRACK672_END);
+  TRACK672_END:  __asm__("nop;");
+   
+  s->calculatedBlockCRC = c_calculatedBlockCRC;
+  }
+         {
+  TRACK673_BEGIN: track(&&TRACK673_BEGIN, &&TRACK673_END);
+  TRACK673_END:  __asm__("nop;");
+   
+  s->state_out_ch = c_state_out_ch;
+  }
+         {
+  TRACK674_BEGIN: track(&&TRACK674_BEGIN, &&TRACK674_END);
+  TRACK674_END:  __asm__("nop;");
+   
+  s->state_out_len = c_state_out_len;
+  }
+         {
+  TRACK675_BEGIN: track(&&TRACK675_BEGIN, &&TRACK675_END);
+  TRACK675_END:  __asm__("nop;");
+   
+  s->nblock_used = c_nblock_used;
+  }
+         {
+  TRACK676_BEGIN: track(&&TRACK676_BEGIN, &&TRACK676_END);
+  TRACK676_END:  __asm__("nop;");
+   
+  s->k0 = c_k0;
+  }
+         {
+  TRACK677_BEGIN: track(&&TRACK677_BEGIN, &&TRACK677_END);
+  TRACK677_END:  __asm__("nop;");
+   
+  s->tt = c_tt;
+  }
+         {
+  TRACK678_BEGIN: track(&&TRACK678_BEGIN, &&TRACK678_END);
+  TRACK678_END:  __asm__("nop;");
+   
+  s->tPos = c_tPos;
+  }
+         {
+  TRACK679_BEGIN: track(&&TRACK679_BEGIN, &&TRACK679_END);
+  TRACK679_END:  __asm__("nop;");
+   
+  s->strm->next_out = cs_next_out;
+  }
+         {
+  TRACK680_BEGIN: track(&&TRACK680_BEGIN, &&TRACK680_END);
+  TRACK680_END:  __asm__("nop;");
+   
+  s->strm->avail_out = cs_avail_out;
+  }
+}
 }
 Int32 BZ2_indexIntoF ( Int32 indx, Int32 *cftab )
 {
-  Int32 nb, na, mid;
-  nb = 0;
-  na = 256;
-  do {
-    __asm__("TRACK684_BEGIN: nop\n\t" 
-	    "   lea	TRACK684_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK684_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK684_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    mid = (nb + na) >> 1;
-    if (indx >= cftab[mid])  {
-      __asm__("TRACK682_BEGIN: nop\n\t" 
-	      "   lea	TRACK682_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK682_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK682_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      nb = mid;
-    } else  {
-      __asm__("TRACK683_BEGIN: nop\n\t" 
-	      "   lea	TRACK683_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK683_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK683_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      na = mid;
-    }
+   Int32 nb, na, mid;
+   nb = 0;
+   na = 256;
+   do {
+  TRACK684_BEGIN: track(&&TRACK684_BEGIN, &&TRACK684_END);
+  TRACK684_END:  __asm__("nop;");
+   
+  mid = (nb + na) >> 1;
+        if (indx >= cftab[mid])  {
+  TRACK682_BEGIN: track(&&TRACK682_BEGIN, &&TRACK682_END);
+  TRACK682_END:  __asm__("nop;");
+   
+  nb = mid;
+  } else  {
+  TRACK683_BEGIN: track(&&TRACK683_BEGIN, &&TRACK683_END);
+  TRACK683_END:  __asm__("nop;");
+   
+  na = mid;
   }
-  while (na - nb != 1);
-  return nb;
+}
+   while (na - nb != 1);
+   return nb;
 }
 static
 void unRLE_obuf_to_output_SMALL ( DState* s )
 {
-  UChar k1;
-  if (s->blockRandomised) {
-    __asm__("TRACK701_BEGIN: nop\n\t" 
-	    "   lea	TRACK701_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK701_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK701_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+   UChar k1;
+   if (s->blockRandomised) {
+  TRACK701_BEGIN: track(&&TRACK701_BEGIN, &&TRACK701_END);
+  TRACK701_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK700_BEGIN: track(&&TRACK700_BEGIN, &&TRACK700_END);
+    TRACK700_END:  __asm__("nop;");
+     
     while (((Bool)1)) {
-      __asm__("TRACK700_BEGIN: nop\n\t" 
-	      "   lea	TRACK700_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK700_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK700_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (((Bool)1)) {
-	__asm__("TRACK686_BEGIN: nop\n\t" 
-      		"   lea	TRACK686_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK686_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK686_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (s->strm->avail_out == 0) return;
-	if (s->state_out_len == 0) break;
-	*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
-	{ s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
-	s->state_out_len--;
-	s->strm->next_out++;
-	s->strm->avail_out--;
-	s->strm->total_out_lo32++;
-	if (s->strm->total_out_lo32 == 0)  {
-          __asm__("TRACK685_BEGIN: nop\n\t" 
-		  "   lea	TRACK685_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK685_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK685_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_out_hi32++;
-	}
+      TRACK686_BEGIN: track(&&TRACK686_BEGIN, &&TRACK686_END);
+      TRACK686_END:  __asm__("nop;");
+       
+      if (s->strm->avail_out == 0) return;
+                  if (s->state_out_len == 0) break;
+                  *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+                  { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
+                  s->state_out_len--;
+                  s->strm->next_out++;
+                  s->strm->avail_out--;
+                  s->strm->total_out_lo32++;
+                  if (s->strm->total_out_lo32 == 0)  {
+      TRACK685_BEGIN: track(&&TRACK685_BEGIN, &&TRACK685_END);
+      TRACK685_END:  __asm__("nop;");
+       
+      s->strm->total_out_hi32++;
       }
-      if (s->nblock_used == s->save_nblock+1) return;
-      s->state_out_len = 1;
-      s->state_out_ch = s->k0;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-	__asm__("TRACK688_BEGIN: nop\n\t" 
-      		"   lea	TRACK688_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK688_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK688_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK687_BEGIN: nop\n\t" 
-		  "   lea	TRACK687_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK687_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK687_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK689_BEGIN: nop\n\t" 
-      		"   lea	TRACK689_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK689_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK689_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 2;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-	__asm__("TRACK691_BEGIN: nop\n\t" 
-      		"   lea	TRACK691_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK691_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK691_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK690_BEGIN: nop\n\t" 
-		  "   lea	TRACK690_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK690_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK690_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK692_BEGIN: nop\n\t" 
-      		"   lea	TRACK692_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK692_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK692_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 3;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-	__asm__("TRACK694_BEGIN: nop\n\t" 
-      		"   lea	TRACK694_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK694_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK694_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK693_BEGIN: nop\n\t" 
-		  "   lea	TRACK693_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK693_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK693_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK695_BEGIN: nop\n\t" 
-      		"   lea	TRACK695_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK695_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK695_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-	__asm__("TRACK697_BEGIN: nop\n\t" 
-      		"   lea	TRACK697_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK697_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK697_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK696_BEGIN: nop\n\t" 
-		  "   lea	TRACK696_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK696_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK696_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-      s->state_out_len = ((Int32)k1) + 4;
-      s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-	__asm__("TRACK699_BEGIN: nop\n\t" 
-      		"   lea	TRACK699_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK699_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK699_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-          __asm__("TRACK698_BEGIN: nop\n\t" 
-		  "   lea	TRACK698_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK698_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK698_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->rTPos = 0;
-	}
-      } s->rNToGo--;;
-      s->k0 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
     }
-  } else {
-    __asm__("TRACK708_BEGIN: nop\n\t" 
-	    "   lea	TRACK708_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK708_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK708_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    while (((Bool)1)) {
-      __asm__("TRACK707_BEGIN: nop\n\t" 
-	      "   lea	TRACK707_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK707_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK707_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      while (((Bool)1)) {
-	__asm__("TRACK703_BEGIN: nop\n\t" 
-      		"   lea	TRACK703_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK703_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK703_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (s->strm->avail_out == 0) return;
-	if (s->state_out_len == 0) break;
-	*( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
-	{ s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
-	s->state_out_len--;
-	s->strm->next_out++;
-	s->strm->avail_out--;
-	s->strm->total_out_lo32++;
-	if (s->strm->total_out_lo32 == 0)  {
-          __asm__("TRACK702_BEGIN: nop\n\t" 
-		  "   lea	TRACK702_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK702_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK702_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  s->strm->total_out_hi32++;
-	}
+             if (s->nblock_used == s->save_nblock+1) return;
+             s->state_out_len = 1;
+             s->state_out_ch = s->k0;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
+      TRACK688_BEGIN: track(&&TRACK688_BEGIN, &&TRACK688_END);
+      TRACK688_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK687_BEGIN: track(&&TRACK687_BEGIN, &&TRACK687_END);
+      TRACK687_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
       }
-      if (s->nblock_used == s->save_nblock+1) return;
-      s->state_out_len = 1;
-      s->state_out_ch = s->k0;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK704_BEGIN: nop\n\t" 
-      		"   lea	TRACK704_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK704_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK704_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 2;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK705_BEGIN: nop\n\t" 
-      		"   lea	TRACK705_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK705_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK705_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      s->state_out_len = 3;
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-      if (s->nblock_used == s->save_nblock+1) continue;
-      if (k1 != s->k0) {
-	__asm__("TRACK706_BEGIN: nop\n\t" 
-      		"   lea	TRACK706_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK706_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK706_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	s->k0 = k1; continue;
-      };
-      k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-      s->state_out_len = ((Int32)k1) + 4;
-      s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-    }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK689_BEGIN: track(&&TRACK689_BEGIN, &&TRACK689_END);
+      TRACK689_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 2;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
+      TRACK691_BEGIN: track(&&TRACK691_BEGIN, &&TRACK691_END);
+      TRACK691_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK690_BEGIN: track(&&TRACK690_BEGIN, &&TRACK690_END);
+      TRACK690_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK692_BEGIN: track(&&TRACK692_BEGIN, &&TRACK692_END);
+      TRACK692_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 3;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
+      TRACK694_BEGIN: track(&&TRACK694_BEGIN, &&TRACK694_END);
+      TRACK694_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK693_BEGIN: track(&&TRACK693_BEGIN, &&TRACK693_END);
+      TRACK693_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK695_BEGIN: track(&&TRACK695_BEGIN, &&TRACK695_END);
+      TRACK695_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
+      TRACK697_BEGIN: track(&&TRACK697_BEGIN, &&TRACK697_END);
+      TRACK697_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK696_BEGIN: track(&&TRACK696_BEGIN, &&TRACK696_END);
+      TRACK696_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
+             s->state_out_len = ((Int32)k1) + 4;
+             s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
+      TRACK699_BEGIN: track(&&TRACK699_BEGIN, &&TRACK699_END);
+      TRACK699_END:  __asm__("nop;");
+       
+      s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
+      TRACK698_BEGIN: track(&&TRACK698_BEGIN, &&TRACK698_END);
+      TRACK698_END:  __asm__("nop;");
+       
+      s->rTPos = 0;
+      }
+    } s->rNToGo--;;
+             s->k0 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
   }
+} else {
+  TRACK708_BEGIN: track(&&TRACK708_BEGIN, &&TRACK708_END);
+  TRACK708_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK707_BEGIN: track(&&TRACK707_BEGIN, &&TRACK707_END);
+    TRACK707_END:  __asm__("nop;");
+     
+    while (((Bool)1)) {
+      TRACK703_BEGIN: track(&&TRACK703_BEGIN, &&TRACK703_END);
+      TRACK703_END:  __asm__("nop;");
+       
+      if (s->strm->avail_out == 0) return;
+                  if (s->state_out_len == 0) break;
+                  *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+                  { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
+                  s->state_out_len--;
+                  s->strm->next_out++;
+                  s->strm->avail_out--;
+                  s->strm->total_out_lo32++;
+                  if (s->strm->total_out_lo32 == 0)  {
+      TRACK702_BEGIN: track(&&TRACK702_BEGIN, &&TRACK702_END);
+      TRACK702_END:  __asm__("nop;");
+       
+      s->strm->total_out_hi32++;
+      }
+    }
+             if (s->nblock_used == s->save_nblock+1) return;
+             s->state_out_len = 1;
+             s->state_out_ch = s->k0;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK704_BEGIN: track(&&TRACK704_BEGIN, &&TRACK704_END);
+      TRACK704_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 2;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK705_BEGIN: track(&&TRACK705_BEGIN, &&TRACK705_END);
+      TRACK705_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             s->state_out_len = 3;
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+             if (s->nblock_used == s->save_nblock+1) continue;
+             if (k1 != s->k0) {
+      TRACK706_BEGIN: track(&&TRACK706_BEGIN, &&TRACK706_END);
+      TRACK706_END:  __asm__("nop;");
+       
+      s->k0 = k1; continue;
+    };
+             k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+             s->state_out_len = ((Int32)k1) + 4;
+             s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
+  }
+}
 }
 int BZ2_bzDecompress ( bz_stream *strm )
 {
-  DState* s;
-  if (strm == ((void *)0)) return (-2);
-  s = strm->state;
-  if (s == ((void *)0)) return (-2);
-  if (s->strm != strm) return (-2);
-  while (((Bool)1)) {
-    __asm__("TRACK719_BEGIN: nop\n\t" 
-	    "   lea	TRACK719_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK719_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK719_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (s->state == 1) return (-1);
-    if (s->state == 2) {
-      __asm__("TRACK715_BEGIN: nop\n\t" 
-	      "   lea	TRACK715_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK715_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK715_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (s->smallDecompress)
-	{
-	  __asm__("TRACK709_BEGIN: nop\n\t" 
-		  "   lea	TRACK709_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK709_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK709_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  unRLE_obuf_to_output_SMALL ( s );
-	} else
-	{
-	  __asm__("TRACK710_BEGIN: nop\n\t" 
-		  "   lea	TRACK710_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK710_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK710_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  unRLE_obuf_to_output_FAST ( s );
-	}
-      if (s->nblock_used == s->save_nblock+1 && s->state_out_len == 0) {
-	__asm__("TRACK713_BEGIN: nop\n\t" 
-      		"   lea	TRACK713_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK713_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK713_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	{ s->calculatedBlockCRC = ~(s->calculatedBlockCRC); };
-	if (s->verbosity >= 3)
-	  {
-	    __asm__("TRACK711_BEGIN: nop\n\t" 
-		    "   lea	TRACK711_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK711_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK711_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    fprintf(stderr," {0x%x, 0x%x}",s->storedBlockCRC,s->calculatedBlockCRC);
-	  }
-	if (s->verbosity >= 2)  {
-          __asm__("TRACK712_BEGIN: nop\n\t" 
-		  "   lea	TRACK712_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK712_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK712_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf(stderr,"]");
-	}
-	if (s->calculatedBlockCRC != s->storedBlockCRC)
-	  return (-4);
-	s->calculatedCombinedCRC
-	  = (s->calculatedCombinedCRC << 1) |
-	  (s->calculatedCombinedCRC >> 31);
-	s->calculatedCombinedCRC ^= s->calculatedBlockCRC;
-	s->state = 14;
-      } else {
-	__asm__("TRACK714_BEGIN: nop\n\t" 
-      		"   lea	TRACK714_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK714_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK714_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	return 0;
-      }
+   DState* s;
+   if (strm == ((void *)0)) return (-2);
+   s = strm->state;
+   if (s == ((void *)0)) return (-2);
+   if (s->strm != strm) return (-2);
+   while (((Bool)1)) {
+  TRACK719_BEGIN: track(&&TRACK719_BEGIN, &&TRACK719_END);
+  TRACK719_END:  __asm__("nop;");
+   
+  if (s->state == 1) return (-1);
+        if (s->state == 2) {
+    TRACK715_BEGIN: track(&&TRACK715_BEGIN, &&TRACK715_END);
+    TRACK715_END:  __asm__("nop;");
+     
+    if (s->smallDecompress)
+                 {
+    TRACK709_BEGIN: track(&&TRACK709_BEGIN, &&TRACK709_END);
+    TRACK709_END:  __asm__("nop;");
+     
+    unRLE_obuf_to_output_SMALL ( s );
+    } else
+                 {
+    TRACK710_BEGIN: track(&&TRACK710_BEGIN, &&TRACK710_END);
+    TRACK710_END:  __asm__("nop;");
+     
+    unRLE_obuf_to_output_FAST ( s );
     }
-    if (s->state >= 10) {
-      __asm__("TRACK718_BEGIN: nop\n\t" 
-	      "   lea	TRACK718_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK718_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK718_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Int32 r = BZ2_decompress ( s );
-      if (r == 4) {
-	__asm__("TRACK717_BEGIN: nop\n\t" 
-      		"   lea	TRACK717_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK717_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK717_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if (s->verbosity >= 3)
-	  {
-	    __asm__("TRACK716_BEGIN: nop\n\t" 
-		    "   lea	TRACK716_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK716_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK716_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    fprintf(stderr,"\n    combined CRCs: stored = 0x%x, computed = 0x%x",s->storedCombinedCRC,s->calculatedCombinedCRC);
-	  }
-	if (s->calculatedCombinedCRC != s->storedCombinedCRC)
-	  return (-4);
-	return r;
+             if (s->nblock_used == s->save_nblock+1 && s->state_out_len == 0) {
+      TRACK713_BEGIN: track(&&TRACK713_BEGIN, &&TRACK713_END);
+      TRACK713_END:  __asm__("nop;");
+       
+      { s->calculatedBlockCRC = ~(s->calculatedBlockCRC); };
+                  if (s->verbosity >= 3)
+                      {
+      TRACK711_BEGIN: track(&&TRACK711_BEGIN, &&TRACK711_END);
+      TRACK711_END:  __asm__("nop;");
+       
+      fprintf(stderr," {0x%x, 0x%x}",s->storedBlockCRC,s->calculatedBlockCRC);
       }
-      if (s->state != 2) return r;
+                  if (s->verbosity >= 2)  {
+      TRACK712_BEGIN: track(&&TRACK712_BEGIN, &&TRACK712_END);
+      TRACK712_END:  __asm__("nop;");
+       
+      fprintf(stderr,"]");
+      }
+                  if (s->calculatedBlockCRC != s->storedBlockCRC)
+                     return (-4);
+                  s->calculatedCombinedCRC
+                     = (s->calculatedCombinedCRC << 1) |
+                          (s->calculatedCombinedCRC >> 31);
+                  s->calculatedCombinedCRC ^= s->calculatedBlockCRC;
+                  s->state = 14;
+    } else {
+      TRACK714_BEGIN: track(&&TRACK714_BEGIN, &&TRACK714_END);
+      TRACK714_END:  __asm__("nop;");
+       
+      return 0;
     }
   }
-  { if (!(0))  {
-      __asm__("TRACK720_BEGIN: nop\n\t" 
-	      "   lea	TRACK720_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK720_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK720_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bz__AssertH__fail ( 6001 );
-    } };
-  return 0;
+        if (s->state >= 10) {
+    Int32 r = BZ2_decompress ( s );
+    TRACK718_BEGIN: track(&&TRACK718_BEGIN, &&TRACK718_END);
+    TRACK718_END:  __asm__("nop;");
+     
+    if (r == 4) {
+      TRACK717_BEGIN: track(&&TRACK717_BEGIN, &&TRACK717_END);
+      TRACK717_END:  __asm__("nop;");
+       
+      if (s->verbosity >= 3)
+                      {
+      TRACK716_BEGIN: track(&&TRACK716_BEGIN, &&TRACK716_END);
+      TRACK716_END:  __asm__("nop;");
+       
+      fprintf(stderr,"\n    combined CRCs: stored = 0x%x, computed = 0x%x",s->storedCombinedCRC,s->calculatedCombinedCRC);
+      }
+                  if (s->calculatedCombinedCRC != s->storedCombinedCRC)
+                     return (-4);
+                  return r;
+    }
+             if (s->state != 2) return r;
+  }
+}
+   { if (!(0))  {
+TRACK720_BEGIN: track(&&TRACK720_BEGIN, &&TRACK720_END);
+TRACK720_END:  __asm__("nop;");
+ 
+BZ2_bz__AssertH__fail ( 6001 );
+} };
+   return 0;
 }
 int BZ2_bzDecompressEnd ( bz_stream *strm )
 {
-  DState* s;
-  if (strm == ((void *)0)) return (-2);
-  s = strm->state;
-  if (s == ((void *)0)) return (-2);
-  if (s->strm != strm) return (-2);
-  if (s->tt != ((void *)0))  {
-    __asm__("TRACK721_BEGIN: nop\n\t" 
-	    "   lea	TRACK721_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK721_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK721_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->tt));
-  }
-  if (s->ll16 != ((void *)0))  {
-    __asm__("TRACK722_BEGIN: nop\n\t" 
-	    "   lea	TRACK722_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK722_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK722_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->ll16));
-  }
-  if (s->ll4 != ((void *)0))  {
-    __asm__("TRACK723_BEGIN: nop\n\t" 
-	    "   lea	TRACK723_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK723_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK723_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    (strm->bzfree)(strm->opaque,(s->ll4));
-  }
-  (strm->bzfree)(strm->opaque,(strm->state));
-  strm->state = ((void *)0);
-  return 0;
+   DState* s;
+   if (strm == ((void *)0)) return (-2);
+   s = strm->state;
+   if (s == ((void *)0)) return (-2);
+   if (s->strm != strm) return (-2);
+   if (s->tt != ((void *)0))  {
+TRACK721_BEGIN: track(&&TRACK721_BEGIN, &&TRACK721_END);
+TRACK721_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->tt));
+}
+   if (s->ll16 != ((void *)0))  {
+TRACK722_BEGIN: track(&&TRACK722_BEGIN, &&TRACK722_END);
+TRACK722_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->ll16));
+}
+   if (s->ll4 != ((void *)0))  {
+TRACK723_BEGIN: track(&&TRACK723_BEGIN, &&TRACK723_END);
+TRACK723_END:  __asm__("nop;");
+ 
+(strm->bzfree)(strm->opaque,(s->ll4));
+}
+   (strm->bzfree)(strm->opaque,(strm->state));
+   strm->state = ((void *)0);
+   return 0;
 }
 typedef
-struct {
-  FILE* handle;
-  Char buf[5000];
-  Int32 bufN;
-  Bool writing;
-  bz_stream strm;
-  Int32 lastErr;
-  Bool initialisedOk;
-}
-  bzFile;
+   struct {
+      FILE* handle;
+      Char buf[5000];
+      Int32 bufN;
+      Bool writing;
+      bz_stream strm;
+      Int32 lastErr;
+      Bool initialisedOk;
+   }
+   bzFile;
 static Bool myfeof ( FILE* f )
 {
-  Int32 c = fgetc ( f );
-  if (c == (-1)) return ((Bool)1);
-  ungetc ( c, f );
-  return ((Bool)0);
+   Int32 c = fgetc ( f );
+   if (c == (-1)) return ((Bool)1);
+   ungetc ( c, f );
+   return ((Bool)0);
 }
 BZFILE* BZ2_bzWriteOpen
-( int* bzerror,
-  FILE* f,
-  int blockSize100k,
-  int verbosity,
-  int workFactor )
+                    ( int* bzerror,
+                      FILE* f,
+                      int blockSize100k,
+                      int verbosity,
+                      int workFactor )
 {
-  Int32 ret;
-  bzFile* bzf = ((void *)0);
+   Int32 ret;
+   bzFile* bzf = ((void *)0);
+   { if (bzerror != ((void *)0))  {
+TRACK724_BEGIN: track(&&TRACK724_BEGIN, &&TRACK724_END);
+TRACK724_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK725_BEGIN: track(&&TRACK725_BEGIN, &&TRACK725_END);
+TRACK725_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   if (f == ((void *)0) ||
+       (blockSize100k < 1 || blockSize100k > 9) ||
+       (workFactor < 0 || workFactor > 250) ||
+       (verbosity < 0 || verbosity > 4))
+      {
+  TRACK728_BEGIN: track(&&TRACK728_BEGIN, &&TRACK728_END);
+  TRACK728_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK724_BEGIN: nop\n\t" 
-	      "   lea	TRACK724_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK724_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK724_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK725_BEGIN: nop\n\t" 
-	      "   lea	TRACK725_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK725_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK725_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  if (f == ((void *)0) ||
-      (blockSize100k < 1 || blockSize100k > 9) ||
-      (workFactor < 0 || workFactor > 250) ||
-      (verbosity < 0 || verbosity > 4))
-    {
-      __asm__("TRACK728_BEGIN: nop\n\t" 
-	      "   lea	TRACK728_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK728_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK728_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK726_BEGIN: nop\n\t" 
-		  "   lea	TRACK726_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK726_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK726_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK727_BEGIN: nop\n\t" 
-		  "   lea	TRACK727_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK727_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK727_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return ((void *)0);
-    };
-  if (ferror(f))
-    {
-      __asm__("TRACK731_BEGIN: nop\n\t" 
-	      "   lea	TRACK731_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK731_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK731_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK729_BEGIN: nop\n\t" 
-		  "   lea	TRACK729_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK729_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK729_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-6);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK730_BEGIN: nop\n\t" 
-		  "   lea	TRACK730_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK730_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK730_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-6);
-	} }; return ((void *)0);
-    };
-  bzf = malloc ( sizeof(bzFile) );
-  if (bzf == ((void *)0))
-    {
-      __asm__("TRACK734_BEGIN: nop\n\t" 
-	      "   lea	TRACK734_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK734_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK734_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK732_BEGIN: nop\n\t" 
-		  "   lea	TRACK732_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK732_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK732_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-3);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK733_BEGIN: nop\n\t" 
-		  "   lea	TRACK733_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK733_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK733_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-3);
-	} }; return ((void *)0);
-    };
+  TRACK726_BEGIN: track(&&TRACK726_BEGIN, &&TRACK726_END);
+  TRACK726_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK727_BEGIN: track(&&TRACK727_BEGIN, &&TRACK727_END);
+  TRACK727_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return ((void *)0);
+};
+   if (ferror(f))
+      {
+  TRACK731_BEGIN: track(&&TRACK731_BEGIN, &&TRACK731_END);
+  TRACK731_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK735_BEGIN: nop\n\t" 
-	      "   lea	TRACK735_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK735_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK735_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK736_BEGIN: nop\n\t" 
-	      "   lea	TRACK736_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK736_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK736_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  bzf->initialisedOk = ((Bool)0);
-  bzf->bufN = 0;
-  bzf->handle = f;
-  bzf->writing = ((Bool)1);
-  bzf->strm.bzalloc = ((void *)0);
-  bzf->strm.bzfree = ((void *)0);
-  bzf->strm.opaque = ((void *)0);
-  if (workFactor == 0)  {
-    __asm__("TRACK737_BEGIN: nop\n\t" 
-	    "   lea	TRACK737_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK737_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK737_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    workFactor = 30;
-  }
-  ret = BZ2_bzCompressInit ( &(bzf->strm), blockSize100k,
-			     verbosity, workFactor );
-  if (ret != 0)
-    {
-      __asm__("TRACK740_BEGIN: nop\n\t" 
-	      "   lea	TRACK740_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK740_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK740_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK738_BEGIN: nop\n\t" 
-		  "   lea	TRACK738_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK738_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK738_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = ret;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK739_BEGIN: nop\n\t" 
-		  "   lea	TRACK739_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK739_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK739_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = ret;
-	} }; free(bzf); return ((void *)0);
-    };
-  bzf->strm.avail_in = 0;
-  bzf->initialisedOk = ((Bool)1);
-  return bzf;
+  TRACK729_BEGIN: track(&&TRACK729_BEGIN, &&TRACK729_END);
+  TRACK729_END:  __asm__("nop;");
+   
+  *bzerror = (-6);
+  } if (bzf != ((void *)0))  {
+  TRACK730_BEGIN: track(&&TRACK730_BEGIN, &&TRACK730_END);
+  TRACK730_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-6);
+  } }; return ((void *)0);
+};
+   bzf = malloc ( sizeof(bzFile) );
+   if (bzf == ((void *)0))
+      {
+  TRACK734_BEGIN: track(&&TRACK734_BEGIN, &&TRACK734_END);
+  TRACK734_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK732_BEGIN: track(&&TRACK732_BEGIN, &&TRACK732_END);
+  TRACK732_END:  __asm__("nop;");
+   
+  *bzerror = (-3);
+  } if (bzf != ((void *)0))  {
+  TRACK733_BEGIN: track(&&TRACK733_BEGIN, &&TRACK733_END);
+  TRACK733_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-3);
+  } }; return ((void *)0);
+};
+   { if (bzerror != ((void *)0))  {
+TRACK735_BEGIN: track(&&TRACK735_BEGIN, &&TRACK735_END);
+TRACK735_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK736_BEGIN: track(&&TRACK736_BEGIN, &&TRACK736_END);
+TRACK736_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   bzf->initialisedOk = ((Bool)0);
+   bzf->bufN = 0;
+   bzf->handle = f;
+   bzf->writing = ((Bool)1);
+   bzf->strm.bzalloc = ((void *)0);
+   bzf->strm.bzfree = ((void *)0);
+   bzf->strm.opaque = ((void *)0);
+   if (workFactor == 0)  {
+TRACK737_BEGIN: track(&&TRACK737_BEGIN, &&TRACK737_END);
+TRACK737_END:  __asm__("nop;");
+ 
+workFactor = 30;
+}
+   ret = BZ2_bzCompressInit ( &(bzf->strm), blockSize100k,
+                              verbosity, workFactor );
+   if (ret != 0)
+      {
+  TRACK740_BEGIN: track(&&TRACK740_BEGIN, &&TRACK740_END);
+  TRACK740_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK738_BEGIN: track(&&TRACK738_BEGIN, &&TRACK738_END);
+  TRACK738_END:  __asm__("nop;");
+   
+  *bzerror = ret;
+  } if (bzf != ((void *)0))  {
+  TRACK739_BEGIN: track(&&TRACK739_BEGIN, &&TRACK739_END);
+  TRACK739_END:  __asm__("nop;");
+   
+  bzf->lastErr = ret;
+  } }; free(bzf); return ((void *)0);
+};
+   bzf->strm.avail_in = 0;
+   bzf->initialisedOk = ((Bool)1);
+   return bzf;
 }
 void BZ2_bzWrite
-( int* bzerror,
-  BZFILE* b,
-  void* buf,
-  int len )
+             ( int* bzerror,
+               BZFILE* b,
+               void* buf,
+               int len )
 {
-  Int32 n, n2, ret;
-  bzFile* bzf = (bzFile*)b;
+   Int32 n, n2, ret;
+   bzFile* bzf = (bzFile*)b;
+   { if (bzerror != ((void *)0))  {
+TRACK741_BEGIN: track(&&TRACK741_BEGIN, &&TRACK741_END);
+TRACK741_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK742_BEGIN: track(&&TRACK742_BEGIN, &&TRACK742_END);
+TRACK742_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
+      {
+  TRACK745_BEGIN: track(&&TRACK745_BEGIN, &&TRACK745_END);
+  TRACK745_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK741_BEGIN: nop\n\t" 
-	      "   lea	TRACK741_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK741_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK741_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
+  TRACK743_BEGIN: track(&&TRACK743_BEGIN, &&TRACK743_END);
+  TRACK743_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK744_BEGIN: track(&&TRACK744_BEGIN, &&TRACK744_END);
+  TRACK744_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return;
+};
+   if (!(bzf->writing))
+      {
+  TRACK748_BEGIN: track(&&TRACK748_BEGIN, &&TRACK748_END);
+  TRACK748_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK746_BEGIN: track(&&TRACK746_BEGIN, &&TRACK746_END);
+  TRACK746_END:  __asm__("nop;");
+   
+  *bzerror = (-1);
+  } if (bzf != ((void *)0))  {
+  TRACK747_BEGIN: track(&&TRACK747_BEGIN, &&TRACK747_END);
+  TRACK747_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-1);
+  } }; return;
+};
+   if (ferror(bzf->handle))
+      {
+  TRACK751_BEGIN: track(&&TRACK751_BEGIN, &&TRACK751_END);
+  TRACK751_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK749_BEGIN: track(&&TRACK749_BEGIN, &&TRACK749_END);
+  TRACK749_END:  __asm__("nop;");
+   
+  *bzerror = (-6);
+  } if (bzf != ((void *)0))  {
+  TRACK750_BEGIN: track(&&TRACK750_BEGIN, &&TRACK750_END);
+  TRACK750_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-6);
+  } }; return;
+};
+   if (len == 0)
+      {
+  TRACK754_BEGIN: track(&&TRACK754_BEGIN, &&TRACK754_END);
+  TRACK754_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK752_BEGIN: track(&&TRACK752_BEGIN, &&TRACK752_END);
+  TRACK752_END:  __asm__("nop;");
+   
+  *bzerror = 0;
+  } if (bzf != ((void *)0))  {
+  TRACK753_BEGIN: track(&&TRACK753_BEGIN, &&TRACK753_END);
+  TRACK753_END:  __asm__("nop;");
+   
+  bzf->lastErr = 0;
+  } }; return;
+};
+   bzf->strm.avail_in = len;
+   bzf->strm.next_in = buf;
+   while (((Bool)1)) {
+  TRACK765_BEGIN: track(&&TRACK765_BEGIN, &&TRACK765_END);
+  TRACK765_END:  __asm__("nop;");
+   
+  bzf->strm.avail_out = 5000;
+        bzf->strm.next_out = bzf->buf;
+        ret = BZ2_bzCompress ( &(bzf->strm), 0 );
+        if (ret != 1)
+           {
+    TRACK757_BEGIN: track(&&TRACK757_BEGIN, &&TRACK757_END);
+    TRACK757_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK755_BEGIN: track(&&TRACK755_BEGIN, &&TRACK755_END);
+    TRACK755_END:  __asm__("nop;");
+     
+    *bzerror = ret;
     } if (bzf != ((void *)0))  {
-      __asm__("TRACK742_BEGIN: nop\n\t" 
-	      "   lea	TRACK742_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK742_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK742_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
-    {
-      __asm__("TRACK745_BEGIN: nop\n\t" 
-	      "   lea	TRACK745_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK745_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK745_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
+    TRACK756_BEGIN: track(&&TRACK756_BEGIN, &&TRACK756_END);
+    TRACK756_END:  __asm__("nop;");
+     
+    bzf->lastErr = ret;
+    } }; return;
+  };
+        if (bzf->strm.avail_out < 5000) {
+    TRACK761_BEGIN: track(&&TRACK761_BEGIN, &&TRACK761_END);
+    TRACK761_END:  __asm__("nop;");
+     
+    n = 5000 - bzf->strm.avail_out;
+             n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
+                           n, bzf->handle );
+             if (n != n2 || ferror(bzf->handle))
+                {
+      TRACK760_BEGIN: track(&&TRACK760_BEGIN, &&TRACK760_END);
+      TRACK760_END:  __asm__("nop;");
+       
       { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK743_BEGIN: nop\n\t" 
-		  "   lea	TRACK743_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK743_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK743_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK744_BEGIN: nop\n\t" 
-		  "   lea	TRACK744_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK744_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK744_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return;
+      TRACK758_BEGIN: track(&&TRACK758_BEGIN, &&TRACK758_END);
+      TRACK758_END:  __asm__("nop;");
+       
+      *bzerror = (-6);
+      } if (bzf != ((void *)0))  {
+      TRACK759_BEGIN: track(&&TRACK759_BEGIN, &&TRACK759_END);
+      TRACK759_END:  __asm__("nop;");
+       
+      bzf->lastErr = (-6);
+      } }; return;
     };
-  if (!(bzf->writing))
-    {
-      __asm__("TRACK748_BEGIN: nop\n\t" 
-	      "   lea	TRACK748_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK748_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK748_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK746_BEGIN: nop\n\t" 
-		  "   lea	TRACK746_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK746_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK746_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-1);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK747_BEGIN: nop\n\t" 
-		  "   lea	TRACK747_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK747_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK747_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-1);
-	} }; return;
-    };
-  if (ferror(bzf->handle))
-    {
-      __asm__("TRACK751_BEGIN: nop\n\t" 
-	      "   lea	TRACK751_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK751_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK751_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK749_BEGIN: nop\n\t" 
-		  "   lea	TRACK749_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK749_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK749_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-6);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK750_BEGIN: nop\n\t" 
-		  "   lea	TRACK750_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK750_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK750_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-6);
-	} }; return;
-    };
-  if (len == 0)
-    {
-      __asm__("TRACK754_BEGIN: nop\n\t" 
-	      "   lea	TRACK754_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK754_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK754_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK752_BEGIN: nop\n\t" 
-		  "   lea	TRACK752_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK752_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK752_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = 0;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK753_BEGIN: nop\n\t" 
-		  "   lea	TRACK753_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK753_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK753_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = 0;
-	} }; return;
-    };
-  bzf->strm.avail_in = len;
-  bzf->strm.next_in = buf;
-  while (((Bool)1)) {
-    __asm__("TRACK765_BEGIN: nop\n\t" 
-	    "   lea	TRACK765_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK765_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK765_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bzf->strm.avail_out = 5000;
-    bzf->strm.next_out = bzf->buf;
-    ret = BZ2_bzCompress ( &(bzf->strm), 0 );
-    if (ret != 1)
-      {
-        __asm__("TRACK757_BEGIN: nop\n\t" 
-    		"   lea	TRACK757_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK757_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK757_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK755_BEGIN: nop\n\t" 
-		    "   lea	TRACK755_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK755_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK755_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = ret;
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK756_BEGIN: nop\n\t" 
-		    "   lea	TRACK756_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK756_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK756_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = ret;
-	  } }; return;
-      };
-    if (bzf->strm.avail_out < 5000) {
-      __asm__("TRACK761_BEGIN: nop\n\t" 
-	      "   lea	TRACK761_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK761_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK761_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      n = 5000 - bzf->strm.avail_out;
-      n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
-		    n, bzf->handle );
-      if (n != n2 || ferror(bzf->handle))
-	{
-          __asm__("TRACK760_BEGIN: nop\n\t" 
-		  "   lea	TRACK760_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK760_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK760_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { if (bzerror != ((void *)0))  {
-	      __asm__("TRACK758_BEGIN: nop\n\t" 
-		      "   lea	TRACK758_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK758_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK758_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      *bzerror = (-6);
-	    } if (bzf != ((void *)0))  {
-	      __asm__("TRACK759_BEGIN: nop\n\t" 
-		      "   lea	TRACK759_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK759_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK759_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      bzf->lastErr = (-6);
-	    } }; return;
-	};
-    }
-    if (bzf->strm.avail_in == 0)
-      {
-        __asm__("TRACK764_BEGIN: nop\n\t" 
-    		"   lea	TRACK764_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK764_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK764_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK762_BEGIN: nop\n\t" 
-		    "   lea	TRACK762_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK762_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK762_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = 0;
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK763_BEGIN: nop\n\t" 
-		    "   lea	TRACK763_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK763_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK763_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = 0;
-	  } }; return;
-      };
   }
+        if (bzf->strm.avail_in == 0)
+           {
+    TRACK764_BEGIN: track(&&TRACK764_BEGIN, &&TRACK764_END);
+    TRACK764_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK762_BEGIN: track(&&TRACK762_BEGIN, &&TRACK762_END);
+    TRACK762_END:  __asm__("nop;");
+     
+    *bzerror = 0;
+    } if (bzf != ((void *)0))  {
+    TRACK763_BEGIN: track(&&TRACK763_BEGIN, &&TRACK763_END);
+    TRACK763_END:  __asm__("nop;");
+     
+    bzf->lastErr = 0;
+    } }; return;
+  };
+}
 }
 void BZ2_bzWriteClose
-( int* bzerror,
-  BZFILE* b,
-  int abandon,
-  unsigned int* nbytes_in,
-  unsigned int* nbytes_out )
+                  ( int* bzerror,
+                    BZFILE* b,
+                    int abandon,
+                    unsigned int* nbytes_in,
+                    unsigned int* nbytes_out )
 {
-  BZ2_bzWriteClose64 ( bzerror, b, abandon,
-		       nbytes_in, ((void *)0), nbytes_out, ((void *)0) );
+   BZ2_bzWriteClose64 ( bzerror, b, abandon,
+                        nbytes_in, ((void *)0), nbytes_out, ((void *)0) );
 }
 void BZ2_bzWriteClose64
-( int* bzerror,
-  BZFILE* b,
-  int abandon,
-  unsigned int* nbytes_in_lo32,
-  unsigned int* nbytes_in_hi32,
-  unsigned int* nbytes_out_lo32,
-  unsigned int* nbytes_out_hi32 )
+                  ( int* bzerror,
+                    BZFILE* b,
+                    int abandon,
+                    unsigned int* nbytes_in_lo32,
+                    unsigned int* nbytes_in_hi32,
+                    unsigned int* nbytes_out_lo32,
+                    unsigned int* nbytes_out_hi32 )
 {
-  Int32 n, n2, ret;
-  bzFile* bzf = (bzFile*)b;
-  if (bzf == ((void *)0))
-    {
-      __asm__("TRACK768_BEGIN: nop\n\t" 
-	      "   lea	TRACK768_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK768_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK768_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK766_BEGIN: nop\n\t" 
-		  "   lea	TRACK766_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK766_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK766_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = 0;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK767_BEGIN: nop\n\t" 
-		  "   lea	TRACK767_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK767_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK767_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = 0;
-	} }; return;
-    };
-  if (!(bzf->writing))
-    {
-      __asm__("TRACK771_BEGIN: nop\n\t" 
-	      "   lea	TRACK771_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK771_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK771_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK769_BEGIN: nop\n\t" 
-		  "   lea	TRACK769_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK769_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK769_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-1);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK770_BEGIN: nop\n\t" 
-		  "   lea	TRACK770_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK770_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK770_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-1);
-	} }; return;
-    };
-  if (ferror(bzf->handle))
-    {
-      __asm__("TRACK774_BEGIN: nop\n\t" 
-	      "   lea	TRACK774_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK774_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK774_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK772_BEGIN: nop\n\t" 
-		  "   lea	TRACK772_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK772_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK772_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-6);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK773_BEGIN: nop\n\t" 
-		  "   lea	TRACK773_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK773_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK773_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-6);
-	} }; return;
-    };
-  if (nbytes_in_lo32 != ((void *)0))  {
-    __asm__("TRACK775_BEGIN: nop\n\t" 
-	    "   lea	TRACK775_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK775_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK775_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    *nbytes_in_lo32 = 0;
-  }
-  if (nbytes_in_hi32 != ((void *)0))  {
-    __asm__("TRACK776_BEGIN: nop\n\t" 
-	    "   lea	TRACK776_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK776_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK776_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    *nbytes_in_hi32 = 0;
-  }
-  if (nbytes_out_lo32 != ((void *)0))  {
-    __asm__("TRACK777_BEGIN: nop\n\t" 
-	    "   lea	TRACK777_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK777_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK777_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    *nbytes_out_lo32 = 0;
-  }
-  if (nbytes_out_hi32 != ((void *)0))  {
-    __asm__("TRACK778_BEGIN: nop\n\t" 
-	    "   lea	TRACK778_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK778_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK778_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    *nbytes_out_hi32 = 0;
-  }
-  if ((!abandon) && bzf->lastErr == 0) {
-    __asm__("TRACK787_BEGIN: nop\n\t" 
-	    "   lea	TRACK787_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK787_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK787_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    while (((Bool)1)) {
-      __asm__("TRACK786_BEGIN: nop\n\t" 
-	      "   lea	TRACK786_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK786_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK786_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->strm.avail_out = 5000;
-      bzf->strm.next_out = bzf->buf;
-      ret = BZ2_bzCompress ( &(bzf->strm), 2 );
-      if (ret != 3 && ret != 4)
-	{
-          __asm__("TRACK781_BEGIN: nop\n\t" 
-		  "   lea	TRACK781_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK781_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK781_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { if (bzerror != ((void *)0))  {
-	      __asm__("TRACK779_BEGIN: nop\n\t" 
-		      "   lea	TRACK779_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK779_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK779_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      *bzerror = ret;
-	    } if (bzf != ((void *)0))  {
-	      __asm__("TRACK780_BEGIN: nop\n\t" 
-		      "   lea	TRACK780_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK780_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK780_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      bzf->lastErr = ret;
-	    } }; return;
-	};
-      if (bzf->strm.avail_out < 5000) {
-	__asm__("TRACK785_BEGIN: nop\n\t" 
-      		"   lea	TRACK785_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK785_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK785_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	n = 5000 - bzf->strm.avail_out;
-	n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
-		      n, bzf->handle );
-	if (n != n2 || ferror(bzf->handle))
-	  {
-            __asm__("TRACK784_BEGIN: nop\n\t" 
-		    "   lea	TRACK784_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK784_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK784_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    { if (bzerror != ((void *)0))  {
-		__asm__("TRACK782_BEGIN: nop\n\t" 
-        		"   lea	TRACK782_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK782_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK782_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		*bzerror = (-6);
-	      } if (bzf != ((void *)0))  {
-		__asm__("TRACK783_BEGIN: nop\n\t" 
-        		"   lea	TRACK783_BEGIN, %%eax\n\t"   
-        		"   lea	TRACK783_END, %%ecx\n\t" 
-        		"   mov	%%eax, (%%esp)\n\t" 
-        		"   mov    %%ecx, 4(%%esp)\n\t" 
-        		" calll track\n\t" 
-        		"TRACK783_END: nop\n\t" 
-        		: 
-        		: 
-        		: "eax", "ecx", "esp");
-		bzf->lastErr = (-6);
-	      } }; return;
-	  };
-      }
-      if (ret == 4) break;
-    }
-  }
-  if ( !abandon && !ferror ( bzf->handle ) ) {
-    __asm__("TRACK791_BEGIN: nop\n\t" 
-	    "   lea	TRACK791_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK791_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK791_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fflush ( bzf->handle );
-    if (ferror(bzf->handle))
+   Int32 n, n2, ret;
+   bzFile* bzf = (bzFile*)b;
+   if (bzf == ((void *)0))
       {
-        __asm__("TRACK790_BEGIN: nop\n\t" 
-    		"   lea	TRACK790_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK790_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK790_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK788_BEGIN: nop\n\t" 
-		    "   lea	TRACK788_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK788_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK788_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = (-6);
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK789_BEGIN: nop\n\t" 
-		    "   lea	TRACK789_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK789_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK789_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = (-6);
-	  } }; return;
-      };
-  }
-  if (nbytes_in_lo32 != ((void *)0))
-    {
-      __asm__("TRACK792_BEGIN: nop\n\t" 
-	      "   lea	TRACK792_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK792_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK792_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *nbytes_in_lo32 = bzf->strm.total_in_lo32;
-    }
-  if (nbytes_in_hi32 != ((void *)0))
-    {
-      __asm__("TRACK793_BEGIN: nop\n\t" 
-	      "   lea	TRACK793_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK793_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK793_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *nbytes_in_hi32 = bzf->strm.total_in_hi32;
-    }
-  if (nbytes_out_lo32 != ((void *)0))
-    {
-      __asm__("TRACK794_BEGIN: nop\n\t" 
-	      "   lea	TRACK794_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK794_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK794_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *nbytes_out_lo32 = bzf->strm.total_out_lo32;
-    }
-  if (nbytes_out_hi32 != ((void *)0))
-    {
-      __asm__("TRACK795_BEGIN: nop\n\t" 
-	      "   lea	TRACK795_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK795_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK795_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *nbytes_out_hi32 = bzf->strm.total_out_hi32;
-    }
+  TRACK768_BEGIN: track(&&TRACK768_BEGIN, &&TRACK768_END);
+  TRACK768_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK796_BEGIN: nop\n\t" 
-	      "   lea	TRACK796_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK796_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK796_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
+  TRACK766_BEGIN: track(&&TRACK766_BEGIN, &&TRACK766_END);
+  TRACK766_END:  __asm__("nop;");
+   
+  *bzerror = 0;
+  } if (bzf != ((void *)0))  {
+  TRACK767_BEGIN: track(&&TRACK767_BEGIN, &&TRACK767_END);
+  TRACK767_END:  __asm__("nop;");
+   
+  bzf->lastErr = 0;
+  } }; return;
+};
+   if (!(bzf->writing))
+      {
+  TRACK771_BEGIN: track(&&TRACK771_BEGIN, &&TRACK771_END);
+  TRACK771_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK769_BEGIN: track(&&TRACK769_BEGIN, &&TRACK769_END);
+  TRACK769_END:  __asm__("nop;");
+   
+  *bzerror = (-1);
+  } if (bzf != ((void *)0))  {
+  TRACK770_BEGIN: track(&&TRACK770_BEGIN, &&TRACK770_END);
+  TRACK770_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-1);
+  } }; return;
+};
+   if (ferror(bzf->handle))
+      {
+  TRACK774_BEGIN: track(&&TRACK774_BEGIN, &&TRACK774_END);
+  TRACK774_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK772_BEGIN: track(&&TRACK772_BEGIN, &&TRACK772_END);
+  TRACK772_END:  __asm__("nop;");
+   
+  *bzerror = (-6);
+  } if (bzf != ((void *)0))  {
+  TRACK773_BEGIN: track(&&TRACK773_BEGIN, &&TRACK773_END);
+  TRACK773_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-6);
+  } }; return;
+};
+   if (nbytes_in_lo32 != ((void *)0))  {
+TRACK775_BEGIN: track(&&TRACK775_BEGIN, &&TRACK775_END);
+TRACK775_END:  __asm__("nop;");
+ 
+*nbytes_in_lo32 = 0;
+}
+   if (nbytes_in_hi32 != ((void *)0))  {
+TRACK776_BEGIN: track(&&TRACK776_BEGIN, &&TRACK776_END);
+TRACK776_END:  __asm__("nop;");
+ 
+*nbytes_in_hi32 = 0;
+}
+   if (nbytes_out_lo32 != ((void *)0))  {
+TRACK777_BEGIN: track(&&TRACK777_BEGIN, &&TRACK777_END);
+TRACK777_END:  __asm__("nop;");
+ 
+*nbytes_out_lo32 = 0;
+}
+   if (nbytes_out_hi32 != ((void *)0))  {
+TRACK778_BEGIN: track(&&TRACK778_BEGIN, &&TRACK778_END);
+TRACK778_END:  __asm__("nop;");
+ 
+*nbytes_out_hi32 = 0;
+}
+   if ((!abandon) && bzf->lastErr == 0) {
+  TRACK787_BEGIN: track(&&TRACK787_BEGIN, &&TRACK787_END);
+  TRACK787_END:  __asm__("nop;");
+   
+  while (((Bool)1)) {
+    TRACK786_BEGIN: track(&&TRACK786_BEGIN, &&TRACK786_END);
+    TRACK786_END:  __asm__("nop;");
+     
+    bzf->strm.avail_out = 5000;
+             bzf->strm.next_out = bzf->buf;
+             ret = BZ2_bzCompress ( &(bzf->strm), 2 );
+             if (ret != 3 && ret != 4)
+                {
+      TRACK781_BEGIN: track(&&TRACK781_BEGIN, &&TRACK781_END);
+      TRACK781_END:  __asm__("nop;");
+       
+      { if (bzerror != ((void *)0))  {
+      TRACK779_BEGIN: track(&&TRACK779_BEGIN, &&TRACK779_END);
+      TRACK779_END:  __asm__("nop;");
+       
+      *bzerror = ret;
+      } if (bzf != ((void *)0))  {
+      TRACK780_BEGIN: track(&&TRACK780_BEGIN, &&TRACK780_END);
+      TRACK780_END:  __asm__("nop;");
+       
+      bzf->lastErr = ret;
+      } }; return;
+    };
+             if (bzf->strm.avail_out < 5000) {
+      TRACK785_BEGIN: track(&&TRACK785_BEGIN, &&TRACK785_END);
+      TRACK785_END:  __asm__("nop;");
+       
+      n = 5000 - bzf->strm.avail_out;
+                  n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
+                                n, bzf->handle );
+                  if (n != n2 || ferror(bzf->handle))
+                     {
+        TRACK784_BEGIN: track(&&TRACK784_BEGIN, &&TRACK784_END);
+        TRACK784_END:  __asm__("nop;");
+         
+        { if (bzerror != ((void *)0))  {
+        TRACK782_BEGIN: track(&&TRACK782_BEGIN, &&TRACK782_END);
+        TRACK782_END:  __asm__("nop;");
+         
+        *bzerror = (-6);
+        } if (bzf != ((void *)0))  {
+        TRACK783_BEGIN: track(&&TRACK783_BEGIN, &&TRACK783_END);
+        TRACK783_END:  __asm__("nop;");
+         
+        bzf->lastErr = (-6);
+        } }; return;
+      };
+    }
+             if (ret == 4) break;
+  }
+}
+   if ( !abandon && !ferror ( bzf->handle ) ) {
+  TRACK791_BEGIN: track(&&TRACK791_BEGIN, &&TRACK791_END);
+  TRACK791_END:  __asm__("nop;");
+   
+  fflush ( bzf->handle );
+        if (ferror(bzf->handle))
+           {
+    TRACK790_BEGIN: track(&&TRACK790_BEGIN, &&TRACK790_END);
+    TRACK790_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK788_BEGIN: track(&&TRACK788_BEGIN, &&TRACK788_END);
+    TRACK788_END:  __asm__("nop;");
+     
+    *bzerror = (-6);
     } if (bzf != ((void *)0))  {
-      __asm__("TRACK797_BEGIN: nop\n\t" 
-	      "   lea	TRACK797_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK797_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK797_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  BZ2_bzCompressEnd ( &(bzf->strm) );
-  free ( bzf );
+    TRACK789_BEGIN: track(&&TRACK789_BEGIN, &&TRACK789_END);
+    TRACK789_END:  __asm__("nop;");
+     
+    bzf->lastErr = (-6);
+    } }; return;
+  };
+}
+   if (nbytes_in_lo32 != ((void *)0))
+       {
+TRACK792_BEGIN: track(&&TRACK792_BEGIN, &&TRACK792_END);
+TRACK792_END:  __asm__("nop;");
+ 
+*nbytes_in_lo32 = bzf->strm.total_in_lo32;
+}
+   if (nbytes_in_hi32 != ((void *)0))
+       {
+TRACK793_BEGIN: track(&&TRACK793_BEGIN, &&TRACK793_END);
+TRACK793_END:  __asm__("nop;");
+ 
+*nbytes_in_hi32 = bzf->strm.total_in_hi32;
+}
+   if (nbytes_out_lo32 != ((void *)0))
+       {
+TRACK794_BEGIN: track(&&TRACK794_BEGIN, &&TRACK794_END);
+TRACK794_END:  __asm__("nop;");
+ 
+*nbytes_out_lo32 = bzf->strm.total_out_lo32;
+}
+   if (nbytes_out_hi32 != ((void *)0))
+       {
+TRACK795_BEGIN: track(&&TRACK795_BEGIN, &&TRACK795_END);
+TRACK795_END:  __asm__("nop;");
+ 
+*nbytes_out_hi32 = bzf->strm.total_out_hi32;
+}
+   { if (bzerror != ((void *)0))  {
+TRACK796_BEGIN: track(&&TRACK796_BEGIN, &&TRACK796_END);
+TRACK796_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK797_BEGIN: track(&&TRACK797_BEGIN, &&TRACK797_END);
+TRACK797_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   BZ2_bzCompressEnd ( &(bzf->strm) );
+   free ( bzf );
 }
 BZFILE* BZ2_bzReadOpen
-( int* bzerror,
-  FILE* f,
-  int verbosity,
-  int small,
-  void* unused,
-  int nUnused )
+                   ( int* bzerror,
+                     FILE* f,
+                     int verbosity,
+                     int small,
+                     void* unused,
+                     int nUnused )
 {
-  bzFile* bzf = ((void *)0);
-  int ret;
+   bzFile* bzf = ((void *)0);
+   int ret;
+   { if (bzerror != ((void *)0))  {
+TRACK798_BEGIN: track(&&TRACK798_BEGIN, &&TRACK798_END);
+TRACK798_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK799_BEGIN: track(&&TRACK799_BEGIN, &&TRACK799_END);
+TRACK799_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   if (f == ((void *)0) ||
+       (small != 0 && small != 1) ||
+       (verbosity < 0 || verbosity > 4) ||
+       (unused == ((void *)0) && nUnused != 0) ||
+       (unused != ((void *)0) && (nUnused < 0 || nUnused > 5000)))
+      {
+  TRACK802_BEGIN: track(&&TRACK802_BEGIN, &&TRACK802_END);
+  TRACK802_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK798_BEGIN: nop\n\t" 
-	      "   lea	TRACK798_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK798_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK798_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK799_BEGIN: nop\n\t" 
-	      "   lea	TRACK799_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK799_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK799_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  if (f == ((void *)0) ||
-      (small != 0 && small != 1) ||
-      (verbosity < 0 || verbosity > 4) ||
-      (unused == ((void *)0) && nUnused != 0) ||
-      (unused != ((void *)0) && (nUnused < 0 || nUnused > 5000)))
-    {
-      __asm__("TRACK802_BEGIN: nop\n\t" 
-	      "   lea	TRACK802_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK802_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK802_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK800_BEGIN: nop\n\t" 
-		  "   lea	TRACK800_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK800_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK800_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK801_BEGIN: nop\n\t" 
-		  "   lea	TRACK801_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK801_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK801_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return ((void *)0);
-    };
-  if (ferror(f))
-    {
-      __asm__("TRACK805_BEGIN: nop\n\t" 
-	      "   lea	TRACK805_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK805_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK805_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK803_BEGIN: nop\n\t" 
-		  "   lea	TRACK803_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK803_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK803_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-6);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK804_BEGIN: nop\n\t" 
-		  "   lea	TRACK804_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK804_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK804_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-6);
-	} }; return ((void *)0);
-    };
-  bzf = malloc ( sizeof(bzFile) );
-  if (bzf == ((void *)0))
-    {
-      __asm__("TRACK808_BEGIN: nop\n\t" 
-	      "   lea	TRACK808_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK808_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK808_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK806_BEGIN: nop\n\t" 
-		  "   lea	TRACK806_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK806_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK806_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-3);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK807_BEGIN: nop\n\t" 
-		  "   lea	TRACK807_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK807_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK807_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-3);
-	} }; return ((void *)0);
-    };
+  TRACK800_BEGIN: track(&&TRACK800_BEGIN, &&TRACK800_END);
+  TRACK800_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK801_BEGIN: track(&&TRACK801_BEGIN, &&TRACK801_END);
+  TRACK801_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return ((void *)0);
+};
+   if (ferror(f))
+      {
+  TRACK805_BEGIN: track(&&TRACK805_BEGIN, &&TRACK805_END);
+  TRACK805_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK809_BEGIN: nop\n\t" 
-	      "   lea	TRACK809_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK809_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK809_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK810_BEGIN: nop\n\t" 
-	      "   lea	TRACK810_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK810_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK810_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  bzf->initialisedOk = ((Bool)0);
-  bzf->handle = f;
-  bzf->bufN = 0;
-  bzf->writing = ((Bool)0);
-  bzf->strm.bzalloc = ((void *)0);
-  bzf->strm.bzfree = ((void *)0);
-  bzf->strm.opaque = ((void *)0);
-  while (nUnused > 0) {
-    __asm__("TRACK811_BEGIN: nop\n\t" 
-	    "   lea	TRACK811_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK811_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK811_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bzf->buf[bzf->bufN] = *((UChar*)(unused)); bzf->bufN++;
-    unused = ((void*)( 1 + ((UChar*)(unused)) ));
-    nUnused--;
-  }
-  ret = BZ2_bzDecompressInit ( &(bzf->strm), verbosity, small );
-  if (ret != 0)
-    {
-      __asm__("TRACK814_BEGIN: nop\n\t" 
-	      "   lea	TRACK814_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK814_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK814_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK812_BEGIN: nop\n\t" 
-		  "   lea	TRACK812_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK812_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK812_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = ret;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK813_BEGIN: nop\n\t" 
-		  "   lea	TRACK813_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK813_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK813_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = ret;
-	} }; free(bzf); return ((void *)0);
-    };
-  bzf->strm.avail_in = bzf->bufN;
-  bzf->strm.next_in = bzf->buf;
-  bzf->initialisedOk = ((Bool)1);
-  return bzf;
+  TRACK803_BEGIN: track(&&TRACK803_BEGIN, &&TRACK803_END);
+  TRACK803_END:  __asm__("nop;");
+   
+  *bzerror = (-6);
+  } if (bzf != ((void *)0))  {
+  TRACK804_BEGIN: track(&&TRACK804_BEGIN, &&TRACK804_END);
+  TRACK804_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-6);
+  } }; return ((void *)0);
+};
+   bzf = malloc ( sizeof(bzFile) );
+   if (bzf == ((void *)0))
+      {
+  TRACK808_BEGIN: track(&&TRACK808_BEGIN, &&TRACK808_END);
+  TRACK808_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK806_BEGIN: track(&&TRACK806_BEGIN, &&TRACK806_END);
+  TRACK806_END:  __asm__("nop;");
+   
+  *bzerror = (-3);
+  } if (bzf != ((void *)0))  {
+  TRACK807_BEGIN: track(&&TRACK807_BEGIN, &&TRACK807_END);
+  TRACK807_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-3);
+  } }; return ((void *)0);
+};
+   { if (bzerror != ((void *)0))  {
+TRACK809_BEGIN: track(&&TRACK809_BEGIN, &&TRACK809_END);
+TRACK809_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK810_BEGIN: track(&&TRACK810_BEGIN, &&TRACK810_END);
+TRACK810_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   bzf->initialisedOk = ((Bool)0);
+   bzf->handle = f;
+   bzf->bufN = 0;
+   bzf->writing = ((Bool)0);
+   bzf->strm.bzalloc = ((void *)0);
+   bzf->strm.bzfree = ((void *)0);
+   bzf->strm.opaque = ((void *)0);
+   while (nUnused > 0) {
+  TRACK811_BEGIN: track(&&TRACK811_BEGIN, &&TRACK811_END);
+  TRACK811_END:  __asm__("nop;");
+   
+  bzf->buf[bzf->bufN] = *((UChar*)(unused)); bzf->bufN++;
+        unused = ((void*)( 1 + ((UChar*)(unused)) ));
+        nUnused--;
+}
+   ret = BZ2_bzDecompressInit ( &(bzf->strm), verbosity, small );
+   if (ret != 0)
+      {
+  TRACK814_BEGIN: track(&&TRACK814_BEGIN, &&TRACK814_END);
+  TRACK814_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK812_BEGIN: track(&&TRACK812_BEGIN, &&TRACK812_END);
+  TRACK812_END:  __asm__("nop;");
+   
+  *bzerror = ret;
+  } if (bzf != ((void *)0))  {
+  TRACK813_BEGIN: track(&&TRACK813_BEGIN, &&TRACK813_END);
+  TRACK813_END:  __asm__("nop;");
+   
+  bzf->lastErr = ret;
+  } }; free(bzf); return ((void *)0);
+};
+   bzf->strm.avail_in = bzf->bufN;
+   bzf->strm.next_in = bzf->buf;
+   bzf->initialisedOk = ((Bool)1);
+   return bzf;
 }
 void BZ2_bzReadClose ( int *bzerror, BZFILE *b )
 {
-  bzFile* bzf = (bzFile*)b;
+   bzFile* bzf = (bzFile*)b;
+   { if (bzerror != ((void *)0))  {
+TRACK815_BEGIN: track(&&TRACK815_BEGIN, &&TRACK815_END);
+TRACK815_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK816_BEGIN: track(&&TRACK816_BEGIN, &&TRACK816_END);
+TRACK816_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   if (bzf == ((void *)0))
+      {
+  TRACK819_BEGIN: track(&&TRACK819_BEGIN, &&TRACK819_END);
+  TRACK819_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK815_BEGIN: nop\n\t" 
-	      "   lea	TRACK815_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK815_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK815_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK816_BEGIN: nop\n\t" 
-	      "   lea	TRACK816_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK816_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK816_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  if (bzf == ((void *)0))
-    {
-      __asm__("TRACK819_BEGIN: nop\n\t" 
-	      "   lea	TRACK819_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK819_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK819_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK817_BEGIN: nop\n\t" 
-		  "   lea	TRACK817_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK817_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK817_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = 0;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK818_BEGIN: nop\n\t" 
-		  "   lea	TRACK818_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK818_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK818_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = 0;
-	} }; return;
-    };
-  if (bzf->writing)
-    {
-      __asm__("TRACK822_BEGIN: nop\n\t" 
-	      "   lea	TRACK822_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK822_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK822_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK820_BEGIN: nop\n\t" 
-		  "   lea	TRACK820_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK820_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK820_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-1);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK821_BEGIN: nop\n\t" 
-		  "   lea	TRACK821_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK821_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK821_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-1);
-	} }; return;
-    };
-  if (bzf->initialisedOk)
-    {
-      __asm__("TRACK823_BEGIN: nop\n\t" 
-	      "   lea	TRACK823_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK823_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK823_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      (void)BZ2_bzDecompressEnd ( &(bzf->strm) );
-    }
-  free ( bzf );
+  TRACK817_BEGIN: track(&&TRACK817_BEGIN, &&TRACK817_END);
+  TRACK817_END:  __asm__("nop;");
+   
+  *bzerror = 0;
+  } if (bzf != ((void *)0))  {
+  TRACK818_BEGIN: track(&&TRACK818_BEGIN, &&TRACK818_END);
+  TRACK818_END:  __asm__("nop;");
+   
+  bzf->lastErr = 0;
+  } }; return;
+};
+   if (bzf->writing)
+      {
+  TRACK822_BEGIN: track(&&TRACK822_BEGIN, &&TRACK822_END);
+  TRACK822_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK820_BEGIN: track(&&TRACK820_BEGIN, &&TRACK820_END);
+  TRACK820_END:  __asm__("nop;");
+   
+  *bzerror = (-1);
+  } if (bzf != ((void *)0))  {
+  TRACK821_BEGIN: track(&&TRACK821_BEGIN, &&TRACK821_END);
+  TRACK821_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-1);
+  } }; return;
+};
+   if (bzf->initialisedOk)
+       {
+TRACK823_BEGIN: track(&&TRACK823_BEGIN, &&TRACK823_END);
+TRACK823_END:  __asm__("nop;");
+ 
+(void)BZ2_bzDecompressEnd ( &(bzf->strm) );
+}
+   free ( bzf );
 }
 int BZ2_bzRead
-( int* bzerror,
-  BZFILE* b,
-  void* buf,
-  int len )
+           ( int* bzerror,
+             BZFILE* b,
+             void* buf,
+             int len )
 {
-  Int32 n, ret;
-  bzFile* bzf = (bzFile*)b;
+   Int32 n, ret;
+   bzFile* bzf = (bzFile*)b;
+   { if (bzerror != ((void *)0))  {
+TRACK824_BEGIN: track(&&TRACK824_BEGIN, &&TRACK824_END);
+TRACK824_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK825_BEGIN: track(&&TRACK825_BEGIN, &&TRACK825_END);
+TRACK825_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
+      {
+  TRACK828_BEGIN: track(&&TRACK828_BEGIN, &&TRACK828_END);
+  TRACK828_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK824_BEGIN: nop\n\t" 
-	      "   lea	TRACK824_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK824_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK824_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
+  TRACK826_BEGIN: track(&&TRACK826_BEGIN, &&TRACK826_END);
+  TRACK826_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK827_BEGIN: track(&&TRACK827_BEGIN, &&TRACK827_END);
+  TRACK827_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return 0;
+};
+   if (bzf->writing)
+      {
+  TRACK831_BEGIN: track(&&TRACK831_BEGIN, &&TRACK831_END);
+  TRACK831_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK829_BEGIN: track(&&TRACK829_BEGIN, &&TRACK829_END);
+  TRACK829_END:  __asm__("nop;");
+   
+  *bzerror = (-1);
+  } if (bzf != ((void *)0))  {
+  TRACK830_BEGIN: track(&&TRACK830_BEGIN, &&TRACK830_END);
+  TRACK830_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-1);
+  } }; return 0;
+};
+   if (len == 0)
+      {
+  TRACK834_BEGIN: track(&&TRACK834_BEGIN, &&TRACK834_END);
+  TRACK834_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK832_BEGIN: track(&&TRACK832_BEGIN, &&TRACK832_END);
+  TRACK832_END:  __asm__("nop;");
+   
+  *bzerror = 0;
+  } if (bzf != ((void *)0))  {
+  TRACK833_BEGIN: track(&&TRACK833_BEGIN, &&TRACK833_END);
+  TRACK833_END:  __asm__("nop;");
+   
+  bzf->lastErr = 0;
+  } }; return 0;
+};
+   bzf->strm.avail_out = len;
+   bzf->strm.next_out = buf;
+   while (((Bool)1)) {
+  TRACK854_BEGIN: track(&&TRACK854_BEGIN, &&TRACK854_END);
+  TRACK854_END:  __asm__("nop;");
+   
+  if (ferror(bzf->handle))
+           {
+    TRACK837_BEGIN: track(&&TRACK837_BEGIN, &&TRACK837_END);
+    TRACK837_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK835_BEGIN: track(&&TRACK835_BEGIN, &&TRACK835_END);
+    TRACK835_END:  __asm__("nop;");
+     
+    *bzerror = (-6);
     } if (bzf != ((void *)0))  {
-      __asm__("TRACK825_BEGIN: nop\n\t" 
-	      "   lea	TRACK825_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK825_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK825_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
-    {
-      __asm__("TRACK828_BEGIN: nop\n\t" 
-	      "   lea	TRACK828_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK828_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK828_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
+    TRACK836_BEGIN: track(&&TRACK836_BEGIN, &&TRACK836_END);
+    TRACK836_END:  __asm__("nop;");
+     
+    bzf->lastErr = (-6);
+    } }; return 0;
+  };
+        if (bzf->strm.avail_in == 0 && !myfeof(bzf->handle)) {
+    TRACK841_BEGIN: track(&&TRACK841_BEGIN, &&TRACK841_END);
+    TRACK841_END:  __asm__("nop;");
+     
+    n = fread ( bzf->buf, sizeof(UChar),
+                         5000, bzf->handle );
+             if (ferror(bzf->handle))
+                {
+      TRACK840_BEGIN: track(&&TRACK840_BEGIN, &&TRACK840_END);
+      TRACK840_END:  __asm__("nop;");
+       
       { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK826_BEGIN: nop\n\t" 
-		  "   lea	TRACK826_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK826_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK826_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK827_BEGIN: nop\n\t" 
-		  "   lea	TRACK827_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK827_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK827_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return 0;
+      TRACK838_BEGIN: track(&&TRACK838_BEGIN, &&TRACK838_END);
+      TRACK838_END:  __asm__("nop;");
+       
+      *bzerror = (-6);
+      } if (bzf != ((void *)0))  {
+      TRACK839_BEGIN: track(&&TRACK839_BEGIN, &&TRACK839_END);
+      TRACK839_END:  __asm__("nop;");
+       
+      bzf->lastErr = (-6);
+      } }; return 0;
     };
-  if (bzf->writing)
-    {
-      __asm__("TRACK831_BEGIN: nop\n\t" 
-	      "   lea	TRACK831_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK831_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK831_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK829_BEGIN: nop\n\t" 
-		  "   lea	TRACK829_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK829_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK829_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-1);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK830_BEGIN: nop\n\t" 
-		  "   lea	TRACK830_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK830_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK830_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-1);
-	} }; return 0;
-    };
-  if (len == 0)
-    {
-      __asm__("TRACK834_BEGIN: nop\n\t" 
-	      "   lea	TRACK834_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK834_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK834_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK832_BEGIN: nop\n\t" 
-		  "   lea	TRACK832_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK832_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK832_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = 0;
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK833_BEGIN: nop\n\t" 
-		  "   lea	TRACK833_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK833_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK833_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = 0;
-	} }; return 0;
-    };
-  bzf->strm.avail_out = len;
-  bzf->strm.next_out = buf;
-  while (((Bool)1)) {
-    __asm__("TRACK854_BEGIN: nop\n\t" 
-	    "   lea	TRACK854_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK854_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK854_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (ferror(bzf->handle))
-      {
-        __asm__("TRACK837_BEGIN: nop\n\t" 
-    		"   lea	TRACK837_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK837_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK837_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK835_BEGIN: nop\n\t" 
-		    "   lea	TRACK835_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK835_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK835_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = (-6);
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK836_BEGIN: nop\n\t" 
-		    "   lea	TRACK836_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK836_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK836_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = (-6);
-	  } }; return 0;
-      };
-    if (bzf->strm.avail_in == 0 && !myfeof(bzf->handle)) {
-      __asm__("TRACK841_BEGIN: nop\n\t" 
-	      "   lea	TRACK841_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK841_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK841_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      n = fread ( bzf->buf, sizeof(UChar),
-		  5000, bzf->handle );
-      if (ferror(bzf->handle))
-	{
-          __asm__("TRACK840_BEGIN: nop\n\t" 
-		  "   lea	TRACK840_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK840_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK840_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  { if (bzerror != ((void *)0))  {
-	      __asm__("TRACK838_BEGIN: nop\n\t" 
-		      "   lea	TRACK838_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK838_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK838_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      *bzerror = (-6);
-	    } if (bzf != ((void *)0))  {
-	      __asm__("TRACK839_BEGIN: nop\n\t" 
-		      "   lea	TRACK839_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK839_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK839_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      bzf->lastErr = (-6);
-	    } }; return 0;
-	};
-      bzf->bufN = n;
-      bzf->strm.avail_in = bzf->bufN;
-      bzf->strm.next_in = bzf->buf;
-    }
-    ret = BZ2_bzDecompress ( &(bzf->strm) );
-    if (ret != 0 && ret != 4)
-      {
-        __asm__("TRACK844_BEGIN: nop\n\t" 
-    		"   lea	TRACK844_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK844_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK844_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK842_BEGIN: nop\n\t" 
-		    "   lea	TRACK842_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK842_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK842_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = ret;
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK843_BEGIN: nop\n\t" 
-		    "   lea	TRACK843_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK843_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK843_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = ret;
-	  } }; return 0;
-      };
-    if (ret == 0 && myfeof(bzf->handle) &&
-	bzf->strm.avail_in == 0 && bzf->strm.avail_out > 0)
-      {
-        __asm__("TRACK847_BEGIN: nop\n\t" 
-    		"   lea	TRACK847_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK847_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK847_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK845_BEGIN: nop\n\t" 
-		    "   lea	TRACK845_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK845_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK845_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = (-7);
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK846_BEGIN: nop\n\t" 
-		    "   lea	TRACK846_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK846_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK846_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = (-7);
-	  } }; return 0;
-      };
-    if (ret == 4)
-      {
-        __asm__("TRACK850_BEGIN: nop\n\t" 
-    		"   lea	TRACK850_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK850_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK850_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK848_BEGIN: nop\n\t" 
-		    "   lea	TRACK848_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK848_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK848_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = 4;
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK849_BEGIN: nop\n\t" 
-		    "   lea	TRACK849_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK849_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK849_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = 4;
-	  } };
-	return len - bzf->strm.avail_out;
-      };
-    if (bzf->strm.avail_out == 0)
-      {
-        __asm__("TRACK853_BEGIN: nop\n\t" 
-    		"   lea	TRACK853_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK853_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK853_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	{ if (bzerror != ((void *)0))  {
-	    __asm__("TRACK851_BEGIN: nop\n\t" 
-		    "   lea	TRACK851_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK851_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK851_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    *bzerror = 0;
-	  } if (bzf != ((void *)0))  {
-	    __asm__("TRACK852_BEGIN: nop\n\t" 
-		    "   lea	TRACK852_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK852_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK852_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    bzf->lastErr = 0;
-	  } }; return len;
-      };
+             bzf->bufN = n;
+             bzf->strm.avail_in = bzf->bufN;
+             bzf->strm.next_in = bzf->buf;
   }
-  return 0;
+        ret = BZ2_bzDecompress ( &(bzf->strm) );
+        if (ret != 0 && ret != 4)
+           {
+    TRACK844_BEGIN: track(&&TRACK844_BEGIN, &&TRACK844_END);
+    TRACK844_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK842_BEGIN: track(&&TRACK842_BEGIN, &&TRACK842_END);
+    TRACK842_END:  __asm__("nop;");
+     
+    *bzerror = ret;
+    } if (bzf != ((void *)0))  {
+    TRACK843_BEGIN: track(&&TRACK843_BEGIN, &&TRACK843_END);
+    TRACK843_END:  __asm__("nop;");
+     
+    bzf->lastErr = ret;
+    } }; return 0;
+  };
+        if (ret == 0 && myfeof(bzf->handle) &&
+            bzf->strm.avail_in == 0 && bzf->strm.avail_out > 0)
+           {
+    TRACK847_BEGIN: track(&&TRACK847_BEGIN, &&TRACK847_END);
+    TRACK847_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK845_BEGIN: track(&&TRACK845_BEGIN, &&TRACK845_END);
+    TRACK845_END:  __asm__("nop;");
+     
+    *bzerror = (-7);
+    } if (bzf != ((void *)0))  {
+    TRACK846_BEGIN: track(&&TRACK846_BEGIN, &&TRACK846_END);
+    TRACK846_END:  __asm__("nop;");
+     
+    bzf->lastErr = (-7);
+    } }; return 0;
+  };
+        if (ret == 4)
+           {
+    TRACK850_BEGIN: track(&&TRACK850_BEGIN, &&TRACK850_END);
+    TRACK850_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK848_BEGIN: track(&&TRACK848_BEGIN, &&TRACK848_END);
+    TRACK848_END:  __asm__("nop;");
+     
+    *bzerror = 4;
+    } if (bzf != ((void *)0))  {
+    TRACK849_BEGIN: track(&&TRACK849_BEGIN, &&TRACK849_END);
+    TRACK849_END:  __asm__("nop;");
+     
+    bzf->lastErr = 4;
+    } };
+               return len - bzf->strm.avail_out;
+  };
+        if (bzf->strm.avail_out == 0)
+           {
+    TRACK853_BEGIN: track(&&TRACK853_BEGIN, &&TRACK853_END);
+    TRACK853_END:  __asm__("nop;");
+     
+    { if (bzerror != ((void *)0))  {
+    TRACK851_BEGIN: track(&&TRACK851_BEGIN, &&TRACK851_END);
+    TRACK851_END:  __asm__("nop;");
+     
+    *bzerror = 0;
+    } if (bzf != ((void *)0))  {
+    TRACK852_BEGIN: track(&&TRACK852_BEGIN, &&TRACK852_END);
+    TRACK852_END:  __asm__("nop;");
+     
+    bzf->lastErr = 0;
+    } }; return len;
+  };
+}
+   return 0;
 }
 void BZ2_bzReadGetUnused
-( int* bzerror,
-  BZFILE* b,
-  void** unused,
-  int* nUnused )
+                     ( int* bzerror,
+                       BZFILE* b,
+                       void** unused,
+                       int* nUnused )
 {
-  bzFile* bzf = (bzFile*)b;
-  if (bzf == ((void *)0))
-    {
-      __asm__("TRACK857_BEGIN: nop\n\t" 
-	      "   lea	TRACK857_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK857_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK857_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK855_BEGIN: nop\n\t" 
-		  "   lea	TRACK855_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK855_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK855_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK856_BEGIN: nop\n\t" 
-		  "   lea	TRACK856_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK856_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK856_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return;
-    };
-  if (bzf->lastErr != 4)
-    {
-      __asm__("TRACK860_BEGIN: nop\n\t" 
-	      "   lea	TRACK860_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK860_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK860_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK858_BEGIN: nop\n\t" 
-		  "   lea	TRACK858_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK858_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK858_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-1);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK859_BEGIN: nop\n\t" 
-		  "   lea	TRACK859_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK859_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK859_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-1);
-	} }; return;
-    };
-  if (unused == ((void *)0) || nUnused == ((void *)0))
-    {
-      __asm__("TRACK863_BEGIN: nop\n\t" 
-	      "   lea	TRACK863_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK863_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK863_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      { if (bzerror != ((void *)0))  {
-	  __asm__("TRACK861_BEGIN: nop\n\t" 
-		  "   lea	TRACK861_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK861_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK861_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  *bzerror = (-2);
-	} if (bzf != ((void *)0))  {
-	  __asm__("TRACK862_BEGIN: nop\n\t" 
-		  "   lea	TRACK862_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK862_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK862_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  bzf->lastErr = (-2);
-	} }; return;
-    };
+   bzFile* bzf = (bzFile*)b;
+   if (bzf == ((void *)0))
+      {
+  TRACK857_BEGIN: track(&&TRACK857_BEGIN, &&TRACK857_END);
+  TRACK857_END:  __asm__("nop;");
+   
   { if (bzerror != ((void *)0))  {
-      __asm__("TRACK864_BEGIN: nop\n\t" 
-	      "   lea	TRACK864_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK864_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK864_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      *bzerror = 0;
-    } if (bzf != ((void *)0))  {
-      __asm__("TRACK865_BEGIN: nop\n\t" 
-	      "   lea	TRACK865_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK865_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK865_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      bzf->lastErr = 0;
-    } };
-  *nUnused = bzf->strm.avail_in;
-  *unused = bzf->strm.next_in;
+  TRACK855_BEGIN: track(&&TRACK855_BEGIN, &&TRACK855_END);
+  TRACK855_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK856_BEGIN: track(&&TRACK856_BEGIN, &&TRACK856_END);
+  TRACK856_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return;
+};
+   if (bzf->lastErr != 4)
+      {
+  TRACK860_BEGIN: track(&&TRACK860_BEGIN, &&TRACK860_END);
+  TRACK860_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK858_BEGIN: track(&&TRACK858_BEGIN, &&TRACK858_END);
+  TRACK858_END:  __asm__("nop;");
+   
+  *bzerror = (-1);
+  } if (bzf != ((void *)0))  {
+  TRACK859_BEGIN: track(&&TRACK859_BEGIN, &&TRACK859_END);
+  TRACK859_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-1);
+  } }; return;
+};
+   if (unused == ((void *)0) || nUnused == ((void *)0))
+      {
+  TRACK863_BEGIN: track(&&TRACK863_BEGIN, &&TRACK863_END);
+  TRACK863_END:  __asm__("nop;");
+   
+  { if (bzerror != ((void *)0))  {
+  TRACK861_BEGIN: track(&&TRACK861_BEGIN, &&TRACK861_END);
+  TRACK861_END:  __asm__("nop;");
+   
+  *bzerror = (-2);
+  } if (bzf != ((void *)0))  {
+  TRACK862_BEGIN: track(&&TRACK862_BEGIN, &&TRACK862_END);
+  TRACK862_END:  __asm__("nop;");
+   
+  bzf->lastErr = (-2);
+  } }; return;
+};
+   { if (bzerror != ((void *)0))  {
+TRACK864_BEGIN: track(&&TRACK864_BEGIN, &&TRACK864_END);
+TRACK864_END:  __asm__("nop;");
+ 
+*bzerror = 0;
+} if (bzf != ((void *)0))  {
+TRACK865_BEGIN: track(&&TRACK865_BEGIN, &&TRACK865_END);
+TRACK865_END:  __asm__("nop;");
+ 
+bzf->lastErr = 0;
+} };
+   *nUnused = bzf->strm.avail_in;
+   *unused = bzf->strm.next_in;
 }
 int BZ2_bzBuffToBuffCompress
-( char* dest,
-  unsigned int* destLen,
-  char* source,
-  unsigned int sourceLen,
-  int blockSize100k,
-  int verbosity,
-  int workFactor )
+                         ( char* dest,
+                           unsigned int* destLen,
+                           char* source,
+                           unsigned int sourceLen,
+                           int blockSize100k,
+                           int verbosity,
+                           int workFactor )
 {
-  bz_stream strm;
-  int ret;
-  if (dest == ((void *)0) || destLen == ((void *)0) ||
-      source == ((void *)0) ||
-      blockSize100k < 1 || blockSize100k > 9 ||
-      verbosity < 0 || verbosity > 4 ||
-      workFactor < 0 || workFactor > 250)
-    return (-2);
-  if (workFactor == 0)  {
-    __asm__("TRACK866_BEGIN: nop\n\t" 
-	    "   lea	TRACK866_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK866_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK866_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    workFactor = 30;
-  }
-  strm.bzalloc = ((void *)0);
-  strm.bzfree = ((void *)0);
-  strm.opaque = ((void *)0);
-  ret = BZ2_bzCompressInit ( &strm, blockSize100k,
-			     verbosity, workFactor );
-  if (ret != 0) return ret;
-  strm.next_in = source;
-  strm.next_out = dest;
-  strm.avail_in = sourceLen;
-  strm.avail_out = *destLen;
-  ret = BZ2_bzCompress ( &strm, 2 );
-  if (ret == 3) goto output_overflow;
-  if (ret != 4) goto errhandler;
-  *destLen -= strm.avail_out;
-  BZ2_bzCompressEnd ( &strm );
-  return 0;
- output_overflow:
-  BZ2_bzCompressEnd ( &strm );
-  return (-8);
- errhandler:
-  BZ2_bzCompressEnd ( &strm );
-  return ret;
+   bz_stream strm;
+   int ret;
+   if (dest == ((void *)0) || destLen == ((void *)0) ||
+       source == ((void *)0) ||
+       blockSize100k < 1 || blockSize100k > 9 ||
+       verbosity < 0 || verbosity > 4 ||
+       workFactor < 0 || workFactor > 250)
+      return (-2);
+   if (workFactor == 0)  {
+TRACK866_BEGIN: track(&&TRACK866_BEGIN, &&TRACK866_END);
+TRACK866_END:  __asm__("nop;");
+ 
+workFactor = 30;
+}
+   strm.bzalloc = ((void *)0);
+   strm.bzfree = ((void *)0);
+   strm.opaque = ((void *)0);
+   ret = BZ2_bzCompressInit ( &strm, blockSize100k,
+                              verbosity, workFactor );
+   if (ret != 0) return ret;
+   strm.next_in = source;
+   strm.next_out = dest;
+   strm.avail_in = sourceLen;
+   strm.avail_out = *destLen;
+   ret = BZ2_bzCompress ( &strm, 2 );
+   if (ret == 3) goto output_overflow;
+   if (ret != 4) goto errhandler;
+   *destLen -= strm.avail_out;
+   BZ2_bzCompressEnd ( &strm );
+   return 0;
+   output_overflow:
+   BZ2_bzCompressEnd ( &strm );
+   return (-8);
+   errhandler:
+   BZ2_bzCompressEnd ( &strm );
+   return ret;
 }
 int BZ2_bzBuffToBuffDecompress
-( char* dest,
-  unsigned int* destLen,
-  char* source,
-  unsigned int sourceLen,
-  int small,
-  int verbosity )
+                           ( char* dest,
+                             unsigned int* destLen,
+                             char* source,
+                             unsigned int sourceLen,
+                             int small,
+                             int verbosity )
 {
-  bz_stream strm;
-  int ret;
-  if (dest == ((void *)0) || destLen == ((void *)0) ||
-      source == ((void *)0) ||
-      (small != 0 && small != 1) ||
-      verbosity < 0 || verbosity > 4)
-    return (-2);
-  strm.bzalloc = ((void *)0);
-  strm.bzfree = ((void *)0);
-  strm.opaque = ((void *)0);
-  ret = BZ2_bzDecompressInit ( &strm, verbosity, small );
-  if (ret != 0) return ret;
-  strm.next_in = source;
-  strm.next_out = dest;
-  strm.avail_in = sourceLen;
-  strm.avail_out = *destLen;
-  ret = BZ2_bzDecompress ( &strm );
-  if (ret == 0) goto output_overflow_or_eof;
-  if (ret != 4) goto errhandler;
-  *destLen -= strm.avail_out;
+   bz_stream strm;
+   int ret;
+   if (dest == ((void *)0) || destLen == ((void *)0) ||
+       source == ((void *)0) ||
+       (small != 0 && small != 1) ||
+       verbosity < 0 || verbosity > 4)
+          return (-2);
+   strm.bzalloc = ((void *)0);
+   strm.bzfree = ((void *)0);
+   strm.opaque = ((void *)0);
+   ret = BZ2_bzDecompressInit ( &strm, verbosity, small );
+   if (ret != 0) return ret;
+   strm.next_in = source;
+   strm.next_out = dest;
+   strm.avail_in = sourceLen;
+   strm.avail_out = *destLen;
+   ret = BZ2_bzDecompress ( &strm );
+   if (ret == 0) goto output_overflow_or_eof;
+   if (ret != 4) goto errhandler;
+   *destLen -= strm.avail_out;
+   BZ2_bzDecompressEnd ( &strm );
+   return 0;
+   output_overflow_or_eof:
+   if (strm.avail_out > 0) {
+  TRACK867_BEGIN: track(&&TRACK867_BEGIN, &&TRACK867_END);
+  TRACK867_END:  __asm__("nop;");
+   
   BZ2_bzDecompressEnd ( &strm );
-  return 0;
- output_overflow_or_eof:
-  if (strm.avail_out > 0) {
-    __asm__("TRACK867_BEGIN: nop\n\t" 
-	    "   lea	TRACK867_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK867_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK867_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    BZ2_bzDecompressEnd ( &strm );
-    return (-7);
-  } else {
-    __asm__("TRACK868_BEGIN: nop\n\t" 
-	    "   lea	TRACK868_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK868_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK868_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    BZ2_bzDecompressEnd ( &strm );
-    return (-8);
-  };
- errhandler:
+        return (-7);
+} else {
+  TRACK868_BEGIN: track(&&TRACK868_BEGIN, &&TRACK868_END);
+  TRACK868_END:  __asm__("nop;");
+   
   BZ2_bzDecompressEnd ( &strm );
-  return ret;
+        return (-8);
+};
+   errhandler:
+   BZ2_bzDecompressEnd ( &strm );
+   return ret;
 }
 const char * BZ2_bzlibVersion(void)
 {
-  return "1.0.2, 30-Dec-2001";
+   return "1.0.2, 30-Dec-2001";
 }
 static
 BZFILE * bzopen_or_bzdopen
-( const char *path,
-  int fd,
-  const char *mode,
-  int open_mode)
+               ( const char *path,
+                 int fd,
+                 const char *mode,
+                 int open_mode)
 {
-  int bzerr;
-  char unused[5000];
-  int blockSize100k = 9;
-  int writing = 0;
-  char mode2[10] = "";
-  FILE *fp = ((void *)0);
-  BZFILE *bzfp = ((void *)0);
-  int verbosity = 0;
-  int workFactor = 30;
-  int smallMode = 0;
-  int nUnused = 0;
-  if (mode == ((void *)0)) return ((void *)0);
-  while (*mode) {
-    __asm__("TRACK874_BEGIN: nop\n\t" 
-	    "   lea	TRACK874_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK874_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK874_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    switch (*mode) {
+   int bzerr;
+   char unused[5000];
+   int blockSize100k = 9;
+   int writing = 0;
+   char mode2[10] = "";
+   FILE *fp = ((void *)0);
+   BZFILE *bzfp = ((void *)0);
+   int verbosity = 0;
+   int workFactor = 30;
+   int smallMode = 0;
+   int nUnused = 0;
+   if (mode == ((void *)0)) return ((void *)0);
+   while (*mode) {
+  TRACK874_BEGIN: track(&&TRACK874_BEGIN, &&TRACK874_END);
+  TRACK874_END:  __asm__("nop;");
+   
+  switch (*mode) {
          
     case 'r':
-      __asm__("TRACK869_BEGIN: nop\n\t" 
-	      "   lea	TRACK869_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK869_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK869_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      writing = 0; break;
+  	TRACK869_BEGIN: track(&&TRACK869_BEGIN, &&TRACK869_END);
+  	TRACK869_END:  __asm__("nop;");
+  	 
+  	writing = 0; break;
          
     case 'w':
-      __asm__("TRACK870_BEGIN: nop\n\t" 
-	      "   lea	TRACK870_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK870_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK870_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      writing = 1; break;
+  	TRACK870_BEGIN: track(&&TRACK870_BEGIN, &&TRACK870_END);
+  	TRACK870_END:  __asm__("nop;");
+  	 
+  	writing = 1; break;
          
     case 's':
-      __asm__("TRACK871_BEGIN: nop\n\t" 
-	      "   lea	TRACK871_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK871_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK871_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      smallMode = 1; break;
+  	TRACK871_BEGIN: track(&&TRACK871_BEGIN, &&TRACK871_END);
+  	TRACK871_END:  __asm__("nop;");
+  	 
+  	smallMode = 1; break;
          
     default:
-      __asm__("TRACK873_BEGIN: nop\n\t" 
-	      "   lea	TRACK873_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK873_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK873_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (((*__ctype_b_loc ())[(int) (((int)(*mode)))] & (unsigned short int) _ISdigit)) {
-	__asm__("TRACK872_BEGIN: nop\n\t" 
-		"   lea	TRACK872_BEGIN, %%eax\n\t"   
-		"   lea	TRACK872_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK872_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	blockSize100k = *mode-0x30;
-      }
-    }
-    mode++;
-  }
-  strcat(mode2, writing ? "w" : "r" );
-  strcat(mode2,"b");
-  if (open_mode==0) {
-    __asm__("TRACK877_BEGIN: nop\n\t" 
-	    "   lea	TRACK877_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK877_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK877_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (path==((void *)0) || strcmp(path,"")==0) {
-      __asm__("TRACK875_BEGIN: nop\n\t" 
-	      "   lea	TRACK875_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK875_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK875_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fp = (writing ? stdout : stdin);
-    } else {
-      __asm__("TRACK876_BEGIN: nop\n\t" 
-	      "   lea	TRACK876_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK876_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK876_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fp = fopen(path,mode2);
-    }
+  	TRACK873_BEGIN: track(&&TRACK873_BEGIN, &&TRACK873_END);
+  	TRACK873_END:  __asm__("nop;");
+  	 
+  	if (((*__ctype_b_loc ())[(int) (((int)(*mode)))] & (unsigned short int) _ISdigit)) {
+  	  TRACK872_BEGIN: track(&&TRACK872_BEGIN, &&TRACK872_END);
+  	  TRACK872_END:  __asm__("nop;");
+  	   
+  	  blockSize100k = *mode-0x30;
+  	}
+        }
+        mode++;
+}
+   strcat(mode2, writing ? "w" : "r" );
+   strcat(mode2,"b");
+   if (open_mode==0) {
+  TRACK877_BEGIN: track(&&TRACK877_BEGIN, &&TRACK877_END);
+  TRACK877_END:  __asm__("nop;");
+   
+  if (path==((void *)0) || strcmp(path,"")==0) {
+    TRACK875_BEGIN: track(&&TRACK875_BEGIN, &&TRACK875_END);
+    TRACK875_END:  __asm__("nop;");
+     
+    fp = (writing ? stdout : stdin);
   } else {
-    __asm__("TRACK878_BEGIN: nop\n\t" 
-	    "   lea	TRACK878_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK878_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK878_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fp = fdopen(fd,mode2);
+    TRACK876_BEGIN: track(&&TRACK876_BEGIN, &&TRACK876_END);
+    TRACK876_END:  __asm__("nop;");
+     
+    fp = fopen(path,mode2);
   }
-  if (fp == ((void *)0)) return ((void *)0);
-  if (writing) {
-    __asm__("TRACK881_BEGIN: nop\n\t" 
-	    "   lea	TRACK881_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK881_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK881_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (blockSize100k < 1)  {
-      __asm__("TRACK879_BEGIN: nop\n\t" 
-	      "   lea	TRACK879_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK879_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK879_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      blockSize100k = 1;
-    }
-    if (blockSize100k > 9)  {
-      __asm__("TRACK880_BEGIN: nop\n\t" 
-	      "   lea	TRACK880_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK880_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK880_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      blockSize100k = 9;
-    }
-    bzfp = BZ2_bzWriteOpen(&bzerr,fp,blockSize100k,
-			   verbosity,workFactor);
-  } else {
-    __asm__("TRACK882_BEGIN: nop\n\t" 
-	    "   lea	TRACK882_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK882_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK882_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bzfp = BZ2_bzReadOpen(&bzerr,fp,verbosity,smallMode,
-			  unused,nUnused);
+} else {
+  TRACK878_BEGIN: track(&&TRACK878_BEGIN, &&TRACK878_END);
+  TRACK878_END:  __asm__("nop;");
+   
+  fp = fdopen(fd,mode2);
+}
+   if (fp == ((void *)0)) return ((void *)0);
+   if (writing) {
+  TRACK881_BEGIN: track(&&TRACK881_BEGIN, &&TRACK881_END);
+  TRACK881_END:  __asm__("nop;");
+   
+  if (blockSize100k < 1)  {
+  TRACK879_BEGIN: track(&&TRACK879_BEGIN, &&TRACK879_END);
+  TRACK879_END:  __asm__("nop;");
+   
+  blockSize100k = 1;
   }
-  if (bzfp == ((void *)0)) {
-    __asm__("TRACK884_BEGIN: nop\n\t" 
-	    "   lea	TRACK884_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK884_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK884_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (fp != stdin && fp != stdout)  {
-      __asm__("TRACK883_BEGIN: nop\n\t" 
-	      "   lea	TRACK883_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK883_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK883_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fclose(fp);
-    }
-    return ((void *)0);
+        if (blockSize100k > 9)  {
+  TRACK880_BEGIN: track(&&TRACK880_BEGIN, &&TRACK880_END);
+  TRACK880_END:  __asm__("nop;");
+   
+  blockSize100k = 9;
   }
-  return bzfp;
+        bzfp = BZ2_bzWriteOpen(&bzerr,fp,blockSize100k,
+                               verbosity,workFactor);
+} else {
+  TRACK882_BEGIN: track(&&TRACK882_BEGIN, &&TRACK882_END);
+  TRACK882_END:  __asm__("nop;");
+   
+  bzfp = BZ2_bzReadOpen(&bzerr,fp,verbosity,smallMode,
+                              unused,nUnused);
+}
+   if (bzfp == ((void *)0)) {
+  TRACK884_BEGIN: track(&&TRACK884_BEGIN, &&TRACK884_END);
+  TRACK884_END:  __asm__("nop;");
+   
+  if (fp != stdin && fp != stdout)  {
+  TRACK883_BEGIN: track(&&TRACK883_BEGIN, &&TRACK883_END);
+  TRACK883_END:  __asm__("nop;");
+   
+  fclose(fp);
+  }
+        return ((void *)0);
+}
+   return bzfp;
 }
 BZFILE * BZ2_bzopen
-( const char *path,
-  const char *mode )
+               ( const char *path,
+                 const char *mode )
 {
-  return bzopen_or_bzdopen(path,-1,mode, 0);
+   return bzopen_or_bzdopen(path,-1,mode, 0);
 }
 BZFILE * BZ2_bzdopen
-( int fd,
-  const char *mode )
+               ( int fd,
+                 const char *mode )
 {
-  return bzopen_or_bzdopen(((void *)0),fd,mode, 1);
+   return bzopen_or_bzdopen(((void *)0),fd,mode, 1);
 }
 int BZ2_bzread (BZFILE* b, void* buf, int len )
 {
-  int bzerr, nread;
-  if (((bzFile*)b)->lastErr == 4) return 0;
-  nread = BZ2_bzRead(&bzerr,b,buf,len);
-  if (bzerr == 0 || bzerr == 4) {
-    __asm__("TRACK885_BEGIN: nop\n\t" 
-	    "   lea	TRACK885_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK885_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK885_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return nread;
-  } else {
-    __asm__("TRACK886_BEGIN: nop\n\t" 
-	    "   lea	TRACK886_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK886_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK886_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return -1;
-  }
+   int bzerr, nread;
+   if (((bzFile*)b)->lastErr == 4) return 0;
+   nread = BZ2_bzRead(&bzerr,b,buf,len);
+   if (bzerr == 0 || bzerr == 4) {
+  TRACK885_BEGIN: track(&&TRACK885_BEGIN, &&TRACK885_END);
+  TRACK885_END:  __asm__("nop;");
+   
+  return nread;
+} else {
+  TRACK886_BEGIN: track(&&TRACK886_BEGIN, &&TRACK886_END);
+  TRACK886_END:  __asm__("nop;");
+   
+  return -1;
+}
 }
 int BZ2_bzwrite (BZFILE* b, void* buf, int len )
 {
-  int bzerr;
-  BZ2_bzWrite(&bzerr,b,buf,len);
-  if(bzerr == 0){
-    __asm__("TRACK887_BEGIN: nop\n\t" 
-	    "   lea	TRACK887_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK887_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK887_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return len;
-  }else{
-    __asm__("TRACK888_BEGIN: nop\n\t" 
-	    "   lea	TRACK888_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK888_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK888_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return -1;
-  }
+   int bzerr;
+   BZ2_bzWrite(&bzerr,b,buf,len);
+   if(bzerr == 0){
+  TRACK887_BEGIN: track(&&TRACK887_BEGIN, &&TRACK887_END);
+  TRACK887_END:  __asm__("nop;");
+   
+  return len;
+}else{
+  TRACK888_BEGIN: track(&&TRACK888_BEGIN, &&TRACK888_END);
+  TRACK888_END:  __asm__("nop;");
+   
+  return -1;
+}
 }
 int BZ2_bzflush (BZFILE *b)
 {
-  return 0;
+   return 0;
 }
 void BZ2_bzclose (BZFILE* b)
 {
-  int bzerr;
-  FILE *fp = ((bzFile *)b)->handle;
-  if (b==((void *)0)) {
-    __asm__("TRACK889_BEGIN: nop\n\t" 
-	    "   lea	TRACK889_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK889_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK889_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    return;
+   int bzerr;
+   FILE *fp = ((bzFile *)b)->handle;
+   if (b==((void *)0)) {
+  TRACK889_BEGIN: track(&&TRACK889_BEGIN, &&TRACK889_END);
+  TRACK889_END:  __asm__("nop;");
+   
+  return;
+}
+   if(((bzFile*)b)->writing){
+  TRACK891_BEGIN: track(&&TRACK891_BEGIN, &&TRACK891_END);
+  TRACK891_END:  __asm__("nop;");
+   
+  BZ2_bzWriteClose(&bzerr,b,0,((void *)0),((void *)0));
+        if(bzerr != 0){
+    TRACK890_BEGIN: track(&&TRACK890_BEGIN, &&TRACK890_END);
+    TRACK890_END:  __asm__("nop;");
+     
+    BZ2_bzWriteClose(((void *)0),b,1,((void *)0),((void *)0));
   }
-  if(((bzFile*)b)->writing){
-    __asm__("TRACK891_BEGIN: nop\n\t" 
-	    "   lea	TRACK891_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK891_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK891_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    BZ2_bzWriteClose(&bzerr,b,0,((void *)0),((void *)0));
-    if(bzerr != 0){
-      __asm__("TRACK890_BEGIN: nop\n\t" 
-	      "   lea	TRACK890_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK890_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK890_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bzWriteClose(((void *)0),b,1,((void *)0),((void *)0));
-    }
-  }else{
-    __asm__("TRACK892_BEGIN: nop\n\t" 
-	    "   lea	TRACK892_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK892_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK892_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    BZ2_bzReadClose(&bzerr,b);
-  }
-  if(fp!=stdin && fp!=stdout){
-    __asm__("TRACK893_BEGIN: nop\n\t" 
-	    "   lea	TRACK893_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK893_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK893_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fclose(fp);
-  }
+}else{
+  TRACK892_BEGIN: track(&&TRACK892_BEGIN, &&TRACK892_END);
+  TRACK892_END:  __asm__("nop;");
+   
+  BZ2_bzReadClose(&bzerr,b);
+}
+   if(fp!=stdin && fp!=stdout){
+  TRACK893_BEGIN: track(&&TRACK893_BEGIN, &&TRACK893_END);
+  TRACK893_END:  __asm__("nop;");
+   
+  fclose(fp);
+}
 }
 static char *bzerrorstrings[] = {
-  "OK"
-  ,"SEQUENCE_ERROR"
-  ,"PARAM_ERROR"
-  ,"MEM_ERROR"
-  ,"DATA_ERROR"
-  ,"DATA_ERROR_MAGIC"
-  ,"IO_ERROR"
-  ,"UNEXPECTED_EOF"
-  ,"OUTBUFF_FULL"
-  ,"CONFIG_ERROR"
-  ,"???"
-  ,"???"
-  ,"???"
-  ,"???"
-  ,"???"
-  ,"???"
+       "OK"
+      ,"SEQUENCE_ERROR"
+      ,"PARAM_ERROR"
+      ,"MEM_ERROR"
+      ,"DATA_ERROR"
+      ,"DATA_ERROR_MAGIC"
+      ,"IO_ERROR"
+      ,"UNEXPECTED_EOF"
+      ,"OUTBUFF_FULL"
+      ,"CONFIG_ERROR"
+      ,"???"
+      ,"???"
+      ,"???"
+      ,"???"
+      ,"???"
+      ,"???"
 };
 const char * BZ2_bzerror (BZFILE *b, int *errnum)
 {
-  int err = ((bzFile *)b)->lastErr;
-  if(err>0)  {
-    __asm__("TRACK894_BEGIN: nop\n\t" 
-	    "   lea	TRACK894_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK894_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK894_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    err = 0;
-  }
-  *errnum = err;
-  return bzerrorstrings[err*-1];
+   int err = ((bzFile *)b)->lastErr;
+   if(err>0)  {
+TRACK894_BEGIN: track(&&TRACK894_BEGIN, &&TRACK894_END);
+TRACK894_END:  __asm__("nop;");
+ 
+err = 0;
+}
+   *errnum = err;
+   return bzerrorstrings[err*-1];
 }
 
 
@@ -14370,7 +8112,7 @@ extern double ldexp (double __x, int __exponent) ; extern double __ldexp (double
 extern double log (double __x) ; extern double __log (double __x) ;
 extern double log10 (double __x) ; extern double __log10 (double __x) ;
 extern double modf (double __x, double *__iptr) ; extern double __modf (double __x, double *__iptr)
-  ;
+     ;
 
 
 extern double pow (double __x, double __y) ; extern double __pow (double __x, double __y) ;
@@ -14415,13 +8157,13 @@ typedef __fsblkcnt_t fsblkcnt_t;
 typedef __fsfilcnt_t fsfilcnt_t;
 
 struct flock
-{
-  short int l_type;
-  short int l_whence;
-  __off_t l_start;
-  __off_t l_len;
-  __pid_t l_pid;
-};
+  {
+    short int l_type;
+    short int l_whence;
+    __off_t l_start;
+    __off_t l_len;
+    __pid_t l_pid;
+  };
 
 
 extern int fcntl (int __fd, int __cmd, ...);
@@ -14430,62 +8172,62 @@ extern int creat (__const char *__file, __mode_t __mode) ;
 
 
 struct utimbuf
-{
-  __time_t actime;
-  __time_t modtime;
-};
+  {
+    __time_t actime;
+    __time_t modtime;
+  };
 extern int utime (__const char *__file,
-		  __const struct utimbuf *__file_times)
-  ;
+    __const struct utimbuf *__file_times)
+     ;
 
 
 struct stat
-{
-  __dev_t st_dev;
-  unsigned short int __pad1;
-  __ino_t st_ino;
-  __mode_t st_mode;
-  __nlink_t st_nlink;
-  __uid_t st_uid;
-  __gid_t st_gid;
-  __dev_t st_rdev;
-  unsigned short int __pad2;
-  __off_t st_size;
-  __blksize_t st_blksize;
-  __blkcnt_t st_blocks;
-  __time_t st_atime;
-  unsigned long int st_atimensec;
-  __time_t st_mtime;
-  unsigned long int st_mtimensec;
-  __time_t st_ctime;
-  unsigned long int st_ctimensec;
-  unsigned long int __unused4;
-  unsigned long int __unused5;
-};
+  {
+    __dev_t st_dev;
+    unsigned short int __pad1;
+    __ino_t st_ino;
+    __mode_t st_mode;
+    __nlink_t st_nlink;
+    __uid_t st_uid;
+    __gid_t st_gid;
+    __dev_t st_rdev;
+    unsigned short int __pad2;
+    __off_t st_size;
+    __blksize_t st_blksize;
+    __blkcnt_t st_blocks;
+    __time_t st_atime;
+    unsigned long int st_atimensec;
+    __time_t st_mtime;
+    unsigned long int st_mtimensec;
+    __time_t st_ctime;
+    unsigned long int st_ctimensec;
+    unsigned long int __unused4;
+    unsigned long int __unused5;
+  };
 extern int stat (__const char *__restrict __file,
-		 struct stat *__restrict __buf) ;
+   struct stat *__restrict __buf) ;
 extern int fstat (int __fd, struct stat *__buf) ;
 extern int chmod (__const char *__file, __mode_t __mode)
-  ;
+     ;
 extern __mode_t umask (__mode_t __mask) ;
 extern int mkdir (__const char *__path, __mode_t __mode)
-  ;
+     ;
 extern int mkfifo (__const char *__path, __mode_t __mode)
-  ;
+     ;
 extern int __fxstat (int __ver, int __fildes, struct stat *__stat_buf)
-  ;
+     ;
 extern int __xstat (int __ver, __const char *__filename,
-		    struct stat *__stat_buf) ;
+      struct stat *__stat_buf) ;
 extern int __lxstat (int __ver, __const char *__filename,
-		     struct stat *__stat_buf) ;
+       struct stat *__stat_buf) ;
 extern int __fxstatat (int __ver, int __fildes, __const char *__filename,
-		       struct stat *__stat_buf, int __flag)
-  ;
+         struct stat *__stat_buf, int __flag)
+     ;
 extern int __xmknod (int __ver, __const char *__path, __mode_t __mode,
-		     __dev_t *__dev) ;
+       __dev_t *__dev) ;
 extern int __xmknodat (int __ver, int __fd, __const char *__path,
-		       __mode_t __mode, __dev_t *__dev)
-  ;
+         __mode_t __mode, __dev_t *__dev)
+     ;
 
 
 typedef __clock_t clock_t;
@@ -14493,12 +8235,12 @@ typedef __clock_t clock_t;
 
 
 struct tms
-{
-  clock_t tms_utime;
-  clock_t tms_stime;
-  clock_t tms_cutime;
-  clock_t tms_cstime;
-};
+  {
+    clock_t tms_utime;
+    clock_t tms_stime;
+    clock_t tms_cutime;
+    clock_t tms_cstime;
+  };
 extern clock_t times (struct tms *__buffer) ;
 
 typedef int IntNative;
@@ -14527,4582 +8269,2573 @@ static void compressedStreamEOF ( void ) ;
 static void copyFileName ( Char*, Char* );
 static void* myMalloc ( Int32 );
 typedef
-struct { UChar b[8]; }
-  UInt64;
+   struct { UChar b[8]; }
+   UInt64;
 static
 void uInt64_from_UInt32s ( UInt64* n, UInt32 lo32, UInt32 hi32 )
 {
-  n->b[7] = (UChar)((hi32 >> 24) & 0xFF);
-  n->b[6] = (UChar)((hi32 >> 16) & 0xFF);
-  n->b[5] = (UChar)((hi32 >> 8) & 0xFF);
-  n->b[4] = (UChar) (hi32 & 0xFF);
-  n->b[3] = (UChar)((lo32 >> 24) & 0xFF);
-  n->b[2] = (UChar)((lo32 >> 16) & 0xFF);
-  n->b[1] = (UChar)((lo32 >> 8) & 0xFF);
-  n->b[0] = (UChar) (lo32 & 0xFF);
+   n->b[7] = (UChar)((hi32 >> 24) & 0xFF);
+   n->b[6] = (UChar)((hi32 >> 16) & 0xFF);
+   n->b[5] = (UChar)((hi32 >> 8) & 0xFF);
+   n->b[4] = (UChar) (hi32 & 0xFF);
+   n->b[3] = (UChar)((lo32 >> 24) & 0xFF);
+   n->b[2] = (UChar)((lo32 >> 16) & 0xFF);
+   n->b[1] = (UChar)((lo32 >> 8) & 0xFF);
+   n->b[0] = (UChar) (lo32 & 0xFF);
 }
 static
 double uInt64_to_double ( UInt64* n )
 {
-  Int32 i;
-  double base = 1.0;
-  double sum = 0.0;
-  for (i = 0; i < 8; i++) {
-    __asm__("TRACK895_BEGIN: nop\n\t" 
-	    "   lea	TRACK895_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK895_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK895_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    sum += base * (double)(n->b[i]);
-    base *= 256.0;
-  }
-  return sum;
+   Int32 i;
+   double base = 1.0;
+   double sum = 0.0;
+   for (i = 0; i < 8; i++) {
+  TRACK895_BEGIN: track(&&TRACK895_BEGIN, &&TRACK895_END);
+  TRACK895_END:  __asm__("nop;");
+   
+  sum += base * (double)(n->b[i]);
+        base *= 256.0;
+}
+   return sum;
 }
 static
 Bool uInt64_isZero ( UInt64* n )
 {
-  Int32 i;
-  for (i = 0; i < 8; i++)
-    {
-      __asm__("TRACK896_BEGIN: nop\n\t" 
-	      "   lea	TRACK896_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK896_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK896_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (n->b[i] != 0) return 0;
-    }
-  return 1;
+   Int32 i;
+   for (i = 0; i < 8; i++)
+       {
+TRACK896_BEGIN: track(&&TRACK896_BEGIN, &&TRACK896_END);
+TRACK896_END:  __asm__("nop;");
+ 
+if (n->b[i] != 0) return 0;
+}
+   return 1;
 }
 static
 Int32 uInt64_qrm10 ( UInt64* n )
 {
-  UInt32 rem, tmp;
-  Int32 i;
-  rem = 0;
-  for (i = 7; i >= 0; i--) {
-    __asm__("TRACK897_BEGIN: nop\n\t" 
-	    "   lea	TRACK897_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK897_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK897_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    tmp = rem * 256 + n->b[i];
-    n->b[i] = tmp / 10;
-    rem = tmp % 10;
-  }
-  return rem;
+   UInt32 rem, tmp;
+   Int32 i;
+   rem = 0;
+   for (i = 7; i >= 0; i--) {
+  TRACK897_BEGIN: track(&&TRACK897_BEGIN, &&TRACK897_END);
+  TRACK897_END:  __asm__("nop;");
+   
+  tmp = rem * 256 + n->b[i];
+        n->b[i] = tmp / 10;
+        rem = tmp % 10;
+}
+   return rem;
 }
 static
 void uInt64_toAscii ( char* outbuf, UInt64* n )
 {
-  Int32 i, q;
-  UChar buf[32];
-  Int32 nBuf = 0;
-  UInt64 n_copy = *n;
-  do {
-    __asm__("TRACK898_BEGIN: nop\n\t" 
-	    "   lea	TRACK898_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK898_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK898_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    q = uInt64_qrm10 ( &n_copy );
-    buf[nBuf] = q + '0';
-    nBuf++;
-  } while (!uInt64_isZero(&n_copy));
-  outbuf[nBuf] = 0;
-  for (i = 0; i < nBuf; i++)
-    {
-      __asm__("TRACK899_BEGIN: nop\n\t" 
-	      "   lea	TRACK899_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK899_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK899_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      outbuf[i] = buf[nBuf-i-1];
-    }
+   Int32 i, q;
+   UChar buf[32];
+   Int32 nBuf = 0;
+   UInt64 n_copy = *n;
+   do {
+  TRACK898_BEGIN: track(&&TRACK898_BEGIN, &&TRACK898_END);
+  TRACK898_END:  __asm__("nop;");
+   
+  q = uInt64_qrm10 ( &n_copy );
+        buf[nBuf] = q + '0';
+        nBuf++;
+} while (!uInt64_isZero(&n_copy));
+   outbuf[nBuf] = 0;
+   for (i = 0; i < nBuf; i++)
+       {
+TRACK899_BEGIN: track(&&TRACK899_BEGIN, &&TRACK899_END);
+TRACK899_END:  __asm__("nop;");
+ 
+outbuf[i] = buf[nBuf-i-1];
+}
 }
 static
 void compressStream ( FILE *stream, FILE *zStream )
 {
-  BZFILE* bzf = ((void *)0);
-  UChar ibuf[5000];
-  Int32 nIbuf;
-  UInt32 nbytes_in_lo32, nbytes_in_hi32;
-  UInt32 nbytes_out_lo32, nbytes_out_hi32;
-  Int32 bzerr, bzerr_dummy, ret;
-  ;
-  ;
-  if (ferror(stream)) goto errhandler_io;
-  if (ferror(zStream)) goto errhandler_io;
-  bzf = BZ2_bzWriteOpen ( &bzerr, zStream,
-			  blockSize100k, verbosity, workFactor );
-  if (bzerr != 0) goto errhandler;
-  if (verbosity >= 2)  {
-    __asm__("TRACK900_BEGIN: nop\n\t" 
-	    "   lea	TRACK900_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK900_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK900_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "\n" );
+   BZFILE* bzf = ((void *)0);
+   UChar ibuf[5000];
+   Int32 nIbuf;
+   UInt32 nbytes_in_lo32, nbytes_in_hi32;
+   UInt32 nbytes_out_lo32, nbytes_out_hi32;
+   Int32 bzerr, bzerr_dummy, ret;
+   ;
+   ;
+   if (ferror(stream)) goto errhandler_io;
+   if (ferror(zStream)) goto errhandler_io;
+   bzf = BZ2_bzWriteOpen ( &bzerr, zStream,
+                           blockSize100k, verbosity, workFactor );
+   if (bzerr != 0) goto errhandler;
+   if (verbosity >= 2)  {
+TRACK900_BEGIN: track(&&TRACK900_BEGIN, &&TRACK900_END);
+TRACK900_END:  __asm__("nop;");
+ 
+fprintf ( stderr, "\n" );
+}
+   while (((Bool)1)) {
+  TRACK902_BEGIN: track(&&TRACK902_BEGIN, &&TRACK902_END);
+  TRACK902_END:  __asm__("nop;");
+   
+  if (myfeof(stream)) break;
+        nIbuf = fread ( ibuf, sizeof(UChar), 5000, stream );
+        if (ferror(stream)) goto errhandler_io;
+        if (nIbuf > 0)  {
+  TRACK901_BEGIN: track(&&TRACK901_BEGIN, &&TRACK901_END);
+  TRACK901_END:  __asm__("nop;");
+   
+  BZ2_bzWrite ( &bzerr, bzf, (void*)ibuf, nIbuf );
   }
-  while (((Bool)1)) {
-    __asm__("TRACK902_BEGIN: nop\n\t" 
-	    "   lea	TRACK902_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK902_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK902_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (myfeof(stream)) break;
-    nIbuf = fread ( ibuf, sizeof(UChar), 5000, stream );
-    if (ferror(stream)) goto errhandler_io;
-    if (nIbuf > 0)  {
-      __asm__("TRACK901_BEGIN: nop\n\t" 
-	      "   lea	TRACK901_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK901_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK901_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      BZ2_bzWrite ( &bzerr, bzf, (void*)ibuf, nIbuf );
-    }
-    if (bzerr != 0) goto errhandler;
-  }
-  BZ2_bzWriteClose64 ( &bzerr, bzf, 0,
-		       &nbytes_in_lo32, &nbytes_in_hi32,
-		       &nbytes_out_lo32, &nbytes_out_hi32 );
-  if (bzerr != 0) goto errhandler;
-  if (ferror(zStream)) goto errhandler_io;
-  ret = fflush ( zStream );
-  if (ret == (-1)) goto errhandler_io;
-  if (zStream != stdout) {
-    __asm__("TRACK903_BEGIN: nop\n\t" 
-	    "   lea	TRACK903_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK903_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK903_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ret = fclose ( zStream );
-    outputHandleJustInCase = ((void *)0);
-    if (ret == (-1)) goto errhandler_io;
-  }
-  outputHandleJustInCase = ((void *)0);
-  if (ferror(stream)) goto errhandler_io;
-  ret = fclose ( stream );
-  if (ret == (-1)) goto errhandler_io;
-  if (verbosity >= 1) {
-    __asm__("TRACK906_BEGIN: nop\n\t" 
-	    "   lea	TRACK906_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK906_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK906_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (nbytes_in_lo32 == 0 && nbytes_in_hi32 == 0) {
-      __asm__("TRACK904_BEGIN: nop\n\t" 
-	      "   lea	TRACK904_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK904_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK904_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, " no data compressed.\n");
-    } else {
-      __asm__("TRACK905_BEGIN: nop\n\t" 
-	      "   lea	TRACK905_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK905_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK905_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      Char buf_nin[32], buf_nout[32];
+        if (bzerr != 0) goto errhandler;
+}
+   BZ2_bzWriteClose64 ( &bzerr, bzf, 0,
+                        &nbytes_in_lo32, &nbytes_in_hi32,
+                        &nbytes_out_lo32, &nbytes_out_hi32 );
+   if (bzerr != 0) goto errhandler;
+   if (ferror(zStream)) goto errhandler_io;
+   ret = fflush ( zStream );
+   if (ret == (-1)) goto errhandler_io;
+   if (zStream != stdout) {
+  TRACK903_BEGIN: track(&&TRACK903_BEGIN, &&TRACK903_END);
+  TRACK903_END:  __asm__("nop;");
+   
+  ret = fclose ( zStream );
+        outputHandleJustInCase = ((void *)0);
+        if (ret == (-1)) goto errhandler_io;
+}
+   outputHandleJustInCase = ((void *)0);
+   if (ferror(stream)) goto errhandler_io;
+   ret = fclose ( stream );
+   if (ret == (-1)) goto errhandler_io;
+   if (verbosity >= 1) {
+  TRACK906_BEGIN: track(&&TRACK906_BEGIN, &&TRACK906_END);
+  TRACK906_END:  __asm__("nop;");
+   
+  if (nbytes_in_lo32 == 0 && nbytes_in_hi32 == 0) {
+    TRACK904_BEGIN: track(&&TRACK904_BEGIN, &&TRACK904_END);
+    TRACK904_END:  __asm__("nop;");
+     
+    fprintf ( stderr, " no data compressed.\n");
+  } else {
+    Char buf_nin[32], buf_nout[32];
       UInt64 nbytes_in, nbytes_out;
       double nbytes_in_d, nbytes_out_d;
-      uInt64_from_UInt32s ( &nbytes_in,
-			    nbytes_in_lo32, nbytes_in_hi32 );
+    TRACK905_BEGIN: track(&&TRACK905_BEGIN, &&TRACK905_END);
+    TRACK905_END:  __asm__("nop;");
+     
+    uInt64_from_UInt32s ( &nbytes_in,
+              nbytes_in_lo32, nbytes_in_hi32 );
       uInt64_from_UInt32s ( &nbytes_out,
-			    nbytes_out_lo32, nbytes_out_hi32 );
+              nbytes_out_lo32, nbytes_out_hi32 );
       nbytes_in_d = uInt64_to_double ( &nbytes_in );
       nbytes_out_d = uInt64_to_double ( &nbytes_out );
       uInt64_toAscii ( buf_nin, &nbytes_in );
       uInt64_toAscii ( buf_nout, &nbytes_out );
       fprintf ( stderr, "%6.3f:1, %6.3f bits/byte, "
-		"%5.2f%% saved, %s in, %s out.\n",
-		nbytes_in_d / nbytes_out_d,
-		(8.0 * nbytes_out_d) / nbytes_in_d,
-		100.0 * (1.0 - nbytes_out_d / nbytes_in_d),
-		buf_nin,
-		buf_nout
-		);
-    }
+         "%5.2f%% saved, %s in, %s out.\n",
+         nbytes_in_d / nbytes_out_d,
+         (8.0 * nbytes_out_d) / nbytes_in_d,
+         100.0 * (1.0 - nbytes_out_d / nbytes_in_d),
+         buf_nin,
+         buf_nout
+       );
   }
-  return;
- errhandler:
-  BZ2_bzWriteClose64 ( &bzerr_dummy, bzf, 1,
-		       &nbytes_in_lo32, &nbytes_in_hi32,
-		       &nbytes_out_lo32, &nbytes_out_hi32 );
-  switch (bzerr) {
+}
+   return;
+   errhandler:
+   BZ2_bzWriteClose64 ( &bzerr_dummy, bzf, 1,
+                        &nbytes_in_lo32, &nbytes_in_hi32,
+                        &nbytes_out_lo32, &nbytes_out_hi32 );
+   switch (bzerr) {
        
   case (-9):
-    __asm__("TRACK907_BEGIN: nop\n\t" 
-	    "   lea	TRACK907_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK907_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK907_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    configError(); break;
+	TRACK907_BEGIN: track(&&TRACK907_BEGIN, &&TRACK907_END);
+	TRACK907_END:  __asm__("nop;");
+	 
+	configError(); break;
        
   case (-3):
-    __asm__("TRACK908_BEGIN: nop\n\t" 
-	    "   lea	TRACK908_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK908_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK908_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    outOfMemory (); break;
+	TRACK908_BEGIN: track(&&TRACK908_BEGIN, &&TRACK908_END);
+	TRACK908_END:  __asm__("nop;");
+	 
+	outOfMemory (); break;
        
   case (-6):
-    __asm__("TRACK910_BEGIN: nop\n\t" 
-	    "   lea	TRACK910_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK910_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK910_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-  errhandler_io:
-    {
-      __asm__("TRACK909_BEGIN: nop\n\t" 
-	      "   lea	TRACK909_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK909_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK909_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } break;
+	TRACK910_BEGIN: track(&&TRACK910_BEGIN, &&TRACK910_END);
+	TRACK910_END:  __asm__("nop;");
+	 
+	errhandler_io:
+	          {
+	TRACK909_BEGIN: track(&&TRACK909_BEGIN, &&TRACK909_END);
+	TRACK909_END:  __asm__("nop;");
+	 
+	ioError();
+	} break;
        
   default:
-    __asm__("TRACK911_BEGIN: nop\n\t" 
-	    "   lea	TRACK911_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK911_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK911_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "compress:unexpected error" );
-  }
-  panic ( "compress:end" );
+	TRACK911_BEGIN: track(&&TRACK911_BEGIN, &&TRACK911_END);
+	TRACK911_END:  __asm__("nop;");
+	 
+	panic ( "compress:unexpected error" );
+   }
+   panic ( "compress:end" );
 }
 static
 Bool uncompressStream ( FILE *zStream, FILE *stream )
 {
-  BZFILE* bzf = ((void *)0);
-  Int32 bzerr, bzerr_dummy, ret, nread, streamNo, i;
-  UChar obuf[5000];
-  UChar unused[5000];
-  Int32 nUnused;
-  UChar* unusedTmp;
-  nUnused = 0;
-  streamNo = 0;
-  ;
-  ;
-  if (ferror(stream)) goto errhandler_io;
-  if (ferror(zStream)) goto errhandler_io;
-  while (((Bool)1)) {
-    __asm__("TRACK917_BEGIN: nop\n\t" 
-	    "   lea	TRACK917_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK917_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK917_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bzf = BZ2_bzReadOpen (
-			  &bzerr, zStream, verbosity,
-			  (int)smallMode, unused, nUnused
-			  );
-    if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
-    streamNo++;
-    while (bzerr == 0) {
-      __asm__("TRACK913_BEGIN: nop\n\t" 
-	      "   lea	TRACK913_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK913_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK913_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
-      if (bzerr == (-5)) goto trycat;
-      if ((bzerr == 0 || bzerr == 4) && nread > 0)
-	{
-	  __asm__("TRACK912_BEGIN: nop\n\t" 
-		  "   lea	TRACK912_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK912_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK912_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fwrite ( obuf, sizeof(UChar), nread, stream );
-	}
-      if (ferror(stream)) goto errhandler_io;
+   BZFILE* bzf = ((void *)0);
+   Int32 bzerr, bzerr_dummy, ret, nread, streamNo, i;
+   UChar obuf[5000];
+   UChar unused[5000];
+   Int32 nUnused;
+   UChar* unusedTmp;
+   nUnused = 0;
+   streamNo = 0;
+   ;
+   ;
+   if (ferror(stream)) goto errhandler_io;
+   if (ferror(zStream)) goto errhandler_io;
+   while (((Bool)1)) {
+  TRACK917_BEGIN: track(&&TRACK917_BEGIN, &&TRACK917_END);
+  TRACK917_END:  __asm__("nop;");
+   
+  bzf = BZ2_bzReadOpen (
+                 &bzerr, zStream, verbosity,
+                 (int)smallMode, unused, nUnused
+              );
+        if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
+        streamNo++;
+        while (bzerr == 0) {
+    TRACK913_BEGIN: track(&&TRACK913_BEGIN, &&TRACK913_END);
+    TRACK913_END:  __asm__("nop;");
+     
+    nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
+             if (bzerr == (-5)) goto trycat;
+             if ((bzerr == 0 || bzerr == 4) && nread > 0)
+                 {
+    TRACK912_BEGIN: track(&&TRACK912_BEGIN, &&TRACK912_END);
+    TRACK912_END:  __asm__("nop;");
+     
+    fwrite ( obuf, sizeof(UChar), nread, stream );
     }
-    if (bzerr != 4) goto errhandler;
-    BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
-    if (bzerr != 0)  {
-      __asm__("TRACK914_BEGIN: nop\n\t" 
-	      "   lea	TRACK914_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK914_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK914_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "decompress:bzReadGetUnused" );
-    }
-    for (i = 0; i < nUnused; i++)  {
-      __asm__("TRACK915_BEGIN: nop\n\t" 
-	      "   lea	TRACK915_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK915_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK915_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      unused[i] = unusedTmp[i];
-    }
-    BZ2_bzReadClose ( &bzerr, bzf );
-    if (bzerr != 0)  {
-      __asm__("TRACK916_BEGIN: nop\n\t" 
-	      "   lea	TRACK916_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK916_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK916_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "decompress:bzReadGetUnused" );
-    }
-    if (nUnused == 0 && myfeof(zStream)) break;
+             if (ferror(stream)) goto errhandler_io;
   }
- closeok:
-  if (ferror(zStream)) goto errhandler_io;
-  ret = fclose ( zStream );
-  if (ret == (-1)) goto errhandler_io;
-  if (ferror(stream)) goto errhandler_io;
-  ret = fflush ( stream );
-  if (ret != 0) goto errhandler_io;
-  if (stream != stdout) {
-    __asm__("TRACK918_BEGIN: nop\n\t" 
-	    "   lea	TRACK918_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK918_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK918_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    ret = fclose ( stream );
-    outputHandleJustInCase = ((void *)0);
-    if (ret == (-1)) goto errhandler_io;
+        if (bzerr != 4) goto errhandler;
+        BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
+        if (bzerr != 0)  {
+  TRACK914_BEGIN: track(&&TRACK914_BEGIN, &&TRACK914_END);
+  TRACK914_END:  __asm__("nop;");
+   
+  panic ( "decompress:bzReadGetUnused" );
   }
-  outputHandleJustInCase = ((void *)0);
-  if (verbosity >= 2)  {
-    __asm__("TRACK919_BEGIN: nop\n\t" 
-	    "   lea	TRACK919_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK919_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK919_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "\n    " );
+        for (i = 0; i < nUnused; i++)  {
+  TRACK915_BEGIN: track(&&TRACK915_BEGIN, &&TRACK915_END);
+  TRACK915_END:  __asm__("nop;");
+   
+  unused[i] = unusedTmp[i];
   }
-  return ((Bool)1);
- trycat:
-  if (forceOverwrite) {
-    __asm__("TRACK922_BEGIN: nop\n\t" 
-	    "   lea	TRACK922_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK922_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK922_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    rewind(zStream);
-    while (((Bool)1)) {
-      __asm__("TRACK921_BEGIN: nop\n\t" 
-	      "   lea	TRACK921_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK921_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK921_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (myfeof(zStream)) break;
-      nread = fread ( obuf, sizeof(UChar), 5000, zStream );
-      if (ferror(zStream)) goto errhandler_io;
-      if (nread > 0)  {
-        __asm__("TRACK920_BEGIN: nop\n\t" 
-    		"   lea	TRACK920_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK920_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK920_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	fwrite ( obuf, sizeof(UChar), nread, stream );
-      }
-      if (ferror(stream)) goto errhandler_io;
+        BZ2_bzReadClose ( &bzerr, bzf );
+        if (bzerr != 0)  {
+  TRACK916_BEGIN: track(&&TRACK916_BEGIN, &&TRACK916_END);
+  TRACK916_END:  __asm__("nop;");
+   
+  panic ( "decompress:bzReadGetUnused" );
+  }
+        if (nUnused == 0 && myfeof(zStream)) break;
+}
+   closeok:
+   if (ferror(zStream)) goto errhandler_io;
+   ret = fclose ( zStream );
+   if (ret == (-1)) goto errhandler_io;
+   if (ferror(stream)) goto errhandler_io;
+   ret = fflush ( stream );
+   if (ret != 0) goto errhandler_io;
+   if (stream != stdout) {
+  TRACK918_BEGIN: track(&&TRACK918_BEGIN, &&TRACK918_END);
+  TRACK918_END:  __asm__("nop;");
+   
+  ret = fclose ( stream );
+        outputHandleJustInCase = ((void *)0);
+        if (ret == (-1)) goto errhandler_io;
+}
+   outputHandleJustInCase = ((void *)0);
+   if (verbosity >= 2)  {
+TRACK919_BEGIN: track(&&TRACK919_BEGIN, &&TRACK919_END);
+TRACK919_END:  __asm__("nop;");
+ 
+fprintf ( stderr, "\n    " );
+}
+   return ((Bool)1);
+   trycat:
+   if (forceOverwrite) {
+  TRACK922_BEGIN: track(&&TRACK922_BEGIN, &&TRACK922_END);
+  TRACK922_END:  __asm__("nop;");
+   
+  rewind(zStream);
+        while (((Bool)1)) {
+    TRACK921_BEGIN: track(&&TRACK921_BEGIN, &&TRACK921_END);
+    TRACK921_END:  __asm__("nop;");
+     
+    if (myfeof(zStream)) break;
+            nread = fread ( obuf, sizeof(UChar), 5000, zStream );
+            if (ferror(zStream)) goto errhandler_io;
+            if (nread > 0)  {
+    TRACK920_BEGIN: track(&&TRACK920_BEGIN, &&TRACK920_END);
+    TRACK920_END:  __asm__("nop;");
+     
+    fwrite ( obuf, sizeof(UChar), nread, stream );
     }
-    goto closeok;
+            if (ferror(stream)) goto errhandler_io;
   }
- errhandler:
-  BZ2_bzReadClose ( &bzerr_dummy, bzf );
-  switch (bzerr) {
+        goto closeok;
+}
+   errhandler:
+   BZ2_bzReadClose ( &bzerr_dummy, bzf );
+   switch (bzerr) {
        
   case (-9):
-    __asm__("TRACK923_BEGIN: nop\n\t" 
-	    "   lea	TRACK923_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK923_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK923_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    configError(); break;
+	TRACK923_BEGIN: track(&&TRACK923_BEGIN, &&TRACK923_END);
+	TRACK923_END:  __asm__("nop;");
+	 
+	configError(); break;
        
   case (-6):
-    __asm__("TRACK925_BEGIN: nop\n\t" 
-	    "   lea	TRACK925_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK925_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK925_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-  errhandler_io:
-    {
-      __asm__("TRACK924_BEGIN: nop\n\t" 
-	      "   lea	TRACK924_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK924_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK924_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } break;
+	TRACK925_BEGIN: track(&&TRACK925_BEGIN, &&TRACK925_END);
+	TRACK925_END:  __asm__("nop;");
+	 
+	errhandler_io:
+	          {
+	TRACK924_BEGIN: track(&&TRACK924_BEGIN, &&TRACK924_END);
+	TRACK924_END:  __asm__("nop;");
+	 
+	ioError();
+	} break;
        
   case (-4):
-    __asm__("TRACK926_BEGIN: nop\n\t" 
-	    "   lea	TRACK926_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK926_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK926_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    crcError();
+	TRACK926_BEGIN: track(&&TRACK926_BEGIN, &&TRACK926_END);
+	TRACK926_END:  __asm__("nop;");
+	 
+	crcError();
        
   case (-3):
-    __asm__("TRACK927_BEGIN: nop\n\t" 
-	    "   lea	TRACK927_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK927_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK927_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    outOfMemory();
+	TRACK927_BEGIN: track(&&TRACK927_BEGIN, &&TRACK927_END);
+	TRACK927_END:  __asm__("nop;");
+	 
+	outOfMemory();
        
   case (-7):
-    __asm__("TRACK928_BEGIN: nop\n\t" 
-	    "   lea	TRACK928_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK928_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK928_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    compressedStreamEOF();
+	TRACK928_BEGIN: track(&&TRACK928_BEGIN, &&TRACK928_END);
+	TRACK928_END:  __asm__("nop;");
+	 
+	compressedStreamEOF();
        
   case (-5):
-    __asm__("TRACK930_BEGIN: nop\n\t" 
-	    "   lea	TRACK930_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK930_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK930_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (zStream != stdin)  {
-      __asm__("TRACK929_BEGIN: nop\n\t" 
-	      "   lea	TRACK929_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK929_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK929_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fclose(zStream);
-    }
-    if (stream != stdout)  {
-      __asm__("TRACK931_BEGIN: nop\n\t" 
-	      "   lea	TRACK931_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK931_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK931_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fclose(stream);
-    }
-    if (streamNo == 1) {
-      __asm__("TRACK932_BEGIN: nop\n\t" 
-	      "   lea	TRACK932_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK932_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK932_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      return ((Bool)0);
-    } else {
-      __asm__("TRACK934_BEGIN: nop\n\t" 
-	      "   lea	TRACK934_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK934_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK934_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (noisy)
-	{
-	  __asm__("TRACK933_BEGIN: nop\n\t" 
-		  "   lea	TRACK933_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK933_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK933_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "\n%s: %s: trailing garbage after EOF ignored\n",
-		    progName, inName );
+	TRACK930_BEGIN: track(&&TRACK930_BEGIN, &&TRACK930_END);
+	TRACK930_END:  __asm__("nop;");
+	 
+	if (zStream != stdin)  {
+	TRACK929_BEGIN: track(&&TRACK929_BEGIN, &&TRACK929_END);
+	TRACK929_END:  __asm__("nop;");
+	 
+	fclose(zStream);
 	}
-      return ((Bool)1);
-    }
+         if (stream != stdout)  {
+TRACK931_BEGIN: track(&&TRACK931_BEGIN, &&TRACK931_END);
+TRACK931_END:  __asm__("nop;");
+ 
+fclose(stream);
+}
+         if (streamNo == 1) {
+  TRACK932_BEGIN: track(&&TRACK932_BEGIN, &&TRACK932_END);
+  TRACK932_END:  __asm__("nop;");
+   
+  return ((Bool)0);
+} else {
+  TRACK934_BEGIN: track(&&TRACK934_BEGIN, &&TRACK934_END);
+  TRACK934_END:  __asm__("nop;");
+   
+  if (noisy)
+               {
+  TRACK933_BEGIN: track(&&TRACK933_BEGIN, &&TRACK933_END);
+  TRACK933_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                        "\n%s: %s: trailing garbage after EOF ignored\n",
+                        progName, inName );
+  }
+              return ((Bool)1);
+}
        
   default:
-    __asm__("TRACK935_BEGIN: nop\n\t" 
-	    "   lea	TRACK935_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK935_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK935_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "decompress:unexpected error" );
-  }
-  panic ( "decompress:end" );
-  return ((Bool)1);
+	TRACK935_BEGIN: track(&&TRACK935_BEGIN, &&TRACK935_END);
+	TRACK935_END:  __asm__("nop;");
+	 
+	panic ( "decompress:unexpected error" );
+   }
+   panic ( "decompress:end" );
+   return ((Bool)1);
 }
 static
 Bool testStream ( FILE *zStream )
 {
-  BZFILE* bzf = ((void *)0);
-  Int32 bzerr, bzerr_dummy, ret, nread, streamNo, i;
-  UChar obuf[5000];
-  UChar unused[5000];
-  Int32 nUnused;
-  UChar* unusedTmp;
-  nUnused = 0;
-  streamNo = 0;
-  ;
-  if (ferror(zStream)) goto errhandler_io;
-  while (((Bool)1)) {
-    __asm__("TRACK940_BEGIN: nop\n\t" 
-	    "   lea	TRACK940_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK940_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK940_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    bzf = BZ2_bzReadOpen (
-			  &bzerr, zStream, verbosity,
-			  (int)smallMode, unused, nUnused
-			  );
-    if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
-    streamNo++;
-    while (bzerr == 0) {
-      __asm__("TRACK936_BEGIN: nop\n\t" 
-	      "   lea	TRACK936_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK936_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK936_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
-      if (bzerr == (-5)) goto errhandler;
-    }
-    if (bzerr != 4) goto errhandler;
-    BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
-    if (bzerr != 0)  {
-      __asm__("TRACK937_BEGIN: nop\n\t" 
-	      "   lea	TRACK937_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK937_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK937_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "test:bzReadGetUnused" );
-    }
-    for (i = 0; i < nUnused; i++)  {
-      __asm__("TRACK938_BEGIN: nop\n\t" 
-	      "   lea	TRACK938_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK938_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK938_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      unused[i] = unusedTmp[i];
-    }
-    BZ2_bzReadClose ( &bzerr, bzf );
-    if (bzerr != 0)  {
-      __asm__("TRACK939_BEGIN: nop\n\t" 
-	      "   lea	TRACK939_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK939_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK939_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "test:bzReadGetUnused" );
-    }
-    if (nUnused == 0 && myfeof(zStream)) break;
+   BZFILE* bzf = ((void *)0);
+   Int32 bzerr, bzerr_dummy, ret, nread, streamNo, i;
+   UChar obuf[5000];
+   UChar unused[5000];
+   Int32 nUnused;
+   UChar* unusedTmp;
+   nUnused = 0;
+   streamNo = 0;
+   ;
+   if (ferror(zStream)) goto errhandler_io;
+   while (((Bool)1)) {
+  TRACK940_BEGIN: track(&&TRACK940_BEGIN, &&TRACK940_END);
+  TRACK940_END:  __asm__("nop;");
+   
+  bzf = BZ2_bzReadOpen (
+                 &bzerr, zStream, verbosity,
+                 (int)smallMode, unused, nUnused
+              );
+        if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
+        streamNo++;
+        while (bzerr == 0) {
+    TRACK936_BEGIN: track(&&TRACK936_BEGIN, &&TRACK936_END);
+    TRACK936_END:  __asm__("nop;");
+     
+    nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
+             if (bzerr == (-5)) goto errhandler;
   }
-  if (ferror(zStream)) goto errhandler_io;
-  ret = fclose ( zStream );
-  if (ret == (-1)) goto errhandler_io;
-  if (verbosity >= 2)  {
-    __asm__("TRACK941_BEGIN: nop\n\t" 
-	    "   lea	TRACK941_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK941_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK941_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "\n    " );
+        if (bzerr != 4) goto errhandler;
+        BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
+        if (bzerr != 0)  {
+  TRACK937_BEGIN: track(&&TRACK937_BEGIN, &&TRACK937_END);
+  TRACK937_END:  __asm__("nop;");
+   
+  panic ( "test:bzReadGetUnused" );
   }
-  return ((Bool)1);
- errhandler:
-  BZ2_bzReadClose ( &bzerr_dummy, bzf );
-  if (verbosity == 0)
-    {
-      __asm__("TRACK942_BEGIN: nop\n\t" 
-	      "   lea	TRACK942_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK942_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK942_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: %s: ", progName, inName );
-    }
-  switch (bzerr) {
+        for (i = 0; i < nUnused; i++)  {
+  TRACK938_BEGIN: track(&&TRACK938_BEGIN, &&TRACK938_END);
+  TRACK938_END:  __asm__("nop;");
+   
+  unused[i] = unusedTmp[i];
+  }
+        BZ2_bzReadClose ( &bzerr, bzf );
+        if (bzerr != 0)  {
+  TRACK939_BEGIN: track(&&TRACK939_BEGIN, &&TRACK939_END);
+  TRACK939_END:  __asm__("nop;");
+   
+  panic ( "test:bzReadGetUnused" );
+  }
+        if (nUnused == 0 && myfeof(zStream)) break;
+}
+   if (ferror(zStream)) goto errhandler_io;
+   ret = fclose ( zStream );
+   if (ret == (-1)) goto errhandler_io;
+   if (verbosity >= 2)  {
+TRACK941_BEGIN: track(&&TRACK941_BEGIN, &&TRACK941_END);
+TRACK941_END:  __asm__("nop;");
+ 
+fprintf ( stderr, "\n    " );
+}
+   return ((Bool)1);
+   errhandler:
+   BZ2_bzReadClose ( &bzerr_dummy, bzf );
+   if (verbosity == 0)
+       {
+TRACK942_BEGIN: track(&&TRACK942_BEGIN, &&TRACK942_END);
+TRACK942_END:  __asm__("nop;");
+ 
+fprintf ( stderr, "%s: %s: ", progName, inName );
+}
+   switch (bzerr) {
        
   case (-9):
-    __asm__("TRACK943_BEGIN: nop\n\t" 
-	    "   lea	TRACK943_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK943_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK943_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    configError(); break;
+	TRACK943_BEGIN: track(&&TRACK943_BEGIN, &&TRACK943_END);
+	TRACK943_END:  __asm__("nop;");
+	 
+	configError(); break;
        
   case (-6):
-    __asm__("TRACK945_BEGIN: nop\n\t" 
-	    "   lea	TRACK945_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK945_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK945_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-  errhandler_io:
-    {
-      __asm__("TRACK944_BEGIN: nop\n\t" 
-	      "   lea	TRACK944_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK944_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK944_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } break;
+	TRACK945_BEGIN: track(&&TRACK945_BEGIN, &&TRACK945_END);
+	TRACK945_END:  __asm__("nop;");
+	 
+	errhandler_io:
+	          {
+	TRACK944_BEGIN: track(&&TRACK944_BEGIN, &&TRACK944_END);
+	TRACK944_END:  __asm__("nop;");
+	 
+	ioError();
+	} break;
        
   case (-4):
-    __asm__("TRACK946_BEGIN: nop\n\t" 
-	    "   lea	TRACK946_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK946_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK946_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr,
-	      "data integrity (CRC) error in data\n" );
-    return ((Bool)0);
+	TRACK946_BEGIN: track(&&TRACK946_BEGIN, &&TRACK946_END);
+	TRACK946_END:  __asm__("nop;");
+	 
+	fprintf ( stderr,
+	                   "data integrity (CRC) error in data\n" );
+         return ((Bool)0);
        
   case (-3):
-    __asm__("TRACK947_BEGIN: nop\n\t" 
-	    "   lea	TRACK947_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK947_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK947_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    outOfMemory();
+	TRACK947_BEGIN: track(&&TRACK947_BEGIN, &&TRACK947_END);
+	TRACK947_END:  __asm__("nop;");
+	 
+	outOfMemory();
        
   case (-7):
-    __asm__("TRACK948_BEGIN: nop\n\t" 
-	    "   lea	TRACK948_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK948_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK948_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr,
-	      "file ends unexpectedly\n" );
-    return ((Bool)0);
+	TRACK948_BEGIN: track(&&TRACK948_BEGIN, &&TRACK948_END);
+	TRACK948_END:  __asm__("nop;");
+	 
+	fprintf ( stderr,
+	                   "file ends unexpectedly\n" );
+         return ((Bool)0);
        
   case (-5):
-    __asm__("TRACK950_BEGIN: nop\n\t" 
-	    "   lea	TRACK950_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK950_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK950_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (zStream != stdin)  {
-      __asm__("TRACK949_BEGIN: nop\n\t" 
-	      "   lea	TRACK949_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK949_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK949_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fclose(zStream);
-    }
-    if (streamNo == 1) {
-      __asm__("TRACK951_BEGIN: nop\n\t" 
-	      "   lea	TRACK951_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK951_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK951_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"bad magic number (file not created by bzip2)\n" );
-      return ((Bool)0);
-    } else {
-      __asm__("TRACK953_BEGIN: nop\n\t" 
-	      "   lea	TRACK953_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK953_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK953_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (noisy)
-	{
-	  __asm__("TRACK952_BEGIN: nop\n\t" 
-		  "   lea	TRACK952_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK952_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK952_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "trailing garbage after EOF ignored\n" );
+	TRACK950_BEGIN: track(&&TRACK950_BEGIN, &&TRACK950_END);
+	TRACK950_END:  __asm__("nop;");
+	 
+	if (zStream != stdin)  {
+	TRACK949_BEGIN: track(&&TRACK949_BEGIN, &&TRACK949_END);
+	TRACK949_END:  __asm__("nop;");
+	 
+	fclose(zStream);
 	}
-      return ((Bool)1);
-    }
+         if (streamNo == 1) {
+  TRACK951_BEGIN: track(&&TRACK951_BEGIN, &&TRACK951_END);
+  TRACK951_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                      "bad magic number (file not created by bzip2)\n" );
+              return ((Bool)0);
+} else {
+  TRACK953_BEGIN: track(&&TRACK953_BEGIN, &&TRACK953_END);
+  TRACK953_END:  __asm__("nop;");
+   
+  if (noisy)
+               {
+  TRACK952_BEGIN: track(&&TRACK952_BEGIN, &&TRACK952_END);
+  TRACK952_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                        "trailing garbage after EOF ignored\n" );
+  }
+              return ((Bool)1);
+}
        
   default:
-    __asm__("TRACK954_BEGIN: nop\n\t" 
-	    "   lea	TRACK954_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK954_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK954_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "test:unexpected error" );
-  }
-  panic ( "test:end" );
-  return ((Bool)1);
+	TRACK954_BEGIN: track(&&TRACK954_BEGIN, &&TRACK954_END);
+	TRACK954_END:  __asm__("nop;");
+	 
+	panic ( "test:unexpected error" );
+   }
+   panic ( "test:end" );
+   return ((Bool)1);
 }
 static
 void setExit ( Int32 v )
 {
-  if (v > exitValue)  {
-    __asm__("TRACK955_BEGIN: nop\n\t" 
-	    "   lea	TRACK955_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK955_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK955_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    exitValue = v;
-  }
+   if (v > exitValue)  {
+TRACK955_BEGIN: track(&&TRACK955_BEGIN, &&TRACK955_END);
+TRACK955_END:  __asm__("nop;");
+ 
+exitValue = v;
+}
 }
 static
 void cadvise ( void )
 {
-  if (noisy)
+   if (noisy)
     {
-      __asm__("TRACK956_BEGIN: nop\n\t" 
-	      "   lea	TRACK956_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK956_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK956_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf (
-	       stderr,
-	       "\nIt is possible that the compressed file(s) have become corrupted.\n"
-	       "You can use the -tvv option to test integrity of such files.\n\n"
-	       "You can use the `bzip2recover' program to attempt to recover\n"
-	       "data from undamaged sections of corrupted files.\n\n"
-	       );
-    }
+TRACK956_BEGIN: track(&&TRACK956_BEGIN, &&TRACK956_END);
+TRACK956_END:  __asm__("nop;");
+ 
+fprintf (
+      stderr,
+      "\nIt is possible that the compressed file(s) have become corrupted.\n"
+        "You can use the -tvv option to test integrity of such files.\n\n"
+        "You can use the `bzip2recover' program to attempt to recover\n"
+        "data from undamaged sections of corrupted files.\n\n"
+    );
+}
 }
 static
 void showFileNames ( void )
 {
-  if (noisy)
+   if (noisy)
     {
-      __asm__("TRACK957_BEGIN: nop\n\t" 
-	      "   lea	TRACK957_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK957_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK957_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf (
-	       stderr,
-	       "\tInput file = %s, output file = %s\n",
-	       inName, outName
-	       );
-    }
+TRACK957_BEGIN: track(&&TRACK957_BEGIN, &&TRACK957_END);
+TRACK957_END:  __asm__("nop;");
+ 
+fprintf (
+      stderr,
+      "\tInput file = %s, output file = %s\n",
+      inName, outName
+   );
+}
 }
 static
 void cleanUpAndFail ( Int32 ec )
 {
-  IntNative retVal;
-  struct stat statBuf;
-  if ( srcMode == 3
-       && opMode != 3
-       && deleteOutputOnInterrupt ) {
-    __asm__("TRACK963_BEGIN: nop\n\t" 
-	    "   lea	TRACK963_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK963_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK963_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    retVal = stat ( inName, &statBuf );
-    if (retVal == 0) {
-      __asm__("TRACK961_BEGIN: nop\n\t" 
-	      "   lea	TRACK961_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK961_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK961_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (noisy)
-	{
-	  __asm__("TRACK958_BEGIN: nop\n\t" 
-		  "   lea	TRACK958_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK958_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK958_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "%s: Deleting output file %s, if it exists.\n",
-		    progName, outName );
-	}
-      if (outputHandleJustInCase != ((void *)0))
-	{
-	  __asm__("TRACK959_BEGIN: nop\n\t" 
-		  "   lea	TRACK959_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK959_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK959_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fclose ( outputHandleJustInCase );
-	}
-      retVal = remove ( outName );
-      if (retVal != 0)
-	{
-	  __asm__("TRACK960_BEGIN: nop\n\t" 
-		  "   lea	TRACK960_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK960_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK960_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "%s: WARNING: deletion of output file "
-		    "(apparently) failed.\n",
-		    progName );
-	}
-    } else {
-      __asm__("TRACK962_BEGIN: nop\n\t" 
-	      "   lea	TRACK962_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK962_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK962_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"%s: WARNING: deletion of output file suppressed\n",
-		progName );
-      fprintf ( stderr,
-		"%s:    since input file no longer exists.  Output file\n",
-		progName );
-      fprintf ( stderr,
-		"%s:    `%s' may be incomplete.\n",
-		progName, outName );
-      fprintf ( stderr,
-		"%s:    I suggest doing an integrity test (bzip2 -tv)"
-		" of it.\n",
-		progName );
-    }
-  }
-  if (noisy && numFileNames > 0 && numFilesProcessed < numFileNames) {
-    __asm__("TRACK964_BEGIN: nop\n\t" 
-	    "   lea	TRACK964_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK964_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK964_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+   IntNative retVal;
+   struct stat statBuf;
+   if ( srcMode == 3
+        && opMode != 3
+        && deleteOutputOnInterrupt ) {
+  TRACK963_BEGIN: track(&&TRACK963_BEGIN, &&TRACK963_END);
+  TRACK963_END:  __asm__("nop;");
+   
+  retVal = stat ( inName, &statBuf );
+        if (retVal == 0) {
+    TRACK961_BEGIN: track(&&TRACK961_BEGIN, &&TRACK961_END);
+    TRACK961_END:  __asm__("nop;");
+     
+    if (noisy)
+                 {
+    TRACK958_BEGIN: track(&&TRACK958_BEGIN, &&TRACK958_END);
+    TRACK958_END:  __asm__("nop;");
+     
     fprintf ( stderr,
-	      "%s: WARNING: some files have not been processed:\n"
-	      "%s:    %d specified on command line, %d not processed yet.\n\n",
-	      progName, progName,
-	      numFileNames, numFileNames - numFilesProcessed );
+                          "%s: Deleting output file %s, if it exists.\n",
+                          progName, outName );
+    }
+             if (outputHandleJustInCase != ((void *)0))
+                 {
+    TRACK959_BEGIN: track(&&TRACK959_BEGIN, &&TRACK959_END);
+    TRACK959_END:  __asm__("nop;");
+     
+    fclose ( outputHandleJustInCase );
+    }
+             retVal = remove ( outName );
+             if (retVal != 0)
+                 {
+    TRACK960_BEGIN: track(&&TRACK960_BEGIN, &&TRACK960_END);
+    TRACK960_END:  __asm__("nop;");
+     
+    fprintf ( stderr,
+                          "%s: WARNING: deletion of output file "
+                          "(apparently) failed.\n",
+                          progName );
+    }
+  } else {
+    TRACK962_BEGIN: track(&&TRACK962_BEGIN, &&TRACK962_END);
+    TRACK962_END:  __asm__("nop;");
+     
+    fprintf ( stderr,
+                       "%s: WARNING: deletion of output file suppressed\n",
+                        progName );
+             fprintf ( stderr,
+                       "%s:    since input file no longer exists.  Output file\n",
+                       progName );
+             fprintf ( stderr,
+                       "%s:    `%s' may be incomplete.\n",
+                       progName, outName );
+             fprintf ( stderr,
+                       "%s:    I suggest doing an integrity test (bzip2 -tv)"
+                       " of it.\n",
+                       progName );
   }
-  setExit(ec);
-  exit(exitValue);
+}
+   if (noisy && numFileNames > 0 && numFilesProcessed < numFileNames) {
+  TRACK964_BEGIN: track(&&TRACK964_BEGIN, &&TRACK964_END);
+  TRACK964_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                  "%s: WARNING: some files have not been processed:\n"
+                  "%s:    %d specified on command line, %d not processed yet.\n\n",
+                  progName, progName,
+                  numFileNames, numFileNames - numFilesProcessed );
+}
+   setExit(ec);
+   exit(exitValue);
 }
 static
 void panic ( Char* s )
 {
-  fprintf ( stderr,
-	    "\n%s: PANIC -- internal consistency error:\n"
-	    "\t%s\n"
-	    "\tThis is a BUG.  Please report it to me at:\n"
-	    "\tjseward@acm.org\n",
-	    progName, s );
-  showFileNames();
-  cleanUpAndFail( 3 );
+   fprintf ( stderr,
+             "\n%s: PANIC -- internal consistency error:\n"
+             "\t%s\n"
+             "\tThis is a BUG.  Please report it to me at:\n"
+             "\tjseward@acm.org\n",
+             progName, s );
+   showFileNames();
+   cleanUpAndFail( 3 );
 }
 static
 void crcError ( void )
 {
-  fprintf ( stderr,
-	    "\n%s: Data integrity error when decompressing.\n",
-	    progName );
-  showFileNames();
-  cadvise();
-  cleanUpAndFail( 2 );
+   fprintf ( stderr,
+             "\n%s: Data integrity error when decompressing.\n",
+             progName );
+   showFileNames();
+   cadvise();
+   cleanUpAndFail( 2 );
 }
 static
 void compressedStreamEOF ( void )
 {
   if (noisy) {
-    __asm__("TRACK965_BEGIN: nop\n\t" 
-	    "   lea	TRACK965_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK965_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK965_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr,
-	      "\n%s: Compressed file ends unexpectedly;\n\t"
-	      "perhaps it is corrupted?  *Possible* reason follows.\n",
-	      progName );
-    perror ( progName );
-    showFileNames();
-    cadvise();
-  }
+  TRACK965_BEGIN: track(&&TRACK965_BEGIN, &&TRACK965_END);
+  TRACK965_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+         "\n%s: Compressed file ends unexpectedly;\n\t"
+         "perhaps it is corrupted?  *Possible* reason follows.\n",
+         progName );
+      perror ( progName );
+      showFileNames();
+      cadvise();
+}
   cleanUpAndFail( 2 );
 }
 static
 void ioError ( void )
 {
-  fprintf ( stderr,
-	    "\n%s: I/O or other error, bailing out.  "
-	    "Possible reason follows.\n",
-	    progName );
-  perror ( progName );
-  showFileNames();
-  cleanUpAndFail( 1 );
+   fprintf ( stderr,
+             "\n%s: I/O or other error, bailing out.  "
+             "Possible reason follows.\n",
+             progName );
+   perror ( progName );
+   showFileNames();
+   cleanUpAndFail( 1 );
 }
 static
 void mySignalCatcher ( IntNative n )
 {
-  fprintf ( stderr,
-	    "\n%s: Control-C or similar caught, quitting.\n",
-	    progName );
-  cleanUpAndFail(1);
+   fprintf ( stderr,
+             "\n%s: Control-C or similar caught, quitting.\n",
+             progName );
+   cleanUpAndFail(1);
 }
 static
 void mySIGSEGVorSIGBUScatcher ( IntNative n )
 {
-  if (opMode == 1)
-    {
-      __asm__("TRACK966_BEGIN: nop\n\t" 
-	      "   lea	TRACK966_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK966_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK966_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf (
-	       stderr,
-	       "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing.\n"
-	       "\n"
-	       "   Possible causes are (most likely first):\n"
-	       "   (1) This computer has unreliable memory or cache hardware\n"
-	       "       (a surprisingly common problem; try a different machine.)\n"
-	       "   (2) A bug in the compiler used to create this executable\n"
-	       "       (unlikely, if you didn't compile bzip2 yourself.)\n"
-	       "   (3) A real bug in bzip2 -- I hope this should never be the case.\n"
-	       "   The user's manual, Section 4.3, has more info on (1) and (2).\n"
-	       "   \n"
-	       "   If you suspect this is a bug in bzip2, or are unsure about (1)\n"
-	       "   or (2), feel free to report it to me at: jseward@acm.org.\n"
-	       "   Section 4.3 of the user's manual describes the info a useful\n"
-	       "   bug report should have.  If the manual is available on your\n"
-	       "   system, please try and read it before mailing me.  If you don't\n"
-	       "   have the manual or can't be bothered to read it, mail me anyway.\n"
-	       "\n",
-	       progName );
-    }
-  else
-    {
-      __asm__("TRACK967_BEGIN: nop\n\t" 
-	      "   lea	TRACK967_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK967_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK967_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf (
-	       stderr,
-	       "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing.\n"
-	       "\n"
-	       "   Possible causes are (most likely first):\n"
-	       "   (1) The compressed data is corrupted, and bzip2's usual checks\n"
-	       "       failed to detect this.  Try bzip2 -tvv my_file.bz2.\n"
-	       "   (2) This computer has unreliable memory or cache hardware\n"
-	       "       (a surprisingly common problem; try a different machine.)\n"
-	       "   (3) A bug in the compiler used to create this executable\n"
-	       "       (unlikely, if you didn't compile bzip2 yourself.)\n"
-	       "   (4) A real bug in bzip2 -- I hope this should never be the case.\n"
-	       "   The user's manual, Section 4.3, has more info on (2) and (3).\n"
-	       "   \n"
-	       "   If you suspect this is a bug in bzip2, or are unsure about (2)\n"
-	       "   or (3), feel free to report it to me at: jseward@acm.org.\n"
-	       "   Section 4.3 of the user's manual describes the info a useful\n"
-	       "   bug report should have.  If the manual is available on your\n"
-	       "   system, please try and read it before mailing me.  If you don't\n"
-	       "   have the manual or can't be bothered to read it, mail me anyway.\n"
-	       "\n",
-	       progName );
-    }
-  showFileNames();
-  if (opMode == 1)
-    {
-      __asm__("TRACK968_BEGIN: nop\n\t" 
-	      "   lea	TRACK968_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK968_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK968_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cleanUpAndFail( 3 );
-    } else
-    {
-      __asm__("TRACK969_BEGIN: nop\n\t" 
-	      "   lea	TRACK969_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK969_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK969_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      cadvise(); cleanUpAndFail( 2 );
-    }
+   if (opMode == 1)
+       {
+TRACK966_BEGIN: track(&&TRACK966_BEGIN, &&TRACK966_END);
+TRACK966_END:  __asm__("nop;");
+ 
+fprintf (
+      stderr,
+      "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing.\n"
+      "\n"
+      "   Possible causes are (most likely first):\n"
+      "   (1) This computer has unreliable memory or cache hardware\n"
+      "       (a surprisingly common problem; try a different machine.)\n"
+      "   (2) A bug in the compiler used to create this executable\n"
+      "       (unlikely, if you didn't compile bzip2 yourself.)\n"
+      "   (3) A real bug in bzip2 -- I hope this should never be the case.\n"
+      "   The user's manual, Section 4.3, has more info on (1) and (2).\n"
+      "   \n"
+      "   If you suspect this is a bug in bzip2, or are unsure about (1)\n"
+      "   or (2), feel free to report it to me at: jseward@acm.org.\n"
+      "   Section 4.3 of the user's manual describes the info a useful\n"
+      "   bug report should have.  If the manual is available on your\n"
+      "   system, please try and read it before mailing me.  If you don't\n"
+      "   have the manual or can't be bothered to read it, mail me anyway.\n"
+      "\n",
+      progName );
+}
+      else
+       {
+TRACK967_BEGIN: track(&&TRACK967_BEGIN, &&TRACK967_END);
+TRACK967_END:  __asm__("nop;");
+ 
+fprintf (
+      stderr,
+      "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing.\n"
+      "\n"
+      "   Possible causes are (most likely first):\n"
+      "   (1) The compressed data is corrupted, and bzip2's usual checks\n"
+      "       failed to detect this.  Try bzip2 -tvv my_file.bz2.\n"
+      "   (2) This computer has unreliable memory or cache hardware\n"
+      "       (a surprisingly common problem; try a different machine.)\n"
+      "   (3) A bug in the compiler used to create this executable\n"
+      "       (unlikely, if you didn't compile bzip2 yourself.)\n"
+      "   (4) A real bug in bzip2 -- I hope this should never be the case.\n"
+      "   The user's manual, Section 4.3, has more info on (2) and (3).\n"
+      "   \n"
+      "   If you suspect this is a bug in bzip2, or are unsure about (2)\n"
+      "   or (3), feel free to report it to me at: jseward@acm.org.\n"
+      "   Section 4.3 of the user's manual describes the info a useful\n"
+      "   bug report should have.  If the manual is available on your\n"
+      "   system, please try and read it before mailing me.  If you don't\n"
+      "   have the manual or can't be bothered to read it, mail me anyway.\n"
+      "\n",
+      progName );
+}
+   showFileNames();
+   if (opMode == 1)
+       {
+TRACK968_BEGIN: track(&&TRACK968_BEGIN, &&TRACK968_END);
+TRACK968_END:  __asm__("nop;");
+ 
+cleanUpAndFail( 3 );
+} else
+      {
+  TRACK969_BEGIN: track(&&TRACK969_BEGIN, &&TRACK969_END);
+  TRACK969_END:  __asm__("nop;");
+   
+  cadvise(); cleanUpAndFail( 2 );
+}
 }
 static
 void outOfMemory ( void )
 {
-  fprintf ( stderr,
-	    "\n%s: couldn't allocate enough memory\n",
-	    progName );
-  showFileNames();
-  cleanUpAndFail(1);
+   fprintf ( stderr,
+             "\n%s: couldn't allocate enough memory\n",
+             progName );
+   showFileNames();
+   cleanUpAndFail(1);
 }
 static
 void configError ( void )
 {
-  fprintf ( stderr,
-	    "bzip2: I'm not configured correctly for this platform!\n"
-	    "\tI require Int32, Int16 and Char to have sizes\n"
-	    "\tof 4, 2 and 1 bytes to run properly, and they don't.\n"
-	    "\tProbably you can fix this by defining them correctly,\n"
-	    "\tand recompiling.  Bye!\n" );
-  setExit(3);
-  exit(exitValue);
+   fprintf ( stderr,
+             "bzip2: I'm not configured correctly for this platform!\n"
+             "\tI require Int32, Int16 and Char to have sizes\n"
+             "\tof 4, 2 and 1 bytes to run properly, and they don't.\n"
+             "\tProbably you can fix this by defining them correctly,\n"
+             "\tand recompiling.  Bye!\n" );
+   setExit(3);
+   exit(exitValue);
 }
 static
 void pad ( Char *s )
 {
-  Int32 i;
-  if ( (Int32)strlen(s) >= longestFileName ) return;
-  for (i = 1; i <= longestFileName - (Int32)strlen(s); i++)
-    {
-      __asm__("TRACK970_BEGIN: nop\n\t" 
-	      "   lea	TRACK970_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK970_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK970_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, " " );
-    }
+   Int32 i;
+   if ( (Int32)strlen(s) >= longestFileName ) return;
+   for (i = 1; i <= longestFileName - (Int32)strlen(s); i++)
+       {
+TRACK970_BEGIN: track(&&TRACK970_BEGIN, &&TRACK970_END);
+TRACK970_END:  __asm__("nop;");
+ 
+fprintf ( stderr, " " );
+}
 }
 static
 void copyFileName ( Char* to, Char* from )
 {
-  if ( strlen(from) > 1034 -10 ) {
-    __asm__("TRACK971_BEGIN: nop\n\t" 
-	    "   lea	TRACK971_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK971_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK971_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf (
-	     stderr,
-	     "bzip2: file name\n`%s'\n"
-	     "is suspiciously (more than %d chars) long.\n"
-	     "Try using a reasonable file name instead.  Sorry! :-)\n",
-	     from, 1034 -10
-	     );
-    setExit(1);
-    exit(exitValue);
-  }
+   if ( strlen(from) > 1034 -10 ) {
+  TRACK971_BEGIN: track(&&TRACK971_BEGIN, &&TRACK971_END);
+  TRACK971_END:  __asm__("nop;");
+   
+  fprintf (
+           stderr,
+           "bzip2: file name\n`%s'\n"
+           "is suspiciously (more than %d chars) long.\n"
+           "Try using a reasonable file name instead.  Sorry! :-)\n",
+           from, 1034 -10
+        );
+        setExit(1);
+        exit(exitValue);
+}
   strncpy(to,from,1034 -10);
   to[1034 -10]='\0';
 }
 static
 Bool fileExists ( Char* name )
 {
-  FILE *tmp = fopen ( name, "rb" );
-  Bool exists = (tmp != ((void *)0));
-  if (tmp != ((void *)0))  {
-    __asm__("TRACK972_BEGIN: nop\n\t" 
-	    "   lea	TRACK972_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK972_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK972_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fclose ( tmp );
-  }
-  return exists;
+   FILE *tmp = fopen ( name, "rb" );
+   Bool exists = (tmp != ((void *)0));
+   if (tmp != ((void *)0))  {
+TRACK972_BEGIN: track(&&TRACK972_BEGIN, &&TRACK972_END);
+TRACK972_END:  __asm__("nop;");
+ 
+fclose ( tmp );
+}
+   return exists;
 }
 FILE* fopen_output_safely ( Char* name, const char* mode )
 {
-  FILE* fp;
-  IntNative fh;
-  fh = open(name, 01|0100|0200, 0200|0400);
-  if (fh == -1) return ((void *)0);
-  fp = fdopen(fh, mode);
-  if (fp == ((void *)0))  {
-    __asm__("TRACK973_BEGIN: nop\n\t" 
-	    "   lea	TRACK973_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK973_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK973_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    close(fh);
-  }
-  return fp;
+   FILE* fp;
+   IntNative fh;
+   fh = open(name, 01|0100|0200, 0200|0400);
+   if (fh == -1) return ((void *)0);
+   fp = fdopen(fh, mode);
+   if (fp == ((void *)0))  {
+TRACK973_BEGIN: track(&&TRACK973_BEGIN, &&TRACK973_END);
+TRACK973_END:  __asm__("nop;");
+ 
+close(fh);
+}
+   return fp;
 }
 static
 Bool notAStandardFile ( Char* name )
 {
-  IntNative i;
-  struct stat statBuf;
-  i = lstat ( name, &statBuf );
-  if (i != 0) return ((Bool)1);
-  if (((((statBuf.st_mode)) & 0170000) == (0100000))) return ((Bool)0);
-  return ((Bool)1);
+   IntNative i;
+   struct stat statBuf;
+   i = lstat ( name, &statBuf );
+   if (i != 0) return ((Bool)1);
+   if (((((statBuf.st_mode)) & 0170000) == (0100000))) return ((Bool)0);
+   return ((Bool)1);
 }
 static
 Int32 countHardLinks ( Char* name )
 {
-  IntNative i;
-  struct stat statBuf;
-  i = lstat ( name, &statBuf );
-  if (i != 0) return 0;
-  return (statBuf.st_nlink - 1);
+   IntNative i;
+   struct stat statBuf;
+   i = lstat ( name, &statBuf );
+   if (i != 0) return 0;
+   return (statBuf.st_nlink - 1);
 }
 static
 struct stat fileMetaInfo;
 static
 void saveInputFileMetaInfo ( Char *srcName )
 {
-  IntNative retVal;
-  retVal = stat( srcName, &fileMetaInfo );
-  { if ((retVal) != 0)  {
-      __asm__("TRACK974_BEGIN: nop\n\t" 
-	      "   lea	TRACK974_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK974_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK974_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } };
+   IntNative retVal;
+   retVal = stat( srcName, &fileMetaInfo );
+   { if ((retVal) != 0)  {
+TRACK974_BEGIN: track(&&TRACK974_BEGIN, &&TRACK974_END);
+TRACK974_END:  __asm__("nop;");
+ 
+ioError();
+} };
 }
 static
 void applySavedMetaInfoToOutputFile ( Char *dstName )
 {
-  IntNative retVal;
-  struct utimbuf uTimBuf;
-  uTimBuf.actime = fileMetaInfo.st_atime;
-  uTimBuf.modtime = fileMetaInfo.st_mtime;
-  retVal = chmod ( dstName, fileMetaInfo.st_mode );
-  { if ((retVal) != 0)  {
-      __asm__("TRACK975_BEGIN: nop\n\t" 
-	      "   lea	TRACK975_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK975_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK975_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } };
-  retVal = utime ( dstName, &uTimBuf );
-  { if ((retVal) != 0)  {
-      __asm__("TRACK976_BEGIN: nop\n\t" 
-	      "   lea	TRACK976_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK976_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK976_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      ioError();
-    } };
-  retVal = chown ( dstName, fileMetaInfo.st_uid, fileMetaInfo.st_gid );
+   IntNative retVal;
+   struct utimbuf uTimBuf;
+   uTimBuf.actime = fileMetaInfo.st_atime;
+   uTimBuf.modtime = fileMetaInfo.st_mtime;
+   retVal = chmod ( dstName, fileMetaInfo.st_mode );
+   { if ((retVal) != 0)  {
+TRACK975_BEGIN: track(&&TRACK975_BEGIN, &&TRACK975_END);
+TRACK975_END:  __asm__("nop;");
+ 
+ioError();
+} };
+   retVal = utime ( dstName, &uTimBuf );
+   { if ((retVal) != 0)  {
+TRACK976_BEGIN: track(&&TRACK976_BEGIN, &&TRACK976_END);
+TRACK976_END:  __asm__("nop;");
+ 
+ioError();
+} };
+   retVal = chown ( dstName, fileMetaInfo.st_uid, fileMetaInfo.st_gid );
 }
 static
 Bool containsDubiousChars ( Char* name )
 {
-  return ((Bool)0);
+   return ((Bool)0);
 }
 Char* zSuffix[4]
-= { ".bz2", ".bz", ".tbz2", ".tbz" };
+   = { ".bz2", ".bz", ".tbz2", ".tbz" };
 Char* unzSuffix[4]
-= { "", "", ".tar", ".tar" };
+   = { "", "", ".tar", ".tar" };
 static
 Bool hasSuffix ( Char* s, Char* suffix )
 {
-  Int32 ns = strlen(s);
-  Int32 nx = strlen(suffix);
-  if (ns < nx) return ((Bool)0);
-  if (strcmp(s + ns - nx, suffix) == 0) return ((Bool)1);
-  return ((Bool)0);
+   Int32 ns = strlen(s);
+   Int32 nx = strlen(suffix);
+   if (ns < nx) return ((Bool)0);
+   if (strcmp(s + ns - nx, suffix) == 0) return ((Bool)1);
+   return ((Bool)0);
 }
 static
 Bool mapSuffix ( Char* name,
                  Char* oldSuffix, Char* newSuffix )
 {
-  if (!hasSuffix(name,oldSuffix)) return ((Bool)0);
-  name[strlen(name)-strlen(oldSuffix)] = 0;
-  strcat ( name, newSuffix );
-  return ((Bool)1);
+   if (!hasSuffix(name,oldSuffix)) return ((Bool)0);
+   name[strlen(name)-strlen(oldSuffix)] = 0;
+   strcat ( name, newSuffix );
+   return ((Bool)1);
 }
 static
 void compress ( Char *name )
 {
-  FILE *inStr;
-  FILE *outStr;
-  Int32 n, i;
-  struct stat statBuf;
-  deleteOutputOnInterrupt = ((Bool)0);
-  if (name == ((void *)0) && srcMode != 1)
-    {
-      __asm__("TRACK977_BEGIN: nop\n\t" 
-	      "   lea	TRACK977_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK977_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK977_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "compress: bad modes\n" );
-    }
-  switch (srcMode) {
+   FILE *inStr;
+   FILE *outStr;
+   Int32 n, i;
+   struct stat statBuf;
+   deleteOutputOnInterrupt = ((Bool)0);
+   if (name == ((void *)0) && srcMode != 1)
+       {
+TRACK977_BEGIN: track(&&TRACK977_BEGIN, &&TRACK977_END);
+TRACK977_END:  __asm__("nop;");
+ 
+panic ( "compress: bad modes\n" );
+}
+   switch (srcMode) {
        
   case 1:
-    __asm__("TRACK978_BEGIN: nop\n\t" 
-	    "   lea	TRACK978_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK978_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK978_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, "(stdin)" );
-    copyFileName ( outName, "(stdout)" );
-    break;
+	TRACK978_BEGIN: track(&&TRACK978_BEGIN, &&TRACK978_END);
+	TRACK978_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, "(stdin)" );
+         copyFileName ( outName, "(stdout)" );
+         break;
        
   case 3:
-    __asm__("TRACK979_BEGIN: nop\n\t" 
-	    "   lea	TRACK979_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK979_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK979_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name );
-    copyFileName ( outName, name );
-    strcat ( outName, ".bz2" );
-    break;
+	TRACK979_BEGIN: track(&&TRACK979_BEGIN, &&TRACK979_END);
+	TRACK979_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name );
+         copyFileName ( outName, name );
+         strcat ( outName, ".bz2" );
+         break;
        
   case 2:
-    __asm__("TRACK980_BEGIN: nop\n\t" 
-	    "   lea	TRACK980_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK980_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK980_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name );
-    copyFileName ( outName, "(stdout)" );
-    break;
-  }
-  if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-    __asm__("TRACK982_BEGIN: nop\n\t" 
-	    "   lea	TRACK982_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK982_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK982_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (noisy)
-      {
-	__asm__("TRACK981_BEGIN: nop\n\t" 
-  		"   lea	TRACK981_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK981_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK981_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+	TRACK980_BEGIN: track(&&TRACK980_BEGIN, &&TRACK980_END);
+	TRACK980_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name );
+         copyFileName ( outName, "(stdout)" );
+         break;
+   }
+   if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
+  TRACK982_BEGIN: track(&&TRACK982_BEGIN, &&TRACK982_END);
+  TRACK982_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK981_BEGIN: track(&&TRACK981_BEGIN, &&TRACK981_END);
+  TRACK981_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: There are no files matching `%s'.\n",
                   progName, inName );
-      }
-    setExit(1);
-    return;
   }
-  if ( srcMode != 1 && !fileExists ( inName ) ) {
-    __asm__("TRACK983_BEGIN: nop\n\t" 
-	    "   lea	TRACK983_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK983_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK983_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
-	      progName, inName, strerror((*__errno_location ())) );
-    setExit(1);
-    return;
-  }
-  for (i = 0; i < 4; i++) {
-    __asm__("TRACK986_BEGIN: nop\n\t" 
-	    "   lea	TRACK986_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK986_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK986_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (hasSuffix(inName, zSuffix[i])) {
-      __asm__("TRACK985_BEGIN: nop\n\t" 
-	      "   lea	TRACK985_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK985_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK985_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (noisy)
-	{
-	  __asm__("TRACK984_BEGIN: nop\n\t" 
-		  "   lea	TRACK984_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK984_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK984_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "%s: Input file %s already has %s suffix.\n",
-		    progName, inName, zSuffix[i] );
-	}
-      setExit(1);
-      return;
-    }
-  }
-  if ( srcMode == 3 || srcMode == 2 ) {
-    __asm__("TRACK988_BEGIN: nop\n\t" 
-	    "   lea	TRACK988_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK988_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK988_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    stat(inName, &statBuf);
-    if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-      __asm__("TRACK987_BEGIN: nop\n\t" 
-	      "   lea	TRACK987_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK987_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK987_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf( stderr,
-	       "%s: Input file %s is a directory.\n",
-	       progName,inName);
-      setExit(1);
-      return;
-    }
-  }
-  if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
-    __asm__("TRACK990_BEGIN: nop\n\t" 
-	    "   lea	TRACK990_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK990_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK990_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+        setExit(1);
+        return;
+}
+   if ( srcMode != 1 && !fileExists ( inName ) ) {
+  TRACK983_BEGIN: track(&&TRACK983_BEGIN, &&TRACK983_END);
+  TRACK983_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
+                  progName, inName, strerror((*__errno_location ())) );
+        setExit(1);
+        return;
+}
+   for (i = 0; i < 4; i++) {
+  TRACK986_BEGIN: track(&&TRACK986_BEGIN, &&TRACK986_END);
+  TRACK986_END:  __asm__("nop;");
+   
+  if (hasSuffix(inName, zSuffix[i])) {
+    TRACK985_BEGIN: track(&&TRACK985_BEGIN, &&TRACK985_END);
+    TRACK985_END:  __asm__("nop;");
+     
     if (noisy)
-      {
-	__asm__("TRACK989_BEGIN: nop\n\t" 
-  		"   lea	TRACK989_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK989_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK989_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
-                  progName, inName );
-      }
-    setExit(1);
-    return;
+              {
+    TRACK984_BEGIN: track(&&TRACK984_BEGIN, &&TRACK984_END);
+    TRACK984_END:  __asm__("nop;");
+     
+    fprintf ( stderr,
+                       "%s: Input file %s already has %s suffix.\n",
+                       progName, inName, zSuffix[i] );
+    }
+             setExit(1);
+             return;
   }
-  if ( srcMode == 3 && fileExists ( outName ) ) {
-    __asm__("TRACK993_BEGIN: nop\n\t" 
-	    "   lea	TRACK993_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK993_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK993_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (forceOverwrite) {
-      __asm__("TRACK991_BEGIN: nop\n\t" 
-	      "   lea	TRACK991_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK991_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK991_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      remove(outName);
-    } else {
-      __asm__("TRACK992_BEGIN: nop\n\t" 
-	      "   lea	TRACK992_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK992_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK992_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Output file %s already exists.\n",
-		progName, outName );
+}
+   if ( srcMode == 3 || srcMode == 2 ) {
+  TRACK988_BEGIN: track(&&TRACK988_BEGIN, &&TRACK988_END);
+  TRACK988_END:  __asm__("nop;");
+   
+  stat(inName, &statBuf);
+        if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
+    TRACK987_BEGIN: track(&&TRACK987_BEGIN, &&TRACK987_END);
+    TRACK987_END:  __asm__("nop;");
+     
+    fprintf( stderr,
+                      "%s: Input file %s is a directory.\n",
+                      progName,inName);
+             setExit(1);
+             return;
+  }
+}
+   if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
+  TRACK990_BEGIN: track(&&TRACK990_BEGIN, &&TRACK990_END);
+  TRACK990_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK989_BEGIN: track(&&TRACK989_BEGIN, &&TRACK989_END);
+  TRACK989_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
+                  progName, inName );
+  }
+        setExit(1);
+        return;
+}
+   if ( srcMode == 3 && fileExists ( outName ) ) {
+  TRACK993_BEGIN: track(&&TRACK993_BEGIN, &&TRACK993_END);
+  TRACK993_END:  __asm__("nop;");
+   
+  if (forceOverwrite) {
+    TRACK991_BEGIN: track(&&TRACK991_BEGIN, &&TRACK991_END);
+    TRACK991_END:  __asm__("nop;");
+     
+    remove(outName);
+  } else {
+    TRACK992_BEGIN: track(&&TRACK992_BEGIN, &&TRACK992_END);
+    TRACK992_END:  __asm__("nop;");
+     
+    fprintf ( stderr, "%s: Output file %s already exists.\n",
+         progName, outName );
       setExit(1);
       return;
-    }
   }
-  if ( srcMode == 3 && !forceOverwrite &&
-       (n=countHardLinks ( inName )) > 0) {
-    __asm__("TRACK994_BEGIN: nop\n\t" 
-	    "   lea	TRACK994_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK994_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK994_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
-	      progName, inName, n, n > 1 ? "s" : "" );
-    setExit(1);
-    return;
-  }
-  if ( srcMode == 3 ) {
-    __asm__("TRACK995_BEGIN: nop\n\t" 
-	    "   lea	TRACK995_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK995_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK995_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    saveInputFileMetaInfo ( inName );
-  }
-  switch ( srcMode ) {
+}
+   if ( srcMode == 3 && !forceOverwrite &&
+        (n=countHardLinks ( inName )) > 0) {
+  TRACK994_BEGIN: track(&&TRACK994_BEGIN, &&TRACK994_END);
+  TRACK994_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
+                  progName, inName, n, n > 1 ? "s" : "" );
+        setExit(1);
+        return;
+}
+   if ( srcMode == 3 ) {
+  TRACK995_BEGIN: track(&&TRACK995_BEGIN, &&TRACK995_END);
+  TRACK995_END:  __asm__("nop;");
+   
+  saveInputFileMetaInfo ( inName );
+}
+   switch ( srcMode ) {
        
   case 1:
-    __asm__("TRACK996_BEGIN: nop\n\t" 
-	    "   lea	TRACK996_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK996_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK996_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = stdin;
-    outStr = stdout;
-    if ( isatty ( fileno ( stdout ) ) ) {
-      __asm__("TRACK997_BEGIN: nop\n\t" 
-	      "   lea	TRACK997_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK997_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK997_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"%s: I won't write compressed data to a terminal.\n",
-		progName );
-      fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
-		progName, progName );
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK996_BEGIN: track(&&TRACK996_BEGIN, &&TRACK996_END);
+	TRACK996_END:  __asm__("nop;");
+	 
+	inStr = stdin;
+         outStr = stdout;
+         if ( isatty ( fileno ( stdout ) ) ) {
+  TRACK997_BEGIN: track(&&TRACK997_BEGIN, &&TRACK997_END);
+  TRACK997_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                        "%s: I won't write compressed data to a terminal.\n",
+                        progName );
+              fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+                                progName, progName );
+              setExit(1);
+              return;
+};
+         break;
        
   case 2:
-    __asm__("TRACK998_BEGIN: nop\n\t" 
-	    "   lea	TRACK998_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK998_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK998_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = fopen ( inName, "rb" );
-    outStr = stdout;
-    if ( isatty ( fileno ( stdout ) ) ) {
-      __asm__("TRACK1000_BEGIN: nop\n\t" 
-	      "   lea	TRACK1000_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1000_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1000_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"%s: I won't write compressed data to a terminal.\n",
-		progName );
-      fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
-		progName, progName );
-      if ( inStr != ((void *)0) )  {
-	__asm__("TRACK999_BEGIN: nop\n\t" 
-  		"   lea	TRACK999_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK999_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK999_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( inStr );
-      }
-      setExit(1);
-      return;
-    };
-    if ( inStr == ((void *)0) ) {
-      __asm__("TRACK1001_BEGIN: nop\n\t" 
-	      "   lea	TRACK1001_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1001_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1001_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
-		progName, inName, strerror((*__errno_location ())) );
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK998_BEGIN: track(&&TRACK998_BEGIN, &&TRACK998_END);
+	TRACK998_END:  __asm__("nop;");
+	 
+	inStr = fopen ( inName, "rb" );
+         outStr = stdout;
+         if ( isatty ( fileno ( stdout ) ) ) {
+  TRACK1000_BEGIN: track(&&TRACK1000_BEGIN, &&TRACK1000_END);
+  TRACK1000_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                        "%s: I won't write compressed data to a terminal.\n",
+                        progName );
+              fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+                                progName, progName );
+              if ( inStr != ((void *)0) )  {
+  TRACK999_BEGIN: track(&&TRACK999_BEGIN, &&TRACK999_END);
+  TRACK999_END:  __asm__("nop;");
+   
+  fclose ( inStr );
+  }
+              setExit(1);
+              return;
+};
+         if ( inStr == ((void *)0) ) {
+  TRACK1001_BEGIN: track(&&TRACK1001_BEGIN, &&TRACK1001_END);
+  TRACK1001_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
+                        progName, inName, strerror((*__errno_location ())) );
+              setExit(1);
+              return;
+};
+         break;
        
   case 3:
-    __asm__("TRACK1002_BEGIN: nop\n\t" 
-	    "   lea	TRACK1002_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1002_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1002_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = fopen ( inName, "rb" );
-    outStr = fopen_output_safely ( outName, "wb" );
-    if ( outStr == ((void *)0)) {
-      __asm__("TRACK1004_BEGIN: nop\n\t" 
-	      "   lea	TRACK1004_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1004_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1004_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
-		progName, outName, strerror((*__errno_location ())) );
-      if ( inStr != ((void *)0) )  {
-	__asm__("TRACK1003_BEGIN: nop\n\t" 
-  		"   lea	TRACK1003_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1003_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1003_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( inStr );
-      }
-      setExit(1);
-      return;
-    }
-    if ( inStr == ((void *)0) ) {
-      __asm__("TRACK1006_BEGIN: nop\n\t" 
-	      "   lea	TRACK1006_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1006_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1006_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
-		progName, inName, strerror((*__errno_location ())) );
-      if ( outStr != ((void *)0) )  {
-	__asm__("TRACK1005_BEGIN: nop\n\t" 
-  		"   lea	TRACK1005_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1005_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1005_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( outStr );
-      }
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK1002_BEGIN: track(&&TRACK1002_BEGIN, &&TRACK1002_END);
+	TRACK1002_END:  __asm__("nop;");
+	 
+	inStr = fopen ( inName, "rb" );
+         outStr = fopen_output_safely ( outName, "wb" );
+         if ( outStr == ((void *)0)) {
+  TRACK1004_BEGIN: track(&&TRACK1004_BEGIN, &&TRACK1004_END);
+  TRACK1004_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
+                        progName, outName, strerror((*__errno_location ())) );
+              if ( inStr != ((void *)0) )  {
+  TRACK1003_BEGIN: track(&&TRACK1003_BEGIN, &&TRACK1003_END);
+  TRACK1003_END:  __asm__("nop;");
+   
+  fclose ( inStr );
+  }
+              setExit(1);
+              return;
+}
+         if ( inStr == ((void *)0) ) {
+  TRACK1006_BEGIN: track(&&TRACK1006_BEGIN, &&TRACK1006_END);
+  TRACK1006_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
+                        progName, inName, strerror((*__errno_location ())) );
+              if ( outStr != ((void *)0) )  {
+  TRACK1005_BEGIN: track(&&TRACK1005_BEGIN, &&TRACK1005_END);
+  TRACK1005_END:  __asm__("nop;");
+   
+  fclose ( outStr );
+  }
+              setExit(1);
+              return;
+};
+         break;
        
   default:
-    __asm__("TRACK1007_BEGIN: nop\n\t" 
-	    "   lea	TRACK1007_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1007_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1007_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "compress: bad srcMode" );
-    break;
+	TRACK1007_BEGIN: track(&&TRACK1007_BEGIN, &&TRACK1007_END);
+	TRACK1007_END:  __asm__("nop;");
+	 
+	panic ( "compress: bad srcMode" );
+         break;
+   }
+   if (verbosity >= 1) {
+  TRACK1008_BEGIN: track(&&TRACK1008_BEGIN, &&TRACK1008_END);
+  TRACK1008_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "  %s: ", inName );
+        pad ( inName );
+        fflush ( stderr );
+}
+   outputHandleJustInCase = outStr;
+   deleteOutputOnInterrupt = ((Bool)1);
+   compressStream ( inStr, outStr );
+   outputHandleJustInCase = ((void *)0);
+   if ( srcMode == 3 ) {
+  TRACK1011_BEGIN: track(&&TRACK1011_BEGIN, &&TRACK1011_END);
+  TRACK1011_END:  __asm__("nop;");
+   
+  applySavedMetaInfoToOutputFile ( outName );
+        deleteOutputOnInterrupt = ((Bool)0);
+        if ( !keepInputFiles ) {
+    IntNative retVal = remove ( inName );
+    TRACK1010_BEGIN: track(&&TRACK1010_BEGIN, &&TRACK1010_END);
+    TRACK1010_END:  __asm__("nop;");
+     
+    { if ((retVal) != 0)  {
+    TRACK1009_BEGIN: track(&&TRACK1009_BEGIN, &&TRACK1009_END);
+    TRACK1009_END:  __asm__("nop;");
+     
+    ioError();
+    } };
   }
-  if (verbosity >= 1) {
-    __asm__("TRACK1008_BEGIN: nop\n\t" 
-	    "   lea	TRACK1008_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1008_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1008_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "  %s: ", inName );
-    pad ( inName );
-    fflush ( stderr );
-  }
-  outputHandleJustInCase = outStr;
-  deleteOutputOnInterrupt = ((Bool)1);
-  compressStream ( inStr, outStr );
-  outputHandleJustInCase = ((void *)0);
-  if ( srcMode == 3 ) {
-    __asm__("TRACK1011_BEGIN: nop\n\t" 
-	    "   lea	TRACK1011_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1011_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1011_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    applySavedMetaInfoToOutputFile ( outName );
-    deleteOutputOnInterrupt = ((Bool)0);
-    if ( !keepInputFiles ) {
-      __asm__("TRACK1010_BEGIN: nop\n\t" 
-	      "   lea	TRACK1010_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1010_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1010_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      IntNative retVal = remove ( inName );
-      { if ((retVal) != 0)  {
-	  __asm__("TRACK1009_BEGIN: nop\n\t" 
-		  "   lea	TRACK1009_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1009_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1009_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  ioError();
-	} };
-    }
-  }
-  deleteOutputOnInterrupt = ((Bool)0);
+}
+   deleteOutputOnInterrupt = ((Bool)0);
 }
 static
 void uncompress ( Char *name )
 {
-  FILE *inStr;
-  FILE *outStr;
-  Int32 n, i;
-  Bool magicNumberOK;
-  Bool cantGuess;
-  struct stat statBuf;
-  deleteOutputOnInterrupt = ((Bool)0);
-  if (name == ((void *)0) && srcMode != 1)
-    {
-      __asm__("TRACK1012_BEGIN: nop\n\t" 
-	      "   lea	TRACK1012_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1012_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1012_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "uncompress: bad modes\n" );
-    }
-  cantGuess = ((Bool)0);
-  switch (srcMode) {
+   FILE *inStr;
+   FILE *outStr;
+   Int32 n, i;
+   Bool magicNumberOK;
+   Bool cantGuess;
+   struct stat statBuf;
+   deleteOutputOnInterrupt = ((Bool)0);
+   if (name == ((void *)0) && srcMode != 1)
+       {
+TRACK1012_BEGIN: track(&&TRACK1012_BEGIN, &&TRACK1012_END);
+TRACK1012_END:  __asm__("nop;");
+ 
+panic ( "uncompress: bad modes\n" );
+}
+   cantGuess = ((Bool)0);
+   switch (srcMode) {
        
   case 1:
-    __asm__("TRACK1013_BEGIN: nop\n\t" 
-	    "   lea	TRACK1013_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1013_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1013_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, "(stdin)" );
-    copyFileName ( outName, "(stdout)" );
-    break;
+	TRACK1013_BEGIN: track(&&TRACK1013_BEGIN, &&TRACK1013_END);
+	TRACK1013_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, "(stdin)" );
+         copyFileName ( outName, "(stdout)" );
+         break;
        
   case 3:
-    __asm__("TRACK1014_BEGIN: nop\n\t" 
-	    "   lea	TRACK1014_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1014_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1014_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name );
-    copyFileName ( outName, name );
-    for (i = 0; i < 4; i++)
-      {
-	__asm__("TRACK1015_BEGIN: nop\n\t" 
-		"   lea	TRACK1015_BEGIN, %%eax\n\t"   
-		"   lea	TRACK1015_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK1015_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
-	  goto zzz;
-      }
-    cantGuess = ((Bool)1);
-    strcat ( outName, ".out" );
-    break;
+	TRACK1014_BEGIN: track(&&TRACK1014_BEGIN, &&TRACK1014_END);
+	TRACK1014_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name );
+         copyFileName ( outName, name );
+         for (i = 0; i < 4; i++)
+             {
+TRACK1015_BEGIN: track(&&TRACK1015_BEGIN, &&TRACK1015_END);
+TRACK1015_END:  __asm__("nop;");
+ 
+if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
+               goto zzz;
+}
+         cantGuess = ((Bool)1);
+         strcat ( outName, ".out" );
+         break;
        
   case 2:
-    __asm__("TRACK1016_BEGIN: nop\n\t" 
-	    "   lea	TRACK1016_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1016_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1016_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name );
-    copyFileName ( outName, "(stdout)" );
-    break;
-  }
- zzz:
-  if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-    __asm__("TRACK1018_BEGIN: nop\n\t" 
-	    "   lea	TRACK1018_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1018_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1018_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (noisy)
-      {
-	__asm__("TRACK1017_BEGIN: nop\n\t" 
-  		"   lea	TRACK1017_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1017_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1017_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+	TRACK1016_BEGIN: track(&&TRACK1016_BEGIN, &&TRACK1016_END);
+	TRACK1016_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name );
+         copyFileName ( outName, "(stdout)" );
+         break;
+   }
+   zzz:
+   if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
+  TRACK1018_BEGIN: track(&&TRACK1018_BEGIN, &&TRACK1018_END);
+  TRACK1018_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK1017_BEGIN: track(&&TRACK1017_BEGIN, &&TRACK1017_END);
+  TRACK1017_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: There are no files matching `%s'.\n",
                   progName, inName );
-      }
-    setExit(1);
-    return;
   }
-  if ( srcMode != 1 && !fileExists ( inName ) ) {
-    __asm__("TRACK1019_BEGIN: nop\n\t" 
-	    "   lea	TRACK1019_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1019_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1019_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
-	      progName, inName, strerror((*__errno_location ())) );
-    setExit(1);
-    return;
+        setExit(1);
+        return;
+}
+   if ( srcMode != 1 && !fileExists ( inName ) ) {
+  TRACK1019_BEGIN: track(&&TRACK1019_BEGIN, &&TRACK1019_END);
+  TRACK1019_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
+                  progName, inName, strerror((*__errno_location ())) );
+        setExit(1);
+        return;
+}
+   if ( srcMode == 3 || srcMode == 2 ) {
+  TRACK1021_BEGIN: track(&&TRACK1021_BEGIN, &&TRACK1021_END);
+  TRACK1021_END:  __asm__("nop;");
+   
+  stat(inName, &statBuf);
+        if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
+    TRACK1020_BEGIN: track(&&TRACK1020_BEGIN, &&TRACK1020_END);
+    TRACK1020_END:  __asm__("nop;");
+     
+    fprintf( stderr,
+                      "%s: Input file %s is a directory.\n",
+                      progName,inName);
+             setExit(1);
+             return;
   }
-  if ( srcMode == 3 || srcMode == 2 ) {
-    __asm__("TRACK1021_BEGIN: nop\n\t" 
-	    "   lea	TRACK1021_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1021_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1021_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    stat(inName, &statBuf);
-    if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-      __asm__("TRACK1020_BEGIN: nop\n\t" 
-	      "   lea	TRACK1020_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1020_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1020_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf( stderr,
-	       "%s: Input file %s is a directory.\n",
-	       progName,inName);
-      setExit(1);
-      return;
-    }
-  }
-  if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
-    __asm__("TRACK1023_BEGIN: nop\n\t" 
-	    "   lea	TRACK1023_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1023_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1023_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (noisy)
-      {
-	__asm__("TRACK1022_BEGIN: nop\n\t" 
-  		"   lea	TRACK1022_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1022_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1022_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
+}
+   if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
+  TRACK1023_BEGIN: track(&&TRACK1023_BEGIN, &&TRACK1023_END);
+  TRACK1023_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK1022_BEGIN: track(&&TRACK1022_BEGIN, &&TRACK1022_END);
+  TRACK1022_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
                   progName, inName );
-      }
-    setExit(1);
-    return;
   }
-  if ( cantGuess ) {
-    __asm__("TRACK1025_BEGIN: nop\n\t" 
-	    "   lea	TRACK1025_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1025_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1025_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (noisy)
-      {
-	__asm__("TRACK1024_BEGIN: nop\n\t" 
-  		"   lea	TRACK1024_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1024_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1024_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr,
+        setExit(1);
+        return;
+}
+   if ( cantGuess ) {
+  TRACK1025_BEGIN: track(&&TRACK1025_BEGIN, &&TRACK1025_END);
+  TRACK1025_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK1024_BEGIN: track(&&TRACK1024_BEGIN, &&TRACK1024_END);
+  TRACK1024_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
                   "%s: Can't guess original name for %s -- using %s\n",
                   progName, inName, outName );
-      }
   }
-  if ( srcMode == 3 && fileExists ( outName ) ) {
-    __asm__("TRACK1028_BEGIN: nop\n\t" 
-	    "   lea	TRACK1028_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1028_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1028_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (forceOverwrite) {
-      __asm__("TRACK1026_BEGIN: nop\n\t" 
-	      "   lea	TRACK1026_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1026_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1026_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      remove(outName);
-    } else {
-      __asm__("TRACK1027_BEGIN: nop\n\t" 
-	      "   lea	TRACK1027_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1027_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1027_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Output file %s already exists.\n",
-		progName, outName );
-      setExit(1);
-      return;
-    }
+}
+   if ( srcMode == 3 && fileExists ( outName ) ) {
+  TRACK1028_BEGIN: track(&&TRACK1028_BEGIN, &&TRACK1028_END);
+  TRACK1028_END:  __asm__("nop;");
+   
+  if (forceOverwrite) {
+    TRACK1026_BEGIN: track(&&TRACK1026_BEGIN, &&TRACK1026_END);
+    TRACK1026_END:  __asm__("nop;");
+     
+    remove(outName);
+  } else {
+    TRACK1027_BEGIN: track(&&TRACK1027_BEGIN, &&TRACK1027_END);
+    TRACK1027_END:  __asm__("nop;");
+     
+    fprintf ( stderr, "%s: Output file %s already exists.\n",
+                      progName, outName );
+            setExit(1);
+            return;
   }
-  if ( srcMode == 3 && !forceOverwrite &&
-       (n=countHardLinks ( inName ) ) > 0) {
-    __asm__("TRACK1029_BEGIN: nop\n\t" 
-	    "   lea	TRACK1029_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1029_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1029_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
-	      progName, inName, n, n > 1 ? "s" : "" );
-    setExit(1);
-    return;
-  }
-  if ( srcMode == 3 ) {
-    __asm__("TRACK1030_BEGIN: nop\n\t" 
-	    "   lea	TRACK1030_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1030_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1030_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    saveInputFileMetaInfo ( inName );
-  }
-  switch ( srcMode ) {
+}
+   if ( srcMode == 3 && !forceOverwrite &&
+        (n=countHardLinks ( inName ) ) > 0) {
+  TRACK1029_BEGIN: track(&&TRACK1029_BEGIN, &&TRACK1029_END);
+  TRACK1029_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
+                  progName, inName, n, n > 1 ? "s" : "" );
+        setExit(1);
+        return;
+}
+   if ( srcMode == 3 ) {
+  TRACK1030_BEGIN: track(&&TRACK1030_BEGIN, &&TRACK1030_END);
+  TRACK1030_END:  __asm__("nop;");
+   
+  saveInputFileMetaInfo ( inName );
+}
+   switch ( srcMode ) {
        
   case 1:
-    __asm__("TRACK1031_BEGIN: nop\n\t" 
-	    "   lea	TRACK1031_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1031_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1031_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = stdin;
-    outStr = stdout;
-    if ( isatty ( fileno ( stdin ) ) ) {
-      __asm__("TRACK1032_BEGIN: nop\n\t" 
-	      "   lea	TRACK1032_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1032_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1032_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"%s: I won't read compressed data from a terminal.\n",
-		progName );
-      fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
-		progName, progName );
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK1031_BEGIN: track(&&TRACK1031_BEGIN, &&TRACK1031_END);
+	TRACK1031_END:  __asm__("nop;");
+	 
+	inStr = stdin;
+         outStr = stdout;
+         if ( isatty ( fileno ( stdin ) ) ) {
+  TRACK1032_BEGIN: track(&&TRACK1032_BEGIN, &&TRACK1032_END);
+  TRACK1032_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                        "%s: I won't read compressed data from a terminal.\n",
+                        progName );
+              fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+                                progName, progName );
+              setExit(1);
+              return;
+};
+         break;
        
   case 2:
-    __asm__("TRACK1033_BEGIN: nop\n\t" 
-	    "   lea	TRACK1033_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1033_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1033_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = fopen ( inName, "rb" );
-    outStr = stdout;
-    if ( inStr == ((void *)0) ) {
-      __asm__("TRACK1035_BEGIN: nop\n\t" 
-	      "   lea	TRACK1035_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1035_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1035_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
-		progName, inName, strerror((*__errno_location ())) );
-      if ( inStr != ((void *)0) )  {
-	__asm__("TRACK1034_BEGIN: nop\n\t" 
-  		"   lea	TRACK1034_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1034_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1034_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( inStr );
-      }
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK1033_BEGIN: track(&&TRACK1033_BEGIN, &&TRACK1033_END);
+	TRACK1033_END:  __asm__("nop;");
+	 
+	inStr = fopen ( inName, "rb" );
+         outStr = stdout;
+         if ( inStr == ((void *)0) ) {
+  TRACK1035_BEGIN: track(&&TRACK1035_BEGIN, &&TRACK1035_END);
+  TRACK1035_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
+                        progName, inName, strerror((*__errno_location ())) );
+              if ( inStr != ((void *)0) )  {
+  TRACK1034_BEGIN: track(&&TRACK1034_BEGIN, &&TRACK1034_END);
+  TRACK1034_END:  __asm__("nop;");
+   
+  fclose ( inStr );
+  }
+              setExit(1);
+              return;
+};
+         break;
        
   case 3:
-    __asm__("TRACK1036_BEGIN: nop\n\t" 
-	    "   lea	TRACK1036_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1036_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1036_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = fopen ( inName, "rb" );
-    outStr = fopen_output_safely ( outName, "wb" );
-    if ( outStr == ((void *)0)) {
-      __asm__("TRACK1038_BEGIN: nop\n\t" 
-	      "   lea	TRACK1038_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1038_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1038_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
-		progName, outName, strerror((*__errno_location ())) );
-      if ( inStr != ((void *)0) )  {
-	__asm__("TRACK1037_BEGIN: nop\n\t" 
-  		"   lea	TRACK1037_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1037_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1037_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( inStr );
-      }
-      setExit(1);
-      return;
-    }
-    if ( inStr == ((void *)0) ) {
-      __asm__("TRACK1040_BEGIN: nop\n\t" 
-	      "   lea	TRACK1040_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1040_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1040_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
-		progName, inName, strerror((*__errno_location ())) );
-      if ( outStr != ((void *)0) )  {
-	__asm__("TRACK1039_BEGIN: nop\n\t" 
-  		"   lea	TRACK1039_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1039_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1039_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fclose ( outStr );
-      }
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK1036_BEGIN: track(&&TRACK1036_BEGIN, &&TRACK1036_END);
+	TRACK1036_END:  __asm__("nop;");
+	 
+	inStr = fopen ( inName, "rb" );
+         outStr = fopen_output_safely ( outName, "wb" );
+         if ( outStr == ((void *)0)) {
+  TRACK1038_BEGIN: track(&&TRACK1038_BEGIN, &&TRACK1038_END);
+  TRACK1038_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
+                        progName, outName, strerror((*__errno_location ())) );
+              if ( inStr != ((void *)0) )  {
+  TRACK1037_BEGIN: track(&&TRACK1037_BEGIN, &&TRACK1037_END);
+  TRACK1037_END:  __asm__("nop;");
+   
+  fclose ( inStr );
+  }
+              setExit(1);
+              return;
+}
+         if ( inStr == ((void *)0) ) {
+  TRACK1040_BEGIN: track(&&TRACK1040_BEGIN, &&TRACK1040_END);
+  TRACK1040_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
+                        progName, inName, strerror((*__errno_location ())) );
+              if ( outStr != ((void *)0) )  {
+  TRACK1039_BEGIN: track(&&TRACK1039_BEGIN, &&TRACK1039_END);
+  TRACK1039_END:  __asm__("nop;");
+   
+  fclose ( outStr );
+  }
+              setExit(1);
+              return;
+};
+         break;
        
   default:
-    __asm__("TRACK1041_BEGIN: nop\n\t" 
-	    "   lea	TRACK1041_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1041_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1041_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "uncompress: bad srcMode" );
-    break;
-  }
-  if (verbosity >= 1) {
-    __asm__("TRACK1042_BEGIN: nop\n\t" 
-	    "   lea	TRACK1042_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1042_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1042_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "  %s: ", inName );
-    pad ( inName );
-    fflush ( stderr );
-  }
-  outputHandleJustInCase = outStr;
-  deleteOutputOnInterrupt = ((Bool)1);
-  magicNumberOK = uncompressStream ( inStr, outStr );
-  outputHandleJustInCase = ((void *)0);
-  if ( magicNumberOK ) {
-    __asm__("TRACK1046_BEGIN: nop\n\t" 
-	    "   lea	TRACK1046_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1046_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1046_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if ( srcMode == 3 ) {
-      __asm__("TRACK1045_BEGIN: nop\n\t" 
-	      "   lea	TRACK1045_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1045_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1045_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      applySavedMetaInfoToOutputFile ( outName );
-      deleteOutputOnInterrupt = ((Bool)0);
-      if ( !keepInputFiles ) {
-	__asm__("TRACK1044_BEGIN: nop\n\t" 
-      		"   lea	TRACK1044_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK1044_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK1044_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	IntNative retVal = remove ( inName );
-	{ if ((retVal) != 0)  {
-	    __asm__("TRACK1043_BEGIN: nop\n\t" 
-		    "   lea	TRACK1043_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK1043_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK1043_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    ioError();
-	  } };
-      }
-    }
-  } else {
-    __asm__("TRACK1049_BEGIN: nop\n\t" 
-	    "   lea	TRACK1049_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1049_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1049_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    unzFailsExist = ((Bool)1);
-    deleteOutputOnInterrupt = ((Bool)0);
-    if ( srcMode == 3 ) {
-      __asm__("TRACK1048_BEGIN: nop\n\t" 
-	      "   lea	TRACK1048_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1048_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1048_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      IntNative retVal = remove ( outName );
+	TRACK1041_BEGIN: track(&&TRACK1041_BEGIN, &&TRACK1041_END);
+	TRACK1041_END:  __asm__("nop;");
+	 
+	panic ( "uncompress: bad srcMode" );
+         break;
+   }
+   if (verbosity >= 1) {
+  TRACK1042_BEGIN: track(&&TRACK1042_BEGIN, &&TRACK1042_END);
+  TRACK1042_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "  %s: ", inName );
+        pad ( inName );
+        fflush ( stderr );
+}
+   outputHandleJustInCase = outStr;
+   deleteOutputOnInterrupt = ((Bool)1);
+   magicNumberOK = uncompressStream ( inStr, outStr );
+   outputHandleJustInCase = ((void *)0);
+   if ( magicNumberOK ) {
+  TRACK1046_BEGIN: track(&&TRACK1046_BEGIN, &&TRACK1046_END);
+  TRACK1046_END:  __asm__("nop;");
+   
+  if ( srcMode == 3 ) {
+    TRACK1045_BEGIN: track(&&TRACK1045_BEGIN, &&TRACK1045_END);
+    TRACK1045_END:  __asm__("nop;");
+     
+    applySavedMetaInfoToOutputFile ( outName );
+             deleteOutputOnInterrupt = ((Bool)0);
+             if ( !keepInputFiles ) {
+      IntNative retVal = remove ( inName );
+      TRACK1044_BEGIN: track(&&TRACK1044_BEGIN, &&TRACK1044_END);
+      TRACK1044_END:  __asm__("nop;");
+       
       { if ((retVal) != 0)  {
-	  __asm__("TRACK1047_BEGIN: nop\n\t" 
-		  "   lea	TRACK1047_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1047_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1047_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  ioError();
-	} };
+      TRACK1043_BEGIN: track(&&TRACK1043_BEGIN, &&TRACK1043_END);
+      TRACK1043_END:  __asm__("nop;");
+       
+      ioError();
+      } };
     }
   }
-  deleteOutputOnInterrupt = ((Bool)0);
-  if ( magicNumberOK ) {
-    __asm__("TRACK1051_BEGIN: nop\n\t" 
-	    "   lea	TRACK1051_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1051_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1051_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (verbosity >= 1)
-      {
-	__asm__("TRACK1050_BEGIN: nop\n\t" 
-  		"   lea	TRACK1050_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1050_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1050_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "done\n" );
-      }
-  } else {
-    __asm__("TRACK1054_BEGIN: nop\n\t" 
-	    "   lea	TRACK1054_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1054_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1054_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    setExit(2);
-    if (verbosity >= 1)
-      {
-	__asm__("TRACK1052_BEGIN: nop\n\t" 
-  		"   lea	TRACK1052_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1052_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1052_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "not a bzip2 file.\n" );
-      } else
-      {
-	__asm__("TRACK1053_BEGIN: nop\n\t" 
-  		"   lea	TRACK1053_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1053_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1053_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr,
-		  "%s: %s is not a bzip2 file.\n",
-		  progName, inName );
-      }
+} else {
+  TRACK1049_BEGIN: track(&&TRACK1049_BEGIN, &&TRACK1049_END);
+  TRACK1049_END:  __asm__("nop;");
+   
+  unzFailsExist = ((Bool)1);
+        deleteOutputOnInterrupt = ((Bool)0);
+        if ( srcMode == 3 ) {
+    IntNative retVal = remove ( outName );
+    TRACK1048_BEGIN: track(&&TRACK1048_BEGIN, &&TRACK1048_END);
+    TRACK1048_END:  __asm__("nop;");
+     
+    { if ((retVal) != 0)  {
+    TRACK1047_BEGIN: track(&&TRACK1047_BEGIN, &&TRACK1047_END);
+    TRACK1047_END:  __asm__("nop;");
+     
+    ioError();
+    } };
   }
+}
+   deleteOutputOnInterrupt = ((Bool)0);
+   if ( magicNumberOK ) {
+  TRACK1051_BEGIN: track(&&TRACK1051_BEGIN, &&TRACK1051_END);
+  TRACK1051_END:  __asm__("nop;");
+   
+  if (verbosity >= 1)
+            {
+  TRACK1050_BEGIN: track(&&TRACK1050_BEGIN, &&TRACK1050_END);
+  TRACK1050_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "done\n" );
+  }
+} else {
+  TRACK1054_BEGIN: track(&&TRACK1054_BEGIN, &&TRACK1054_END);
+  TRACK1054_END:  __asm__("nop;");
+   
+  setExit(2);
+        if (verbosity >= 1)
+            {
+  TRACK1052_BEGIN: track(&&TRACK1052_BEGIN, &&TRACK1052_END);
+  TRACK1052_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "not a bzip2 file.\n" );
+  } else
+            {
+  TRACK1053_BEGIN: track(&&TRACK1053_BEGIN, &&TRACK1053_END);
+  TRACK1053_END:  __asm__("nop;");
+   
+  fprintf ( stderr,
+                     "%s: %s is not a bzip2 file.\n",
+                     progName, inName );
+  }
+}
 }
 static
 void testf ( Char *name )
 {
-  FILE *inStr;
-  Bool allOK;
-  struct stat statBuf;
-  deleteOutputOnInterrupt = ((Bool)0);
-  if (name == ((void *)0) && srcMode != 1)
-    {
-      __asm__("TRACK1055_BEGIN: nop\n\t" 
-	      "   lea	TRACK1055_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1055_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1055_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      panic ( "testf: bad modes\n" );
-    }
-  copyFileName ( outName, "(none)" );
-  switch (srcMode) {
+   FILE *inStr;
+   Bool allOK;
+   struct stat statBuf;
+   deleteOutputOnInterrupt = ((Bool)0);
+   if (name == ((void *)0) && srcMode != 1)
+       {
+TRACK1055_BEGIN: track(&&TRACK1055_BEGIN, &&TRACK1055_END);
+TRACK1055_END:  __asm__("nop;");
+ 
+panic ( "testf: bad modes\n" );
+}
+   copyFileName ( outName, "(none)" );
+   switch (srcMode) {
        
   case 1:
-    __asm__("TRACK1056_BEGIN: nop\n\t" 
-	    "   lea	TRACK1056_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1056_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1056_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, "(stdin)" ); break;
-       
-  case 3:
-    __asm__("TRACK1057_BEGIN: nop\n\t" 
-	    "   lea	TRACK1057_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1057_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1057_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name ); break;
-       
-  case 2:
-    __asm__("TRACK1058_BEGIN: nop\n\t" 
-	    "   lea	TRACK1058_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1058_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1058_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    copyFileName ( inName, name ); break;
-  }
-  if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-    __asm__("TRACK1060_BEGIN: nop\n\t" 
-	    "   lea	TRACK1060_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1060_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1060_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (noisy)
-      {
-	__asm__("TRACK1059_BEGIN: nop\n\t" 
-  		"   lea	TRACK1059_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1059_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1059_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	fprintf ( stderr, "%s: There are no files matching `%s'.\n",
-                  progName, inName );
-      }
-    setExit(1);
-    return;
-  }
-  if ( srcMode != 1 && !fileExists ( inName ) ) {
-    __asm__("TRACK1061_BEGIN: nop\n\t" 
-	    "   lea	TRACK1061_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1061_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1061_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: Can't open input %s: %s.\n",
-	      progName, inName, strerror((*__errno_location ())) );
-    setExit(1);
-    return;
-  }
-  if ( srcMode != 1 ) {
-    __asm__("TRACK1063_BEGIN: nop\n\t" 
-	    "   lea	TRACK1063_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1063_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1063_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    stat(inName, &statBuf);
-    if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-      __asm__("TRACK1062_BEGIN: nop\n\t" 
-	      "   lea	TRACK1062_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1062_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1062_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf( stderr,
-	       "%s: Input file %s is a directory.\n",
-	       progName,inName);
-      setExit(1);
-      return;
-    }
-  }
-  switch ( srcMode ) {
-       
-  case 1:
-    __asm__("TRACK1065_BEGIN: nop\n\t" 
-	    "   lea	TRACK1065_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1065_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1065_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if ( isatty ( fileno ( stdin ) ) ) {
-      __asm__("TRACK1064_BEGIN: nop\n\t" 
-	      "   lea	TRACK1064_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1064_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1064_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr,
-		"%s: I won't read compressed data from a terminal.\n",
-		progName );
-      fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
-		progName, progName );
-      setExit(1);
-      return;
-    };
-    inStr = stdin;
-    break;
-       
-  case 2:
-    __asm__("TRACK1067_BEGIN: nop\n\t" 
-	    "   lea	TRACK1067_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1067_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1067_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
+	TRACK1056_BEGIN: track(&&TRACK1056_BEGIN, &&TRACK1056_END);
+	TRACK1056_END:  __asm__("nop;");
 	 
+	copyFileName ( inName, "(stdin)" ); break;
+       
   case 3:
-    __asm__("TRACK1066_BEGIN: nop\n\t" 
-	    "   lea	TRACK1066_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1066_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1066_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    inStr = fopen ( inName, "rb" );
-    if ( inStr == ((void *)0) ) {
-      __asm__("TRACK1068_BEGIN: nop\n\t" 
-	      "   lea	TRACK1068_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1068_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1068_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
-		progName, inName, strerror((*__errno_location ())) );
-      setExit(1);
-      return;
-    };
-    break;
+	TRACK1057_BEGIN: track(&&TRACK1057_BEGIN, &&TRACK1057_END);
+	TRACK1057_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name ); break;
+       
+  case 2:
+	TRACK1058_BEGIN: track(&&TRACK1058_BEGIN, &&TRACK1058_END);
+	TRACK1058_END:  __asm__("nop;");
+	 
+	copyFileName ( inName, name ); break;
+   }
+   if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
+  TRACK1060_BEGIN: track(&&TRACK1060_BEGIN, &&TRACK1060_END);
+  TRACK1060_END:  __asm__("nop;");
+   
+  if (noisy)
+         {
+  TRACK1059_BEGIN: track(&&TRACK1059_BEGIN, &&TRACK1059_END);
+  TRACK1059_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: There are no files matching `%s'.\n",
+                  progName, inName );
+  }
+        setExit(1);
+        return;
+}
+   if ( srcMode != 1 && !fileExists ( inName ) ) {
+  TRACK1061_BEGIN: track(&&TRACK1061_BEGIN, &&TRACK1061_END);
+  TRACK1061_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input %s: %s.\n",
+                  progName, inName, strerror((*__errno_location ())) );
+        setExit(1);
+        return;
+}
+   if ( srcMode != 1 ) {
+  TRACK1063_BEGIN: track(&&TRACK1063_BEGIN, &&TRACK1063_END);
+  TRACK1063_END:  __asm__("nop;");
+   
+  stat(inName, &statBuf);
+        if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
+    TRACK1062_BEGIN: track(&&TRACK1062_BEGIN, &&TRACK1062_END);
+    TRACK1062_END:  __asm__("nop;");
+     
+    fprintf( stderr,
+                      "%s: Input file %s is a directory.\n",
+                      progName,inName);
+             setExit(1);
+             return;
+  }
+}
+   switch ( srcMode ) {
+       
+  case 1:
+	TRACK1065_BEGIN: track(&&TRACK1065_BEGIN, &&TRACK1065_END);
+	TRACK1065_END:  __asm__("nop;");
+	 
+	if ( isatty ( fileno ( stdin ) ) ) {
+	  TRACK1064_BEGIN: track(&&TRACK1064_BEGIN, &&TRACK1064_END);
+	  TRACK1064_END:  __asm__("nop;");
+	   
+	  fprintf ( stderr,
+	                        "%s: I won't read compressed data from a terminal.\n",
+	                        progName );
+	              fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
+	                                progName, progName );
+	              setExit(1);
+	              return;
+	};
+         inStr = stdin;
+         break;
+       
+  case 2:
+	TRACK1067_BEGIN: track(&&TRACK1067_BEGIN, &&TRACK1067_END);
+	TRACK1067_END:  __asm__("nop;");
+	 
+	 
+	  case 3:
+		TRACK1066_BEGIN: track(&&TRACK1066_BEGIN, &&TRACK1066_END);
+		TRACK1066_END:  __asm__("nop;");
+		 
+		inStr = fopen ( inName, "rb" );
+         if ( inStr == ((void *)0) ) {
+  TRACK1068_BEGIN: track(&&TRACK1068_BEGIN, &&TRACK1068_END);
+  TRACK1068_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
+                        progName, inName, strerror((*__errno_location ())) );
+              setExit(1);
+              return;
+};
+         break;
        
   default:
-    __asm__("TRACK1069_BEGIN: nop\n\t" 
-	    "   lea	TRACK1069_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1069_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1069_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    panic ( "testf: bad srcMode" );
-    break;
-  }
-  if (verbosity >= 1) {
-    __asm__("TRACK1070_BEGIN: nop\n\t" 
-	    "   lea	TRACK1070_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1070_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1070_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "  %s: ", inName );
-    pad ( inName );
-    fflush ( stderr );
-  }
-  outputHandleJustInCase = ((void *)0);
-  allOK = testStream ( inStr );
-  if (allOK && verbosity >= 1)  {
-    __asm__("TRACK1071_BEGIN: nop\n\t" 
-	    "   lea	TRACK1071_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1071_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1071_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "ok\n" );
-  }
-  if (!allOK)  {
-    __asm__("TRACK1072_BEGIN: nop\n\t" 
-	    "   lea	TRACK1072_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1072_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1072_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    testFailsExist = ((Bool)1);
-  }
+	TRACK1069_BEGIN: track(&&TRACK1069_BEGIN, &&TRACK1069_END);
+	TRACK1069_END:  __asm__("nop;");
+	 
+	panic ( "testf: bad srcMode" );
+         break;
+   }
+   if (verbosity >= 1) {
+  TRACK1070_BEGIN: track(&&TRACK1070_BEGIN, &&TRACK1070_END);
+  TRACK1070_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "  %s: ", inName );
+        pad ( inName );
+        fflush ( stderr );
+}
+   outputHandleJustInCase = ((void *)0);
+   allOK = testStream ( inStr );
+   if (allOK && verbosity >= 1)  {
+TRACK1071_BEGIN: track(&&TRACK1071_BEGIN, &&TRACK1071_END);
+TRACK1071_END:  __asm__("nop;");
+ 
+fprintf ( stderr, "ok\n" );
+}
+   if (!allOK)  {
+TRACK1072_BEGIN: track(&&TRACK1072_BEGIN, &&TRACK1072_END);
+TRACK1072_END:  __asm__("nop;");
+ 
+testFailsExist = ((Bool)1);
+}
 }
 static
 void license ( void )
 {
-  fprintf ( stderr,
-	    "bzip2, a block-sorting file compressor.  "
-	    "Version %s.\n"
-	    "   \n"
-	    "   Copyright (C) 1996-2002 by Julian Seward.\n"
-	    "   \n"
-	    "   This program is free software; you can redistribute it and/or modify\n"
-	    "   it under the terms set out in the LICENSE file, which is included\n"
-	    "   in the bzip2-1.0 source distribution.\n"
-	    "   \n"
-	    "   This program is distributed in the hope that it will be useful,\n"
-	    "   but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-	    "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-	    "   LICENSE file for more details.\n"
-	    "   \n",
-	    BZ2_bzlibVersion()
-	    );
+   fprintf ( stderr,
+    "bzip2, a block-sorting file compressor.  "
+    "Version %s.\n"
+    "   \n"
+    "   Copyright (C) 1996-2002 by Julian Seward.\n"
+    "   \n"
+    "   This program is free software; you can redistribute it and/or modify\n"
+    "   it under the terms set out in the LICENSE file, which is included\n"
+    "   in the bzip2-1.0 source distribution.\n"
+    "   \n"
+    "   This program is distributed in the hope that it will be useful,\n"
+    "   but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+    "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+    "   LICENSE file for more details.\n"
+    "   \n",
+    BZ2_bzlibVersion()
+   );
 }
 static
 void usage ( Char *fullProgName )
 {
-  fprintf (
-	   stderr,
-	   "bzip2, a block-sorting file compressor.  "
-	   "Version %s.\n"
-	   "\n   usage: %s [flags and input files in any order]\n"
-	   "\n"
-	   "   -h --help           print this message\n"
-	   "   -d --decompress     force decompression\n"
-	   "   -z --compress       force compression\n"
-	   "   -k --keep           keep (don't delete) input files\n"
-	   "   -f --force          overwrite existing output files\n"
-	   "   -t --test           test compressed file integrity\n"
-	   "   -c --stdout         output to standard out\n"
-	   "   -q --quiet          suppress noncritical error messages\n"
-	   "   -v --verbose        be verbose (a 2nd -v gives more)\n"
-	   "   -L --license        display software version & license\n"
-	   "   -V --version        display software version & license\n"
-	   "   -s --small          use less memory (at most 2500k)\n"
-	   "   -1 .. -9            set block size to 100k .. 900k\n"
-	   "   --fast              alias for -1\n"
-	   "   --best              alias for -9\n"
-	   "\n"
-	   "   If invoked as `bzip2', default action is to compress.\n"
-	   "              as `bunzip2',  default action is to decompress.\n"
-	   "              as `bzcat', default action is to decompress to stdout.\n"
-	   "\n"
-	   "   If no file names are given, bzip2 compresses or decompresses\n"
-	   "   from standard input to standard output.  You can combine\n"
-	   "   short flags, so `-v -4' means the same as -v4 or -4v, &c.\n"
-	   "\n"
-	   ,
-	   BZ2_bzlibVersion(),
-	   fullProgName
-	   );
+   fprintf (
+      stderr,
+      "bzip2, a block-sorting file compressor.  "
+      "Version %s.\n"
+      "\n   usage: %s [flags and input files in any order]\n"
+      "\n"
+      "   -h --help           print this message\n"
+      "   -d --decompress     force decompression\n"
+      "   -z --compress       force compression\n"
+      "   -k --keep           keep (don't delete) input files\n"
+      "   -f --force          overwrite existing output files\n"
+      "   -t --test           test compressed file integrity\n"
+      "   -c --stdout         output to standard out\n"
+      "   -q --quiet          suppress noncritical error messages\n"
+      "   -v --verbose        be verbose (a 2nd -v gives more)\n"
+      "   -L --license        display software version & license\n"
+      "   -V --version        display software version & license\n"
+      "   -s --small          use less memory (at most 2500k)\n"
+      "   -1 .. -9            set block size to 100k .. 900k\n"
+      "   --fast              alias for -1\n"
+      "   --best              alias for -9\n"
+      "\n"
+      "   If invoked as `bzip2', default action is to compress.\n"
+      "              as `bunzip2',  default action is to decompress.\n"
+      "              as `bzcat', default action is to decompress to stdout.\n"
+      "\n"
+      "   If no file names are given, bzip2 compresses or decompresses\n"
+      "   from standard input to standard output.  You can combine\n"
+      "   short flags, so `-v -4' means the same as -v4 or -4v, &c.\n"
+      "\n"
+      ,
+      BZ2_bzlibVersion(),
+      fullProgName
+   );
 }
 static
 void redundant ( Char* flag )
 {
-  fprintf (
-	   stderr,
-	   "%s: %s is redundant in versions 0.9.5 and above\n",
-	   progName, flag );
+   fprintf (
+      stderr,
+      "%s: %s is redundant in versions 0.9.5 and above\n",
+      progName, flag );
 }
 typedef
-struct zzzz {
-  Char *name;
-  struct zzzz *link;
-}
-  Cell;
+   struct zzzz {
+      Char *name;
+      struct zzzz *link;
+   }
+   Cell;
 static
 void *myMalloc ( Int32 n )
 {
-  void* p;
-  p = malloc ( (size_t)n );
-  if (p == ((void *)0))  {
-    __asm__("TRACK1073_BEGIN: nop\n\t" 
-	    "   lea	TRACK1073_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1073_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1073_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    outOfMemory ();
-  }
-  return p;
+   void* p;
+   p = malloc ( (size_t)n );
+   if (p == ((void *)0))  {
+TRACK1073_BEGIN: track(&&TRACK1073_BEGIN, &&TRACK1073_END);
+TRACK1073_END:  __asm__("nop;");
+ 
+outOfMemory ();
+}
+   return p;
 }
 static
 Cell *mkCell ( void )
 {
-  Cell *c;
-  c = (Cell*) myMalloc ( sizeof ( Cell ) );
-  c->name = ((void *)0);
-  c->link = ((void *)0);
-  return c;
+   Cell *c;
+   c = (Cell*) myMalloc ( sizeof ( Cell ) );
+   c->name = ((void *)0);
+   c->link = ((void *)0);
+   return c;
 }
 static
 Cell *snocString ( Cell *root, Char *name )
 {
-  if (root == ((void *)0)) {
-    __asm__("TRACK1074_BEGIN: nop\n\t" 
-	    "   lea	TRACK1074_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1074_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1074_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    Cell *tmp = mkCell();
-    tmp->name = (Char*) myMalloc ( 5 + strlen(name) );
-    strcpy ( tmp->name, name );
-    return tmp;
-  } else {
-    __asm__("TRACK1076_BEGIN: nop\n\t" 
-	    "   lea	TRACK1076_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1076_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1076_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    Cell *tmp = root;
-    while (tmp->link != ((void *)0))  {
-      __asm__("TRACK1075_BEGIN: nop\n\t" 
-	      "   lea	TRACK1075_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1075_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1075_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      tmp = tmp->link;
-    }
-    tmp->link = snocString ( tmp->link, name );
-    return root;
+   if (root == ((void *)0)) {
+  Cell *tmp = mkCell();
+  TRACK1074_BEGIN: track(&&TRACK1074_BEGIN, &&TRACK1074_END);
+  TRACK1074_END:  __asm__("nop;");
+   
+  tmp->name = (Char*) myMalloc ( 5 + strlen(name) );
+        strcpy ( tmp->name, name );
+        return tmp;
+} else {
+  Cell *tmp = root;
+  TRACK1076_BEGIN: track(&&TRACK1076_BEGIN, &&TRACK1076_END);
+  TRACK1076_END:  __asm__("nop;");
+   
+  while (tmp->link != ((void *)0))  {
+  TRACK1075_BEGIN: track(&&TRACK1075_BEGIN, &&TRACK1075_END);
+  TRACK1075_END:  __asm__("nop;");
+   
+  tmp = tmp->link;
   }
+        tmp->link = snocString ( tmp->link, name );
+        return root;
+}
 }
 static
 void addFlagsFromEnvVar ( Cell** argList, Char* varName )
 {
-  Int32 i, j, k;
-  Char *envbase, *p;
-  envbase = getenv(varName);
-  if (envbase != ((void *)0)) {
-    __asm__("TRACK1083_BEGIN: nop\n\t" 
-	    "   lea	TRACK1083_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1083_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1083_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    p = envbase;
-    i = 0;
-    while (((Bool)1)) {
-      __asm__("TRACK1082_BEGIN: nop\n\t" 
-	      "   lea	TRACK1082_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1082_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1082_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (p[i] == 0) break;
-      p += i;
-      i = 0;
-      while (((*__ctype_b_loc ())[(int) (((Int32)(p[0])))] & (unsigned short int) _ISspace))  {
-        __asm__("TRACK1077_BEGIN: nop\n\t" 
-    		"   lea	TRACK1077_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK1077_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK1077_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	p++;
+   Int32 i, j, k;
+   Char *envbase, *p;
+   envbase = getenv(varName);
+   if (envbase != ((void *)0)) {
+  TRACK1083_BEGIN: track(&&TRACK1083_BEGIN, &&TRACK1083_END);
+  TRACK1083_END:  __asm__("nop;");
+   
+  p = envbase;
+        i = 0;
+        while (((Bool)1)) {
+    TRACK1082_BEGIN: track(&&TRACK1082_BEGIN, &&TRACK1082_END);
+    TRACK1082_END:  __asm__("nop;");
+     
+    if (p[i] == 0) break;
+             p += i;
+             i = 0;
+             while (((*__ctype_b_loc ())[(int) (((Int32)(p[0])))] & (unsigned short int) _ISspace))  {
+    TRACK1077_BEGIN: track(&&TRACK1077_BEGIN, &&TRACK1077_END);
+    TRACK1077_END:  __asm__("nop;");
+     
+    p++;
+    }
+             while (p[i] != 0 && !((*__ctype_b_loc ())[(int) (((Int32)(p[i])))] & (unsigned short int) _ISspace))  {
+    TRACK1078_BEGIN: track(&&TRACK1078_BEGIN, &&TRACK1078_END);
+    TRACK1078_END:  __asm__("nop;");
+     
+    i++;
+    }
+             if (i > 0) {
+      TRACK1081_BEGIN: track(&&TRACK1081_BEGIN, &&TRACK1081_END);
+      TRACK1081_END:  __asm__("nop;");
+       
+      k = i; if (k > 1034 -10)  {
+      TRACK1079_BEGIN: track(&&TRACK1079_BEGIN, &&TRACK1079_END);
+      TRACK1079_END:  __asm__("nop;");
+       
+      k = 1034 -10;
       }
-      while (p[i] != 0 && !((*__ctype_b_loc ())[(int) (((Int32)(p[i])))] & (unsigned short int) _ISspace))  {
-        __asm__("TRACK1078_BEGIN: nop\n\t" 
-    		"   lea	TRACK1078_BEGIN, %%eax\n\t"   
-    		"   lea	TRACK1078_END, %%ecx\n\t" 
-    		"   mov	%%eax, (%%esp)\n\t" 
-    		"   mov    %%ecx, 4(%%esp)\n\t" 
-    		" calll track\n\t" 
-    		"TRACK1078_END: nop\n\t" 
-    		: 
-    		: 
-    		: "eax", "ecx", "esp");
-	i++;
+                  for (j = 0; j < k; j++)  {
+      TRACK1080_BEGIN: track(&&TRACK1080_BEGIN, &&TRACK1080_END);
+      TRACK1080_END:  __asm__("nop;");
+       
+      tmpName[j] = p[j];
       }
-      if (i > 0) {
-	__asm__("TRACK1081_BEGIN: nop\n\t" 
-      		"   lea	TRACK1081_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK1081_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK1081_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	k = i; if (k > 1034 -10)  {
-          __asm__("TRACK1079_BEGIN: nop\n\t" 
-		  "   lea	TRACK1079_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1079_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1079_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  k = 1034 -10;
-	}
-	for (j = 0; j < k; j++)  {
-          __asm__("TRACK1080_BEGIN: nop\n\t" 
-		  "   lea	TRACK1080_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1080_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1080_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  tmpName[j] = p[j];
-	}
-	tmpName[k] = 0;
-	*argList=snocString((*argList), (tmpName));
-      }
+                  tmpName[k] = 0;
+                  *argList=snocString((*argList), (tmpName));
     }
   }
 }
+}
 IntNative main ( IntNative argc, Char *argv[] )
 {
-  Int32 i, j;
-  Char *tmp;
-  Cell *argList;
-  Cell *aa;
-  Bool decode;
-  void* lol = &track; //
-  init(); //
-  if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
-      sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
-      sizeof(Char) != 1 || sizeof(UChar) != 1)
-    {
-      __asm__("TRACK1084_BEGIN: nop\n\t" 
-	      "   lea	TRACK1084_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1084_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1084_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      configError();
-    }
-  outputHandleJustInCase = ((void *)0);
-  smallMode = ((Bool)0);
-  keepInputFiles = ((Bool)0);
-  forceOverwrite = ((Bool)0);
-  noisy = ((Bool)1);
-  verbosity = 0;
-  blockSize100k = 9;
-  testFailsExist = ((Bool)0);
-  unzFailsExist = ((Bool)0);
-  numFileNames = 0;
-  numFilesProcessed = 0;
-  workFactor = 30;
-  deleteOutputOnInterrupt = ((Bool)0);
-  exitValue = 0;
-  i = j = 0;
-  signal (11, mySIGSEGVorSIGBUScatcher);
-  signal (7, mySIGSEGVorSIGBUScatcher);
-  copyFileName ( inName, "(none)" );
-  copyFileName ( outName, "(none)" );
-  copyFileName ( progNameReally, argv[0] );
-  progName = &progNameReally[0];
-  for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
-    {
-      __asm__("TRACK1086_BEGIN: nop\n\t" 
-	      "   lea	TRACK1086_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1086_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1086_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (*tmp == '/')  {
-	__asm__("TRACK1085_BEGIN: nop\n\t" 
-		"   lea	TRACK1085_BEGIN, %%eax\n\t"   
-		"   lea	TRACK1085_END, %%ecx\n\t" 
-		"   mov	%%eax, (%%esp)\n\t" 
-		"   mov    %%ecx, 4(%%esp)\n\t" 
-		" calll track\n\t" 
-		"TRACK1085_END: nop\n\t" 
-		: 
-		: 
-		: "eax", "ecx", "esp");
-	progName = tmp + 1;
-      }
-    }
-  argList = ((void *)0);
-  addFlagsFromEnvVar ( &argList, "BZIP2" );
-  addFlagsFromEnvVar ( &argList, "BZIP" );
-  for (i = 1; i <= argc-1; i++)
-    {
-      __asm__("TRACK1087_BEGIN: nop\n\t" 
-	      "   lea	TRACK1087_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1087_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1087_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      argList=snocString((argList), (argv[i]));
-    }
-  longestFileName = 7;
-  numFileNames = 0;
-  decode = ((Bool)1);
-  for (aa = argList; aa != ((void *)0); aa = aa->link) {
-    __asm__("TRACK1090_BEGIN: nop\n\t" 
-	    "   lea	TRACK1090_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1090_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1090_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if ((strcmp(aa->name, ("--"))==0)) {
-      __asm__("TRACK1088_BEGIN: nop\n\t" 
-	      "   lea	TRACK1088_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1088_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1088_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      decode = ((Bool)0); continue;
-    }
-    if (aa->name[0] == '-' && decode) continue;
-    numFileNames++;
-    if (longestFileName < (Int32)strlen(aa->name) )
-      {
-	__asm__("TRACK1089_BEGIN: nop\n\t" 
-  		"   lea	TRACK1089_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1089_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1089_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	longestFileName = (Int32)strlen(aa->name);
-      }
+   Int32 i, j;
+   Char *tmp;
+   Cell *argList;
+   Cell *aa;
+   Bool decode;
+   void* lol = &track; //
+   init(); //
+   if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
+       sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
+       sizeof(Char) != 1 || sizeof(UChar) != 1)
+       {
+TRACK1084_BEGIN: track(&&TRACK1084_BEGIN, &&TRACK1084_END);
+TRACK1084_END:  __asm__("nop;");
+ 
+configError();
+}
+   outputHandleJustInCase = ((void *)0);
+   smallMode = ((Bool)0);
+   keepInputFiles = ((Bool)0);
+   forceOverwrite = ((Bool)0);
+   noisy = ((Bool)1);
+   verbosity = 0;
+   blockSize100k = 9;
+   testFailsExist = ((Bool)0);
+   unzFailsExist = ((Bool)0);
+   numFileNames = 0;
+   numFilesProcessed = 0;
+   workFactor = 30;
+   deleteOutputOnInterrupt = ((Bool)0);
+   exitValue = 0;
+   i = j = 0;
+   signal (11, mySIGSEGVorSIGBUScatcher);
+   signal (7, mySIGSEGVorSIGBUScatcher);
+   copyFileName ( inName, "(none)" );
+   copyFileName ( outName, "(none)" );
+   copyFileName ( progNameReally, argv[0] );
+   progName = &progNameReally[0];
+   for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
+       {
+TRACK1086_BEGIN: track(&&TRACK1086_BEGIN, &&TRACK1086_END);
+TRACK1086_END:  __asm__("nop;");
+ 
+if (*tmp == '/')  {
+TRACK1085_BEGIN: track(&&TRACK1085_BEGIN, &&TRACK1085_END);
+TRACK1085_END:  __asm__("nop;");
+ 
+progName = tmp + 1;
+}
+}
+   argList = ((void *)0);
+   addFlagsFromEnvVar ( &argList, "BZIP2" );
+   addFlagsFromEnvVar ( &argList, "BZIP" );
+   for (i = 1; i <= argc-1; i++)
+       {
+TRACK1087_BEGIN: track(&&TRACK1087_BEGIN, &&TRACK1087_END);
+TRACK1087_END:  __asm__("nop;");
+ 
+argList=snocString((argList), (argv[i]));
+}
+   longestFileName = 7;
+   numFileNames = 0;
+   decode = ((Bool)1);
+   for (aa = argList; aa != ((void *)0); aa = aa->link) {
+  TRACK1090_BEGIN: track(&&TRACK1090_BEGIN, &&TRACK1090_END);
+  TRACK1090_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--"))==0)) {
+    TRACK1088_BEGIN: track(&&TRACK1088_BEGIN, &&TRACK1088_END);
+    TRACK1088_END:  __asm__("nop;");
+     
+    decode = ((Bool)0); continue;
   }
-  if (numFileNames == 0)
-    {
-      __asm__("TRACK1091_BEGIN: nop\n\t" 
-	      "   lea	TRACK1091_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1091_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1091_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      srcMode = 1;
-    } else  {
-    __asm__("TRACK1092_BEGIN: nop\n\t" 
-	    "   lea	TRACK1092_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1092_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1092_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    srcMode = 3;
+        if (aa->name[0] == '-' && decode) continue;
+        numFileNames++;
+        if (longestFileName < (Int32)strlen(aa->name) )
+            {
+  TRACK1089_BEGIN: track(&&TRACK1089_BEGIN, &&TRACK1089_END);
+  TRACK1089_END:  __asm__("nop;");
+   
+  longestFileName = (Int32)strlen(aa->name);
   }
-  opMode = 1;
-  if ( (strstr ( progName, "unzip" ) != 0) ||
-       (strstr ( progName, "UNZIP" ) != 0) )
-    {
-      __asm__("TRACK1093_BEGIN: nop\n\t" 
-	      "   lea	TRACK1093_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1093_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1093_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      opMode = 2;
-    }
-  if ( (strstr ( progName, "z2cat" ) != 0) ||
-       (strstr ( progName, "Z2CAT" ) != 0) ||
-       (strstr ( progName, "zcat" ) != 0) ||
-       (strstr ( progName, "ZCAT" ) != 0) ) {
-    __asm__("TRACK1094_BEGIN: nop\n\t" 
-	    "   lea	TRACK1094_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1094_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1094_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    opMode = 2;
-    srcMode = (numFileNames == 0) ? 1 : 2;
-  }
-  for (aa = argList; aa != ((void *)0); aa = aa->link) {
-    __asm__("TRACK1119_BEGIN: nop\n\t" 
-	    "   lea	TRACK1119_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1119_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1119_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if ((strcmp(aa->name, ("--"))==0)) break;
-    if (aa->name[0] == '-' && aa->name[1] != '-') {
-      __asm__("TRACK1118_BEGIN: nop\n\t" 
-	      "   lea	TRACK1118_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1118_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1118_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      for (j = 1; aa->name[j] != '\0'; j++) {
-	__asm__("TRACK1117_BEGIN: nop\n\t" 
-      		"   lea	TRACK1117_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK1117_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK1117_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	switch (aa->name[j]) {
+}
+   if (numFileNames == 0)
+       {
+TRACK1091_BEGIN: track(&&TRACK1091_BEGIN, &&TRACK1091_END);
+TRACK1091_END:  __asm__("nop;");
+ 
+srcMode = 1;
+} else  {
+TRACK1092_BEGIN: track(&&TRACK1092_BEGIN, &&TRACK1092_END);
+TRACK1092_END:  __asm__("nop;");
+ 
+srcMode = 3;
+}
+   opMode = 1;
+   if ( (strstr ( progName, "unzip" ) != 0) ||
+        (strstr ( progName, "UNZIP" ) != 0) )
+       {
+TRACK1093_BEGIN: track(&&TRACK1093_BEGIN, &&TRACK1093_END);
+TRACK1093_END:  __asm__("nop;");
+ 
+opMode = 2;
+}
+   if ( (strstr ( progName, "z2cat" ) != 0) ||
+        (strstr ( progName, "Z2CAT" ) != 0) ||
+        (strstr ( progName, "zcat" ) != 0) ||
+        (strstr ( progName, "ZCAT" ) != 0) ) {
+  TRACK1094_BEGIN: track(&&TRACK1094_BEGIN, &&TRACK1094_END);
+  TRACK1094_END:  __asm__("nop;");
+   
+  opMode = 2;
+        srcMode = (numFileNames == 0) ? 1 : 2;
+}
+   for (aa = argList; aa != ((void *)0); aa = aa->link) {
+  TRACK1119_BEGIN: track(&&TRACK1119_BEGIN, &&TRACK1119_END);
+  TRACK1119_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--"))==0)) break;
+        if (aa->name[0] == '-' && aa->name[1] != '-') {
+    TRACK1118_BEGIN: track(&&TRACK1118_BEGIN, &&TRACK1118_END);
+    TRACK1118_END:  __asm__("nop;");
+     
+    for (j = 1; aa->name[j] != '\0'; j++) {
+      TRACK1117_BEGIN: track(&&TRACK1117_BEGIN, &&TRACK1117_END);
+      TRACK1117_END:  __asm__("nop;");
+       
+      switch (aa->name[j]) {
                       
         case 'c':
-	  __asm__("TRACK1095_BEGIN: nop\n\t" 
-		  "   lea	TRACK1095_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1095_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1095_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  srcMode = 2; break;
+      	TRACK1095_BEGIN: track(&&TRACK1095_BEGIN, &&TRACK1095_END);
+      	TRACK1095_END:  __asm__("nop;");
+      	 
+      	srcMode = 2; break;
                       
         case 'd':
-	  __asm__("TRACK1096_BEGIN: nop\n\t" 
-		  "   lea	TRACK1096_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1096_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1096_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  opMode = 2; break;
+      	TRACK1096_BEGIN: track(&&TRACK1096_BEGIN, &&TRACK1096_END);
+      	TRACK1096_END:  __asm__("nop;");
+      	 
+      	opMode = 2; break;
                       
         case 'z':
-	  __asm__("TRACK1097_BEGIN: nop\n\t" 
-		  "   lea	TRACK1097_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1097_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1097_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  opMode = 1; break;
+      	TRACK1097_BEGIN: track(&&TRACK1097_BEGIN, &&TRACK1097_END);
+      	TRACK1097_END:  __asm__("nop;");
+      	 
+      	opMode = 1; break;
                       
         case 'f':
-	  __asm__("TRACK1098_BEGIN: nop\n\t" 
-		  "   lea	TRACK1098_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1098_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1098_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  forceOverwrite = ((Bool)1); break;
+      	TRACK1098_BEGIN: track(&&TRACK1098_BEGIN, &&TRACK1098_END);
+      	TRACK1098_END:  __asm__("nop;");
+      	 
+      	forceOverwrite = ((Bool)1); break;
                       
         case 't':
-	  __asm__("TRACK1099_BEGIN: nop\n\t" 
-		  "   lea	TRACK1099_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1099_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1099_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  opMode = 3; break;
+      	TRACK1099_BEGIN: track(&&TRACK1099_BEGIN, &&TRACK1099_END);
+      	TRACK1099_END:  __asm__("nop;");
+      	 
+      	opMode = 3; break;
                       
         case 'k':
-	  __asm__("TRACK1100_BEGIN: nop\n\t" 
-		  "   lea	TRACK1100_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1100_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1100_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  keepInputFiles = ((Bool)1); break;
+      	TRACK1100_BEGIN: track(&&TRACK1100_BEGIN, &&TRACK1100_END);
+      	TRACK1100_END:  __asm__("nop;");
+      	 
+      	keepInputFiles = ((Bool)1); break;
                       
         case 's':
-	  __asm__("TRACK1101_BEGIN: nop\n\t" 
-		  "   lea	TRACK1101_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1101_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1101_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  smallMode = ((Bool)1); break;
+      	TRACK1101_BEGIN: track(&&TRACK1101_BEGIN, &&TRACK1101_END);
+      	TRACK1101_END:  __asm__("nop;");
+      	 
+      	smallMode = ((Bool)1); break;
                       
         case 'q':
-	  __asm__("TRACK1102_BEGIN: nop\n\t" 
-		  "   lea	TRACK1102_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1102_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1102_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  noisy = ((Bool)0); break;
+      	TRACK1102_BEGIN: track(&&TRACK1102_BEGIN, &&TRACK1102_END);
+      	TRACK1102_END:  __asm__("nop;");
+      	 
+      	noisy = ((Bool)0); break;
                       
         case '1':
-	  __asm__("TRACK1103_BEGIN: nop\n\t" 
-		  "   lea	TRACK1103_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1103_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1103_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 1; break;
+      	TRACK1103_BEGIN: track(&&TRACK1103_BEGIN, &&TRACK1103_END);
+      	TRACK1103_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 1; break;
                       
         case '2':
-	  __asm__("TRACK1104_BEGIN: nop\n\t" 
-		  "   lea	TRACK1104_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1104_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1104_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 2; break;
+      	TRACK1104_BEGIN: track(&&TRACK1104_BEGIN, &&TRACK1104_END);
+      	TRACK1104_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 2; break;
                       
         case '3':
-	  __asm__("TRACK1105_BEGIN: nop\n\t" 
-		  "   lea	TRACK1105_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1105_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1105_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 3; break;
+      	TRACK1105_BEGIN: track(&&TRACK1105_BEGIN, &&TRACK1105_END);
+      	TRACK1105_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 3; break;
                       
         case '4':
-	  __asm__("TRACK1106_BEGIN: nop\n\t" 
-		  "   lea	TRACK1106_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1106_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1106_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 4; break;
+      	TRACK1106_BEGIN: track(&&TRACK1106_BEGIN, &&TRACK1106_END);
+      	TRACK1106_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 4; break;
                       
         case '5':
-	  __asm__("TRACK1107_BEGIN: nop\n\t" 
-		  "   lea	TRACK1107_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1107_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1107_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 5; break;
+      	TRACK1107_BEGIN: track(&&TRACK1107_BEGIN, &&TRACK1107_END);
+      	TRACK1107_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 5; break;
                       
         case '6':
-	  __asm__("TRACK1108_BEGIN: nop\n\t" 
-		  "   lea	TRACK1108_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1108_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1108_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 6; break;
+      	TRACK1108_BEGIN: track(&&TRACK1108_BEGIN, &&TRACK1108_END);
+      	TRACK1108_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 6; break;
                       
         case '7':
-	  __asm__("TRACK1109_BEGIN: nop\n\t" 
-		  "   lea	TRACK1109_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1109_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1109_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 7; break;
+      	TRACK1109_BEGIN: track(&&TRACK1109_BEGIN, &&TRACK1109_END);
+      	TRACK1109_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 7; break;
                       
         case '8':
-	  __asm__("TRACK1110_BEGIN: nop\n\t" 
-		  "   lea	TRACK1110_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1110_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1110_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 8; break;
+      	TRACK1110_BEGIN: track(&&TRACK1110_BEGIN, &&TRACK1110_END);
+      	TRACK1110_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 8; break;
                       
         case '9':
-	  __asm__("TRACK1111_BEGIN: nop\n\t" 
-		  "   lea	TRACK1111_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1111_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1111_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  blockSize100k = 9; break;
+      	TRACK1111_BEGIN: track(&&TRACK1111_BEGIN, &&TRACK1111_END);
+      	TRACK1111_END:  __asm__("nop;");
+      	 
+      	blockSize100k = 9; break;
                       
         case 'V':
-	  __asm__("TRACK1113_BEGIN: nop\n\t" 
-		  "   lea	TRACK1113_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1113_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1113_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
+      	TRACK1113_BEGIN: track(&&TRACK1113_BEGIN, &&TRACK1113_END);
+      	TRACK1113_END:  __asm__("nop;");
       	 
-	case 'L':
-	  __asm__("TRACK1112_BEGIN: nop\n\t" 
-		  "   lea	TRACK1112_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1112_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1112_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  license(); break;
+      	 
+      	  case 'L':
+      		TRACK1112_BEGIN: track(&&TRACK1112_BEGIN, &&TRACK1112_END);
+      		TRACK1112_END:  __asm__("nop;");
+      		 
+      		license(); break;
                       
         case 'v':
-	  __asm__("TRACK1114_BEGIN: nop\n\t" 
-		  "   lea	TRACK1114_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1114_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1114_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  verbosity++; break;
+      	TRACK1114_BEGIN: track(&&TRACK1114_BEGIN, &&TRACK1114_END);
+      	TRACK1114_END:  __asm__("nop;");
+      	 
+      	verbosity++; break;
                       
         case 'h':
-	  __asm__("TRACK1115_BEGIN: nop\n\t" 
-		  "   lea	TRACK1115_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1115_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1115_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  usage ( progName );
-	  exit ( 0 );
-	  break;
+      	TRACK1115_BEGIN: track(&&TRACK1115_BEGIN, &&TRACK1115_END);
+      	TRACK1115_END:  __asm__("nop;");
+      	 
+      	usage ( progName );
+                               exit ( 0 );
+                               break;
                       
         default:
-	  __asm__("TRACK1116_BEGIN: nop\n\t" 
-		  "   lea	TRACK1116_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1116_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1116_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr, "%s: Bad flag `%s'\n",
-		    progName, aa->name );
-	  usage ( progName );
-	  exit ( 1 );
-	  break;
-	}
+      	TRACK1116_BEGIN: track(&&TRACK1116_BEGIN, &&TRACK1116_END);
+      	TRACK1116_END:  __asm__("nop;");
+      	 
+      	fprintf ( stderr, "%s: Bad flag `%s'\n",
+      	                                   progName, aa->name );
+                               usage ( progName );
+                               exit ( 1 );
+                               break;
+                  }
+    }
+  }
+}
+   for (aa = argList; aa != ((void *)0); aa = aa->link) {
+  TRACK1155_BEGIN: track(&&TRACK1155_BEGIN, &&TRACK1155_END);
+  TRACK1155_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--"))==0)) break;
+        if ((strcmp(aa->name, ("--stdout"))==0))  {
+  TRACK1120_BEGIN: track(&&TRACK1120_BEGIN, &&TRACK1120_END);
+  TRACK1120_END:  __asm__("nop;");
+   
+  srcMode = 2;
+  } else
+         {
+  TRACK1154_BEGIN: track(&&TRACK1154_BEGIN, &&TRACK1154_END);
+  TRACK1154_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--decompress"))==0))  {
+  TRACK1121_BEGIN: track(&&TRACK1121_BEGIN, &&TRACK1121_END);
+  TRACK1121_END:  __asm__("nop;");
+   
+  opMode = 2;
+  } else
+         {
+  TRACK1153_BEGIN: track(&&TRACK1153_BEGIN, &&TRACK1153_END);
+  TRACK1153_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--compress"))==0))  {
+  TRACK1122_BEGIN: track(&&TRACK1122_BEGIN, &&TRACK1122_END);
+  TRACK1122_END:  __asm__("nop;");
+   
+  opMode = 1;
+  } else
+         {
+  TRACK1152_BEGIN: track(&&TRACK1152_BEGIN, &&TRACK1152_END);
+  TRACK1152_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--force"))==0))  {
+  TRACK1123_BEGIN: track(&&TRACK1123_BEGIN, &&TRACK1123_END);
+  TRACK1123_END:  __asm__("nop;");
+   
+  forceOverwrite = ((Bool)1);
+  } else
+         {
+  TRACK1151_BEGIN: track(&&TRACK1151_BEGIN, &&TRACK1151_END);
+  TRACK1151_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--test"))==0))  {
+  TRACK1124_BEGIN: track(&&TRACK1124_BEGIN, &&TRACK1124_END);
+  TRACK1124_END:  __asm__("nop;");
+   
+  opMode = 3;
+  } else
+         {
+  TRACK1150_BEGIN: track(&&TRACK1150_BEGIN, &&TRACK1150_END);
+  TRACK1150_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--keep"))==0))  {
+  TRACK1125_BEGIN: track(&&TRACK1125_BEGIN, &&TRACK1125_END);
+  TRACK1125_END:  __asm__("nop;");
+   
+  keepInputFiles = ((Bool)1);
+  } else
+         {
+  TRACK1149_BEGIN: track(&&TRACK1149_BEGIN, &&TRACK1149_END);
+  TRACK1149_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--small"))==0))  {
+  TRACK1126_BEGIN: track(&&TRACK1126_BEGIN, &&TRACK1126_END);
+  TRACK1126_END:  __asm__("nop;");
+   
+  smallMode = ((Bool)1);
+  } else
+         {
+  TRACK1148_BEGIN: track(&&TRACK1148_BEGIN, &&TRACK1148_END);
+  TRACK1148_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--quiet"))==0))  {
+  TRACK1127_BEGIN: track(&&TRACK1127_BEGIN, &&TRACK1127_END);
+  TRACK1127_END:  __asm__("nop;");
+   
+  noisy = ((Bool)0);
+  } else
+         {
+  TRACK1147_BEGIN: track(&&TRACK1147_BEGIN, &&TRACK1147_END);
+  TRACK1147_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--version"))==0))  {
+  TRACK1128_BEGIN: track(&&TRACK1128_BEGIN, &&TRACK1128_END);
+  TRACK1128_END:  __asm__("nop;");
+   
+  license();
+  } else
+         {
+  TRACK1146_BEGIN: track(&&TRACK1146_BEGIN, &&TRACK1146_END);
+  TRACK1146_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--license"))==0))  {
+  TRACK1129_BEGIN: track(&&TRACK1129_BEGIN, &&TRACK1129_END);
+  TRACK1129_END:  __asm__("nop;");
+   
+  license();
+  } else
+         {
+  TRACK1145_BEGIN: track(&&TRACK1145_BEGIN, &&TRACK1145_END);
+  TRACK1145_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--exponential"))==0))  {
+  TRACK1130_BEGIN: track(&&TRACK1130_BEGIN, &&TRACK1130_END);
+  TRACK1130_END:  __asm__("nop;");
+   
+  workFactor = 1;
+  } else
+         {
+  TRACK1144_BEGIN: track(&&TRACK1144_BEGIN, &&TRACK1144_END);
+  TRACK1144_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--repetitive-best"))==0))  {
+  TRACK1131_BEGIN: track(&&TRACK1131_BEGIN, &&TRACK1131_END);
+  TRACK1131_END:  __asm__("nop;");
+   
+  redundant(aa->name);
+  } else
+         {
+  TRACK1143_BEGIN: track(&&TRACK1143_BEGIN, &&TRACK1143_END);
+  TRACK1143_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--repetitive-fast"))==0))  {
+  TRACK1132_BEGIN: track(&&TRACK1132_BEGIN, &&TRACK1132_END);
+  TRACK1132_END:  __asm__("nop;");
+   
+  redundant(aa->name);
+  } else
+         {
+  TRACK1142_BEGIN: track(&&TRACK1142_BEGIN, &&TRACK1142_END);
+  TRACK1142_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--fast"))==0))  {
+  TRACK1133_BEGIN: track(&&TRACK1133_BEGIN, &&TRACK1133_END);
+  TRACK1133_END:  __asm__("nop;");
+   
+  blockSize100k = 1;
+  } else
+         {
+  TRACK1141_BEGIN: track(&&TRACK1141_BEGIN, &&TRACK1141_END);
+  TRACK1141_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--best"))==0))  {
+  TRACK1134_BEGIN: track(&&TRACK1134_BEGIN, &&TRACK1134_END);
+  TRACK1134_END:  __asm__("nop;");
+   
+  blockSize100k = 9;
+  } else
+         {
+  TRACK1140_BEGIN: track(&&TRACK1140_BEGIN, &&TRACK1140_END);
+  TRACK1140_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--verbose"))==0))  {
+  TRACK1135_BEGIN: track(&&TRACK1135_BEGIN, &&TRACK1135_END);
+  TRACK1135_END:  __asm__("nop;");
+   
+  verbosity++;
+  } else
+         {
+  TRACK1139_BEGIN: track(&&TRACK1139_BEGIN, &&TRACK1139_END);
+  TRACK1139_END:  __asm__("nop;");
+   
+  if ((strcmp(aa->name, ("--help"))==0)) {
+    TRACK1136_BEGIN: track(&&TRACK1136_BEGIN, &&TRACK1136_END);
+    TRACK1136_END:  __asm__("nop;");
+     
+    usage ( progName ); exit ( 0 );
+  }
+           else
+            {
+  TRACK1138_BEGIN: track(&&TRACK1138_BEGIN, &&TRACK1138_END);
+  TRACK1138_END:  __asm__("nop;");
+   
+  if (strncmp ( aa->name, "--", 2) == 0) {
+    TRACK1137_BEGIN: track(&&TRACK1137_BEGIN, &&TRACK1137_END);
+    TRACK1137_END:  __asm__("nop;");
+     
+    fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
+                usage ( progName );
+                exit ( 1 );
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+}
+   if (verbosity > 4)  {
+TRACK1156_BEGIN: track(&&TRACK1156_BEGIN, &&TRACK1156_END);
+TRACK1156_END:  __asm__("nop;");
+ 
+verbosity = 4;
+}
+   if (opMode == 1 && smallMode && blockSize100k > 2)
+       {
+TRACK1157_BEGIN: track(&&TRACK1157_BEGIN, &&TRACK1157_END);
+TRACK1157_END:  __asm__("nop;");
+ 
+blockSize100k = 2;
+}
+   if (opMode == 3 && srcMode == 2) {
+  TRACK1158_BEGIN: track(&&TRACK1158_BEGIN, &&TRACK1158_END);
+  TRACK1158_END:  __asm__("nop;");
+   
+  fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
+                  progName );
+        exit ( 1 );
+}
+   if (srcMode == 2 && numFileNames == 0)
+       {
+TRACK1159_BEGIN: track(&&TRACK1159_BEGIN, &&TRACK1159_END);
+TRACK1159_END:  __asm__("nop;");
+ 
+srcMode = 1;
+}
+   if (opMode != 1)  {
+TRACK1160_BEGIN: track(&&TRACK1160_BEGIN, &&TRACK1160_END);
+TRACK1160_END:  __asm__("nop;");
+ 
+blockSize100k = 0;
+}
+   if (srcMode == 3) {
+  TRACK1161_BEGIN: track(&&TRACK1161_BEGIN, &&TRACK1161_END);
+  TRACK1161_END:  __asm__("nop;");
+   
+  signal (2, mySignalCatcher);
+        signal (15, mySignalCatcher);
+        signal (1, mySignalCatcher);
+}
+   if (opMode == 1) {
+  TRACK1166_BEGIN: track(&&TRACK1166_BEGIN, &&TRACK1166_END);
+  TRACK1166_END:  __asm__("nop;");
+   
+  if (srcMode == 1) {
+    TRACK1162_BEGIN: track(&&TRACK1162_BEGIN, &&TRACK1162_END);
+    TRACK1162_END:  __asm__("nop;");
+     
+    compress ( ((void *)0) );
+  } else {
+    TRACK1165_BEGIN: track(&&TRACK1165_BEGIN, &&TRACK1165_END);
+    TRACK1165_END:  __asm__("nop;");
+     
+    decode = ((Bool)1);
+            for (aa = argList; aa != ((void *)0); aa = aa->link) {
+      TRACK1164_BEGIN: track(&&TRACK1164_BEGIN, &&TRACK1164_END);
+      TRACK1164_END:  __asm__("nop;");
+       
+      if ((strcmp(aa->name, ("--"))==0)) {
+        TRACK1163_BEGIN: track(&&TRACK1163_BEGIN, &&TRACK1163_END);
+        TRACK1163_END:  __asm__("nop;");
+         
+        decode = ((Bool)0); continue;
       }
+                 if (aa->name[0] == '-' && decode) continue;
+                 numFilesProcessed++;
+                 compress ( aa->name );
     }
   }
-  for (aa = argList; aa != ((void *)0); aa = aa->link) {
-    __asm__("TRACK1155_BEGIN: nop\n\t" 
-	    "   lea	TRACK1155_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1155_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1155_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if ((strcmp(aa->name, ("--"))==0)) break;
-    if ((strcmp(aa->name, ("--stdout"))==0))  {
-      __asm__("TRACK1120_BEGIN: nop\n\t" 
-	      "   lea	TRACK1120_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1120_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1120_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      srcMode = 2;
-    } else
-      {
-	__asm__("TRACK1154_BEGIN: nop\n\t" 
-  		"   lea	TRACK1154_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1154_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1154_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	if ((strcmp(aa->name, ("--decompress"))==0))  {
-	  __asm__("TRACK1121_BEGIN: nop\n\t" 
-		  "   lea	TRACK1121_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1121_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1121_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  opMode = 2;
-	} else
-	  {
-	    __asm__("TRACK1153_BEGIN: nop\n\t" 
-		    "   lea	TRACK1153_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK1153_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK1153_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if ((strcmp(aa->name, ("--compress"))==0))  {
-	      __asm__("TRACK1122_BEGIN: nop\n\t" 
-		      "   lea	TRACK1122_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK1122_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK1122_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      opMode = 1;
-	    } else
-	      {
-		__asm__("TRACK1152_BEGIN: nop\n\t" 
-			"   lea	TRACK1152_BEGIN, %%eax\n\t"   
-			"   lea	TRACK1152_END, %%ecx\n\t" 
-			"   mov	%%eax, (%%esp)\n\t" 
-			"   mov    %%ecx, 4(%%esp)\n\t" 
-			" calll track\n\t" 
-			"TRACK1152_END: nop\n\t" 
-			: 
-			: 
-			: "eax", "ecx", "esp");
-		if ((strcmp(aa->name, ("--force"))==0))  {
-		  __asm__("TRACK1123_BEGIN: nop\n\t" 
-			  "   lea	TRACK1123_BEGIN, %%eax\n\t"   
-			  "   lea	TRACK1123_END, %%ecx\n\t" 
-			  "   mov	%%eax, (%%esp)\n\t" 
-			  "   mov    %%ecx, 4(%%esp)\n\t" 
-			  " calll track\n\t" 
-			  "TRACK1123_END: nop\n\t" 
-			  : 
-			  : 
-			  : "eax", "ecx", "esp");
-		  forceOverwrite = ((Bool)1);
-		} else
-		  {
-		    __asm__("TRACK1151_BEGIN: nop\n\t" 
-			    "   lea	TRACK1151_BEGIN, %%eax\n\t"   
-			    "   lea	TRACK1151_END, %%ecx\n\t" 
-			    "   mov	%%eax, (%%esp)\n\t" 
-			    "   mov    %%ecx, 4(%%esp)\n\t" 
-			    " calll track\n\t" 
-			    "TRACK1151_END: nop\n\t" 
-			    : 
-			    : 
-			    : "eax", "ecx", "esp");
-		    if ((strcmp(aa->name, ("--test"))==0))  {
-		      __asm__("TRACK1124_BEGIN: nop\n\t" 
-			      "   lea	TRACK1124_BEGIN, %%eax\n\t"   
-			      "   lea	TRACK1124_END, %%ecx\n\t" 
-			      "   mov	%%eax, (%%esp)\n\t" 
-			      "   mov    %%ecx, 4(%%esp)\n\t" 
-			      " calll track\n\t" 
-			      "TRACK1124_END: nop\n\t" 
-			      : 
-			      : 
-			      : "eax", "ecx", "esp");
-		      opMode = 3;
-		    } else
-		      {
-			__asm__("TRACK1150_BEGIN: nop\n\t" 
-				"   lea	TRACK1150_BEGIN, %%eax\n\t"   
-				"   lea	TRACK1150_END, %%ecx\n\t" 
-				"   mov	%%eax, (%%esp)\n\t" 
-				"   mov    %%ecx, 4(%%esp)\n\t" 
-				" calll track\n\t" 
-				"TRACK1150_END: nop\n\t" 
-				: 
-				: 
-				: "eax", "ecx", "esp");
-			if ((strcmp(aa->name, ("--keep"))==0))  {
-			  __asm__("TRACK1125_BEGIN: nop\n\t" 
-				  "   lea	TRACK1125_BEGIN, %%eax\n\t"   
-				  "   lea	TRACK1125_END, %%ecx\n\t" 
-				  "   mov	%%eax, (%%esp)\n\t" 
-				  "   mov    %%ecx, 4(%%esp)\n\t" 
-				  " calll track\n\t" 
-				  "TRACK1125_END: nop\n\t" 
-				  : 
-				  : 
-				  : "eax", "ecx", "esp");
-			  keepInputFiles = ((Bool)1);
-			} else
-			  {
-			    __asm__("TRACK1149_BEGIN: nop\n\t" 
-				    "   lea	TRACK1149_BEGIN, %%eax\n\t"   
-				    "   lea	TRACK1149_END, %%ecx\n\t" 
-				    "   mov	%%eax, (%%esp)\n\t" 
-				    "   mov    %%ecx, 4(%%esp)\n\t" 
-				    " calll track\n\t" 
-				    "TRACK1149_END: nop\n\t" 
-				    : 
-				    : 
-				    : "eax", "ecx", "esp");
-			    if ((strcmp(aa->name, ("--small"))==0))  {
-			      __asm__("TRACK1126_BEGIN: nop\n\t" 
-				      "   lea	TRACK1126_BEGIN, %%eax\n\t"   
-				      "   lea	TRACK1126_END, %%ecx\n\t" 
-				      "   mov	%%eax, (%%esp)\n\t" 
-				      "   mov    %%ecx, 4(%%esp)\n\t" 
-				      " calll track\n\t" 
-				      "TRACK1126_END: nop\n\t" 
-				      : 
-				      : 
-				      : "eax", "ecx", "esp");
-			      smallMode = ((Bool)1);
-			    } else
-			      {
-				__asm__("TRACK1148_BEGIN: nop\n\t" 
-					"   lea	TRACK1148_BEGIN, %%eax\n\t"   
-					"   lea	TRACK1148_END, %%ecx\n\t" 
-					"   mov	%%eax, (%%esp)\n\t" 
-					"   mov    %%ecx, 4(%%esp)\n\t" 
-					" calll track\n\t" 
-					"TRACK1148_END: nop\n\t" 
-					: 
-					: 
-					: "eax", "ecx", "esp");
-				if ((strcmp(aa->name, ("--quiet"))==0))  {
-				  __asm__("TRACK1127_BEGIN: nop\n\t" 
-					  "   lea	TRACK1127_BEGIN, %%eax\n\t"   
-					  "   lea	TRACK1127_END, %%ecx\n\t" 
-					  "   mov	%%eax, (%%esp)\n\t" 
-					  "   mov    %%ecx, 4(%%esp)\n\t" 
-					  " calll track\n\t" 
-					  "TRACK1127_END: nop\n\t" 
-					  : 
-					  : 
-					  : "eax", "ecx", "esp");
-				  noisy = ((Bool)0);
-				} else
-				  {
-				    __asm__("TRACK1147_BEGIN: nop\n\t" 
-					    "   lea	TRACK1147_BEGIN, %%eax\n\t"   
-					    "   lea	TRACK1147_END, %%ecx\n\t" 
-					    "   mov	%%eax, (%%esp)\n\t" 
-					    "   mov    %%ecx, 4(%%esp)\n\t" 
-					    " calll track\n\t" 
-					    "TRACK1147_END: nop\n\t" 
-					    : 
-					    : 
-					    : "eax", "ecx", "esp");
-				    if ((strcmp(aa->name, ("--version"))==0))  {
-				      __asm__("TRACK1128_BEGIN: nop\n\t" 
-					      "   lea	TRACK1128_BEGIN, %%eax\n\t"   
-					      "   lea	TRACK1128_END, %%ecx\n\t" 
-					      "   mov	%%eax, (%%esp)\n\t" 
-					      "   mov    %%ecx, 4(%%esp)\n\t" 
-					      " calll track\n\t" 
-					      "TRACK1128_END: nop\n\t" 
-					      : 
-					      : 
-					      : "eax", "ecx", "esp");
-				      license();
-				    } else
-				      {
-					__asm__("TRACK1146_BEGIN: nop\n\t" 
-						"   lea	TRACK1146_BEGIN, %%eax\n\t"   
-						"   lea	TRACK1146_END, %%ecx\n\t" 
-						"   mov	%%eax, (%%esp)\n\t" 
-						"   mov    %%ecx, 4(%%esp)\n\t" 
-						" calll track\n\t" 
-						"TRACK1146_END: nop\n\t" 
-						: 
-						: 
-						: "eax", "ecx", "esp");
-					if ((strcmp(aa->name, ("--license"))==0))  {
-					  __asm__("TRACK1129_BEGIN: nop\n\t" 
-						  "   lea	TRACK1129_BEGIN, %%eax\n\t"   
-						  "   lea	TRACK1129_END, %%ecx\n\t" 
-						  "   mov	%%eax, (%%esp)\n\t" 
-						  "   mov    %%ecx, 4(%%esp)\n\t" 
-						  " calll track\n\t" 
-						  "TRACK1129_END: nop\n\t" 
-						  : 
-						  : 
-						  : "eax", "ecx", "esp");
-					  license();
-					} else
-					  {
-					    __asm__("TRACK1145_BEGIN: nop\n\t" 
-						    "   lea	TRACK1145_BEGIN, %%eax\n\t"   
-						    "   lea	TRACK1145_END, %%ecx\n\t" 
-						    "   mov	%%eax, (%%esp)\n\t" 
-						    "   mov    %%ecx, 4(%%esp)\n\t" 
-						    " calll track\n\t" 
-						    "TRACK1145_END: nop\n\t" 
-						    : 
-						    : 
-						    : "eax", "ecx", "esp");
-					    if ((strcmp(aa->name, ("--exponential"))==0))  {
-					      __asm__("TRACK1130_BEGIN: nop\n\t" 
-						      "   lea	TRACK1130_BEGIN, %%eax\n\t"   
-						      "   lea	TRACK1130_END, %%ecx\n\t" 
-						      "   mov	%%eax, (%%esp)\n\t" 
-						      "   mov    %%ecx, 4(%%esp)\n\t" 
-						      " calll track\n\t" 
-						      "TRACK1130_END: nop\n\t" 
-						      : 
-						      : 
-						      : "eax", "ecx", "esp");
-					      workFactor = 1;
-					    } else
-					      {
-						__asm__("TRACK1144_BEGIN: nop\n\t" 
-							"   lea	TRACK1144_BEGIN, %%eax\n\t"   
-							"   lea	TRACK1144_END, %%ecx\n\t" 
-							"   mov	%%eax, (%%esp)\n\t" 
-							"   mov    %%ecx, 4(%%esp)\n\t" 
-							" calll track\n\t" 
-							"TRACK1144_END: nop\n\t" 
-							: 
-							: 
-							: "eax", "ecx", "esp");
-						if ((strcmp(aa->name, ("--repetitive-best"))==0))  {
-						  __asm__("TRACK1131_BEGIN: nop\n\t" 
-							  "   lea	TRACK1131_BEGIN, %%eax\n\t"   
-							  "   lea	TRACK1131_END, %%ecx\n\t" 
-							  "   mov	%%eax, (%%esp)\n\t" 
-							  "   mov    %%ecx, 4(%%esp)\n\t" 
-							  " calll track\n\t" 
-							  "TRACK1131_END: nop\n\t" 
-							  : 
-							  : 
-							  : "eax", "ecx", "esp");
-						  redundant(aa->name);
-						} else
-						  {
-						    __asm__("TRACK1143_BEGIN: nop\n\t" 
-							    "   lea	TRACK1143_BEGIN, %%eax\n\t"   
-							    "   lea	TRACK1143_END, %%ecx\n\t" 
-							    "   mov	%%eax, (%%esp)\n\t" 
-							    "   mov    %%ecx, 4(%%esp)\n\t" 
-							    " calll track\n\t" 
-							    "TRACK1143_END: nop\n\t" 
-							    : 
-							    : 
-							    : "eax", "ecx", "esp");
-						    if ((strcmp(aa->name, ("--repetitive-fast"))==0))  {
-						      __asm__("TRACK1132_BEGIN: nop\n\t" 
-							      "   lea	TRACK1132_BEGIN, %%eax\n\t"   
-							      "   lea	TRACK1132_END, %%ecx\n\t" 
-							      "   mov	%%eax, (%%esp)\n\t" 
-							      "   mov    %%ecx, 4(%%esp)\n\t" 
-							      " calll track\n\t" 
-							      "TRACK1132_END: nop\n\t" 
-							      : 
-							      : 
-							      : "eax", "ecx", "esp");
-						      redundant(aa->name);
-						    } else
-						      {
-							__asm__("TRACK1142_BEGIN: nop\n\t" 
-								"   lea	TRACK1142_BEGIN, %%eax\n\t"   
-								"   lea	TRACK1142_END, %%ecx\n\t" 
-								"   mov	%%eax, (%%esp)\n\t" 
-								"   mov    %%ecx, 4(%%esp)\n\t" 
-								" calll track\n\t" 
-								"TRACK1142_END: nop\n\t" 
-								: 
-								: 
-								: "eax", "ecx", "esp");
-							if ((strcmp(aa->name, ("--fast"))==0))  {
-							  __asm__("TRACK1133_BEGIN: nop\n\t" 
-								  "   lea	TRACK1133_BEGIN, %%eax\n\t"   
-								  "   lea	TRACK1133_END, %%ecx\n\t" 
-								  "   mov	%%eax, (%%esp)\n\t" 
-								  "   mov    %%ecx, 4(%%esp)\n\t" 
-								  " calll track\n\t" 
-								  "TRACK1133_END: nop\n\t" 
-								  : 
-								  : 
-								  : "eax", "ecx", "esp");
-							  blockSize100k = 1;
-							} else
-							  {
-							    __asm__("TRACK1141_BEGIN: nop\n\t" 
-								    "   lea	TRACK1141_BEGIN, %%eax\n\t"   
-								    "   lea	TRACK1141_END, %%ecx\n\t" 
-								    "   mov	%%eax, (%%esp)\n\t" 
-								    "   mov    %%ecx, 4(%%esp)\n\t" 
-								    " calll track\n\t" 
-								    "TRACK1141_END: nop\n\t" 
-								    : 
-								    : 
-								    : "eax", "ecx", "esp");
-							    if ((strcmp(aa->name, ("--best"))==0))  {
-							      __asm__("TRACK1134_BEGIN: nop\n\t" 
-								      "   lea	TRACK1134_BEGIN, %%eax\n\t"   
-								      "   lea	TRACK1134_END, %%ecx\n\t" 
-								      "   mov	%%eax, (%%esp)\n\t" 
-								      "   mov    %%ecx, 4(%%esp)\n\t" 
-								      " calll track\n\t" 
-								      "TRACK1134_END: nop\n\t" 
-								      : 
-								      : 
-								      : "eax", "ecx", "esp");
-							      blockSize100k = 9;
-							    } else
-							      {
-								__asm__("TRACK1140_BEGIN: nop\n\t" 
-									"   lea	TRACK1140_BEGIN, %%eax\n\t"   
-									"   lea	TRACK1140_END, %%ecx\n\t" 
-									"   mov	%%eax, (%%esp)\n\t" 
-									"   mov    %%ecx, 4(%%esp)\n\t" 
-									" calll track\n\t" 
-									"TRACK1140_END: nop\n\t" 
-									: 
-									: 
-									: "eax", "ecx", "esp");
-								if ((strcmp(aa->name, ("--verbose"))==0))  {
-								  __asm__("TRACK1135_BEGIN: nop\n\t" 
-									  "   lea	TRACK1135_BEGIN, %%eax\n\t"   
-									  "   lea	TRACK1135_END, %%ecx\n\t" 
-									  "   mov	%%eax, (%%esp)\n\t" 
-									  "   mov    %%ecx, 4(%%esp)\n\t" 
-									  " calll track\n\t" 
-									  "TRACK1135_END: nop\n\t" 
-									  : 
-									  : 
-									  : "eax", "ecx", "esp");
-								  verbosity++;
-								} else
-								  {
-								    __asm__("TRACK1139_BEGIN: nop\n\t" 
-									    "   lea	TRACK1139_BEGIN, %%eax\n\t"   
-									    "   lea	TRACK1139_END, %%ecx\n\t" 
-									    "   mov	%%eax, (%%esp)\n\t" 
-									    "   mov    %%ecx, 4(%%esp)\n\t" 
-									    " calll track\n\t" 
-									    "TRACK1139_END: nop\n\t" 
-									    : 
-									    : 
-									    : "eax", "ecx", "esp");
-								    if ((strcmp(aa->name, ("--help"))==0)) {
-								      __asm__("TRACK1136_BEGIN: nop\n\t" 
-									      "   lea	TRACK1136_BEGIN, %%eax\n\t"   
-									      "   lea	TRACK1136_END, %%ecx\n\t" 
-									      "   mov	%%eax, (%%esp)\n\t" 
-									      "   mov    %%ecx, 4(%%esp)\n\t" 
-									      " calll track\n\t" 
-									      "TRACK1136_END: nop\n\t" 
-									      : 
-									      : 
-									      : "eax", "ecx", "esp");
-								      usage ( progName ); exit ( 0 );
-								    }
-								    else
-								      {
-									__asm__("TRACK1138_BEGIN: nop\n\t" 
-										"   lea	TRACK1138_BEGIN, %%eax\n\t"   
-										"   lea	TRACK1138_END, %%ecx\n\t" 
-										"   mov	%%eax, (%%esp)\n\t" 
-										"   mov    %%ecx, 4(%%esp)\n\t" 
-										" calll track\n\t" 
-										"TRACK1138_END: nop\n\t" 
-										: 
-										: 
-										: "eax", "ecx", "esp");
-									if (strncmp ( aa->name, "--", 2) == 0) {
-									  __asm__("TRACK1137_BEGIN: nop\n\t" 
-										  "   lea	TRACK1137_BEGIN, %%eax\n\t"   
-										  "   lea	TRACK1137_END, %%ecx\n\t" 
-										  "   mov	%%eax, (%%esp)\n\t" 
-										  "   mov    %%ecx, 4(%%esp)\n\t" 
-										  " calll track\n\t" 
-										  "TRACK1137_END: nop\n\t" 
-										  : 
-										  : 
-										  : "eax", "ecx", "esp");
-									  fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
-									  usage ( progName );
-									  exit ( 1 );
-									}
-								      }
-								  }
-							      }
-							  }
-						      }
-						  }
-					      }
-					  }
-				      }
-				  }
-			      }
-			  }
-		      }
-		  }
-	      }
-	  }
-      }
-  }
-  if (verbosity > 4)  {
-    __asm__("TRACK1156_BEGIN: nop\n\t" 
-	    "   lea	TRACK1156_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1156_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1156_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    verbosity = 4;
-  }
-  if (opMode == 1 && smallMode && blockSize100k > 2)
+}
+   else
     {
-      __asm__("TRACK1157_BEGIN: nop\n\t" 
-	      "   lea	TRACK1157_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1157_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1157_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      blockSize100k = 2;
-    }
-  if (opMode == 3 && srcMode == 2) {
-    __asm__("TRACK1158_BEGIN: nop\n\t" 
-	    "   lea	TRACK1158_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1158_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1158_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
-	      progName );
-    exit ( 1 );
-  }
-  if (srcMode == 2 && numFileNames == 0)
-    {
-      __asm__("TRACK1159_BEGIN: nop\n\t" 
-	      "   lea	TRACK1159_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1159_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1159_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      srcMode = 1;
-    }
-  if (opMode != 1)  {
-    __asm__("TRACK1160_BEGIN: nop\n\t" 
-	    "   lea	TRACK1160_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1160_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1160_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    blockSize100k = 0;
-  }
-  if (srcMode == 3) {
-    __asm__("TRACK1161_BEGIN: nop\n\t" 
-	    "   lea	TRACK1161_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1161_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1161_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    signal (2, mySignalCatcher);
-    signal (15, mySignalCatcher);
-    signal (1, mySignalCatcher);
-  }
-  if (opMode == 1) {
-    __asm__("TRACK1166_BEGIN: nop\n\t" 
-	    "   lea	TRACK1166_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1166_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1166_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    if (srcMode == 1) {
-      __asm__("TRACK1162_BEGIN: nop\n\t" 
-	      "   lea	TRACK1162_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1162_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1162_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      compress ( ((void *)0) );
-    } else {
-      __asm__("TRACK1165_BEGIN: nop\n\t" 
-	      "   lea	TRACK1165_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1165_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1165_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      decode = ((Bool)1);
-      for (aa = argList; aa != ((void *)0); aa = aa->link) {
-	__asm__("TRACK1164_BEGIN: nop\n\t" 
-      		"   lea	TRACK1164_BEGIN, %%eax\n\t"   
-      		"   lea	TRACK1164_END, %%ecx\n\t" 
-      		"   mov	%%eax, (%%esp)\n\t" 
-      		"   mov    %%ecx, 4(%%esp)\n\t" 
-      		" calll track\n\t" 
-      		"TRACK1164_END: nop\n\t" 
-      		: 
-      		: 
-      		: "eax", "ecx", "esp");
-	if ((strcmp(aa->name, ("--"))==0)) {
-	  __asm__("TRACK1163_BEGIN: nop\n\t" 
-		  "   lea	TRACK1163_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1163_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1163_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  decode = ((Bool)0); continue;
-	}
-	if (aa->name[0] == '-' && decode) continue;
-	numFilesProcessed++;
-	compress ( aa->name );
-      }
-    }
-  }
-  else
-    {
-      __asm__("TRACK1179_BEGIN: nop\n\t" 
-	      "   lea	TRACK1179_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1179_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1179_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      if (opMode == 2) {
-	__asm__("TRACK1172_BEGIN: nop\n\t" 
-  		"   lea	TRACK1172_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1172_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1172_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	unzFailsExist = ((Bool)0);
+TRACK1179_BEGIN: track(&&TRACK1179_BEGIN, &&TRACK1179_END);
+TRACK1179_END:  __asm__("nop;");
+ 
+if (opMode == 2) {
+  TRACK1172_BEGIN: track(&&TRACK1172_BEGIN, &&TRACK1172_END);
+  TRACK1172_END:  __asm__("nop;");
+   
+  unzFailsExist = ((Bool)0);
         if (srcMode == 1) {
-	  __asm__("TRACK1167_BEGIN: nop\n\t" 
-		  "   lea	TRACK1167_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1167_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1167_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  uncompress ( ((void *)0) );
-	} else {
-	  __asm__("TRACK1170_BEGIN: nop\n\t" 
-		  "   lea	TRACK1170_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1170_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1170_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  decode = ((Bool)1);
-	  for (aa = argList; aa != ((void *)0); aa = aa->link) {
-	    __asm__("TRACK1169_BEGIN: nop\n\t" 
-		    "   lea	TRACK1169_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK1169_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK1169_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if ((strcmp(aa->name, ("--"))==0)) {
-	      __asm__("TRACK1168_BEGIN: nop\n\t" 
-		      "   lea	TRACK1168_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK1168_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK1168_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      decode = ((Bool)0); continue;
-	    }
-	    if (aa->name[0] == '-' && decode) continue;
-	    numFilesProcessed++;
-	    uncompress ( aa->name );
-	  }
-	}
+    TRACK1167_BEGIN: track(&&TRACK1167_BEGIN, &&TRACK1167_END);
+    TRACK1167_END:  __asm__("nop;");
+     
+    uncompress ( ((void *)0) );
+  } else {
+    TRACK1170_BEGIN: track(&&TRACK1170_BEGIN, &&TRACK1170_END);
+    TRACK1170_END:  __asm__("nop;");
+     
+    decode = ((Bool)1);
+             for (aa = argList; aa != ((void *)0); aa = aa->link) {
+      TRACK1169_BEGIN: track(&&TRACK1169_BEGIN, &&TRACK1169_END);
+      TRACK1169_END:  __asm__("nop;");
+       
+      if ((strcmp(aa->name, ("--"))==0)) {
+        TRACK1168_BEGIN: track(&&TRACK1168_BEGIN, &&TRACK1168_END);
+        TRACK1168_END:  __asm__("nop;");
+         
+        decode = ((Bool)0); continue;
+      }
+                  if (aa->name[0] == '-' && decode) continue;
+                  numFilesProcessed++;
+                  uncompress ( aa->name );
+    }
+  }
         if (unzFailsExist) {
-	  __asm__("TRACK1171_BEGIN: nop\n\t" 
-		  "   lea	TRACK1171_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1171_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1171_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  setExit(2);
-	  exit(exitValue);
-	}
-      }
-      else {
-	__asm__("TRACK1178_BEGIN: nop\n\t" 
-  		"   lea	TRACK1178_BEGIN, %%eax\n\t"   
-  		"   lea	TRACK1178_END, %%ecx\n\t" 
-  		"   mov	%%eax, (%%esp)\n\t" 
-  		"   mov    %%ecx, 4(%%esp)\n\t" 
-  		" calll track\n\t" 
-  		"TRACK1178_END: nop\n\t" 
-  		: 
-  		: 
-  		: "eax", "ecx", "esp");
-	testFailsExist = ((Bool)0);
-        if (srcMode == 1) {
-	  __asm__("TRACK1173_BEGIN: nop\n\t" 
-		  "   lea	TRACK1173_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1173_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1173_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  testf ( ((void *)0) );
-	} else {
-	  __asm__("TRACK1176_BEGIN: nop\n\t" 
-		  "   lea	TRACK1176_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1176_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1176_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  decode = ((Bool)1);
-	  for (aa = argList; aa != ((void *)0); aa = aa->link) {
-	    __asm__("TRACK1175_BEGIN: nop\n\t" 
-		    "   lea	TRACK1175_BEGIN, %%eax\n\t"   
-		    "   lea	TRACK1175_END, %%ecx\n\t" 
-		    "   mov	%%eax, (%%esp)\n\t" 
-		    "   mov    %%ecx, 4(%%esp)\n\t" 
-		    " calll track\n\t" 
-		    "TRACK1175_END: nop\n\t" 
-		    : 
-		    : 
-		    : "eax", "ecx", "esp");
-	    if ((strcmp(aa->name, ("--"))==0)) {
-	      __asm__("TRACK1174_BEGIN: nop\n\t" 
-		      "   lea	TRACK1174_BEGIN, %%eax\n\t"   
-		      "   lea	TRACK1174_END, %%ecx\n\t" 
-		      "   mov	%%eax, (%%esp)\n\t" 
-		      "   mov    %%ecx, 4(%%esp)\n\t" 
-		      " calll track\n\t" 
-		      "TRACK1174_END: nop\n\t" 
-		      : 
-		      : 
-		      : "eax", "ecx", "esp");
-	      decode = ((Bool)0); continue;
-	    }
-	    if (aa->name[0] == '-' && decode) continue;
-	    numFilesProcessed++;
-	    testf ( aa->name );
-	  }
-	}
-        if (testFailsExist && noisy) {
-	  __asm__("TRACK1177_BEGIN: nop\n\t" 
-		  "   lea	TRACK1177_BEGIN, %%eax\n\t"   
-		  "   lea	TRACK1177_END, %%ecx\n\t" 
-		  "   mov	%%eax, (%%esp)\n\t" 
-		  "   mov    %%ecx, 4(%%esp)\n\t" 
-		  " calll track\n\t" 
-		  "TRACK1177_END: nop\n\t" 
-		  : 
-		  : 
-		  : "eax", "ecx", "esp");
-	  fprintf ( stderr,
-		    "\n"
-		    "You can use the `bzip2recover' program to attempt to recover\n"
-		    "data from undamaged sections of corrupted files.\n\n"
-		    );
-	  setExit(2);
-	  exit(exitValue);
-	}
-      }
-    }
-  aa = argList;
-  while (aa != ((void *)0)) {
-    __asm__("TRACK1181_BEGIN: nop\n\t" 
-	    "   lea	TRACK1181_BEGIN, %%eax\n\t"   
-	    "   lea	TRACK1181_END, %%ecx\n\t" 
-	    "   mov	%%eax, (%%esp)\n\t" 
-	    "   mov    %%ecx, 4(%%esp)\n\t" 
-	    " calll track\n\t" 
-	    "TRACK1181_END: nop\n\t" 
-	    : 
-	    : 
-	    : "eax", "ecx", "esp");
-    Cell* aa2 = aa->link;
-    if (aa->name != ((void *)0))  {
-      __asm__("TRACK1180_BEGIN: nop\n\t" 
-	      "   lea	TRACK1180_BEGIN, %%eax\n\t"   
-	      "   lea	TRACK1180_END, %%ecx\n\t" 
-	      "   mov	%%eax, (%%esp)\n\t" 
-	      "   mov    %%ecx, 4(%%esp)\n\t" 
-	      " calll track\n\t" 
-	      "TRACK1180_END: nop\n\t" 
-	      : 
-	      : 
-	      : "eax", "ecx", "esp");
-      free(aa->name);
-    }
-    free(aa);
-    aa = aa2;
+    TRACK1171_BEGIN: track(&&TRACK1171_BEGIN, &&TRACK1171_END);
+    TRACK1171_END:  __asm__("nop;");
+     
+    setExit(2);
+             exit(exitValue);
   }
-  report(); //
-  return exitValue;
+}
+   else {
+  TRACK1178_BEGIN: track(&&TRACK1178_BEGIN, &&TRACK1178_END);
+  TRACK1178_END:  __asm__("nop;");
+   
+  testFailsExist = ((Bool)0);
+        if (srcMode == 1) {
+    TRACK1173_BEGIN: track(&&TRACK1173_BEGIN, &&TRACK1173_END);
+    TRACK1173_END:  __asm__("nop;");
+     
+    testf ( ((void *)0) );
+  } else {
+    TRACK1176_BEGIN: track(&&TRACK1176_BEGIN, &&TRACK1176_END);
+    TRACK1176_END:  __asm__("nop;");
+     
+    decode = ((Bool)1);
+             for (aa = argList; aa != ((void *)0); aa = aa->link) {
+      TRACK1175_BEGIN: track(&&TRACK1175_BEGIN, &&TRACK1175_END);
+      TRACK1175_END:  __asm__("nop;");
+       
+      if ((strcmp(aa->name, ("--"))==0)) {
+        TRACK1174_BEGIN: track(&&TRACK1174_BEGIN, &&TRACK1174_END);
+        TRACK1174_END:  __asm__("nop;");
+         
+        decode = ((Bool)0); continue;
+      }
+                  if (aa->name[0] == '-' && decode) continue;
+                  numFilesProcessed++;
+                  testf ( aa->name );
+    }
+  }
+        if (testFailsExist && noisy) {
+    TRACK1177_BEGIN: track(&&TRACK1177_BEGIN, &&TRACK1177_END);
+    TRACK1177_END:  __asm__("nop;");
+     
+    fprintf ( stderr,
+               "\n"
+               "You can use the `bzip2recover' program to attempt to recover\n"
+               "data from undamaged sections of corrupted files.\n\n"
+             );
+             setExit(2);
+             exit(exitValue);
+  }
+}
+}
+   aa = argList;
+   while (aa != ((void *)0)) {
+  Cell* aa2 = aa->link;
+  TRACK1181_BEGIN: track(&&TRACK1181_BEGIN, &&TRACK1181_END);
+  TRACK1181_END:  __asm__("nop;");
+   
+  if (aa->name != ((void *)0))  {
+  TRACK1180_BEGIN: track(&&TRACK1180_BEGIN, &&TRACK1180_END);
+  TRACK1180_END:  __asm__("nop;");
+   
+  free(aa->name);
+  }
+        free(aa);
+        aa = aa2;
+}
+   report(); //
+   return exitValue;
 }
 
 static void report()
@@ -19110,25 +10843,22 @@ static void report()
   printf("Branches taken: %d\n", coverage.count);
 }
 
-static void track(int start, int end)
+static void track(void* start, void* end)
 {
   __asm__( "movl	%0, %%edi\n\t"
-	   "mov        $144, %%al\n\t"
-	   "movl	%1, %%ecx\n\t"
-	   "rep 	stosb\n\t"
-	   :
-	   : "r" (start), "r"(end-start)
-	   : "edi", "al", "ecx"
-	   );
+    "mov        $144, %%al\n\t"
+    "movl	%1, %%ecx\n\t"
+    "rep 	stosb\n\t"
+    :
+    : "r" (start), "r"(end-start)
+    : "edi", "al", "ecx"
+    );
   coverage.count++;
 }
 
 static void init()
 {
-  void *addr = (void*)&main;
-  long length = sysconf(_SC_PAGESIZE);
-  unsigned long *d = (unsigned long *) ((int) addr &~(length-1));
-  if (mprotect(0x08048000, 143360, 0x1 | 0x2 | 0x4) != 0) {
+  if (mprotect((void*) 0x08048000, 111182, 0x1 | 0x2 | 0x4) != 0) {
     exit(1);
   }
   memset(&coverage, 0, sizeof(coverage));

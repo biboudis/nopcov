@@ -828,8 +828,10 @@ static void init();
 //Report Statistics in the end
 static void report();
 //Tracking block
-static void track(int start, int end);
+static void track(void* start, void* end);
+
 static void setExit(int exit);
+
 //Declare a static coverage var
 static coverage_t coverage;
 int main() {
@@ -851,7 +853,7 @@ static void report()
   printf("Branches taken: %d\n", coverage.count);
 }
 [NotInstrumented]
-static void track(int start, int end)
+static void track(void* start, void* end)
 {
   __asm__( "movl	%0, %%edi\n\t"
     "mov        $144, %%al\n\t"

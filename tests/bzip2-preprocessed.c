@@ -911,7 +911,7 @@ static void init();
 //Report Statistics in the end
 static void report();
 //Tracking block
-static void track(int start, int end);
+static void track(void* start, void* end);
 //Declare a static coverage var
 static coverage_t coverage;
 typedef
@@ -5586,7 +5586,7 @@ static void report()
   printf("Branches taken: %d\n", coverage.count);
 }
 [NotInstrumented]
-static void track(int start, int end)
+static void track(void* start, void* end)
 {
   __asm__( "movl	%0, %%edi\n\t"
     "mov        $144, %%al\n\t"
@@ -5601,10 +5601,7 @@ static void track(int start, int end)
 [NotInstrumented]
 static void init()
 {
-  void *addr = (void*)&main;
-  long length = sysconf(_SC_PAGESIZE);
-  unsigned long *d = (unsigned long *) ((int) addr &~(length-1));
-  if (mprotect(d, length, 0x1 | 0x2 | 0x4) != 0) {
+  if (mprotect((void*) 0x08048000, 111182, 0x1 | 0x2 | 0x4) != 0) {
     exit(1);
   }
   memset(&coverage, 0, sizeof(coverage));

@@ -91,6 +91,9 @@ scope InstrumentationStats;
 @init {
   $Symbols::types = new HashSet();
 } 
+@after {
+  System.out.println($InstrumentationStats::labelNumber);
+}
 	: external_declaration+
 	;
 
