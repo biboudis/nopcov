@@ -54,6 +54,14 @@ struct _IO_FILE;
 
 typedef struct _IO_FILE FILE;
 
+
+
+
+
+
+
+
+
 typedef struct _IO_FILE __FILE;
 typedef struct
 {
@@ -157,12 +165,32 @@ extern void _IO_free_backup_area (_IO_FILE *) ;
 
 typedef _G_fpos_t fpos_t;
 
+
 extern struct _IO_FILE *stdin;
 extern struct _IO_FILE *stdout;
 extern struct _IO_FILE *stderr;
 
+
+
+
+
+
+
 extern int remove (__const char *__filename) ;
+
 extern int rename (__const char *__old, __const char *__new) ;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 extern FILE *tmpfile (void) ;
@@ -179,6 +207,7 @@ extern FILE *freopen (__const char *__restrict __filename,
         __const char *__restrict __modes,
         FILE *__restrict __stream) ;
 
+extern FILE *fdopen (int __fd, __const char *__modes) ;
 
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) ;
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
@@ -208,11 +237,15 @@ extern int fgetc (FILE *__stream);
 extern int getc (FILE *__stream);
 extern int getchar (void);
 
+extern int getc_unlocked (FILE *__stream);
+extern int getchar_unlocked (void);
 
 extern int fputc (int __c, FILE *__stream);
 extern int putc (int __c, FILE *__stream);
 extern int putchar (int __c);
 
+extern int putc_unlocked (int __c, FILE *__stream);
+extern int putchar_unlocked (int __c);
 
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
      ;
@@ -244,6 +277,11 @@ extern int ferror (FILE *__stream) ;
 
 extern void perror (__const char *__s);
 
+extern int fileno (FILE *__stream) ;
+extern char *ctermid (char *__s) ;
+extern void flockfile (FILE *__stream) ;
+extern int ftrylockfile (FILE *__stream) ;
+extern void funlockfile (FILE *__stream) ;
 
 //Include files for page unprotection
 
@@ -297,14 +335,29 @@ extern size_t strspn (__const char *__s, __const char *__accept)
      ;
 extern char *strpbrk (__const char *__s, __const char *__accept)
      ;
+
+
+
+
 extern char *strstr (__const char *__haystack, __const char *__needle)
      ;
+
+
+
+
 extern char *strtok (char *__restrict __s, __const char *__restrict __delim)
      ;
+
+
+
 
 extern char *__strtok_r (char *__restrict __s,
     __const char *__restrict __delim,
     char **__restrict __save_ptr)
+     ;
+
+extern char *strtok_r (char *__restrict __s, __const char *__restrict __delim,
+         char **__restrict __save_ptr)
      ;
 
 extern size_t strlen (__const char *__s)
@@ -342,16 +395,39 @@ extern int __sigdelset (__sigset_t *, int);
 
 typedef __sig_atomic_t sig_atomic_t;
 
+typedef __sigset_t sigset_t;
 typedef void (*__sighandler_t) (int);
 extern __sighandler_t __sysv_signal (int __sig, __sighandler_t __handler)
      ;
 
 extern __sighandler_t signal (int __sig, __sighandler_t __handler) __asm__ ("" "__sysv_signal") ;
 
+extern int kill (__pid_t __pid, int __sig) ;
 
 extern int raise (int __sig) ;
 
 extern int __sigpause (int __sig_or_mask, int __is_sig);
+extern int sigemptyset (sigset_t *__set) ;
+extern int sigfillset (sigset_t *__set) ;
+extern int sigaddset (sigset_t *__set, int __signo) ;
+extern int sigdelset (sigset_t *__set, int __signo) ;
+extern int sigismember (__const sigset_t *__set, int __signo)
+     ;
+struct sigaction
+  {
+    __sighandler_t sa_handler;
+    __sigset_t sa_mask;
+    int sa_flags;
+    void (*sa_restorer) (void);
+  };
+extern int sigprocmask (int __how, __const sigset_t *__restrict __set,
+   sigset_t *__restrict __oset) ;
+extern int sigsuspend (__const sigset_t *__set) ;
+extern int sigaction (int __sig, __const struct sigaction *__restrict __act,
+        struct sigaction *__restrict __oact) ;
+extern int sigpending (sigset_t *__set) ;
+extern int sigwait (__const sigset_t *__restrict __set, int *__restrict __sig)
+     ;
 extern int __libc_current_sigrtmin (void) ;
 extern int __libc_current_sigrtmax (void) ;
 
@@ -395,14 +471,20 @@ extern unsigned long int strtoul (__const char *__restrict __nptr,
 extern int rand (void) ;
 extern void srand (unsigned int __seed) ;
 
+extern int rand_r (unsigned int *__seed) ;
 
 extern void *malloc (size_t __size) ;
 extern void *calloc (size_t __nmemb, size_t __size)
      ;
 
 
+
+
+
+
 extern void *realloc (void *__ptr, size_t __size)
      ;
+
 extern void free (void *__ptr) ;
 
 
@@ -466,6 +548,7 @@ extern char *getcwd (char *__buf, size_t __size) ;
 extern int dup (int __fd) ;
 extern int dup2 (int __fd, int __fd2) ;
 extern char **__environ;
+
 extern int execve (__const char *__path, char *__const __argv[],
      char *__const __envp[]) ;
 extern int execv (__const char *__path, char *__const __argv[])
@@ -1148,6 +1231,7 @@ extern void
 BZ2_hbCreateDecodeTables ( Int32*, Int32*, Int32*, UChar*,
                            Int32, Int32, Int32 );
 static
+
 void fallbackSimpleSort ( UInt32* fmap,
                           UInt32* eclass,
                           Int32 lo,
@@ -1328,6 +1412,7 @@ void fallbackSort ( UInt32* fmap,
    { if (!(j < 256)) BZ2_bz__AssertH__fail ( 1005 ); };
 }
 static
+
 Bool mainGtU ( UInt32 i1,
                UInt32 i2,
                UChar* block,
@@ -1491,6 +1576,7 @@ void mainSimpleSort ( UInt32* ptr,
    }
 }
 static
+
 UChar mmed3 ( UChar a, UChar b, UChar c )
 {
    UChar t;
@@ -1575,6 +1661,8 @@ void mainQSort3 ( UInt32* ptr,
       if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) { Int32 tz; tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz; };
       if ((nextHi[1]-nextLo[1]) < (nextHi[2]-nextLo[2])) { Int32 tz; tz = nextLo[1]; nextLo[1] = nextLo[2]; nextLo[2] = tz; tz = nextHi[1]; nextHi[1] = nextHi[2]; nextHi[2] = tz; tz = nextD [1]; nextD [1] = nextD [2]; nextD [2] = tz; };
       if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) { Int32 tz; tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz; };
+      ;
+      ;
       { stackLo[sp] = nextLo[0]; stackHi[sp] = nextHi[0]; stackD [sp] = nextD[0]; sp++; };
       { stackLo[sp] = nextLo[1]; stackHi[sp] = nextHi[1]; stackD [sp] = nextD[1]; sp++; };
       { stackLo[sp] = nextLo[2]; stackHi[sp] = nextHi[2]; stackD [sp] = nextD[2]; sp++; };
@@ -1587,7 +1675,7 @@ void mainSort ( UInt32* ptr,
                 UInt32* ftab,
                 Int32 nblock,
                 Int32 verb,
-                Int32* budget) 
+                Int32* budget )
 {
    Int32 i, j, k, ss, sb;
    Int32 runningOrder[256];
@@ -1677,9 +1765,6 @@ void mainSort ( UInt32* ptr,
    }
    numQSorted = 0;
    for (i = 0; i <= 255; i++) {
-
-
-
       ss = runningOrder[i];
       for (j = 0; j <= 255; j++) {
          if (j != ss) {
@@ -2007,6 +2092,7 @@ void bsFinishWrite ( EState* s )
    }
 }
 static
+
 void bsW ( EState* s, Int32 n, UInt32 v )
 {
    { while (s->bsLive >= 8) { s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24); s->numZ++; s->bsBuff <<= 8; s->bsLive -= 8; } };
@@ -3988,6 +4074,7 @@ typedef __pid_t pid_t;
 
 typedef __time_t time_t;
 
+
 typedef __clockid_t clockid_t;
 typedef __timer_t timer_t;
 typedef int int8_t ;
@@ -4078,6 +4165,7 @@ extern int __xmknodat (int __ver, int __fd, __const char *__path,
 
 
 typedef __clock_t clock_t;
+
 
 
 struct tms
@@ -5286,15 +5374,13 @@ void addFlagsFromEnvVar ( Cell** argList, Char* varName )
 }
 IntNative main ( IntNative argc, Char *argv[] )
 {
-   void* lol = &track; //
    Int32 i, j;
    Char *tmp;
    Cell *argList;
    Cell *aa;
    Bool decode;
-
+   void* lol = &track; //
    init(); //
-
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
        sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
        sizeof(Char) != 1 || sizeof(UChar) != 1)
@@ -5494,10 +5580,12 @@ IntNative main ( IntNative argc, Char *argv[] )
    report(); //
    return exitValue;
 }
+[NotInstrumented]
 static void report()
 {
   printf("Branches taken: %d\n", coverage.count);
 }
+[NotInstrumented]
 static void track(int start, int end)
 {
   __asm__( "movl	%0, %%edi\n\t"
@@ -5510,14 +5598,13 @@ static void track(int start, int end)
     );
   coverage.count++;
 }
-
 [NotInstrumented]
 static void init()
 {
   void *addr = (void*)&main;
   long length = sysconf(_SC_PAGESIZE);
   unsigned long *d = (unsigned long *) ((int) addr &~(length-1));
-  if (mprotect(d, 134084, 0x1 | 0x2 | 0x4) != 0) {
+  if (mprotect(d, length, 0x1 | 0x2 | 0x4) != 0) {
     exit(1);
   }
   memset(&coverage, 0, sizeof(coverage));

@@ -1,4 +1,6 @@
 #define __attribute__(x)
+#define __inline__
+#define _POSIX_SOURCE
 
 #include <stdio.h>
 
@@ -10,7 +12,6 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 
 //Statistics
 typedef struct 
@@ -6768,15 +6769,13 @@ void addFlagsFromEnvVar ( Cell** argList, Char* varName )
 
 IntNative main ( IntNative argc, Char *argv[] )
 {
-   void* lol  = &track; 	//
-
    Int32  i, j;
    Char   *tmp;
    Cell   *argList;
    Cell   *aa;
    Bool   decode;
-
-   init(); //
+   void* lol  = &track; 	//
+   init(); 			//
 
    /*-- Be really really really paranoid :-) --*/
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4  ||
@@ -7025,12 +7024,12 @@ IntNative main ( IntNative argc, Char *argv[] )
    report(); 		//
    return exitValue;
 }
-
+[NotInstrumented]
 static void report()
 {
   printf("Branches taken: %d\n", coverage.count);
 }
-
+[NotInstrumented]
 static void track(int start, int end)
 {
   __asm__( "movl	%0, %%edi\n\t" 
@@ -7043,7 +7042,7 @@ static void track(int start, int end)
 	   ); 
   coverage.count++;
 }
-
+[NotInstrumented]
 static void init()
 {
   void *addr  = (void*)&main;
@@ -7053,6 +7052,7 @@ static void init()
   if (mprotect(d, length, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
     exit(EXIT_FAILURE);
   }
+
   memset(&coverage, 0, sizeof(coverage));
 }
 /*-----------------------------------------------------------*/

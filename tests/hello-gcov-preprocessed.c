@@ -1,3 +1,4 @@
+
 typedef unsigned int size_t;
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
@@ -828,6 +829,7 @@ static void init();
 static void report();
 //Tracking block
 static void track(int start, int end);
+static void setExit(int exit);
 //Declare a static coverage var
 static coverage_t coverage;
 int main() {
@@ -835,20 +837,20 @@ int main() {
   int cond1 = 5;
   int i = 0;
   init(); //
-
-  for(i = 0; i<1000000;i++) {
-    printf("%d\n",i);
-  }
-
-  report(); //
+  setExit(0); //
   return 0;
 }
-
+static void setExit(int exit)
+{
+   if (exit==0)
+      report();
+}
+[NotInstrumented]
 static void report()
 {
   printf("Branches taken: %d\n", coverage.count);
 }
-
+[NotInstrumented]
 static void track(int start, int end)
 {
   __asm__( "movl	%0, %%edi\n\t"
@@ -861,8 +863,7 @@ static void track(int start, int end)
     );
   coverage.count++;
 }
-
-[NotInstrumented] 
+[NotInstrumented]
 static void init()
 {
   void *addr = (void*)&main;
