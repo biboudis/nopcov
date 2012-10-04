@@ -1,35 +1,13 @@
-/** ANSI C ANTLR v3 grammar
+/** 
+Aggelos BIboudis
 
-Translated from Jutta Degener's 1995 ANSI C yacc grammar by Terence Parr
-July 2006.  The lexical rules were taken from the Java grammar.
+Source-to-Source instrumentation for branch coverage analysis
 
-Jutta says: "In 1985, Jeff Lee published his Yacc grammar (which
-is accompanied by a matching Lex specification) for the April 30, 1985 draft
-version of the ANSI C standard.  Tom Stockfisch reposted it to net.sources in
-1987; that original, as mentioned in the answer to question 17.25 of the
-comp.lang.c FAQ, can be ftp'ed from ftp.uu.net,
-   file usenet/net.sources/ansi.c.grammar.Z.
-I intend to keep this version as close to the current C Standard grammar as
-possible; please let me know if you discover discrepancies. Jutta Degener, 1995"
-
-Generally speaking, you need symbol table info to parse C; typedefs
-define types and then IDENTIFIERS are either types or plain IDs.  I'm doing
-the min necessary here tracking only type names.  This is a good example
-of the global scope (called Symbols).  Every rule that declares its usage
-of Symbols pushes a new copy on the stack effectively creating a new
-symbol scope.  Also note rule declaration declares a rule scope that
-lets any invoked rule see isTypedef boolean.  It's much easier than
-passing that info down as parameters.  Very clean.  Rule
-direct_declarator can then easily determine whether the IDENTIFIER
-should be declared as a type name.
-
-I have only tested this on a single file, though it is 3500 lines.
-
-This grammar requires ANTLR v3.0.1 or higher.
-
-Terence Parr
-July 2006
+ANTLR v3 Grammar for ANSI C based on
+http://www.antlr.org/papers/LL-star/grammars/RatsC.g
+http://www.antlr.org/grammar/1153358328744/C.g
 */
+
 grammar C;
 options {
     backtrack=true;
@@ -117,6 +95,7 @@ scope Attribute;
 	: attribute?  ( declaration_specifiers? declarator declaration* '{' )=> function_definition
 	| '__extension__' declaration
 	| declaration
+	| assembly_definition
 	;
 
 function_definition
@@ -142,12 +121,60 @@ scope {
   $declaration::isTypedef = false;
 }
 	: 'typedef' declaration_specifiers? {$declaration::isTypedef=true;} init_declarator_list ';' // special case, looking for typedef	
-	| declaration_specifiers init_declarator_list? asm_definition? ';'
+	| declaration_specifiers init_declarator_list? simple_assembly_expression? ';'
+	;
+	
+assembly_definition 
+	: simple_assembly_expression ';'
+  	;
+
+simple_assembly_expression
+ 	: asm_keyword '(' STRING_LITERAL ')'
+  	;
+
+assembly_statement 
+ 	: asm_keyword type_qualifier? '(' assembly_argument ')' ';'
 	;
 
-asm_definition
-	: '__asm__' '(' STRING_LITERAL* ')'
+assembly_argument :
+    STRING_LITERAL (STRING_LITERAL)* ':' assembly_operands? ':' assembly_operands? ':' assembly_clobbers
+  | STRING_LITERAL (STRING_LITERAL)* ':' assembly_operands? ':' assembly_operands?
+  | STRING_LITERAL (STRING_LITERAL)* ':' assembly_operands?
+  | STRING_LITERAL (STRING_LITERAL)*
+  ;
+
+assembly_operands :
+  assembly_operand (  
+    ',' assembly_operand
+  )*
+  ;
+
+assembly_operand :
+  (  
+    '[' IDENTIFIER ']'
+  )? STRING_LITERAL '(' expression ')'
+  ;
+
+assembly_clobbers :
+  STRING_LITERAL (  
+    ',' STRING_LITERAL
+  )*
+  ;
+
+STRING_LITERAL
+	: STRING (WS STRING)* WS?
 	;
+
+fragment
+STRING
+    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
+    ;
+
+asm_keyword
+	:'asm'
+ 	| '__asm'
+  	| '__asm__'
+  	;
 	
 declaration_specifiers
 	: ( storage_class_specifier | type_specifier | type_qualifier )+
@@ -167,7 +194,31 @@ storage_class_specifier
 	| 'auto'
 	| 'register'
 	;
+	
+type_qualifier 
+	: volatile_qualifier
+	| constant_qualifier
+	| restrict_qualifier
+  	;
 
+volatile_qualifier
+	: 'volatile'
+	| '__volatile'
+  	| '__volatile__'
+  	;
+
+constant_qualifier 
+	:'const'
+  	| '__const'
+  	| '__const__'
+	;
+
+restrict_qualifier 
+  	:'restrict'
+  	| '__restrict'
+  	| '__restrict__'
+  	;
+  	
 type_specifier
 	: 'void'
 	| 'char'
@@ -238,12 +289,6 @@ enumerator_list
 
 enumerator
 	: IDENTIFIER ('=' constant_expression)?
-	;
-
-type_qualifier
-	: 'const'
-	| '__const'
-	| 'volatile'
 	;
 
 declarator
@@ -467,6 +512,7 @@ statement
 		-> instrument_statement(label_number={$InstrumentationStats::labelNumber}, statement={$iteration_statement.text})
 	| iteration_statement
 	| jump_statement
+	| assembly_statement
 	;
 
 labeled_statement
@@ -543,10 +589,6 @@ LETTER
 	
 CHARACTER_LITERAL
     :   '\'' ( EscapeSequence | ~('\''|'\\') ) '\''
-    ;
-
-STRING_LITERAL
-    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
     ;
 
 HEX_LITERAL : '0' ('x'|'X') HexDigit+ IntegerTypeSuffix? ;
