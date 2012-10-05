@@ -511,6 +511,9 @@ statement
 	| {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? iteration_statement  {$InstrumentationStats::labelNumber++;}
 		-> instrument_statement(label_number={$InstrumentationStats::labelNumber}, statement={$iteration_statement.text})
 	| iteration_statement
+	| {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? jump_statement  {$InstrumentationStats::labelNumber++;}
+		-> instrument_statement(label_number={$InstrumentationStats::labelNumber}, statement={$jump_statement.text})
+
 	| jump_statement
 	| assembly_statement
 	;

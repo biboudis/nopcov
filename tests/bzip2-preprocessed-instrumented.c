@@ -1239,38 +1239,37 @@ void fallbackSimpleSort ( UInt32* fmap,
 {
    Int32 i, j, tmp;
    UInt32 ec_tmp;
-   if (lo == hi) return;
+   if (lo == hi)  {
+TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
+TRACK1_END:  __asm__("nop;");
+return;
+}
    if (hi - lo > 3) {
-  TRACK3_BEGIN: track(&&TRACK3_BEGIN, &&TRACK3_END);
-  TRACK3_END:  __asm__("nop;");
-   
+  TRACK4_BEGIN: track(&&TRACK4_BEGIN, &&TRACK4_END);
+  TRACK4_END:  __asm__("nop;");
   for ( i = hi-4; i >= lo; i-- ) {
-    TRACK2_BEGIN: track(&&TRACK2_BEGIN, &&TRACK2_END);
-    TRACK2_END:  __asm__("nop;");
-     
+    TRACK3_BEGIN: track(&&TRACK3_BEGIN, &&TRACK3_END);
+    TRACK3_END:  __asm__("nop;");
     tmp = fmap[i];
              ec_tmp = eclass[tmp];
              for ( j = i+4; j <= hi && ec_tmp > eclass[fmap[j]]; j += 4 )
                  {
-    TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
-    TRACK1_END:  __asm__("nop;");
-     
+    TRACK2_BEGIN: track(&&TRACK2_BEGIN, &&TRACK2_END);
+    TRACK2_END:  __asm__("nop;");
     fmap[j-4] = fmap[j];
     }
              fmap[j-4] = tmp;
   }
 }
    for ( i = hi-1; i >= lo; i-- ) {
-  TRACK5_BEGIN: track(&&TRACK5_BEGIN, &&TRACK5_END);
-  TRACK5_END:  __asm__("nop;");
-   
+  TRACK6_BEGIN: track(&&TRACK6_BEGIN, &&TRACK6_END);
+  TRACK6_END:  __asm__("nop;");
   tmp = fmap[i];
         ec_tmp = eclass[tmp];
         for ( j = i+1; j <= hi && ec_tmp > eclass[fmap[j]]; j++ )
             {
-  TRACK4_BEGIN: track(&&TRACK4_BEGIN, &&TRACK4_END);
-  TRACK4_END:  __asm__("nop;");
-   
+  TRACK5_BEGIN: track(&&TRACK5_BEGIN, &&TRACK5_END);
+  TRACK5_END:  __asm__("nop;");
   fmap[j-1] = fmap[j];
   }
         fmap[j-1] = tmp;
@@ -1291,117 +1290,125 @@ void fallbackQSort3 ( UInt32* fmap,
    sp = 0;
    { stackLo[sp] = loSt; stackHi[sp] = hiSt; sp++; };
    while (sp > 0) {
-  TRACK21_BEGIN: track(&&TRACK21_BEGIN, &&TRACK21_END);
-  TRACK21_END:  __asm__("nop;");
-   
+  TRACK28_BEGIN: track(&&TRACK28_BEGIN, &&TRACK28_END);
+  TRACK28_END:  __asm__("nop;");
   { if (!(sp < 100))  {
-  TRACK6_BEGIN: track(&&TRACK6_BEGIN, &&TRACK6_END);
-  TRACK6_END:  __asm__("nop;");
-   
+  TRACK7_BEGIN: track(&&TRACK7_BEGIN, &&TRACK7_END);
+  TRACK7_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 1004 );
   } };
         { sp--; lo = stackLo[sp]; hi = stackHi[sp]; };
         if (hi - lo < 10) {
-    TRACK7_BEGIN: track(&&TRACK7_BEGIN, &&TRACK7_END);
-    TRACK7_END:  __asm__("nop;");
-     
+    TRACK8_BEGIN: track(&&TRACK8_BEGIN, &&TRACK8_END);
+    TRACK8_END:  __asm__("nop;");
     fallbackSimpleSort ( fmap, eclass, lo, hi );
              continue;
   }
         r = ((r * 7621) + 1) % 32768;
         r3 = r % 3;
         if (r3 == 0)  {
-  TRACK8_BEGIN: track(&&TRACK8_BEGIN, &&TRACK8_END);
-  TRACK8_END:  __asm__("nop;");
-   
+  TRACK9_BEGIN: track(&&TRACK9_BEGIN, &&TRACK9_END);
+  TRACK9_END:  __asm__("nop;");
   med = eclass[fmap[lo]];
   } else
          {
-  TRACK11_BEGIN: track(&&TRACK11_BEGIN, &&TRACK11_END);
-  TRACK11_END:  __asm__("nop;");
-   
+  TRACK12_BEGIN: track(&&TRACK12_BEGIN, &&TRACK12_END);
+  TRACK12_END:  __asm__("nop;");
   if (r3 == 1)  {
-  TRACK9_BEGIN: track(&&TRACK9_BEGIN, &&TRACK9_END);
-  TRACK9_END:  __asm__("nop;");
-   
+  TRACK10_BEGIN: track(&&TRACK10_BEGIN, &&TRACK10_END);
+  TRACK10_END:  __asm__("nop;");
   med = eclass[fmap[(lo+hi)>>1]];
   } else
                       {
-  TRACK10_BEGIN: track(&&TRACK10_BEGIN, &&TRACK10_END);
-  TRACK10_END:  __asm__("nop;");
-   
+  TRACK11_BEGIN: track(&&TRACK11_BEGIN, &&TRACK11_END);
+  TRACK11_END:  __asm__("nop;");
   med = eclass[fmap[hi]];
   }
   }
         unLo = ltLo = lo;
         unHi = gtHi = hi;
         while (1) {
-    TRACK16_BEGIN: track(&&TRACK16_BEGIN, &&TRACK16_END);
-    TRACK16_END:  __asm__("nop;");
-     
+    TRACK22_BEGIN: track(&&TRACK22_BEGIN, &&TRACK22_END);
+    TRACK22_END:  __asm__("nop;");
     while (1) {
+      TRACK16_BEGIN: track(&&TRACK16_BEGIN, &&TRACK16_END);
+      TRACK16_END:  __asm__("nop;");
+      if (unLo > unHi)  {
       TRACK13_BEGIN: track(&&TRACK13_BEGIN, &&TRACK13_END);
       TRACK13_END:  __asm__("nop;");
-       
-      if (unLo > unHi) break;
+      break;
+      }
                   n = (Int32)eclass[fmap[unLo]] - (Int32)med;
                   if (n == 0) {
-        TRACK12_BEGIN: track(&&TRACK12_BEGIN, &&TRACK12_END);
-        TRACK12_END:  __asm__("nop;");
-         
+        TRACK14_BEGIN: track(&&TRACK14_BEGIN, &&TRACK14_END);
+        TRACK14_END:  __asm__("nop;");
         { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[ltLo]; fmap[ltLo] = zztmp; };
                        ltLo++; unLo++;
                        continue;
       };
-                  if (n > 0) break;
+                  if (n > 0)  {
+      TRACK15_BEGIN: track(&&TRACK15_BEGIN, &&TRACK15_END);
+      TRACK15_END:  __asm__("nop;");
+      break;
+      }
                   unLo++;
     }
              while (1) {
-      TRACK15_BEGIN: track(&&TRACK15_BEGIN, &&TRACK15_END);
-      TRACK15_END:  __asm__("nop;");
-       
-      if (unLo > unHi) break;
+      TRACK20_BEGIN: track(&&TRACK20_BEGIN, &&TRACK20_END);
+      TRACK20_END:  __asm__("nop;");
+      if (unLo > unHi)  {
+      TRACK17_BEGIN: track(&&TRACK17_BEGIN, &&TRACK17_END);
+      TRACK17_END:  __asm__("nop;");
+      break;
+      }
                   n = (Int32)eclass[fmap[unHi]] - (Int32)med;
                   if (n == 0) {
-        TRACK14_BEGIN: track(&&TRACK14_BEGIN, &&TRACK14_END);
-        TRACK14_END:  __asm__("nop;");
-         
+        TRACK18_BEGIN: track(&&TRACK18_BEGIN, &&TRACK18_END);
+        TRACK18_END:  __asm__("nop;");
         { Int32 zztmp = fmap[unHi]; fmap[unHi] = fmap[gtHi]; fmap[gtHi] = zztmp; };
                        gtHi--; unHi--;
                        continue;
       };
-                  if (n < 0) break;
+                  if (n < 0)  {
+      TRACK19_BEGIN: track(&&TRACK19_BEGIN, &&TRACK19_END);
+      TRACK19_END:  __asm__("nop;");
+      break;
+      }
                   unHi--;
     }
-             if (unLo > unHi) break;
+             if (unLo > unHi)  {
+    TRACK21_BEGIN: track(&&TRACK21_BEGIN, &&TRACK21_END);
+    TRACK21_END:  __asm__("nop;");
+    break;
+    }
              { Int32 zztmp = fmap[unLo]; fmap[unLo] = fmap[unHi]; fmap[unHi] = zztmp; }; unLo++; unHi--;
   }
         ;
-        if (gtHi < ltLo) continue;
+        if (gtHi < ltLo)  {
+  TRACK23_BEGIN: track(&&TRACK23_BEGIN, &&TRACK23_END);
+  TRACK23_END:  __asm__("nop;");
+  continue;
+  }
         n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
-    TRACK17_BEGIN: track(&&TRACK17_BEGIN, &&TRACK17_END);
-    TRACK17_END:  __asm__("nop;");
-     
+    TRACK24_BEGIN: track(&&TRACK24_BEGIN, &&TRACK24_END);
+    TRACK24_END:  __asm__("nop;");
     { Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
   } };
         m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
-    TRACK18_BEGIN: track(&&TRACK18_BEGIN, &&TRACK18_END);
-    TRACK18_END:  __asm__("nop;");
-     
+    TRACK25_BEGIN: track(&&TRACK25_BEGIN, &&TRACK25_END);
+    TRACK25_END:  __asm__("nop;");
     { Int32 zztmp = fmap[yyp1]; fmap[yyp1] = fmap[yyp2]; fmap[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
   } };
         n = lo + unLo - ltLo - 1;
         m = hi - (gtHi - unHi) + 1;
         if (n - lo > hi - m) {
-    TRACK19_BEGIN: track(&&TRACK19_BEGIN, &&TRACK19_END);
-    TRACK19_END:  __asm__("nop;");
-     
+    TRACK26_BEGIN: track(&&TRACK26_BEGIN, &&TRACK26_END);
+    TRACK26_END:  __asm__("nop;");
     { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
              { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
   } else {
-    TRACK20_BEGIN: track(&&TRACK20_BEGIN, &&TRACK20_END);
-    TRACK20_END:  __asm__("nop;");
-     
+    TRACK27_BEGIN: track(&&TRACK27_BEGIN, &&TRACK27_END);
+    TRACK27_END:  __asm__("nop;");
     { stackLo[sp] = m; stackHi[sp] = hi; sp++; };
              { stackLo[sp] = lo; stackHi[sp] = n; sp++; };
   }
@@ -1422,39 +1429,33 @@ void fallbackSort ( UInt32* fmap,
    UChar* eclass8 = (UChar*)eclass;
    if (verb >= 4)
        {
-TRACK22_BEGIN: track(&&TRACK22_BEGIN, &&TRACK22_END);
-TRACK22_END:  __asm__("nop;");
- 
+TRACK29_BEGIN: track(&&TRACK29_BEGIN, &&TRACK29_END);
+TRACK29_END:  __asm__("nop;");
 fprintf(stderr,"        bucket sorting ...\n");
 }
    for (i = 0; i < 257; i++)  {
-TRACK23_BEGIN: track(&&TRACK23_BEGIN, &&TRACK23_END);
-TRACK23_END:  __asm__("nop;");
- 
+TRACK30_BEGIN: track(&&TRACK30_BEGIN, &&TRACK30_END);
+TRACK30_END:  __asm__("nop;");
 ftab[i] = 0;
 }
    for (i = 0; i < nblock; i++)  {
-TRACK24_BEGIN: track(&&TRACK24_BEGIN, &&TRACK24_END);
-TRACK24_END:  __asm__("nop;");
- 
+TRACK31_BEGIN: track(&&TRACK31_BEGIN, &&TRACK31_END);
+TRACK31_END:  __asm__("nop;");
 ftab[eclass8[i]]++;
 }
    for (i = 0; i < 256; i++)  {
-TRACK25_BEGIN: track(&&TRACK25_BEGIN, &&TRACK25_END);
-TRACK25_END:  __asm__("nop;");
- 
+TRACK32_BEGIN: track(&&TRACK32_BEGIN, &&TRACK32_END);
+TRACK32_END:  __asm__("nop;");
 ftabCopy[i] = ftab[i];
 }
    for (i = 1; i < 257; i++)  {
-TRACK26_BEGIN: track(&&TRACK26_BEGIN, &&TRACK26_END);
-TRACK26_END:  __asm__("nop;");
- 
+TRACK33_BEGIN: track(&&TRACK33_BEGIN, &&TRACK33_END);
+TRACK33_END:  __asm__("nop;");
 ftab[i] += ftab[i-1];
 }
    for (i = 0; i < nblock; i++) {
-  TRACK27_BEGIN: track(&&TRACK27_BEGIN, &&TRACK27_END);
-  TRACK27_END:  __asm__("nop;");
-   
+  TRACK34_BEGIN: track(&&TRACK34_BEGIN, &&TRACK34_END);
+  TRACK34_END:  __asm__("nop;");
   j = eclass8[i];
         k = ftab[j] - 1;
         ftab[j] = k;
@@ -1462,51 +1463,43 @@ ftab[i] += ftab[i-1];
 }
    nBhtab = 2 + (nblock / 32);
    for (i = 0; i < nBhtab; i++)  {
-TRACK28_BEGIN: track(&&TRACK28_BEGIN, &&TRACK28_END);
-TRACK28_END:  __asm__("nop;");
- 
+TRACK35_BEGIN: track(&&TRACK35_BEGIN, &&TRACK35_END);
+TRACK35_END:  __asm__("nop;");
 bhtab[i] = 0;
 }
    for (i = 0; i < 256; i++)  {
-TRACK29_BEGIN: track(&&TRACK29_BEGIN, &&TRACK29_END);
-TRACK29_END:  __asm__("nop;");
- 
+TRACK36_BEGIN: track(&&TRACK36_BEGIN, &&TRACK36_END);
+TRACK36_END:  __asm__("nop;");
 bhtab[(ftab[i]) >> 5] |= (1 << ((ftab[i]) & 31));
 }
    for (i = 0; i < 32; i++) {
-  TRACK30_BEGIN: track(&&TRACK30_BEGIN, &&TRACK30_END);
-  TRACK30_END:  __asm__("nop;");
-   
+  TRACK37_BEGIN: track(&&TRACK37_BEGIN, &&TRACK37_END);
+  TRACK37_END:  __asm__("nop;");
   bhtab[(nblock + 2*i) >> 5] |= (1 << ((nblock + 2*i) & 31));
         bhtab[(nblock + 2*i + 1) >> 5] &= ~(1 << ((nblock + 2*i + 1) & 31));
 }
    H = 1;
    while (1) {
-  TRACK48_BEGIN: track(&&TRACK48_BEGIN, &&TRACK48_END);
-  TRACK48_END:  __asm__("nop;");
-   
+  TRACK58_BEGIN: track(&&TRACK58_BEGIN, &&TRACK58_END);
+  TRACK58_END:  __asm__("nop;");
   if (verb >= 4)
             {
-  TRACK31_BEGIN: track(&&TRACK31_BEGIN, &&TRACK31_END);
-  TRACK31_END:  __asm__("nop;");
-   
+  TRACK38_BEGIN: track(&&TRACK38_BEGIN, &&TRACK38_END);
+  TRACK38_END:  __asm__("nop;");
   fprintf(stderr,"        depth %6d has ",H);
   }
         j = 0;
         for (i = 0; i < nblock; i++) {
-    TRACK34_BEGIN: track(&&TRACK34_BEGIN, &&TRACK34_END);
-    TRACK34_END:  __asm__("nop;");
-     
+    TRACK41_BEGIN: track(&&TRACK41_BEGIN, &&TRACK41_END);
+    TRACK41_END:  __asm__("nop;");
     if ((bhtab[(i) >> 5] & (1 << ((i) & 31))))  {
-    TRACK32_BEGIN: track(&&TRACK32_BEGIN, &&TRACK32_END);
-    TRACK32_END:  __asm__("nop;");
-     
+    TRACK39_BEGIN: track(&&TRACK39_BEGIN, &&TRACK39_END);
+    TRACK39_END:  __asm__("nop;");
     j = i;
     }
              k = fmap[i] - H; if (k < 0)  {
-    TRACK33_BEGIN: track(&&TRACK33_BEGIN, &&TRACK33_END);
-    TRACK33_END:  __asm__("nop;");
-     
+    TRACK40_BEGIN: track(&&TRACK40_BEGIN, &&TRACK40_END);
+    TRACK40_END:  __asm__("nop;");
     k += nblock;
     }
              eclass[k] = j;
@@ -1514,76 +1507,72 @@ bhtab[(ftab[i]) >> 5] |= (1 << ((ftab[i]) & 31));
         nNotDone = 0;
         r = -1;
         while (1) {
-    TRACK46_BEGIN: track(&&TRACK46_BEGIN, &&TRACK46_END);
-    TRACK46_END:  __asm__("nop;");
-     
+    TRACK55_BEGIN: track(&&TRACK55_BEGIN, &&TRACK55_END);
+    TRACK55_END:  __asm__("nop;");
     k = r + 1;
              while ((bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
-    TRACK35_BEGIN: track(&&TRACK35_BEGIN, &&TRACK35_END);
-    TRACK35_END:  __asm__("nop;");
-     
+    TRACK42_BEGIN: track(&&TRACK42_BEGIN, &&TRACK42_END);
+    TRACK42_END:  __asm__("nop;");
     k++;
     }
              if ((bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
-      TRACK38_BEGIN: track(&&TRACK38_BEGIN, &&TRACK38_END);
-      TRACK38_END:  __asm__("nop;");
-       
+      TRACK45_BEGIN: track(&&TRACK45_BEGIN, &&TRACK45_END);
+      TRACK45_END:  __asm__("nop;");
       while (bhtab[(k) >> 5] == 0xffffffff)  {
-      TRACK36_BEGIN: track(&&TRACK36_BEGIN, &&TRACK36_END);
-      TRACK36_END:  __asm__("nop;");
-       
+      TRACK43_BEGIN: track(&&TRACK43_BEGIN, &&TRACK43_END);
+      TRACK43_END:  __asm__("nop;");
       k += 32;
       }
                   while ((bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
-      TRACK37_BEGIN: track(&&TRACK37_BEGIN, &&TRACK37_END);
-      TRACK37_END:  __asm__("nop;");
-       
+      TRACK44_BEGIN: track(&&TRACK44_BEGIN, &&TRACK44_END);
+      TRACK44_END:  __asm__("nop;");
       k++;
       }
     }
              l = k - 1;
-             if (l >= nblock) break;
+             if (l >= nblock)  {
+    TRACK46_BEGIN: track(&&TRACK46_BEGIN, &&TRACK46_END);
+    TRACK46_END:  __asm__("nop;");
+    break;
+    }
              while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))) && ((k) & 0x01f))  {
-    TRACK39_BEGIN: track(&&TRACK39_BEGIN, &&TRACK39_END);
-    TRACK39_END:  __asm__("nop;");
-     
+    TRACK47_BEGIN: track(&&TRACK47_BEGIN, &&TRACK47_END);
+    TRACK47_END:  __asm__("nop;");
     k++;
     }
              if (!(bhtab[(k) >> 5] & (1 << ((k) & 31)))) {
-      TRACK42_BEGIN: track(&&TRACK42_BEGIN, &&TRACK42_END);
-      TRACK42_END:  __asm__("nop;");
-       
+      TRACK50_BEGIN: track(&&TRACK50_BEGIN, &&TRACK50_END);
+      TRACK50_END:  __asm__("nop;");
       while (bhtab[(k) >> 5] == 0x00000000)  {
-      TRACK40_BEGIN: track(&&TRACK40_BEGIN, &&TRACK40_END);
-      TRACK40_END:  __asm__("nop;");
-       
+      TRACK48_BEGIN: track(&&TRACK48_BEGIN, &&TRACK48_END);
+      TRACK48_END:  __asm__("nop;");
       k += 32;
       }
                   while (!(bhtab[(k) >> 5] & (1 << ((k) & 31))))  {
-      TRACK41_BEGIN: track(&&TRACK41_BEGIN, &&TRACK41_END);
-      TRACK41_END:  __asm__("nop;");
-       
+      TRACK49_BEGIN: track(&&TRACK49_BEGIN, &&TRACK49_END);
+      TRACK49_END:  __asm__("nop;");
       k++;
       }
     }
              r = k - 1;
-             if (r >= nblock) break;
+             if (r >= nblock)  {
+    TRACK51_BEGIN: track(&&TRACK51_BEGIN, &&TRACK51_END);
+    TRACK51_END:  __asm__("nop;");
+    break;
+    }
              if (r > l) {
-      TRACK45_BEGIN: track(&&TRACK45_BEGIN, &&TRACK45_END);
-      TRACK45_END:  __asm__("nop;");
-       
+      TRACK54_BEGIN: track(&&TRACK54_BEGIN, &&TRACK54_END);
+      TRACK54_END:  __asm__("nop;");
       nNotDone += (r - l + 1);
                   fallbackQSort3 ( fmap, eclass, l, r );
                   cc = -1;
                   for (i = l; i <= r; i++) {
-        TRACK44_BEGIN: track(&&TRACK44_BEGIN, &&TRACK44_END);
-        TRACK44_END:  __asm__("nop;");
-         
+        TRACK53_BEGIN: track(&&TRACK53_BEGIN, &&TRACK53_END);
+        TRACK53_END:  __asm__("nop;");
         cc1 = eclass[fmap[i]];
                        if (cc != cc1) {
-          TRACK43_BEGIN: track(&&TRACK43_BEGIN, &&TRACK43_END);
-          TRACK43_END:  __asm__("nop;");
-           
+          TRACK52_BEGIN: track(&&TRACK52_BEGIN, &&TRACK52_END);
+          TRACK52_END:  __asm__("nop;");
           bhtab[(i) >> 5] |= (1 << ((i) & 31)); cc = cc1;
         };
       }
@@ -1591,39 +1580,38 @@ bhtab[(ftab[i]) >> 5] |= (1 << ((ftab[i]) & 31));
   }
         if (verb >= 4)
             {
-  TRACK47_BEGIN: track(&&TRACK47_BEGIN, &&TRACK47_END);
-  TRACK47_END:  __asm__("nop;");
-   
+  TRACK56_BEGIN: track(&&TRACK56_BEGIN, &&TRACK56_END);
+  TRACK56_END:  __asm__("nop;");
   fprintf(stderr,"%6d unresolved strings\n",nNotDone);
   }
         H *= 2;
-        if (H > nblock || nNotDone == 0) break;
+        if (H > nblock || nNotDone == 0)  {
+  TRACK57_BEGIN: track(&&TRACK57_BEGIN, &&TRACK57_END);
+  TRACK57_END:  __asm__("nop;");
+  break;
+  }
 }
    if (verb >= 4)
        {
-TRACK49_BEGIN: track(&&TRACK49_BEGIN, &&TRACK49_END);
-TRACK49_END:  __asm__("nop;");
- 
+TRACK59_BEGIN: track(&&TRACK59_BEGIN, &&TRACK59_END);
+TRACK59_END:  __asm__("nop;");
 fprintf(stderr,"        reconstructing block ...\n");
 }
    j = 0;
    for (i = 0; i < nblock; i++) {
-  TRACK51_BEGIN: track(&&TRACK51_BEGIN, &&TRACK51_END);
-  TRACK51_END:  __asm__("nop;");
-   
+  TRACK61_BEGIN: track(&&TRACK61_BEGIN, &&TRACK61_END);
+  TRACK61_END:  __asm__("nop;");
   while (ftabCopy[j] == 0)  {
-  TRACK50_BEGIN: track(&&TRACK50_BEGIN, &&TRACK50_END);
-  TRACK50_END:  __asm__("nop;");
-   
+  TRACK60_BEGIN: track(&&TRACK60_BEGIN, &&TRACK60_END);
+  TRACK60_END:  __asm__("nop;");
   j++;
   }
         ftabCopy[j]--;
         eclass8[fmap[i]] = (UChar)j;
 }
    { if (!(j < 256))  {
-TRACK52_BEGIN: track(&&TRACK52_BEGIN, &&TRACK52_END);
-TRACK52_END:  __asm__("nop;");
- 
+TRACK62_BEGIN: track(&&TRACK62_BEGIN, &&TRACK62_END);
+TRACK62_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 1005 );
 } };
 }
@@ -1641,96 +1629,205 @@ Bool mainGtU ( UInt32 i1,
    UInt16 s1, s2;
    ;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK63_BEGIN: track(&&TRACK63_BEGIN, &&TRACK63_END);
+TRACK63_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK64_BEGIN: track(&&TRACK64_BEGIN, &&TRACK64_END);
+TRACK64_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK65_BEGIN: track(&&TRACK65_BEGIN, &&TRACK65_END);
+TRACK65_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK66_BEGIN: track(&&TRACK66_BEGIN, &&TRACK66_END);
+TRACK66_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK67_BEGIN: track(&&TRACK67_BEGIN, &&TRACK67_END);
+TRACK67_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK68_BEGIN: track(&&TRACK68_BEGIN, &&TRACK68_END);
+TRACK68_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK69_BEGIN: track(&&TRACK69_BEGIN, &&TRACK69_END);
+TRACK69_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK70_BEGIN: track(&&TRACK70_BEGIN, &&TRACK70_END);
+TRACK70_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK71_BEGIN: track(&&TRACK71_BEGIN, &&TRACK71_END);
+TRACK71_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK72_BEGIN: track(&&TRACK72_BEGIN, &&TRACK72_END);
+TRACK72_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK73_BEGIN: track(&&TRACK73_BEGIN, &&TRACK73_END);
+TRACK73_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    c1 = block[i1]; c2 = block[i2];
-   if (c1 != c2) return (c1 > c2);
+   if (c1 != c2)  {
+TRACK74_BEGIN: track(&&TRACK74_BEGIN, &&TRACK74_END);
+TRACK74_END:  __asm__("nop;");
+return (c1 > c2);
+}
    i1++; i2++;
    k = nblock + 8;
    do {
-  TRACK55_BEGIN: track(&&TRACK55_BEGIN, &&TRACK55_END);
-  TRACK55_END:  __asm__("nop;");
-   
+  TRACK93_BEGIN: track(&&TRACK93_BEGIN, &&TRACK93_END);
+  TRACK93_END:  __asm__("nop;");
   c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK75_BEGIN: track(&&TRACK75_BEGIN, &&TRACK75_END);
+  TRACK75_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK76_BEGIN: track(&&TRACK76_BEGIN, &&TRACK76_END);
+  TRACK76_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK77_BEGIN: track(&&TRACK77_BEGIN, &&TRACK77_END);
+  TRACK77_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK78_BEGIN: track(&&TRACK78_BEGIN, &&TRACK78_END);
+  TRACK78_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK79_BEGIN: track(&&TRACK79_BEGIN, &&TRACK79_END);
+  TRACK79_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK80_BEGIN: track(&&TRACK80_BEGIN, &&TRACK80_END);
+  TRACK80_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK81_BEGIN: track(&&TRACK81_BEGIN, &&TRACK81_END);
+  TRACK81_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK82_BEGIN: track(&&TRACK82_BEGIN, &&TRACK82_END);
+  TRACK82_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK83_BEGIN: track(&&TRACK83_BEGIN, &&TRACK83_END);
+  TRACK83_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK84_BEGIN: track(&&TRACK84_BEGIN, &&TRACK84_END);
+  TRACK84_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK85_BEGIN: track(&&TRACK85_BEGIN, &&TRACK85_END);
+  TRACK85_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK86_BEGIN: track(&&TRACK86_BEGIN, &&TRACK86_END);
+  TRACK86_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK87_BEGIN: track(&&TRACK87_BEGIN, &&TRACK87_END);
+  TRACK87_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK88_BEGIN: track(&&TRACK88_BEGIN, &&TRACK88_END);
+  TRACK88_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         c1 = block[i1]; c2 = block[i2];
-        if (c1 != c2) return (c1 > c2);
+        if (c1 != c2)  {
+  TRACK89_BEGIN: track(&&TRACK89_BEGIN, &&TRACK89_END);
+  TRACK89_END:  __asm__("nop;");
+  return (c1 > c2);
+  }
         s1 = quadrant[i1]; s2 = quadrant[i2];
-        if (s1 != s2) return (s1 > s2);
+        if (s1 != s2)  {
+  TRACK90_BEGIN: track(&&TRACK90_BEGIN, &&TRACK90_END);
+  TRACK90_END:  __asm__("nop;");
+  return (s1 > s2);
+  }
         i1++; i2++;
         if (i1 >= nblock)  {
-  TRACK53_BEGIN: track(&&TRACK53_BEGIN, &&TRACK53_END);
-  TRACK53_END:  __asm__("nop;");
-   
+  TRACK91_BEGIN: track(&&TRACK91_BEGIN, &&TRACK91_END);
+  TRACK91_END:  __asm__("nop;");
   i1 -= nblock;
   }
         if (i2 >= nblock)  {
-  TRACK54_BEGIN: track(&&TRACK54_BEGIN, &&TRACK54_END);
-  TRACK54_END:  __asm__("nop;");
-   
+  TRACK92_BEGIN: track(&&TRACK92_BEGIN, &&TRACK92_END);
+  TRACK92_END:  __asm__("nop;");
   i2 -= nblock;
   }
         k -= 8;
@@ -1756,71 +1853,97 @@ void mainSimpleSort ( UInt32* ptr,
    Int32 i, j, h, bigN, hp;
    UInt32 v;
    bigN = hi - lo + 1;
-   if (bigN < 2) return;
+   if (bigN < 2)  {
+TRACK94_BEGIN: track(&&TRACK94_BEGIN, &&TRACK94_END);
+TRACK94_END:  __asm__("nop;");
+return;
+}
    hp = 0;
    while (incs[hp] < bigN)  {
-TRACK56_BEGIN: track(&&TRACK56_BEGIN, &&TRACK56_END);
-TRACK56_END:  __asm__("nop;");
- 
+TRACK95_BEGIN: track(&&TRACK95_BEGIN, &&TRACK95_END);
+TRACK95_END:  __asm__("nop;");
 hp++;
 }
    hp--;
    for (; hp >= 0; hp--) {
-  TRACK61_BEGIN: track(&&TRACK61_BEGIN, &&TRACK61_END);
-  TRACK61_END:  __asm__("nop;");
-   
+  TRACK107_BEGIN: track(&&TRACK107_BEGIN, &&TRACK107_END);
+  TRACK107_END:  __asm__("nop;");
   h = incs[hp];
         i = lo + h;
         while (((Bool)1)) {
-    TRACK60_BEGIN: track(&&TRACK60_BEGIN, &&TRACK60_END);
-    TRACK60_END:  __asm__("nop;");
-     
-    if (i > hi) break;
+    TRACK106_BEGIN: track(&&TRACK106_BEGIN, &&TRACK106_END);
+    TRACK106_END:  __asm__("nop;");
+    if (i > hi)  {
+    TRACK96_BEGIN: track(&&TRACK96_BEGIN, &&TRACK96_END);
+    TRACK96_END:  __asm__("nop;");
+    break;
+    }
              v = ptr[i];
              j = i;
              while ( mainGtU (
                         ptr[j-h]+d, v+d, block, quadrant, nblock, budget
                      ) ) {
-      TRACK57_BEGIN: track(&&TRACK57_BEGIN, &&TRACK57_END);
-      TRACK57_END:  __asm__("nop;");
-       
+      TRACK98_BEGIN: track(&&TRACK98_BEGIN, &&TRACK98_END);
+      TRACK98_END:  __asm__("nop;");
       ptr[j] = ptr[j-h];
                   j = j - h;
-                  if (j <= (lo + h - 1)) break;
+                  if (j <= (lo + h - 1))  {
+      TRACK97_BEGIN: track(&&TRACK97_BEGIN, &&TRACK97_END);
+      TRACK97_END:  __asm__("nop;");
+      break;
+      }
     }
              ptr[j] = v;
              i++;
-             if (i > hi) break;
+             if (i > hi)  {
+    TRACK99_BEGIN: track(&&TRACK99_BEGIN, &&TRACK99_END);
+    TRACK99_END:  __asm__("nop;");
+    break;
+    }
              v = ptr[i];
              j = i;
              while ( mainGtU (
                         ptr[j-h]+d, v+d, block, quadrant, nblock, budget
                      ) ) {
-      TRACK58_BEGIN: track(&&TRACK58_BEGIN, &&TRACK58_END);
-      TRACK58_END:  __asm__("nop;");
-       
+      TRACK101_BEGIN: track(&&TRACK101_BEGIN, &&TRACK101_END);
+      TRACK101_END:  __asm__("nop;");
       ptr[j] = ptr[j-h];
                   j = j - h;
-                  if (j <= (lo + h - 1)) break;
+                  if (j <= (lo + h - 1))  {
+      TRACK100_BEGIN: track(&&TRACK100_BEGIN, &&TRACK100_END);
+      TRACK100_END:  __asm__("nop;");
+      break;
+      }
     }
              ptr[j] = v;
              i++;
-             if (i > hi) break;
+             if (i > hi)  {
+    TRACK102_BEGIN: track(&&TRACK102_BEGIN, &&TRACK102_END);
+    TRACK102_END:  __asm__("nop;");
+    break;
+    }
              v = ptr[i];
              j = i;
              while ( mainGtU (
                         ptr[j-h]+d, v+d, block, quadrant, nblock, budget
                      ) ) {
-      TRACK59_BEGIN: track(&&TRACK59_BEGIN, &&TRACK59_END);
-      TRACK59_END:  __asm__("nop;");
-       
+      TRACK104_BEGIN: track(&&TRACK104_BEGIN, &&TRACK104_END);
+      TRACK104_END:  __asm__("nop;");
       ptr[j] = ptr[j-h];
                   j = j - h;
-                  if (j <= (lo + h - 1)) break;
+                  if (j <= (lo + h - 1))  {
+      TRACK103_BEGIN: track(&&TRACK103_BEGIN, &&TRACK103_END);
+      TRACK103_END:  __asm__("nop;");
+      break;
+      }
     }
              ptr[j] = v;
              i++;
-             if (*budget < 0) return;
+             if (*budget < 0)  {
+    TRACK105_BEGIN: track(&&TRACK105_BEGIN, &&TRACK105_END);
+    TRACK105_END:  __asm__("nop;");
+    return;
+    }
   }
 }
 }
@@ -1830,20 +1953,17 @@ UChar mmed3 ( UChar a, UChar b, UChar c )
 {
    UChar t;
    if (a > b) {
-  TRACK62_BEGIN: track(&&TRACK62_BEGIN, &&TRACK62_END);
-  TRACK62_END:  __asm__("nop;");
-   
+  TRACK108_BEGIN: track(&&TRACK108_BEGIN, &&TRACK108_END);
+  TRACK108_END:  __asm__("nop;");
   t = a; a = b; b = t;
 };
    if (b > c) {
-  TRACK64_BEGIN: track(&&TRACK64_BEGIN, &&TRACK64_END);
-  TRACK64_END:  __asm__("nop;");
-   
+  TRACK110_BEGIN: track(&&TRACK110_BEGIN, &&TRACK110_END);
+  TRACK110_END:  __asm__("nop;");
   b = c;
         if (a > b)  {
-  TRACK63_BEGIN: track(&&TRACK63_BEGIN, &&TRACK63_END);
-  TRACK63_END:  __asm__("nop;");
-   
+  TRACK109_BEGIN: track(&&TRACK109_BEGIN, &&TRACK109_END);
+  TRACK109_END:  __asm__("nop;");
   b = a;
   }
 }
@@ -1870,23 +1990,24 @@ void mainQSort3 ( UInt32* ptr,
    sp = 0;
    { stackLo[sp] = loSt; stackHi[sp] = hiSt; stackD [sp] = dSt; sp++; };
    while (sp > 0) {
-  TRACK78_BEGIN: track(&&TRACK78_BEGIN, &&TRACK78_END);
-  TRACK78_END:  __asm__("nop;");
-   
+  TRACK130_BEGIN: track(&&TRACK130_BEGIN, &&TRACK130_END);
+  TRACK130_END:  __asm__("nop;");
   { if (!(sp < 100))  {
-  TRACK65_BEGIN: track(&&TRACK65_BEGIN, &&TRACK65_END);
-  TRACK65_END:  __asm__("nop;");
-   
+  TRACK111_BEGIN: track(&&TRACK111_BEGIN, &&TRACK111_END);
+  TRACK111_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 1001 );
   } };
         { sp--; lo = stackLo[sp]; hi = stackHi[sp]; d = stackD [sp]; };
         if (hi - lo < 20 ||
             d > (2 + 12)) {
-    TRACK66_BEGIN: track(&&TRACK66_BEGIN, &&TRACK66_END);
-    TRACK66_END:  __asm__("nop;");
-     
+    TRACK113_BEGIN: track(&&TRACK113_BEGIN, &&TRACK113_END);
+    TRACK113_END:  __asm__("nop;");
     mainSimpleSort ( ptr, block, quadrant, nblock, lo, hi, d, budget );
-             if (*budget < 0) return;
+             if (*budget < 0)  {
+    TRACK112_BEGIN: track(&&TRACK112_BEGIN, &&TRACK112_END);
+    TRACK112_END:  __asm__("nop;");
+    return;
+    }
              continue;
   }
         med = (Int32)
@@ -1896,62 +2017,74 @@ void mainQSort3 ( UInt32* ptr,
         unLo = ltLo = lo;
         unHi = gtHi = hi;
         while (((Bool)1)) {
-    TRACK71_BEGIN: track(&&TRACK71_BEGIN, &&TRACK71_END);
-    TRACK71_END:  __asm__("nop;");
-     
+    TRACK123_BEGIN: track(&&TRACK123_BEGIN, &&TRACK123_END);
+    TRACK123_END:  __asm__("nop;");
     while (((Bool)1)) {
-      TRACK68_BEGIN: track(&&TRACK68_BEGIN, &&TRACK68_END);
-      TRACK68_END:  __asm__("nop;");
-       
-      if (unLo > unHi) break;
+      TRACK117_BEGIN: track(&&TRACK117_BEGIN, &&TRACK117_END);
+      TRACK117_END:  __asm__("nop;");
+      if (unLo > unHi)  {
+      TRACK114_BEGIN: track(&&TRACK114_BEGIN, &&TRACK114_END);
+      TRACK114_END:  __asm__("nop;");
+      break;
+      }
                   n = ((Int32)block[ptr[unLo]+d]) - med;
                   if (n == 0) {
-        TRACK67_BEGIN: track(&&TRACK67_BEGIN, &&TRACK67_END);
-        TRACK67_END:  __asm__("nop;");
-         
+        TRACK115_BEGIN: track(&&TRACK115_BEGIN, &&TRACK115_END);
+        TRACK115_END:  __asm__("nop;");
         { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[ltLo]; ptr[ltLo] = zztmp; };
                        ltLo++; unLo++; continue;
       };
-                  if (n > 0) break;
+                  if (n > 0)  {
+      TRACK116_BEGIN: track(&&TRACK116_BEGIN, &&TRACK116_END);
+      TRACK116_END:  __asm__("nop;");
+      break;
+      }
                   unLo++;
     }
              while (((Bool)1)) {
-      TRACK70_BEGIN: track(&&TRACK70_BEGIN, &&TRACK70_END);
-      TRACK70_END:  __asm__("nop;");
-       
-      if (unLo > unHi) break;
+      TRACK121_BEGIN: track(&&TRACK121_BEGIN, &&TRACK121_END);
+      TRACK121_END:  __asm__("nop;");
+      if (unLo > unHi)  {
+      TRACK118_BEGIN: track(&&TRACK118_BEGIN, &&TRACK118_END);
+      TRACK118_END:  __asm__("nop;");
+      break;
+      }
                   n = ((Int32)block[ptr[unHi]+d]) - med;
                   if (n == 0) {
-        TRACK69_BEGIN: track(&&TRACK69_BEGIN, &&TRACK69_END);
-        TRACK69_END:  __asm__("nop;");
-         
+        TRACK119_BEGIN: track(&&TRACK119_BEGIN, &&TRACK119_END);
+        TRACK119_END:  __asm__("nop;");
         { Int32 zztmp = ptr[unHi]; ptr[unHi] = ptr[gtHi]; ptr[gtHi] = zztmp; };
                        gtHi--; unHi--; continue;
       };
-                  if (n < 0) break;
+                  if (n < 0)  {
+      TRACK120_BEGIN: track(&&TRACK120_BEGIN, &&TRACK120_END);
+      TRACK120_END:  __asm__("nop;");
+      break;
+      }
                   unHi--;
     }
-             if (unLo > unHi) break;
+             if (unLo > unHi)  {
+    TRACK122_BEGIN: track(&&TRACK122_BEGIN, &&TRACK122_END);
+    TRACK122_END:  __asm__("nop;");
+    break;
+    }
              { Int32 zztmp = ptr[unLo]; ptr[unLo] = ptr[unHi]; ptr[unHi] = zztmp; }; unLo++; unHi--;
   }
         ;
         if (gtHi < ltLo) {
-    TRACK72_BEGIN: track(&&TRACK72_BEGIN, &&TRACK72_END);
-    TRACK72_END:  __asm__("nop;");
-     
+    TRACK124_BEGIN: track(&&TRACK124_BEGIN, &&TRACK124_END);
+    TRACK124_END:  __asm__("nop;");
     { stackLo[sp] = lo; stackHi[sp] = hi; stackD [sp] = d+1; sp++; };
              continue;
   }
         n = ((ltLo-lo) < (unLo-ltLo)) ? (ltLo-lo) : (unLo-ltLo); { Int32 yyp1 = (lo); Int32 yyp2 = (unLo-n); Int32 yyn = (n); while (yyn > 0) {
-    TRACK73_BEGIN: track(&&TRACK73_BEGIN, &&TRACK73_END);
-    TRACK73_END:  __asm__("nop;");
-     
+    TRACK125_BEGIN: track(&&TRACK125_BEGIN, &&TRACK125_END);
+    TRACK125_END:  __asm__("nop;");
     { Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
   } };
         m = ((hi-gtHi) < (gtHi-unHi)) ? (hi-gtHi) : (gtHi-unHi); { Int32 yyp1 = (unLo); Int32 yyp2 = (hi-m+1); Int32 yyn = (m); while (yyn > 0) {
-    TRACK74_BEGIN: track(&&TRACK74_BEGIN, &&TRACK74_END);
-    TRACK74_END:  __asm__("nop;");
-     
+    TRACK126_BEGIN: track(&&TRACK126_BEGIN, &&TRACK126_END);
+    TRACK126_END:  __asm__("nop;");
     { Int32 zztmp = ptr[yyp1]; ptr[yyp1] = ptr[yyp2]; ptr[yyp2] = zztmp; }; yyp1++; yyp2++; yyn--;
   } };
         n = lo + unLo - ltLo - 1;
@@ -1961,23 +2094,20 @@ void mainQSort3 ( UInt32* ptr,
         nextLo[2] = n+1; nextHi[2] = m-1; nextD[2] = d+1;
         if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
     Int32 tz;
-    TRACK75_BEGIN: track(&&TRACK75_BEGIN, &&TRACK75_END);
-    TRACK75_END:  __asm__("nop;");
-     
+    TRACK127_BEGIN: track(&&TRACK127_BEGIN, &&TRACK127_END);
+    TRACK127_END:  __asm__("nop;");
     tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
   };
         if ((nextHi[1]-nextLo[1]) < (nextHi[2]-nextLo[2])) {
     Int32 tz;
-    TRACK76_BEGIN: track(&&TRACK76_BEGIN, &&TRACK76_END);
-    TRACK76_END:  __asm__("nop;");
-     
+    TRACK128_BEGIN: track(&&TRACK128_BEGIN, &&TRACK128_END);
+    TRACK128_END:  __asm__("nop;");
     tz = nextLo[1]; nextLo[1] = nextLo[2]; nextLo[2] = tz; tz = nextHi[1]; nextHi[1] = nextHi[2]; nextHi[2] = tz; tz = nextD [1]; nextD [1] = nextD [2]; nextD [2] = tz;
   };
         if ((nextHi[0]-nextLo[0]) < (nextHi[1]-nextLo[1])) {
     Int32 tz;
-    TRACK77_BEGIN: track(&&TRACK77_BEGIN, &&TRACK77_END);
-    TRACK77_END:  __asm__("nop;");
-     
+    TRACK129_BEGIN: track(&&TRACK129_BEGIN, &&TRACK129_END);
+    TRACK129_END:  __asm__("nop;");
     tz = nextLo[0]; nextLo[0] = nextLo[1]; nextLo[1] = tz; tz = nextHi[0]; nextHi[0] = nextHi[1]; nextHi[1] = tz; tz = nextD [0]; nextD [0] = nextD [1]; nextD [1] = tz;
   };
         ;
@@ -2005,23 +2135,20 @@ void mainSort ( UInt32* ptr,
    Int32 numQSorted;
    UInt16 s;
    if (verb >= 4)  {
-TRACK79_BEGIN: track(&&TRACK79_BEGIN, &&TRACK79_END);
-TRACK79_END:  __asm__("nop;");
- 
+TRACK131_BEGIN: track(&&TRACK131_BEGIN, &&TRACK131_END);
+TRACK131_END:  __asm__("nop;");
 fprintf(stderr,"        main sort initialise ...\n");
 }
    for (i = 65536; i >= 0; i--)  {
-TRACK80_BEGIN: track(&&TRACK80_BEGIN, &&TRACK80_END);
-TRACK80_END:  __asm__("nop;");
- 
+TRACK132_BEGIN: track(&&TRACK132_BEGIN, &&TRACK132_END);
+TRACK132_END:  __asm__("nop;");
 ftab[i] = 0;
 }
    j = block[0] << 8;
    i = nblock-1;
    for (; i >= 3; i -= 4) {
-  TRACK81_BEGIN: track(&&TRACK81_BEGIN, &&TRACK81_END);
-  TRACK81_END:  __asm__("nop;");
-   
+  TRACK133_BEGIN: track(&&TRACK133_BEGIN, &&TRACK133_END);
+  TRACK133_END:  __asm__("nop;");
   quadrant[i] = 0;
         j = (j >> 8) | ( ((UInt16)block[i]) << 8);
         ftab[j]++;
@@ -2036,38 +2163,33 @@ ftab[i] = 0;
         ftab[j]++;
 }
    for (; i >= 0; i--) {
-  TRACK82_BEGIN: track(&&TRACK82_BEGIN, &&TRACK82_END);
-  TRACK82_END:  __asm__("nop;");
-   
+  TRACK134_BEGIN: track(&&TRACK134_BEGIN, &&TRACK134_END);
+  TRACK134_END:  __asm__("nop;");
   quadrant[i] = 0;
         j = (j >> 8) | ( ((UInt16)block[i]) << 8);
         ftab[j]++;
 }
    for (i = 0; i < (2 + 12 + 18 + 2); i++) {
-  TRACK83_BEGIN: track(&&TRACK83_BEGIN, &&TRACK83_END);
-  TRACK83_END:  __asm__("nop;");
-   
+  TRACK135_BEGIN: track(&&TRACK135_BEGIN, &&TRACK135_END);
+  TRACK135_END:  __asm__("nop;");
   block [nblock+i] = block[i];
         quadrant[nblock+i] = 0;
 }
    if (verb >= 4)  {
-TRACK84_BEGIN: track(&&TRACK84_BEGIN, &&TRACK84_END);
-TRACK84_END:  __asm__("nop;");
- 
+TRACK136_BEGIN: track(&&TRACK136_BEGIN, &&TRACK136_END);
+TRACK136_END:  __asm__("nop;");
 fprintf(stderr,"        bucket sorting ...\n");
 }
    for (i = 1; i <= 65536; i++)  {
-TRACK85_BEGIN: track(&&TRACK85_BEGIN, &&TRACK85_END);
-TRACK85_END:  __asm__("nop;");
- 
+TRACK137_BEGIN: track(&&TRACK137_BEGIN, &&TRACK137_END);
+TRACK137_END:  __asm__("nop;");
 ftab[i] += ftab[i-1];
 }
    s = block[0] << 8;
    i = nblock-1;
    for (; i >= 3; i -= 4) {
-  TRACK86_BEGIN: track(&&TRACK86_BEGIN, &&TRACK86_END);
-  TRACK86_END:  __asm__("nop;");
-   
+  TRACK138_BEGIN: track(&&TRACK138_BEGIN, &&TRACK138_END);
+  TRACK138_END:  __asm__("nop;");
   s = (s >> 8) | (block[i] << 8);
         j = ftab[s] -1;
         ftab[s] = j;
@@ -2086,18 +2208,16 @@ ftab[i] += ftab[i-1];
         ptr[j] = i-3;
 }
    for (; i >= 0; i--) {
-  TRACK87_BEGIN: track(&&TRACK87_BEGIN, &&TRACK87_END);
-  TRACK87_END:  __asm__("nop;");
-   
+  TRACK139_BEGIN: track(&&TRACK139_BEGIN, &&TRACK139_END);
+  TRACK139_END:  __asm__("nop;");
   s = (s >> 8) | (block[i] << 8);
         j = ftab[s] -1;
         ftab[s] = j;
         ptr[j] = i;
 }
    for (i = 0; i <= 255; i++) {
-  TRACK88_BEGIN: track(&&TRACK88_BEGIN, &&TRACK88_END);
-  TRACK88_END:  __asm__("nop;");
-   
+  TRACK140_BEGIN: track(&&TRACK140_BEGIN, &&TRACK140_END);
+  TRACK140_END:  __asm__("nop;");
   bigDone [i] = ((Bool)0);
         runningOrder[i] = i;
 }
@@ -2105,35 +2225,34 @@ ftab[i] += ftab[i-1];
       Int32 vv;
       Int32 h = 1;
       do  {
-TRACK89_BEGIN: track(&&TRACK89_BEGIN, &&TRACK89_END);
-TRACK89_END:  __asm__("nop;");
- 
+TRACK141_BEGIN: track(&&TRACK141_BEGIN, &&TRACK141_END);
+TRACK141_END:  __asm__("nop;");
 h = 3 * h + 1;
 } while (h <= 256);
       do {
-  TRACK93_BEGIN: track(&&TRACK93_BEGIN, &&TRACK93_END);
-  TRACK93_END:  __asm__("nop;");
-   
+  TRACK146_BEGIN: track(&&TRACK146_BEGIN, &&TRACK146_END);
+  TRACK146_END:  __asm__("nop;");
   h = h / 3;
            for (i = h; i <= 255; i++) {
-    TRACK92_BEGIN: track(&&TRACK92_BEGIN, &&TRACK92_END);
-    TRACK92_END:  __asm__("nop;");
-     
+    TRACK145_BEGIN: track(&&TRACK145_BEGIN, &&TRACK145_END);
+    TRACK145_END:  __asm__("nop;");
     vv = runningOrder[i];
                 j = i;
                 while ( (ftab[((runningOrder[j-h])+1) << 8] - ftab[(runningOrder[j-h]) << 8]) > (ftab[((vv)+1) << 8] - ftab[(vv) << 8]) ) {
-      TRACK90_BEGIN: track(&&TRACK90_BEGIN, &&TRACK90_END);
-      TRACK90_END:  __asm__("nop;");
-       
+      TRACK143_BEGIN: track(&&TRACK143_BEGIN, &&TRACK143_END);
+      TRACK143_END:  __asm__("nop;");
       runningOrder[j] = runningOrder[j-h];
                      j = j - h;
-                     if (j <= (h - 1)) goto zero;
+                     if (j <= (h - 1))  {
+      TRACK142_BEGIN: track(&&TRACK142_BEGIN, &&TRACK142_END);
+      TRACK142_END:  __asm__("nop;");
+      goto zero;
+      }
     }
                 zero:
                  {
-    TRACK91_BEGIN: track(&&TRACK91_BEGIN, &&TRACK91_END);
-    TRACK91_END:  __asm__("nop;");
-     
+    TRACK144_BEGIN: track(&&TRACK144_BEGIN, &&TRACK144_END);
+    TRACK144_END:  __asm__("nop;");
     runningOrder[j] = vv;
     }
   }
@@ -2141,34 +2260,28 @@ h = 3 * h + 1;
    }
    numQSorted = 0;
    for (i = 0; i <= 255; i++) {
-  TRACK114_BEGIN: track(&&TRACK114_BEGIN, &&TRACK114_END);
-  TRACK114_END:  __asm__("nop;");
-   
+  TRACK168_BEGIN: track(&&TRACK168_BEGIN, &&TRACK168_END);
+  TRACK168_END:  __asm__("nop;");
   ss = runningOrder[i];
         for (j = 0; j <= 255; j++) {
-    TRACK98_BEGIN: track(&&TRACK98_BEGIN, &&TRACK98_END);
-    TRACK98_END:  __asm__("nop;");
-     
+    TRACK152_BEGIN: track(&&TRACK152_BEGIN, &&TRACK152_END);
+    TRACK152_END:  __asm__("nop;");
     if (j != ss) {
-      TRACK97_BEGIN: track(&&TRACK97_BEGIN, &&TRACK97_END);
-      TRACK97_END:  __asm__("nop;");
-       
+      TRACK151_BEGIN: track(&&TRACK151_BEGIN, &&TRACK151_END);
+      TRACK151_END:  __asm__("nop;");
       sb = (ss << 8) + j;
                   if ( ! (ftab[sb] & (1 << 21)) ) {
         Int32 lo = ftab[sb] & (~((1 << 21)));
                        Int32 hi = (ftab[sb+1] & (~((1 << 21)))) - 1;
-        TRACK96_BEGIN: track(&&TRACK96_BEGIN, &&TRACK96_END);
-        TRACK96_END:  __asm__("nop;");
-         
+        TRACK150_BEGIN: track(&&TRACK150_BEGIN, &&TRACK150_END);
+        TRACK150_END:  __asm__("nop;");
         if (hi > lo) {
-          TRACK95_BEGIN: track(&&TRACK95_BEGIN, &&TRACK95_END);
-          TRACK95_END:  __asm__("nop;");
-           
+          TRACK149_BEGIN: track(&&TRACK149_BEGIN, &&TRACK149_END);
+          TRACK149_END:  __asm__("nop;");
           if (verb >= 4)
                                 {
-          TRACK94_BEGIN: track(&&TRACK94_BEGIN, &&TRACK94_END);
-          TRACK94_END:  __asm__("nop;");
-           
+          TRACK147_BEGIN: track(&&TRACK147_BEGIN, &&TRACK147_END);
+          TRACK147_END:  __asm__("nop;");
           fprintf(stderr,"        qsort [0x%x, 0x%x]   " "done %d   this %d\n",ss,j,numQSorted,hi - lo + 1);
           }
                             mainQSort3 (
@@ -2176,75 +2289,69 @@ h = 3 * h + 1;
                                lo, hi, 2, budget
                             );
                             numQSorted += (hi - lo + 1);
-                            if (*budget < 0) return;
+                            if (*budget < 0)  {
+          TRACK148_BEGIN: track(&&TRACK148_BEGIN, &&TRACK148_END);
+          TRACK148_END:  __asm__("nop;");
+          return;
+          }
         }
       }
                   ftab[sb] |= (1 << 21);
     }
   }
         { if (!(!bigDone[ss]))  {
-  TRACK99_BEGIN: track(&&TRACK99_BEGIN, &&TRACK99_END);
-  TRACK99_END:  __asm__("nop;");
-   
+  TRACK153_BEGIN: track(&&TRACK153_BEGIN, &&TRACK153_END);
+  TRACK153_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 1006 );
   } };
         {
            for (j = 0; j <= 255; j++) {
-    TRACK100_BEGIN: track(&&TRACK100_BEGIN, &&TRACK100_END);
-    TRACK100_END:  __asm__("nop;");
-     
+    TRACK154_BEGIN: track(&&TRACK154_BEGIN, &&TRACK154_END);
+    TRACK154_END:  __asm__("nop;");
     copyStart[j] = ftab[(j << 8) + ss] & (~((1 << 21)));
                 copyEnd [j] = (ftab[(j << 8) + ss + 1] & (~((1 << 21)))) - 1;
   }
            for (j = ftab[ss << 8] & (~((1 << 21))); j < copyStart[ss]; j++) {
-    TRACK103_BEGIN: track(&&TRACK103_BEGIN, &&TRACK103_END);
-    TRACK103_END:  __asm__("nop;");
-     
+    TRACK157_BEGIN: track(&&TRACK157_BEGIN, &&TRACK157_END);
+    TRACK157_END:  __asm__("nop;");
     k = ptr[j]-1; if (k < 0)  {
-    TRACK101_BEGIN: track(&&TRACK101_BEGIN, &&TRACK101_END);
-    TRACK101_END:  __asm__("nop;");
-     
+    TRACK155_BEGIN: track(&&TRACK155_BEGIN, &&TRACK155_END);
+    TRACK155_END:  __asm__("nop;");
     k += nblock;
     }
                 c1 = block[k];
                 if (!bigDone[c1])
                     {
-    TRACK102_BEGIN: track(&&TRACK102_BEGIN, &&TRACK102_END);
-    TRACK102_END:  __asm__("nop;");
-     
+    TRACK156_BEGIN: track(&&TRACK156_BEGIN, &&TRACK156_END);
+    TRACK156_END:  __asm__("nop;");
     ptr[ copyStart[c1]++ ] = k;
     }
   }
            for (j = (ftab[(ss+1) << 8] & (~((1 << 21)))) - 1; j > copyEnd[ss]; j--) {
-    TRACK106_BEGIN: track(&&TRACK106_BEGIN, &&TRACK106_END);
-    TRACK106_END:  __asm__("nop;");
-     
+    TRACK160_BEGIN: track(&&TRACK160_BEGIN, &&TRACK160_END);
+    TRACK160_END:  __asm__("nop;");
     k = ptr[j]-1; if (k < 0)  {
-    TRACK104_BEGIN: track(&&TRACK104_BEGIN, &&TRACK104_END);
-    TRACK104_END:  __asm__("nop;");
-     
+    TRACK158_BEGIN: track(&&TRACK158_BEGIN, &&TRACK158_END);
+    TRACK158_END:  __asm__("nop;");
     k += nblock;
     }
                 c1 = block[k];
                 if (!bigDone[c1])
                     {
-    TRACK105_BEGIN: track(&&TRACK105_BEGIN, &&TRACK105_END);
-    TRACK105_END:  __asm__("nop;");
-     
+    TRACK159_BEGIN: track(&&TRACK159_BEGIN, &&TRACK159_END);
+    TRACK159_END:  __asm__("nop;");
     ptr[ copyEnd[c1]-- ] = k;
     }
   }
         }
         { if (!((copyStart[ss]-1 == copyEnd[ss]) || (copyStart[ss] == 0 && copyEnd[ss] == nblock-1)))  {
-  TRACK107_BEGIN: track(&&TRACK107_BEGIN, &&TRACK107_END);
-  TRACK107_END:  __asm__("nop;");
-   
+  TRACK161_BEGIN: track(&&TRACK161_BEGIN, &&TRACK161_END);
+  TRACK161_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 1007 );
   } }
         for (j = 0; j <= 255; j++)  {
-  TRACK108_BEGIN: track(&&TRACK108_BEGIN, &&TRACK108_END);
-  TRACK108_END:  __asm__("nop;");
-   
+  TRACK162_BEGIN: track(&&TRACK162_BEGIN, &&TRACK162_END);
+  TRACK162_END:  __asm__("nop;");
   ftab[(j << 8) + ss] |= (1 << 21);
   }
         bigDone[ss] = ((Bool)1);
@@ -2252,43 +2359,37 @@ h = 3 * h + 1;
     Int32 bbStart = ftab[ss << 8] & (~((1 << 21)));
              Int32 bbSize = (ftab[(ss+1) << 8] & (~((1 << 21)))) - bbStart;
              Int32 shifts = 0;
-    TRACK113_BEGIN: track(&&TRACK113_BEGIN, &&TRACK113_END);
-    TRACK113_END:  __asm__("nop;");
-     
+    TRACK167_BEGIN: track(&&TRACK167_BEGIN, &&TRACK167_END);
+    TRACK167_END:  __asm__("nop;");
     while ((bbSize >> shifts) > 65534)  {
-    TRACK109_BEGIN: track(&&TRACK109_BEGIN, &&TRACK109_END);
-    TRACK109_END:  __asm__("nop;");
-     
+    TRACK163_BEGIN: track(&&TRACK163_BEGIN, &&TRACK163_END);
+    TRACK163_END:  __asm__("nop;");
     shifts++;
     }
              for (j = bbSize-1; j >= 0; j--) {
       Int32 a2update = ptr[bbStart + j];
                   UInt16 qVal = (UInt16)(j >> shifts);
-      TRACK111_BEGIN: track(&&TRACK111_BEGIN, &&TRACK111_END);
-      TRACK111_END:  __asm__("nop;");
-       
+      TRACK165_BEGIN: track(&&TRACK165_BEGIN, &&TRACK165_END);
+      TRACK165_END:  __asm__("nop;");
       quadrant[a2update] = qVal;
                   if (a2update < (2 + 12 + 18 + 2))
                       {
-      TRACK110_BEGIN: track(&&TRACK110_BEGIN, &&TRACK110_END);
-      TRACK110_END:  __asm__("nop;");
-       
+      TRACK164_BEGIN: track(&&TRACK164_BEGIN, &&TRACK164_END);
+      TRACK164_END:  __asm__("nop;");
       quadrant[a2update + nblock] = qVal;
       }
     }
              { if (!(((bbSize-1) >> shifts) <= 65535))  {
-    TRACK112_BEGIN: track(&&TRACK112_BEGIN, &&TRACK112_END);
-    TRACK112_END:  __asm__("nop;");
-     
+    TRACK166_BEGIN: track(&&TRACK166_BEGIN, &&TRACK166_END);
+    TRACK166_END:  __asm__("nop;");
     BZ2_bz__AssertH__fail ( 1002 );
     } };
   }
 }
    if (verb >= 4)
        {
-TRACK115_BEGIN: track(&&TRACK115_BEGIN, &&TRACK115_END);
-TRACK115_END:  __asm__("nop;");
- 
+TRACK169_BEGIN: track(&&TRACK169_BEGIN, &&TRACK169_END);
+TRACK169_END:  __asm__("nop;");
 fprintf(stderr,"        %d pointers, %d sorted, %d scanned\n",nblock,numQSorted,nblock - numQSorted);
 }
 }
@@ -2305,32 +2406,27 @@ void BZ2_blockSort ( EState* s )
    Int32 budgetInit;
    Int32 i;
    if (nblock < 10000) {
-  TRACK116_BEGIN: track(&&TRACK116_BEGIN, &&TRACK116_END);
-  TRACK116_END:  __asm__("nop;");
-   
+  TRACK170_BEGIN: track(&&TRACK170_BEGIN, &&TRACK170_END);
+  TRACK170_END:  __asm__("nop;");
   fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
 } else {
-  TRACK123_BEGIN: track(&&TRACK123_BEGIN, &&TRACK123_END);
-  TRACK123_END:  __asm__("nop;");
-   
+  TRACK177_BEGIN: track(&&TRACK177_BEGIN, &&TRACK177_END);
+  TRACK177_END:  __asm__("nop;");
   i = nblock+(2 + 12 + 18 + 2);
         if (i & 1)  {
-  TRACK117_BEGIN: track(&&TRACK117_BEGIN, &&TRACK117_END);
-  TRACK117_END:  __asm__("nop;");
-   
+  TRACK171_BEGIN: track(&&TRACK171_BEGIN, &&TRACK171_END);
+  TRACK171_END:  __asm__("nop;");
   i++;
   }
         quadrant = (UInt16*)(&(block[i]));
         if (wfact < 1 )  {
-  TRACK118_BEGIN: track(&&TRACK118_BEGIN, &&TRACK118_END);
-  TRACK118_END:  __asm__("nop;");
-   
+  TRACK172_BEGIN: track(&&TRACK172_BEGIN, &&TRACK172_END);
+  TRACK172_END:  __asm__("nop;");
   wfact = 1;
   }
         if (wfact > 100)  {
-  TRACK119_BEGIN: track(&&TRACK119_BEGIN, &&TRACK119_END);
-  TRACK119_END:  __asm__("nop;");
-   
+  TRACK173_BEGIN: track(&&TRACK173_BEGIN, &&TRACK173_END);
+  TRACK173_END:  __asm__("nop;");
   wfact = 100;
   }
         budgetInit = nblock * ((wfact-1) / 3);
@@ -2338,20 +2434,17 @@ void BZ2_blockSort ( EState* s )
         mainSort ( ptr, block, quadrant, ftab, nblock, verb, &budget );
         if (verb >= 3)
             {
-  TRACK120_BEGIN: track(&&TRACK120_BEGIN, &&TRACK120_END);
-  TRACK120_END:  __asm__("nop;");
-   
+  TRACK174_BEGIN: track(&&TRACK174_BEGIN, &&TRACK174_END);
+  TRACK174_END:  __asm__("nop;");
   fprintf(stderr,"      %d work, %d block, ratio %5.2f\n",budgetInit - budget,nblock,(float)(budgetInit - budget) / (float)(nblock==0 ? 1 : nblock));
   }
         if (budget < 0) {
-    TRACK122_BEGIN: track(&&TRACK122_BEGIN, &&TRACK122_END);
-    TRACK122_END:  __asm__("nop;");
-     
+    TRACK176_BEGIN: track(&&TRACK176_BEGIN, &&TRACK176_END);
+    TRACK176_END:  __asm__("nop;");
     if (verb >= 2)
                  {
-    TRACK121_BEGIN: track(&&TRACK121_BEGIN, &&TRACK121_END);
-    TRACK121_END:  __asm__("nop;");
-     
+    TRACK175_BEGIN: track(&&TRACK175_BEGIN, &&TRACK175_END);
+    TRACK175_END:  __asm__("nop;");
     fprintf(stderr,"    too repetitive; using fallback" " sorting algorithm\n");
     }
              fallbackSort ( s->arr1, s->arr2, ftab, nblock, verb );
@@ -2360,21 +2453,18 @@ void BZ2_blockSort ( EState* s )
    s->origPtr = -1;
    for (i = 0; i < s->nblock; i++)
        {
-TRACK125_BEGIN: track(&&TRACK125_BEGIN, &&TRACK125_END);
-TRACK125_END:  __asm__("nop;");
- 
+TRACK179_BEGIN: track(&&TRACK179_BEGIN, &&TRACK179_END);
+TRACK179_END:  __asm__("nop;");
 if (ptr[i] == 0)
          {
-  TRACK124_BEGIN: track(&&TRACK124_BEGIN, &&TRACK124_END);
-  TRACK124_END:  __asm__("nop;");
-   
+  TRACK178_BEGIN: track(&&TRACK178_BEGIN, &&TRACK178_END);
+  TRACK178_END:  __asm__("nop;");
   s->origPtr = i; break;
 }
 };
    { if (!(s->origPtr != -1))  {
-TRACK126_BEGIN: track(&&TRACK126_BEGIN, &&TRACK126_END);
-TRACK126_END:  __asm__("nop;");
- 
+TRACK180_BEGIN: track(&&TRACK180_BEGIN, &&TRACK180_END);
+TRACK180_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 1003 );
 } };
 }
@@ -2390,65 +2480,71 @@ void BZ2_hbMakeCodeLengths ( UChar *len,
    Int32 parent [ 258 * 2 ];
    for (i = 0; i < alphaSize; i++)
        {
-TRACK127_BEGIN: track(&&TRACK127_BEGIN, &&TRACK127_END);
-TRACK127_END:  __asm__("nop;");
- 
+TRACK181_BEGIN: track(&&TRACK181_BEGIN, &&TRACK181_END);
+TRACK181_END:  __asm__("nop;");
 weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
 }
    while (((Bool)1)) {
-  TRACK142_BEGIN: track(&&TRACK142_BEGIN, &&TRACK142_END);
-  TRACK142_END:  __asm__("nop;");
-   
+  TRACK201_BEGIN: track(&&TRACK201_BEGIN, &&TRACK201_END);
+  TRACK201_END:  __asm__("nop;");
   nNodes = alphaSize;
         nHeap = 0;
         heap[0] = 0;
         weight[0] = 0;
         parent[0] = -2;
         for (i = 1; i <= alphaSize; i++) {
-    TRACK129_BEGIN: track(&&TRACK129_BEGIN, &&TRACK129_END);
-    TRACK129_END:  __asm__("nop;");
-     
+    TRACK183_BEGIN: track(&&TRACK183_BEGIN, &&TRACK183_END);
+    TRACK183_END:  __asm__("nop;");
     parent[i] = -1;
              nHeap++;
              heap[nHeap] = i;
              { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
-      TRACK128_BEGIN: track(&&TRACK128_BEGIN, &&TRACK128_END);
-      TRACK128_END:  __asm__("nop;");
-       
+      TRACK182_BEGIN: track(&&TRACK182_BEGIN, &&TRACK182_END);
+      TRACK182_END:  __asm__("nop;");
       heap[zz] = heap[zz >> 1]; zz >>= 1;
     } heap[zz] = tmp; };
   }
         { if (!(nHeap < (258 +2)))  {
-  TRACK130_BEGIN: track(&&TRACK130_BEGIN, &&TRACK130_END);
-  TRACK130_END:  __asm__("nop;");
-   
+  TRACK184_BEGIN: track(&&TRACK184_BEGIN, &&TRACK184_END);
+  TRACK184_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 2001 );
   } };
         while (nHeap > 1) {
-    TRACK136_BEGIN: track(&&TRACK136_BEGIN, &&TRACK136_END);
-    TRACK136_END:  __asm__("nop;");
-     
+    TRACK194_BEGIN: track(&&TRACK194_BEGIN, &&TRACK194_END);
+    TRACK194_END:  __asm__("nop;");
     n1 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
-      TRACK132_BEGIN: track(&&TRACK132_BEGIN, &&TRACK132_END);
-      TRACK132_END:  __asm__("nop;");
-       
-      yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
-      TRACK131_BEGIN: track(&&TRACK131_BEGIN, &&TRACK131_END);
-      TRACK131_END:  __asm__("nop;");
-       
+      TRACK188_BEGIN: track(&&TRACK188_BEGIN, &&TRACK188_END);
+      TRACK188_END:  __asm__("nop;");
+      yy = zz << 1; if (yy > nHeap)  {
+      TRACK185_BEGIN: track(&&TRACK185_BEGIN, &&TRACK185_END);
+      TRACK185_END:  __asm__("nop;");
+      break;
+      } if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
+      TRACK186_BEGIN: track(&&TRACK186_BEGIN, &&TRACK186_END);
+      TRACK186_END:  __asm__("nop;");
       yy++;
-      } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
+      } if (weight[tmp] < weight[heap[yy]])  {
+      TRACK187_BEGIN: track(&&TRACK187_BEGIN, &&TRACK187_END);
+      TRACK187_END:  __asm__("nop;");
+      break;
+      } heap[zz] = heap[yy]; zz = yy;
     } heap[zz] = tmp; };
              n2 = heap[1]; heap[1] = heap[nHeap]; nHeap--; { Int32 zz, yy, tmp; zz = 1; tmp = heap[zz]; while (((Bool)1)) {
-      TRACK134_BEGIN: track(&&TRACK134_BEGIN, &&TRACK134_END);
-      TRACK134_END:  __asm__("nop;");
-       
-      yy = zz << 1; if (yy > nHeap) break; if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
-      TRACK133_BEGIN: track(&&TRACK133_BEGIN, &&TRACK133_END);
-      TRACK133_END:  __asm__("nop;");
-       
+      TRACK192_BEGIN: track(&&TRACK192_BEGIN, &&TRACK192_END);
+      TRACK192_END:  __asm__("nop;");
+      yy = zz << 1; if (yy > nHeap)  {
+      TRACK189_BEGIN: track(&&TRACK189_BEGIN, &&TRACK189_END);
+      TRACK189_END:  __asm__("nop;");
+      break;
+      } if (yy < nHeap && weight[heap[yy+1]] < weight[heap[yy]])  {
+      TRACK190_BEGIN: track(&&TRACK190_BEGIN, &&TRACK190_END);
+      TRACK190_END:  __asm__("nop;");
       yy++;
-      } if (weight[tmp] < weight[heap[yy]]) break; heap[zz] = heap[yy]; zz = yy;
+      } if (weight[tmp] < weight[heap[yy]])  {
+      TRACK191_BEGIN: track(&&TRACK191_BEGIN, &&TRACK191_END);
+      TRACK191_END:  __asm__("nop;");
+      break;
+      } heap[zz] = heap[yy]; zz = yy;
     } heap[zz] = tmp; };
              nNodes++;
              parent[n1] = parent[n2] = nNodes;
@@ -2457,44 +2553,42 @@ weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
              nHeap++;
              heap[nHeap] = nNodes;
              { Int32 zz, tmp; zz = nHeap; tmp = heap[zz]; while (weight[tmp] < weight[heap[zz >> 1]]) {
-      TRACK135_BEGIN: track(&&TRACK135_BEGIN, &&TRACK135_END);
-      TRACK135_END:  __asm__("nop;");
-       
+      TRACK193_BEGIN: track(&&TRACK193_BEGIN, &&TRACK193_END);
+      TRACK193_END:  __asm__("nop;");
       heap[zz] = heap[zz >> 1]; zz >>= 1;
     } heap[zz] = tmp; };
   }
         { if (!(nNodes < (258 * 2)))  {
-  TRACK137_BEGIN: track(&&TRACK137_BEGIN, &&TRACK137_END);
-  TRACK137_END:  __asm__("nop;");
-   
+  TRACK195_BEGIN: track(&&TRACK195_BEGIN, &&TRACK195_END);
+  TRACK195_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 2002 );
   } };
         tooLong = ((Bool)0);
         for (i = 1; i <= alphaSize; i++) {
-    TRACK140_BEGIN: track(&&TRACK140_BEGIN, &&TRACK140_END);
-    TRACK140_END:  __asm__("nop;");
-     
+    TRACK198_BEGIN: track(&&TRACK198_BEGIN, &&TRACK198_END);
+    TRACK198_END:  __asm__("nop;");
     j = 0;
              k = i;
              while (parent[k] >= 0) {
-      TRACK138_BEGIN: track(&&TRACK138_BEGIN, &&TRACK138_END);
-      TRACK138_END:  __asm__("nop;");
-       
+      TRACK196_BEGIN: track(&&TRACK196_BEGIN, &&TRACK196_END);
+      TRACK196_END:  __asm__("nop;");
       k = parent[k]; j++;
     }
              len[i-1] = j;
              if (j > maxLen)  {
-    TRACK139_BEGIN: track(&&TRACK139_BEGIN, &&TRACK139_END);
-    TRACK139_END:  __asm__("nop;");
-     
+    TRACK197_BEGIN: track(&&TRACK197_BEGIN, &&TRACK197_END);
+    TRACK197_END:  __asm__("nop;");
     tooLong = ((Bool)1);
     }
   }
-        if (! tooLong) break;
+        if (! tooLong)  {
+  TRACK199_BEGIN: track(&&TRACK199_BEGIN, &&TRACK199_END);
+  TRACK199_END:  __asm__("nop;");
+  break;
+  }
         for (i = 1; i < alphaSize; i++) {
-    TRACK141_BEGIN: track(&&TRACK141_BEGIN, &&TRACK141_END);
-    TRACK141_END:  __asm__("nop;");
-     
+    TRACK200_BEGIN: track(&&TRACK200_BEGIN, &&TRACK200_END);
+    TRACK200_END:  __asm__("nop;");
     j = weight[i] >> 8;
              j = 1 + (j / 2);
              weight[i] = j << 8;
@@ -2510,18 +2604,15 @@ void BZ2_hbAssignCodes ( Int32 *code,
    Int32 n, vec, i;
    vec = 0;
    for (n = minLen; n <= maxLen; n++) {
-  TRACK145_BEGIN: track(&&TRACK145_BEGIN, &&TRACK145_END);
-  TRACK145_END:  __asm__("nop;");
-   
+  TRACK204_BEGIN: track(&&TRACK204_BEGIN, &&TRACK204_END);
+  TRACK204_END:  __asm__("nop;");
   for (i = 0; i < alphaSize; i++)
             {
-  TRACK144_BEGIN: track(&&TRACK144_BEGIN, &&TRACK144_END);
-  TRACK144_END:  __asm__("nop;");
-   
+  TRACK203_BEGIN: track(&&TRACK203_BEGIN, &&TRACK203_END);
+  TRACK203_END:  __asm__("nop;");
   if (length[i] == n) {
-    TRACK143_BEGIN: track(&&TRACK143_BEGIN, &&TRACK143_END);
-    TRACK143_END:  __asm__("nop;");
-     
+    TRACK202_BEGIN: track(&&TRACK202_BEGIN, &&TRACK202_END);
+    TRACK202_END:  __asm__("nop;");
     code[i] = vec; vec++;
   }
   };
@@ -2540,60 +2631,51 @@ void BZ2_hbCreateDecodeTables ( Int32 *limit,
    pp = 0;
    for (i = minLen; i <= maxLen; i++)
        {
-TRACK148_BEGIN: track(&&TRACK148_BEGIN, &&TRACK148_END);
-TRACK148_END:  __asm__("nop;");
- 
+TRACK207_BEGIN: track(&&TRACK207_BEGIN, &&TRACK207_END);
+TRACK207_END:  __asm__("nop;");
 for (j = 0; j < alphaSize; j++)
           {
-TRACK147_BEGIN: track(&&TRACK147_BEGIN, &&TRACK147_END);
-TRACK147_END:  __asm__("nop;");
- 
+TRACK206_BEGIN: track(&&TRACK206_BEGIN, &&TRACK206_END);
+TRACK206_END:  __asm__("nop;");
 if (length[j] == i) {
-  TRACK146_BEGIN: track(&&TRACK146_BEGIN, &&TRACK146_END);
-  TRACK146_END:  __asm__("nop;");
-   
+  TRACK205_BEGIN: track(&&TRACK205_BEGIN, &&TRACK205_END);
+  TRACK205_END:  __asm__("nop;");
   perm[pp] = j; pp++;
 }
 }
 };
    for (i = 0; i < 23; i++)  {
-TRACK149_BEGIN: track(&&TRACK149_BEGIN, &&TRACK149_END);
-TRACK149_END:  __asm__("nop;");
- 
+TRACK208_BEGIN: track(&&TRACK208_BEGIN, &&TRACK208_END);
+TRACK208_END:  __asm__("nop;");
 base[i] = 0;
 }
    for (i = 0; i < alphaSize; i++)  {
-TRACK150_BEGIN: track(&&TRACK150_BEGIN, &&TRACK150_END);
-TRACK150_END:  __asm__("nop;");
- 
+TRACK209_BEGIN: track(&&TRACK209_BEGIN, &&TRACK209_END);
+TRACK209_END:  __asm__("nop;");
 base[length[i]+1]++;
 }
    for (i = 1; i < 23; i++)  {
-TRACK151_BEGIN: track(&&TRACK151_BEGIN, &&TRACK151_END);
-TRACK151_END:  __asm__("nop;");
- 
+TRACK210_BEGIN: track(&&TRACK210_BEGIN, &&TRACK210_END);
+TRACK210_END:  __asm__("nop;");
 base[i] += base[i-1];
 }
    for (i = 0; i < 23; i++)  {
-TRACK152_BEGIN: track(&&TRACK152_BEGIN, &&TRACK152_END);
-TRACK152_END:  __asm__("nop;");
- 
+TRACK211_BEGIN: track(&&TRACK211_BEGIN, &&TRACK211_END);
+TRACK211_END:  __asm__("nop;");
 limit[i] = 0;
 }
    vec = 0;
    for (i = minLen; i <= maxLen; i++) {
-  TRACK153_BEGIN: track(&&TRACK153_BEGIN, &&TRACK153_END);
-  TRACK153_END:  __asm__("nop;");
-   
+  TRACK212_BEGIN: track(&&TRACK212_BEGIN, &&TRACK212_END);
+  TRACK212_END:  __asm__("nop;");
   vec += (base[i+1] - base[i]);
         limit[i] = vec-1;
         vec <<= 1;
 }
    for (i = minLen + 1; i <= maxLen; i++)
        {
-TRACK154_BEGIN: track(&&TRACK154_BEGIN, &&TRACK154_END);
-TRACK154_END:  __asm__("nop;");
- 
+TRACK213_BEGIN: track(&&TRACK213_BEGIN, &&TRACK213_END);
+TRACK213_END:  __asm__("nop;");
 base[i] = ((limit[i-1] + 1) << 1) - base[i];
 }
 }
@@ -2726,9 +2808,8 @@ static
 void bsFinishWrite ( EState* s )
 {
    while (s->bsLive > 0) {
-  TRACK155_BEGIN: track(&&TRACK155_BEGIN, &&TRACK155_END);
-  TRACK155_END:  __asm__("nop;");
-   
+  TRACK214_BEGIN: track(&&TRACK214_BEGIN, &&TRACK214_END);
+  TRACK214_END:  __asm__("nop;");
   s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24);
         s->numZ++;
         s->bsBuff <<= 8;
@@ -2740,9 +2821,8 @@ static
 void bsW ( EState* s, Int32 n, UInt32 v )
 {
    { while (s->bsLive >= 8) {
-  TRACK156_BEGIN: track(&&TRACK156_BEGIN, &&TRACK156_END);
-  TRACK156_END:  __asm__("nop;");
-   
+  TRACK215_BEGIN: track(&&TRACK215_BEGIN, &&TRACK215_END);
+  TRACK215_END:  __asm__("nop;");
   s->zbits[s->numZ] = (UChar)(s->bsBuff >> 24); s->numZ++; s->bsBuff <<= 8; s->bsLive -= 8;
 } };
    s->bsBuff |= (v << (32 - s->bsLive - n));
@@ -2768,13 +2848,11 @@ void makeMaps_e ( EState* s )
    s->nInUse = 0;
    for (i = 0; i < 256; i++)
        {
-TRACK158_BEGIN: track(&&TRACK158_BEGIN, &&TRACK158_END);
-TRACK158_END:  __asm__("nop;");
- 
+TRACK217_BEGIN: track(&&TRACK217_BEGIN, &&TRACK217_END);
+TRACK217_END:  __asm__("nop;");
 if (s->inUse[i]) {
-  TRACK157_BEGIN: track(&&TRACK157_BEGIN, &&TRACK157_END);
-  TRACK157_END:  __asm__("nop;");
-   
+  TRACK216_BEGIN: track(&&TRACK216_BEGIN, &&TRACK216_END);
+  TRACK216_END:  __asm__("nop;");
   s->unseqToSeq[i] = s->nInUse;
            s->nInUse++;
 }
@@ -2794,65 +2872,59 @@ void generateMTFValues ( EState* s )
    makeMaps_e ( s );
    EOB = s->nInUse+1;
    for (i = 0; i <= EOB; i++)  {
-TRACK159_BEGIN: track(&&TRACK159_BEGIN, &&TRACK159_END);
-TRACK159_END:  __asm__("nop;");
- 
+TRACK218_BEGIN: track(&&TRACK218_BEGIN, &&TRACK218_END);
+TRACK218_END:  __asm__("nop;");
 s->mtfFreq[i] = 0;
 }
    wr = 0;
    zPend = 0;
    for (i = 0; i < s->nInUse; i++)  {
-TRACK160_BEGIN: track(&&TRACK160_BEGIN, &&TRACK160_END);
-TRACK160_END:  __asm__("nop;");
- 
+TRACK219_BEGIN: track(&&TRACK219_BEGIN, &&TRACK219_END);
+TRACK219_END:  __asm__("nop;");
 yy[i] = (UChar) i;
 }
    for (i = 0; i < s->nblock; i++) {
   UChar ll_i;
-  TRACK169_BEGIN: track(&&TRACK169_BEGIN, &&TRACK169_END);
-  TRACK169_END:  __asm__("nop;");
-   
+  TRACK229_BEGIN: track(&&TRACK229_BEGIN, &&TRACK229_END);
+  TRACK229_END:  __asm__("nop;");
   ;
         j = ptr[i]-1; if (j < 0)  {
-  TRACK161_BEGIN: track(&&TRACK161_BEGIN, &&TRACK161_END);
-  TRACK161_END:  __asm__("nop;");
-   
+  TRACK220_BEGIN: track(&&TRACK220_BEGIN, &&TRACK220_END);
+  TRACK220_END:  __asm__("nop;");
   j += s->nblock;
   }
         ll_i = s->unseqToSeq[block[j]];
         ;
         if (yy[0] == ll_i) {
-    TRACK162_BEGIN: track(&&TRACK162_BEGIN, &&TRACK162_END);
-    TRACK162_END:  __asm__("nop;");
-     
+    TRACK221_BEGIN: track(&&TRACK221_BEGIN, &&TRACK221_END);
+    TRACK221_END:  __asm__("nop;");
     zPend++;
   } else {
-    TRACK168_BEGIN: track(&&TRACK168_BEGIN, &&TRACK168_END);
-    TRACK168_END:  __asm__("nop;");
-     
+    TRACK228_BEGIN: track(&&TRACK228_BEGIN, &&TRACK228_END);
+    TRACK228_END:  __asm__("nop;");
     if (zPend > 0) {
-      TRACK166_BEGIN: track(&&TRACK166_BEGIN, &&TRACK166_END);
-      TRACK166_END:  __asm__("nop;");
-       
+      TRACK226_BEGIN: track(&&TRACK226_BEGIN, &&TRACK226_END);
+      TRACK226_END:  __asm__("nop;");
       zPend--;
                   while (((Bool)1)) {
-        TRACK165_BEGIN: track(&&TRACK165_BEGIN, &&TRACK165_END);
-        TRACK165_END:  __asm__("nop;");
-         
+        TRACK225_BEGIN: track(&&TRACK225_BEGIN, &&TRACK225_END);
+        TRACK225_END:  __asm__("nop;");
         if (zPend & 1) {
-          TRACK163_BEGIN: track(&&TRACK163_BEGIN, &&TRACK163_END);
-          TRACK163_END:  __asm__("nop;");
-           
+          TRACK222_BEGIN: track(&&TRACK222_BEGIN, &&TRACK222_END);
+          TRACK222_END:  __asm__("nop;");
           mtfv[wr] = 1; wr++;
                             s->mtfFreq[1]++;
         } else {
-          TRACK164_BEGIN: track(&&TRACK164_BEGIN, &&TRACK164_END);
-          TRACK164_END:  __asm__("nop;");
-           
+          TRACK223_BEGIN: track(&&TRACK223_BEGIN, &&TRACK223_END);
+          TRACK223_END:  __asm__("nop;");
           mtfv[wr] = 0; wr++;
                             s->mtfFreq[0]++;
         }
-                       if (zPend < 2) break;
+                       if (zPend < 2)  {
+        TRACK224_BEGIN: track(&&TRACK224_BEGIN, &&TRACK224_END);
+        TRACK224_END:  __asm__("nop;");
+        break;
+        }
                        zPend = (zPend - 2) / 2;
       };
                   zPend = 0;
@@ -2867,9 +2939,8 @@ yy[i] = (UChar) i;
                 rll_i = ll_i;
                 while ( rll_i != rtmp ) {
       register UChar rtmp2;
-      TRACK167_BEGIN: track(&&TRACK167_BEGIN, &&TRACK167_END);
-      TRACK167_END:  __asm__("nop;");
-       
+      TRACK227_BEGIN: track(&&TRACK227_BEGIN, &&TRACK227_END);
+      TRACK227_END:  __asm__("nop;");
       ryy_j++;
                      rtmp2 = rtmp;
                      rtmp = *ryy_j;
@@ -2882,28 +2953,28 @@ yy[i] = (UChar) i;
   }
 }
    if (zPend > 0) {
-  TRACK173_BEGIN: track(&&TRACK173_BEGIN, &&TRACK173_END);
-  TRACK173_END:  __asm__("nop;");
-   
+  TRACK234_BEGIN: track(&&TRACK234_BEGIN, &&TRACK234_END);
+  TRACK234_END:  __asm__("nop;");
   zPend--;
         while (((Bool)1)) {
-    TRACK172_BEGIN: track(&&TRACK172_BEGIN, &&TRACK172_END);
-    TRACK172_END:  __asm__("nop;");
-     
+    TRACK233_BEGIN: track(&&TRACK233_BEGIN, &&TRACK233_END);
+    TRACK233_END:  __asm__("nop;");
     if (zPend & 1) {
-      TRACK170_BEGIN: track(&&TRACK170_BEGIN, &&TRACK170_END);
-      TRACK170_END:  __asm__("nop;");
-       
+      TRACK230_BEGIN: track(&&TRACK230_BEGIN, &&TRACK230_END);
+      TRACK230_END:  __asm__("nop;");
       mtfv[wr] = 1; wr++;
                   s->mtfFreq[1]++;
     } else {
-      TRACK171_BEGIN: track(&&TRACK171_BEGIN, &&TRACK171_END);
-      TRACK171_END:  __asm__("nop;");
-       
+      TRACK231_BEGIN: track(&&TRACK231_BEGIN, &&TRACK231_END);
+      TRACK231_END:  __asm__("nop;");
       mtfv[wr] = 0; wr++;
                   s->mtfFreq[0]++;
     }
-             if (zPend < 2) break;
+             if (zPend < 2)  {
+    TRACK232_BEGIN: track(&&TRACK232_BEGIN, &&TRACK232_END);
+    TRACK232_END:  __asm__("nop;");
+    break;
+    }
              zPend = (zPend - 2) / 2;
   };
         zPend = 0;
@@ -2922,71 +2993,59 @@ void sendMTFValues ( EState* s )
    UInt16* mtfv = s->mtfv;
    if (s->verbosity >= 3)
        {
-TRACK174_BEGIN: track(&&TRACK174_BEGIN, &&TRACK174_END);
-TRACK174_END:  __asm__("nop;");
- 
+TRACK235_BEGIN: track(&&TRACK235_BEGIN, &&TRACK235_END);
+TRACK235_END:  __asm__("nop;");
 fprintf(stderr,"      %d in block, %d after MTF & 1-2 coding, " "%d+2 syms in use\n",s->nblock,s->nMTF,s->nInUse);
 }
    alphaSize = s->nInUse+2;
    for (t = 0; t < 6; t++)
        {
-TRACK176_BEGIN: track(&&TRACK176_BEGIN, &&TRACK176_END);
-TRACK176_END:  __asm__("nop;");
- 
+TRACK237_BEGIN: track(&&TRACK237_BEGIN, &&TRACK237_END);
+TRACK237_END:  __asm__("nop;");
 for (v = 0; v < alphaSize; v++)
           {
-TRACK175_BEGIN: track(&&TRACK175_BEGIN, &&TRACK175_END);
-TRACK175_END:  __asm__("nop;");
- 
+TRACK236_BEGIN: track(&&TRACK236_BEGIN, &&TRACK236_END);
+TRACK236_END:  __asm__("nop;");
 s->len[t][v] = 15;
 }
 }
    { if (!(s->nMTF > 0))  {
-TRACK177_BEGIN: track(&&TRACK177_BEGIN, &&TRACK177_END);
-TRACK177_END:  __asm__("nop;");
- 
+TRACK238_BEGIN: track(&&TRACK238_BEGIN, &&TRACK238_END);
+TRACK238_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 3001 );
 } };
    if (s->nMTF < 200)  {
-TRACK178_BEGIN: track(&&TRACK178_BEGIN, &&TRACK178_END);
-TRACK178_END:  __asm__("nop;");
- 
+TRACK239_BEGIN: track(&&TRACK239_BEGIN, &&TRACK239_END);
+TRACK239_END:  __asm__("nop;");
 nGroups = 2;
 } else
     {
-TRACK185_BEGIN: track(&&TRACK185_BEGIN, &&TRACK185_END);
-TRACK185_END:  __asm__("nop;");
- 
+TRACK246_BEGIN: track(&&TRACK246_BEGIN, &&TRACK246_END);
+TRACK246_END:  __asm__("nop;");
 if (s->nMTF < 600)  {
-TRACK179_BEGIN: track(&&TRACK179_BEGIN, &&TRACK179_END);
-TRACK179_END:  __asm__("nop;");
- 
+TRACK240_BEGIN: track(&&TRACK240_BEGIN, &&TRACK240_END);
+TRACK240_END:  __asm__("nop;");
 nGroups = 3;
 } else
     {
-TRACK184_BEGIN: track(&&TRACK184_BEGIN, &&TRACK184_END);
-TRACK184_END:  __asm__("nop;");
- 
+TRACK245_BEGIN: track(&&TRACK245_BEGIN, &&TRACK245_END);
+TRACK245_END:  __asm__("nop;");
 if (s->nMTF < 1200)  {
-TRACK180_BEGIN: track(&&TRACK180_BEGIN, &&TRACK180_END);
-TRACK180_END:  __asm__("nop;");
- 
+TRACK241_BEGIN: track(&&TRACK241_BEGIN, &&TRACK241_END);
+TRACK241_END:  __asm__("nop;");
 nGroups = 4;
 } else
     {
-TRACK183_BEGIN: track(&&TRACK183_BEGIN, &&TRACK183_END);
-TRACK183_END:  __asm__("nop;");
- 
+TRACK244_BEGIN: track(&&TRACK244_BEGIN, &&TRACK244_END);
+TRACK244_END:  __asm__("nop;");
 if (s->nMTF < 2400)  {
-TRACK181_BEGIN: track(&&TRACK181_BEGIN, &&TRACK181_END);
-TRACK181_END:  __asm__("nop;");
- 
+TRACK242_BEGIN: track(&&TRACK242_BEGIN, &&TRACK242_END);
+TRACK242_END:  __asm__("nop;");
 nGroups = 5;
 } else
                         {
-TRACK182_BEGIN: track(&&TRACK182_BEGIN, &&TRACK182_END);
-TRACK182_END:  __asm__("nop;");
- 
+TRACK243_BEGIN: track(&&TRACK243_BEGIN, &&TRACK243_END);
+TRACK243_END:  __asm__("nop;");
 nGroups = 6;
 }
 }
@@ -2998,51 +3057,44 @@ nGroups = 6;
       remF = s->nMTF;
       gs = 0;
       while (nPart > 0) {
-  TRACK192_BEGIN: track(&&TRACK192_BEGIN, &&TRACK192_END);
-  TRACK192_END:  __asm__("nop;");
-   
+  TRACK253_BEGIN: track(&&TRACK253_BEGIN, &&TRACK253_END);
+  TRACK253_END:  __asm__("nop;");
   tFreq = remF / nPart;
            ge = gs-1;
            aFreq = 0;
            while (aFreq < tFreq && ge < alphaSize-1) {
-    TRACK186_BEGIN: track(&&TRACK186_BEGIN, &&TRACK186_END);
-    TRACK186_END:  __asm__("nop;");
-     
+    TRACK247_BEGIN: track(&&TRACK247_BEGIN, &&TRACK247_END);
+    TRACK247_END:  __asm__("nop;");
     ge++;
                 aFreq += s->mtfFreq[ge];
   }
            if (ge > gs
                && nPart != nGroups && nPart != 1
                && ((nGroups-nPart) % 2 == 1)) {
-    TRACK187_BEGIN: track(&&TRACK187_BEGIN, &&TRACK187_END);
-    TRACK187_END:  __asm__("nop;");
-     
+    TRACK248_BEGIN: track(&&TRACK248_BEGIN, &&TRACK248_END);
+    TRACK248_END:  __asm__("nop;");
     aFreq -= s->mtfFreq[ge];
                 ge--;
   }
            if (s->verbosity >= 3)
                {
-  TRACK188_BEGIN: track(&&TRACK188_BEGIN, &&TRACK188_END);
-  TRACK188_END:  __asm__("nop;");
-   
+  TRACK249_BEGIN: track(&&TRACK249_BEGIN, &&TRACK249_END);
+  TRACK249_END:  __asm__("nop;");
   fprintf(stderr,"      initial group %d, [%d .. %d], " "has %d syms (%4.1f%%)\n",nPart,gs,ge,aFreq,(100.0 * (float)aFreq) / (float)(s->nMTF));
   }
            for (v = 0; v < alphaSize; v++)
                {
-  TRACK191_BEGIN: track(&&TRACK191_BEGIN, &&TRACK191_END);
-  TRACK191_END:  __asm__("nop;");
-   
+  TRACK252_BEGIN: track(&&TRACK252_BEGIN, &&TRACK252_END);
+  TRACK252_END:  __asm__("nop;");
   if (v >= gs && v <= ge)
                   {
-  TRACK189_BEGIN: track(&&TRACK189_BEGIN, &&TRACK189_END);
-  TRACK189_END:  __asm__("nop;");
-   
+  TRACK250_BEGIN: track(&&TRACK250_BEGIN, &&TRACK250_END);
+  TRACK250_END:  __asm__("nop;");
   s->len[nPart-1][v] = 0;
   } else
                   {
-  TRACK190_BEGIN: track(&&TRACK190_BEGIN, &&TRACK190_END);
-  TRACK190_END:  __asm__("nop;");
-   
+  TRACK251_BEGIN: track(&&TRACK251_BEGIN, &&TRACK251_END);
+  TRACK251_END:  __asm__("nop;");
   s->len[nPart-1][v] = 15;
   }
   }
@@ -3052,36 +3104,30 @@ nGroups = 6;
 }
    }
    for (iter = 0; iter < 4; iter++) {
-  TRACK213_BEGIN: track(&&TRACK213_BEGIN, &&TRACK213_END);
-  TRACK213_END:  __asm__("nop;");
-   
+  TRACK275_BEGIN: track(&&TRACK275_BEGIN, &&TRACK275_END);
+  TRACK275_END:  __asm__("nop;");
   for (t = 0; t < nGroups; t++)  {
-  TRACK193_BEGIN: track(&&TRACK193_BEGIN, &&TRACK193_END);
-  TRACK193_END:  __asm__("nop;");
-   
+  TRACK254_BEGIN: track(&&TRACK254_BEGIN, &&TRACK254_END);
+  TRACK254_END:  __asm__("nop;");
   fave[t] = 0;
   }
         for (t = 0; t < nGroups; t++)
             {
-  TRACK195_BEGIN: track(&&TRACK195_BEGIN, &&TRACK195_END);
-  TRACK195_END:  __asm__("nop;");
-   
+  TRACK256_BEGIN: track(&&TRACK256_BEGIN, &&TRACK256_END);
+  TRACK256_END:  __asm__("nop;");
   for (v = 0; v < alphaSize; v++)
                {
-  TRACK194_BEGIN: track(&&TRACK194_BEGIN, &&TRACK194_END);
-  TRACK194_END:  __asm__("nop;");
-   
+  TRACK255_BEGIN: track(&&TRACK255_BEGIN, &&TRACK255_END);
+  TRACK255_END:  __asm__("nop;");
   s->rfreq[t][v] = 0;
   }
   }
         if (nGroups == 6) {
-    TRACK197_BEGIN: track(&&TRACK197_BEGIN, &&TRACK197_END);
-    TRACK197_END:  __asm__("nop;");
-     
+    TRACK258_BEGIN: track(&&TRACK258_BEGIN, &&TRACK258_END);
+    TRACK258_END:  __asm__("nop;");
     for (v = 0; v < alphaSize; v++) {
-      TRACK196_BEGIN: track(&&TRACK196_BEGIN, &&TRACK196_END);
-      TRACK196_END:  __asm__("nop;");
-       
+      TRACK257_BEGIN: track(&&TRACK257_BEGIN, &&TRACK257_END);
+      TRACK257_END:  __asm__("nop;");
       s->len_pack[v][0] = (s->len[1][v] << 16) | s->len[0][v];
                   s->len_pack[v][1] = (s->len[3][v] << 16) | s->len[2][v];
                   s->len_pack[v][2] = (s->len[5][v] << 16) | s->len[4][v];
@@ -3091,29 +3137,29 @@ nGroups = 6;
         totc = 0;
         gs = 0;
         while (((Bool)1)) {
-    TRACK209_BEGIN: track(&&TRACK209_BEGIN, &&TRACK209_END);
-    TRACK209_END:  __asm__("nop;");
-     
-    if (gs >= s->nMTF) break;
+    TRACK271_BEGIN: track(&&TRACK271_BEGIN, &&TRACK271_END);
+    TRACK271_END:  __asm__("nop;");
+    if (gs >= s->nMTF)  {
+    TRACK259_BEGIN: track(&&TRACK259_BEGIN, &&TRACK259_END);
+    TRACK259_END:  __asm__("nop;");
+    break;
+    }
              ge = gs + 50 - 1;
              if (ge >= s->nMTF)  {
-    TRACK198_BEGIN: track(&&TRACK198_BEGIN, &&TRACK198_END);
-    TRACK198_END:  __asm__("nop;");
-     
+    TRACK260_BEGIN: track(&&TRACK260_BEGIN, &&TRACK260_END);
+    TRACK260_END:  __asm__("nop;");
     ge = s->nMTF-1;
     }
              for (t = 0; t < nGroups; t++)  {
-    TRACK199_BEGIN: track(&&TRACK199_BEGIN, &&TRACK199_END);
-    TRACK199_END:  __asm__("nop;");
-     
+    TRACK261_BEGIN: track(&&TRACK261_BEGIN, &&TRACK261_END);
+    TRACK261_END:  __asm__("nop;");
     cost[t] = 0;
     }
              if (nGroups == 6 && 50 == ge-gs+1) {
       register UInt32 cost01, cost23, cost45;
                   register UInt16 icv;
-      TRACK200_BEGIN: track(&&TRACK200_BEGIN, &&TRACK200_END);
-      TRACK200_END:  __asm__("nop;");
-       
+      TRACK262_BEGIN: track(&&TRACK262_BEGIN, &&TRACK262_END);
+      TRACK262_END:  __asm__("nop;");
       cost01 = cost23 = cost45 = 0;
                   icv = mtfv[gs+(0)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(1)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(2)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(3)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(4)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
                   icv = mtfv[gs+(5)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(6)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(7)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(8)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];; icv = mtfv[gs+(9)]; cost01 += s->len_pack[icv][0]; cost23 += s->len_pack[icv][1]; cost45 += s->len_pack[icv][2];;
@@ -3129,18 +3175,15 @@ nGroups = 6;
                   cost[2] = cost23 & 0xffff; cost[3] = cost23 >> 16;
                   cost[4] = cost45 & 0xffff; cost[5] = cost45 >> 16;
     } else {
-      TRACK203_BEGIN: track(&&TRACK203_BEGIN, &&TRACK203_END);
-      TRACK203_END:  __asm__("nop;");
-       
+      TRACK265_BEGIN: track(&&TRACK265_BEGIN, &&TRACK265_END);
+      TRACK265_END:  __asm__("nop;");
       for (i = gs; i <= ge; i++) {
         UInt16 icv = mtfv[i];
-        TRACK202_BEGIN: track(&&TRACK202_BEGIN, &&TRACK202_END);
-        TRACK202_END:  __asm__("nop;");
-         
+        TRACK264_BEGIN: track(&&TRACK264_BEGIN, &&TRACK264_END);
+        TRACK264_END:  __asm__("nop;");
         for (t = 0; t < nGroups; t++)  {
-        TRACK201_BEGIN: track(&&TRACK201_BEGIN, &&TRACK201_END);
-        TRACK201_END:  __asm__("nop;");
-         
+        TRACK263_BEGIN: track(&&TRACK263_BEGIN, &&TRACK263_END);
+        TRACK263_END:  __asm__("nop;");
         cost[t] += s->len[t][icv];
         }
       }
@@ -3148,13 +3191,11 @@ nGroups = 6;
              bc = 999999999; bt = -1;
              for (t = 0; t < nGroups; t++)
                  {
-    TRACK205_BEGIN: track(&&TRACK205_BEGIN, &&TRACK205_END);
-    TRACK205_END:  __asm__("nop;");
-     
+    TRACK267_BEGIN: track(&&TRACK267_BEGIN, &&TRACK267_END);
+    TRACK267_END:  __asm__("nop;");
     if (cost[t] < bc) {
-      TRACK204_BEGIN: track(&&TRACK204_BEGIN, &&TRACK204_END);
-      TRACK204_END:  __asm__("nop;");
-       
+      TRACK266_BEGIN: track(&&TRACK266_BEGIN, &&TRACK266_END);
+      TRACK266_END:  __asm__("nop;");
       bc = cost[t]; bt = t;
     }
     };
@@ -3163,9 +3204,8 @@ nGroups = 6;
              s->selector[nSelectors] = bt;
              nSelectors++;
              if (nGroups == 6 && 50 == ge-gs+1) {
-      TRACK206_BEGIN: track(&&TRACK206_BEGIN, &&TRACK206_END);
-      TRACK206_END:  __asm__("nop;");
-       
+      TRACK268_BEGIN: track(&&TRACK268_BEGIN, &&TRACK268_END);
+      TRACK268_END:  __asm__("nop;");
       s->rfreq[bt][ mtfv[gs+(0)] ]++; s->rfreq[bt][ mtfv[gs+(1)] ]++; s->rfreq[bt][ mtfv[gs+(2)] ]++; s->rfreq[bt][ mtfv[gs+(3)] ]++; s->rfreq[bt][ mtfv[gs+(4)] ]++;
                   s->rfreq[bt][ mtfv[gs+(5)] ]++; s->rfreq[bt][ mtfv[gs+(6)] ]++; s->rfreq[bt][ mtfv[gs+(7)] ]++; s->rfreq[bt][ mtfv[gs+(8)] ]++; s->rfreq[bt][ mtfv[gs+(9)] ]++;
                   s->rfreq[bt][ mtfv[gs+(10)] ]++; s->rfreq[bt][ mtfv[gs+(11)] ]++; s->rfreq[bt][ mtfv[gs+(12)] ]++; s->rfreq[bt][ mtfv[gs+(13)] ]++; s->rfreq[bt][ mtfv[gs+(14)] ]++;
@@ -3177,73 +3217,63 @@ nGroups = 6;
                   s->rfreq[bt][ mtfv[gs+(40)] ]++; s->rfreq[bt][ mtfv[gs+(41)] ]++; s->rfreq[bt][ mtfv[gs+(42)] ]++; s->rfreq[bt][ mtfv[gs+(43)] ]++; s->rfreq[bt][ mtfv[gs+(44)] ]++;
                   s->rfreq[bt][ mtfv[gs+(45)] ]++; s->rfreq[bt][ mtfv[gs+(46)] ]++; s->rfreq[bt][ mtfv[gs+(47)] ]++; s->rfreq[bt][ mtfv[gs+(48)] ]++; s->rfreq[bt][ mtfv[gs+(49)] ]++;
     } else {
-      TRACK208_BEGIN: track(&&TRACK208_BEGIN, &&TRACK208_END);
-      TRACK208_END:  __asm__("nop;");
-       
+      TRACK270_BEGIN: track(&&TRACK270_BEGIN, &&TRACK270_END);
+      TRACK270_END:  __asm__("nop;");
       for (i = gs; i <= ge; i++)
                       {
-      TRACK207_BEGIN: track(&&TRACK207_BEGIN, &&TRACK207_END);
-      TRACK207_END:  __asm__("nop;");
-       
+      TRACK269_BEGIN: track(&&TRACK269_BEGIN, &&TRACK269_END);
+      TRACK269_END:  __asm__("nop;");
       s->rfreq[bt][ mtfv[i] ]++;
       }
     }
              gs = ge+1;
   }
         if (s->verbosity >= 3) {
-    TRACK211_BEGIN: track(&&TRACK211_BEGIN, &&TRACK211_END);
-    TRACK211_END:  __asm__("nop;");
-     
+    TRACK273_BEGIN: track(&&TRACK273_BEGIN, &&TRACK273_END);
+    TRACK273_END:  __asm__("nop;");
     fprintf(stderr,"      pass %d: size is %d, grp uses are ",iter+1,totc/8);
              for (t = 0; t < nGroups; t++)
                  {
-    TRACK210_BEGIN: track(&&TRACK210_BEGIN, &&TRACK210_END);
-    TRACK210_END:  __asm__("nop;");
-     
+    TRACK272_BEGIN: track(&&TRACK272_BEGIN, &&TRACK272_END);
+    TRACK272_END:  __asm__("nop;");
     fprintf(stderr,"%d ",fave[t]);
     }
              fprintf(stderr,"\n");
   }
         for (t = 0; t < nGroups; t++)
             {
-  TRACK212_BEGIN: track(&&TRACK212_BEGIN, &&TRACK212_END);
-  TRACK212_END:  __asm__("nop;");
-   
+  TRACK274_BEGIN: track(&&TRACK274_BEGIN, &&TRACK274_END);
+  TRACK274_END:  __asm__("nop;");
   BZ2_hbMakeCodeLengths ( &(s->len[t][0]), &(s->rfreq[t][0]),
                                    alphaSize, 20 );
   }
 }
    { if (!(nGroups < 8))  {
-TRACK214_BEGIN: track(&&TRACK214_BEGIN, &&TRACK214_END);
-TRACK214_END:  __asm__("nop;");
- 
+TRACK276_BEGIN: track(&&TRACK276_BEGIN, &&TRACK276_END);
+TRACK276_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 3002 );
 } };
    { if (!(nSelectors < 32768 && nSelectors <= (2 + (900000 / 50))))  {
-TRACK215_BEGIN: track(&&TRACK215_BEGIN, &&TRACK215_END);
-TRACK215_END:  __asm__("nop;");
- 
+TRACK277_BEGIN: track(&&TRACK277_BEGIN, &&TRACK277_END);
+TRACK277_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 3003 );
 } };
    {
       UChar pos[6], ll_i, tmp2, tmp;
       for (i = 0; i < nGroups; i++)  {
-TRACK216_BEGIN: track(&&TRACK216_BEGIN, &&TRACK216_END);
-TRACK216_END:  __asm__("nop;");
- 
+TRACK278_BEGIN: track(&&TRACK278_BEGIN, &&TRACK278_END);
+TRACK278_END:  __asm__("nop;");
 pos[i] = i;
 }
       for (i = 0; i < nSelectors; i++) {
-  TRACK218_BEGIN: track(&&TRACK218_BEGIN, &&TRACK218_END);
-  TRACK218_END:  __asm__("nop;");
-   
+  TRACK280_BEGIN: track(&&TRACK280_BEGIN, &&TRACK280_END);
+  TRACK280_END:  __asm__("nop;");
   ll_i = s->selector[i];
            j = 0;
            tmp = pos[j];
            while ( ll_i != tmp ) {
-    TRACK217_BEGIN: track(&&TRACK217_BEGIN, &&TRACK217_END);
-    TRACK217_END:  __asm__("nop;");
-     
+    TRACK279_BEGIN: track(&&TRACK279_BEGIN, &&TRACK279_END);
+    TRACK279_END:  __asm__("nop;");
     j++;
                 tmp2 = tmp;
                 tmp = pos[j];
@@ -3254,38 +3284,32 @@ pos[i] = i;
 }
    };
    for (t = 0; t < nGroups; t++) {
-  TRACK224_BEGIN: track(&&TRACK224_BEGIN, &&TRACK224_END);
-  TRACK224_END:  __asm__("nop;");
-   
+  TRACK286_BEGIN: track(&&TRACK286_BEGIN, &&TRACK286_END);
+  TRACK286_END:  __asm__("nop;");
   minLen = 32;
         maxLen = 0;
         for (i = 0; i < alphaSize; i++) {
-    TRACK221_BEGIN: track(&&TRACK221_BEGIN, &&TRACK221_END);
-    TRACK221_END:  __asm__("nop;");
-     
+    TRACK283_BEGIN: track(&&TRACK283_BEGIN, &&TRACK283_END);
+    TRACK283_END:  __asm__("nop;");
     if (s->len[t][i] > maxLen)  {
-    TRACK219_BEGIN: track(&&TRACK219_BEGIN, &&TRACK219_END);
-    TRACK219_END:  __asm__("nop;");
-     
+    TRACK281_BEGIN: track(&&TRACK281_BEGIN, &&TRACK281_END);
+    TRACK281_END:  __asm__("nop;");
     maxLen = s->len[t][i];
     }
              if (s->len[t][i] < minLen)  {
-    TRACK220_BEGIN: track(&&TRACK220_BEGIN, &&TRACK220_END);
-    TRACK220_END:  __asm__("nop;");
-     
+    TRACK282_BEGIN: track(&&TRACK282_BEGIN, &&TRACK282_END);
+    TRACK282_END:  __asm__("nop;");
     minLen = s->len[t][i];
     }
   }
         { if (!(!(maxLen > 20)))  {
-  TRACK222_BEGIN: track(&&TRACK222_BEGIN, &&TRACK222_END);
-  TRACK222_END:  __asm__("nop;");
-   
+  TRACK284_BEGIN: track(&&TRACK284_BEGIN, &&TRACK284_END);
+  TRACK284_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 3004 );
   } };
         { if (!(!(minLen < 1)))  {
-  TRACK223_BEGIN: track(&&TRACK223_BEGIN, &&TRACK223_END);
-  TRACK223_END:  __asm__("nop;");
-   
+  TRACK285_BEGIN: track(&&TRACK285_BEGIN, &&TRACK285_END);
+  TRACK285_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 3005 );
   } };
         BZ2_hbAssignCodes ( &(s->code[t][0]), &(s->len[t][0]),
@@ -3294,19 +3318,16 @@ pos[i] = i;
    {
       Bool inUse16[16];
       for (i = 0; i < 16; i++) {
-  TRACK227_BEGIN: track(&&TRACK227_BEGIN, &&TRACK227_END);
-  TRACK227_END:  __asm__("nop;");
-   
+  TRACK289_BEGIN: track(&&TRACK289_BEGIN, &&TRACK289_END);
+  TRACK289_END:  __asm__("nop;");
   inUse16[i] = ((Bool)0);
             for (j = 0; j < 16; j++)
                 {
-  TRACK226_BEGIN: track(&&TRACK226_BEGIN, &&TRACK226_END);
-  TRACK226_END:  __asm__("nop;");
-   
+  TRACK288_BEGIN: track(&&TRACK288_BEGIN, &&TRACK288_END);
+  TRACK288_END:  __asm__("nop;");
   if (s->inUse[i * 16 + j])  {
-  TRACK225_BEGIN: track(&&TRACK225_BEGIN, &&TRACK225_END);
-  TRACK225_END:  __asm__("nop;");
-   
+  TRACK287_BEGIN: track(&&TRACK287_BEGIN, &&TRACK287_END);
+  TRACK287_END:  __asm__("nop;");
   inUse16[i] = ((Bool)1);
   }
   }
@@ -3314,44 +3335,36 @@ pos[i] = i;
       nBytes = s->numZ;
       for (i = 0; i < 16; i++)
           {
-TRACK230_BEGIN: track(&&TRACK230_BEGIN, &&TRACK230_END);
-TRACK230_END:  __asm__("nop;");
- 
+TRACK292_BEGIN: track(&&TRACK292_BEGIN, &&TRACK292_END);
+TRACK292_END:  __asm__("nop;");
 if (inUse16[i])  {
-TRACK228_BEGIN: track(&&TRACK228_BEGIN, &&TRACK228_END);
-TRACK228_END:  __asm__("nop;");
- 
+TRACK290_BEGIN: track(&&TRACK290_BEGIN, &&TRACK290_END);
+TRACK290_END:  __asm__("nop;");
 bsW(s,1,1);
 } else  {
-TRACK229_BEGIN: track(&&TRACK229_BEGIN, &&TRACK229_END);
-TRACK229_END:  __asm__("nop;");
- 
+TRACK291_BEGIN: track(&&TRACK291_BEGIN, &&TRACK291_END);
+TRACK291_END:  __asm__("nop;");
 bsW(s,1,0);
 }
 }
       for (i = 0; i < 16; i++)
           {
-TRACK235_BEGIN: track(&&TRACK235_BEGIN, &&TRACK235_END);
-TRACK235_END:  __asm__("nop;");
- 
+TRACK297_BEGIN: track(&&TRACK297_BEGIN, &&TRACK297_END);
+TRACK297_END:  __asm__("nop;");
 if (inUse16[i])
              {
-TRACK234_BEGIN: track(&&TRACK234_BEGIN, &&TRACK234_END);
-TRACK234_END:  __asm__("nop;");
- 
+TRACK296_BEGIN: track(&&TRACK296_BEGIN, &&TRACK296_END);
+TRACK296_END:  __asm__("nop;");
 for (j = 0; j < 16; j++) {
-  TRACK233_BEGIN: track(&&TRACK233_BEGIN, &&TRACK233_END);
-  TRACK233_END:  __asm__("nop;");
-   
+  TRACK295_BEGIN: track(&&TRACK295_BEGIN, &&TRACK295_END);
+  TRACK295_END:  __asm__("nop;");
   if (s->inUse[i * 16 + j])  {
-  TRACK231_BEGIN: track(&&TRACK231_BEGIN, &&TRACK231_END);
-  TRACK231_END:  __asm__("nop;");
-   
+  TRACK293_BEGIN: track(&&TRACK293_BEGIN, &&TRACK293_END);
+  TRACK293_END:  __asm__("nop;");
   bsW(s,1,1);
   } else  {
-  TRACK232_BEGIN: track(&&TRACK232_BEGIN, &&TRACK232_END);
-  TRACK232_END:  __asm__("nop;");
-   
+  TRACK294_BEGIN: track(&&TRACK294_BEGIN, &&TRACK294_END);
+  TRACK294_END:  __asm__("nop;");
   bsW(s,1,0);
   }
 }
@@ -3359,9 +3372,8 @@ for (j = 0; j < 16; j++) {
 }
       if (s->verbosity >= 3)
           {
-TRACK236_BEGIN: track(&&TRACK236_BEGIN, &&TRACK236_END);
-TRACK236_END:  __asm__("nop;");
- 
+TRACK298_BEGIN: track(&&TRACK298_BEGIN, &&TRACK298_END);
+TRACK298_END:  __asm__("nop;");
 fprintf(stderr,"      bytes: mapping %d, ",s->numZ-nBytes);
 }
    }
@@ -3369,45 +3381,38 @@ fprintf(stderr,"      bytes: mapping %d, ",s->numZ-nBytes);
    bsW ( s, 3, nGroups );
    bsW ( s, 15, nSelectors );
    for (i = 0; i < nSelectors; i++) {
-  TRACK238_BEGIN: track(&&TRACK238_BEGIN, &&TRACK238_END);
-  TRACK238_END:  __asm__("nop;");
-   
+  TRACK300_BEGIN: track(&&TRACK300_BEGIN, &&TRACK300_END);
+  TRACK300_END:  __asm__("nop;");
   for (j = 0; j < s->selectorMtf[i]; j++)  {
-  TRACK237_BEGIN: track(&&TRACK237_BEGIN, &&TRACK237_END);
-  TRACK237_END:  __asm__("nop;");
-   
+  TRACK299_BEGIN: track(&&TRACK299_BEGIN, &&TRACK299_END);
+  TRACK299_END:  __asm__("nop;");
   bsW(s,1,1);
   }
         bsW(s,1,0);
 }
    if (s->verbosity >= 3)
        {
-TRACK239_BEGIN: track(&&TRACK239_BEGIN, &&TRACK239_END);
-TRACK239_END:  __asm__("nop;");
- 
+TRACK301_BEGIN: track(&&TRACK301_BEGIN, &&TRACK301_END);
+TRACK301_END:  __asm__("nop;");
 fprintf(stderr,"selectors %d, ",s->numZ-nBytes);
 }
    nBytes = s->numZ;
    for (t = 0; t < nGroups; t++) {
   Int32 curr = s->len[t][0];
-  TRACK243_BEGIN: track(&&TRACK243_BEGIN, &&TRACK243_END);
-  TRACK243_END:  __asm__("nop;");
-   
+  TRACK305_BEGIN: track(&&TRACK305_BEGIN, &&TRACK305_END);
+  TRACK305_END:  __asm__("nop;");
   bsW ( s, 5, curr );
         for (i = 0; i < alphaSize; i++) {
-    TRACK242_BEGIN: track(&&TRACK242_BEGIN, &&TRACK242_END);
-    TRACK242_END:  __asm__("nop;");
-     
+    TRACK304_BEGIN: track(&&TRACK304_BEGIN, &&TRACK304_END);
+    TRACK304_END:  __asm__("nop;");
     while (curr < s->len[t][i]) {
-      TRACK240_BEGIN: track(&&TRACK240_BEGIN, &&TRACK240_END);
-      TRACK240_END:  __asm__("nop;");
-       
+      TRACK302_BEGIN: track(&&TRACK302_BEGIN, &&TRACK302_END);
+      TRACK302_END:  __asm__("nop;");
       bsW(s,2,2); curr++;
     };
              while (curr > s->len[t][i]) {
-      TRACK241_BEGIN: track(&&TRACK241_BEGIN, &&TRACK241_END);
-      TRACK241_END:  __asm__("nop;");
-       
+      TRACK303_BEGIN: track(&&TRACK303_BEGIN, &&TRACK303_END);
+      TRACK303_END:  __asm__("nop;");
       bsW(s,2,3); curr--;
     };
              bsW ( s, 1, 0 );
@@ -3415,30 +3420,30 @@ fprintf(stderr,"selectors %d, ",s->numZ-nBytes);
 }
    if (s->verbosity >= 3)
        {
-TRACK244_BEGIN: track(&&TRACK244_BEGIN, &&TRACK244_END);
-TRACK244_END:  __asm__("nop;");
- 
+TRACK306_BEGIN: track(&&TRACK306_BEGIN, &&TRACK306_END);
+TRACK306_END:  __asm__("nop;");
 fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
 }
    nBytes = s->numZ;
    selCtr = 0;
    gs = 0;
    while (((Bool)1)) {
-  TRACK250_BEGIN: track(&&TRACK250_BEGIN, &&TRACK250_END);
-  TRACK250_END:  __asm__("nop;");
-   
-  if (gs >= s->nMTF) break;
+  TRACK313_BEGIN: track(&&TRACK313_BEGIN, &&TRACK313_END);
+  TRACK313_END:  __asm__("nop;");
+  if (gs >= s->nMTF)  {
+  TRACK307_BEGIN: track(&&TRACK307_BEGIN, &&TRACK307_END);
+  TRACK307_END:  __asm__("nop;");
+  break;
+  }
         ge = gs + 50 - 1;
         if (ge >= s->nMTF)  {
-  TRACK245_BEGIN: track(&&TRACK245_BEGIN, &&TRACK245_END);
-  TRACK245_END:  __asm__("nop;");
-   
+  TRACK308_BEGIN: track(&&TRACK308_BEGIN, &&TRACK308_END);
+  TRACK308_END:  __asm__("nop;");
   ge = s->nMTF-1;
   }
         { if (!(s->selector[selCtr] < nGroups))  {
-  TRACK246_BEGIN: track(&&TRACK246_BEGIN, &&TRACK246_END);
-  TRACK246_END:  __asm__("nop;");
-   
+  TRACK309_BEGIN: track(&&TRACK309_BEGIN, &&TRACK309_END);
+  TRACK309_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 3006 );
   } };
         if (nGroups == 6 && 50 == ge-gs+1) {
@@ -3447,9 +3452,8 @@ fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
                    = &(s->len[s->selector[selCtr]][0]);
                 Int32* s_code_sel_selCtr
                    = &(s->code[s->selector[selCtr]][0]);
-    TRACK247_BEGIN: track(&&TRACK247_BEGIN, &&TRACK247_END);
-    TRACK247_END:  __asm__("nop;");
-     
+    TRACK310_BEGIN: track(&&TRACK310_BEGIN, &&TRACK310_END);
+    TRACK310_END:  __asm__("nop;");
     mtfv_i = mtfv[gs+(0)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(1)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(2)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(3)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(4)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
                 mtfv_i = mtfv[gs+(5)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(6)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(7)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(8)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(9)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
                 mtfv_i = mtfv[gs+(10)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(11)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(12)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(13)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(14)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
@@ -3461,13 +3465,11 @@ fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
                 mtfv_i = mtfv[gs+(40)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(41)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(42)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(43)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(44)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
                 mtfv_i = mtfv[gs+(45)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(46)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(47)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(48)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] ); mtfv_i = mtfv[gs+(49)]; bsW ( s, s_len_sel_selCtr[mtfv_i], s_code_sel_selCtr[mtfv_i] );
   } else {
-    TRACK249_BEGIN: track(&&TRACK249_BEGIN, &&TRACK249_END);
-    TRACK249_END:  __asm__("nop;");
-     
+    TRACK312_BEGIN: track(&&TRACK312_BEGIN, &&TRACK312_END);
+    TRACK312_END:  __asm__("nop;");
     for (i = gs; i <= ge; i++) {
-      TRACK248_BEGIN: track(&&TRACK248_BEGIN, &&TRACK248_END);
-      TRACK248_END:  __asm__("nop;");
-       
+      TRACK311_BEGIN: track(&&TRACK311_BEGIN, &&TRACK311_END);
+      TRACK311_END:  __asm__("nop;");
       bsW ( s,
                         s->len [s->selector[selCtr]] [mtfv[i]],
                         s->code [s->selector[selCtr]] [mtfv[i]] );
@@ -3477,48 +3479,42 @@ fprintf(stderr,"code lengths %d, ",s->numZ-nBytes);
         selCtr++;
 }
    { if (!(selCtr == nSelectors))  {
-TRACK251_BEGIN: track(&&TRACK251_BEGIN, &&TRACK251_END);
-TRACK251_END:  __asm__("nop;");
- 
+TRACK314_BEGIN: track(&&TRACK314_BEGIN, &&TRACK314_END);
+TRACK314_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 3007 );
 } };
    if (s->verbosity >= 3)
        {
-TRACK252_BEGIN: track(&&TRACK252_BEGIN, &&TRACK252_END);
-TRACK252_END:  __asm__("nop;");
- 
+TRACK315_BEGIN: track(&&TRACK315_BEGIN, &&TRACK315_END);
+TRACK315_END:  __asm__("nop;");
 fprintf(stderr,"codes %d\n",s->numZ-nBytes);
 }
 }
 void BZ2_compressBlock ( EState* s, Bool is_last_block )
 {
    if (s->nblock > 0) {
-  TRACK255_BEGIN: track(&&TRACK255_BEGIN, &&TRACK255_END);
-  TRACK255_END:  __asm__("nop;");
-   
+  TRACK318_BEGIN: track(&&TRACK318_BEGIN, &&TRACK318_END);
+  TRACK318_END:  __asm__("nop;");
   { s->blockCRC = ~(s->blockCRC); };
         s->combinedCRC = (s->combinedCRC << 1) | (s->combinedCRC >> 31);
         s->combinedCRC ^= s->blockCRC;
         if (s->blockNo > 1)  {
-  TRACK253_BEGIN: track(&&TRACK253_BEGIN, &&TRACK253_END);
-  TRACK253_END:  __asm__("nop;");
-   
+  TRACK316_BEGIN: track(&&TRACK316_BEGIN, &&TRACK316_END);
+  TRACK316_END:  __asm__("nop;");
   s->numZ = 0;
   }
         if (s->verbosity >= 2)
             {
-  TRACK254_BEGIN: track(&&TRACK254_BEGIN, &&TRACK254_END);
-  TRACK254_END:  __asm__("nop;");
-   
+  TRACK317_BEGIN: track(&&TRACK317_BEGIN, &&TRACK317_END);
+  TRACK317_END:  __asm__("nop;");
   fprintf(stderr,"    block %d: crc = 0x%8x, " "combined CRC = 0x%8x, size = %d\n",s->blockNo,s->blockCRC,s->combinedCRC,s->nblock);
   }
         BZ2_blockSort ( s );
 }
    s->zbits = (UChar*) (&((UChar*)s->arr2)[s->nblock]);
    if (s->blockNo == 1) {
-  TRACK256_BEGIN: track(&&TRACK256_BEGIN, &&TRACK256_END);
-  TRACK256_END:  __asm__("nop;");
-   
+  TRACK319_BEGIN: track(&&TRACK319_BEGIN, &&TRACK319_END);
+  TRACK319_END:  __asm__("nop;");
   BZ2_bsInitWrite ( s );
         bsPutUChar ( s, 0x42 );
         bsPutUChar ( s, 0x5a );
@@ -3526,9 +3522,8 @@ void BZ2_compressBlock ( EState* s, Bool is_last_block )
         bsPutUChar ( s, (UChar)(0x30 + s->blockSize100k) );
 }
    if (s->nblock > 0) {
-  TRACK257_BEGIN: track(&&TRACK257_BEGIN, &&TRACK257_END);
-  TRACK257_END:  __asm__("nop;");
-   
+  TRACK320_BEGIN: track(&&TRACK320_BEGIN, &&TRACK320_END);
+  TRACK320_END:  __asm__("nop;");
   bsPutUChar ( s, 0x31 ); bsPutUChar ( s, 0x41 );
         bsPutUChar ( s, 0x59 ); bsPutUChar ( s, 0x26 );
         bsPutUChar ( s, 0x53 ); bsPutUChar ( s, 0x59 );
@@ -3539,18 +3534,16 @@ void BZ2_compressBlock ( EState* s, Bool is_last_block )
         sendMTFValues ( s );
 }
    if (is_last_block) {
-  TRACK259_BEGIN: track(&&TRACK259_BEGIN, &&TRACK259_END);
-  TRACK259_END:  __asm__("nop;");
-   
+  TRACK322_BEGIN: track(&&TRACK322_BEGIN, &&TRACK322_END);
+  TRACK322_END:  __asm__("nop;");
   bsPutUChar ( s, 0x17 ); bsPutUChar ( s, 0x72 );
         bsPutUChar ( s, 0x45 ); bsPutUChar ( s, 0x38 );
         bsPutUChar ( s, 0x50 ); bsPutUChar ( s, 0x90 );
         bsPutUInt32 ( s, s->combinedCRC );
         if (s->verbosity >= 2)
             {
-  TRACK258_BEGIN: track(&&TRACK258_BEGIN, &&TRACK258_END);
-  TRACK258_END:  __asm__("nop;");
-   
+  TRACK321_BEGIN: track(&&TRACK321_BEGIN, &&TRACK321_END);
+  TRACK321_END:  __asm__("nop;");
   fprintf(stderr,"    final combined CRC = 0x%x\n   ",s->combinedCRC);
   }
         bsFinishWrite ( s );
@@ -3563,13 +3556,11 @@ void makeMaps_d ( DState* s )
    s->nInUse = 0;
    for (i = 0; i < 256; i++)
        {
-TRACK261_BEGIN: track(&&TRACK261_BEGIN, &&TRACK261_END);
-TRACK261_END:  __asm__("nop;");
- 
+TRACK324_BEGIN: track(&&TRACK324_BEGIN, &&TRACK324_END);
+TRACK324_END:  __asm__("nop;");
 if (s->inUse[i]) {
-  TRACK260_BEGIN: track(&&TRACK260_BEGIN, &&TRACK260_END);
-  TRACK260_END:  __asm__("nop;");
-   
+  TRACK323_BEGIN: track(&&TRACK323_BEGIN, &&TRACK323_END);
+  TRACK323_END:  __asm__("nop;");
   s->seqToUnseq[s->nInUse] = i;
            s->nInUse++;
 }
@@ -3606,9 +3597,8 @@ Int32 BZ2_decompress ( DState* s )
    Int32* gBase;
    Int32* gPerm;
    if (s->state == 10) {
-  TRACK262_BEGIN: track(&&TRACK262_BEGIN, &&TRACK262_END);
-  TRACK262_END:  __asm__("nop;");
-   
+  TRACK325_BEGIN: track(&&TRACK325_BEGIN, &&TRACK325_END);
+  TRACK325_END:  __asm__("nop;");
   s->save_i = 0;
         s->save_j = 0;
         s->save_t = 0;
@@ -3662,704 +3652,583 @@ Int32 BZ2_decompress ( DState* s )
    switch (s->state) {
        
   case 10:
-	TRACK263_BEGIN: track(&&TRACK263_BEGIN, &&TRACK263_END);
-	TRACK263_END:  __asm__("nop;");
-	 
+	TRACK326_BEGIN: track(&&TRACK326_BEGIN, &&TRACK326_END);
+	TRACK326_END:  __asm__("nop;");
 	s->state = 10; while (((Bool)1)) {
-  TRACK267_BEGIN: track(&&TRACK267_BEGIN, &&TRACK267_END);
-  TRACK267_END:  __asm__("nop;");
-   
+  TRACK330_BEGIN: track(&&TRACK330_BEGIN, &&TRACK330_END);
+  TRACK330_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK264_BEGIN: track(&&TRACK264_BEGIN, &&TRACK264_END);
-    TRACK264_END:  __asm__("nop;");
-     
+    TRACK327_BEGIN: track(&&TRACK327_BEGIN, &&TRACK327_END);
+    TRACK327_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK265_BEGIN: track(&&TRACK265_BEGIN, &&TRACK265_END);
-    TRACK265_END:  __asm__("nop;");
-     
+    TRACK328_BEGIN: track(&&TRACK328_BEGIN, &&TRACK328_END);
+    TRACK328_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK266_BEGIN: track(&&TRACK266_BEGIN, &&TRACK266_END);
-  TRACK266_END:  __asm__("nop;");
-   
+  TRACK329_BEGIN: track(&&TRACK329_BEGIN, &&TRACK329_END);
+  TRACK329_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x42) {
-  TRACK268_BEGIN: track(&&TRACK268_BEGIN, &&TRACK268_END);
-  TRACK268_END:  __asm__("nop;");
-   
+  TRACK331_BEGIN: track(&&TRACK331_BEGIN, &&TRACK331_END);
+  TRACK331_END:  __asm__("nop;");
   retVal = (-5); goto save_state_and_return;
 };;
        
   case 11:
-	TRACK269_BEGIN: track(&&TRACK269_BEGIN, &&TRACK269_END);
-	TRACK269_END:  __asm__("nop;");
-	 
+	TRACK332_BEGIN: track(&&TRACK332_BEGIN, &&TRACK332_END);
+	TRACK332_END:  __asm__("nop;");
 	s->state = 11; while (((Bool)1)) {
-  TRACK273_BEGIN: track(&&TRACK273_BEGIN, &&TRACK273_END);
-  TRACK273_END:  __asm__("nop;");
-   
+  TRACK336_BEGIN: track(&&TRACK336_BEGIN, &&TRACK336_END);
+  TRACK336_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK270_BEGIN: track(&&TRACK270_BEGIN, &&TRACK270_END);
-    TRACK270_END:  __asm__("nop;");
-     
+    TRACK333_BEGIN: track(&&TRACK333_BEGIN, &&TRACK333_END);
+    TRACK333_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK271_BEGIN: track(&&TRACK271_BEGIN, &&TRACK271_END);
-    TRACK271_END:  __asm__("nop;");
-     
+    TRACK334_BEGIN: track(&&TRACK334_BEGIN, &&TRACK334_END);
+    TRACK334_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK272_BEGIN: track(&&TRACK272_BEGIN, &&TRACK272_END);
-  TRACK272_END:  __asm__("nop;");
-   
+  TRACK335_BEGIN: track(&&TRACK335_BEGIN, &&TRACK335_END);
+  TRACK335_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x5a) {
-  TRACK274_BEGIN: track(&&TRACK274_BEGIN, &&TRACK274_END);
-  TRACK274_END:  __asm__("nop;");
-   
+  TRACK337_BEGIN: track(&&TRACK337_BEGIN, &&TRACK337_END);
+  TRACK337_END:  __asm__("nop;");
   retVal = (-5); goto save_state_and_return;
 };;
        
   case 12:
-	TRACK275_BEGIN: track(&&TRACK275_BEGIN, &&TRACK275_END);
-	TRACK275_END:  __asm__("nop;");
-	 
+	TRACK338_BEGIN: track(&&TRACK338_BEGIN, &&TRACK338_END);
+	TRACK338_END:  __asm__("nop;");
 	s->state = 12; while (((Bool)1)) {
-  TRACK279_BEGIN: track(&&TRACK279_BEGIN, &&TRACK279_END);
-  TRACK279_END:  __asm__("nop;");
-   
+  TRACK342_BEGIN: track(&&TRACK342_BEGIN, &&TRACK342_END);
+  TRACK342_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK276_BEGIN: track(&&TRACK276_BEGIN, &&TRACK276_END);
-    TRACK276_END:  __asm__("nop;");
-     
+    TRACK339_BEGIN: track(&&TRACK339_BEGIN, &&TRACK339_END);
+    TRACK339_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK277_BEGIN: track(&&TRACK277_BEGIN, &&TRACK277_END);
-    TRACK277_END:  __asm__("nop;");
-     
+    TRACK340_BEGIN: track(&&TRACK340_BEGIN, &&TRACK340_END);
+    TRACK340_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK278_BEGIN: track(&&TRACK278_BEGIN, &&TRACK278_END);
-  TRACK278_END:  __asm__("nop;");
-   
+  TRACK341_BEGIN: track(&&TRACK341_BEGIN, &&TRACK341_END);
+  TRACK341_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 }
       if (uc != 0x68) {
-  TRACK280_BEGIN: track(&&TRACK280_BEGIN, &&TRACK280_END);
-  TRACK280_END:  __asm__("nop;");
-   
+  TRACK343_BEGIN: track(&&TRACK343_BEGIN, &&TRACK343_END);
+  TRACK343_END:  __asm__("nop;");
   retVal = (-5); goto save_state_and_return;
 };;
        
   case 13:
-	TRACK281_BEGIN: track(&&TRACK281_BEGIN, &&TRACK281_END);
-	TRACK281_END:  __asm__("nop;");
-	 
+	TRACK344_BEGIN: track(&&TRACK344_BEGIN, &&TRACK344_END);
+	TRACK344_END:  __asm__("nop;");
 	s->state = 13; while (((Bool)1)) {
-  TRACK285_BEGIN: track(&&TRACK285_BEGIN, &&TRACK285_END);
-  TRACK285_END:  __asm__("nop;");
-   
+  TRACK348_BEGIN: track(&&TRACK348_BEGIN, &&TRACK348_END);
+  TRACK348_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK282_BEGIN: track(&&TRACK282_BEGIN, &&TRACK282_END);
-    TRACK282_END:  __asm__("nop;");
-     
+    TRACK345_BEGIN: track(&&TRACK345_BEGIN, &&TRACK345_END);
+    TRACK345_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; s->blockSize100k = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK283_BEGIN: track(&&TRACK283_BEGIN, &&TRACK283_END);
-    TRACK283_END:  __asm__("nop;");
-     
+    TRACK346_BEGIN: track(&&TRACK346_BEGIN, &&TRACK346_END);
+    TRACK346_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK284_BEGIN: track(&&TRACK284_BEGIN, &&TRACK284_END);
-  TRACK284_END:  __asm__("nop;");
-   
+  TRACK347_BEGIN: track(&&TRACK347_BEGIN, &&TRACK347_END);
+  TRACK347_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 }
       if (s->blockSize100k < (0x30 + 1) ||
           s->blockSize100k > (0x30 + 9)) {
-  TRACK286_BEGIN: track(&&TRACK286_BEGIN, &&TRACK286_END);
-  TRACK286_END:  __asm__("nop;");
-   
+  TRACK349_BEGIN: track(&&TRACK349_BEGIN, &&TRACK349_END);
+  TRACK349_END:  __asm__("nop;");
   retVal = (-5); goto save_state_and_return;
 };;
       s->blockSize100k -= 0x30;
       if (s->smallDecompress) {
-  TRACK288_BEGIN: track(&&TRACK288_BEGIN, &&TRACK288_END);
-  TRACK288_END:  __asm__("nop;");
-   
+  TRACK351_BEGIN: track(&&TRACK351_BEGIN, &&TRACK351_END);
+  TRACK351_END:  __asm__("nop;");
   s->ll16 = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(UInt16)),1);
            s->ll4 = (strm->bzalloc)(strm->opaque,(((1 + s->blockSize100k * 100000) >> 1) * sizeof(UChar)),1);
            if (s->ll16 == ((void *)0) || s->ll4 == ((void *)0)) {
-    TRACK287_BEGIN: track(&&TRACK287_BEGIN, &&TRACK287_END);
-    TRACK287_END:  __asm__("nop;");
-     
+    TRACK350_BEGIN: track(&&TRACK350_BEGIN, &&TRACK350_END);
+    TRACK350_END:  __asm__("nop;");
     retVal = (-3); goto save_state_and_return;
   };;
 } else {
-  TRACK290_BEGIN: track(&&TRACK290_BEGIN, &&TRACK290_END);
-  TRACK290_END:  __asm__("nop;");
-   
+  TRACK353_BEGIN: track(&&TRACK353_BEGIN, &&TRACK353_END);
+  TRACK353_END:  __asm__("nop;");
   s->tt = (strm->bzalloc)(strm->opaque,(s->blockSize100k * 100000 * sizeof(Int32)),1);
            if (s->tt == ((void *)0)) {
-    TRACK289_BEGIN: track(&&TRACK289_BEGIN, &&TRACK289_END);
-    TRACK289_END:  __asm__("nop;");
-     
+    TRACK352_BEGIN: track(&&TRACK352_BEGIN, &&TRACK352_END);
+    TRACK352_END:  __asm__("nop;");
     retVal = (-3); goto save_state_and_return;
   };;
 }
        
   case 14:
-	TRACK291_BEGIN: track(&&TRACK291_BEGIN, &&TRACK291_END);
-	TRACK291_END:  __asm__("nop;");
-	 
+	TRACK354_BEGIN: track(&&TRACK354_BEGIN, &&TRACK354_END);
+	TRACK354_END:  __asm__("nop;");
 	s->state = 14; while (((Bool)1)) {
-  TRACK295_BEGIN: track(&&TRACK295_BEGIN, &&TRACK295_END);
-  TRACK295_END:  __asm__("nop;");
-   
+  TRACK358_BEGIN: track(&&TRACK358_BEGIN, &&TRACK358_END);
+  TRACK358_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK292_BEGIN: track(&&TRACK292_BEGIN, &&TRACK292_END);
-    TRACK292_END:  __asm__("nop;");
-     
+    TRACK355_BEGIN: track(&&TRACK355_BEGIN, &&TRACK355_END);
+    TRACK355_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK293_BEGIN: track(&&TRACK293_BEGIN, &&TRACK293_END);
-    TRACK293_END:  __asm__("nop;");
-     
+    TRACK356_BEGIN: track(&&TRACK356_BEGIN, &&TRACK356_END);
+    TRACK356_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK294_BEGIN: track(&&TRACK294_BEGIN, &&TRACK294_END);
-  TRACK294_END:  __asm__("nop;");
-   
+  TRACK357_BEGIN: track(&&TRACK357_BEGIN, &&TRACK357_END);
+  TRACK357_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
-      if (uc == 0x17) goto endhdr_2;
+      if (uc == 0x17)  {
+TRACK359_BEGIN: track(&&TRACK359_BEGIN, &&TRACK359_END);
+TRACK359_END:  __asm__("nop;");
+goto endhdr_2;
+}
       if (uc != 0x31) {
-  TRACK296_BEGIN: track(&&TRACK296_BEGIN, &&TRACK296_END);
-  TRACK296_END:  __asm__("nop;");
-   
+  TRACK360_BEGIN: track(&&TRACK360_BEGIN, &&TRACK360_END);
+  TRACK360_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 15:
-	TRACK297_BEGIN: track(&&TRACK297_BEGIN, &&TRACK297_END);
-	TRACK297_END:  __asm__("nop;");
-	 
+	TRACK361_BEGIN: track(&&TRACK361_BEGIN, &&TRACK361_END);
+	TRACK361_END:  __asm__("nop;");
 	s->state = 15; while (((Bool)1)) {
-  TRACK301_BEGIN: track(&&TRACK301_BEGIN, &&TRACK301_END);
-  TRACK301_END:  __asm__("nop;");
-   
+  TRACK365_BEGIN: track(&&TRACK365_BEGIN, &&TRACK365_END);
+  TRACK365_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK298_BEGIN: track(&&TRACK298_BEGIN, &&TRACK298_END);
-    TRACK298_END:  __asm__("nop;");
-     
+    TRACK362_BEGIN: track(&&TRACK362_BEGIN, &&TRACK362_END);
+    TRACK362_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK299_BEGIN: track(&&TRACK299_BEGIN, &&TRACK299_END);
-    TRACK299_END:  __asm__("nop;");
-     
+    TRACK363_BEGIN: track(&&TRACK363_BEGIN, &&TRACK363_END);
+    TRACK363_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK300_BEGIN: track(&&TRACK300_BEGIN, &&TRACK300_END);
-  TRACK300_END:  __asm__("nop;");
-   
+  TRACK364_BEGIN: track(&&TRACK364_BEGIN, &&TRACK364_END);
+  TRACK364_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x41) {
-  TRACK302_BEGIN: track(&&TRACK302_BEGIN, &&TRACK302_END);
-  TRACK302_END:  __asm__("nop;");
-   
+  TRACK366_BEGIN: track(&&TRACK366_BEGIN, &&TRACK366_END);
+  TRACK366_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 16:
-	TRACK303_BEGIN: track(&&TRACK303_BEGIN, &&TRACK303_END);
-	TRACK303_END:  __asm__("nop;");
-	 
+	TRACK367_BEGIN: track(&&TRACK367_BEGIN, &&TRACK367_END);
+	TRACK367_END:  __asm__("nop;");
 	s->state = 16; while (((Bool)1)) {
-  TRACK307_BEGIN: track(&&TRACK307_BEGIN, &&TRACK307_END);
-  TRACK307_END:  __asm__("nop;");
-   
+  TRACK371_BEGIN: track(&&TRACK371_BEGIN, &&TRACK371_END);
+  TRACK371_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK304_BEGIN: track(&&TRACK304_BEGIN, &&TRACK304_END);
-    TRACK304_END:  __asm__("nop;");
-     
+    TRACK368_BEGIN: track(&&TRACK368_BEGIN, &&TRACK368_END);
+    TRACK368_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK305_BEGIN: track(&&TRACK305_BEGIN, &&TRACK305_END);
-    TRACK305_END:  __asm__("nop;");
-     
+    TRACK369_BEGIN: track(&&TRACK369_BEGIN, &&TRACK369_END);
+    TRACK369_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK306_BEGIN: track(&&TRACK306_BEGIN, &&TRACK306_END);
-  TRACK306_END:  __asm__("nop;");
-   
+  TRACK370_BEGIN: track(&&TRACK370_BEGIN, &&TRACK370_END);
+  TRACK370_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x59) {
-  TRACK308_BEGIN: track(&&TRACK308_BEGIN, &&TRACK308_END);
-  TRACK308_END:  __asm__("nop;");
-   
+  TRACK372_BEGIN: track(&&TRACK372_BEGIN, &&TRACK372_END);
+  TRACK372_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 17:
-	TRACK309_BEGIN: track(&&TRACK309_BEGIN, &&TRACK309_END);
-	TRACK309_END:  __asm__("nop;");
-	 
+	TRACK373_BEGIN: track(&&TRACK373_BEGIN, &&TRACK373_END);
+	TRACK373_END:  __asm__("nop;");
 	s->state = 17; while (((Bool)1)) {
-  TRACK313_BEGIN: track(&&TRACK313_BEGIN, &&TRACK313_END);
-  TRACK313_END:  __asm__("nop;");
-   
+  TRACK377_BEGIN: track(&&TRACK377_BEGIN, &&TRACK377_END);
+  TRACK377_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK310_BEGIN: track(&&TRACK310_BEGIN, &&TRACK310_END);
-    TRACK310_END:  __asm__("nop;");
-     
+    TRACK374_BEGIN: track(&&TRACK374_BEGIN, &&TRACK374_END);
+    TRACK374_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK311_BEGIN: track(&&TRACK311_BEGIN, &&TRACK311_END);
-    TRACK311_END:  __asm__("nop;");
-     
+    TRACK375_BEGIN: track(&&TRACK375_BEGIN, &&TRACK375_END);
+    TRACK375_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK312_BEGIN: track(&&TRACK312_BEGIN, &&TRACK312_END);
-  TRACK312_END:  __asm__("nop;");
-   
+  TRACK376_BEGIN: track(&&TRACK376_BEGIN, &&TRACK376_END);
+  TRACK376_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x26) {
-  TRACK314_BEGIN: track(&&TRACK314_BEGIN, &&TRACK314_END);
-  TRACK314_END:  __asm__("nop;");
-   
+  TRACK378_BEGIN: track(&&TRACK378_BEGIN, &&TRACK378_END);
+  TRACK378_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 18:
-	TRACK315_BEGIN: track(&&TRACK315_BEGIN, &&TRACK315_END);
-	TRACK315_END:  __asm__("nop;");
-	 
+	TRACK379_BEGIN: track(&&TRACK379_BEGIN, &&TRACK379_END);
+	TRACK379_END:  __asm__("nop;");
 	s->state = 18; while (((Bool)1)) {
-  TRACK319_BEGIN: track(&&TRACK319_BEGIN, &&TRACK319_END);
-  TRACK319_END:  __asm__("nop;");
-   
+  TRACK383_BEGIN: track(&&TRACK383_BEGIN, &&TRACK383_END);
+  TRACK383_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK316_BEGIN: track(&&TRACK316_BEGIN, &&TRACK316_END);
-    TRACK316_END:  __asm__("nop;");
-     
+    TRACK380_BEGIN: track(&&TRACK380_BEGIN, &&TRACK380_END);
+    TRACK380_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK317_BEGIN: track(&&TRACK317_BEGIN, &&TRACK317_END);
-    TRACK317_END:  __asm__("nop;");
-     
+    TRACK381_BEGIN: track(&&TRACK381_BEGIN, &&TRACK381_END);
+    TRACK381_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK318_BEGIN: track(&&TRACK318_BEGIN, &&TRACK318_END);
-  TRACK318_END:  __asm__("nop;");
-   
+  TRACK382_BEGIN: track(&&TRACK382_BEGIN, &&TRACK382_END);
+  TRACK382_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x53) {
-  TRACK320_BEGIN: track(&&TRACK320_BEGIN, &&TRACK320_END);
-  TRACK320_END:  __asm__("nop;");
-   
+  TRACK384_BEGIN: track(&&TRACK384_BEGIN, &&TRACK384_END);
+  TRACK384_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 19:
-	TRACK321_BEGIN: track(&&TRACK321_BEGIN, &&TRACK321_END);
-	TRACK321_END:  __asm__("nop;");
-	 
+	TRACK385_BEGIN: track(&&TRACK385_BEGIN, &&TRACK385_END);
+	TRACK385_END:  __asm__("nop;");
 	s->state = 19; while (((Bool)1)) {
-  TRACK325_BEGIN: track(&&TRACK325_BEGIN, &&TRACK325_END);
-  TRACK325_END:  __asm__("nop;");
-   
+  TRACK389_BEGIN: track(&&TRACK389_BEGIN, &&TRACK389_END);
+  TRACK389_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK322_BEGIN: track(&&TRACK322_BEGIN, &&TRACK322_END);
-    TRACK322_END:  __asm__("nop;");
-     
+    TRACK386_BEGIN: track(&&TRACK386_BEGIN, &&TRACK386_END);
+    TRACK386_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK323_BEGIN: track(&&TRACK323_BEGIN, &&TRACK323_END);
-    TRACK323_END:  __asm__("nop;");
-     
+    TRACK387_BEGIN: track(&&TRACK387_BEGIN, &&TRACK387_END);
+    TRACK387_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK324_BEGIN: track(&&TRACK324_BEGIN, &&TRACK324_END);
-  TRACK324_END:  __asm__("nop;");
-   
+  TRACK388_BEGIN: track(&&TRACK388_BEGIN, &&TRACK388_END);
+  TRACK388_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x59) {
-  TRACK326_BEGIN: track(&&TRACK326_BEGIN, &&TRACK326_END);
-  TRACK326_END:  __asm__("nop;");
-   
+  TRACK390_BEGIN: track(&&TRACK390_BEGIN, &&TRACK390_END);
+  TRACK390_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       s->currBlockNo++;
       if (s->verbosity >= 2)
           {
-TRACK327_BEGIN: track(&&TRACK327_BEGIN, &&TRACK327_END);
-TRACK327_END:  __asm__("nop;");
- 
+TRACK391_BEGIN: track(&&TRACK391_BEGIN, &&TRACK391_END);
+TRACK391_END:  __asm__("nop;");
 fprintf(stderr,"\n    [%d: huff+mtf ",s->currBlockNo);
 }
       s->storedBlockCRC = 0;
        
   case 20:
-	TRACK328_BEGIN: track(&&TRACK328_BEGIN, &&TRACK328_END);
-	TRACK328_END:  __asm__("nop;");
-	 
+	TRACK392_BEGIN: track(&&TRACK392_BEGIN, &&TRACK392_END);
+	TRACK392_END:  __asm__("nop;");
 	s->state = 20; while (((Bool)1)) {
-  TRACK332_BEGIN: track(&&TRACK332_BEGIN, &&TRACK332_END);
-  TRACK332_END:  __asm__("nop;");
-   
+  TRACK396_BEGIN: track(&&TRACK396_BEGIN, &&TRACK396_END);
+  TRACK396_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK329_BEGIN: track(&&TRACK329_BEGIN, &&TRACK329_END);
-    TRACK329_END:  __asm__("nop;");
-     
+    TRACK393_BEGIN: track(&&TRACK393_BEGIN, &&TRACK393_END);
+    TRACK393_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK330_BEGIN: track(&&TRACK330_BEGIN, &&TRACK330_END);
-    TRACK330_END:  __asm__("nop;");
-     
+    TRACK394_BEGIN: track(&&TRACK394_BEGIN, &&TRACK394_END);
+    TRACK394_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK331_BEGIN: track(&&TRACK331_BEGIN, &&TRACK331_END);
-  TRACK331_END:  __asm__("nop;");
-   
+  TRACK395_BEGIN: track(&&TRACK395_BEGIN, &&TRACK395_END);
+  TRACK395_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 21:
-	TRACK333_BEGIN: track(&&TRACK333_BEGIN, &&TRACK333_END);
-	TRACK333_END:  __asm__("nop;");
-	 
+	TRACK397_BEGIN: track(&&TRACK397_BEGIN, &&TRACK397_END);
+	TRACK397_END:  __asm__("nop;");
 	s->state = 21; while (((Bool)1)) {
-  TRACK337_BEGIN: track(&&TRACK337_BEGIN, &&TRACK337_END);
-  TRACK337_END:  __asm__("nop;");
-   
+  TRACK401_BEGIN: track(&&TRACK401_BEGIN, &&TRACK401_END);
+  TRACK401_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK334_BEGIN: track(&&TRACK334_BEGIN, &&TRACK334_END);
-    TRACK334_END:  __asm__("nop;");
-     
+    TRACK398_BEGIN: track(&&TRACK398_BEGIN, &&TRACK398_END);
+    TRACK398_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK335_BEGIN: track(&&TRACK335_BEGIN, &&TRACK335_END);
-    TRACK335_END:  __asm__("nop;");
-     
+    TRACK399_BEGIN: track(&&TRACK399_BEGIN, &&TRACK399_END);
+    TRACK399_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK336_BEGIN: track(&&TRACK336_BEGIN, &&TRACK336_END);
-  TRACK336_END:  __asm__("nop;");
-   
+  TRACK400_BEGIN: track(&&TRACK400_BEGIN, &&TRACK400_END);
+  TRACK400_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 22:
-	TRACK338_BEGIN: track(&&TRACK338_BEGIN, &&TRACK338_END);
-	TRACK338_END:  __asm__("nop;");
-	 
+	TRACK402_BEGIN: track(&&TRACK402_BEGIN, &&TRACK402_END);
+	TRACK402_END:  __asm__("nop;");
 	s->state = 22; while (((Bool)1)) {
-  TRACK342_BEGIN: track(&&TRACK342_BEGIN, &&TRACK342_END);
-  TRACK342_END:  __asm__("nop;");
-   
+  TRACK406_BEGIN: track(&&TRACK406_BEGIN, &&TRACK406_END);
+  TRACK406_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK339_BEGIN: track(&&TRACK339_BEGIN, &&TRACK339_END);
-    TRACK339_END:  __asm__("nop;");
-     
+    TRACK403_BEGIN: track(&&TRACK403_BEGIN, &&TRACK403_END);
+    TRACK403_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK340_BEGIN: track(&&TRACK340_BEGIN, &&TRACK340_END);
-    TRACK340_END:  __asm__("nop;");
-     
+    TRACK404_BEGIN: track(&&TRACK404_BEGIN, &&TRACK404_END);
+    TRACK404_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK341_BEGIN: track(&&TRACK341_BEGIN, &&TRACK341_END);
-  TRACK341_END:  __asm__("nop;");
-   
+  TRACK405_BEGIN: track(&&TRACK405_BEGIN, &&TRACK405_END);
+  TRACK405_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 23:
-	TRACK343_BEGIN: track(&&TRACK343_BEGIN, &&TRACK343_END);
-	TRACK343_END:  __asm__("nop;");
-	 
+	TRACK407_BEGIN: track(&&TRACK407_BEGIN, &&TRACK407_END);
+	TRACK407_END:  __asm__("nop;");
 	s->state = 23; while (((Bool)1)) {
-  TRACK347_BEGIN: track(&&TRACK347_BEGIN, &&TRACK347_END);
-  TRACK347_END:  __asm__("nop;");
-   
+  TRACK411_BEGIN: track(&&TRACK411_BEGIN, &&TRACK411_END);
+  TRACK411_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK344_BEGIN: track(&&TRACK344_BEGIN, &&TRACK344_END);
-    TRACK344_END:  __asm__("nop;");
-     
+    TRACK408_BEGIN: track(&&TRACK408_BEGIN, &&TRACK408_END);
+    TRACK408_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK345_BEGIN: track(&&TRACK345_BEGIN, &&TRACK345_END);
-    TRACK345_END:  __asm__("nop;");
-     
+    TRACK409_BEGIN: track(&&TRACK409_BEGIN, &&TRACK409_END);
+    TRACK409_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK346_BEGIN: track(&&TRACK346_BEGIN, &&TRACK346_END);
-  TRACK346_END:  __asm__("nop;");
-   
+  TRACK410_BEGIN: track(&&TRACK410_BEGIN, &&TRACK410_END);
+  TRACK410_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedBlockCRC = (s->storedBlockCRC << 8) | ((UInt32)uc);
        
   case 24:
-	TRACK348_BEGIN: track(&&TRACK348_BEGIN, &&TRACK348_END);
-	TRACK348_END:  __asm__("nop;");
-	 
+	TRACK412_BEGIN: track(&&TRACK412_BEGIN, &&TRACK412_END);
+	TRACK412_END:  __asm__("nop;");
 	s->state = 24; while (((Bool)1)) {
-  TRACK352_BEGIN: track(&&TRACK352_BEGIN, &&TRACK352_END);
-  TRACK352_END:  __asm__("nop;");
-   
+  TRACK416_BEGIN: track(&&TRACK416_BEGIN, &&TRACK416_END);
+  TRACK416_END:  __asm__("nop;");
   if (s->bsLive >= 1) {
     UInt32 v;
-    TRACK349_BEGIN: track(&&TRACK349_BEGIN, &&TRACK349_END);
-    TRACK349_END:  __asm__("nop;");
-     
+    TRACK413_BEGIN: track(&&TRACK413_BEGIN, &&TRACK413_END);
+    TRACK413_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; s->blockRandomised = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK350_BEGIN: track(&&TRACK350_BEGIN, &&TRACK350_END);
-    TRACK350_END:  __asm__("nop;");
-     
+    TRACK414_BEGIN: track(&&TRACK414_BEGIN, &&TRACK414_END);
+    TRACK414_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK351_BEGIN: track(&&TRACK351_BEGIN, &&TRACK351_END);
-  TRACK351_END:  __asm__("nop;");
-   
+  TRACK415_BEGIN: track(&&TRACK415_BEGIN, &&TRACK415_END);
+  TRACK415_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->origPtr = 0;
        
   case 25:
-	TRACK353_BEGIN: track(&&TRACK353_BEGIN, &&TRACK353_END);
-	TRACK353_END:  __asm__("nop;");
-	 
+	TRACK417_BEGIN: track(&&TRACK417_BEGIN, &&TRACK417_END);
+	TRACK417_END:  __asm__("nop;");
 	s->state = 25; while (((Bool)1)) {
-  TRACK357_BEGIN: track(&&TRACK357_BEGIN, &&TRACK357_END);
-  TRACK357_END:  __asm__("nop;");
-   
+  TRACK421_BEGIN: track(&&TRACK421_BEGIN, &&TRACK421_END);
+  TRACK421_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK354_BEGIN: track(&&TRACK354_BEGIN, &&TRACK354_END);
-    TRACK354_END:  __asm__("nop;");
-     
+    TRACK418_BEGIN: track(&&TRACK418_BEGIN, &&TRACK418_END);
+    TRACK418_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK355_BEGIN: track(&&TRACK355_BEGIN, &&TRACK355_END);
-    TRACK355_END:  __asm__("nop;");
-     
+    TRACK419_BEGIN: track(&&TRACK419_BEGIN, &&TRACK419_END);
+    TRACK419_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK356_BEGIN: track(&&TRACK356_BEGIN, &&TRACK356_END);
-  TRACK356_END:  __asm__("nop;");
-   
+  TRACK420_BEGIN: track(&&TRACK420_BEGIN, &&TRACK420_END);
+  TRACK420_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->origPtr = (s->origPtr << 8) | ((Int32)uc);
        
   case 26:
-	TRACK358_BEGIN: track(&&TRACK358_BEGIN, &&TRACK358_END);
-	TRACK358_END:  __asm__("nop;");
-	 
+	TRACK422_BEGIN: track(&&TRACK422_BEGIN, &&TRACK422_END);
+	TRACK422_END:  __asm__("nop;");
 	s->state = 26; while (((Bool)1)) {
-  TRACK362_BEGIN: track(&&TRACK362_BEGIN, &&TRACK362_END);
-  TRACK362_END:  __asm__("nop;");
-   
+  TRACK426_BEGIN: track(&&TRACK426_BEGIN, &&TRACK426_END);
+  TRACK426_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK359_BEGIN: track(&&TRACK359_BEGIN, &&TRACK359_END);
-    TRACK359_END:  __asm__("nop;");
-     
+    TRACK423_BEGIN: track(&&TRACK423_BEGIN, &&TRACK423_END);
+    TRACK423_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK360_BEGIN: track(&&TRACK360_BEGIN, &&TRACK360_END);
-    TRACK360_END:  __asm__("nop;");
-     
+    TRACK424_BEGIN: track(&&TRACK424_BEGIN, &&TRACK424_END);
+    TRACK424_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK361_BEGIN: track(&&TRACK361_BEGIN, &&TRACK361_END);
-  TRACK361_END:  __asm__("nop;");
-   
+  TRACK425_BEGIN: track(&&TRACK425_BEGIN, &&TRACK425_END);
+  TRACK425_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->origPtr = (s->origPtr << 8) | ((Int32)uc);
        
   case 27:
-	TRACK363_BEGIN: track(&&TRACK363_BEGIN, &&TRACK363_END);
-	TRACK363_END:  __asm__("nop;");
-	 
+	TRACK427_BEGIN: track(&&TRACK427_BEGIN, &&TRACK427_END);
+	TRACK427_END:  __asm__("nop;");
 	s->state = 27; while (((Bool)1)) {
-  TRACK367_BEGIN: track(&&TRACK367_BEGIN, &&TRACK367_END);
-  TRACK367_END:  __asm__("nop;");
-   
+  TRACK431_BEGIN: track(&&TRACK431_BEGIN, &&TRACK431_END);
+  TRACK431_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK364_BEGIN: track(&&TRACK364_BEGIN, &&TRACK364_END);
-    TRACK364_END:  __asm__("nop;");
-     
+    TRACK428_BEGIN: track(&&TRACK428_BEGIN, &&TRACK428_END);
+    TRACK428_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK365_BEGIN: track(&&TRACK365_BEGIN, &&TRACK365_END);
-    TRACK365_END:  __asm__("nop;");
-     
+    TRACK429_BEGIN: track(&&TRACK429_BEGIN, &&TRACK429_END);
+    TRACK429_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK366_BEGIN: track(&&TRACK366_BEGIN, &&TRACK366_END);
-  TRACK366_END:  __asm__("nop;");
-   
+  TRACK430_BEGIN: track(&&TRACK430_BEGIN, &&TRACK430_END);
+  TRACK430_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->origPtr = (s->origPtr << 8) | ((Int32)uc);
       if (s->origPtr < 0)
          {
-  TRACK368_BEGIN: track(&&TRACK368_BEGIN, &&TRACK368_END);
-  TRACK368_END:  __asm__("nop;");
-   
+  TRACK432_BEGIN: track(&&TRACK432_BEGIN, &&TRACK432_END);
+  TRACK432_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       if (s->origPtr > 10 + 100000*s->blockSize100k)
          {
-  TRACK369_BEGIN: track(&&TRACK369_BEGIN, &&TRACK369_END);
-  TRACK369_END:  __asm__("nop;");
-   
+  TRACK433_BEGIN: track(&&TRACK433_BEGIN, &&TRACK433_END);
+  TRACK433_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       for (i = 0; i < 16; i++) {
-  TRACK377_BEGIN: track(&&TRACK377_BEGIN, &&TRACK377_END);
-  TRACK377_END:  __asm__("nop;");
-   
+  TRACK441_BEGIN: track(&&TRACK441_BEGIN, &&TRACK441_END);
+  TRACK441_END:  __asm__("nop;");
    
     case 28:
-  	TRACK370_BEGIN: track(&&TRACK370_BEGIN, &&TRACK370_END);
-  	TRACK370_END:  __asm__("nop;");
-  	 
+  	TRACK434_BEGIN: track(&&TRACK434_BEGIN, &&TRACK434_END);
+  	TRACK434_END:  __asm__("nop;");
   	s->state = 28; while (((Bool)1)) {
-    TRACK374_BEGIN: track(&&TRACK374_BEGIN, &&TRACK374_END);
-    TRACK374_END:  __asm__("nop;");
-     
+    TRACK438_BEGIN: track(&&TRACK438_BEGIN, &&TRACK438_END);
+    TRACK438_END:  __asm__("nop;");
     if (s->bsLive >= 1) {
       UInt32 v;
-      TRACK371_BEGIN: track(&&TRACK371_BEGIN, &&TRACK371_END);
-      TRACK371_END:  __asm__("nop;");
-       
+      TRACK435_BEGIN: track(&&TRACK435_BEGIN, &&TRACK435_END);
+      TRACK435_END:  __asm__("nop;");
       v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
     } if (s->strm->avail_in == 0) {
-      TRACK372_BEGIN: track(&&TRACK372_BEGIN, &&TRACK372_END);
-      TRACK372_END:  __asm__("nop;");
-       
+      TRACK436_BEGIN: track(&&TRACK436_BEGIN, &&TRACK436_END);
+      TRACK436_END:  __asm__("nop;");
       retVal = 0; goto save_state_and_return;
     };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-    TRACK373_BEGIN: track(&&TRACK373_BEGIN, &&TRACK373_END);
-    TRACK373_END:  __asm__("nop;");
-     
+    TRACK437_BEGIN: track(&&TRACK437_BEGIN, &&TRACK437_END);
+    TRACK437_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
   };
            if (uc == 1)
                {
-  TRACK375_BEGIN: track(&&TRACK375_BEGIN, &&TRACK375_END);
-  TRACK375_END:  __asm__("nop;");
-   
+  TRACK439_BEGIN: track(&&TRACK439_BEGIN, &&TRACK439_END);
+  TRACK439_END:  __asm__("nop;");
   s->inUse16[i] = ((Bool)1);
   } else
                {
-  TRACK376_BEGIN: track(&&TRACK376_BEGIN, &&TRACK376_END);
-  TRACK376_END:  __asm__("nop;");
-   
+  TRACK440_BEGIN: track(&&TRACK440_BEGIN, &&TRACK440_END);
+  TRACK440_END:  __asm__("nop;");
   s->inUse16[i] = ((Bool)0);
   }
 }
       for (i = 0; i < 256; i++)  {
-TRACK378_BEGIN: track(&&TRACK378_BEGIN, &&TRACK378_END);
-TRACK378_END:  __asm__("nop;");
- 
+TRACK442_BEGIN: track(&&TRACK442_BEGIN, &&TRACK442_END);
+TRACK442_END:  __asm__("nop;");
 s->inUse[i] = ((Bool)0);
 }
       for (i = 0; i < 16; i++)
           {
-TRACK387_BEGIN: track(&&TRACK387_BEGIN, &&TRACK387_END);
-TRACK387_END:  __asm__("nop;");
- 
+TRACK451_BEGIN: track(&&TRACK451_BEGIN, &&TRACK451_END);
+TRACK451_END:  __asm__("nop;");
 if (s->inUse16[i])
              {
-TRACK386_BEGIN: track(&&TRACK386_BEGIN, &&TRACK386_END);
-TRACK386_END:  __asm__("nop;");
- 
+TRACK450_BEGIN: track(&&TRACK450_BEGIN, &&TRACK450_END);
+TRACK450_END:  __asm__("nop;");
 for (j = 0; j < 16; j++) {
-  TRACK385_BEGIN: track(&&TRACK385_BEGIN, &&TRACK385_END);
-  TRACK385_END:  __asm__("nop;");
-   
+  TRACK449_BEGIN: track(&&TRACK449_BEGIN, &&TRACK449_END);
+  TRACK449_END:  __asm__("nop;");
    
     case 29:
-  	TRACK379_BEGIN: track(&&TRACK379_BEGIN, &&TRACK379_END);
-  	TRACK379_END:  __asm__("nop;");
-  	 
+  	TRACK443_BEGIN: track(&&TRACK443_BEGIN, &&TRACK443_END);
+  	TRACK443_END:  __asm__("nop;");
   	s->state = 29; while (((Bool)1)) {
-    TRACK383_BEGIN: track(&&TRACK383_BEGIN, &&TRACK383_END);
-    TRACK383_END:  __asm__("nop;");
-     
+    TRACK447_BEGIN: track(&&TRACK447_BEGIN, &&TRACK447_END);
+    TRACK447_END:  __asm__("nop;");
     if (s->bsLive >= 1) {
       UInt32 v;
-      TRACK380_BEGIN: track(&&TRACK380_BEGIN, &&TRACK380_END);
-      TRACK380_END:  __asm__("nop;");
-       
+      TRACK444_BEGIN: track(&&TRACK444_BEGIN, &&TRACK444_END);
+      TRACK444_END:  __asm__("nop;");
       v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
     } if (s->strm->avail_in == 0) {
-      TRACK381_BEGIN: track(&&TRACK381_BEGIN, &&TRACK381_END);
-      TRACK381_END:  __asm__("nop;");
-       
+      TRACK445_BEGIN: track(&&TRACK445_BEGIN, &&TRACK445_END);
+      TRACK445_END:  __asm__("nop;");
       retVal = 0; goto save_state_and_return;
     };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-    TRACK382_BEGIN: track(&&TRACK382_BEGIN, &&TRACK382_END);
-    TRACK382_END:  __asm__("nop;");
-     
+    TRACK446_BEGIN: track(&&TRACK446_BEGIN, &&TRACK446_END);
+    TRACK446_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
   };
                  if (uc == 1)  {
-  TRACK384_BEGIN: track(&&TRACK384_BEGIN, &&TRACK384_END);
-  TRACK384_END:  __asm__("nop;");
-   
+  TRACK448_BEGIN: track(&&TRACK448_BEGIN, &&TRACK448_END);
+  TRACK448_END:  __asm__("nop;");
   s->inUse[i * 16 + j] = ((Bool)1);
   }
 }
@@ -4367,120 +4236,103 @@ for (j = 0; j < 16; j++) {
 }
       makeMaps_d ( s );
       if (s->nInUse == 0) {
-  TRACK388_BEGIN: track(&&TRACK388_BEGIN, &&TRACK388_END);
-  TRACK388_END:  __asm__("nop;");
-   
+  TRACK452_BEGIN: track(&&TRACK452_BEGIN, &&TRACK452_END);
+  TRACK452_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       alphaSize = s->nInUse+2;
        
   case 30:
-	TRACK389_BEGIN: track(&&TRACK389_BEGIN, &&TRACK389_END);
-	TRACK389_END:  __asm__("nop;");
-	 
+	TRACK453_BEGIN: track(&&TRACK453_BEGIN, &&TRACK453_END);
+	TRACK453_END:  __asm__("nop;");
 	s->state = 30; while (((Bool)1)) {
-  TRACK393_BEGIN: track(&&TRACK393_BEGIN, &&TRACK393_END);
-  TRACK393_END:  __asm__("nop;");
-   
+  TRACK457_BEGIN: track(&&TRACK457_BEGIN, &&TRACK457_END);
+  TRACK457_END:  __asm__("nop;");
   if (s->bsLive >= 3) {
     UInt32 v;
-    TRACK390_BEGIN: track(&&TRACK390_BEGIN, &&TRACK390_END);
-    TRACK390_END:  __asm__("nop;");
-     
+    TRACK454_BEGIN: track(&&TRACK454_BEGIN, &&TRACK454_END);
+    TRACK454_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-3)) & ((1 << 3)-1); s->bsLive -= 3; nGroups = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK391_BEGIN: track(&&TRACK391_BEGIN, &&TRACK391_END);
-    TRACK391_END:  __asm__("nop;");
-     
+    TRACK455_BEGIN: track(&&TRACK455_BEGIN, &&TRACK455_END);
+    TRACK455_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK392_BEGIN: track(&&TRACK392_BEGIN, &&TRACK392_END);
-  TRACK392_END:  __asm__("nop;");
-   
+  TRACK456_BEGIN: track(&&TRACK456_BEGIN, &&TRACK456_END);
+  TRACK456_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (nGroups < 2 || nGroups > 6) {
-  TRACK394_BEGIN: track(&&TRACK394_BEGIN, &&TRACK394_END);
-  TRACK394_END:  __asm__("nop;");
-   
+  TRACK458_BEGIN: track(&&TRACK458_BEGIN, &&TRACK458_END);
+  TRACK458_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 31:
-	TRACK395_BEGIN: track(&&TRACK395_BEGIN, &&TRACK395_END);
-	TRACK395_END:  __asm__("nop;");
-	 
+	TRACK459_BEGIN: track(&&TRACK459_BEGIN, &&TRACK459_END);
+	TRACK459_END:  __asm__("nop;");
 	s->state = 31; while (((Bool)1)) {
-  TRACK399_BEGIN: track(&&TRACK399_BEGIN, &&TRACK399_END);
-  TRACK399_END:  __asm__("nop;");
-   
+  TRACK463_BEGIN: track(&&TRACK463_BEGIN, &&TRACK463_END);
+  TRACK463_END:  __asm__("nop;");
   if (s->bsLive >= 15) {
     UInt32 v;
-    TRACK396_BEGIN: track(&&TRACK396_BEGIN, &&TRACK396_END);
-    TRACK396_END:  __asm__("nop;");
-     
+    TRACK460_BEGIN: track(&&TRACK460_BEGIN, &&TRACK460_END);
+    TRACK460_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-15)) & ((1 << 15)-1); s->bsLive -= 15; nSelectors = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK397_BEGIN: track(&&TRACK397_BEGIN, &&TRACK397_END);
-    TRACK397_END:  __asm__("nop;");
-     
+    TRACK461_BEGIN: track(&&TRACK461_BEGIN, &&TRACK461_END);
+    TRACK461_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK398_BEGIN: track(&&TRACK398_BEGIN, &&TRACK398_END);
-  TRACK398_END:  __asm__("nop;");
-   
+  TRACK462_BEGIN: track(&&TRACK462_BEGIN, &&TRACK462_END);
+  TRACK462_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (nSelectors < 1) {
-  TRACK400_BEGIN: track(&&TRACK400_BEGIN, &&TRACK400_END);
-  TRACK400_END:  __asm__("nop;");
-   
+  TRACK464_BEGIN: track(&&TRACK464_BEGIN, &&TRACK464_END);
+  TRACK464_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       for (i = 0; i < nSelectors; i++) {
-  TRACK408_BEGIN: track(&&TRACK408_BEGIN, &&TRACK408_END);
-  TRACK408_END:  __asm__("nop;");
-   
+  TRACK473_BEGIN: track(&&TRACK473_BEGIN, &&TRACK473_END);
+  TRACK473_END:  __asm__("nop;");
   j = 0;
            while (((Bool)1)) {
-    TRACK407_BEGIN: track(&&TRACK407_BEGIN, &&TRACK407_END);
-    TRACK407_END:  __asm__("nop;");
-     
+    TRACK472_BEGIN: track(&&TRACK472_BEGIN, &&TRACK472_END);
+    TRACK472_END:  __asm__("nop;");
      
       case 32:
-    	TRACK401_BEGIN: track(&&TRACK401_BEGIN, &&TRACK401_END);
-    	TRACK401_END:  __asm__("nop;");
-    	 
+    	TRACK465_BEGIN: track(&&TRACK465_BEGIN, &&TRACK465_END);
+    	TRACK465_END:  __asm__("nop;");
     	s->state = 32; while (((Bool)1)) {
-      TRACK405_BEGIN: track(&&TRACK405_BEGIN, &&TRACK405_END);
-      TRACK405_END:  __asm__("nop;");
-       
+      TRACK469_BEGIN: track(&&TRACK469_BEGIN, &&TRACK469_END);
+      TRACK469_END:  __asm__("nop;");
       if (s->bsLive >= 1) {
         UInt32 v;
-        TRACK402_BEGIN: track(&&TRACK402_BEGIN, &&TRACK402_END);
-        TRACK402_END:  __asm__("nop;");
-         
+        TRACK466_BEGIN: track(&&TRACK466_BEGIN, &&TRACK466_END);
+        TRACK466_END:  __asm__("nop;");
         v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
       } if (s->strm->avail_in == 0) {
-        TRACK403_BEGIN: track(&&TRACK403_BEGIN, &&TRACK403_END);
-        TRACK403_END:  __asm__("nop;");
-         
+        TRACK467_BEGIN: track(&&TRACK467_BEGIN, &&TRACK467_END);
+        TRACK467_END:  __asm__("nop;");
         retVal = 0; goto save_state_and_return;
       };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-      TRACK404_BEGIN: track(&&TRACK404_BEGIN, &&TRACK404_END);
-      TRACK404_END:  __asm__("nop;");
-       
+      TRACK468_BEGIN: track(&&TRACK468_BEGIN, &&TRACK468_END);
+      TRACK468_END:  __asm__("nop;");
       s->strm->total_in_hi32++;
       }
     };
-                if (uc == 0) break;
+                if (uc == 0)  {
+    TRACK470_BEGIN: track(&&TRACK470_BEGIN, &&TRACK470_END);
+    TRACK470_END:  __asm__("nop;");
+    break;
+    }
                 j++;
                 if (j >= nGroups) {
-      TRACK406_BEGIN: track(&&TRACK406_BEGIN, &&TRACK406_END);
-      TRACK406_END:  __asm__("nop;");
-       
+      TRACK471_BEGIN: track(&&TRACK471_BEGIN, &&TRACK471_END);
+      TRACK471_END:  __asm__("nop;");
       retVal = (-4); goto save_state_and_return;
     };;
   }
@@ -4489,21 +4341,18 @@ for (j = 0; j < 16; j++) {
       {
          UChar pos[6], tmp, v;
          for (v = 0; v < nGroups; v++)  {
-TRACK409_BEGIN: track(&&TRACK409_BEGIN, &&TRACK409_END);
-TRACK409_END:  __asm__("nop;");
- 
+TRACK474_BEGIN: track(&&TRACK474_BEGIN, &&TRACK474_END);
+TRACK474_END:  __asm__("nop;");
 pos[v] = v;
 }
          for (i = 0; i < nSelectors; i++) {
-  TRACK411_BEGIN: track(&&TRACK411_BEGIN, &&TRACK411_END);
-  TRACK411_END:  __asm__("nop;");
-   
+  TRACK476_BEGIN: track(&&TRACK476_BEGIN, &&TRACK476_END);
+  TRACK476_END:  __asm__("nop;");
   v = s->selectorMtf[i];
               tmp = pos[v];
               while (v > 0) {
-    TRACK410_BEGIN: track(&&TRACK410_BEGIN, &&TRACK410_END);
-    TRACK410_END:  __asm__("nop;");
-     
+    TRACK475_BEGIN: track(&&TRACK475_BEGIN, &&TRACK475_END);
+    TRACK475_END:  __asm__("nop;");
     pos[v] = pos[v-1]; v--;
   }
               pos[0] = tmp;
@@ -4511,114 +4360,97 @@ pos[v] = v;
 }
       }
       for (t = 0; t < nGroups; t++) {
-  TRACK432_BEGIN: track(&&TRACK432_BEGIN, &&TRACK432_END);
-  TRACK432_END:  __asm__("nop;");
-   
+  TRACK498_BEGIN: track(&&TRACK498_BEGIN, &&TRACK498_END);
+  TRACK498_END:  __asm__("nop;");
    
     case 33:
-  	TRACK412_BEGIN: track(&&TRACK412_BEGIN, &&TRACK412_END);
-  	TRACK412_END:  __asm__("nop;");
-  	 
+  	TRACK477_BEGIN: track(&&TRACK477_BEGIN, &&TRACK477_END);
+  	TRACK477_END:  __asm__("nop;");
   	s->state = 33; while (((Bool)1)) {
-    TRACK416_BEGIN: track(&&TRACK416_BEGIN, &&TRACK416_END);
-    TRACK416_END:  __asm__("nop;");
-     
+    TRACK481_BEGIN: track(&&TRACK481_BEGIN, &&TRACK481_END);
+    TRACK481_END:  __asm__("nop;");
     if (s->bsLive >= 5) {
       UInt32 v;
-      TRACK413_BEGIN: track(&&TRACK413_BEGIN, &&TRACK413_END);
-      TRACK413_END:  __asm__("nop;");
-       
+      TRACK478_BEGIN: track(&&TRACK478_BEGIN, &&TRACK478_END);
+      TRACK478_END:  __asm__("nop;");
       v = (s->bsBuff >> (s->bsLive-5)) & ((1 << 5)-1); s->bsLive -= 5; curr = v; break;
     } if (s->strm->avail_in == 0) {
-      TRACK414_BEGIN: track(&&TRACK414_BEGIN, &&TRACK414_END);
-      TRACK414_END:  __asm__("nop;");
-       
+      TRACK479_BEGIN: track(&&TRACK479_BEGIN, &&TRACK479_END);
+      TRACK479_END:  __asm__("nop;");
       retVal = 0; goto save_state_and_return;
     };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-    TRACK415_BEGIN: track(&&TRACK415_BEGIN, &&TRACK415_END);
-    TRACK415_END:  __asm__("nop;");
-     
+    TRACK480_BEGIN: track(&&TRACK480_BEGIN, &&TRACK480_END);
+    TRACK480_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
   };
            for (i = 0; i < alphaSize; i++) {
-    TRACK431_BEGIN: track(&&TRACK431_BEGIN, &&TRACK431_END);
-    TRACK431_END:  __asm__("nop;");
-     
+    TRACK497_BEGIN: track(&&TRACK497_BEGIN, &&TRACK497_END);
+    TRACK497_END:  __asm__("nop;");
     while (((Bool)1)) {
-      TRACK430_BEGIN: track(&&TRACK430_BEGIN, &&TRACK430_END);
-      TRACK430_END:  __asm__("nop;");
-       
+      TRACK496_BEGIN: track(&&TRACK496_BEGIN, &&TRACK496_END);
+      TRACK496_END:  __asm__("nop;");
       if (curr < 1 || curr > 20) {
-        TRACK417_BEGIN: track(&&TRACK417_BEGIN, &&TRACK417_END);
-        TRACK417_END:  __asm__("nop;");
-         
+        TRACK482_BEGIN: track(&&TRACK482_BEGIN, &&TRACK482_END);
+        TRACK482_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
       };;
                       
         case 34:
-      	TRACK418_BEGIN: track(&&TRACK418_BEGIN, &&TRACK418_END);
-      	TRACK418_END:  __asm__("nop;");
-      	 
+      	TRACK483_BEGIN: track(&&TRACK483_BEGIN, &&TRACK483_END);
+      	TRACK483_END:  __asm__("nop;");
       	s->state = 34; while (((Bool)1)) {
-        TRACK422_BEGIN: track(&&TRACK422_BEGIN, &&TRACK422_END);
-        TRACK422_END:  __asm__("nop;");
-         
+        TRACK487_BEGIN: track(&&TRACK487_BEGIN, &&TRACK487_END);
+        TRACK487_END:  __asm__("nop;");
         if (s->bsLive >= 1) {
           UInt32 v;
-          TRACK419_BEGIN: track(&&TRACK419_BEGIN, &&TRACK419_END);
-          TRACK419_END:  __asm__("nop;");
-           
+          TRACK484_BEGIN: track(&&TRACK484_BEGIN, &&TRACK484_END);
+          TRACK484_END:  __asm__("nop;");
           v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
         } if (s->strm->avail_in == 0) {
-          TRACK420_BEGIN: track(&&TRACK420_BEGIN, &&TRACK420_END);
-          TRACK420_END:  __asm__("nop;");
-           
+          TRACK485_BEGIN: track(&&TRACK485_BEGIN, &&TRACK485_END);
+          TRACK485_END:  __asm__("nop;");
           retVal = 0; goto save_state_and_return;
         };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-        TRACK421_BEGIN: track(&&TRACK421_BEGIN, &&TRACK421_END);
-        TRACK421_END:  __asm__("nop;");
-         
-        s->strm->total_in_hi32++;
-        }
-      };
-                     if (uc == 0) break;
-                      
-        case 35:
-      	TRACK423_BEGIN: track(&&TRACK423_BEGIN, &&TRACK423_END);
-      	TRACK423_END:  __asm__("nop;");
-      	 
-      	s->state = 35; while (((Bool)1)) {
-        TRACK427_BEGIN: track(&&TRACK427_BEGIN, &&TRACK427_END);
-        TRACK427_END:  __asm__("nop;");
-         
-        if (s->bsLive >= 1) {
-          UInt32 v;
-          TRACK424_BEGIN: track(&&TRACK424_BEGIN, &&TRACK424_END);
-          TRACK424_END:  __asm__("nop;");
-           
-          v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
-        } if (s->strm->avail_in == 0) {
-          TRACK425_BEGIN: track(&&TRACK425_BEGIN, &&TRACK425_END);
-          TRACK425_END:  __asm__("nop;");
-           
-          retVal = 0; goto save_state_and_return;
-        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-        TRACK426_BEGIN: track(&&TRACK426_BEGIN, &&TRACK426_END);
-        TRACK426_END:  __asm__("nop;");
-         
+        TRACK486_BEGIN: track(&&TRACK486_BEGIN, &&TRACK486_END);
+        TRACK486_END:  __asm__("nop;");
         s->strm->total_in_hi32++;
         }
       };
                      if (uc == 0)  {
-      TRACK428_BEGIN: track(&&TRACK428_BEGIN, &&TRACK428_END);
-      TRACK428_END:  __asm__("nop;");
-       
+      TRACK488_BEGIN: track(&&TRACK488_BEGIN, &&TRACK488_END);
+      TRACK488_END:  __asm__("nop;");
+      break;
+      }
+                      
+        case 35:
+      	TRACK489_BEGIN: track(&&TRACK489_BEGIN, &&TRACK489_END);
+      	TRACK489_END:  __asm__("nop;");
+      	s->state = 35; while (((Bool)1)) {
+        TRACK493_BEGIN: track(&&TRACK493_BEGIN, &&TRACK493_END);
+        TRACK493_END:  __asm__("nop;");
+        if (s->bsLive >= 1) {
+          UInt32 v;
+          TRACK490_BEGIN: track(&&TRACK490_BEGIN, &&TRACK490_END);
+          TRACK490_END:  __asm__("nop;");
+          v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; uc = v; break;
+        } if (s->strm->avail_in == 0) {
+          TRACK491_BEGIN: track(&&TRACK491_BEGIN, &&TRACK491_END);
+          TRACK491_END:  __asm__("nop;");
+          retVal = 0; goto save_state_and_return;
+        };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
+        TRACK492_BEGIN: track(&&TRACK492_BEGIN, &&TRACK492_END);
+        TRACK492_END:  __asm__("nop;");
+        s->strm->total_in_hi32++;
+        }
+      };
+                     if (uc == 0)  {
+      TRACK494_BEGIN: track(&&TRACK494_BEGIN, &&TRACK494_END);
+      TRACK494_END:  __asm__("nop;");
       curr++;
       } else  {
-      TRACK429_BEGIN: track(&&TRACK429_BEGIN, &&TRACK429_END);
-      TRACK429_END:  __asm__("nop;");
-       
+      TRACK495_BEGIN: track(&&TRACK495_BEGIN, &&TRACK495_END);
+      TRACK495_END:  __asm__("nop;");
       curr--;
       }
     }
@@ -4626,25 +4458,21 @@ pos[v] = v;
   }
 }
       for (t = 0; t < nGroups; t++) {
-  TRACK436_BEGIN: track(&&TRACK436_BEGIN, &&TRACK436_END);
-  TRACK436_END:  __asm__("nop;");
-   
+  TRACK502_BEGIN: track(&&TRACK502_BEGIN, &&TRACK502_END);
+  TRACK502_END:  __asm__("nop;");
   minLen = 32;
            maxLen = 0;
            for (i = 0; i < alphaSize; i++) {
-    TRACK435_BEGIN: track(&&TRACK435_BEGIN, &&TRACK435_END);
-    TRACK435_END:  __asm__("nop;");
-     
+    TRACK501_BEGIN: track(&&TRACK501_BEGIN, &&TRACK501_END);
+    TRACK501_END:  __asm__("nop;");
     if (s->len[t][i] > maxLen)  {
-    TRACK433_BEGIN: track(&&TRACK433_BEGIN, &&TRACK433_END);
-    TRACK433_END:  __asm__("nop;");
-     
+    TRACK499_BEGIN: track(&&TRACK499_BEGIN, &&TRACK499_END);
+    TRACK499_END:  __asm__("nop;");
     maxLen = s->len[t][i];
     }
                 if (s->len[t][i] < minLen)  {
-    TRACK434_BEGIN: track(&&TRACK434_BEGIN, &&TRACK434_END);
-    TRACK434_END:  __asm__("nop;");
-     
+    TRACK500_BEGIN: track(&&TRACK500_BEGIN, &&TRACK500_END);
+    TRACK500_END:  __asm__("nop;");
     minLen = s->len[t][i];
     }
   }
@@ -4662,22 +4490,19 @@ pos[v] = v;
       groupNo = -1;
       groupPos = 0;
       for (i = 0; i <= 255; i++)  {
-TRACK437_BEGIN: track(&&TRACK437_BEGIN, &&TRACK437_END);
-TRACK437_END:  __asm__("nop;");
- 
+TRACK503_BEGIN: track(&&TRACK503_BEGIN, &&TRACK503_END);
+TRACK503_END:  __asm__("nop;");
 s->unzftab[i] = 0;
 }
       {
          Int32 ii, jj, kk;
          kk = 4096 -1;
          for (ii = 256 / 16 - 1; ii >= 0; ii--) {
-  TRACK439_BEGIN: track(&&TRACK439_BEGIN, &&TRACK439_END);
-  TRACK439_END:  __asm__("nop;");
-   
+  TRACK505_BEGIN: track(&&TRACK505_BEGIN, &&TRACK505_END);
+  TRACK505_END:  __asm__("nop;");
   for (jj = 16 -1; jj >= 0; jj--) {
-    TRACK438_BEGIN: track(&&TRACK438_BEGIN, &&TRACK438_END);
-    TRACK438_END:  __asm__("nop;");
-     
+    TRACK504_BEGIN: track(&&TRACK504_BEGIN, &&TRACK504_END);
+    TRACK504_END:  __asm__("nop;");
     s->mtfa[kk] = (UChar)(ii * 16 + jj);
                    kk--;
   }
@@ -4686,192 +4511,168 @@ s->unzftab[i] = 0;
       }
       nblock = 0;
       { if (groupPos == 0) {
-  TRACK441_BEGIN: track(&&TRACK441_BEGIN, &&TRACK441_END);
-  TRACK441_END:  __asm__("nop;");
-   
+  TRACK507_BEGIN: track(&&TRACK507_BEGIN, &&TRACK507_END);
+  TRACK507_END:  __asm__("nop;");
   groupNo++; if (groupNo >= nSelectors) {
-    TRACK440_BEGIN: track(&&TRACK440_BEGIN, &&TRACK440_END);
-    TRACK440_END:  __asm__("nop;");
-     
+    TRACK506_BEGIN: track(&&TRACK506_BEGIN, &&TRACK506_END);
+    TRACK506_END:  __asm__("nop;");
     retVal = (-4); goto save_state_and_return;
   };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
 } groupPos--; zn = gMinlen;  
   case 36:
-	TRACK442_BEGIN: track(&&TRACK442_BEGIN, &&TRACK442_END);
-	TRACK442_END:  __asm__("nop;");
-	 
+	TRACK508_BEGIN: track(&&TRACK508_BEGIN, &&TRACK508_END);
+	TRACK508_END:  __asm__("nop;");
 	s->state = 36; while (((Bool)1)) {
-  TRACK446_BEGIN: track(&&TRACK446_BEGIN, &&TRACK446_END);
-  TRACK446_END:  __asm__("nop;");
-   
+  TRACK512_BEGIN: track(&&TRACK512_BEGIN, &&TRACK512_END);
+  TRACK512_END:  __asm__("nop;");
   if (s->bsLive >= zn) {
     UInt32 v;
-    TRACK443_BEGIN: track(&&TRACK443_BEGIN, &&TRACK443_END);
-    TRACK443_END:  __asm__("nop;");
-     
+    TRACK509_BEGIN: track(&&TRACK509_BEGIN, &&TRACK509_END);
+    TRACK509_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK444_BEGIN: track(&&TRACK444_BEGIN, &&TRACK444_END);
-    TRACK444_END:  __asm__("nop;");
-     
+    TRACK510_BEGIN: track(&&TRACK510_BEGIN, &&TRACK510_END);
+    TRACK510_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK445_BEGIN: track(&&TRACK445_BEGIN, &&TRACK445_END);
-  TRACK445_END:  __asm__("nop;");
-   
+  TRACK511_BEGIN: track(&&TRACK511_BEGIN, &&TRACK511_END);
+  TRACK511_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 }; while (1) {
-  TRACK453_BEGIN: track(&&TRACK453_BEGIN, &&TRACK453_END);
-  TRACK453_END:  __asm__("nop;");
-   
+  TRACK520_BEGIN: track(&&TRACK520_BEGIN, &&TRACK520_END);
+  TRACK520_END:  __asm__("nop;");
   if (zn > 20 ) {
-    TRACK447_BEGIN: track(&&TRACK447_BEGIN, &&TRACK447_END);
-    TRACK447_END:  __asm__("nop;");
-     
+    TRACK513_BEGIN: track(&&TRACK513_BEGIN, &&TRACK513_END);
+    TRACK513_END:  __asm__("nop;");
     retVal = (-4); goto save_state_and_return;
-  };; if (zvec <= gLimit[zn]) break; zn++;  
+  };; if (zvec <= gLimit[zn])  {
+  TRACK514_BEGIN: track(&&TRACK514_BEGIN, &&TRACK514_END);
+  TRACK514_END:  __asm__("nop;");
+  break;
+  } zn++;  
     case 37:
-  	TRACK448_BEGIN: track(&&TRACK448_BEGIN, &&TRACK448_END);
-  	TRACK448_END:  __asm__("nop;");
-  	 
+  	TRACK515_BEGIN: track(&&TRACK515_BEGIN, &&TRACK515_END);
+  	TRACK515_END:  __asm__("nop;");
   	s->state = 37; while (((Bool)1)) {
-    TRACK452_BEGIN: track(&&TRACK452_BEGIN, &&TRACK452_END);
-    TRACK452_END:  __asm__("nop;");
-     
+    TRACK519_BEGIN: track(&&TRACK519_BEGIN, &&TRACK519_END);
+    TRACK519_END:  __asm__("nop;");
     if (s->bsLive >= 1) {
       UInt32 v;
-      TRACK449_BEGIN: track(&&TRACK449_BEGIN, &&TRACK449_END);
-      TRACK449_END:  __asm__("nop;");
-       
+      TRACK516_BEGIN: track(&&TRACK516_BEGIN, &&TRACK516_END);
+      TRACK516_END:  __asm__("nop;");
       v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
     } if (s->strm->avail_in == 0) {
-      TRACK450_BEGIN: track(&&TRACK450_BEGIN, &&TRACK450_END);
-      TRACK450_END:  __asm__("nop;");
-       
+      TRACK517_BEGIN: track(&&TRACK517_BEGIN, &&TRACK517_END);
+      TRACK517_END:  __asm__("nop;");
       retVal = 0; goto save_state_and_return;
     };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-    TRACK451_BEGIN: track(&&TRACK451_BEGIN, &&TRACK451_END);
-    TRACK451_END:  __asm__("nop;");
-     
+    TRACK518_BEGIN: track(&&TRACK518_BEGIN, &&TRACK518_END);
+    TRACK518_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
   }; zvec = (zvec << 1) | zj;
 }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-  TRACK454_BEGIN: track(&&TRACK454_BEGIN, &&TRACK454_END);
-  TRACK454_END:  __asm__("nop;");
-   
+  TRACK521_BEGIN: track(&&TRACK521_BEGIN, &&TRACK521_END);
+  TRACK521_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };; nextSym = gPerm[zvec - gBase[zn]]; };
       while (((Bool)1)) {
-  TRACK509_BEGIN: track(&&TRACK509_BEGIN, &&TRACK509_END);
-  TRACK509_END:  __asm__("nop;");
-   
-  if (nextSym == EOB) break;
+  TRACK579_BEGIN: track(&&TRACK579_BEGIN, &&TRACK579_END);
+  TRACK579_END:  __asm__("nop;");
+  if (nextSym == EOB)  {
+  TRACK522_BEGIN: track(&&TRACK522_BEGIN, &&TRACK522_END);
+  TRACK522_END:  __asm__("nop;");
+  break;
+  }
            if (nextSym == 0 || nextSym == 1) {
-    TRACK480_BEGIN: track(&&TRACK480_BEGIN, &&TRACK480_END);
-    TRACK480_END:  __asm__("nop;");
-     
+    TRACK549_BEGIN: track(&&TRACK549_BEGIN, &&TRACK549_END);
+    TRACK549_END:  __asm__("nop;");
     es = -1;
                 N = 1;
                 do {
-      TRACK473_BEGIN: track(&&TRACK473_BEGIN, &&TRACK473_END);
-      TRACK473_END:  __asm__("nop;");
-       
+      TRACK542_BEGIN: track(&&TRACK542_BEGIN, &&TRACK542_END);
+      TRACK542_END:  __asm__("nop;");
       if (nextSym == 0)  {
-      TRACK455_BEGIN: track(&&TRACK455_BEGIN, &&TRACK455_END);
-      TRACK455_END:  __asm__("nop;");
-       
+      TRACK523_BEGIN: track(&&TRACK523_BEGIN, &&TRACK523_END);
+      TRACK523_END:  __asm__("nop;");
       es = es + (0+1) * N;
       } else
                       {
-      TRACK457_BEGIN: track(&&TRACK457_BEGIN, &&TRACK457_END);
-      TRACK457_END:  __asm__("nop;");
-       
+      TRACK525_BEGIN: track(&&TRACK525_BEGIN, &&TRACK525_END);
+      TRACK525_END:  __asm__("nop;");
       if (nextSym == 1)  {
-      TRACK456_BEGIN: track(&&TRACK456_BEGIN, &&TRACK456_END);
-      TRACK456_END:  __asm__("nop;");
-       
+      TRACK524_BEGIN: track(&&TRACK524_BEGIN, &&TRACK524_END);
+      TRACK524_END:  __asm__("nop;");
       es = es + (1+1) * N;
       }
       }
                      N = N * 2;
                      { if (groupPos == 0) {
-        TRACK459_BEGIN: track(&&TRACK459_BEGIN, &&TRACK459_END);
-        TRACK459_END:  __asm__("nop;");
-         
+        TRACK527_BEGIN: track(&&TRACK527_BEGIN, &&TRACK527_END);
+        TRACK527_END:  __asm__("nop;");
         groupNo++; if (groupNo >= nSelectors) {
-          TRACK458_BEGIN: track(&&TRACK458_BEGIN, &&TRACK458_END);
-          TRACK458_END:  __asm__("nop;");
-           
+          TRACK526_BEGIN: track(&&TRACK526_BEGIN, &&TRACK526_END);
+          TRACK526_END:  __asm__("nop;");
           retVal = (-4); goto save_state_and_return;
         };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
       } groupPos--; zn = gMinlen;  
         case 38:
-      	TRACK460_BEGIN: track(&&TRACK460_BEGIN, &&TRACK460_END);
-      	TRACK460_END:  __asm__("nop;");
-      	 
+      	TRACK528_BEGIN: track(&&TRACK528_BEGIN, &&TRACK528_END);
+      	TRACK528_END:  __asm__("nop;");
       	s->state = 38; while (((Bool)1)) {
-        TRACK464_BEGIN: track(&&TRACK464_BEGIN, &&TRACK464_END);
-        TRACK464_END:  __asm__("nop;");
-         
+        TRACK532_BEGIN: track(&&TRACK532_BEGIN, &&TRACK532_END);
+        TRACK532_END:  __asm__("nop;");
         if (s->bsLive >= zn) {
           UInt32 v;
-          TRACK461_BEGIN: track(&&TRACK461_BEGIN, &&TRACK461_END);
-          TRACK461_END:  __asm__("nop;");
-           
+          TRACK529_BEGIN: track(&&TRACK529_BEGIN, &&TRACK529_END);
+          TRACK529_END:  __asm__("nop;");
           v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
         } if (s->strm->avail_in == 0) {
-          TRACK462_BEGIN: track(&&TRACK462_BEGIN, &&TRACK462_END);
-          TRACK462_END:  __asm__("nop;");
-           
+          TRACK530_BEGIN: track(&&TRACK530_BEGIN, &&TRACK530_END);
+          TRACK530_END:  __asm__("nop;");
           retVal = 0; goto save_state_and_return;
         };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-        TRACK463_BEGIN: track(&&TRACK463_BEGIN, &&TRACK463_END);
-        TRACK463_END:  __asm__("nop;");
-         
+        TRACK531_BEGIN: track(&&TRACK531_BEGIN, &&TRACK531_END);
+        TRACK531_END:  __asm__("nop;");
         s->strm->total_in_hi32++;
         }
       }; while (1) {
-        TRACK471_BEGIN: track(&&TRACK471_BEGIN, &&TRACK471_END);
-        TRACK471_END:  __asm__("nop;");
-         
+        TRACK540_BEGIN: track(&&TRACK540_BEGIN, &&TRACK540_END);
+        TRACK540_END:  __asm__("nop;");
         if (zn > 20 ) {
-          TRACK465_BEGIN: track(&&TRACK465_BEGIN, &&TRACK465_END);
-          TRACK465_END:  __asm__("nop;");
-           
+          TRACK533_BEGIN: track(&&TRACK533_BEGIN, &&TRACK533_END);
+          TRACK533_END:  __asm__("nop;");
           retVal = (-4); goto save_state_and_return;
-        };; if (zvec <= gLimit[zn]) break; zn++;  
+        };; if (zvec <= gLimit[zn])  {
+        TRACK534_BEGIN: track(&&TRACK534_BEGIN, &&TRACK534_END);
+        TRACK534_END:  __asm__("nop;");
+        break;
+        } zn++;  
           case 39:
-        	TRACK466_BEGIN: track(&&TRACK466_BEGIN, &&TRACK466_END);
-        	TRACK466_END:  __asm__("nop;");
-        	 
+        	TRACK535_BEGIN: track(&&TRACK535_BEGIN, &&TRACK535_END);
+        	TRACK535_END:  __asm__("nop;");
         	s->state = 39; while (((Bool)1)) {
-          TRACK470_BEGIN: track(&&TRACK470_BEGIN, &&TRACK470_END);
-          TRACK470_END:  __asm__("nop;");
-           
+          TRACK539_BEGIN: track(&&TRACK539_BEGIN, &&TRACK539_END);
+          TRACK539_END:  __asm__("nop;");
           if (s->bsLive >= 1) {
             UInt32 v;
-            TRACK467_BEGIN: track(&&TRACK467_BEGIN, &&TRACK467_END);
-            TRACK467_END:  __asm__("nop;");
-             
+            TRACK536_BEGIN: track(&&TRACK536_BEGIN, &&TRACK536_END);
+            TRACK536_END:  __asm__("nop;");
             v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
           } if (s->strm->avail_in == 0) {
-            TRACK468_BEGIN: track(&&TRACK468_BEGIN, &&TRACK468_END);
-            TRACK468_END:  __asm__("nop;");
-             
+            TRACK537_BEGIN: track(&&TRACK537_BEGIN, &&TRACK537_END);
+            TRACK537_END:  __asm__("nop;");
             retVal = 0; goto save_state_and_return;
           };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-          TRACK469_BEGIN: track(&&TRACK469_BEGIN, &&TRACK469_END);
-          TRACK469_END:  __asm__("nop;");
-           
+          TRACK538_BEGIN: track(&&TRACK538_BEGIN, &&TRACK538_END);
+          TRACK538_END:  __asm__("nop;");
           s->strm->total_in_hi32++;
           }
         }; zvec = (zvec << 1) | zj;
       }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-        TRACK472_BEGIN: track(&&TRACK472_BEGIN, &&TRACK472_END);
-        TRACK472_END:  __asm__("nop;");
-         
+        TRACK541_BEGIN: track(&&TRACK541_BEGIN, &&TRACK541_END);
+        TRACK541_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
       };; nextSym = gPerm[zvec - gBase[zn]]; };
     }
@@ -4881,17 +4682,14 @@ s->unzftab[i] = 0;
                 s->unzftab[uc] += es;
                 if (s->smallDecompress)
                     {
-    TRACK476_BEGIN: track(&&TRACK476_BEGIN, &&TRACK476_END);
-    TRACK476_END:  __asm__("nop;");
-     
+    TRACK545_BEGIN: track(&&TRACK545_BEGIN, &&TRACK545_END);
+    TRACK545_END:  __asm__("nop;");
     while (es > 0) {
-      TRACK475_BEGIN: track(&&TRACK475_BEGIN, &&TRACK475_END);
-      TRACK475_END:  __asm__("nop;");
-       
+      TRACK544_BEGIN: track(&&TRACK544_BEGIN, &&TRACK544_END);
+      TRACK544_END:  __asm__("nop;");
       if (nblock >= nblockMAX) {
-        TRACK474_BEGIN: track(&&TRACK474_BEGIN, &&TRACK474_END);
-        TRACK474_END:  __asm__("nop;");
-         
+        TRACK543_BEGIN: track(&&TRACK543_BEGIN, &&TRACK543_END);
+        TRACK543_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
       };;
                         s->ll16[nblock] = (UInt16)uc;
@@ -4901,17 +4699,14 @@ s->unzftab[i] = 0;
     }
                 else
                     {
-    TRACK479_BEGIN: track(&&TRACK479_BEGIN, &&TRACK479_END);
-    TRACK479_END:  __asm__("nop;");
-     
+    TRACK548_BEGIN: track(&&TRACK548_BEGIN, &&TRACK548_END);
+    TRACK548_END:  __asm__("nop;");
     while (es > 0) {
-      TRACK478_BEGIN: track(&&TRACK478_BEGIN, &&TRACK478_END);
-      TRACK478_END:  __asm__("nop;");
-       
+      TRACK547_BEGIN: track(&&TRACK547_BEGIN, &&TRACK547_END);
+      TRACK547_END:  __asm__("nop;");
       if (nblock >= nblockMAX) {
-        TRACK477_BEGIN: track(&&TRACK477_BEGIN, &&TRACK477_END);
-        TRACK477_END:  __asm__("nop;");
-         
+        TRACK546_BEGIN: track(&&TRACK546_BEGIN, &&TRACK546_END);
+        TRACK546_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
       };;
                         s->tt[nblock] = (UInt32)uc;
@@ -4921,13 +4716,11 @@ s->unzftab[i] = 0;
     };
                 continue;
   } else {
-    TRACK508_BEGIN: track(&&TRACK508_BEGIN, &&TRACK508_END);
-    TRACK508_END:  __asm__("nop;");
-     
+    TRACK578_BEGIN: track(&&TRACK578_BEGIN, &&TRACK578_END);
+    TRACK578_END:  __asm__("nop;");
     if (nblock >= nblockMAX) {
-      TRACK481_BEGIN: track(&&TRACK481_BEGIN, &&TRACK481_END);
-      TRACK481_END:  __asm__("nop;");
-       
+      TRACK550_BEGIN: track(&&TRACK550_BEGIN, &&TRACK550_END);
+      TRACK550_END:  __asm__("nop;");
       retVal = (-4); goto save_state_and_return;
     };;
                 {
@@ -4935,16 +4728,14 @@ s->unzftab[i] = 0;
                    UInt32 nn;
                    nn = (UInt32)(nextSym - 1);
                    if (nn < 16) {
-      TRACK484_BEGIN: track(&&TRACK484_BEGIN, &&TRACK484_END);
-      TRACK484_END:  __asm__("nop;");
-       
+      TRACK553_BEGIN: track(&&TRACK553_BEGIN, &&TRACK553_END);
+      TRACK553_END:  __asm__("nop;");
       pp = s->mtfbase[0];
                         uc = s->mtfa[pp+nn];
                         while (nn > 3) {
         Int32 z = pp+nn;
-        TRACK482_BEGIN: track(&&TRACK482_BEGIN, &&TRACK482_END);
-        TRACK482_END:  __asm__("nop;");
-         
+        TRACK551_BEGIN: track(&&TRACK551_BEGIN, &&TRACK551_END);
+        TRACK551_END:  __asm__("nop;");
         s->mtfa[(z) ] = s->mtfa[(z)-1];
                              s->mtfa[(z)-1] = s->mtfa[(z)-2];
                              s->mtfa[(z)-2] = s->mtfa[(z)-3];
@@ -4952,31 +4743,27 @@ s->unzftab[i] = 0;
                              nn -= 4;
       }
                         while (nn > 0) {
-        TRACK483_BEGIN: track(&&TRACK483_BEGIN, &&TRACK483_END);
-        TRACK483_END:  __asm__("nop;");
-         
+        TRACK552_BEGIN: track(&&TRACK552_BEGIN, &&TRACK552_END);
+        TRACK552_END:  __asm__("nop;");
         s->mtfa[(pp+nn)] = s->mtfa[(pp+nn)-1]; nn--;
       };
                         s->mtfa[pp] = uc;
     } else {
-      TRACK490_BEGIN: track(&&TRACK490_BEGIN, &&TRACK490_END);
-      TRACK490_END:  __asm__("nop;");
-       
+      TRACK559_BEGIN: track(&&TRACK559_BEGIN, &&TRACK559_END);
+      TRACK559_END:  __asm__("nop;");
       lno = nn / 16;
                         off = nn % 16;
                         pp = s->mtfbase[lno] + off;
                         uc = s->mtfa[pp];
                         while (pp > s->mtfbase[lno]) {
-        TRACK485_BEGIN: track(&&TRACK485_BEGIN, &&TRACK485_END);
-        TRACK485_END:  __asm__("nop;");
-         
+        TRACK554_BEGIN: track(&&TRACK554_BEGIN, &&TRACK554_END);
+        TRACK554_END:  __asm__("nop;");
         s->mtfa[pp] = s->mtfa[pp-1]; pp--;
       };
                         s->mtfbase[lno]++;
                         while (lno > 0) {
-        TRACK486_BEGIN: track(&&TRACK486_BEGIN, &&TRACK486_END);
-        TRACK486_END:  __asm__("nop;");
-         
+        TRACK555_BEGIN: track(&&TRACK555_BEGIN, &&TRACK555_END);
+        TRACK555_END:  __asm__("nop;");
         s->mtfbase[lno]--;
                              s->mtfa[s->mtfbase[lno]]
                                 = s->mtfa[s->mtfbase[lno-1] + 16 - 1];
@@ -4985,18 +4772,15 @@ s->unzftab[i] = 0;
                         s->mtfbase[0]--;
                         s->mtfa[s->mtfbase[0]] = uc;
                         if (s->mtfbase[0] == 0) {
-        TRACK489_BEGIN: track(&&TRACK489_BEGIN, &&TRACK489_END);
-        TRACK489_END:  __asm__("nop;");
-         
+        TRACK558_BEGIN: track(&&TRACK558_BEGIN, &&TRACK558_END);
+        TRACK558_END:  __asm__("nop;");
         kk = 4096 -1;
                              for (ii = 256 / 16 -1; ii >= 0; ii--) {
-          TRACK488_BEGIN: track(&&TRACK488_BEGIN, &&TRACK488_END);
-          TRACK488_END:  __asm__("nop;");
-           
+          TRACK557_BEGIN: track(&&TRACK557_BEGIN, &&TRACK557_END);
+          TRACK557_END:  __asm__("nop;");
           for (jj = 16 -1; jj >= 0; jj--) {
-            TRACK487_BEGIN: track(&&TRACK487_BEGIN, &&TRACK487_END);
-            TRACK487_END:  __asm__("nop;");
-             
+            TRACK556_BEGIN: track(&&TRACK556_BEGIN, &&TRACK556_END);
+            TRACK556_END:  __asm__("nop;");
             s->mtfa[kk] = s->mtfa[s->mtfbase[ii] + jj];
                                        kk--;
           }
@@ -5008,94 +4792,81 @@ s->unzftab[i] = 0;
                 s->unzftab[s->seqToUnseq[uc]]++;
                 if (s->smallDecompress)
                     {
-    TRACK491_BEGIN: track(&&TRACK491_BEGIN, &&TRACK491_END);
-    TRACK491_END:  __asm__("nop;");
-     
+    TRACK560_BEGIN: track(&&TRACK560_BEGIN, &&TRACK560_END);
+    TRACK560_END:  __asm__("nop;");
     s->ll16[nblock] = (UInt16)(s->seqToUnseq[uc]);
     } else
                     {
-    TRACK492_BEGIN: track(&&TRACK492_BEGIN, &&TRACK492_END);
-    TRACK492_END:  __asm__("nop;");
-     
+    TRACK561_BEGIN: track(&&TRACK561_BEGIN, &&TRACK561_END);
+    TRACK561_END:  __asm__("nop;");
     s->tt[nblock] = (UInt32)(s->seqToUnseq[uc]);
     }
                 nblock++;
                 { if (groupPos == 0) {
-      TRACK494_BEGIN: track(&&TRACK494_BEGIN, &&TRACK494_END);
-      TRACK494_END:  __asm__("nop;");
-       
+      TRACK563_BEGIN: track(&&TRACK563_BEGIN, &&TRACK563_END);
+      TRACK563_END:  __asm__("nop;");
       groupNo++; if (groupNo >= nSelectors) {
-        TRACK493_BEGIN: track(&&TRACK493_BEGIN, &&TRACK493_END);
-        TRACK493_END:  __asm__("nop;");
-         
+        TRACK562_BEGIN: track(&&TRACK562_BEGIN, &&TRACK562_END);
+        TRACK562_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
       };; groupPos = 50; gSel = s->selector[groupNo]; gMinlen = s->minLens[gSel]; gLimit = &(s->limit[gSel][0]); gPerm = &(s->perm[gSel][0]); gBase = &(s->base[gSel][0]);
     } groupPos--; zn = gMinlen;  
       case 40:
-    	TRACK495_BEGIN: track(&&TRACK495_BEGIN, &&TRACK495_END);
-    	TRACK495_END:  __asm__("nop;");
-    	 
+    	TRACK564_BEGIN: track(&&TRACK564_BEGIN, &&TRACK564_END);
+    	TRACK564_END:  __asm__("nop;");
     	s->state = 40; while (((Bool)1)) {
-      TRACK499_BEGIN: track(&&TRACK499_BEGIN, &&TRACK499_END);
-      TRACK499_END:  __asm__("nop;");
-       
+      TRACK568_BEGIN: track(&&TRACK568_BEGIN, &&TRACK568_END);
+      TRACK568_END:  __asm__("nop;");
       if (s->bsLive >= zn) {
         UInt32 v;
-        TRACK496_BEGIN: track(&&TRACK496_BEGIN, &&TRACK496_END);
-        TRACK496_END:  __asm__("nop;");
-         
+        TRACK565_BEGIN: track(&&TRACK565_BEGIN, &&TRACK565_END);
+        TRACK565_END:  __asm__("nop;");
         v = (s->bsBuff >> (s->bsLive-zn)) & ((1 << zn)-1); s->bsLive -= zn; zvec = v; break;
       } if (s->strm->avail_in == 0) {
-        TRACK497_BEGIN: track(&&TRACK497_BEGIN, &&TRACK497_END);
-        TRACK497_END:  __asm__("nop;");
-         
+        TRACK566_BEGIN: track(&&TRACK566_BEGIN, &&TRACK566_END);
+        TRACK566_END:  __asm__("nop;");
         retVal = 0; goto save_state_and_return;
       };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-      TRACK498_BEGIN: track(&&TRACK498_BEGIN, &&TRACK498_END);
-      TRACK498_END:  __asm__("nop;");
-       
+      TRACK567_BEGIN: track(&&TRACK567_BEGIN, &&TRACK567_END);
+      TRACK567_END:  __asm__("nop;");
       s->strm->total_in_hi32++;
       }
     }; while (1) {
-      TRACK506_BEGIN: track(&&TRACK506_BEGIN, &&TRACK506_END);
-      TRACK506_END:  __asm__("nop;");
-       
+      TRACK576_BEGIN: track(&&TRACK576_BEGIN, &&TRACK576_END);
+      TRACK576_END:  __asm__("nop;");
       if (zn > 20 ) {
-        TRACK500_BEGIN: track(&&TRACK500_BEGIN, &&TRACK500_END);
-        TRACK500_END:  __asm__("nop;");
-         
+        TRACK569_BEGIN: track(&&TRACK569_BEGIN, &&TRACK569_END);
+        TRACK569_END:  __asm__("nop;");
         retVal = (-4); goto save_state_and_return;
-      };; if (zvec <= gLimit[zn]) break; zn++;  
+      };; if (zvec <= gLimit[zn])  {
+      TRACK570_BEGIN: track(&&TRACK570_BEGIN, &&TRACK570_END);
+      TRACK570_END:  __asm__("nop;");
+      break;
+      } zn++;  
         case 41:
-      	TRACK501_BEGIN: track(&&TRACK501_BEGIN, &&TRACK501_END);
-      	TRACK501_END:  __asm__("nop;");
-      	 
+      	TRACK571_BEGIN: track(&&TRACK571_BEGIN, &&TRACK571_END);
+      	TRACK571_END:  __asm__("nop;");
       	s->state = 41; while (((Bool)1)) {
-        TRACK505_BEGIN: track(&&TRACK505_BEGIN, &&TRACK505_END);
-        TRACK505_END:  __asm__("nop;");
-         
+        TRACK575_BEGIN: track(&&TRACK575_BEGIN, &&TRACK575_END);
+        TRACK575_END:  __asm__("nop;");
         if (s->bsLive >= 1) {
           UInt32 v;
-          TRACK502_BEGIN: track(&&TRACK502_BEGIN, &&TRACK502_END);
-          TRACK502_END:  __asm__("nop;");
-           
+          TRACK572_BEGIN: track(&&TRACK572_BEGIN, &&TRACK572_END);
+          TRACK572_END:  __asm__("nop;");
           v = (s->bsBuff >> (s->bsLive-1)) & ((1 << 1)-1); s->bsLive -= 1; zj = v; break;
         } if (s->strm->avail_in == 0) {
-          TRACK503_BEGIN: track(&&TRACK503_BEGIN, &&TRACK503_END);
-          TRACK503_END:  __asm__("nop;");
-           
+          TRACK573_BEGIN: track(&&TRACK573_BEGIN, &&TRACK573_END);
+          TRACK573_END:  __asm__("nop;");
           retVal = 0; goto save_state_and_return;
         };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-        TRACK504_BEGIN: track(&&TRACK504_BEGIN, &&TRACK504_END);
-        TRACK504_END:  __asm__("nop;");
-         
+        TRACK574_BEGIN: track(&&TRACK574_BEGIN, &&TRACK574_END);
+        TRACK574_END:  __asm__("nop;");
         s->strm->total_in_hi32++;
         }
       }; zvec = (zvec << 1) | zj;
     }; if (zvec - gBase[zn] < 0 || zvec - gBase[zn] >= 258) {
-      TRACK507_BEGIN: track(&&TRACK507_BEGIN, &&TRACK507_END);
-      TRACK507_END:  __asm__("nop;");
-       
+      TRACK577_BEGIN: track(&&TRACK577_BEGIN, &&TRACK577_END);
+      TRACK577_END:  __asm__("nop;");
       retVal = (-4); goto save_state_and_return;
     };; nextSym = gPerm[zvec - gBase[zn]]; };
                 continue;
@@ -5103,9 +4874,8 @@ s->unzftab[i] = 0;
 }
       if (s->origPtr < 0 || s->origPtr >= nblock)
          {
-  TRACK510_BEGIN: track(&&TRACK510_BEGIN, &&TRACK510_END);
-  TRACK510_END:  __asm__("nop;");
-   
+  TRACK580_BEGIN: track(&&TRACK580_BEGIN, &&TRACK580_END);
+  TRACK580_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       s->state_out_len = 0;
@@ -5113,48 +4883,40 @@ s->unzftab[i] = 0;
       { s->calculatedBlockCRC = 0xffffffffL; };
       s->state = 2;
       if (s->verbosity >= 2)  {
-TRACK511_BEGIN: track(&&TRACK511_BEGIN, &&TRACK511_END);
-TRACK511_END:  __asm__("nop;");
- 
+TRACK581_BEGIN: track(&&TRACK581_BEGIN, &&TRACK581_END);
+TRACK581_END:  __asm__("nop;");
 fprintf(stderr,"rt+rld");
 }
       s->cftab[0] = 0;
       for (i = 1; i <= 256; i++)  {
-TRACK512_BEGIN: track(&&TRACK512_BEGIN, &&TRACK512_END);
-TRACK512_END:  __asm__("nop;");
- 
+TRACK582_BEGIN: track(&&TRACK582_BEGIN, &&TRACK582_END);
+TRACK582_END:  __asm__("nop;");
 s->cftab[i] = s->unzftab[i-1];
 }
       for (i = 1; i <= 256; i++)  {
-TRACK513_BEGIN: track(&&TRACK513_BEGIN, &&TRACK513_END);
-TRACK513_END:  __asm__("nop;");
- 
+TRACK583_BEGIN: track(&&TRACK583_BEGIN, &&TRACK583_END);
+TRACK583_END:  __asm__("nop;");
 s->cftab[i] += s->cftab[i-1];
 }
       if (s->smallDecompress) {
-  TRACK525_BEGIN: track(&&TRACK525_BEGIN, &&TRACK525_END);
-  TRACK525_END:  __asm__("nop;");
-   
+  TRACK595_BEGIN: track(&&TRACK595_BEGIN, &&TRACK595_END);
+  TRACK595_END:  __asm__("nop;");
   for (i = 0; i <= 256; i++)  {
-  TRACK514_BEGIN: track(&&TRACK514_BEGIN, &&TRACK514_END);
-  TRACK514_END:  __asm__("nop;");
-   
+  TRACK584_BEGIN: track(&&TRACK584_BEGIN, &&TRACK584_END);
+  TRACK584_END:  __asm__("nop;");
   s->cftabCopy[i] = s->cftab[i];
   }
            for (i = 0; i < nblock; i++) {
-    TRACK517_BEGIN: track(&&TRACK517_BEGIN, &&TRACK517_END);
-    TRACK517_END:  __asm__("nop;");
-     
+    TRACK587_BEGIN: track(&&TRACK587_BEGIN, &&TRACK587_END);
+    TRACK587_END:  __asm__("nop;");
     uc = (UChar)(s->ll16[i]);
                 { s->ll16[i] = (UInt16)(s->cftabCopy[uc] & 0x0000ffff); { if (((i) & 0x1) == 0)  {
-    TRACK515_BEGIN: track(&&TRACK515_BEGIN, &&TRACK515_END);
-    TRACK515_END:  __asm__("nop;");
-     
+    TRACK585_BEGIN: track(&&TRACK585_BEGIN, &&TRACK585_END);
+    TRACK585_END:  __asm__("nop;");
     s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0xf0) | (s->cftabCopy[uc] >> 16);
     } else  {
-    TRACK516_BEGIN: track(&&TRACK516_BEGIN, &&TRACK516_END);
-    TRACK516_END:  __asm__("nop;");
-     
+    TRACK586_BEGIN: track(&&TRACK586_BEGIN, &&TRACK586_END);
+    TRACK586_END:  __asm__("nop;");
     s->ll4[(i) >> 1] = (s->ll4[(i) >> 1] & 0x0f) | ((s->cftabCopy[uc] >> 16) << 4);
     } }; };
                 s->cftabCopy[uc]++;
@@ -5163,18 +4925,15 @@ s->cftab[i] += s->cftab[i-1];
            j = (((UInt32)s->ll16[i]) | (((((UInt32)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF) << 16));
            do {
     Int32 tmp = (((UInt32)s->ll16[j]) | (((((UInt32)(s->ll4[(j) >> 1])) >> (((j) << 2) & 0x4)) & 0xF) << 16));
-    TRACK520_BEGIN: track(&&TRACK520_BEGIN, &&TRACK520_END);
-    TRACK520_END:  __asm__("nop;");
-     
+    TRACK590_BEGIN: track(&&TRACK590_BEGIN, &&TRACK590_END);
+    TRACK590_END:  __asm__("nop;");
     { s->ll16[j] = (UInt16)(i & 0x0000ffff); { if (((j) & 0x1) == 0)  {
-    TRACK518_BEGIN: track(&&TRACK518_BEGIN, &&TRACK518_END);
-    TRACK518_END:  __asm__("nop;");
-     
+    TRACK588_BEGIN: track(&&TRACK588_BEGIN, &&TRACK588_END);
+    TRACK588_END:  __asm__("nop;");
     s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0xf0) | (i >> 16);
     } else  {
-    TRACK519_BEGIN: track(&&TRACK519_BEGIN, &&TRACK519_END);
-    TRACK519_END:  __asm__("nop;");
-     
+    TRACK589_BEGIN: track(&&TRACK589_BEGIN, &&TRACK589_END);
+    TRACK589_END:  __asm__("nop;");
     s->ll4[(j) >> 1] = (s->ll4[(j) >> 1] & 0x0f) | ((i >> 16) << 4);
     } }; };
                 i = j;
@@ -5184,36 +4943,30 @@ s->cftab[i] += s->cftab[i-1];
            s->tPos = s->origPtr;
            s->nblock_used = 0;
            if (s->blockRandomised) {
-    TRACK523_BEGIN: track(&&TRACK523_BEGIN, &&TRACK523_END);
-    TRACK523_END:  __asm__("nop;");
-     
+    TRACK593_BEGIN: track(&&TRACK593_BEGIN, &&TRACK593_END);
+    TRACK593_END:  __asm__("nop;");
     s->rNToGo = 0; s->rTPos = 0;
                 s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
                 if (s->rNToGo == 0) {
-      TRACK522_BEGIN: track(&&TRACK522_BEGIN, &&TRACK522_END);
-      TRACK522_END:  __asm__("nop;");
-       
+      TRACK592_BEGIN: track(&&TRACK592_BEGIN, &&TRACK592_END);
+      TRACK592_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK521_BEGIN: track(&&TRACK521_BEGIN, &&TRACK521_END);
-      TRACK521_END:  __asm__("nop;");
-       
+      TRACK591_BEGIN: track(&&TRACK591_BEGIN, &&TRACK591_END);
+      TRACK591_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
   } else {
-    TRACK524_BEGIN: track(&&TRACK524_BEGIN, &&TRACK524_END);
-    TRACK524_END:  __asm__("nop;");
-     
+    TRACK594_BEGIN: track(&&TRACK594_BEGIN, &&TRACK594_END);
+    TRACK594_END:  __asm__("nop;");
     s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
   }
 } else {
-  TRACK531_BEGIN: track(&&TRACK531_BEGIN, &&TRACK531_END);
-  TRACK531_END:  __asm__("nop;");
-   
+  TRACK601_BEGIN: track(&&TRACK601_BEGIN, &&TRACK601_END);
+  TRACK601_END:  __asm__("nop;");
   for (i = 0; i < nblock; i++) {
-    TRACK526_BEGIN: track(&&TRACK526_BEGIN, &&TRACK526_END);
-    TRACK526_END:  __asm__("nop;");
-     
+    TRACK596_BEGIN: track(&&TRACK596_BEGIN, &&TRACK596_END);
+    TRACK596_END:  __asm__("nop;");
     uc = (UChar)(s->tt[i] & 0xff);
                 s->tt[s->cftab[uc]] |= (i << 8);
                 s->cftab[uc]++;
@@ -5221,26 +4974,22 @@ s->cftab[i] += s->cftab[i-1];
            s->tPos = s->tt[s->origPtr] >> 8;
            s->nblock_used = 0;
            if (s->blockRandomised) {
-    TRACK529_BEGIN: track(&&TRACK529_BEGIN, &&TRACK529_END);
-    TRACK529_END:  __asm__("nop;");
-     
+    TRACK599_BEGIN: track(&&TRACK599_BEGIN, &&TRACK599_END);
+    TRACK599_END:  __asm__("nop;");
     s->rNToGo = 0; s->rTPos = 0;
                 s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
                 if (s->rNToGo == 0) {
-      TRACK528_BEGIN: track(&&TRACK528_BEGIN, &&TRACK528_END);
-      TRACK528_END:  __asm__("nop;");
-       
+      TRACK598_BEGIN: track(&&TRACK598_BEGIN, &&TRACK598_END);
+      TRACK598_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK527_BEGIN: track(&&TRACK527_BEGIN, &&TRACK527_END);
-      TRACK527_END:  __asm__("nop;");
-       
+      TRACK597_BEGIN: track(&&TRACK597_BEGIN, &&TRACK597_END);
+      TRACK597_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;; s->k0 ^= ((s->rNToGo == 1) ? 1 : 0);
   } else {
-    TRACK530_BEGIN: track(&&TRACK530_BEGIN, &&TRACK530_END);
-    TRACK530_END:  __asm__("nop;");
-     
+    TRACK600_BEGIN: track(&&TRACK600_BEGIN, &&TRACK600_END);
+    TRACK600_END:  __asm__("nop;");
     s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; s->nblock_used++;
   }
 }
@@ -5248,278 +4997,228 @@ s->cftab[i] += s->cftab[i-1];
     endhdr_2:
        
   case 42:
-	TRACK532_BEGIN: track(&&TRACK532_BEGIN, &&TRACK532_END);
-	TRACK532_END:  __asm__("nop;");
-	 
+	TRACK602_BEGIN: track(&&TRACK602_BEGIN, &&TRACK602_END);
+	TRACK602_END:  __asm__("nop;");
 	s->state = 42; while (((Bool)1)) {
-  TRACK536_BEGIN: track(&&TRACK536_BEGIN, &&TRACK536_END);
-  TRACK536_END:  __asm__("nop;");
-   
+  TRACK606_BEGIN: track(&&TRACK606_BEGIN, &&TRACK606_END);
+  TRACK606_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK533_BEGIN: track(&&TRACK533_BEGIN, &&TRACK533_END);
-    TRACK533_END:  __asm__("nop;");
-     
+    TRACK603_BEGIN: track(&&TRACK603_BEGIN, &&TRACK603_END);
+    TRACK603_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK534_BEGIN: track(&&TRACK534_BEGIN, &&TRACK534_END);
-    TRACK534_END:  __asm__("nop;");
-     
+    TRACK604_BEGIN: track(&&TRACK604_BEGIN, &&TRACK604_END);
+    TRACK604_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK535_BEGIN: track(&&TRACK535_BEGIN, &&TRACK535_END);
-  TRACK535_END:  __asm__("nop;");
-   
+  TRACK605_BEGIN: track(&&TRACK605_BEGIN, &&TRACK605_END);
+  TRACK605_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x72) {
-  TRACK537_BEGIN: track(&&TRACK537_BEGIN, &&TRACK537_END);
-  TRACK537_END:  __asm__("nop;");
-   
+  TRACK607_BEGIN: track(&&TRACK607_BEGIN, &&TRACK607_END);
+  TRACK607_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 43:
-	TRACK538_BEGIN: track(&&TRACK538_BEGIN, &&TRACK538_END);
-	TRACK538_END:  __asm__("nop;");
-	 
+	TRACK608_BEGIN: track(&&TRACK608_BEGIN, &&TRACK608_END);
+	TRACK608_END:  __asm__("nop;");
 	s->state = 43; while (((Bool)1)) {
-  TRACK542_BEGIN: track(&&TRACK542_BEGIN, &&TRACK542_END);
-  TRACK542_END:  __asm__("nop;");
-   
+  TRACK612_BEGIN: track(&&TRACK612_BEGIN, &&TRACK612_END);
+  TRACK612_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK539_BEGIN: track(&&TRACK539_BEGIN, &&TRACK539_END);
-    TRACK539_END:  __asm__("nop;");
-     
+    TRACK609_BEGIN: track(&&TRACK609_BEGIN, &&TRACK609_END);
+    TRACK609_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK540_BEGIN: track(&&TRACK540_BEGIN, &&TRACK540_END);
-    TRACK540_END:  __asm__("nop;");
-     
+    TRACK610_BEGIN: track(&&TRACK610_BEGIN, &&TRACK610_END);
+    TRACK610_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK541_BEGIN: track(&&TRACK541_BEGIN, &&TRACK541_END);
-  TRACK541_END:  __asm__("nop;");
-   
+  TRACK611_BEGIN: track(&&TRACK611_BEGIN, &&TRACK611_END);
+  TRACK611_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x45) {
-  TRACK543_BEGIN: track(&&TRACK543_BEGIN, &&TRACK543_END);
-  TRACK543_END:  __asm__("nop;");
-   
+  TRACK613_BEGIN: track(&&TRACK613_BEGIN, &&TRACK613_END);
+  TRACK613_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 44:
-	TRACK544_BEGIN: track(&&TRACK544_BEGIN, &&TRACK544_END);
-	TRACK544_END:  __asm__("nop;");
-	 
+	TRACK614_BEGIN: track(&&TRACK614_BEGIN, &&TRACK614_END);
+	TRACK614_END:  __asm__("nop;");
 	s->state = 44; while (((Bool)1)) {
-  TRACK548_BEGIN: track(&&TRACK548_BEGIN, &&TRACK548_END);
-  TRACK548_END:  __asm__("nop;");
-   
+  TRACK618_BEGIN: track(&&TRACK618_BEGIN, &&TRACK618_END);
+  TRACK618_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK545_BEGIN: track(&&TRACK545_BEGIN, &&TRACK545_END);
-    TRACK545_END:  __asm__("nop;");
-     
+    TRACK615_BEGIN: track(&&TRACK615_BEGIN, &&TRACK615_END);
+    TRACK615_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK546_BEGIN: track(&&TRACK546_BEGIN, &&TRACK546_END);
-    TRACK546_END:  __asm__("nop;");
-     
+    TRACK616_BEGIN: track(&&TRACK616_BEGIN, &&TRACK616_END);
+    TRACK616_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK547_BEGIN: track(&&TRACK547_BEGIN, &&TRACK547_END);
-  TRACK547_END:  __asm__("nop;");
-   
+  TRACK617_BEGIN: track(&&TRACK617_BEGIN, &&TRACK617_END);
+  TRACK617_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x38) {
-  TRACK549_BEGIN: track(&&TRACK549_BEGIN, &&TRACK549_END);
-  TRACK549_END:  __asm__("nop;");
-   
+  TRACK619_BEGIN: track(&&TRACK619_BEGIN, &&TRACK619_END);
+  TRACK619_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 45:
-	TRACK550_BEGIN: track(&&TRACK550_BEGIN, &&TRACK550_END);
-	TRACK550_END:  __asm__("nop;");
-	 
+	TRACK620_BEGIN: track(&&TRACK620_BEGIN, &&TRACK620_END);
+	TRACK620_END:  __asm__("nop;");
 	s->state = 45; while (((Bool)1)) {
-  TRACK554_BEGIN: track(&&TRACK554_BEGIN, &&TRACK554_END);
-  TRACK554_END:  __asm__("nop;");
-   
+  TRACK624_BEGIN: track(&&TRACK624_BEGIN, &&TRACK624_END);
+  TRACK624_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK551_BEGIN: track(&&TRACK551_BEGIN, &&TRACK551_END);
-    TRACK551_END:  __asm__("nop;");
-     
+    TRACK621_BEGIN: track(&&TRACK621_BEGIN, &&TRACK621_END);
+    TRACK621_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK552_BEGIN: track(&&TRACK552_BEGIN, &&TRACK552_END);
-    TRACK552_END:  __asm__("nop;");
-     
+    TRACK622_BEGIN: track(&&TRACK622_BEGIN, &&TRACK622_END);
+    TRACK622_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK553_BEGIN: track(&&TRACK553_BEGIN, &&TRACK553_END);
-  TRACK553_END:  __asm__("nop;");
-   
+  TRACK623_BEGIN: track(&&TRACK623_BEGIN, &&TRACK623_END);
+  TRACK623_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x50) {
-  TRACK555_BEGIN: track(&&TRACK555_BEGIN, &&TRACK555_END);
-  TRACK555_END:  __asm__("nop;");
-   
+  TRACK625_BEGIN: track(&&TRACK625_BEGIN, &&TRACK625_END);
+  TRACK625_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
        
   case 46:
-	TRACK556_BEGIN: track(&&TRACK556_BEGIN, &&TRACK556_END);
-	TRACK556_END:  __asm__("nop;");
-	 
+	TRACK626_BEGIN: track(&&TRACK626_BEGIN, &&TRACK626_END);
+	TRACK626_END:  __asm__("nop;");
 	s->state = 46; while (((Bool)1)) {
-  TRACK560_BEGIN: track(&&TRACK560_BEGIN, &&TRACK560_END);
-  TRACK560_END:  __asm__("nop;");
-   
+  TRACK630_BEGIN: track(&&TRACK630_BEGIN, &&TRACK630_END);
+  TRACK630_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK557_BEGIN: track(&&TRACK557_BEGIN, &&TRACK557_END);
-    TRACK557_END:  __asm__("nop;");
-     
+    TRACK627_BEGIN: track(&&TRACK627_BEGIN, &&TRACK627_END);
+    TRACK627_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK558_BEGIN: track(&&TRACK558_BEGIN, &&TRACK558_END);
-    TRACK558_END:  __asm__("nop;");
-     
+    TRACK628_BEGIN: track(&&TRACK628_BEGIN, &&TRACK628_END);
+    TRACK628_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK559_BEGIN: track(&&TRACK559_BEGIN, &&TRACK559_END);
-  TRACK559_END:  __asm__("nop;");
-   
+  TRACK629_BEGIN: track(&&TRACK629_BEGIN, &&TRACK629_END);
+  TRACK629_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       if (uc != 0x90) {
-  TRACK561_BEGIN: track(&&TRACK561_BEGIN, &&TRACK561_END);
-  TRACK561_END:  __asm__("nop;");
-   
+  TRACK631_BEGIN: track(&&TRACK631_BEGIN, &&TRACK631_END);
+  TRACK631_END:  __asm__("nop;");
   retVal = (-4); goto save_state_and_return;
 };;
       s->storedCombinedCRC = 0;
        
   case 47:
-	TRACK562_BEGIN: track(&&TRACK562_BEGIN, &&TRACK562_END);
-	TRACK562_END:  __asm__("nop;");
-	 
+	TRACK632_BEGIN: track(&&TRACK632_BEGIN, &&TRACK632_END);
+	TRACK632_END:  __asm__("nop;");
 	s->state = 47; while (((Bool)1)) {
-  TRACK566_BEGIN: track(&&TRACK566_BEGIN, &&TRACK566_END);
-  TRACK566_END:  __asm__("nop;");
-   
+  TRACK636_BEGIN: track(&&TRACK636_BEGIN, &&TRACK636_END);
+  TRACK636_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK563_BEGIN: track(&&TRACK563_BEGIN, &&TRACK563_END);
-    TRACK563_END:  __asm__("nop;");
-     
+    TRACK633_BEGIN: track(&&TRACK633_BEGIN, &&TRACK633_END);
+    TRACK633_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK564_BEGIN: track(&&TRACK564_BEGIN, &&TRACK564_END);
-    TRACK564_END:  __asm__("nop;");
-     
+    TRACK634_BEGIN: track(&&TRACK634_BEGIN, &&TRACK634_END);
+    TRACK634_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK565_BEGIN: track(&&TRACK565_BEGIN, &&TRACK565_END);
-  TRACK565_END:  __asm__("nop;");
-   
+  TRACK635_BEGIN: track(&&TRACK635_BEGIN, &&TRACK635_END);
+  TRACK635_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 48:
-	TRACK567_BEGIN: track(&&TRACK567_BEGIN, &&TRACK567_END);
-	TRACK567_END:  __asm__("nop;");
-	 
+	TRACK637_BEGIN: track(&&TRACK637_BEGIN, &&TRACK637_END);
+	TRACK637_END:  __asm__("nop;");
 	s->state = 48; while (((Bool)1)) {
-  TRACK571_BEGIN: track(&&TRACK571_BEGIN, &&TRACK571_END);
-  TRACK571_END:  __asm__("nop;");
-   
+  TRACK641_BEGIN: track(&&TRACK641_BEGIN, &&TRACK641_END);
+  TRACK641_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK568_BEGIN: track(&&TRACK568_BEGIN, &&TRACK568_END);
-    TRACK568_END:  __asm__("nop;");
-     
+    TRACK638_BEGIN: track(&&TRACK638_BEGIN, &&TRACK638_END);
+    TRACK638_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK569_BEGIN: track(&&TRACK569_BEGIN, &&TRACK569_END);
-    TRACK569_END:  __asm__("nop;");
-     
+    TRACK639_BEGIN: track(&&TRACK639_BEGIN, &&TRACK639_END);
+    TRACK639_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK570_BEGIN: track(&&TRACK570_BEGIN, &&TRACK570_END);
-  TRACK570_END:  __asm__("nop;");
-   
+  TRACK640_BEGIN: track(&&TRACK640_BEGIN, &&TRACK640_END);
+  TRACK640_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 49:
-	TRACK572_BEGIN: track(&&TRACK572_BEGIN, &&TRACK572_END);
-	TRACK572_END:  __asm__("nop;");
-	 
+	TRACK642_BEGIN: track(&&TRACK642_BEGIN, &&TRACK642_END);
+	TRACK642_END:  __asm__("nop;");
 	s->state = 49; while (((Bool)1)) {
-  TRACK576_BEGIN: track(&&TRACK576_BEGIN, &&TRACK576_END);
-  TRACK576_END:  __asm__("nop;");
-   
+  TRACK646_BEGIN: track(&&TRACK646_BEGIN, &&TRACK646_END);
+  TRACK646_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK573_BEGIN: track(&&TRACK573_BEGIN, &&TRACK573_END);
-    TRACK573_END:  __asm__("nop;");
-     
+    TRACK643_BEGIN: track(&&TRACK643_BEGIN, &&TRACK643_END);
+    TRACK643_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK574_BEGIN: track(&&TRACK574_BEGIN, &&TRACK574_END);
-    TRACK574_END:  __asm__("nop;");
-     
+    TRACK644_BEGIN: track(&&TRACK644_BEGIN, &&TRACK644_END);
+    TRACK644_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK575_BEGIN: track(&&TRACK575_BEGIN, &&TRACK575_END);
-  TRACK575_END:  __asm__("nop;");
-   
+  TRACK645_BEGIN: track(&&TRACK645_BEGIN, &&TRACK645_END);
+  TRACK645_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
       s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((UInt32)uc);
        
   case 50:
-	TRACK577_BEGIN: track(&&TRACK577_BEGIN, &&TRACK577_END);
-	TRACK577_END:  __asm__("nop;");
-	 
+	TRACK647_BEGIN: track(&&TRACK647_BEGIN, &&TRACK647_END);
+	TRACK647_END:  __asm__("nop;");
 	s->state = 50; while (((Bool)1)) {
-  TRACK581_BEGIN: track(&&TRACK581_BEGIN, &&TRACK581_END);
-  TRACK581_END:  __asm__("nop;");
-   
+  TRACK651_BEGIN: track(&&TRACK651_BEGIN, &&TRACK651_END);
+  TRACK651_END:  __asm__("nop;");
   if (s->bsLive >= 8) {
     UInt32 v;
-    TRACK578_BEGIN: track(&&TRACK578_BEGIN, &&TRACK578_END);
-    TRACK578_END:  __asm__("nop;");
-     
+    TRACK648_BEGIN: track(&&TRACK648_BEGIN, &&TRACK648_END);
+    TRACK648_END:  __asm__("nop;");
     v = (s->bsBuff >> (s->bsLive-8)) & ((1 << 8)-1); s->bsLive -= 8; uc = v; break;
   } if (s->strm->avail_in == 0) {
-    TRACK579_BEGIN: track(&&TRACK579_BEGIN, &&TRACK579_END);
-    TRACK579_END:  __asm__("nop;");
-     
+    TRACK649_BEGIN: track(&&TRACK649_BEGIN, &&TRACK649_END);
+    TRACK649_END:  __asm__("nop;");
     retVal = 0; goto save_state_and_return;
   };; s->bsBuff = (s->bsBuff << 8) | ((UInt32) (*((UChar*)(s->strm->next_in)))); s->bsLive += 8; s->strm->next_in++; s->strm->avail_in--; s->strm->total_in_lo32++; if (s->strm->total_in_lo32 == 0)  {
-  TRACK580_BEGIN: track(&&TRACK580_BEGIN, &&TRACK580_END);
-  TRACK580_END:  __asm__("nop;");
-   
+  TRACK650_BEGIN: track(&&TRACK650_BEGIN, &&TRACK650_END);
+  TRACK650_END:  __asm__("nop;");
   s->strm->total_in_hi32++;
   }
 };
@@ -5528,20 +5227,17 @@ s->cftab[i] += s->cftab[i-1];
       { retVal = 4; goto save_state_and_return; };;
        
   default:
-	TRACK583_BEGIN: track(&&TRACK583_BEGIN, &&TRACK583_END);
-	TRACK583_END:  __asm__("nop;");
-	 
+	TRACK653_BEGIN: track(&&TRACK653_BEGIN, &&TRACK653_END);
+	TRACK653_END:  __asm__("nop;");
 	{ if (!(((Bool)0)))  {
-	TRACK582_BEGIN: track(&&TRACK582_BEGIN, &&TRACK582_END);
-	TRACK582_END:  __asm__("nop;");
-	 
+	TRACK652_BEGIN: track(&&TRACK652_BEGIN, &&TRACK652_END);
+	TRACK652_END:  __asm__("nop;");
 	BZ2_bz__AssertH__fail ( 4001 );
 	} };
    }
    { if (!(((Bool)0)))  {
-TRACK584_BEGIN: track(&&TRACK584_BEGIN, &&TRACK584_END);
-TRACK584_END:  __asm__("nop;");
- 
+TRACK654_BEGIN: track(&&TRACK654_BEGIN, &&TRACK654_END);
+TRACK654_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 4002 );
 } };
    save_state_and_return:
@@ -5586,9 +5282,8 @@ void BZ2_bz__AssertH__fail ( int errcode )
       BZ2_bzlibVersion()
    );
    if (errcode == 1007) {
-  TRACK585_BEGIN: track(&&TRACK585_BEGIN, &&TRACK585_END);
-  TRACK585_END:  __asm__("nop;");
-   
+  TRACK655_BEGIN: track(&&TRACK655_BEGIN, &&TRACK655_END);
+  TRACK655_END:  __asm__("nop;");
   fprintf(stderr,
         "\n*** A special note about internal error number 1007 ***\n"
         "\n"
@@ -5620,9 +5315,21 @@ void BZ2_bz__AssertH__fail ( int errcode )
 static
 int bz_config_ok ( void )
 {
-   if (sizeof(int) != 4) return 0;
-   if (sizeof(short) != 2) return 0;
-   if (sizeof(char) != 1) return 0;
+   if (sizeof(int) != 4)  {
+TRACK656_BEGIN: track(&&TRACK656_BEGIN, &&TRACK656_END);
+TRACK656_END:  __asm__("nop;");
+return 0;
+}
+   if (sizeof(short) != 2)  {
+TRACK657_BEGIN: track(&&TRACK657_BEGIN, &&TRACK657_END);
+TRACK657_END:  __asm__("nop;");
+return 0;
+}
+   if (sizeof(char) != 1)  {
+TRACK658_BEGIN: track(&&TRACK658_BEGIN, &&TRACK658_END);
+TRACK658_END:  __asm__("nop;");
+return 0;
+}
    return 1;
 }
 static
@@ -5635,9 +5342,8 @@ static
 void default_bzfree ( void* opaque, void* addr )
 {
    if (addr != ((void *)0))  {
-TRACK586_BEGIN: track(&&TRACK586_BEGIN, &&TRACK586_END);
-TRACK586_END:  __asm__("nop;");
- 
+TRACK659_BEGIN: track(&&TRACK659_BEGIN, &&TRACK659_END);
+TRACK659_END:  __asm__("nop;");
 free ( addr );
 }
 }
@@ -5650,9 +5356,8 @@ void prepare_new_block ( EState* s )
    s->state_out_pos = 0;
    { s->blockCRC = 0xffffffffL; };
    for (i = 0; i < 256; i++)  {
-TRACK587_BEGIN: track(&&TRACK587_BEGIN, &&TRACK587_END);
-TRACK587_END:  __asm__("nop;");
- 
+TRACK660_BEGIN: track(&&TRACK660_BEGIN, &&TRACK660_END);
+TRACK660_END:  __asm__("nop;");
 s->inUse[i] = ((Bool)0);
 }
    s->blockNo++;
@@ -5667,8 +5372,16 @@ static
 Bool isempty_RL ( EState* s )
 {
    if (s->state_in_ch < 256 && s->state_in_len > 0)
-      return ((Bool)0); else
-      return ((Bool)1);
+       {
+TRACK661_BEGIN: track(&&TRACK661_BEGIN, &&TRACK661_END);
+TRACK661_END:  __asm__("nop;");
+return ((Bool)0);
+} else
+       {
+TRACK662_BEGIN: track(&&TRACK662_BEGIN, &&TRACK662_END);
+TRACK662_END:  __asm__("nop;");
+return ((Bool)1);
+}
 }
 int BZ2_bzCompressInit
                     ( bz_stream* strm,
@@ -5678,31 +5391,40 @@ int BZ2_bzCompressInit
 {
    Int32 n;
    EState* s;
-   if (!bz_config_ok()) return (-9);
+   if (!bz_config_ok())  {
+TRACK663_BEGIN: track(&&TRACK663_BEGIN, &&TRACK663_END);
+TRACK663_END:  __asm__("nop;");
+return (-9);
+}
    if (strm == ((void *)0) ||
        blockSize100k < 1 || blockSize100k > 9 ||
        workFactor < 0 || workFactor > 250)
-     return (-2);
+      {
+TRACK664_BEGIN: track(&&TRACK664_BEGIN, &&TRACK664_END);
+TRACK664_END:  __asm__("nop;");
+return (-2);
+}
    if (workFactor == 0)  {
-TRACK588_BEGIN: track(&&TRACK588_BEGIN, &&TRACK588_END);
-TRACK588_END:  __asm__("nop;");
- 
+TRACK665_BEGIN: track(&&TRACK665_BEGIN, &&TRACK665_END);
+TRACK665_END:  __asm__("nop;");
 workFactor = 30;
 }
    if (strm->bzalloc == ((void *)0))  {
-TRACK589_BEGIN: track(&&TRACK589_BEGIN, &&TRACK589_END);
-TRACK589_END:  __asm__("nop;");
- 
+TRACK666_BEGIN: track(&&TRACK666_BEGIN, &&TRACK666_END);
+TRACK666_END:  __asm__("nop;");
 strm->bzalloc = default_bzalloc;
 }
    if (strm->bzfree == ((void *)0))  {
-TRACK590_BEGIN: track(&&TRACK590_BEGIN, &&TRACK590_END);
-TRACK590_END:  __asm__("nop;");
- 
+TRACK667_BEGIN: track(&&TRACK667_BEGIN, &&TRACK667_END);
+TRACK667_END:  __asm__("nop;");
 strm->bzfree = default_bzfree;
 }
    s = (strm->bzalloc)(strm->opaque,(sizeof(EState)),1);
-   if (s == ((void *)0)) return (-3);
+   if (s == ((void *)0))  {
+TRACK668_BEGIN: track(&&TRACK668_BEGIN, &&TRACK668_END);
+TRACK668_END:  __asm__("nop;");
+return (-3);
+}
    s->strm = strm;
    s->arr1 = ((void *)0);
    s->arr2 = ((void *)0);
@@ -5712,31 +5434,26 @@ strm->bzfree = default_bzfree;
    s->arr2 = (strm->bzalloc)(strm->opaque,((n+(2 + 12 + 18 + 2)) * sizeof(UInt32)),1);
    s->ftab = (strm->bzalloc)(strm->opaque,(65537 * sizeof(UInt32)),1);
    if (s->arr1 == ((void *)0) || s->arr2 == ((void *)0) || s->ftab == ((void *)0)) {
-  TRACK595_BEGIN: track(&&TRACK595_BEGIN, &&TRACK595_END);
-  TRACK595_END:  __asm__("nop;");
-   
+  TRACK673_BEGIN: track(&&TRACK673_BEGIN, &&TRACK673_END);
+  TRACK673_END:  __asm__("nop;");
   if (s->arr1 != ((void *)0))  {
-  TRACK591_BEGIN: track(&&TRACK591_BEGIN, &&TRACK591_END);
-  TRACK591_END:  __asm__("nop;");
-   
+  TRACK669_BEGIN: track(&&TRACK669_BEGIN, &&TRACK669_END);
+  TRACK669_END:  __asm__("nop;");
   (strm->bzfree)(strm->opaque,(s->arr1));
   }
         if (s->arr2 != ((void *)0))  {
-  TRACK592_BEGIN: track(&&TRACK592_BEGIN, &&TRACK592_END);
-  TRACK592_END:  __asm__("nop;");
-   
+  TRACK670_BEGIN: track(&&TRACK670_BEGIN, &&TRACK670_END);
+  TRACK670_END:  __asm__("nop;");
   (strm->bzfree)(strm->opaque,(s->arr2));
   }
         if (s->ftab != ((void *)0))  {
-  TRACK593_BEGIN: track(&&TRACK593_BEGIN, &&TRACK593_END);
-  TRACK593_END:  __asm__("nop;");
-   
+  TRACK671_BEGIN: track(&&TRACK671_BEGIN, &&TRACK671_END);
+  TRACK671_END:  __asm__("nop;");
   (strm->bzfree)(strm->opaque,(s->ftab));
   }
         if (s != ((void *)0))  {
-  TRACK594_BEGIN: track(&&TRACK594_BEGIN, &&TRACK594_END);
-  TRACK594_END:  __asm__("nop;");
-   
+  TRACK672_BEGIN: track(&&TRACK672_BEGIN, &&TRACK672_END);
+  TRACK672_END:  __asm__("nop;");
   (strm->bzfree)(strm->opaque,(s));
   }
         return (-3);
@@ -5768,42 +5485,37 @@ void add_pair_to_block ( EState* s )
    Int32 i;
    UChar ch = (UChar)(s->state_in_ch);
    for (i = 0; i < s->state_in_len; i++) {
-  TRACK596_BEGIN: track(&&TRACK596_BEGIN, &&TRACK596_END);
-  TRACK596_END:  __asm__("nop;");
-   
+  TRACK674_BEGIN: track(&&TRACK674_BEGIN, &&TRACK674_END);
+  TRACK674_END:  __asm__("nop;");
   { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; };
 }
    s->inUse[s->state_in_ch] = ((Bool)1);
    switch (s->state_in_len) {
        
   case 1:
-	TRACK597_BEGIN: track(&&TRACK597_BEGIN, &&TRACK597_END);
-	TRACK597_END:  __asm__("nop;");
-	 
+	TRACK675_BEGIN: track(&&TRACK675_BEGIN, &&TRACK675_END);
+	TRACK675_END:  __asm__("nop;");
 	s->block[s->nblock] = (UChar)ch; s->nblock++;
          break;
        
   case 2:
-	TRACK598_BEGIN: track(&&TRACK598_BEGIN, &&TRACK598_END);
-	TRACK598_END:  __asm__("nop;");
-	 
+	TRACK676_BEGIN: track(&&TRACK676_BEGIN, &&TRACK676_END);
+	TRACK676_END:  __asm__("nop;");
 	s->block[s->nblock] = (UChar)ch; s->nblock++;
          s->block[s->nblock] = (UChar)ch; s->nblock++;
          break;
        
   case 3:
-	TRACK599_BEGIN: track(&&TRACK599_BEGIN, &&TRACK599_END);
-	TRACK599_END:  __asm__("nop;");
-	 
+	TRACK677_BEGIN: track(&&TRACK677_BEGIN, &&TRACK677_END);
+	TRACK677_END:  __asm__("nop;");
 	s->block[s->nblock] = (UChar)ch; s->nblock++;
          s->block[s->nblock] = (UChar)ch; s->nblock++;
          s->block[s->nblock] = (UChar)ch; s->nblock++;
          break;
        
   default:
-	TRACK600_BEGIN: track(&&TRACK600_BEGIN, &&TRACK600_END);
-	TRACK600_END:  __asm__("nop;");
-	 
+	TRACK678_BEGIN: track(&&TRACK678_BEGIN, &&TRACK678_END);
+	TRACK678_END:  __asm__("nop;");
 	s->inUse[s->state_in_len-4] = ((Bool)1);
          s->block[s->nblock] = (UChar)ch; s->nblock++;
          s->block[s->nblock] = (UChar)ch; s->nblock++;
@@ -5818,9 +5530,8 @@ static
 void flush_RL ( EState* s )
 {
    if (s->state_in_ch < 256)  {
-TRACK601_BEGIN: track(&&TRACK601_BEGIN, &&TRACK601_END);
-TRACK601_END:  __asm__("nop;");
- 
+TRACK679_BEGIN: track(&&TRACK679_BEGIN, &&TRACK679_END);
+TRACK679_END:  __asm__("nop;");
 add_pair_to_block ( s );
 }
    init_RL ( s );
@@ -5830,40 +5541,41 @@ Bool copy_input_until_stop ( EState* s )
 {
    Bool progress_in = ((Bool)0);
    if (s->mode == 2) {
-  TRACK609_BEGIN: track(&&TRACK609_BEGIN, &&TRACK609_END);
-  TRACK609_END:  __asm__("nop;");
-   
+  TRACK689_BEGIN: track(&&TRACK689_BEGIN, &&TRACK689_END);
+  TRACK689_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK608_BEGIN: track(&&TRACK608_BEGIN, &&TRACK608_END);
-    TRACK608_END:  __asm__("nop;");
-     
-    if (s->nblock >= s->nblockMAX) break;
-             if (s->strm->avail_in == 0) break;
+    TRACK688_BEGIN: track(&&TRACK688_BEGIN, &&TRACK688_END);
+    TRACK688_END:  __asm__("nop;");
+    if (s->nblock >= s->nblockMAX)  {
+    TRACK680_BEGIN: track(&&TRACK680_BEGIN, &&TRACK680_END);
+    TRACK680_END:  __asm__("nop;");
+    break;
+    }
+             if (s->strm->avail_in == 0)  {
+    TRACK681_BEGIN: track(&&TRACK681_BEGIN, &&TRACK681_END);
+    TRACK681_END:  __asm__("nop;");
+    break;
+    }
              progress_in = ((Bool)1);
              { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
       UChar ch = (UChar)(s->state_in_ch);
-      TRACK602_BEGIN: track(&&TRACK602_BEGIN, &&TRACK602_END);
-      TRACK602_END:  __asm__("nop;");
-       
+      TRACK682_BEGIN: track(&&TRACK682_BEGIN, &&TRACK682_END);
+      TRACK682_END:  __asm__("nop;");
       { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
     } else  {
-    TRACK606_BEGIN: track(&&TRACK606_BEGIN, &&TRACK606_END);
-    TRACK606_END:  __asm__("nop;");
-     
+    TRACK686_BEGIN: track(&&TRACK686_BEGIN, &&TRACK686_END);
+    TRACK686_END:  __asm__("nop;");
     if (zchh != s->state_in_ch || s->state_in_len == 255) {
-      TRACK604_BEGIN: track(&&TRACK604_BEGIN, &&TRACK604_END);
-      TRACK604_END:  __asm__("nop;");
-       
+      TRACK684_BEGIN: track(&&TRACK684_BEGIN, &&TRACK684_END);
+      TRACK684_END:  __asm__("nop;");
       if (s->state_in_ch < 256)  {
-      TRACK603_BEGIN: track(&&TRACK603_BEGIN, &&TRACK603_END);
-      TRACK603_END:  __asm__("nop;");
-       
+      TRACK683_BEGIN: track(&&TRACK683_BEGIN, &&TRACK683_END);
+      TRACK683_END:  __asm__("nop;");
       add_pair_to_block ( s );
       } s->state_in_ch = zchh; s->state_in_len = 1;
     } else {
-      TRACK605_BEGIN: track(&&TRACK605_BEGIN, &&TRACK605_END);
-      TRACK605_END:  __asm__("nop;");
-       
+      TRACK685_BEGIN: track(&&TRACK685_BEGIN, &&TRACK685_END);
+      TRACK685_END:  __asm__("nop;");
       s->state_in_len++;
     }
     } };
@@ -5871,48 +5583,52 @@ Bool copy_input_until_stop ( EState* s )
              s->strm->avail_in--;
              s->strm->total_in_lo32++;
              if (s->strm->total_in_lo32 == 0)  {
-    TRACK607_BEGIN: track(&&TRACK607_BEGIN, &&TRACK607_END);
-    TRACK607_END:  __asm__("nop;");
-     
+    TRACK687_BEGIN: track(&&TRACK687_BEGIN, &&TRACK687_END);
+    TRACK687_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
   }
 } else {
-  TRACK617_BEGIN: track(&&TRACK617_BEGIN, &&TRACK617_END);
-  TRACK617_END:  __asm__("nop;");
-   
+  TRACK700_BEGIN: track(&&TRACK700_BEGIN, &&TRACK700_END);
+  TRACK700_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK616_BEGIN: track(&&TRACK616_BEGIN, &&TRACK616_END);
-    TRACK616_END:  __asm__("nop;");
-     
-    if (s->nblock >= s->nblockMAX) break;
-             if (s->strm->avail_in == 0) break;
-             if (s->avail_in_expect == 0) break;
+    TRACK699_BEGIN: track(&&TRACK699_BEGIN, &&TRACK699_END);
+    TRACK699_END:  __asm__("nop;");
+    if (s->nblock >= s->nblockMAX)  {
+    TRACK690_BEGIN: track(&&TRACK690_BEGIN, &&TRACK690_END);
+    TRACK690_END:  __asm__("nop;");
+    break;
+    }
+             if (s->strm->avail_in == 0)  {
+    TRACK691_BEGIN: track(&&TRACK691_BEGIN, &&TRACK691_END);
+    TRACK691_END:  __asm__("nop;");
+    break;
+    }
+             if (s->avail_in_expect == 0)  {
+    TRACK692_BEGIN: track(&&TRACK692_BEGIN, &&TRACK692_END);
+    TRACK692_END:  __asm__("nop;");
+    break;
+    }
              progress_in = ((Bool)1);
              { UInt32 zchh = (UInt32)((UInt32)(*((UChar*)(s->strm->next_in)))); if (zchh != s->state_in_ch && s->state_in_len == 1) {
       UChar ch = (UChar)(s->state_in_ch);
-      TRACK610_BEGIN: track(&&TRACK610_BEGIN, &&TRACK610_END);
-      TRACK610_END:  __asm__("nop;");
-       
+      TRACK693_BEGIN: track(&&TRACK693_BEGIN, &&TRACK693_END);
+      TRACK693_END:  __asm__("nop;");
       { s->blockCRC = (s->blockCRC << 8) ^ BZ2_crc32Table[(s->blockCRC >> 24) ^ ((UChar)ch)]; }; s->inUse[s->state_in_ch] = ((Bool)1); s->block[s->nblock] = (UChar)ch; s->nblock++; s->state_in_ch = zchh;
     } else  {
-    TRACK614_BEGIN: track(&&TRACK614_BEGIN, &&TRACK614_END);
-    TRACK614_END:  __asm__("nop;");
-     
+    TRACK697_BEGIN: track(&&TRACK697_BEGIN, &&TRACK697_END);
+    TRACK697_END:  __asm__("nop;");
     if (zchh != s->state_in_ch || s->state_in_len == 255) {
-      TRACK612_BEGIN: track(&&TRACK612_BEGIN, &&TRACK612_END);
-      TRACK612_END:  __asm__("nop;");
-       
+      TRACK695_BEGIN: track(&&TRACK695_BEGIN, &&TRACK695_END);
+      TRACK695_END:  __asm__("nop;");
       if (s->state_in_ch < 256)  {
-      TRACK611_BEGIN: track(&&TRACK611_BEGIN, &&TRACK611_END);
-      TRACK611_END:  __asm__("nop;");
-       
+      TRACK694_BEGIN: track(&&TRACK694_BEGIN, &&TRACK694_END);
+      TRACK694_END:  __asm__("nop;");
       add_pair_to_block ( s );
       } s->state_in_ch = zchh; s->state_in_len = 1;
     } else {
-      TRACK613_BEGIN: track(&&TRACK613_BEGIN, &&TRACK613_END);
-      TRACK613_END:  __asm__("nop;");
-       
+      TRACK696_BEGIN: track(&&TRACK696_BEGIN, &&TRACK696_END);
+      TRACK696_END:  __asm__("nop;");
       s->state_in_len++;
     }
     } };
@@ -5920,9 +5636,8 @@ Bool copy_input_until_stop ( EState* s )
              s->strm->avail_in--;
              s->strm->total_in_lo32++;
              if (s->strm->total_in_lo32 == 0)  {
-    TRACK615_BEGIN: track(&&TRACK615_BEGIN, &&TRACK615_END);
-    TRACK615_END:  __asm__("nop;");
-     
+    TRACK698_BEGIN: track(&&TRACK698_BEGIN, &&TRACK698_END);
+    TRACK698_END:  __asm__("nop;");
     s->strm->total_in_hi32++;
     }
              s->avail_in_expect--;
@@ -5935,11 +5650,18 @@ Bool copy_output_until_stop ( EState* s )
 {
    Bool progress_out = ((Bool)0);
    while (((Bool)1)) {
-  TRACK619_BEGIN: track(&&TRACK619_BEGIN, &&TRACK619_END);
-  TRACK619_END:  __asm__("nop;");
-   
-  if (s->strm->avail_out == 0) break;
-        if (s->state_out_pos >= s->numZ) break;
+  TRACK704_BEGIN: track(&&TRACK704_BEGIN, &&TRACK704_END);
+  TRACK704_END:  __asm__("nop;");
+  if (s->strm->avail_out == 0)  {
+  TRACK701_BEGIN: track(&&TRACK701_BEGIN, &&TRACK701_END);
+  TRACK701_END:  __asm__("nop;");
+  break;
+  }
+        if (s->state_out_pos >= s->numZ)  {
+  TRACK702_BEGIN: track(&&TRACK702_BEGIN, &&TRACK702_END);
+  TRACK702_END:  __asm__("nop;");
+  break;
+  }
         progress_out = ((Bool)1);
         *(s->strm->next_out) = s->zbits[s->state_out_pos];
         s->state_out_pos++;
@@ -5947,9 +5669,8 @@ Bool copy_output_until_stop ( EState* s )
         s->strm->next_out++;
         s->strm->total_out_lo32++;
         if (s->strm->total_out_lo32 == 0)  {
-  TRACK618_BEGIN: track(&&TRACK618_BEGIN, &&TRACK618_END);
-  TRACK618_END:  __asm__("nop;");
-   
+  TRACK703_BEGIN: track(&&TRACK703_BEGIN, &&TRACK703_END);
+  TRACK703_END:  __asm__("nop;");
   s->strm->total_out_hi32++;
   }
 }
@@ -5962,58 +5683,62 @@ Bool handle_compress ( bz_stream* strm )
    Bool progress_out = ((Bool)0);
    EState* s = strm->state;
    while (((Bool)1)) {
-  TRACK627_BEGIN: track(&&TRACK627_BEGIN, &&TRACK627_END);
-  TRACK627_END:  __asm__("nop;");
-   
+  TRACK715_BEGIN: track(&&TRACK715_BEGIN, &&TRACK715_END);
+  TRACK715_END:  __asm__("nop;");
   if (s->state == 1) {
-    TRACK620_BEGIN: track(&&TRACK620_BEGIN, &&TRACK620_END);
-    TRACK620_END:  __asm__("nop;");
-     
+    TRACK708_BEGIN: track(&&TRACK708_BEGIN, &&TRACK708_END);
+    TRACK708_END:  __asm__("nop;");
     progress_out |= copy_output_until_stop ( s );
-             if (s->state_out_pos < s->numZ) break;
+             if (s->state_out_pos < s->numZ)  {
+    TRACK705_BEGIN: track(&&TRACK705_BEGIN, &&TRACK705_END);
+    TRACK705_END:  __asm__("nop;");
+    break;
+    }
              if (s->mode == 4 &&
                  s->avail_in_expect == 0 &&
-                 isempty_RL(s)) break;
+                 isempty_RL(s))  {
+    TRACK706_BEGIN: track(&&TRACK706_BEGIN, &&TRACK706_END);
+    TRACK706_END:  __asm__("nop;");
+    break;
+    }
              prepare_new_block ( s );
              s->state = 2;
              if (s->mode == 3 &&
                  s->avail_in_expect == 0 &&
-                 isempty_RL(s)) break;
+                 isempty_RL(s))  {
+    TRACK707_BEGIN: track(&&TRACK707_BEGIN, &&TRACK707_END);
+    TRACK707_END:  __asm__("nop;");
+    break;
+    }
   }
         if (s->state == 2) {
-    TRACK626_BEGIN: track(&&TRACK626_BEGIN, &&TRACK626_END);
-    TRACK626_END:  __asm__("nop;");
-     
+    TRACK714_BEGIN: track(&&TRACK714_BEGIN, &&TRACK714_END);
+    TRACK714_END:  __asm__("nop;");
     progress_in |= copy_input_until_stop ( s );
              if (s->mode != 2 && s->avail_in_expect == 0) {
-      TRACK621_BEGIN: track(&&TRACK621_BEGIN, &&TRACK621_END);
-      TRACK621_END:  __asm__("nop;");
-       
+      TRACK709_BEGIN: track(&&TRACK709_BEGIN, &&TRACK709_END);
+      TRACK709_END:  __asm__("nop;");
       flush_RL ( s );
                   BZ2_compressBlock ( s, (Bool)(s->mode == 4) );
                   s->state = 1;
     }
              else
               {
-    TRACK625_BEGIN: track(&&TRACK625_BEGIN, &&TRACK625_END);
-    TRACK625_END:  __asm__("nop;");
-     
+    TRACK713_BEGIN: track(&&TRACK713_BEGIN, &&TRACK713_END);
+    TRACK713_END:  __asm__("nop;");
     if (s->nblock >= s->nblockMAX) {
-      TRACK622_BEGIN: track(&&TRACK622_BEGIN, &&TRACK622_END);
-      TRACK622_END:  __asm__("nop;");
-       
+      TRACK710_BEGIN: track(&&TRACK710_BEGIN, &&TRACK710_END);
+      TRACK710_END:  __asm__("nop;");
       BZ2_compressBlock ( s, ((Bool)0) );
                   s->state = 1;
     }
              else
               {
-    TRACK624_BEGIN: track(&&TRACK624_BEGIN, &&TRACK624_END);
-    TRACK624_END:  __asm__("nop;");
-     
+    TRACK712_BEGIN: track(&&TRACK712_BEGIN, &&TRACK712_END);
+    TRACK712_END:  __asm__("nop;");
     if (s->strm->avail_in == 0) {
-      TRACK623_BEGIN: track(&&TRACK623_BEGIN, &&TRACK623_END);
-      TRACK623_END:  __asm__("nop;");
-       
+      TRACK711_BEGIN: track(&&TRACK711_BEGIN, &&TRACK711_END);
+      TRACK711_END:  __asm__("nop;");
       break;
     }
     }
@@ -6026,85 +5751,120 @@ int BZ2_bzCompress ( bz_stream *strm, int action )
 {
    Bool progress;
    EState* s;
-   if (strm == ((void *)0)) return (-2);
+   if (strm == ((void *)0))  {
+TRACK716_BEGIN: track(&&TRACK716_BEGIN, &&TRACK716_END);
+TRACK716_END:  __asm__("nop;");
+return (-2);
+}
    s = strm->state;
-   if (s == ((void *)0)) return (-2);
-   if (s->strm != strm) return (-2);
+   if (s == ((void *)0))  {
+TRACK717_BEGIN: track(&&TRACK717_BEGIN, &&TRACK717_END);
+TRACK717_END:  __asm__("nop;");
+return (-2);
+}
+   if (s->strm != strm)  {
+TRACK718_BEGIN: track(&&TRACK718_BEGIN, &&TRACK718_END);
+TRACK718_END:  __asm__("nop;");
+return (-2);
+}
    preswitch:
    switch (s->mode) {
        
   case 1:
-	TRACK628_BEGIN: track(&&TRACK628_BEGIN, &&TRACK628_END);
-	TRACK628_END:  __asm__("nop;");
-	 
+	TRACK719_BEGIN: track(&&TRACK719_BEGIN, &&TRACK719_END);
+	TRACK719_END:  __asm__("nop;");
 	return (-1);
        
   case 2:
-	TRACK634_BEGIN: track(&&TRACK634_BEGIN, &&TRACK634_END);
-	TRACK634_END:  __asm__("nop;");
-	 
+	TRACK726_BEGIN: track(&&TRACK726_BEGIN, &&TRACK726_END);
+	TRACK726_END:  __asm__("nop;");
 	if (action == 0) {
-	  TRACK629_BEGIN: track(&&TRACK629_BEGIN, &&TRACK629_END);
-	  TRACK629_END:  __asm__("nop;");
-	   
+	  TRACK720_BEGIN: track(&&TRACK720_BEGIN, &&TRACK720_END);
+	  TRACK720_END:  __asm__("nop;");
 	  progress = handle_compress ( strm );
 	              return progress ? 1 : (-2);
 	}
 	         else
 	   {
-	TRACK633_BEGIN: track(&&TRACK633_BEGIN, &&TRACK633_END);
-	TRACK633_END:  __asm__("nop;");
-	 
+	TRACK725_BEGIN: track(&&TRACK725_BEGIN, &&TRACK725_END);
+	TRACK725_END:  __asm__("nop;");
 	if (action == 1) {
-	  TRACK630_BEGIN: track(&&TRACK630_BEGIN, &&TRACK630_END);
-	  TRACK630_END:  __asm__("nop;");
-	   
+	  TRACK721_BEGIN: track(&&TRACK721_BEGIN, &&TRACK721_END);
+	  TRACK721_END:  __asm__("nop;");
 	  s->avail_in_expect = strm->avail_in;
 	              s->mode = 3;
 	              goto preswitch;
 	}
 	         else
 	          {
-	TRACK632_BEGIN: track(&&TRACK632_BEGIN, &&TRACK632_END);
-	TRACK632_END:  __asm__("nop;");
-	 
+	TRACK724_BEGIN: track(&&TRACK724_BEGIN, &&TRACK724_END);
+	TRACK724_END:  __asm__("nop;");
 	if (action == 2) {
-	  TRACK631_BEGIN: track(&&TRACK631_BEGIN, &&TRACK631_END);
-	  TRACK631_END:  __asm__("nop;");
-	   
+	  TRACK722_BEGIN: track(&&TRACK722_BEGIN, &&TRACK722_END);
+	  TRACK722_END:  __asm__("nop;");
 	  s->avail_in_expect = strm->avail_in;
 	              s->mode = 4;
 	              goto preswitch;
 	}
 	         else
-	            return (-2);
+	             {
+	TRACK723_BEGIN: track(&&TRACK723_BEGIN, &&TRACK723_END);
+	TRACK723_END:  __asm__("nop;");
+	return (-2);
+	}
 	}
 	}
        
   case 3:
-	TRACK635_BEGIN: track(&&TRACK635_BEGIN, &&TRACK635_END);
-	TRACK635_END:  __asm__("nop;");
-	 
-	if (action != 1) return (-1);
+	TRACK728_BEGIN: track(&&TRACK728_BEGIN, &&TRACK728_END);
+	TRACK728_END:  __asm__("nop;");
+	if (action != 1)  {
+	TRACK727_BEGIN: track(&&TRACK727_BEGIN, &&TRACK727_END);
+	TRACK727_END:  __asm__("nop;");
+	return (-1);
+	}
          if (s->avail_in_expect != s->strm->avail_in)
-            return (-1);
+             {
+TRACK729_BEGIN: track(&&TRACK729_BEGIN, &&TRACK729_END);
+TRACK729_END:  __asm__("nop;");
+return (-1);
+}
          progress = handle_compress ( strm );
          if (s->avail_in_expect > 0 || !isempty_RL(s) ||
-             s->state_out_pos < s->numZ) return 2;
+             s->state_out_pos < s->numZ)  {
+TRACK730_BEGIN: track(&&TRACK730_BEGIN, &&TRACK730_END);
+TRACK730_END:  __asm__("nop;");
+return 2;
+}
          s->mode = 2;
          return 1;
        
   case 4:
-	TRACK636_BEGIN: track(&&TRACK636_BEGIN, &&TRACK636_END);
-	TRACK636_END:  __asm__("nop;");
-	 
-	if (action != 2) return (-1);
+	TRACK732_BEGIN: track(&&TRACK732_BEGIN, &&TRACK732_END);
+	TRACK732_END:  __asm__("nop;");
+	if (action != 2)  {
+	TRACK731_BEGIN: track(&&TRACK731_BEGIN, &&TRACK731_END);
+	TRACK731_END:  __asm__("nop;");
+	return (-1);
+	}
          if (s->avail_in_expect != s->strm->avail_in)
-            return (-1);
+             {
+TRACK733_BEGIN: track(&&TRACK733_BEGIN, &&TRACK733_END);
+TRACK733_END:  __asm__("nop;");
+return (-1);
+}
          progress = handle_compress ( strm );
-         if (!progress) return (-1);
+         if (!progress)  {
+TRACK734_BEGIN: track(&&TRACK734_BEGIN, &&TRACK734_END);
+TRACK734_END:  __asm__("nop;");
+return (-1);
+}
          if (s->avail_in_expect > 0 || !isempty_RL(s) ||
-             s->state_out_pos < s->numZ) return 3;
+             s->state_out_pos < s->numZ)  {
+TRACK735_BEGIN: track(&&TRACK735_BEGIN, &&TRACK735_END);
+TRACK735_END:  __asm__("nop;");
+return 3;
+}
          s->mode = 1;
          return 4;
    }
@@ -6113,26 +5873,35 @@ int BZ2_bzCompress ( bz_stream *strm, int action )
 int BZ2_bzCompressEnd ( bz_stream *strm )
 {
    EState* s;
-   if (strm == ((void *)0)) return (-2);
+   if (strm == ((void *)0))  {
+TRACK736_BEGIN: track(&&TRACK736_BEGIN, &&TRACK736_END);
+TRACK736_END:  __asm__("nop;");
+return (-2);
+}
    s = strm->state;
-   if (s == ((void *)0)) return (-2);
-   if (s->strm != strm) return (-2);
+   if (s == ((void *)0))  {
+TRACK737_BEGIN: track(&&TRACK737_BEGIN, &&TRACK737_END);
+TRACK737_END:  __asm__("nop;");
+return (-2);
+}
+   if (s->strm != strm)  {
+TRACK738_BEGIN: track(&&TRACK738_BEGIN, &&TRACK738_END);
+TRACK738_END:  __asm__("nop;");
+return (-2);
+}
    if (s->arr1 != ((void *)0))  {
-TRACK637_BEGIN: track(&&TRACK637_BEGIN, &&TRACK637_END);
-TRACK637_END:  __asm__("nop;");
- 
+TRACK739_BEGIN: track(&&TRACK739_BEGIN, &&TRACK739_END);
+TRACK739_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->arr1));
 }
    if (s->arr2 != ((void *)0))  {
-TRACK638_BEGIN: track(&&TRACK638_BEGIN, &&TRACK638_END);
-TRACK638_END:  __asm__("nop;");
- 
+TRACK740_BEGIN: track(&&TRACK740_BEGIN, &&TRACK740_END);
+TRACK740_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->arr2));
 }
    if (s->ftab != ((void *)0))  {
-TRACK639_BEGIN: track(&&TRACK639_BEGIN, &&TRACK639_END);
-TRACK639_END:  __asm__("nop;");
- 
+TRACK741_BEGIN: track(&&TRACK741_BEGIN, &&TRACK741_END);
+TRACK741_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->ftab));
 }
    (strm->bzfree)(strm->opaque,(strm->state));
@@ -6145,24 +5914,42 @@ int BZ2_bzDecompressInit
                        int small )
 {
    DState* s;
-   if (!bz_config_ok()) return (-9);
-   if (strm == ((void *)0)) return (-2);
-   if (small != 0 && small != 1) return (-2);
-   if (verbosity < 0 || verbosity > 4) return (-2);
+   if (!bz_config_ok())  {
+TRACK742_BEGIN: track(&&TRACK742_BEGIN, &&TRACK742_END);
+TRACK742_END:  __asm__("nop;");
+return (-9);
+}
+   if (strm == ((void *)0))  {
+TRACK743_BEGIN: track(&&TRACK743_BEGIN, &&TRACK743_END);
+TRACK743_END:  __asm__("nop;");
+return (-2);
+}
+   if (small != 0 && small != 1)  {
+TRACK744_BEGIN: track(&&TRACK744_BEGIN, &&TRACK744_END);
+TRACK744_END:  __asm__("nop;");
+return (-2);
+}
+   if (verbosity < 0 || verbosity > 4)  {
+TRACK745_BEGIN: track(&&TRACK745_BEGIN, &&TRACK745_END);
+TRACK745_END:  __asm__("nop;");
+return (-2);
+}
    if (strm->bzalloc == ((void *)0))  {
-TRACK640_BEGIN: track(&&TRACK640_BEGIN, &&TRACK640_END);
-TRACK640_END:  __asm__("nop;");
- 
+TRACK746_BEGIN: track(&&TRACK746_BEGIN, &&TRACK746_END);
+TRACK746_END:  __asm__("nop;");
 strm->bzalloc = default_bzalloc;
 }
    if (strm->bzfree == ((void *)0))  {
-TRACK641_BEGIN: track(&&TRACK641_BEGIN, &&TRACK641_END);
-TRACK641_END:  __asm__("nop;");
- 
+TRACK747_BEGIN: track(&&TRACK747_BEGIN, &&TRACK747_END);
+TRACK747_END:  __asm__("nop;");
 strm->bzfree = default_bzfree;
 }
    s = (strm->bzalloc)(strm->opaque,(sizeof(DState)),1);
-   if (s == ((void *)0)) return (-3);
+   if (s == ((void *)0))  {
+TRACK748_BEGIN: track(&&TRACK748_BEGIN, &&TRACK748_END);
+TRACK748_END:  __asm__("nop;");
+return (-3);
+}
    s->strm = strm;
    strm->state = s;
    s->state = 10;
@@ -6186,19 +5973,24 @@ void unRLE_obuf_to_output_FAST ( DState* s )
 {
    UChar k1;
    if (s->blockRandomised) {
-  TRACK658_BEGIN: track(&&TRACK658_BEGIN, &&TRACK658_END);
-  TRACK658_END:  __asm__("nop;");
-   
+  TRACK771_BEGIN: track(&&TRACK771_BEGIN, &&TRACK771_END);
+  TRACK771_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK657_BEGIN: track(&&TRACK657_BEGIN, &&TRACK657_END);
-    TRACK657_END:  __asm__("nop;");
-     
+    TRACK770_BEGIN: track(&&TRACK770_BEGIN, &&TRACK770_END);
+    TRACK770_END:  __asm__("nop;");
     while (((Bool)1)) {
-      TRACK643_BEGIN: track(&&TRACK643_BEGIN, &&TRACK643_END);
-      TRACK643_END:  __asm__("nop;");
-       
-      if (s->strm->avail_out == 0) return;
-                  if (s->state_out_len == 0) break;
+      TRACK752_BEGIN: track(&&TRACK752_BEGIN, &&TRACK752_END);
+      TRACK752_END:  __asm__("nop;");
+      if (s->strm->avail_out == 0)  {
+      TRACK749_BEGIN: track(&&TRACK749_BEGIN, &&TRACK749_END);
+      TRACK749_END:  __asm__("nop;");
+      return;
+      }
+                  if (s->state_out_len == 0)  {
+      TRACK750_BEGIN: track(&&TRACK750_BEGIN, &&TRACK750_END);
+      TRACK750_END:  __asm__("nop;");
+      break;
+      }
                   *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
                   { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
                   s->state_out_len--;
@@ -6206,95 +5998,97 @@ void unRLE_obuf_to_output_FAST ( DState* s )
                   s->strm->avail_out--;
                   s->strm->total_out_lo32++;
                   if (s->strm->total_out_lo32 == 0)  {
-      TRACK642_BEGIN: track(&&TRACK642_BEGIN, &&TRACK642_END);
-      TRACK642_END:  __asm__("nop;");
-       
+      TRACK751_BEGIN: track(&&TRACK751_BEGIN, &&TRACK751_END);
+      TRACK751_END:  __asm__("nop;");
       s->strm->total_out_hi32++;
       }
     }
-             if (s->nblock_used == s->save_nblock+1) return;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK753_BEGIN: track(&&TRACK753_BEGIN, &&TRACK753_END);
+    TRACK753_END:  __asm__("nop;");
+    return;
+    }
              s->state_out_len = 1;
              s->state_out_ch = s->k0;
              s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-      TRACK645_BEGIN: track(&&TRACK645_BEGIN, &&TRACK645_END);
-      TRACK645_END:  __asm__("nop;");
-       
+      TRACK755_BEGIN: track(&&TRACK755_BEGIN, &&TRACK755_END);
+      TRACK755_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK644_BEGIN: track(&&TRACK644_BEGIN, &&TRACK644_END);
-      TRACK644_END:  __asm__("nop;");
-       
+      TRACK754_BEGIN: track(&&TRACK754_BEGIN, &&TRACK754_END);
+      TRACK754_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK756_BEGIN: track(&&TRACK756_BEGIN, &&TRACK756_END);
+    TRACK756_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK646_BEGIN: track(&&TRACK646_BEGIN, &&TRACK646_END);
-      TRACK646_END:  __asm__("nop;");
-       
+      TRACK757_BEGIN: track(&&TRACK757_BEGIN, &&TRACK757_END);
+      TRACK757_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 2;
              s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-      TRACK648_BEGIN: track(&&TRACK648_BEGIN, &&TRACK648_END);
-      TRACK648_END:  __asm__("nop;");
-       
+      TRACK759_BEGIN: track(&&TRACK759_BEGIN, &&TRACK759_END);
+      TRACK759_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK647_BEGIN: track(&&TRACK647_BEGIN, &&TRACK647_END);
-      TRACK647_END:  __asm__("nop;");
-       
+      TRACK758_BEGIN: track(&&TRACK758_BEGIN, &&TRACK758_END);
+      TRACK758_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK760_BEGIN: track(&&TRACK760_BEGIN, &&TRACK760_END);
+    TRACK760_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK649_BEGIN: track(&&TRACK649_BEGIN, &&TRACK649_END);
-      TRACK649_END:  __asm__("nop;");
-       
+      TRACK761_BEGIN: track(&&TRACK761_BEGIN, &&TRACK761_END);
+      TRACK761_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 3;
              s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-      TRACK651_BEGIN: track(&&TRACK651_BEGIN, &&TRACK651_END);
-      TRACK651_END:  __asm__("nop;");
-       
+      TRACK763_BEGIN: track(&&TRACK763_BEGIN, &&TRACK763_END);
+      TRACK763_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK650_BEGIN: track(&&TRACK650_BEGIN, &&TRACK650_END);
-      TRACK650_END:  __asm__("nop;");
-       
+      TRACK762_BEGIN: track(&&TRACK762_BEGIN, &&TRACK762_END);
+      TRACK762_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK764_BEGIN: track(&&TRACK764_BEGIN, &&TRACK764_END);
+    TRACK764_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK652_BEGIN: track(&&TRACK652_BEGIN, &&TRACK652_END);
-      TRACK652_END:  __asm__("nop;");
-       
+      TRACK765_BEGIN: track(&&TRACK765_BEGIN, &&TRACK765_END);
+      TRACK765_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->tPos = s->tt[s->tPos]; k1 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-      TRACK654_BEGIN: track(&&TRACK654_BEGIN, &&TRACK654_END);
-      TRACK654_END:  __asm__("nop;");
-       
+      TRACK767_BEGIN: track(&&TRACK767_BEGIN, &&TRACK767_END);
+      TRACK767_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK653_BEGIN: track(&&TRACK653_BEGIN, &&TRACK653_END);
-      TRACK653_END:  __asm__("nop;");
-       
+      TRACK766_BEGIN: track(&&TRACK766_BEGIN, &&TRACK766_END);
+      TRACK766_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
              s->state_out_len = ((Int32)k1) + 4;
              s->tPos = s->tt[s->tPos]; s->k0 = (UChar)(s->tPos & 0xff); s->tPos >>= 8;; if (s->rNToGo == 0) {
-      TRACK656_BEGIN: track(&&TRACK656_BEGIN, &&TRACK656_END);
-      TRACK656_END:  __asm__("nop;");
-       
+      TRACK769_BEGIN: track(&&TRACK769_BEGIN, &&TRACK769_END);
+      TRACK769_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK655_BEGIN: track(&&TRACK655_BEGIN, &&TRACK655_END);
-      TRACK655_END:  __asm__("nop;");
-       
+      TRACK768_BEGIN: track(&&TRACK768_BEGIN, &&TRACK768_END);
+      TRACK768_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
@@ -6313,23 +6107,27 @@ void unRLE_obuf_to_output_FAST ( DState* s )
         UInt32 avail_out_INIT = cs_avail_out;
         Int32 s_save_nblockPP = s->save_nblock+1;
         unsigned int total_out_lo32_old;
-  TRACK681_BEGIN: track(&&TRACK681_BEGIN, &&TRACK681_END);
-  TRACK681_END:  __asm__("nop;");
-   
+  TRACK799_BEGIN: track(&&TRACK799_BEGIN, &&TRACK799_END);
+  TRACK799_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK667_BEGIN: track(&&TRACK667_BEGIN, &&TRACK667_END);
-    TRACK667_END:  __asm__("nop;");
-     
+    TRACK785_BEGIN: track(&&TRACK785_BEGIN, &&TRACK785_END);
+    TRACK785_END:  __asm__("nop;");
     if (c_state_out_len > 0) {
-      TRACK662_BEGIN: track(&&TRACK662_BEGIN, &&TRACK662_END);
-      TRACK662_END:  __asm__("nop;");
-       
+      TRACK777_BEGIN: track(&&TRACK777_BEGIN, &&TRACK777_END);
+      TRACK777_END:  __asm__("nop;");
       while (((Bool)1)) {
-        TRACK659_BEGIN: track(&&TRACK659_BEGIN, &&TRACK659_END);
-        TRACK659_END:  __asm__("nop;");
-         
-        if (cs_avail_out == 0) goto return_notr;
-                       if (c_state_out_len == 1) break;
+        TRACK774_BEGIN: track(&&TRACK774_BEGIN, &&TRACK774_END);
+        TRACK774_END:  __asm__("nop;");
+        if (cs_avail_out == 0)  {
+        TRACK772_BEGIN: track(&&TRACK772_BEGIN, &&TRACK772_END);
+        TRACK772_END:  __asm__("nop;");
+        goto return_notr;
+        }
+                       if (c_state_out_len == 1)  {
+        TRACK773_BEGIN: track(&&TRACK773_BEGIN, &&TRACK773_END);
+        TRACK773_END:  __asm__("nop;");
+        break;
+        }
                        *( (UChar*)(cs_next_out) ) = c_state_out_ch;
                        { c_calculatedBlockCRC = (c_calculatedBlockCRC << 8) ^ BZ2_crc32Table[(c_calculatedBlockCRC >> 24) ^ ((UChar)c_state_out_ch)]; };
                        c_state_out_len--;
@@ -6338,13 +6136,11 @@ void unRLE_obuf_to_output_FAST ( DState* s )
       }
                   s_state_out_len_eq_one:
                   {
-        TRACK661_BEGIN: track(&&TRACK661_BEGIN, &&TRACK661_END);
-        TRACK661_END:  __asm__("nop;");
-         
+        TRACK776_BEGIN: track(&&TRACK776_BEGIN, &&TRACK776_END);
+        TRACK776_END:  __asm__("nop;");
         if (cs_avail_out == 0) {
-          TRACK660_BEGIN: track(&&TRACK660_BEGIN, &&TRACK660_END);
-          TRACK660_END:  __asm__("nop;");
-           
+          TRACK775_BEGIN: track(&&TRACK775_BEGIN, &&TRACK775_END);
+          TRACK775_END:  __asm__("nop;");
           c_state_out_len = 1; goto return_notr;
         };
                        *( (UChar*)(cs_next_out) ) = c_state_out_ch;
@@ -6354,37 +6150,45 @@ void unRLE_obuf_to_output_FAST ( DState* s )
       }
     }
              if (c_nblock_used == s_save_nblockPP) {
-      TRACK663_BEGIN: track(&&TRACK663_BEGIN, &&TRACK663_END);
-      TRACK663_END:  __asm__("nop;");
-       
+      TRACK778_BEGIN: track(&&TRACK778_BEGIN, &&TRACK778_END);
+      TRACK778_END:  __asm__("nop;");
       c_state_out_len = 0; goto return_notr;
     };
              c_state_out_ch = c_k0;
              c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
              if (k1 != c_k0) {
-      TRACK664_BEGIN: track(&&TRACK664_BEGIN, &&TRACK664_END);
-      TRACK664_END:  __asm__("nop;");
-       
+      TRACK779_BEGIN: track(&&TRACK779_BEGIN, &&TRACK779_END);
+      TRACK779_END:  __asm__("nop;");
       c_k0 = k1; goto s_state_out_len_eq_one;
     };
              if (c_nblock_used == s_save_nblockPP)
-                goto s_state_out_len_eq_one;
+                 {
+    TRACK780_BEGIN: track(&&TRACK780_BEGIN, &&TRACK780_END);
+    TRACK780_END:  __asm__("nop;");
+    goto s_state_out_len_eq_one;
+    }
              c_state_out_len = 2;
              c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-             if (c_nblock_used == s_save_nblockPP) continue;
+             if (c_nblock_used == s_save_nblockPP)  {
+    TRACK781_BEGIN: track(&&TRACK781_BEGIN, &&TRACK781_END);
+    TRACK781_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != c_k0) {
-      TRACK665_BEGIN: track(&&TRACK665_BEGIN, &&TRACK665_END);
-      TRACK665_END:  __asm__("nop;");
-       
+      TRACK782_BEGIN: track(&&TRACK782_BEGIN, &&TRACK782_END);
+      TRACK782_END:  __asm__("nop;");
       c_k0 = k1; continue;
     };
              c_state_out_len = 3;
              c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
-             if (c_nblock_used == s_save_nblockPP) continue;
+             if (c_nblock_used == s_save_nblockPP)  {
+    TRACK783_BEGIN: track(&&TRACK783_BEGIN, &&TRACK783_END);
+    TRACK783_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != c_k0) {
-      TRACK666_BEGIN: track(&&TRACK666_BEGIN, &&TRACK666_END);
-      TRACK666_END:  __asm__("nop;");
-       
+      TRACK784_BEGIN: track(&&TRACK784_BEGIN, &&TRACK784_END);
+      TRACK784_END:  __asm__("nop;");
       c_k0 = k1; continue;
     };
              c_tPos = c_tt[c_tPos]; k1 = (UChar)(c_tPos & 0xff); c_tPos >>= 8;; c_nblock_used++;
@@ -6393,81 +6197,68 @@ void unRLE_obuf_to_output_FAST ( DState* s )
   }
         return_notr:
          {
-  TRACK668_BEGIN: track(&&TRACK668_BEGIN, &&TRACK668_END);
-  TRACK668_END:  __asm__("nop;");
-   
+  TRACK786_BEGIN: track(&&TRACK786_BEGIN, &&TRACK786_END);
+  TRACK786_END:  __asm__("nop;");
   total_out_lo32_old = s->strm->total_out_lo32;
   }
          {
-  TRACK669_BEGIN: track(&&TRACK669_BEGIN, &&TRACK669_END);
-  TRACK669_END:  __asm__("nop;");
-   
+  TRACK787_BEGIN: track(&&TRACK787_BEGIN, &&TRACK787_END);
+  TRACK787_END:  __asm__("nop;");
   s->strm->total_out_lo32 += (avail_out_INIT - cs_avail_out);
   }
          {
-  TRACK671_BEGIN: track(&&TRACK671_BEGIN, &&TRACK671_END);
-  TRACK671_END:  __asm__("nop;");
-   
+  TRACK789_BEGIN: track(&&TRACK789_BEGIN, &&TRACK789_END);
+  TRACK789_END:  __asm__("nop;");
   if (s->strm->total_out_lo32 < total_out_lo32_old)
             {
-  TRACK670_BEGIN: track(&&TRACK670_BEGIN, &&TRACK670_END);
-  TRACK670_END:  __asm__("nop;");
-   
+  TRACK788_BEGIN: track(&&TRACK788_BEGIN, &&TRACK788_END);
+  TRACK788_END:  __asm__("nop;");
   s->strm->total_out_hi32++;
   }
   }
          {
-  TRACK672_BEGIN: track(&&TRACK672_BEGIN, &&TRACK672_END);
-  TRACK672_END:  __asm__("nop;");
-   
+  TRACK790_BEGIN: track(&&TRACK790_BEGIN, &&TRACK790_END);
+  TRACK790_END:  __asm__("nop;");
   s->calculatedBlockCRC = c_calculatedBlockCRC;
   }
          {
-  TRACK673_BEGIN: track(&&TRACK673_BEGIN, &&TRACK673_END);
-  TRACK673_END:  __asm__("nop;");
-   
+  TRACK791_BEGIN: track(&&TRACK791_BEGIN, &&TRACK791_END);
+  TRACK791_END:  __asm__("nop;");
   s->state_out_ch = c_state_out_ch;
   }
          {
-  TRACK674_BEGIN: track(&&TRACK674_BEGIN, &&TRACK674_END);
-  TRACK674_END:  __asm__("nop;");
-   
+  TRACK792_BEGIN: track(&&TRACK792_BEGIN, &&TRACK792_END);
+  TRACK792_END:  __asm__("nop;");
   s->state_out_len = c_state_out_len;
   }
          {
-  TRACK675_BEGIN: track(&&TRACK675_BEGIN, &&TRACK675_END);
-  TRACK675_END:  __asm__("nop;");
-   
+  TRACK793_BEGIN: track(&&TRACK793_BEGIN, &&TRACK793_END);
+  TRACK793_END:  __asm__("nop;");
   s->nblock_used = c_nblock_used;
   }
          {
-  TRACK676_BEGIN: track(&&TRACK676_BEGIN, &&TRACK676_END);
-  TRACK676_END:  __asm__("nop;");
-   
+  TRACK794_BEGIN: track(&&TRACK794_BEGIN, &&TRACK794_END);
+  TRACK794_END:  __asm__("nop;");
   s->k0 = c_k0;
   }
          {
-  TRACK677_BEGIN: track(&&TRACK677_BEGIN, &&TRACK677_END);
-  TRACK677_END:  __asm__("nop;");
-   
+  TRACK795_BEGIN: track(&&TRACK795_BEGIN, &&TRACK795_END);
+  TRACK795_END:  __asm__("nop;");
   s->tt = c_tt;
   }
          {
-  TRACK678_BEGIN: track(&&TRACK678_BEGIN, &&TRACK678_END);
-  TRACK678_END:  __asm__("nop;");
-   
+  TRACK796_BEGIN: track(&&TRACK796_BEGIN, &&TRACK796_END);
+  TRACK796_END:  __asm__("nop;");
   s->tPos = c_tPos;
   }
          {
-  TRACK679_BEGIN: track(&&TRACK679_BEGIN, &&TRACK679_END);
-  TRACK679_END:  __asm__("nop;");
-   
+  TRACK797_BEGIN: track(&&TRACK797_BEGIN, &&TRACK797_END);
+  TRACK797_END:  __asm__("nop;");
   s->strm->next_out = cs_next_out;
   }
          {
-  TRACK680_BEGIN: track(&&TRACK680_BEGIN, &&TRACK680_END);
-  TRACK680_END:  __asm__("nop;");
-   
+  TRACK798_BEGIN: track(&&TRACK798_BEGIN, &&TRACK798_END);
+  TRACK798_END:  __asm__("nop;");
   s->strm->avail_out = cs_avail_out;
   }
 }
@@ -6478,19 +6269,16 @@ Int32 BZ2_indexIntoF ( Int32 indx, Int32 *cftab )
    nb = 0;
    na = 256;
    do {
-  TRACK684_BEGIN: track(&&TRACK684_BEGIN, &&TRACK684_END);
-  TRACK684_END:  __asm__("nop;");
-   
+  TRACK802_BEGIN: track(&&TRACK802_BEGIN, &&TRACK802_END);
+  TRACK802_END:  __asm__("nop;");
   mid = (nb + na) >> 1;
         if (indx >= cftab[mid])  {
-  TRACK682_BEGIN: track(&&TRACK682_BEGIN, &&TRACK682_END);
-  TRACK682_END:  __asm__("nop;");
-   
+  TRACK800_BEGIN: track(&&TRACK800_BEGIN, &&TRACK800_END);
+  TRACK800_END:  __asm__("nop;");
   nb = mid;
   } else  {
-  TRACK683_BEGIN: track(&&TRACK683_BEGIN, &&TRACK683_END);
-  TRACK683_END:  __asm__("nop;");
-   
+  TRACK801_BEGIN: track(&&TRACK801_BEGIN, &&TRACK801_END);
+  TRACK801_END:  __asm__("nop;");
   na = mid;
   }
 }
@@ -6502,19 +6290,24 @@ void unRLE_obuf_to_output_SMALL ( DState* s )
 {
    UChar k1;
    if (s->blockRandomised) {
-  TRACK701_BEGIN: track(&&TRACK701_BEGIN, &&TRACK701_END);
-  TRACK701_END:  __asm__("nop;");
-   
+  TRACK825_BEGIN: track(&&TRACK825_BEGIN, &&TRACK825_END);
+  TRACK825_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK700_BEGIN: track(&&TRACK700_BEGIN, &&TRACK700_END);
-    TRACK700_END:  __asm__("nop;");
-     
+    TRACK824_BEGIN: track(&&TRACK824_BEGIN, &&TRACK824_END);
+    TRACK824_END:  __asm__("nop;");
     while (((Bool)1)) {
-      TRACK686_BEGIN: track(&&TRACK686_BEGIN, &&TRACK686_END);
-      TRACK686_END:  __asm__("nop;");
-       
-      if (s->strm->avail_out == 0) return;
-                  if (s->state_out_len == 0) break;
+      TRACK806_BEGIN: track(&&TRACK806_BEGIN, &&TRACK806_END);
+      TRACK806_END:  __asm__("nop;");
+      if (s->strm->avail_out == 0)  {
+      TRACK803_BEGIN: track(&&TRACK803_BEGIN, &&TRACK803_END);
+      TRACK803_END:  __asm__("nop;");
+      return;
+      }
+                  if (s->state_out_len == 0)  {
+      TRACK804_BEGIN: track(&&TRACK804_BEGIN, &&TRACK804_END);
+      TRACK804_END:  __asm__("nop;");
+      break;
+      }
                   *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
                   { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
                   s->state_out_len--;
@@ -6522,114 +6315,121 @@ void unRLE_obuf_to_output_SMALL ( DState* s )
                   s->strm->avail_out--;
                   s->strm->total_out_lo32++;
                   if (s->strm->total_out_lo32 == 0)  {
-      TRACK685_BEGIN: track(&&TRACK685_BEGIN, &&TRACK685_END);
-      TRACK685_END:  __asm__("nop;");
-       
+      TRACK805_BEGIN: track(&&TRACK805_BEGIN, &&TRACK805_END);
+      TRACK805_END:  __asm__("nop;");
       s->strm->total_out_hi32++;
       }
     }
-             if (s->nblock_used == s->save_nblock+1) return;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK807_BEGIN: track(&&TRACK807_BEGIN, &&TRACK807_END);
+    TRACK807_END:  __asm__("nop;");
+    return;
+    }
              s->state_out_len = 1;
              s->state_out_ch = s->k0;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-      TRACK688_BEGIN: track(&&TRACK688_BEGIN, &&TRACK688_END);
-      TRACK688_END:  __asm__("nop;");
-       
+      TRACK809_BEGIN: track(&&TRACK809_BEGIN, &&TRACK809_END);
+      TRACK809_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK687_BEGIN: track(&&TRACK687_BEGIN, &&TRACK687_END);
-      TRACK687_END:  __asm__("nop;");
-       
+      TRACK808_BEGIN: track(&&TRACK808_BEGIN, &&TRACK808_END);
+      TRACK808_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK810_BEGIN: track(&&TRACK810_BEGIN, &&TRACK810_END);
+    TRACK810_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK689_BEGIN: track(&&TRACK689_BEGIN, &&TRACK689_END);
-      TRACK689_END:  __asm__("nop;");
-       
+      TRACK811_BEGIN: track(&&TRACK811_BEGIN, &&TRACK811_END);
+      TRACK811_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 2;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-      TRACK691_BEGIN: track(&&TRACK691_BEGIN, &&TRACK691_END);
-      TRACK691_END:  __asm__("nop;");
-       
+      TRACK813_BEGIN: track(&&TRACK813_BEGIN, &&TRACK813_END);
+      TRACK813_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK690_BEGIN: track(&&TRACK690_BEGIN, &&TRACK690_END);
-      TRACK690_END:  __asm__("nop;");
-       
+      TRACK812_BEGIN: track(&&TRACK812_BEGIN, &&TRACK812_END);
+      TRACK812_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK814_BEGIN: track(&&TRACK814_BEGIN, &&TRACK814_END);
+    TRACK814_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK692_BEGIN: track(&&TRACK692_BEGIN, &&TRACK692_END);
-      TRACK692_END:  __asm__("nop;");
-       
+      TRACK815_BEGIN: track(&&TRACK815_BEGIN, &&TRACK815_END);
+      TRACK815_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 3;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-      TRACK694_BEGIN: track(&&TRACK694_BEGIN, &&TRACK694_END);
-      TRACK694_END:  __asm__("nop;");
-       
+      TRACK817_BEGIN: track(&&TRACK817_BEGIN, &&TRACK817_END);
+      TRACK817_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK693_BEGIN: track(&&TRACK693_BEGIN, &&TRACK693_END);
-      TRACK693_END:  __asm__("nop;");
-       
+      TRACK816_BEGIN: track(&&TRACK816_BEGIN, &&TRACK816_END);
+      TRACK816_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK818_BEGIN: track(&&TRACK818_BEGIN, &&TRACK818_END);
+    TRACK818_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK695_BEGIN: track(&&TRACK695_BEGIN, &&TRACK695_END);
-      TRACK695_END:  __asm__("nop;");
-       
+      TRACK819_BEGIN: track(&&TRACK819_BEGIN, &&TRACK819_END);
+      TRACK819_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-      TRACK697_BEGIN: track(&&TRACK697_BEGIN, &&TRACK697_END);
-      TRACK697_END:  __asm__("nop;");
-       
+      TRACK821_BEGIN: track(&&TRACK821_BEGIN, &&TRACK821_END);
+      TRACK821_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK696_BEGIN: track(&&TRACK696_BEGIN, &&TRACK696_END);
-      TRACK696_END:  __asm__("nop;");
-       
+      TRACK820_BEGIN: track(&&TRACK820_BEGIN, &&TRACK820_END);
+      TRACK820_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              k1 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
              s->state_out_len = ((Int32)k1) + 4;
              s->k0 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; if (s->rNToGo == 0) {
-      TRACK699_BEGIN: track(&&TRACK699_BEGIN, &&TRACK699_END);
-      TRACK699_END:  __asm__("nop;");
-       
+      TRACK823_BEGIN: track(&&TRACK823_BEGIN, &&TRACK823_END);
+      TRACK823_END:  __asm__("nop;");
       s->rNToGo = BZ2_rNums[s->rTPos]; s->rTPos++; if (s->rTPos == 512)  {
-      TRACK698_BEGIN: track(&&TRACK698_BEGIN, &&TRACK698_END);
-      TRACK698_END:  __asm__("nop;");
-       
+      TRACK822_BEGIN: track(&&TRACK822_BEGIN, &&TRACK822_END);
+      TRACK822_END:  __asm__("nop;");
       s->rTPos = 0;
       }
     } s->rNToGo--;;
              s->k0 ^= ((s->rNToGo == 1) ? 1 : 0); s->nblock_used++;
   }
 } else {
-  TRACK708_BEGIN: track(&&TRACK708_BEGIN, &&TRACK708_END);
-  TRACK708_END:  __asm__("nop;");
-   
+  TRACK838_BEGIN: track(&&TRACK838_BEGIN, &&TRACK838_END);
+  TRACK838_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK707_BEGIN: track(&&TRACK707_BEGIN, &&TRACK707_END);
-    TRACK707_END:  __asm__("nop;");
-     
+    TRACK837_BEGIN: track(&&TRACK837_BEGIN, &&TRACK837_END);
+    TRACK837_END:  __asm__("nop;");
     while (((Bool)1)) {
-      TRACK703_BEGIN: track(&&TRACK703_BEGIN, &&TRACK703_END);
-      TRACK703_END:  __asm__("nop;");
-       
-      if (s->strm->avail_out == 0) return;
-                  if (s->state_out_len == 0) break;
+      TRACK829_BEGIN: track(&&TRACK829_BEGIN, &&TRACK829_END);
+      TRACK829_END:  __asm__("nop;");
+      if (s->strm->avail_out == 0)  {
+      TRACK826_BEGIN: track(&&TRACK826_BEGIN, &&TRACK826_END);
+      TRACK826_END:  __asm__("nop;");
+      return;
+      }
+                  if (s->state_out_len == 0)  {
+      TRACK827_BEGIN: track(&&TRACK827_BEGIN, &&TRACK827_END);
+      TRACK827_END:  __asm__("nop;");
+      break;
+      }
                   *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
                   { s->calculatedBlockCRC = (s->calculatedBlockCRC << 8) ^ BZ2_crc32Table[(s->calculatedBlockCRC >> 24) ^ ((UChar)s->state_out_ch)]; };
                   s->state_out_len--;
@@ -6637,39 +6437,51 @@ void unRLE_obuf_to_output_SMALL ( DState* s )
                   s->strm->avail_out--;
                   s->strm->total_out_lo32++;
                   if (s->strm->total_out_lo32 == 0)  {
-      TRACK702_BEGIN: track(&&TRACK702_BEGIN, &&TRACK702_END);
-      TRACK702_END:  __asm__("nop;");
-       
+      TRACK828_BEGIN: track(&&TRACK828_BEGIN, &&TRACK828_END);
+      TRACK828_END:  __asm__("nop;");
       s->strm->total_out_hi32++;
       }
     }
-             if (s->nblock_used == s->save_nblock+1) return;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK830_BEGIN: track(&&TRACK830_BEGIN, &&TRACK830_END);
+    TRACK830_END:  __asm__("nop;");
+    return;
+    }
              s->state_out_len = 1;
              s->state_out_ch = s->k0;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK831_BEGIN: track(&&TRACK831_BEGIN, &&TRACK831_END);
+    TRACK831_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK704_BEGIN: track(&&TRACK704_BEGIN, &&TRACK704_END);
-      TRACK704_END:  __asm__("nop;");
-       
+      TRACK832_BEGIN: track(&&TRACK832_BEGIN, &&TRACK832_END);
+      TRACK832_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 2;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK833_BEGIN: track(&&TRACK833_BEGIN, &&TRACK833_END);
+    TRACK833_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK705_BEGIN: track(&&TRACK705_BEGIN, &&TRACK705_END);
-      TRACK705_END:  __asm__("nop;");
-       
+      TRACK834_BEGIN: track(&&TRACK834_BEGIN, &&TRACK834_END);
+      TRACK834_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              s->state_out_len = 3;
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
-             if (s->nblock_used == s->save_nblock+1) continue;
+             if (s->nblock_used == s->save_nblock+1)  {
+    TRACK835_BEGIN: track(&&TRACK835_BEGIN, &&TRACK835_END);
+    TRACK835_END:  __asm__("nop;");
+    continue;
+    }
              if (k1 != s->k0) {
-      TRACK706_BEGIN: track(&&TRACK706_BEGIN, &&TRACK706_END);
-      TRACK706_END:  __asm__("nop;");
-       
+      TRACK836_BEGIN: track(&&TRACK836_BEGIN, &&TRACK836_END);
+      TRACK836_END:  __asm__("nop;");
       s->k0 = k1; continue;
     };
              k1 = BZ2_indexIntoF ( s->tPos, s->cftab ); s->tPos = (((UInt32)s->ll16[s->tPos]) | (((((UInt32)(s->ll4[(s->tPos) >> 1])) >> (((s->tPos) << 2) & 0x4)) & 0xF) << 16));; s->nblock_used++;
@@ -6681,91 +6493,107 @@ void unRLE_obuf_to_output_SMALL ( DState* s )
 int BZ2_bzDecompress ( bz_stream *strm )
 {
    DState* s;
-   if (strm == ((void *)0)) return (-2);
+   if (strm == ((void *)0))  {
+TRACK839_BEGIN: track(&&TRACK839_BEGIN, &&TRACK839_END);
+TRACK839_END:  __asm__("nop;");
+return (-2);
+}
    s = strm->state;
-   if (s == ((void *)0)) return (-2);
-   if (s->strm != strm) return (-2);
+   if (s == ((void *)0))  {
+TRACK840_BEGIN: track(&&TRACK840_BEGIN, &&TRACK840_END);
+TRACK840_END:  __asm__("nop;");
+return (-2);
+}
+   if (s->strm != strm)  {
+TRACK841_BEGIN: track(&&TRACK841_BEGIN, &&TRACK841_END);
+TRACK841_END:  __asm__("nop;");
+return (-2);
+}
    while (((Bool)1)) {
-  TRACK719_BEGIN: track(&&TRACK719_BEGIN, &&TRACK719_END);
-  TRACK719_END:  __asm__("nop;");
-   
-  if (s->state == 1) return (-1);
+  TRACK856_BEGIN: track(&&TRACK856_BEGIN, &&TRACK856_END);
+  TRACK856_END:  __asm__("nop;");
+  if (s->state == 1)  {
+  TRACK842_BEGIN: track(&&TRACK842_BEGIN, &&TRACK842_END);
+  TRACK842_END:  __asm__("nop;");
+  return (-1);
+  }
         if (s->state == 2) {
-    TRACK715_BEGIN: track(&&TRACK715_BEGIN, &&TRACK715_END);
-    TRACK715_END:  __asm__("nop;");
-     
+    TRACK850_BEGIN: track(&&TRACK850_BEGIN, &&TRACK850_END);
+    TRACK850_END:  __asm__("nop;");
     if (s->smallDecompress)
                  {
-    TRACK709_BEGIN: track(&&TRACK709_BEGIN, &&TRACK709_END);
-    TRACK709_END:  __asm__("nop;");
-     
+    TRACK843_BEGIN: track(&&TRACK843_BEGIN, &&TRACK843_END);
+    TRACK843_END:  __asm__("nop;");
     unRLE_obuf_to_output_SMALL ( s );
     } else
                  {
-    TRACK710_BEGIN: track(&&TRACK710_BEGIN, &&TRACK710_END);
-    TRACK710_END:  __asm__("nop;");
-     
+    TRACK844_BEGIN: track(&&TRACK844_BEGIN, &&TRACK844_END);
+    TRACK844_END:  __asm__("nop;");
     unRLE_obuf_to_output_FAST ( s );
     }
              if (s->nblock_used == s->save_nblock+1 && s->state_out_len == 0) {
-      TRACK713_BEGIN: track(&&TRACK713_BEGIN, &&TRACK713_END);
-      TRACK713_END:  __asm__("nop;");
-       
+      TRACK848_BEGIN: track(&&TRACK848_BEGIN, &&TRACK848_END);
+      TRACK848_END:  __asm__("nop;");
       { s->calculatedBlockCRC = ~(s->calculatedBlockCRC); };
                   if (s->verbosity >= 3)
                       {
-      TRACK711_BEGIN: track(&&TRACK711_BEGIN, &&TRACK711_END);
-      TRACK711_END:  __asm__("nop;");
-       
+      TRACK845_BEGIN: track(&&TRACK845_BEGIN, &&TRACK845_END);
+      TRACK845_END:  __asm__("nop;");
       fprintf(stderr," {0x%x, 0x%x}",s->storedBlockCRC,s->calculatedBlockCRC);
       }
                   if (s->verbosity >= 2)  {
-      TRACK712_BEGIN: track(&&TRACK712_BEGIN, &&TRACK712_END);
-      TRACK712_END:  __asm__("nop;");
-       
+      TRACK846_BEGIN: track(&&TRACK846_BEGIN, &&TRACK846_END);
+      TRACK846_END:  __asm__("nop;");
       fprintf(stderr,"]");
       }
                   if (s->calculatedBlockCRC != s->storedBlockCRC)
-                     return (-4);
+                      {
+      TRACK847_BEGIN: track(&&TRACK847_BEGIN, &&TRACK847_END);
+      TRACK847_END:  __asm__("nop;");
+      return (-4);
+      }
                   s->calculatedCombinedCRC
                      = (s->calculatedCombinedCRC << 1) |
                           (s->calculatedCombinedCRC >> 31);
                   s->calculatedCombinedCRC ^= s->calculatedBlockCRC;
                   s->state = 14;
     } else {
-      TRACK714_BEGIN: track(&&TRACK714_BEGIN, &&TRACK714_END);
-      TRACK714_END:  __asm__("nop;");
-       
+      TRACK849_BEGIN: track(&&TRACK849_BEGIN, &&TRACK849_END);
+      TRACK849_END:  __asm__("nop;");
       return 0;
     }
   }
         if (s->state >= 10) {
     Int32 r = BZ2_decompress ( s );
-    TRACK718_BEGIN: track(&&TRACK718_BEGIN, &&TRACK718_END);
-    TRACK718_END:  __asm__("nop;");
-     
+    TRACK855_BEGIN: track(&&TRACK855_BEGIN, &&TRACK855_END);
+    TRACK855_END:  __asm__("nop;");
     if (r == 4) {
-      TRACK717_BEGIN: track(&&TRACK717_BEGIN, &&TRACK717_END);
-      TRACK717_END:  __asm__("nop;");
-       
+      TRACK853_BEGIN: track(&&TRACK853_BEGIN, &&TRACK853_END);
+      TRACK853_END:  __asm__("nop;");
       if (s->verbosity >= 3)
                       {
-      TRACK716_BEGIN: track(&&TRACK716_BEGIN, &&TRACK716_END);
-      TRACK716_END:  __asm__("nop;");
-       
+      TRACK851_BEGIN: track(&&TRACK851_BEGIN, &&TRACK851_END);
+      TRACK851_END:  __asm__("nop;");
       fprintf(stderr,"\n    combined CRCs: stored = 0x%x, computed = 0x%x",s->storedCombinedCRC,s->calculatedCombinedCRC);
       }
                   if (s->calculatedCombinedCRC != s->storedCombinedCRC)
-                     return (-4);
+                      {
+      TRACK852_BEGIN: track(&&TRACK852_BEGIN, &&TRACK852_END);
+      TRACK852_END:  __asm__("nop;");
+      return (-4);
+      }
                   return r;
     }
-             if (s->state != 2) return r;
+             if (s->state != 2)  {
+    TRACK854_BEGIN: track(&&TRACK854_BEGIN, &&TRACK854_END);
+    TRACK854_END:  __asm__("nop;");
+    return r;
+    }
   }
 }
    { if (!(0))  {
-TRACK720_BEGIN: track(&&TRACK720_BEGIN, &&TRACK720_END);
-TRACK720_END:  __asm__("nop;");
- 
+TRACK857_BEGIN: track(&&TRACK857_BEGIN, &&TRACK857_END);
+TRACK857_END:  __asm__("nop;");
 BZ2_bz__AssertH__fail ( 6001 );
 } };
    return 0;
@@ -6773,26 +6601,35 @@ BZ2_bz__AssertH__fail ( 6001 );
 int BZ2_bzDecompressEnd ( bz_stream *strm )
 {
    DState* s;
-   if (strm == ((void *)0)) return (-2);
+   if (strm == ((void *)0))  {
+TRACK858_BEGIN: track(&&TRACK858_BEGIN, &&TRACK858_END);
+TRACK858_END:  __asm__("nop;");
+return (-2);
+}
    s = strm->state;
-   if (s == ((void *)0)) return (-2);
-   if (s->strm != strm) return (-2);
+   if (s == ((void *)0))  {
+TRACK859_BEGIN: track(&&TRACK859_BEGIN, &&TRACK859_END);
+TRACK859_END:  __asm__("nop;");
+return (-2);
+}
+   if (s->strm != strm)  {
+TRACK860_BEGIN: track(&&TRACK860_BEGIN, &&TRACK860_END);
+TRACK860_END:  __asm__("nop;");
+return (-2);
+}
    if (s->tt != ((void *)0))  {
-TRACK721_BEGIN: track(&&TRACK721_BEGIN, &&TRACK721_END);
-TRACK721_END:  __asm__("nop;");
- 
+TRACK861_BEGIN: track(&&TRACK861_BEGIN, &&TRACK861_END);
+TRACK861_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->tt));
 }
    if (s->ll16 != ((void *)0))  {
-TRACK722_BEGIN: track(&&TRACK722_BEGIN, &&TRACK722_END);
-TRACK722_END:  __asm__("nop;");
- 
+TRACK862_BEGIN: track(&&TRACK862_BEGIN, &&TRACK862_END);
+TRACK862_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->ll16));
 }
    if (s->ll4 != ((void *)0))  {
-TRACK723_BEGIN: track(&&TRACK723_BEGIN, &&TRACK723_END);
-TRACK723_END:  __asm__("nop;");
- 
+TRACK863_BEGIN: track(&&TRACK863_BEGIN, &&TRACK863_END);
+TRACK863_END:  __asm__("nop;");
 (strm->bzfree)(strm->opaque,(s->ll4));
 }
    (strm->bzfree)(strm->opaque,(strm->state));
@@ -6813,7 +6650,11 @@ typedef
 static Bool myfeof ( FILE* f )
 {
    Int32 c = fgetc ( f );
-   if (c == (-1)) return ((Bool)1);
+   if (c == (-1))  {
+TRACK864_BEGIN: track(&&TRACK864_BEGIN, &&TRACK864_END);
+TRACK864_END:  __asm__("nop;");
+return ((Bool)1);
+}
    ungetc ( c, f );
    return ((Bool)0);
 }
@@ -6827,14 +6668,12 @@ BZFILE* BZ2_bzWriteOpen
    Int32 ret;
    bzFile* bzf = ((void *)0);
    { if (bzerror != ((void *)0))  {
-TRACK724_BEGIN: track(&&TRACK724_BEGIN, &&TRACK724_END);
-TRACK724_END:  __asm__("nop;");
- 
+TRACK865_BEGIN: track(&&TRACK865_BEGIN, &&TRACK865_END);
+TRACK865_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK725_BEGIN: track(&&TRACK725_BEGIN, &&TRACK725_END);
-TRACK725_END:  __asm__("nop;");
- 
+TRACK866_BEGIN: track(&&TRACK866_BEGIN, &&TRACK866_END);
+TRACK866_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    if (f == ((void *)0) ||
@@ -6842,65 +6681,54 @@ bzf->lastErr = 0;
        (workFactor < 0 || workFactor > 250) ||
        (verbosity < 0 || verbosity > 4))
       {
-  TRACK728_BEGIN: track(&&TRACK728_BEGIN, &&TRACK728_END);
-  TRACK728_END:  __asm__("nop;");
-   
+  TRACK869_BEGIN: track(&&TRACK869_BEGIN, &&TRACK869_END);
+  TRACK869_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK726_BEGIN: track(&&TRACK726_BEGIN, &&TRACK726_END);
-  TRACK726_END:  __asm__("nop;");
-   
+  TRACK867_BEGIN: track(&&TRACK867_BEGIN, &&TRACK867_END);
+  TRACK867_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK727_BEGIN: track(&&TRACK727_BEGIN, &&TRACK727_END);
-  TRACK727_END:  __asm__("nop;");
-   
+  TRACK868_BEGIN: track(&&TRACK868_BEGIN, &&TRACK868_END);
+  TRACK868_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return ((void *)0);
 };
    if (ferror(f))
       {
-  TRACK731_BEGIN: track(&&TRACK731_BEGIN, &&TRACK731_END);
-  TRACK731_END:  __asm__("nop;");
-   
+  TRACK872_BEGIN: track(&&TRACK872_BEGIN, &&TRACK872_END);
+  TRACK872_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK729_BEGIN: track(&&TRACK729_BEGIN, &&TRACK729_END);
-  TRACK729_END:  __asm__("nop;");
-   
+  TRACK870_BEGIN: track(&&TRACK870_BEGIN, &&TRACK870_END);
+  TRACK870_END:  __asm__("nop;");
   *bzerror = (-6);
   } if (bzf != ((void *)0))  {
-  TRACK730_BEGIN: track(&&TRACK730_BEGIN, &&TRACK730_END);
-  TRACK730_END:  __asm__("nop;");
-   
+  TRACK871_BEGIN: track(&&TRACK871_BEGIN, &&TRACK871_END);
+  TRACK871_END:  __asm__("nop;");
   bzf->lastErr = (-6);
   } }; return ((void *)0);
 };
    bzf = malloc ( sizeof(bzFile) );
    if (bzf == ((void *)0))
       {
-  TRACK734_BEGIN: track(&&TRACK734_BEGIN, &&TRACK734_END);
-  TRACK734_END:  __asm__("nop;");
-   
+  TRACK875_BEGIN: track(&&TRACK875_BEGIN, &&TRACK875_END);
+  TRACK875_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK732_BEGIN: track(&&TRACK732_BEGIN, &&TRACK732_END);
-  TRACK732_END:  __asm__("nop;");
-   
+  TRACK873_BEGIN: track(&&TRACK873_BEGIN, &&TRACK873_END);
+  TRACK873_END:  __asm__("nop;");
   *bzerror = (-3);
   } if (bzf != ((void *)0))  {
-  TRACK733_BEGIN: track(&&TRACK733_BEGIN, &&TRACK733_END);
-  TRACK733_END:  __asm__("nop;");
-   
+  TRACK874_BEGIN: track(&&TRACK874_BEGIN, &&TRACK874_END);
+  TRACK874_END:  __asm__("nop;");
   bzf->lastErr = (-3);
   } }; return ((void *)0);
 };
    { if (bzerror != ((void *)0))  {
-TRACK735_BEGIN: track(&&TRACK735_BEGIN, &&TRACK735_END);
-TRACK735_END:  __asm__("nop;");
- 
+TRACK876_BEGIN: track(&&TRACK876_BEGIN, &&TRACK876_END);
+TRACK876_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK736_BEGIN: track(&&TRACK736_BEGIN, &&TRACK736_END);
-TRACK736_END:  __asm__("nop;");
- 
+TRACK877_BEGIN: track(&&TRACK877_BEGIN, &&TRACK877_END);
+TRACK877_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    bzf->initialisedOk = ((Bool)0);
@@ -6911,27 +6739,23 @@ bzf->lastErr = 0;
    bzf->strm.bzfree = ((void *)0);
    bzf->strm.opaque = ((void *)0);
    if (workFactor == 0)  {
-TRACK737_BEGIN: track(&&TRACK737_BEGIN, &&TRACK737_END);
-TRACK737_END:  __asm__("nop;");
- 
+TRACK878_BEGIN: track(&&TRACK878_BEGIN, &&TRACK878_END);
+TRACK878_END:  __asm__("nop;");
 workFactor = 30;
 }
    ret = BZ2_bzCompressInit ( &(bzf->strm), blockSize100k,
                               verbosity, workFactor );
    if (ret != 0)
       {
-  TRACK740_BEGIN: track(&&TRACK740_BEGIN, &&TRACK740_END);
-  TRACK740_END:  __asm__("nop;");
-   
+  TRACK881_BEGIN: track(&&TRACK881_BEGIN, &&TRACK881_END);
+  TRACK881_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK738_BEGIN: track(&&TRACK738_BEGIN, &&TRACK738_END);
-  TRACK738_END:  __asm__("nop;");
-   
+  TRACK879_BEGIN: track(&&TRACK879_BEGIN, &&TRACK879_END);
+  TRACK879_END:  __asm__("nop;");
   *bzerror = ret;
   } if (bzf != ((void *)0))  {
-  TRACK739_BEGIN: track(&&TRACK739_BEGIN, &&TRACK739_END);
-  TRACK739_END:  __asm__("nop;");
-   
+  TRACK880_BEGIN: track(&&TRACK880_BEGIN, &&TRACK880_END);
+  TRACK880_END:  __asm__("nop;");
   bzf->lastErr = ret;
   } }; free(bzf); return ((void *)0);
 };
@@ -6948,149 +6772,124 @@ void BZ2_bzWrite
    Int32 n, n2, ret;
    bzFile* bzf = (bzFile*)b;
    { if (bzerror != ((void *)0))  {
-TRACK741_BEGIN: track(&&TRACK741_BEGIN, &&TRACK741_END);
-TRACK741_END:  __asm__("nop;");
- 
+TRACK882_BEGIN: track(&&TRACK882_BEGIN, &&TRACK882_END);
+TRACK882_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK742_BEGIN: track(&&TRACK742_BEGIN, &&TRACK742_END);
-TRACK742_END:  __asm__("nop;");
- 
+TRACK883_BEGIN: track(&&TRACK883_BEGIN, &&TRACK883_END);
+TRACK883_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
       {
-  TRACK745_BEGIN: track(&&TRACK745_BEGIN, &&TRACK745_END);
-  TRACK745_END:  __asm__("nop;");
-   
+  TRACK886_BEGIN: track(&&TRACK886_BEGIN, &&TRACK886_END);
+  TRACK886_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK743_BEGIN: track(&&TRACK743_BEGIN, &&TRACK743_END);
-  TRACK743_END:  __asm__("nop;");
-   
+  TRACK884_BEGIN: track(&&TRACK884_BEGIN, &&TRACK884_END);
+  TRACK884_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK744_BEGIN: track(&&TRACK744_BEGIN, &&TRACK744_END);
-  TRACK744_END:  __asm__("nop;");
-   
+  TRACK885_BEGIN: track(&&TRACK885_BEGIN, &&TRACK885_END);
+  TRACK885_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return;
 };
    if (!(bzf->writing))
       {
-  TRACK748_BEGIN: track(&&TRACK748_BEGIN, &&TRACK748_END);
-  TRACK748_END:  __asm__("nop;");
-   
+  TRACK889_BEGIN: track(&&TRACK889_BEGIN, &&TRACK889_END);
+  TRACK889_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK746_BEGIN: track(&&TRACK746_BEGIN, &&TRACK746_END);
-  TRACK746_END:  __asm__("nop;");
-   
+  TRACK887_BEGIN: track(&&TRACK887_BEGIN, &&TRACK887_END);
+  TRACK887_END:  __asm__("nop;");
   *bzerror = (-1);
   } if (bzf != ((void *)0))  {
-  TRACK747_BEGIN: track(&&TRACK747_BEGIN, &&TRACK747_END);
-  TRACK747_END:  __asm__("nop;");
-   
+  TRACK888_BEGIN: track(&&TRACK888_BEGIN, &&TRACK888_END);
+  TRACK888_END:  __asm__("nop;");
   bzf->lastErr = (-1);
   } }; return;
 };
    if (ferror(bzf->handle))
       {
-  TRACK751_BEGIN: track(&&TRACK751_BEGIN, &&TRACK751_END);
-  TRACK751_END:  __asm__("nop;");
-   
+  TRACK892_BEGIN: track(&&TRACK892_BEGIN, &&TRACK892_END);
+  TRACK892_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK749_BEGIN: track(&&TRACK749_BEGIN, &&TRACK749_END);
-  TRACK749_END:  __asm__("nop;");
-   
+  TRACK890_BEGIN: track(&&TRACK890_BEGIN, &&TRACK890_END);
+  TRACK890_END:  __asm__("nop;");
   *bzerror = (-6);
   } if (bzf != ((void *)0))  {
-  TRACK750_BEGIN: track(&&TRACK750_BEGIN, &&TRACK750_END);
-  TRACK750_END:  __asm__("nop;");
-   
+  TRACK891_BEGIN: track(&&TRACK891_BEGIN, &&TRACK891_END);
+  TRACK891_END:  __asm__("nop;");
   bzf->lastErr = (-6);
   } }; return;
 };
    if (len == 0)
       {
-  TRACK754_BEGIN: track(&&TRACK754_BEGIN, &&TRACK754_END);
-  TRACK754_END:  __asm__("nop;");
-   
+  TRACK895_BEGIN: track(&&TRACK895_BEGIN, &&TRACK895_END);
+  TRACK895_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK752_BEGIN: track(&&TRACK752_BEGIN, &&TRACK752_END);
-  TRACK752_END:  __asm__("nop;");
-   
+  TRACK893_BEGIN: track(&&TRACK893_BEGIN, &&TRACK893_END);
+  TRACK893_END:  __asm__("nop;");
   *bzerror = 0;
   } if (bzf != ((void *)0))  {
-  TRACK753_BEGIN: track(&&TRACK753_BEGIN, &&TRACK753_END);
-  TRACK753_END:  __asm__("nop;");
-   
+  TRACK894_BEGIN: track(&&TRACK894_BEGIN, &&TRACK894_END);
+  TRACK894_END:  __asm__("nop;");
   bzf->lastErr = 0;
   } }; return;
 };
    bzf->strm.avail_in = len;
    bzf->strm.next_in = buf;
    while (((Bool)1)) {
-  TRACK765_BEGIN: track(&&TRACK765_BEGIN, &&TRACK765_END);
-  TRACK765_END:  __asm__("nop;");
-   
+  TRACK906_BEGIN: track(&&TRACK906_BEGIN, &&TRACK906_END);
+  TRACK906_END:  __asm__("nop;");
   bzf->strm.avail_out = 5000;
         bzf->strm.next_out = bzf->buf;
         ret = BZ2_bzCompress ( &(bzf->strm), 0 );
         if (ret != 1)
            {
-    TRACK757_BEGIN: track(&&TRACK757_BEGIN, &&TRACK757_END);
-    TRACK757_END:  __asm__("nop;");
-     
+    TRACK898_BEGIN: track(&&TRACK898_BEGIN, &&TRACK898_END);
+    TRACK898_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK755_BEGIN: track(&&TRACK755_BEGIN, &&TRACK755_END);
-    TRACK755_END:  __asm__("nop;");
-     
+    TRACK896_BEGIN: track(&&TRACK896_BEGIN, &&TRACK896_END);
+    TRACK896_END:  __asm__("nop;");
     *bzerror = ret;
     } if (bzf != ((void *)0))  {
-    TRACK756_BEGIN: track(&&TRACK756_BEGIN, &&TRACK756_END);
-    TRACK756_END:  __asm__("nop;");
-     
+    TRACK897_BEGIN: track(&&TRACK897_BEGIN, &&TRACK897_END);
+    TRACK897_END:  __asm__("nop;");
     bzf->lastErr = ret;
     } }; return;
   };
         if (bzf->strm.avail_out < 5000) {
-    TRACK761_BEGIN: track(&&TRACK761_BEGIN, &&TRACK761_END);
-    TRACK761_END:  __asm__("nop;");
-     
+    TRACK902_BEGIN: track(&&TRACK902_BEGIN, &&TRACK902_END);
+    TRACK902_END:  __asm__("nop;");
     n = 5000 - bzf->strm.avail_out;
              n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
                            n, bzf->handle );
              if (n != n2 || ferror(bzf->handle))
                 {
-      TRACK760_BEGIN: track(&&TRACK760_BEGIN, &&TRACK760_END);
-      TRACK760_END:  __asm__("nop;");
-       
+      TRACK901_BEGIN: track(&&TRACK901_BEGIN, &&TRACK901_END);
+      TRACK901_END:  __asm__("nop;");
       { if (bzerror != ((void *)0))  {
-      TRACK758_BEGIN: track(&&TRACK758_BEGIN, &&TRACK758_END);
-      TRACK758_END:  __asm__("nop;");
-       
+      TRACK899_BEGIN: track(&&TRACK899_BEGIN, &&TRACK899_END);
+      TRACK899_END:  __asm__("nop;");
       *bzerror = (-6);
       } if (bzf != ((void *)0))  {
-      TRACK759_BEGIN: track(&&TRACK759_BEGIN, &&TRACK759_END);
-      TRACK759_END:  __asm__("nop;");
-       
+      TRACK900_BEGIN: track(&&TRACK900_BEGIN, &&TRACK900_END);
+      TRACK900_END:  __asm__("nop;");
       bzf->lastErr = (-6);
       } }; return;
     };
   }
         if (bzf->strm.avail_in == 0)
            {
-    TRACK764_BEGIN: track(&&TRACK764_BEGIN, &&TRACK764_END);
-    TRACK764_END:  __asm__("nop;");
-     
+    TRACK905_BEGIN: track(&&TRACK905_BEGIN, &&TRACK905_END);
+    TRACK905_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK762_BEGIN: track(&&TRACK762_BEGIN, &&TRACK762_END);
-    TRACK762_END:  __asm__("nop;");
-     
+    TRACK903_BEGIN: track(&&TRACK903_BEGIN, &&TRACK903_END);
+    TRACK903_END:  __asm__("nop;");
     *bzerror = 0;
     } if (bzf != ((void *)0))  {
-    TRACK763_BEGIN: track(&&TRACK763_BEGIN, &&TRACK763_END);
-    TRACK763_END:  __asm__("nop;");
-     
+    TRACK904_BEGIN: track(&&TRACK904_BEGIN, &&TRACK904_END);
+    TRACK904_END:  __asm__("nop;");
     bzf->lastErr = 0;
     } }; return;
   };
@@ -7119,195 +6918,167 @@ void BZ2_bzWriteClose64
    bzFile* bzf = (bzFile*)b;
    if (bzf == ((void *)0))
       {
-  TRACK768_BEGIN: track(&&TRACK768_BEGIN, &&TRACK768_END);
-  TRACK768_END:  __asm__("nop;");
-   
+  TRACK909_BEGIN: track(&&TRACK909_BEGIN, &&TRACK909_END);
+  TRACK909_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK766_BEGIN: track(&&TRACK766_BEGIN, &&TRACK766_END);
-  TRACK766_END:  __asm__("nop;");
-   
+  TRACK907_BEGIN: track(&&TRACK907_BEGIN, &&TRACK907_END);
+  TRACK907_END:  __asm__("nop;");
   *bzerror = 0;
   } if (bzf != ((void *)0))  {
-  TRACK767_BEGIN: track(&&TRACK767_BEGIN, &&TRACK767_END);
-  TRACK767_END:  __asm__("nop;");
-   
+  TRACK908_BEGIN: track(&&TRACK908_BEGIN, &&TRACK908_END);
+  TRACK908_END:  __asm__("nop;");
   bzf->lastErr = 0;
   } }; return;
 };
    if (!(bzf->writing))
       {
-  TRACK771_BEGIN: track(&&TRACK771_BEGIN, &&TRACK771_END);
-  TRACK771_END:  __asm__("nop;");
-   
+  TRACK912_BEGIN: track(&&TRACK912_BEGIN, &&TRACK912_END);
+  TRACK912_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK769_BEGIN: track(&&TRACK769_BEGIN, &&TRACK769_END);
-  TRACK769_END:  __asm__("nop;");
-   
+  TRACK910_BEGIN: track(&&TRACK910_BEGIN, &&TRACK910_END);
+  TRACK910_END:  __asm__("nop;");
   *bzerror = (-1);
   } if (bzf != ((void *)0))  {
-  TRACK770_BEGIN: track(&&TRACK770_BEGIN, &&TRACK770_END);
-  TRACK770_END:  __asm__("nop;");
-   
+  TRACK911_BEGIN: track(&&TRACK911_BEGIN, &&TRACK911_END);
+  TRACK911_END:  __asm__("nop;");
   bzf->lastErr = (-1);
   } }; return;
 };
    if (ferror(bzf->handle))
       {
-  TRACK774_BEGIN: track(&&TRACK774_BEGIN, &&TRACK774_END);
-  TRACK774_END:  __asm__("nop;");
-   
+  TRACK915_BEGIN: track(&&TRACK915_BEGIN, &&TRACK915_END);
+  TRACK915_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK772_BEGIN: track(&&TRACK772_BEGIN, &&TRACK772_END);
-  TRACK772_END:  __asm__("nop;");
-   
+  TRACK913_BEGIN: track(&&TRACK913_BEGIN, &&TRACK913_END);
+  TRACK913_END:  __asm__("nop;");
   *bzerror = (-6);
   } if (bzf != ((void *)0))  {
-  TRACK773_BEGIN: track(&&TRACK773_BEGIN, &&TRACK773_END);
-  TRACK773_END:  __asm__("nop;");
-   
+  TRACK914_BEGIN: track(&&TRACK914_BEGIN, &&TRACK914_END);
+  TRACK914_END:  __asm__("nop;");
   bzf->lastErr = (-6);
   } }; return;
 };
    if (nbytes_in_lo32 != ((void *)0))  {
-TRACK775_BEGIN: track(&&TRACK775_BEGIN, &&TRACK775_END);
-TRACK775_END:  __asm__("nop;");
- 
+TRACK916_BEGIN: track(&&TRACK916_BEGIN, &&TRACK916_END);
+TRACK916_END:  __asm__("nop;");
 *nbytes_in_lo32 = 0;
 }
    if (nbytes_in_hi32 != ((void *)0))  {
-TRACK776_BEGIN: track(&&TRACK776_BEGIN, &&TRACK776_END);
-TRACK776_END:  __asm__("nop;");
- 
+TRACK917_BEGIN: track(&&TRACK917_BEGIN, &&TRACK917_END);
+TRACK917_END:  __asm__("nop;");
 *nbytes_in_hi32 = 0;
 }
    if (nbytes_out_lo32 != ((void *)0))  {
-TRACK777_BEGIN: track(&&TRACK777_BEGIN, &&TRACK777_END);
-TRACK777_END:  __asm__("nop;");
- 
+TRACK918_BEGIN: track(&&TRACK918_BEGIN, &&TRACK918_END);
+TRACK918_END:  __asm__("nop;");
 *nbytes_out_lo32 = 0;
 }
    if (nbytes_out_hi32 != ((void *)0))  {
-TRACK778_BEGIN: track(&&TRACK778_BEGIN, &&TRACK778_END);
-TRACK778_END:  __asm__("nop;");
- 
+TRACK919_BEGIN: track(&&TRACK919_BEGIN, &&TRACK919_END);
+TRACK919_END:  __asm__("nop;");
 *nbytes_out_hi32 = 0;
 }
    if ((!abandon) && bzf->lastErr == 0) {
-  TRACK787_BEGIN: track(&&TRACK787_BEGIN, &&TRACK787_END);
-  TRACK787_END:  __asm__("nop;");
-   
+  TRACK929_BEGIN: track(&&TRACK929_BEGIN, &&TRACK929_END);
+  TRACK929_END:  __asm__("nop;");
   while (((Bool)1)) {
-    TRACK786_BEGIN: track(&&TRACK786_BEGIN, &&TRACK786_END);
-    TRACK786_END:  __asm__("nop;");
-     
+    TRACK928_BEGIN: track(&&TRACK928_BEGIN, &&TRACK928_END);
+    TRACK928_END:  __asm__("nop;");
     bzf->strm.avail_out = 5000;
              bzf->strm.next_out = bzf->buf;
              ret = BZ2_bzCompress ( &(bzf->strm), 2 );
              if (ret != 3 && ret != 4)
                 {
-      TRACK781_BEGIN: track(&&TRACK781_BEGIN, &&TRACK781_END);
-      TRACK781_END:  __asm__("nop;");
-       
+      TRACK922_BEGIN: track(&&TRACK922_BEGIN, &&TRACK922_END);
+      TRACK922_END:  __asm__("nop;");
       { if (bzerror != ((void *)0))  {
-      TRACK779_BEGIN: track(&&TRACK779_BEGIN, &&TRACK779_END);
-      TRACK779_END:  __asm__("nop;");
-       
+      TRACK920_BEGIN: track(&&TRACK920_BEGIN, &&TRACK920_END);
+      TRACK920_END:  __asm__("nop;");
       *bzerror = ret;
       } if (bzf != ((void *)0))  {
-      TRACK780_BEGIN: track(&&TRACK780_BEGIN, &&TRACK780_END);
-      TRACK780_END:  __asm__("nop;");
-       
+      TRACK921_BEGIN: track(&&TRACK921_BEGIN, &&TRACK921_END);
+      TRACK921_END:  __asm__("nop;");
       bzf->lastErr = ret;
       } }; return;
     };
              if (bzf->strm.avail_out < 5000) {
-      TRACK785_BEGIN: track(&&TRACK785_BEGIN, &&TRACK785_END);
-      TRACK785_END:  __asm__("nop;");
-       
+      TRACK926_BEGIN: track(&&TRACK926_BEGIN, &&TRACK926_END);
+      TRACK926_END:  __asm__("nop;");
       n = 5000 - bzf->strm.avail_out;
                   n2 = fwrite ( (void*)(bzf->buf), sizeof(UChar),
                                 n, bzf->handle );
                   if (n != n2 || ferror(bzf->handle))
                      {
-        TRACK784_BEGIN: track(&&TRACK784_BEGIN, &&TRACK784_END);
-        TRACK784_END:  __asm__("nop;");
-         
+        TRACK925_BEGIN: track(&&TRACK925_BEGIN, &&TRACK925_END);
+        TRACK925_END:  __asm__("nop;");
         { if (bzerror != ((void *)0))  {
-        TRACK782_BEGIN: track(&&TRACK782_BEGIN, &&TRACK782_END);
-        TRACK782_END:  __asm__("nop;");
-         
+        TRACK923_BEGIN: track(&&TRACK923_BEGIN, &&TRACK923_END);
+        TRACK923_END:  __asm__("nop;");
         *bzerror = (-6);
         } if (bzf != ((void *)0))  {
-        TRACK783_BEGIN: track(&&TRACK783_BEGIN, &&TRACK783_END);
-        TRACK783_END:  __asm__("nop;");
-         
+        TRACK924_BEGIN: track(&&TRACK924_BEGIN, &&TRACK924_END);
+        TRACK924_END:  __asm__("nop;");
         bzf->lastErr = (-6);
         } }; return;
       };
     }
-             if (ret == 4) break;
+             if (ret == 4)  {
+    TRACK927_BEGIN: track(&&TRACK927_BEGIN, &&TRACK927_END);
+    TRACK927_END:  __asm__("nop;");
+    break;
+    }
   }
 }
    if ( !abandon && !ferror ( bzf->handle ) ) {
-  TRACK791_BEGIN: track(&&TRACK791_BEGIN, &&TRACK791_END);
-  TRACK791_END:  __asm__("nop;");
-   
+  TRACK933_BEGIN: track(&&TRACK933_BEGIN, &&TRACK933_END);
+  TRACK933_END:  __asm__("nop;");
   fflush ( bzf->handle );
         if (ferror(bzf->handle))
            {
-    TRACK790_BEGIN: track(&&TRACK790_BEGIN, &&TRACK790_END);
-    TRACK790_END:  __asm__("nop;");
-     
+    TRACK932_BEGIN: track(&&TRACK932_BEGIN, &&TRACK932_END);
+    TRACK932_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK788_BEGIN: track(&&TRACK788_BEGIN, &&TRACK788_END);
-    TRACK788_END:  __asm__("nop;");
-     
+    TRACK930_BEGIN: track(&&TRACK930_BEGIN, &&TRACK930_END);
+    TRACK930_END:  __asm__("nop;");
     *bzerror = (-6);
     } if (bzf != ((void *)0))  {
-    TRACK789_BEGIN: track(&&TRACK789_BEGIN, &&TRACK789_END);
-    TRACK789_END:  __asm__("nop;");
-     
+    TRACK931_BEGIN: track(&&TRACK931_BEGIN, &&TRACK931_END);
+    TRACK931_END:  __asm__("nop;");
     bzf->lastErr = (-6);
     } }; return;
   };
 }
    if (nbytes_in_lo32 != ((void *)0))
        {
-TRACK792_BEGIN: track(&&TRACK792_BEGIN, &&TRACK792_END);
-TRACK792_END:  __asm__("nop;");
- 
+TRACK934_BEGIN: track(&&TRACK934_BEGIN, &&TRACK934_END);
+TRACK934_END:  __asm__("nop;");
 *nbytes_in_lo32 = bzf->strm.total_in_lo32;
 }
    if (nbytes_in_hi32 != ((void *)0))
        {
-TRACK793_BEGIN: track(&&TRACK793_BEGIN, &&TRACK793_END);
-TRACK793_END:  __asm__("nop;");
- 
+TRACK935_BEGIN: track(&&TRACK935_BEGIN, &&TRACK935_END);
+TRACK935_END:  __asm__("nop;");
 *nbytes_in_hi32 = bzf->strm.total_in_hi32;
 }
    if (nbytes_out_lo32 != ((void *)0))
        {
-TRACK794_BEGIN: track(&&TRACK794_BEGIN, &&TRACK794_END);
-TRACK794_END:  __asm__("nop;");
- 
+TRACK936_BEGIN: track(&&TRACK936_BEGIN, &&TRACK936_END);
+TRACK936_END:  __asm__("nop;");
 *nbytes_out_lo32 = bzf->strm.total_out_lo32;
 }
    if (nbytes_out_hi32 != ((void *)0))
        {
-TRACK795_BEGIN: track(&&TRACK795_BEGIN, &&TRACK795_END);
-TRACK795_END:  __asm__("nop;");
- 
+TRACK937_BEGIN: track(&&TRACK937_BEGIN, &&TRACK937_END);
+TRACK937_END:  __asm__("nop;");
 *nbytes_out_hi32 = bzf->strm.total_out_hi32;
 }
    { if (bzerror != ((void *)0))  {
-TRACK796_BEGIN: track(&&TRACK796_BEGIN, &&TRACK796_END);
-TRACK796_END:  __asm__("nop;");
- 
+TRACK938_BEGIN: track(&&TRACK938_BEGIN, &&TRACK938_END);
+TRACK938_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK797_BEGIN: track(&&TRACK797_BEGIN, &&TRACK797_END);
-TRACK797_END:  __asm__("nop;");
- 
+TRACK939_BEGIN: track(&&TRACK939_BEGIN, &&TRACK939_END);
+TRACK939_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    BZ2_bzCompressEnd ( &(bzf->strm) );
@@ -7324,14 +7095,12 @@ BZFILE* BZ2_bzReadOpen
    bzFile* bzf = ((void *)0);
    int ret;
    { if (bzerror != ((void *)0))  {
-TRACK798_BEGIN: track(&&TRACK798_BEGIN, &&TRACK798_END);
-TRACK798_END:  __asm__("nop;");
- 
+TRACK940_BEGIN: track(&&TRACK940_BEGIN, &&TRACK940_END);
+TRACK940_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK799_BEGIN: track(&&TRACK799_BEGIN, &&TRACK799_END);
-TRACK799_END:  __asm__("nop;");
- 
+TRACK941_BEGIN: track(&&TRACK941_BEGIN, &&TRACK941_END);
+TRACK941_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    if (f == ((void *)0) ||
@@ -7340,65 +7109,54 @@ bzf->lastErr = 0;
        (unused == ((void *)0) && nUnused != 0) ||
        (unused != ((void *)0) && (nUnused < 0 || nUnused > 5000)))
       {
-  TRACK802_BEGIN: track(&&TRACK802_BEGIN, &&TRACK802_END);
-  TRACK802_END:  __asm__("nop;");
-   
+  TRACK944_BEGIN: track(&&TRACK944_BEGIN, &&TRACK944_END);
+  TRACK944_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK800_BEGIN: track(&&TRACK800_BEGIN, &&TRACK800_END);
-  TRACK800_END:  __asm__("nop;");
-   
+  TRACK942_BEGIN: track(&&TRACK942_BEGIN, &&TRACK942_END);
+  TRACK942_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK801_BEGIN: track(&&TRACK801_BEGIN, &&TRACK801_END);
-  TRACK801_END:  __asm__("nop;");
-   
+  TRACK943_BEGIN: track(&&TRACK943_BEGIN, &&TRACK943_END);
+  TRACK943_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return ((void *)0);
 };
    if (ferror(f))
       {
-  TRACK805_BEGIN: track(&&TRACK805_BEGIN, &&TRACK805_END);
-  TRACK805_END:  __asm__("nop;");
-   
+  TRACK947_BEGIN: track(&&TRACK947_BEGIN, &&TRACK947_END);
+  TRACK947_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK803_BEGIN: track(&&TRACK803_BEGIN, &&TRACK803_END);
-  TRACK803_END:  __asm__("nop;");
-   
+  TRACK945_BEGIN: track(&&TRACK945_BEGIN, &&TRACK945_END);
+  TRACK945_END:  __asm__("nop;");
   *bzerror = (-6);
   } if (bzf != ((void *)0))  {
-  TRACK804_BEGIN: track(&&TRACK804_BEGIN, &&TRACK804_END);
-  TRACK804_END:  __asm__("nop;");
-   
+  TRACK946_BEGIN: track(&&TRACK946_BEGIN, &&TRACK946_END);
+  TRACK946_END:  __asm__("nop;");
   bzf->lastErr = (-6);
   } }; return ((void *)0);
 };
    bzf = malloc ( sizeof(bzFile) );
    if (bzf == ((void *)0))
       {
-  TRACK808_BEGIN: track(&&TRACK808_BEGIN, &&TRACK808_END);
-  TRACK808_END:  __asm__("nop;");
-   
+  TRACK950_BEGIN: track(&&TRACK950_BEGIN, &&TRACK950_END);
+  TRACK950_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK806_BEGIN: track(&&TRACK806_BEGIN, &&TRACK806_END);
-  TRACK806_END:  __asm__("nop;");
-   
+  TRACK948_BEGIN: track(&&TRACK948_BEGIN, &&TRACK948_END);
+  TRACK948_END:  __asm__("nop;");
   *bzerror = (-3);
   } if (bzf != ((void *)0))  {
-  TRACK807_BEGIN: track(&&TRACK807_BEGIN, &&TRACK807_END);
-  TRACK807_END:  __asm__("nop;");
-   
+  TRACK949_BEGIN: track(&&TRACK949_BEGIN, &&TRACK949_END);
+  TRACK949_END:  __asm__("nop;");
   bzf->lastErr = (-3);
   } }; return ((void *)0);
 };
    { if (bzerror != ((void *)0))  {
-TRACK809_BEGIN: track(&&TRACK809_BEGIN, &&TRACK809_END);
-TRACK809_END:  __asm__("nop;");
- 
+TRACK951_BEGIN: track(&&TRACK951_BEGIN, &&TRACK951_END);
+TRACK951_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK810_BEGIN: track(&&TRACK810_BEGIN, &&TRACK810_END);
-TRACK810_END:  __asm__("nop;");
- 
+TRACK952_BEGIN: track(&&TRACK952_BEGIN, &&TRACK952_END);
+TRACK952_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    bzf->initialisedOk = ((Bool)0);
@@ -7409,9 +7167,8 @@ bzf->lastErr = 0;
    bzf->strm.bzfree = ((void *)0);
    bzf->strm.opaque = ((void *)0);
    while (nUnused > 0) {
-  TRACK811_BEGIN: track(&&TRACK811_BEGIN, &&TRACK811_END);
-  TRACK811_END:  __asm__("nop;");
-   
+  TRACK953_BEGIN: track(&&TRACK953_BEGIN, &&TRACK953_END);
+  TRACK953_END:  __asm__("nop;");
   bzf->buf[bzf->bufN] = *((UChar*)(unused)); bzf->bufN++;
         unused = ((void*)( 1 + ((UChar*)(unused)) ));
         nUnused--;
@@ -7419,18 +7176,15 @@ bzf->lastErr = 0;
    ret = BZ2_bzDecompressInit ( &(bzf->strm), verbosity, small );
    if (ret != 0)
       {
-  TRACK814_BEGIN: track(&&TRACK814_BEGIN, &&TRACK814_END);
-  TRACK814_END:  __asm__("nop;");
-   
+  TRACK956_BEGIN: track(&&TRACK956_BEGIN, &&TRACK956_END);
+  TRACK956_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK812_BEGIN: track(&&TRACK812_BEGIN, &&TRACK812_END);
-  TRACK812_END:  __asm__("nop;");
-   
+  TRACK954_BEGIN: track(&&TRACK954_BEGIN, &&TRACK954_END);
+  TRACK954_END:  __asm__("nop;");
   *bzerror = ret;
   } if (bzf != ((void *)0))  {
-  TRACK813_BEGIN: track(&&TRACK813_BEGIN, &&TRACK813_END);
-  TRACK813_END:  __asm__("nop;");
-   
+  TRACK955_BEGIN: track(&&TRACK955_BEGIN, &&TRACK955_END);
+  TRACK955_END:  __asm__("nop;");
   bzf->lastErr = ret;
   } }; free(bzf); return ((void *)0);
 };
@@ -7443,55 +7197,46 @@ void BZ2_bzReadClose ( int *bzerror, BZFILE *b )
 {
    bzFile* bzf = (bzFile*)b;
    { if (bzerror != ((void *)0))  {
-TRACK815_BEGIN: track(&&TRACK815_BEGIN, &&TRACK815_END);
-TRACK815_END:  __asm__("nop;");
- 
+TRACK957_BEGIN: track(&&TRACK957_BEGIN, &&TRACK957_END);
+TRACK957_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK816_BEGIN: track(&&TRACK816_BEGIN, &&TRACK816_END);
-TRACK816_END:  __asm__("nop;");
- 
+TRACK958_BEGIN: track(&&TRACK958_BEGIN, &&TRACK958_END);
+TRACK958_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    if (bzf == ((void *)0))
       {
-  TRACK819_BEGIN: track(&&TRACK819_BEGIN, &&TRACK819_END);
-  TRACK819_END:  __asm__("nop;");
-   
+  TRACK961_BEGIN: track(&&TRACK961_BEGIN, &&TRACK961_END);
+  TRACK961_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK817_BEGIN: track(&&TRACK817_BEGIN, &&TRACK817_END);
-  TRACK817_END:  __asm__("nop;");
-   
+  TRACK959_BEGIN: track(&&TRACK959_BEGIN, &&TRACK959_END);
+  TRACK959_END:  __asm__("nop;");
   *bzerror = 0;
   } if (bzf != ((void *)0))  {
-  TRACK818_BEGIN: track(&&TRACK818_BEGIN, &&TRACK818_END);
-  TRACK818_END:  __asm__("nop;");
-   
+  TRACK960_BEGIN: track(&&TRACK960_BEGIN, &&TRACK960_END);
+  TRACK960_END:  __asm__("nop;");
   bzf->lastErr = 0;
   } }; return;
 };
    if (bzf->writing)
       {
-  TRACK822_BEGIN: track(&&TRACK822_BEGIN, &&TRACK822_END);
-  TRACK822_END:  __asm__("nop;");
-   
+  TRACK964_BEGIN: track(&&TRACK964_BEGIN, &&TRACK964_END);
+  TRACK964_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK820_BEGIN: track(&&TRACK820_BEGIN, &&TRACK820_END);
-  TRACK820_END:  __asm__("nop;");
-   
+  TRACK962_BEGIN: track(&&TRACK962_BEGIN, &&TRACK962_END);
+  TRACK962_END:  __asm__("nop;");
   *bzerror = (-1);
   } if (bzf != ((void *)0))  {
-  TRACK821_BEGIN: track(&&TRACK821_BEGIN, &&TRACK821_END);
-  TRACK821_END:  __asm__("nop;");
-   
+  TRACK963_BEGIN: track(&&TRACK963_BEGIN, &&TRACK963_END);
+  TRACK963_END:  __asm__("nop;");
   bzf->lastErr = (-1);
   } }; return;
 };
    if (bzf->initialisedOk)
        {
-TRACK823_BEGIN: track(&&TRACK823_BEGIN, &&TRACK823_END);
-TRACK823_END:  __asm__("nop;");
- 
+TRACK965_BEGIN: track(&&TRACK965_BEGIN, &&TRACK965_END);
+TRACK965_END:  __asm__("nop;");
 (void)BZ2_bzDecompressEnd ( &(bzf->strm) );
 }
    free ( bzf );
@@ -7505,110 +7250,91 @@ int BZ2_bzRead
    Int32 n, ret;
    bzFile* bzf = (bzFile*)b;
    { if (bzerror != ((void *)0))  {
-TRACK824_BEGIN: track(&&TRACK824_BEGIN, &&TRACK824_END);
-TRACK824_END:  __asm__("nop;");
- 
+TRACK966_BEGIN: track(&&TRACK966_BEGIN, &&TRACK966_END);
+TRACK966_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK825_BEGIN: track(&&TRACK825_BEGIN, &&TRACK825_END);
-TRACK825_END:  __asm__("nop;");
- 
+TRACK967_BEGIN: track(&&TRACK967_BEGIN, &&TRACK967_END);
+TRACK967_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    if (bzf == ((void *)0) || buf == ((void *)0) || len < 0)
       {
-  TRACK828_BEGIN: track(&&TRACK828_BEGIN, &&TRACK828_END);
-  TRACK828_END:  __asm__("nop;");
-   
+  TRACK970_BEGIN: track(&&TRACK970_BEGIN, &&TRACK970_END);
+  TRACK970_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK826_BEGIN: track(&&TRACK826_BEGIN, &&TRACK826_END);
-  TRACK826_END:  __asm__("nop;");
-   
+  TRACK968_BEGIN: track(&&TRACK968_BEGIN, &&TRACK968_END);
+  TRACK968_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK827_BEGIN: track(&&TRACK827_BEGIN, &&TRACK827_END);
-  TRACK827_END:  __asm__("nop;");
-   
+  TRACK969_BEGIN: track(&&TRACK969_BEGIN, &&TRACK969_END);
+  TRACK969_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return 0;
 };
    if (bzf->writing)
       {
-  TRACK831_BEGIN: track(&&TRACK831_BEGIN, &&TRACK831_END);
-  TRACK831_END:  __asm__("nop;");
-   
+  TRACK973_BEGIN: track(&&TRACK973_BEGIN, &&TRACK973_END);
+  TRACK973_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK829_BEGIN: track(&&TRACK829_BEGIN, &&TRACK829_END);
-  TRACK829_END:  __asm__("nop;");
-   
+  TRACK971_BEGIN: track(&&TRACK971_BEGIN, &&TRACK971_END);
+  TRACK971_END:  __asm__("nop;");
   *bzerror = (-1);
   } if (bzf != ((void *)0))  {
-  TRACK830_BEGIN: track(&&TRACK830_BEGIN, &&TRACK830_END);
-  TRACK830_END:  __asm__("nop;");
-   
+  TRACK972_BEGIN: track(&&TRACK972_BEGIN, &&TRACK972_END);
+  TRACK972_END:  __asm__("nop;");
   bzf->lastErr = (-1);
   } }; return 0;
 };
    if (len == 0)
       {
-  TRACK834_BEGIN: track(&&TRACK834_BEGIN, &&TRACK834_END);
-  TRACK834_END:  __asm__("nop;");
-   
+  TRACK976_BEGIN: track(&&TRACK976_BEGIN, &&TRACK976_END);
+  TRACK976_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK832_BEGIN: track(&&TRACK832_BEGIN, &&TRACK832_END);
-  TRACK832_END:  __asm__("nop;");
-   
+  TRACK974_BEGIN: track(&&TRACK974_BEGIN, &&TRACK974_END);
+  TRACK974_END:  __asm__("nop;");
   *bzerror = 0;
   } if (bzf != ((void *)0))  {
-  TRACK833_BEGIN: track(&&TRACK833_BEGIN, &&TRACK833_END);
-  TRACK833_END:  __asm__("nop;");
-   
+  TRACK975_BEGIN: track(&&TRACK975_BEGIN, &&TRACK975_END);
+  TRACK975_END:  __asm__("nop;");
   bzf->lastErr = 0;
   } }; return 0;
 };
    bzf->strm.avail_out = len;
    bzf->strm.next_out = buf;
    while (((Bool)1)) {
-  TRACK854_BEGIN: track(&&TRACK854_BEGIN, &&TRACK854_END);
-  TRACK854_END:  __asm__("nop;");
-   
+  TRACK996_BEGIN: track(&&TRACK996_BEGIN, &&TRACK996_END);
+  TRACK996_END:  __asm__("nop;");
   if (ferror(bzf->handle))
            {
-    TRACK837_BEGIN: track(&&TRACK837_BEGIN, &&TRACK837_END);
-    TRACK837_END:  __asm__("nop;");
-     
+    TRACK979_BEGIN: track(&&TRACK979_BEGIN, &&TRACK979_END);
+    TRACK979_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK835_BEGIN: track(&&TRACK835_BEGIN, &&TRACK835_END);
-    TRACK835_END:  __asm__("nop;");
-     
+    TRACK977_BEGIN: track(&&TRACK977_BEGIN, &&TRACK977_END);
+    TRACK977_END:  __asm__("nop;");
     *bzerror = (-6);
     } if (bzf != ((void *)0))  {
-    TRACK836_BEGIN: track(&&TRACK836_BEGIN, &&TRACK836_END);
-    TRACK836_END:  __asm__("nop;");
-     
+    TRACK978_BEGIN: track(&&TRACK978_BEGIN, &&TRACK978_END);
+    TRACK978_END:  __asm__("nop;");
     bzf->lastErr = (-6);
     } }; return 0;
   };
         if (bzf->strm.avail_in == 0 && !myfeof(bzf->handle)) {
-    TRACK841_BEGIN: track(&&TRACK841_BEGIN, &&TRACK841_END);
-    TRACK841_END:  __asm__("nop;");
-     
+    TRACK983_BEGIN: track(&&TRACK983_BEGIN, &&TRACK983_END);
+    TRACK983_END:  __asm__("nop;");
     n = fread ( bzf->buf, sizeof(UChar),
                          5000, bzf->handle );
              if (ferror(bzf->handle))
                 {
-      TRACK840_BEGIN: track(&&TRACK840_BEGIN, &&TRACK840_END);
-      TRACK840_END:  __asm__("nop;");
-       
+      TRACK982_BEGIN: track(&&TRACK982_BEGIN, &&TRACK982_END);
+      TRACK982_END:  __asm__("nop;");
       { if (bzerror != ((void *)0))  {
-      TRACK838_BEGIN: track(&&TRACK838_BEGIN, &&TRACK838_END);
-      TRACK838_END:  __asm__("nop;");
-       
+      TRACK980_BEGIN: track(&&TRACK980_BEGIN, &&TRACK980_END);
+      TRACK980_END:  __asm__("nop;");
       *bzerror = (-6);
       } if (bzf != ((void *)0))  {
-      TRACK839_BEGIN: track(&&TRACK839_BEGIN, &&TRACK839_END);
-      TRACK839_END:  __asm__("nop;");
-       
+      TRACK981_BEGIN: track(&&TRACK981_BEGIN, &&TRACK981_END);
+      TRACK981_END:  __asm__("nop;");
       bzf->lastErr = (-6);
       } }; return 0;
     };
@@ -7619,71 +7345,59 @@ bzf->lastErr = 0;
         ret = BZ2_bzDecompress ( &(bzf->strm) );
         if (ret != 0 && ret != 4)
            {
-    TRACK844_BEGIN: track(&&TRACK844_BEGIN, &&TRACK844_END);
-    TRACK844_END:  __asm__("nop;");
-     
+    TRACK986_BEGIN: track(&&TRACK986_BEGIN, &&TRACK986_END);
+    TRACK986_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK842_BEGIN: track(&&TRACK842_BEGIN, &&TRACK842_END);
-    TRACK842_END:  __asm__("nop;");
-     
+    TRACK984_BEGIN: track(&&TRACK984_BEGIN, &&TRACK984_END);
+    TRACK984_END:  __asm__("nop;");
     *bzerror = ret;
     } if (bzf != ((void *)0))  {
-    TRACK843_BEGIN: track(&&TRACK843_BEGIN, &&TRACK843_END);
-    TRACK843_END:  __asm__("nop;");
-     
+    TRACK985_BEGIN: track(&&TRACK985_BEGIN, &&TRACK985_END);
+    TRACK985_END:  __asm__("nop;");
     bzf->lastErr = ret;
     } }; return 0;
   };
         if (ret == 0 && myfeof(bzf->handle) &&
             bzf->strm.avail_in == 0 && bzf->strm.avail_out > 0)
            {
-    TRACK847_BEGIN: track(&&TRACK847_BEGIN, &&TRACK847_END);
-    TRACK847_END:  __asm__("nop;");
-     
+    TRACK989_BEGIN: track(&&TRACK989_BEGIN, &&TRACK989_END);
+    TRACK989_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK845_BEGIN: track(&&TRACK845_BEGIN, &&TRACK845_END);
-    TRACK845_END:  __asm__("nop;");
-     
+    TRACK987_BEGIN: track(&&TRACK987_BEGIN, &&TRACK987_END);
+    TRACK987_END:  __asm__("nop;");
     *bzerror = (-7);
     } if (bzf != ((void *)0))  {
-    TRACK846_BEGIN: track(&&TRACK846_BEGIN, &&TRACK846_END);
-    TRACK846_END:  __asm__("nop;");
-     
+    TRACK988_BEGIN: track(&&TRACK988_BEGIN, &&TRACK988_END);
+    TRACK988_END:  __asm__("nop;");
     bzf->lastErr = (-7);
     } }; return 0;
   };
         if (ret == 4)
            {
-    TRACK850_BEGIN: track(&&TRACK850_BEGIN, &&TRACK850_END);
-    TRACK850_END:  __asm__("nop;");
-     
+    TRACK992_BEGIN: track(&&TRACK992_BEGIN, &&TRACK992_END);
+    TRACK992_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK848_BEGIN: track(&&TRACK848_BEGIN, &&TRACK848_END);
-    TRACK848_END:  __asm__("nop;");
-     
+    TRACK990_BEGIN: track(&&TRACK990_BEGIN, &&TRACK990_END);
+    TRACK990_END:  __asm__("nop;");
     *bzerror = 4;
     } if (bzf != ((void *)0))  {
-    TRACK849_BEGIN: track(&&TRACK849_BEGIN, &&TRACK849_END);
-    TRACK849_END:  __asm__("nop;");
-     
+    TRACK991_BEGIN: track(&&TRACK991_BEGIN, &&TRACK991_END);
+    TRACK991_END:  __asm__("nop;");
     bzf->lastErr = 4;
     } };
                return len - bzf->strm.avail_out;
   };
         if (bzf->strm.avail_out == 0)
            {
-    TRACK853_BEGIN: track(&&TRACK853_BEGIN, &&TRACK853_END);
-    TRACK853_END:  __asm__("nop;");
-     
+    TRACK995_BEGIN: track(&&TRACK995_BEGIN, &&TRACK995_END);
+    TRACK995_END:  __asm__("nop;");
     { if (bzerror != ((void *)0))  {
-    TRACK851_BEGIN: track(&&TRACK851_BEGIN, &&TRACK851_END);
-    TRACK851_END:  __asm__("nop;");
-     
+    TRACK993_BEGIN: track(&&TRACK993_BEGIN, &&TRACK993_END);
+    TRACK993_END:  __asm__("nop;");
     *bzerror = 0;
     } if (bzf != ((void *)0))  {
-    TRACK852_BEGIN: track(&&TRACK852_BEGIN, &&TRACK852_END);
-    TRACK852_END:  __asm__("nop;");
-     
+    TRACK994_BEGIN: track(&&TRACK994_BEGIN, &&TRACK994_END);
+    TRACK994_END:  __asm__("nop;");
     bzf->lastErr = 0;
     } }; return len;
   };
@@ -7699,64 +7413,53 @@ void BZ2_bzReadGetUnused
    bzFile* bzf = (bzFile*)b;
    if (bzf == ((void *)0))
       {
-  TRACK857_BEGIN: track(&&TRACK857_BEGIN, &&TRACK857_END);
-  TRACK857_END:  __asm__("nop;");
-   
+  TRACK999_BEGIN: track(&&TRACK999_BEGIN, &&TRACK999_END);
+  TRACK999_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK855_BEGIN: track(&&TRACK855_BEGIN, &&TRACK855_END);
-  TRACK855_END:  __asm__("nop;");
-   
+  TRACK997_BEGIN: track(&&TRACK997_BEGIN, &&TRACK997_END);
+  TRACK997_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK856_BEGIN: track(&&TRACK856_BEGIN, &&TRACK856_END);
-  TRACK856_END:  __asm__("nop;");
-   
+  TRACK998_BEGIN: track(&&TRACK998_BEGIN, &&TRACK998_END);
+  TRACK998_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return;
 };
    if (bzf->lastErr != 4)
       {
-  TRACK860_BEGIN: track(&&TRACK860_BEGIN, &&TRACK860_END);
-  TRACK860_END:  __asm__("nop;");
-   
+  TRACK1002_BEGIN: track(&&TRACK1002_BEGIN, &&TRACK1002_END);
+  TRACK1002_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK858_BEGIN: track(&&TRACK858_BEGIN, &&TRACK858_END);
-  TRACK858_END:  __asm__("nop;");
-   
+  TRACK1000_BEGIN: track(&&TRACK1000_BEGIN, &&TRACK1000_END);
+  TRACK1000_END:  __asm__("nop;");
   *bzerror = (-1);
   } if (bzf != ((void *)0))  {
-  TRACK859_BEGIN: track(&&TRACK859_BEGIN, &&TRACK859_END);
-  TRACK859_END:  __asm__("nop;");
-   
+  TRACK1001_BEGIN: track(&&TRACK1001_BEGIN, &&TRACK1001_END);
+  TRACK1001_END:  __asm__("nop;");
   bzf->lastErr = (-1);
   } }; return;
 };
    if (unused == ((void *)0) || nUnused == ((void *)0))
       {
-  TRACK863_BEGIN: track(&&TRACK863_BEGIN, &&TRACK863_END);
-  TRACK863_END:  __asm__("nop;");
-   
+  TRACK1005_BEGIN: track(&&TRACK1005_BEGIN, &&TRACK1005_END);
+  TRACK1005_END:  __asm__("nop;");
   { if (bzerror != ((void *)0))  {
-  TRACK861_BEGIN: track(&&TRACK861_BEGIN, &&TRACK861_END);
-  TRACK861_END:  __asm__("nop;");
-   
+  TRACK1003_BEGIN: track(&&TRACK1003_BEGIN, &&TRACK1003_END);
+  TRACK1003_END:  __asm__("nop;");
   *bzerror = (-2);
   } if (bzf != ((void *)0))  {
-  TRACK862_BEGIN: track(&&TRACK862_BEGIN, &&TRACK862_END);
-  TRACK862_END:  __asm__("nop;");
-   
+  TRACK1004_BEGIN: track(&&TRACK1004_BEGIN, &&TRACK1004_END);
+  TRACK1004_END:  __asm__("nop;");
   bzf->lastErr = (-2);
   } }; return;
 };
    { if (bzerror != ((void *)0))  {
-TRACK864_BEGIN: track(&&TRACK864_BEGIN, &&TRACK864_END);
-TRACK864_END:  __asm__("nop;");
- 
+TRACK1006_BEGIN: track(&&TRACK1006_BEGIN, &&TRACK1006_END);
+TRACK1006_END:  __asm__("nop;");
 *bzerror = 0;
 } if (bzf != ((void *)0))  {
-TRACK865_BEGIN: track(&&TRACK865_BEGIN, &&TRACK865_END);
-TRACK865_END:  __asm__("nop;");
- 
+TRACK1007_BEGIN: track(&&TRACK1007_BEGIN, &&TRACK1007_END);
+TRACK1007_END:  __asm__("nop;");
 bzf->lastErr = 0;
 } };
    *nUnused = bzf->strm.avail_in;
@@ -7778,11 +7481,14 @@ int BZ2_bzBuffToBuffCompress
        blockSize100k < 1 || blockSize100k > 9 ||
        verbosity < 0 || verbosity > 4 ||
        workFactor < 0 || workFactor > 250)
-      return (-2);
+       {
+TRACK1008_BEGIN: track(&&TRACK1008_BEGIN, &&TRACK1008_END);
+TRACK1008_END:  __asm__("nop;");
+return (-2);
+}
    if (workFactor == 0)  {
-TRACK866_BEGIN: track(&&TRACK866_BEGIN, &&TRACK866_END);
-TRACK866_END:  __asm__("nop;");
- 
+TRACK1009_BEGIN: track(&&TRACK1009_BEGIN, &&TRACK1009_END);
+TRACK1009_END:  __asm__("nop;");
 workFactor = 30;
 }
    strm.bzalloc = ((void *)0);
@@ -7790,14 +7496,26 @@ workFactor = 30;
    strm.opaque = ((void *)0);
    ret = BZ2_bzCompressInit ( &strm, blockSize100k,
                               verbosity, workFactor );
-   if (ret != 0) return ret;
+   if (ret != 0)  {
+TRACK1010_BEGIN: track(&&TRACK1010_BEGIN, &&TRACK1010_END);
+TRACK1010_END:  __asm__("nop;");
+return ret;
+}
    strm.next_in = source;
    strm.next_out = dest;
    strm.avail_in = sourceLen;
    strm.avail_out = *destLen;
    ret = BZ2_bzCompress ( &strm, 2 );
-   if (ret == 3) goto output_overflow;
-   if (ret != 4) goto errhandler;
+   if (ret == 3)  {
+TRACK1011_BEGIN: track(&&TRACK1011_BEGIN, &&TRACK1011_END);
+TRACK1011_END:  __asm__("nop;");
+goto output_overflow;
+}
+   if (ret != 4)  {
+TRACK1012_BEGIN: track(&&TRACK1012_BEGIN, &&TRACK1012_END);
+TRACK1012_END:  __asm__("nop;");
+goto errhandler;
+}
    *destLen -= strm.avail_out;
    BZ2_bzCompressEnd ( &strm );
    return 0;
@@ -7822,33 +7540,47 @@ int BZ2_bzBuffToBuffDecompress
        source == ((void *)0) ||
        (small != 0 && small != 1) ||
        verbosity < 0 || verbosity > 4)
-          return (-2);
+           {
+TRACK1013_BEGIN: track(&&TRACK1013_BEGIN, &&TRACK1013_END);
+TRACK1013_END:  __asm__("nop;");
+return (-2);
+}
    strm.bzalloc = ((void *)0);
    strm.bzfree = ((void *)0);
    strm.opaque = ((void *)0);
    ret = BZ2_bzDecompressInit ( &strm, verbosity, small );
-   if (ret != 0) return ret;
+   if (ret != 0)  {
+TRACK1014_BEGIN: track(&&TRACK1014_BEGIN, &&TRACK1014_END);
+TRACK1014_END:  __asm__("nop;");
+return ret;
+}
    strm.next_in = source;
    strm.next_out = dest;
    strm.avail_in = sourceLen;
    strm.avail_out = *destLen;
    ret = BZ2_bzDecompress ( &strm );
-   if (ret == 0) goto output_overflow_or_eof;
-   if (ret != 4) goto errhandler;
+   if (ret == 0)  {
+TRACK1015_BEGIN: track(&&TRACK1015_BEGIN, &&TRACK1015_END);
+TRACK1015_END:  __asm__("nop;");
+goto output_overflow_or_eof;
+}
+   if (ret != 4)  {
+TRACK1016_BEGIN: track(&&TRACK1016_BEGIN, &&TRACK1016_END);
+TRACK1016_END:  __asm__("nop;");
+goto errhandler;
+}
    *destLen -= strm.avail_out;
    BZ2_bzDecompressEnd ( &strm );
    return 0;
    output_overflow_or_eof:
    if (strm.avail_out > 0) {
-  TRACK867_BEGIN: track(&&TRACK867_BEGIN, &&TRACK867_END);
-  TRACK867_END:  __asm__("nop;");
-   
+  TRACK1017_BEGIN: track(&&TRACK1017_BEGIN, &&TRACK1017_END);
+  TRACK1017_END:  __asm__("nop;");
   BZ2_bzDecompressEnd ( &strm );
         return (-7);
 } else {
-  TRACK868_BEGIN: track(&&TRACK868_BEGIN, &&TRACK868_END);
-  TRACK868_END:  __asm__("nop;");
-   
+  TRACK1018_BEGIN: track(&&TRACK1018_BEGIN, &&TRACK1018_END);
+  TRACK1018_END:  __asm__("nop;");
   BZ2_bzDecompressEnd ( &strm );
         return (-8);
 };
@@ -7878,39 +7610,37 @@ BZFILE * bzopen_or_bzdopen
    int workFactor = 30;
    int smallMode = 0;
    int nUnused = 0;
-   if (mode == ((void *)0)) return ((void *)0);
+   if (mode == ((void *)0))  {
+TRACK1019_BEGIN: track(&&TRACK1019_BEGIN, &&TRACK1019_END);
+TRACK1019_END:  __asm__("nop;");
+return ((void *)0);
+}
    while (*mode) {
-  TRACK874_BEGIN: track(&&TRACK874_BEGIN, &&TRACK874_END);
-  TRACK874_END:  __asm__("nop;");
-   
+  TRACK1025_BEGIN: track(&&TRACK1025_BEGIN, &&TRACK1025_END);
+  TRACK1025_END:  __asm__("nop;");
   switch (*mode) {
          
     case 'r':
-  	TRACK869_BEGIN: track(&&TRACK869_BEGIN, &&TRACK869_END);
-  	TRACK869_END:  __asm__("nop;");
-  	 
+  	TRACK1020_BEGIN: track(&&TRACK1020_BEGIN, &&TRACK1020_END);
+  	TRACK1020_END:  __asm__("nop;");
   	writing = 0; break;
          
     case 'w':
-  	TRACK870_BEGIN: track(&&TRACK870_BEGIN, &&TRACK870_END);
-  	TRACK870_END:  __asm__("nop;");
-  	 
+  	TRACK1021_BEGIN: track(&&TRACK1021_BEGIN, &&TRACK1021_END);
+  	TRACK1021_END:  __asm__("nop;");
   	writing = 1; break;
          
     case 's':
-  	TRACK871_BEGIN: track(&&TRACK871_BEGIN, &&TRACK871_END);
-  	TRACK871_END:  __asm__("nop;");
-  	 
+  	TRACK1022_BEGIN: track(&&TRACK1022_BEGIN, &&TRACK1022_END);
+  	TRACK1022_END:  __asm__("nop;");
   	smallMode = 1; break;
          
     default:
-  	TRACK873_BEGIN: track(&&TRACK873_BEGIN, &&TRACK873_END);
-  	TRACK873_END:  __asm__("nop;");
-  	 
+  	TRACK1024_BEGIN: track(&&TRACK1024_BEGIN, &&TRACK1024_END);
+  	TRACK1024_END:  __asm__("nop;");
   	if (((*__ctype_b_loc ())[(int) (((int)(*mode)))] & (unsigned short int) _ISdigit)) {
-  	  TRACK872_BEGIN: track(&&TRACK872_BEGIN, &&TRACK872_END);
-  	  TRACK872_END:  __asm__("nop;");
-  	   
+  	  TRACK1023_BEGIN: track(&&TRACK1023_BEGIN, &&TRACK1023_END);
+  	  TRACK1023_END:  __asm__("nop;");
   	  blockSize100k = *mode-0x30;
   	}
         }
@@ -7919,60 +7649,54 @@ BZFILE * bzopen_or_bzdopen
    strcat(mode2, writing ? "w" : "r" );
    strcat(mode2,"b");
    if (open_mode==0) {
-  TRACK877_BEGIN: track(&&TRACK877_BEGIN, &&TRACK877_END);
-  TRACK877_END:  __asm__("nop;");
-   
+  TRACK1028_BEGIN: track(&&TRACK1028_BEGIN, &&TRACK1028_END);
+  TRACK1028_END:  __asm__("nop;");
   if (path==((void *)0) || strcmp(path,"")==0) {
-    TRACK875_BEGIN: track(&&TRACK875_BEGIN, &&TRACK875_END);
-    TRACK875_END:  __asm__("nop;");
-     
+    TRACK1026_BEGIN: track(&&TRACK1026_BEGIN, &&TRACK1026_END);
+    TRACK1026_END:  __asm__("nop;");
     fp = (writing ? stdout : stdin);
   } else {
-    TRACK876_BEGIN: track(&&TRACK876_BEGIN, &&TRACK876_END);
-    TRACK876_END:  __asm__("nop;");
-     
+    TRACK1027_BEGIN: track(&&TRACK1027_BEGIN, &&TRACK1027_END);
+    TRACK1027_END:  __asm__("nop;");
     fp = fopen(path,mode2);
   }
 } else {
-  TRACK878_BEGIN: track(&&TRACK878_BEGIN, &&TRACK878_END);
-  TRACK878_END:  __asm__("nop;");
-   
+  TRACK1029_BEGIN: track(&&TRACK1029_BEGIN, &&TRACK1029_END);
+  TRACK1029_END:  __asm__("nop;");
   fp = fdopen(fd,mode2);
 }
-   if (fp == ((void *)0)) return ((void *)0);
+   if (fp == ((void *)0))  {
+TRACK1030_BEGIN: track(&&TRACK1030_BEGIN, &&TRACK1030_END);
+TRACK1030_END:  __asm__("nop;");
+return ((void *)0);
+}
    if (writing) {
-  TRACK881_BEGIN: track(&&TRACK881_BEGIN, &&TRACK881_END);
-  TRACK881_END:  __asm__("nop;");
-   
+  TRACK1033_BEGIN: track(&&TRACK1033_BEGIN, &&TRACK1033_END);
+  TRACK1033_END:  __asm__("nop;");
   if (blockSize100k < 1)  {
-  TRACK879_BEGIN: track(&&TRACK879_BEGIN, &&TRACK879_END);
-  TRACK879_END:  __asm__("nop;");
-   
+  TRACK1031_BEGIN: track(&&TRACK1031_BEGIN, &&TRACK1031_END);
+  TRACK1031_END:  __asm__("nop;");
   blockSize100k = 1;
   }
         if (blockSize100k > 9)  {
-  TRACK880_BEGIN: track(&&TRACK880_BEGIN, &&TRACK880_END);
-  TRACK880_END:  __asm__("nop;");
-   
+  TRACK1032_BEGIN: track(&&TRACK1032_BEGIN, &&TRACK1032_END);
+  TRACK1032_END:  __asm__("nop;");
   blockSize100k = 9;
   }
         bzfp = BZ2_bzWriteOpen(&bzerr,fp,blockSize100k,
                                verbosity,workFactor);
 } else {
-  TRACK882_BEGIN: track(&&TRACK882_BEGIN, &&TRACK882_END);
-  TRACK882_END:  __asm__("nop;");
-   
+  TRACK1034_BEGIN: track(&&TRACK1034_BEGIN, &&TRACK1034_END);
+  TRACK1034_END:  __asm__("nop;");
   bzfp = BZ2_bzReadOpen(&bzerr,fp,verbosity,smallMode,
                               unused,nUnused);
 }
    if (bzfp == ((void *)0)) {
-  TRACK884_BEGIN: track(&&TRACK884_BEGIN, &&TRACK884_END);
-  TRACK884_END:  __asm__("nop;");
-   
+  TRACK1036_BEGIN: track(&&TRACK1036_BEGIN, &&TRACK1036_END);
+  TRACK1036_END:  __asm__("nop;");
   if (fp != stdin && fp != stdout)  {
-  TRACK883_BEGIN: track(&&TRACK883_BEGIN, &&TRACK883_END);
-  TRACK883_END:  __asm__("nop;");
-   
+  TRACK1035_BEGIN: track(&&TRACK1035_BEGIN, &&TRACK1035_END);
+  TRACK1035_END:  __asm__("nop;");
   fclose(fp);
   }
         return ((void *)0);
@@ -7994,17 +7718,19 @@ BZFILE * BZ2_bzdopen
 int BZ2_bzread (BZFILE* b, void* buf, int len )
 {
    int bzerr, nread;
-   if (((bzFile*)b)->lastErr == 4) return 0;
+   if (((bzFile*)b)->lastErr == 4)  {
+TRACK1037_BEGIN: track(&&TRACK1037_BEGIN, &&TRACK1037_END);
+TRACK1037_END:  __asm__("nop;");
+return 0;
+}
    nread = BZ2_bzRead(&bzerr,b,buf,len);
    if (bzerr == 0 || bzerr == 4) {
-  TRACK885_BEGIN: track(&&TRACK885_BEGIN, &&TRACK885_END);
-  TRACK885_END:  __asm__("nop;");
-   
+  TRACK1038_BEGIN: track(&&TRACK1038_BEGIN, &&TRACK1038_END);
+  TRACK1038_END:  __asm__("nop;");
   return nread;
 } else {
-  TRACK886_BEGIN: track(&&TRACK886_BEGIN, &&TRACK886_END);
-  TRACK886_END:  __asm__("nop;");
-   
+  TRACK1039_BEGIN: track(&&TRACK1039_BEGIN, &&TRACK1039_END);
+  TRACK1039_END:  __asm__("nop;");
   return -1;
 }
 }
@@ -8013,14 +7739,12 @@ int BZ2_bzwrite (BZFILE* b, void* buf, int len )
    int bzerr;
    BZ2_bzWrite(&bzerr,b,buf,len);
    if(bzerr == 0){
-  TRACK887_BEGIN: track(&&TRACK887_BEGIN, &&TRACK887_END);
-  TRACK887_END:  __asm__("nop;");
-   
+  TRACK1040_BEGIN: track(&&TRACK1040_BEGIN, &&TRACK1040_END);
+  TRACK1040_END:  __asm__("nop;");
   return len;
 }else{
-  TRACK888_BEGIN: track(&&TRACK888_BEGIN, &&TRACK888_END);
-  TRACK888_END:  __asm__("nop;");
-   
+  TRACK1041_BEGIN: track(&&TRACK1041_BEGIN, &&TRACK1041_END);
+  TRACK1041_END:  __asm__("nop;");
   return -1;
 }
 }
@@ -8033,32 +7757,27 @@ void BZ2_bzclose (BZFILE* b)
    int bzerr;
    FILE *fp = ((bzFile *)b)->handle;
    if (b==((void *)0)) {
-  TRACK889_BEGIN: track(&&TRACK889_BEGIN, &&TRACK889_END);
-  TRACK889_END:  __asm__("nop;");
-   
+  TRACK1042_BEGIN: track(&&TRACK1042_BEGIN, &&TRACK1042_END);
+  TRACK1042_END:  __asm__("nop;");
   return;
 }
    if(((bzFile*)b)->writing){
-  TRACK891_BEGIN: track(&&TRACK891_BEGIN, &&TRACK891_END);
-  TRACK891_END:  __asm__("nop;");
-   
+  TRACK1044_BEGIN: track(&&TRACK1044_BEGIN, &&TRACK1044_END);
+  TRACK1044_END:  __asm__("nop;");
   BZ2_bzWriteClose(&bzerr,b,0,((void *)0),((void *)0));
         if(bzerr != 0){
-    TRACK890_BEGIN: track(&&TRACK890_BEGIN, &&TRACK890_END);
-    TRACK890_END:  __asm__("nop;");
-     
+    TRACK1043_BEGIN: track(&&TRACK1043_BEGIN, &&TRACK1043_END);
+    TRACK1043_END:  __asm__("nop;");
     BZ2_bzWriteClose(((void *)0),b,1,((void *)0),((void *)0));
   }
 }else{
-  TRACK892_BEGIN: track(&&TRACK892_BEGIN, &&TRACK892_END);
-  TRACK892_END:  __asm__("nop;");
-   
+  TRACK1045_BEGIN: track(&&TRACK1045_BEGIN, &&TRACK1045_END);
+  TRACK1045_END:  __asm__("nop;");
   BZ2_bzReadClose(&bzerr,b);
 }
    if(fp!=stdin && fp!=stdout){
-  TRACK893_BEGIN: track(&&TRACK893_BEGIN, &&TRACK893_END);
-  TRACK893_END:  __asm__("nop;");
-   
+  TRACK1046_BEGIN: track(&&TRACK1046_BEGIN, &&TRACK1046_END);
+  TRACK1046_END:  __asm__("nop;");
   fclose(fp);
 }
 }
@@ -8084,9 +7803,8 @@ const char * BZ2_bzerror (BZFILE *b, int *errnum)
 {
    int err = ((bzFile *)b)->lastErr;
    if(err>0)  {
-TRACK894_BEGIN: track(&&TRACK894_BEGIN, &&TRACK894_END);
-TRACK894_END:  __asm__("nop;");
- 
+TRACK1047_BEGIN: track(&&TRACK1047_BEGIN, &&TRACK1047_END);
+TRACK1047_END:  __asm__("nop;");
 err = 0;
 }
    *errnum = err;
@@ -8290,9 +8008,8 @@ double uInt64_to_double ( UInt64* n )
    double base = 1.0;
    double sum = 0.0;
    for (i = 0; i < 8; i++) {
-  TRACK895_BEGIN: track(&&TRACK895_BEGIN, &&TRACK895_END);
-  TRACK895_END:  __asm__("nop;");
-   
+  TRACK1048_BEGIN: track(&&TRACK1048_BEGIN, &&TRACK1048_END);
+  TRACK1048_END:  __asm__("nop;");
   sum += base * (double)(n->b[i]);
         base *= 256.0;
 }
@@ -8304,10 +8021,13 @@ Bool uInt64_isZero ( UInt64* n )
    Int32 i;
    for (i = 0; i < 8; i++)
        {
-TRACK896_BEGIN: track(&&TRACK896_BEGIN, &&TRACK896_END);
-TRACK896_END:  __asm__("nop;");
- 
-if (n->b[i] != 0) return 0;
+TRACK1050_BEGIN: track(&&TRACK1050_BEGIN, &&TRACK1050_END);
+TRACK1050_END:  __asm__("nop;");
+if (n->b[i] != 0)  {
+TRACK1049_BEGIN: track(&&TRACK1049_BEGIN, &&TRACK1049_END);
+TRACK1049_END:  __asm__("nop;");
+return 0;
+}
 }
    return 1;
 }
@@ -8318,9 +8038,8 @@ Int32 uInt64_qrm10 ( UInt64* n )
    Int32 i;
    rem = 0;
    for (i = 7; i >= 0; i--) {
-  TRACK897_BEGIN: track(&&TRACK897_BEGIN, &&TRACK897_END);
-  TRACK897_END:  __asm__("nop;");
-   
+  TRACK1051_BEGIN: track(&&TRACK1051_BEGIN, &&TRACK1051_END);
+  TRACK1051_END:  __asm__("nop;");
   tmp = rem * 256 + n->b[i];
         n->b[i] = tmp / 10;
         rem = tmp % 10;
@@ -8335,9 +8054,8 @@ void uInt64_toAscii ( char* outbuf, UInt64* n )
    Int32 nBuf = 0;
    UInt64 n_copy = *n;
    do {
-  TRACK898_BEGIN: track(&&TRACK898_BEGIN, &&TRACK898_END);
-  TRACK898_END:  __asm__("nop;");
-   
+  TRACK1052_BEGIN: track(&&TRACK1052_BEGIN, &&TRACK1052_END);
+  TRACK1052_END:  __asm__("nop;");
   q = uInt64_qrm10 ( &n_copy );
         buf[nBuf] = q + '0';
         nBuf++;
@@ -8345,9 +8063,8 @@ void uInt64_toAscii ( char* outbuf, UInt64* n )
    outbuf[nBuf] = 0;
    for (i = 0; i < nBuf; i++)
        {
-TRACK899_BEGIN: track(&&TRACK899_BEGIN, &&TRACK899_END);
-TRACK899_END:  __asm__("nop;");
- 
+TRACK1053_BEGIN: track(&&TRACK1053_BEGIN, &&TRACK1053_END);
+TRACK1053_END:  __asm__("nop;");
 outbuf[i] = buf[nBuf-i-1];
 }
 }
@@ -8362,67 +8079,108 @@ void compressStream ( FILE *stream, FILE *zStream )
    Int32 bzerr, bzerr_dummy, ret;
    ;
    ;
-   if (ferror(stream)) goto errhandler_io;
-   if (ferror(zStream)) goto errhandler_io;
+   if (ferror(stream))  {
+TRACK1054_BEGIN: track(&&TRACK1054_BEGIN, &&TRACK1054_END);
+TRACK1054_END:  __asm__("nop;");
+goto errhandler_io;
+}
+   if (ferror(zStream))  {
+TRACK1055_BEGIN: track(&&TRACK1055_BEGIN, &&TRACK1055_END);
+TRACK1055_END:  __asm__("nop;");
+goto errhandler_io;
+}
    bzf = BZ2_bzWriteOpen ( &bzerr, zStream,
                            blockSize100k, verbosity, workFactor );
-   if (bzerr != 0) goto errhandler;
+   if (bzerr != 0)  {
+TRACK1056_BEGIN: track(&&TRACK1056_BEGIN, &&TRACK1056_END);
+TRACK1056_END:  __asm__("nop;");
+goto errhandler;
+}
    if (verbosity >= 2)  {
-TRACK900_BEGIN: track(&&TRACK900_BEGIN, &&TRACK900_END);
-TRACK900_END:  __asm__("nop;");
- 
+TRACK1057_BEGIN: track(&&TRACK1057_BEGIN, &&TRACK1057_END);
+TRACK1057_END:  __asm__("nop;");
 fprintf ( stderr, "\n" );
 }
    while (((Bool)1)) {
-  TRACK902_BEGIN: track(&&TRACK902_BEGIN, &&TRACK902_END);
-  TRACK902_END:  __asm__("nop;");
-   
-  if (myfeof(stream)) break;
+  TRACK1062_BEGIN: track(&&TRACK1062_BEGIN, &&TRACK1062_END);
+  TRACK1062_END:  __asm__("nop;");
+  if (myfeof(stream))  {
+  TRACK1058_BEGIN: track(&&TRACK1058_BEGIN, &&TRACK1058_END);
+  TRACK1058_END:  __asm__("nop;");
+  break;
+  }
         nIbuf = fread ( ibuf, sizeof(UChar), 5000, stream );
-        if (ferror(stream)) goto errhandler_io;
+        if (ferror(stream))  {
+  TRACK1059_BEGIN: track(&&TRACK1059_BEGIN, &&TRACK1059_END);
+  TRACK1059_END:  __asm__("nop;");
+  goto errhandler_io;
+  }
         if (nIbuf > 0)  {
-  TRACK901_BEGIN: track(&&TRACK901_BEGIN, &&TRACK901_END);
-  TRACK901_END:  __asm__("nop;");
-   
+  TRACK1060_BEGIN: track(&&TRACK1060_BEGIN, &&TRACK1060_END);
+  TRACK1060_END:  __asm__("nop;");
   BZ2_bzWrite ( &bzerr, bzf, (void*)ibuf, nIbuf );
   }
-        if (bzerr != 0) goto errhandler;
+        if (bzerr != 0)  {
+  TRACK1061_BEGIN: track(&&TRACK1061_BEGIN, &&TRACK1061_END);
+  TRACK1061_END:  __asm__("nop;");
+  goto errhandler;
+  }
 }
    BZ2_bzWriteClose64 ( &bzerr, bzf, 0,
                         &nbytes_in_lo32, &nbytes_in_hi32,
                         &nbytes_out_lo32, &nbytes_out_hi32 );
-   if (bzerr != 0) goto errhandler;
-   if (ferror(zStream)) goto errhandler_io;
+   if (bzerr != 0)  {
+TRACK1063_BEGIN: track(&&TRACK1063_BEGIN, &&TRACK1063_END);
+TRACK1063_END:  __asm__("nop;");
+goto errhandler;
+}
+   if (ferror(zStream))  {
+TRACK1064_BEGIN: track(&&TRACK1064_BEGIN, &&TRACK1064_END);
+TRACK1064_END:  __asm__("nop;");
+goto errhandler_io;
+}
    ret = fflush ( zStream );
-   if (ret == (-1)) goto errhandler_io;
+   if (ret == (-1))  {
+TRACK1065_BEGIN: track(&&TRACK1065_BEGIN, &&TRACK1065_END);
+TRACK1065_END:  __asm__("nop;");
+goto errhandler_io;
+}
    if (zStream != stdout) {
-  TRACK903_BEGIN: track(&&TRACK903_BEGIN, &&TRACK903_END);
-  TRACK903_END:  __asm__("nop;");
-   
+  TRACK1067_BEGIN: track(&&TRACK1067_BEGIN, &&TRACK1067_END);
+  TRACK1067_END:  __asm__("nop;");
   ret = fclose ( zStream );
         outputHandleJustInCase = ((void *)0);
-        if (ret == (-1)) goto errhandler_io;
+        if (ret == (-1))  {
+  TRACK1066_BEGIN: track(&&TRACK1066_BEGIN, &&TRACK1066_END);
+  TRACK1066_END:  __asm__("nop;");
+  goto errhandler_io;
+  }
 }
    outputHandleJustInCase = ((void *)0);
-   if (ferror(stream)) goto errhandler_io;
+   if (ferror(stream))  {
+TRACK1068_BEGIN: track(&&TRACK1068_BEGIN, &&TRACK1068_END);
+TRACK1068_END:  __asm__("nop;");
+goto errhandler_io;
+}
    ret = fclose ( stream );
-   if (ret == (-1)) goto errhandler_io;
+   if (ret == (-1))  {
+TRACK1069_BEGIN: track(&&TRACK1069_BEGIN, &&TRACK1069_END);
+TRACK1069_END:  __asm__("nop;");
+goto errhandler_io;
+}
    if (verbosity >= 1) {
-  TRACK906_BEGIN: track(&&TRACK906_BEGIN, &&TRACK906_END);
-  TRACK906_END:  __asm__("nop;");
-   
+  TRACK1072_BEGIN: track(&&TRACK1072_BEGIN, &&TRACK1072_END);
+  TRACK1072_END:  __asm__("nop;");
   if (nbytes_in_lo32 == 0 && nbytes_in_hi32 == 0) {
-    TRACK904_BEGIN: track(&&TRACK904_BEGIN, &&TRACK904_END);
-    TRACK904_END:  __asm__("nop;");
-     
+    TRACK1070_BEGIN: track(&&TRACK1070_BEGIN, &&TRACK1070_END);
+    TRACK1070_END:  __asm__("nop;");
     fprintf ( stderr, " no data compressed.\n");
   } else {
     Char buf_nin[32], buf_nout[32];
       UInt64 nbytes_in, nbytes_out;
       double nbytes_in_d, nbytes_out_d;
-    TRACK905_BEGIN: track(&&TRACK905_BEGIN, &&TRACK905_END);
-    TRACK905_END:  __asm__("nop;");
-     
+    TRACK1071_BEGIN: track(&&TRACK1071_BEGIN, &&TRACK1071_END);
+    TRACK1071_END:  __asm__("nop;");
     uInt64_from_UInt32s ( &nbytes_in,
               nbytes_in_lo32, nbytes_in_hi32 );
       uInt64_from_UInt32s ( &nbytes_out,
@@ -8449,33 +8207,32 @@ fprintf ( stderr, "\n" );
    switch (bzerr) {
        
   case (-9):
-	TRACK907_BEGIN: track(&&TRACK907_BEGIN, &&TRACK907_END);
-	TRACK907_END:  __asm__("nop;");
-	 
+	TRACK1073_BEGIN: track(&&TRACK1073_BEGIN, &&TRACK1073_END);
+	TRACK1073_END:  __asm__("nop;");
 	configError(); break;
        
   case (-3):
-	TRACK908_BEGIN: track(&&TRACK908_BEGIN, &&TRACK908_END);
-	TRACK908_END:  __asm__("nop;");
-	 
+	TRACK1074_BEGIN: track(&&TRACK1074_BEGIN, &&TRACK1074_END);
+	TRACK1074_END:  __asm__("nop;");
 	outOfMemory (); break;
        
   case (-6):
-	TRACK910_BEGIN: track(&&TRACK910_BEGIN, &&TRACK910_END);
-	TRACK910_END:  __asm__("nop;");
-	 
+	TRACK1076_BEGIN: track(&&TRACK1076_BEGIN, &&TRACK1076_END);
+	TRACK1076_END:  __asm__("nop;");
 	errhandler_io:
 	          {
-	TRACK909_BEGIN: track(&&TRACK909_BEGIN, &&TRACK909_END);
-	TRACK909_END:  __asm__("nop;");
-	 
+	TRACK1075_BEGIN: track(&&TRACK1075_BEGIN, &&TRACK1075_END);
+	TRACK1075_END:  __asm__("nop;");
 	ioError();
-	} break;
+	}  {
+TRACK1077_BEGIN: track(&&TRACK1077_BEGIN, &&TRACK1077_END);
+TRACK1077_END:  __asm__("nop;");
+break;
+}
        
   default:
-	TRACK911_BEGIN: track(&&TRACK911_BEGIN, &&TRACK911_END);
-	TRACK911_END:  __asm__("nop;");
-	 
+	TRACK1078_BEGIN: track(&&TRACK1078_BEGIN, &&TRACK1078_END);
+	TRACK1078_END:  __asm__("nop;");
 	panic ( "compress:unexpected error" );
    }
    panic ( "compress:end" );
@@ -8493,99 +8250,148 @@ Bool uncompressStream ( FILE *zStream, FILE *stream )
    streamNo = 0;
    ;
    ;
-   if (ferror(stream)) goto errhandler_io;
-   if (ferror(zStream)) goto errhandler_io;
+   if (ferror(stream))  {
+TRACK1079_BEGIN: track(&&TRACK1079_BEGIN, &&TRACK1079_END);
+TRACK1079_END:  __asm__("nop;");
+goto errhandler_io;
+}
+   if (ferror(zStream))  {
+TRACK1080_BEGIN: track(&&TRACK1080_BEGIN, &&TRACK1080_END);
+TRACK1080_END:  __asm__("nop;");
+goto errhandler_io;
+}
    while (((Bool)1)) {
-  TRACK917_BEGIN: track(&&TRACK917_BEGIN, &&TRACK917_END);
-  TRACK917_END:  __asm__("nop;");
-   
+  TRACK1091_BEGIN: track(&&TRACK1091_BEGIN, &&TRACK1091_END);
+  TRACK1091_END:  __asm__("nop;");
   bzf = BZ2_bzReadOpen (
                  &bzerr, zStream, verbosity,
                  (int)smallMode, unused, nUnused
               );
-        if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
+        if (bzf == ((void *)0) || bzerr != 0)  {
+  TRACK1081_BEGIN: track(&&TRACK1081_BEGIN, &&TRACK1081_END);
+  TRACK1081_END:  __asm__("nop;");
+  goto errhandler;
+  }
         streamNo++;
         while (bzerr == 0) {
-    TRACK913_BEGIN: track(&&TRACK913_BEGIN, &&TRACK913_END);
-    TRACK913_END:  __asm__("nop;");
-     
+    TRACK1085_BEGIN: track(&&TRACK1085_BEGIN, &&TRACK1085_END);
+    TRACK1085_END:  __asm__("nop;");
     nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
-             if (bzerr == (-5)) goto trycat;
+             if (bzerr == (-5))  {
+    TRACK1082_BEGIN: track(&&TRACK1082_BEGIN, &&TRACK1082_END);
+    TRACK1082_END:  __asm__("nop;");
+    goto trycat;
+    }
              if ((bzerr == 0 || bzerr == 4) && nread > 0)
                  {
-    TRACK912_BEGIN: track(&&TRACK912_BEGIN, &&TRACK912_END);
-    TRACK912_END:  __asm__("nop;");
-     
+    TRACK1083_BEGIN: track(&&TRACK1083_BEGIN, &&TRACK1083_END);
+    TRACK1083_END:  __asm__("nop;");
     fwrite ( obuf, sizeof(UChar), nread, stream );
     }
-             if (ferror(stream)) goto errhandler_io;
+             if (ferror(stream))  {
+    TRACK1084_BEGIN: track(&&TRACK1084_BEGIN, &&TRACK1084_END);
+    TRACK1084_END:  __asm__("nop;");
+    goto errhandler_io;
+    }
   }
-        if (bzerr != 4) goto errhandler;
+        if (bzerr != 4)  {
+  TRACK1086_BEGIN: track(&&TRACK1086_BEGIN, &&TRACK1086_END);
+  TRACK1086_END:  __asm__("nop;");
+  goto errhandler;
+  }
         BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
         if (bzerr != 0)  {
-  TRACK914_BEGIN: track(&&TRACK914_BEGIN, &&TRACK914_END);
-  TRACK914_END:  __asm__("nop;");
-   
+  TRACK1087_BEGIN: track(&&TRACK1087_BEGIN, &&TRACK1087_END);
+  TRACK1087_END:  __asm__("nop;");
   panic ( "decompress:bzReadGetUnused" );
   }
         for (i = 0; i < nUnused; i++)  {
-  TRACK915_BEGIN: track(&&TRACK915_BEGIN, &&TRACK915_END);
-  TRACK915_END:  __asm__("nop;");
-   
+  TRACK1088_BEGIN: track(&&TRACK1088_BEGIN, &&TRACK1088_END);
+  TRACK1088_END:  __asm__("nop;");
   unused[i] = unusedTmp[i];
   }
         BZ2_bzReadClose ( &bzerr, bzf );
         if (bzerr != 0)  {
-  TRACK916_BEGIN: track(&&TRACK916_BEGIN, &&TRACK916_END);
-  TRACK916_END:  __asm__("nop;");
-   
+  TRACK1089_BEGIN: track(&&TRACK1089_BEGIN, &&TRACK1089_END);
+  TRACK1089_END:  __asm__("nop;");
   panic ( "decompress:bzReadGetUnused" );
   }
-        if (nUnused == 0 && myfeof(zStream)) break;
+        if (nUnused == 0 && myfeof(zStream))  {
+  TRACK1090_BEGIN: track(&&TRACK1090_BEGIN, &&TRACK1090_END);
+  TRACK1090_END:  __asm__("nop;");
+  break;
+  }
 }
    closeok:
-   if (ferror(zStream)) goto errhandler_io;
+   if (ferror(zStream))  {
+TRACK1092_BEGIN: track(&&TRACK1092_BEGIN, &&TRACK1092_END);
+TRACK1092_END:  __asm__("nop;");
+goto errhandler_io;
+}
    ret = fclose ( zStream );
-   if (ret == (-1)) goto errhandler_io;
-   if (ferror(stream)) goto errhandler_io;
+   if (ret == (-1))  {
+TRACK1093_BEGIN: track(&&TRACK1093_BEGIN, &&TRACK1093_END);
+TRACK1093_END:  __asm__("nop;");
+goto errhandler_io;
+}
+   if (ferror(stream))  {
+TRACK1094_BEGIN: track(&&TRACK1094_BEGIN, &&TRACK1094_END);
+TRACK1094_END:  __asm__("nop;");
+goto errhandler_io;
+}
    ret = fflush ( stream );
-   if (ret != 0) goto errhandler_io;
+   if (ret != 0)  {
+TRACK1095_BEGIN: track(&&TRACK1095_BEGIN, &&TRACK1095_END);
+TRACK1095_END:  __asm__("nop;");
+goto errhandler_io;
+}
    if (stream != stdout) {
-  TRACK918_BEGIN: track(&&TRACK918_BEGIN, &&TRACK918_END);
-  TRACK918_END:  __asm__("nop;");
-   
+  TRACK1097_BEGIN: track(&&TRACK1097_BEGIN, &&TRACK1097_END);
+  TRACK1097_END:  __asm__("nop;");
   ret = fclose ( stream );
         outputHandleJustInCase = ((void *)0);
-        if (ret == (-1)) goto errhandler_io;
+        if (ret == (-1))  {
+  TRACK1096_BEGIN: track(&&TRACK1096_BEGIN, &&TRACK1096_END);
+  TRACK1096_END:  __asm__("nop;");
+  goto errhandler_io;
+  }
 }
    outputHandleJustInCase = ((void *)0);
    if (verbosity >= 2)  {
-TRACK919_BEGIN: track(&&TRACK919_BEGIN, &&TRACK919_END);
-TRACK919_END:  __asm__("nop;");
- 
+TRACK1098_BEGIN: track(&&TRACK1098_BEGIN, &&TRACK1098_END);
+TRACK1098_END:  __asm__("nop;");
 fprintf ( stderr, "\n    " );
 }
    return ((Bool)1);
    trycat:
    if (forceOverwrite) {
-  TRACK922_BEGIN: track(&&TRACK922_BEGIN, &&TRACK922_END);
-  TRACK922_END:  __asm__("nop;");
-   
+  TRACK1104_BEGIN: track(&&TRACK1104_BEGIN, &&TRACK1104_END);
+  TRACK1104_END:  __asm__("nop;");
   rewind(zStream);
         while (((Bool)1)) {
-    TRACK921_BEGIN: track(&&TRACK921_BEGIN, &&TRACK921_END);
-    TRACK921_END:  __asm__("nop;");
-     
-    if (myfeof(zStream)) break;
+    TRACK1103_BEGIN: track(&&TRACK1103_BEGIN, &&TRACK1103_END);
+    TRACK1103_END:  __asm__("nop;");
+    if (myfeof(zStream))  {
+    TRACK1099_BEGIN: track(&&TRACK1099_BEGIN, &&TRACK1099_END);
+    TRACK1099_END:  __asm__("nop;");
+    break;
+    }
             nread = fread ( obuf, sizeof(UChar), 5000, zStream );
-            if (ferror(zStream)) goto errhandler_io;
+            if (ferror(zStream))  {
+    TRACK1100_BEGIN: track(&&TRACK1100_BEGIN, &&TRACK1100_END);
+    TRACK1100_END:  __asm__("nop;");
+    goto errhandler_io;
+    }
             if (nread > 0)  {
-    TRACK920_BEGIN: track(&&TRACK920_BEGIN, &&TRACK920_END);
-    TRACK920_END:  __asm__("nop;");
-     
+    TRACK1101_BEGIN: track(&&TRACK1101_BEGIN, &&TRACK1101_END);
+    TRACK1101_END:  __asm__("nop;");
     fwrite ( obuf, sizeof(UChar), nread, stream );
     }
-            if (ferror(stream)) goto errhandler_io;
+            if (ferror(stream))  {
+    TRACK1102_BEGIN: track(&&TRACK1102_BEGIN, &&TRACK1102_END);
+    TRACK1102_END:  __asm__("nop;");
+    goto errhandler_io;
+    }
   }
         goto closeok;
 }
@@ -8594,71 +8400,63 @@ fprintf ( stderr, "\n    " );
    switch (bzerr) {
        
   case (-9):
-	TRACK923_BEGIN: track(&&TRACK923_BEGIN, &&TRACK923_END);
-	TRACK923_END:  __asm__("nop;");
-	 
+	TRACK1105_BEGIN: track(&&TRACK1105_BEGIN, &&TRACK1105_END);
+	TRACK1105_END:  __asm__("nop;");
 	configError(); break;
        
   case (-6):
-	TRACK925_BEGIN: track(&&TRACK925_BEGIN, &&TRACK925_END);
-	TRACK925_END:  __asm__("nop;");
-	 
+	TRACK1107_BEGIN: track(&&TRACK1107_BEGIN, &&TRACK1107_END);
+	TRACK1107_END:  __asm__("nop;");
 	errhandler_io:
 	          {
-	TRACK924_BEGIN: track(&&TRACK924_BEGIN, &&TRACK924_END);
-	TRACK924_END:  __asm__("nop;");
-	 
+	TRACK1106_BEGIN: track(&&TRACK1106_BEGIN, &&TRACK1106_END);
+	TRACK1106_END:  __asm__("nop;");
 	ioError();
-	} break;
+	}  {
+TRACK1108_BEGIN: track(&&TRACK1108_BEGIN, &&TRACK1108_END);
+TRACK1108_END:  __asm__("nop;");
+break;
+}
        
   case (-4):
-	TRACK926_BEGIN: track(&&TRACK926_BEGIN, &&TRACK926_END);
-	TRACK926_END:  __asm__("nop;");
-	 
+	TRACK1109_BEGIN: track(&&TRACK1109_BEGIN, &&TRACK1109_END);
+	TRACK1109_END:  __asm__("nop;");
 	crcError();
        
   case (-3):
-	TRACK927_BEGIN: track(&&TRACK927_BEGIN, &&TRACK927_END);
-	TRACK927_END:  __asm__("nop;");
-	 
+	TRACK1110_BEGIN: track(&&TRACK1110_BEGIN, &&TRACK1110_END);
+	TRACK1110_END:  __asm__("nop;");
 	outOfMemory();
        
   case (-7):
-	TRACK928_BEGIN: track(&&TRACK928_BEGIN, &&TRACK928_END);
-	TRACK928_END:  __asm__("nop;");
-	 
+	TRACK1111_BEGIN: track(&&TRACK1111_BEGIN, &&TRACK1111_END);
+	TRACK1111_END:  __asm__("nop;");
 	compressedStreamEOF();
        
   case (-5):
-	TRACK930_BEGIN: track(&&TRACK930_BEGIN, &&TRACK930_END);
-	TRACK930_END:  __asm__("nop;");
-	 
+	TRACK1113_BEGIN: track(&&TRACK1113_BEGIN, &&TRACK1113_END);
+	TRACK1113_END:  __asm__("nop;");
 	if (zStream != stdin)  {
-	TRACK929_BEGIN: track(&&TRACK929_BEGIN, &&TRACK929_END);
-	TRACK929_END:  __asm__("nop;");
-	 
+	TRACK1112_BEGIN: track(&&TRACK1112_BEGIN, &&TRACK1112_END);
+	TRACK1112_END:  __asm__("nop;");
 	fclose(zStream);
 	}
          if (stream != stdout)  {
-TRACK931_BEGIN: track(&&TRACK931_BEGIN, &&TRACK931_END);
-TRACK931_END:  __asm__("nop;");
- 
+TRACK1114_BEGIN: track(&&TRACK1114_BEGIN, &&TRACK1114_END);
+TRACK1114_END:  __asm__("nop;");
 fclose(stream);
 }
          if (streamNo == 1) {
-  TRACK932_BEGIN: track(&&TRACK932_BEGIN, &&TRACK932_END);
-  TRACK932_END:  __asm__("nop;");
-   
+  TRACK1115_BEGIN: track(&&TRACK1115_BEGIN, &&TRACK1115_END);
+  TRACK1115_END:  __asm__("nop;");
   return ((Bool)0);
 } else {
-  TRACK934_BEGIN: track(&&TRACK934_BEGIN, &&TRACK934_END);
-  TRACK934_END:  __asm__("nop;");
-   
+  TRACK1117_BEGIN: track(&&TRACK1117_BEGIN, &&TRACK1117_END);
+  TRACK1117_END:  __asm__("nop;");
   if (noisy)
                {
-  TRACK933_BEGIN: track(&&TRACK933_BEGIN, &&TRACK933_END);
-  TRACK933_END:  __asm__("nop;");
-   
+  TRACK1116_BEGIN: track(&&TRACK1116_BEGIN, &&TRACK1116_END);
+  TRACK1116_END:  __asm__("nop;");
   fprintf ( stderr,
                         "\n%s: %s: trailing garbage after EOF ignored\n",
                         progName, inName );
@@ -8667,9 +8465,8 @@ fclose(stream);
 }
        
   default:
-	TRACK935_BEGIN: track(&&TRACK935_BEGIN, &&TRACK935_END);
-	TRACK935_END:  __asm__("nop;");
-	 
+	TRACK1118_BEGIN: track(&&TRACK1118_BEGIN, &&TRACK1118_END);
+	TRACK1118_END:  __asm__("nop;");
 	panic ( "decompress:unexpected error" );
    }
    panic ( "decompress:end" );
@@ -8687,54 +8484,76 @@ Bool testStream ( FILE *zStream )
    nUnused = 0;
    streamNo = 0;
    ;
-   if (ferror(zStream)) goto errhandler_io;
+   if (ferror(zStream))  {
+TRACK1119_BEGIN: track(&&TRACK1119_BEGIN, &&TRACK1119_END);
+TRACK1119_END:  __asm__("nop;");
+goto errhandler_io;
+}
    while (((Bool)1)) {
-  TRACK940_BEGIN: track(&&TRACK940_BEGIN, &&TRACK940_END);
-  TRACK940_END:  __asm__("nop;");
-   
+  TRACK1128_BEGIN: track(&&TRACK1128_BEGIN, &&TRACK1128_END);
+  TRACK1128_END:  __asm__("nop;");
   bzf = BZ2_bzReadOpen (
                  &bzerr, zStream, verbosity,
                  (int)smallMode, unused, nUnused
               );
-        if (bzf == ((void *)0) || bzerr != 0) goto errhandler;
+        if (bzf == ((void *)0) || bzerr != 0)  {
+  TRACK1120_BEGIN: track(&&TRACK1120_BEGIN, &&TRACK1120_END);
+  TRACK1120_END:  __asm__("nop;");
+  goto errhandler;
+  }
         streamNo++;
         while (bzerr == 0) {
-    TRACK936_BEGIN: track(&&TRACK936_BEGIN, &&TRACK936_END);
-    TRACK936_END:  __asm__("nop;");
-     
+    TRACK1122_BEGIN: track(&&TRACK1122_BEGIN, &&TRACK1122_END);
+    TRACK1122_END:  __asm__("nop;");
     nread = BZ2_bzRead ( &bzerr, bzf, obuf, 5000 );
-             if (bzerr == (-5)) goto errhandler;
+             if (bzerr == (-5))  {
+    TRACK1121_BEGIN: track(&&TRACK1121_BEGIN, &&TRACK1121_END);
+    TRACK1121_END:  __asm__("nop;");
+    goto errhandler;
+    }
   }
-        if (bzerr != 4) goto errhandler;
+        if (bzerr != 4)  {
+  TRACK1123_BEGIN: track(&&TRACK1123_BEGIN, &&TRACK1123_END);
+  TRACK1123_END:  __asm__("nop;");
+  goto errhandler;
+  }
         BZ2_bzReadGetUnused ( &bzerr, bzf, (void**)(&unusedTmp), &nUnused );
         if (bzerr != 0)  {
-  TRACK937_BEGIN: track(&&TRACK937_BEGIN, &&TRACK937_END);
-  TRACK937_END:  __asm__("nop;");
-   
+  TRACK1124_BEGIN: track(&&TRACK1124_BEGIN, &&TRACK1124_END);
+  TRACK1124_END:  __asm__("nop;");
   panic ( "test:bzReadGetUnused" );
   }
         for (i = 0; i < nUnused; i++)  {
-  TRACK938_BEGIN: track(&&TRACK938_BEGIN, &&TRACK938_END);
-  TRACK938_END:  __asm__("nop;");
-   
+  TRACK1125_BEGIN: track(&&TRACK1125_BEGIN, &&TRACK1125_END);
+  TRACK1125_END:  __asm__("nop;");
   unused[i] = unusedTmp[i];
   }
         BZ2_bzReadClose ( &bzerr, bzf );
         if (bzerr != 0)  {
-  TRACK939_BEGIN: track(&&TRACK939_BEGIN, &&TRACK939_END);
-  TRACK939_END:  __asm__("nop;");
-   
+  TRACK1126_BEGIN: track(&&TRACK1126_BEGIN, &&TRACK1126_END);
+  TRACK1126_END:  __asm__("nop;");
   panic ( "test:bzReadGetUnused" );
   }
-        if (nUnused == 0 && myfeof(zStream)) break;
+        if (nUnused == 0 && myfeof(zStream))  {
+  TRACK1127_BEGIN: track(&&TRACK1127_BEGIN, &&TRACK1127_END);
+  TRACK1127_END:  __asm__("nop;");
+  break;
+  }
 }
-   if (ferror(zStream)) goto errhandler_io;
+   if (ferror(zStream))  {
+TRACK1129_BEGIN: track(&&TRACK1129_BEGIN, &&TRACK1129_END);
+TRACK1129_END:  __asm__("nop;");
+goto errhandler_io;
+}
    ret = fclose ( zStream );
-   if (ret == (-1)) goto errhandler_io;
+   if (ret == (-1))  {
+TRACK1130_BEGIN: track(&&TRACK1130_BEGIN, &&TRACK1130_END);
+TRACK1130_END:  __asm__("nop;");
+goto errhandler_io;
+}
    if (verbosity >= 2)  {
-TRACK941_BEGIN: track(&&TRACK941_BEGIN, &&TRACK941_END);
-TRACK941_END:  __asm__("nop;");
- 
+TRACK1131_BEGIN: track(&&TRACK1131_BEGIN, &&TRACK1131_END);
+TRACK1131_END:  __asm__("nop;");
 fprintf ( stderr, "\n    " );
 }
    return ((Bool)1);
@@ -8742,79 +8561,71 @@ fprintf ( stderr, "\n    " );
    BZ2_bzReadClose ( &bzerr_dummy, bzf );
    if (verbosity == 0)
        {
-TRACK942_BEGIN: track(&&TRACK942_BEGIN, &&TRACK942_END);
-TRACK942_END:  __asm__("nop;");
- 
+TRACK1132_BEGIN: track(&&TRACK1132_BEGIN, &&TRACK1132_END);
+TRACK1132_END:  __asm__("nop;");
 fprintf ( stderr, "%s: %s: ", progName, inName );
 }
    switch (bzerr) {
        
   case (-9):
-	TRACK943_BEGIN: track(&&TRACK943_BEGIN, &&TRACK943_END);
-	TRACK943_END:  __asm__("nop;");
-	 
+	TRACK1133_BEGIN: track(&&TRACK1133_BEGIN, &&TRACK1133_END);
+	TRACK1133_END:  __asm__("nop;");
 	configError(); break;
        
   case (-6):
-	TRACK945_BEGIN: track(&&TRACK945_BEGIN, &&TRACK945_END);
-	TRACK945_END:  __asm__("nop;");
-	 
+	TRACK1135_BEGIN: track(&&TRACK1135_BEGIN, &&TRACK1135_END);
+	TRACK1135_END:  __asm__("nop;");
 	errhandler_io:
 	          {
-	TRACK944_BEGIN: track(&&TRACK944_BEGIN, &&TRACK944_END);
-	TRACK944_END:  __asm__("nop;");
-	 
+	TRACK1134_BEGIN: track(&&TRACK1134_BEGIN, &&TRACK1134_END);
+	TRACK1134_END:  __asm__("nop;");
 	ioError();
-	} break;
+	}  {
+TRACK1136_BEGIN: track(&&TRACK1136_BEGIN, &&TRACK1136_END);
+TRACK1136_END:  __asm__("nop;");
+break;
+}
        
   case (-4):
-	TRACK946_BEGIN: track(&&TRACK946_BEGIN, &&TRACK946_END);
-	TRACK946_END:  __asm__("nop;");
-	 
+	TRACK1137_BEGIN: track(&&TRACK1137_BEGIN, &&TRACK1137_END);
+	TRACK1137_END:  __asm__("nop;");
 	fprintf ( stderr,
 	                   "data integrity (CRC) error in data\n" );
          return ((Bool)0);
        
   case (-3):
-	TRACK947_BEGIN: track(&&TRACK947_BEGIN, &&TRACK947_END);
-	TRACK947_END:  __asm__("nop;");
-	 
+	TRACK1138_BEGIN: track(&&TRACK1138_BEGIN, &&TRACK1138_END);
+	TRACK1138_END:  __asm__("nop;");
 	outOfMemory();
        
   case (-7):
-	TRACK948_BEGIN: track(&&TRACK948_BEGIN, &&TRACK948_END);
-	TRACK948_END:  __asm__("nop;");
-	 
+	TRACK1139_BEGIN: track(&&TRACK1139_BEGIN, &&TRACK1139_END);
+	TRACK1139_END:  __asm__("nop;");
 	fprintf ( stderr,
 	                   "file ends unexpectedly\n" );
          return ((Bool)0);
        
   case (-5):
-	TRACK950_BEGIN: track(&&TRACK950_BEGIN, &&TRACK950_END);
-	TRACK950_END:  __asm__("nop;");
-	 
+	TRACK1141_BEGIN: track(&&TRACK1141_BEGIN, &&TRACK1141_END);
+	TRACK1141_END:  __asm__("nop;");
 	if (zStream != stdin)  {
-	TRACK949_BEGIN: track(&&TRACK949_BEGIN, &&TRACK949_END);
-	TRACK949_END:  __asm__("nop;");
-	 
+	TRACK1140_BEGIN: track(&&TRACK1140_BEGIN, &&TRACK1140_END);
+	TRACK1140_END:  __asm__("nop;");
 	fclose(zStream);
 	}
          if (streamNo == 1) {
-  TRACK951_BEGIN: track(&&TRACK951_BEGIN, &&TRACK951_END);
-  TRACK951_END:  __asm__("nop;");
-   
+  TRACK1142_BEGIN: track(&&TRACK1142_BEGIN, &&TRACK1142_END);
+  TRACK1142_END:  __asm__("nop;");
   fprintf ( stderr,
                       "bad magic number (file not created by bzip2)\n" );
               return ((Bool)0);
 } else {
-  TRACK953_BEGIN: track(&&TRACK953_BEGIN, &&TRACK953_END);
-  TRACK953_END:  __asm__("nop;");
-   
+  TRACK1144_BEGIN: track(&&TRACK1144_BEGIN, &&TRACK1144_END);
+  TRACK1144_END:  __asm__("nop;");
   if (noisy)
                {
-  TRACK952_BEGIN: track(&&TRACK952_BEGIN, &&TRACK952_END);
-  TRACK952_END:  __asm__("nop;");
-   
+  TRACK1143_BEGIN: track(&&TRACK1143_BEGIN, &&TRACK1143_END);
+  TRACK1143_END:  __asm__("nop;");
   fprintf ( stderr,
                         "trailing garbage after EOF ignored\n" );
   }
@@ -8822,9 +8633,8 @@ fprintf ( stderr, "%s: %s: ", progName, inName );
 }
        
   default:
-	TRACK954_BEGIN: track(&&TRACK954_BEGIN, &&TRACK954_END);
-	TRACK954_END:  __asm__("nop;");
-	 
+	TRACK1145_BEGIN: track(&&TRACK1145_BEGIN, &&TRACK1145_END);
+	TRACK1145_END:  __asm__("nop;");
 	panic ( "test:unexpected error" );
    }
    panic ( "test:end" );
@@ -8834,9 +8644,8 @@ static
 void setExit ( Int32 v )
 {
    if (v > exitValue)  {
-TRACK955_BEGIN: track(&&TRACK955_BEGIN, &&TRACK955_END);
-TRACK955_END:  __asm__("nop;");
- 
+TRACK1146_BEGIN: track(&&TRACK1146_BEGIN, &&TRACK1146_END);
+TRACK1146_END:  __asm__("nop;");
 exitValue = v;
 }
 }
@@ -8845,9 +8654,8 @@ void cadvise ( void )
 {
    if (noisy)
     {
-TRACK956_BEGIN: track(&&TRACK956_BEGIN, &&TRACK956_END);
-TRACK956_END:  __asm__("nop;");
- 
+TRACK1147_BEGIN: track(&&TRACK1147_BEGIN, &&TRACK1147_END);
+TRACK1147_END:  __asm__("nop;");
 fprintf (
       stderr,
       "\nIt is possible that the compressed file(s) have become corrupted.\n"
@@ -8862,9 +8670,8 @@ void showFileNames ( void )
 {
    if (noisy)
     {
-TRACK957_BEGIN: track(&&TRACK957_BEGIN, &&TRACK957_END);
-TRACK957_END:  __asm__("nop;");
- 
+TRACK1148_BEGIN: track(&&TRACK1148_BEGIN, &&TRACK1148_END);
+TRACK1148_END:  __asm__("nop;");
 fprintf (
       stderr,
       "\tInput file = %s, output file = %s\n",
@@ -8880,45 +8687,39 @@ void cleanUpAndFail ( Int32 ec )
    if ( srcMode == 3
         && opMode != 3
         && deleteOutputOnInterrupt ) {
-  TRACK963_BEGIN: track(&&TRACK963_BEGIN, &&TRACK963_END);
-  TRACK963_END:  __asm__("nop;");
-   
+  TRACK1154_BEGIN: track(&&TRACK1154_BEGIN, &&TRACK1154_END);
+  TRACK1154_END:  __asm__("nop;");
   retVal = stat ( inName, &statBuf );
         if (retVal == 0) {
-    TRACK961_BEGIN: track(&&TRACK961_BEGIN, &&TRACK961_END);
-    TRACK961_END:  __asm__("nop;");
-     
+    TRACK1152_BEGIN: track(&&TRACK1152_BEGIN, &&TRACK1152_END);
+    TRACK1152_END:  __asm__("nop;");
     if (noisy)
                  {
-    TRACK958_BEGIN: track(&&TRACK958_BEGIN, &&TRACK958_END);
-    TRACK958_END:  __asm__("nop;");
-     
+    TRACK1149_BEGIN: track(&&TRACK1149_BEGIN, &&TRACK1149_END);
+    TRACK1149_END:  __asm__("nop;");
     fprintf ( stderr,
                           "%s: Deleting output file %s, if it exists.\n",
                           progName, outName );
     }
              if (outputHandleJustInCase != ((void *)0))
                  {
-    TRACK959_BEGIN: track(&&TRACK959_BEGIN, &&TRACK959_END);
-    TRACK959_END:  __asm__("nop;");
-     
+    TRACK1150_BEGIN: track(&&TRACK1150_BEGIN, &&TRACK1150_END);
+    TRACK1150_END:  __asm__("nop;");
     fclose ( outputHandleJustInCase );
     }
              retVal = remove ( outName );
              if (retVal != 0)
                  {
-    TRACK960_BEGIN: track(&&TRACK960_BEGIN, &&TRACK960_END);
-    TRACK960_END:  __asm__("nop;");
-     
+    TRACK1151_BEGIN: track(&&TRACK1151_BEGIN, &&TRACK1151_END);
+    TRACK1151_END:  __asm__("nop;");
     fprintf ( stderr,
                           "%s: WARNING: deletion of output file "
                           "(apparently) failed.\n",
                           progName );
     }
   } else {
-    TRACK962_BEGIN: track(&&TRACK962_BEGIN, &&TRACK962_END);
-    TRACK962_END:  __asm__("nop;");
-     
+    TRACK1153_BEGIN: track(&&TRACK1153_BEGIN, &&TRACK1153_END);
+    TRACK1153_END:  __asm__("nop;");
     fprintf ( stderr,
                        "%s: WARNING: deletion of output file suppressed\n",
                         progName );
@@ -8935,9 +8736,8 @@ void cleanUpAndFail ( Int32 ec )
   }
 }
    if (noisy && numFileNames > 0 && numFilesProcessed < numFileNames) {
-  TRACK964_BEGIN: track(&&TRACK964_BEGIN, &&TRACK964_END);
-  TRACK964_END:  __asm__("nop;");
-   
+  TRACK1155_BEGIN: track(&&TRACK1155_BEGIN, &&TRACK1155_END);
+  TRACK1155_END:  __asm__("nop;");
   fprintf ( stderr,
                   "%s: WARNING: some files have not been processed:\n"
                   "%s:    %d specified on command line, %d not processed yet.\n\n",
@@ -8973,9 +8773,8 @@ static
 void compressedStreamEOF ( void )
 {
   if (noisy) {
-  TRACK965_BEGIN: track(&&TRACK965_BEGIN, &&TRACK965_END);
-  TRACK965_END:  __asm__("nop;");
-   
+  TRACK1156_BEGIN: track(&&TRACK1156_BEGIN, &&TRACK1156_END);
+  TRACK1156_END:  __asm__("nop;");
   fprintf ( stderr,
          "\n%s: Compressed file ends unexpectedly;\n\t"
          "perhaps it is corrupted?  *Possible* reason follows.\n",
@@ -9010,9 +8809,8 @@ void mySIGSEGVorSIGBUScatcher ( IntNative n )
 {
    if (opMode == 1)
        {
-TRACK966_BEGIN: track(&&TRACK966_BEGIN, &&TRACK966_END);
-TRACK966_END:  __asm__("nop;");
- 
+TRACK1157_BEGIN: track(&&TRACK1157_BEGIN, &&TRACK1157_END);
+TRACK1157_END:  __asm__("nop;");
 fprintf (
       stderr,
       "\n%s: Caught a SIGSEGV or SIGBUS whilst compressing.\n"
@@ -9036,9 +8834,8 @@ fprintf (
 }
       else
        {
-TRACK967_BEGIN: track(&&TRACK967_BEGIN, &&TRACK967_END);
-TRACK967_END:  __asm__("nop;");
- 
+TRACK1158_BEGIN: track(&&TRACK1158_BEGIN, &&TRACK1158_END);
+TRACK1158_END:  __asm__("nop;");
 fprintf (
       stderr,
       "\n%s: Caught a SIGSEGV or SIGBUS whilst decompressing.\n"
@@ -9065,15 +8862,13 @@ fprintf (
    showFileNames();
    if (opMode == 1)
        {
-TRACK968_BEGIN: track(&&TRACK968_BEGIN, &&TRACK968_END);
-TRACK968_END:  __asm__("nop;");
- 
+TRACK1159_BEGIN: track(&&TRACK1159_BEGIN, &&TRACK1159_END);
+TRACK1159_END:  __asm__("nop;");
 cleanUpAndFail( 3 );
 } else
       {
-  TRACK969_BEGIN: track(&&TRACK969_BEGIN, &&TRACK969_END);
-  TRACK969_END:  __asm__("nop;");
-   
+  TRACK1160_BEGIN: track(&&TRACK1160_BEGIN, &&TRACK1160_END);
+  TRACK1160_END:  __asm__("nop;");
   cadvise(); cleanUpAndFail( 2 );
 }
 }
@@ -9102,12 +8897,15 @@ static
 void pad ( Char *s )
 {
    Int32 i;
-   if ( (Int32)strlen(s) >= longestFileName ) return;
+   if ( (Int32)strlen(s) >= longestFileName )  {
+TRACK1161_BEGIN: track(&&TRACK1161_BEGIN, &&TRACK1161_END);
+TRACK1161_END:  __asm__("nop;");
+return;
+}
    for (i = 1; i <= longestFileName - (Int32)strlen(s); i++)
        {
-TRACK970_BEGIN: track(&&TRACK970_BEGIN, &&TRACK970_END);
-TRACK970_END:  __asm__("nop;");
- 
+TRACK1162_BEGIN: track(&&TRACK1162_BEGIN, &&TRACK1162_END);
+TRACK1162_END:  __asm__("nop;");
 fprintf ( stderr, " " );
 }
 }
@@ -9115,9 +8913,8 @@ static
 void copyFileName ( Char* to, Char* from )
 {
    if ( strlen(from) > 1034 -10 ) {
-  TRACK971_BEGIN: track(&&TRACK971_BEGIN, &&TRACK971_END);
-  TRACK971_END:  __asm__("nop;");
-   
+  TRACK1163_BEGIN: track(&&TRACK1163_BEGIN, &&TRACK1163_END);
+  TRACK1163_END:  __asm__("nop;");
   fprintf (
            stderr,
            "bzip2: file name\n`%s'\n"
@@ -9137,9 +8934,8 @@ Bool fileExists ( Char* name )
    FILE *tmp = fopen ( name, "rb" );
    Bool exists = (tmp != ((void *)0));
    if (tmp != ((void *)0))  {
-TRACK972_BEGIN: track(&&TRACK972_BEGIN, &&TRACK972_END);
-TRACK972_END:  __asm__("nop;");
- 
+TRACK1164_BEGIN: track(&&TRACK1164_BEGIN, &&TRACK1164_END);
+TRACK1164_END:  __asm__("nop;");
 fclose ( tmp );
 }
    return exists;
@@ -9149,12 +8945,15 @@ FILE* fopen_output_safely ( Char* name, const char* mode )
    FILE* fp;
    IntNative fh;
    fh = open(name, 01|0100|0200, 0200|0400);
-   if (fh == -1) return ((void *)0);
+   if (fh == -1)  {
+TRACK1165_BEGIN: track(&&TRACK1165_BEGIN, &&TRACK1165_END);
+TRACK1165_END:  __asm__("nop;");
+return ((void *)0);
+}
    fp = fdopen(fh, mode);
    if (fp == ((void *)0))  {
-TRACK973_BEGIN: track(&&TRACK973_BEGIN, &&TRACK973_END);
-TRACK973_END:  __asm__("nop;");
- 
+TRACK1166_BEGIN: track(&&TRACK1166_BEGIN, &&TRACK1166_END);
+TRACK1166_END:  __asm__("nop;");
 close(fh);
 }
    return fp;
@@ -9165,8 +8964,16 @@ Bool notAStandardFile ( Char* name )
    IntNative i;
    struct stat statBuf;
    i = lstat ( name, &statBuf );
-   if (i != 0) return ((Bool)1);
-   if (((((statBuf.st_mode)) & 0170000) == (0100000))) return ((Bool)0);
+   if (i != 0)  {
+TRACK1167_BEGIN: track(&&TRACK1167_BEGIN, &&TRACK1167_END);
+TRACK1167_END:  __asm__("nop;");
+return ((Bool)1);
+}
+   if (((((statBuf.st_mode)) & 0170000) == (0100000)))  {
+TRACK1168_BEGIN: track(&&TRACK1168_BEGIN, &&TRACK1168_END);
+TRACK1168_END:  __asm__("nop;");
+return ((Bool)0);
+}
    return ((Bool)1);
 }
 static
@@ -9175,7 +8982,11 @@ Int32 countHardLinks ( Char* name )
    IntNative i;
    struct stat statBuf;
    i = lstat ( name, &statBuf );
-   if (i != 0) return 0;
+   if (i != 0)  {
+TRACK1169_BEGIN: track(&&TRACK1169_BEGIN, &&TRACK1169_END);
+TRACK1169_END:  __asm__("nop;");
+return 0;
+}
    return (statBuf.st_nlink - 1);
 }
 static
@@ -9186,9 +8997,8 @@ void saveInputFileMetaInfo ( Char *srcName )
    IntNative retVal;
    retVal = stat( srcName, &fileMetaInfo );
    { if ((retVal) != 0)  {
-TRACK974_BEGIN: track(&&TRACK974_BEGIN, &&TRACK974_END);
-TRACK974_END:  __asm__("nop;");
- 
+TRACK1170_BEGIN: track(&&TRACK1170_BEGIN, &&TRACK1170_END);
+TRACK1170_END:  __asm__("nop;");
 ioError();
 } };
 }
@@ -9201,16 +9011,14 @@ void applySavedMetaInfoToOutputFile ( Char *dstName )
    uTimBuf.modtime = fileMetaInfo.st_mtime;
    retVal = chmod ( dstName, fileMetaInfo.st_mode );
    { if ((retVal) != 0)  {
-TRACK975_BEGIN: track(&&TRACK975_BEGIN, &&TRACK975_END);
-TRACK975_END:  __asm__("nop;");
- 
+TRACK1171_BEGIN: track(&&TRACK1171_BEGIN, &&TRACK1171_END);
+TRACK1171_END:  __asm__("nop;");
 ioError();
 } };
    retVal = utime ( dstName, &uTimBuf );
    { if ((retVal) != 0)  {
-TRACK976_BEGIN: track(&&TRACK976_BEGIN, &&TRACK976_END);
-TRACK976_END:  __asm__("nop;");
- 
+TRACK1172_BEGIN: track(&&TRACK1172_BEGIN, &&TRACK1172_END);
+TRACK1172_END:  __asm__("nop;");
 ioError();
 } };
    retVal = chown ( dstName, fileMetaInfo.st_uid, fileMetaInfo.st_gid );
@@ -9229,15 +9037,27 @@ Bool hasSuffix ( Char* s, Char* suffix )
 {
    Int32 ns = strlen(s);
    Int32 nx = strlen(suffix);
-   if (ns < nx) return ((Bool)0);
-   if (strcmp(s + ns - nx, suffix) == 0) return ((Bool)1);
+   if (ns < nx)  {
+TRACK1173_BEGIN: track(&&TRACK1173_BEGIN, &&TRACK1173_END);
+TRACK1173_END:  __asm__("nop;");
+return ((Bool)0);
+}
+   if (strcmp(s + ns - nx, suffix) == 0)  {
+TRACK1174_BEGIN: track(&&TRACK1174_BEGIN, &&TRACK1174_END);
+TRACK1174_END:  __asm__("nop;");
+return ((Bool)1);
+}
    return ((Bool)0);
 }
 static
 Bool mapSuffix ( Char* name,
                  Char* oldSuffix, Char* newSuffix )
 {
-   if (!hasSuffix(name,oldSuffix)) return ((Bool)0);
+   if (!hasSuffix(name,oldSuffix))  {
+TRACK1175_BEGIN: track(&&TRACK1175_BEGIN, &&TRACK1175_END);
+TRACK1175_END:  __asm__("nop;");
+return ((Bool)0);
+}
    name[strlen(name)-strlen(oldSuffix)] = 0;
    strcat ( name, newSuffix );
    return ((Bool)1);
@@ -9252,47 +9072,41 @@ void compress ( Char *name )
    deleteOutputOnInterrupt = ((Bool)0);
    if (name == ((void *)0) && srcMode != 1)
        {
-TRACK977_BEGIN: track(&&TRACK977_BEGIN, &&TRACK977_END);
-TRACK977_END:  __asm__("nop;");
- 
+TRACK1176_BEGIN: track(&&TRACK1176_BEGIN, &&TRACK1176_END);
+TRACK1176_END:  __asm__("nop;");
 panic ( "compress: bad modes\n" );
 }
    switch (srcMode) {
        
   case 1:
-	TRACK978_BEGIN: track(&&TRACK978_BEGIN, &&TRACK978_END);
-	TRACK978_END:  __asm__("nop;");
-	 
+	TRACK1177_BEGIN: track(&&TRACK1177_BEGIN, &&TRACK1177_END);
+	TRACK1177_END:  __asm__("nop;");
 	copyFileName ( inName, "(stdin)" );
          copyFileName ( outName, "(stdout)" );
          break;
        
   case 3:
-	TRACK979_BEGIN: track(&&TRACK979_BEGIN, &&TRACK979_END);
-	TRACK979_END:  __asm__("nop;");
-	 
+	TRACK1178_BEGIN: track(&&TRACK1178_BEGIN, &&TRACK1178_END);
+	TRACK1178_END:  __asm__("nop;");
 	copyFileName ( inName, name );
          copyFileName ( outName, name );
          strcat ( outName, ".bz2" );
          break;
        
   case 2:
-	TRACK980_BEGIN: track(&&TRACK980_BEGIN, &&TRACK980_END);
-	TRACK980_END:  __asm__("nop;");
-	 
+	TRACK1179_BEGIN: track(&&TRACK1179_BEGIN, &&TRACK1179_END);
+	TRACK1179_END:  __asm__("nop;");
 	copyFileName ( inName, name );
          copyFileName ( outName, "(stdout)" );
          break;
    }
    if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-  TRACK982_BEGIN: track(&&TRACK982_BEGIN, &&TRACK982_END);
-  TRACK982_END:  __asm__("nop;");
-   
+  TRACK1181_BEGIN: track(&&TRACK1181_BEGIN, &&TRACK1181_END);
+  TRACK1181_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK981_BEGIN: track(&&TRACK981_BEGIN, &&TRACK981_END);
-  TRACK981_END:  __asm__("nop;");
-   
+  TRACK1180_BEGIN: track(&&TRACK1180_BEGIN, &&TRACK1180_END);
+  TRACK1180_END:  __asm__("nop;");
   fprintf ( stderr, "%s: There are no files matching `%s'.\n",
                   progName, inName );
   }
@@ -9300,27 +9114,23 @@ panic ( "compress: bad modes\n" );
         return;
 }
    if ( srcMode != 1 && !fileExists ( inName ) ) {
-  TRACK983_BEGIN: track(&&TRACK983_BEGIN, &&TRACK983_END);
-  TRACK983_END:  __asm__("nop;");
-   
+  TRACK1182_BEGIN: track(&&TRACK1182_BEGIN, &&TRACK1182_END);
+  TRACK1182_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
                   progName, inName, strerror((*__errno_location ())) );
         setExit(1);
         return;
 }
    for (i = 0; i < 4; i++) {
-  TRACK986_BEGIN: track(&&TRACK986_BEGIN, &&TRACK986_END);
-  TRACK986_END:  __asm__("nop;");
-   
+  TRACK1185_BEGIN: track(&&TRACK1185_BEGIN, &&TRACK1185_END);
+  TRACK1185_END:  __asm__("nop;");
   if (hasSuffix(inName, zSuffix[i])) {
-    TRACK985_BEGIN: track(&&TRACK985_BEGIN, &&TRACK985_END);
-    TRACK985_END:  __asm__("nop;");
-     
+    TRACK1184_BEGIN: track(&&TRACK1184_BEGIN, &&TRACK1184_END);
+    TRACK1184_END:  __asm__("nop;");
     if (noisy)
               {
-    TRACK984_BEGIN: track(&&TRACK984_BEGIN, &&TRACK984_END);
-    TRACK984_END:  __asm__("nop;");
-     
+    TRACK1183_BEGIN: track(&&TRACK1183_BEGIN, &&TRACK1183_END);
+    TRACK1183_END:  __asm__("nop;");
     fprintf ( stderr,
                        "%s: Input file %s already has %s suffix.\n",
                        progName, inName, zSuffix[i] );
@@ -9330,14 +9140,12 @@ panic ( "compress: bad modes\n" );
   }
 }
    if ( srcMode == 3 || srcMode == 2 ) {
-  TRACK988_BEGIN: track(&&TRACK988_BEGIN, &&TRACK988_END);
-  TRACK988_END:  __asm__("nop;");
-   
+  TRACK1187_BEGIN: track(&&TRACK1187_BEGIN, &&TRACK1187_END);
+  TRACK1187_END:  __asm__("nop;");
   stat(inName, &statBuf);
         if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-    TRACK987_BEGIN: track(&&TRACK987_BEGIN, &&TRACK987_END);
-    TRACK987_END:  __asm__("nop;");
-     
+    TRACK1186_BEGIN: track(&&TRACK1186_BEGIN, &&TRACK1186_END);
+    TRACK1186_END:  __asm__("nop;");
     fprintf( stderr,
                       "%s: Input file %s is a directory.\n",
                       progName,inName);
@@ -9346,14 +9154,12 @@ panic ( "compress: bad modes\n" );
   }
 }
    if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
-  TRACK990_BEGIN: track(&&TRACK990_BEGIN, &&TRACK990_END);
-  TRACK990_END:  __asm__("nop;");
-   
+  TRACK1189_BEGIN: track(&&TRACK1189_BEGIN, &&TRACK1189_END);
+  TRACK1189_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK989_BEGIN: track(&&TRACK989_BEGIN, &&TRACK989_END);
-  TRACK989_END:  __asm__("nop;");
-   
+  TRACK1188_BEGIN: track(&&TRACK1188_BEGIN, &&TRACK1188_END);
+  TRACK1188_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
                   progName, inName );
   }
@@ -9361,18 +9167,15 @@ panic ( "compress: bad modes\n" );
         return;
 }
    if ( srcMode == 3 && fileExists ( outName ) ) {
-  TRACK993_BEGIN: track(&&TRACK993_BEGIN, &&TRACK993_END);
-  TRACK993_END:  __asm__("nop;");
-   
+  TRACK1192_BEGIN: track(&&TRACK1192_BEGIN, &&TRACK1192_END);
+  TRACK1192_END:  __asm__("nop;");
   if (forceOverwrite) {
-    TRACK991_BEGIN: track(&&TRACK991_BEGIN, &&TRACK991_END);
-    TRACK991_END:  __asm__("nop;");
-     
+    TRACK1190_BEGIN: track(&&TRACK1190_BEGIN, &&TRACK1190_END);
+    TRACK1190_END:  __asm__("nop;");
     remove(outName);
   } else {
-    TRACK992_BEGIN: track(&&TRACK992_BEGIN, &&TRACK992_END);
-    TRACK992_END:  __asm__("nop;");
-     
+    TRACK1191_BEGIN: track(&&TRACK1191_BEGIN, &&TRACK1191_END);
+    TRACK1191_END:  __asm__("nop;");
     fprintf ( stderr, "%s: Output file %s already exists.\n",
          progName, outName );
       setExit(1);
@@ -9381,32 +9184,28 @@ panic ( "compress: bad modes\n" );
 }
    if ( srcMode == 3 && !forceOverwrite &&
         (n=countHardLinks ( inName )) > 0) {
-  TRACK994_BEGIN: track(&&TRACK994_BEGIN, &&TRACK994_END);
-  TRACK994_END:  __asm__("nop;");
-   
+  TRACK1193_BEGIN: track(&&TRACK1193_BEGIN, &&TRACK1193_END);
+  TRACK1193_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
                   progName, inName, n, n > 1 ? "s" : "" );
         setExit(1);
         return;
 }
    if ( srcMode == 3 ) {
-  TRACK995_BEGIN: track(&&TRACK995_BEGIN, &&TRACK995_END);
-  TRACK995_END:  __asm__("nop;");
-   
+  TRACK1194_BEGIN: track(&&TRACK1194_BEGIN, &&TRACK1194_END);
+  TRACK1194_END:  __asm__("nop;");
   saveInputFileMetaInfo ( inName );
 }
    switch ( srcMode ) {
        
   case 1:
-	TRACK996_BEGIN: track(&&TRACK996_BEGIN, &&TRACK996_END);
-	TRACK996_END:  __asm__("nop;");
-	 
+	TRACK1195_BEGIN: track(&&TRACK1195_BEGIN, &&TRACK1195_END);
+	TRACK1195_END:  __asm__("nop;");
 	inStr = stdin;
          outStr = stdout;
          if ( isatty ( fileno ( stdout ) ) ) {
-  TRACK997_BEGIN: track(&&TRACK997_BEGIN, &&TRACK997_END);
-  TRACK997_END:  __asm__("nop;");
-   
+  TRACK1196_BEGIN: track(&&TRACK1196_BEGIN, &&TRACK1196_END);
+  TRACK1196_END:  __asm__("nop;");
   fprintf ( stderr,
                         "%s: I won't write compressed data to a terminal.\n",
                         progName );
@@ -9418,33 +9217,29 @@ panic ( "compress: bad modes\n" );
          break;
        
   case 2:
-	TRACK998_BEGIN: track(&&TRACK998_BEGIN, &&TRACK998_END);
-	TRACK998_END:  __asm__("nop;");
-	 
+	TRACK1197_BEGIN: track(&&TRACK1197_BEGIN, &&TRACK1197_END);
+	TRACK1197_END:  __asm__("nop;");
 	inStr = fopen ( inName, "rb" );
          outStr = stdout;
          if ( isatty ( fileno ( stdout ) ) ) {
-  TRACK1000_BEGIN: track(&&TRACK1000_BEGIN, &&TRACK1000_END);
-  TRACK1000_END:  __asm__("nop;");
-   
+  TRACK1199_BEGIN: track(&&TRACK1199_BEGIN, &&TRACK1199_END);
+  TRACK1199_END:  __asm__("nop;");
   fprintf ( stderr,
                         "%s: I won't write compressed data to a terminal.\n",
                         progName );
               fprintf ( stderr, "%s: For help, type: `%s --help'.\n",
                                 progName, progName );
               if ( inStr != ((void *)0) )  {
-  TRACK999_BEGIN: track(&&TRACK999_BEGIN, &&TRACK999_END);
-  TRACK999_END:  __asm__("nop;");
-   
+  TRACK1198_BEGIN: track(&&TRACK1198_BEGIN, &&TRACK1198_END);
+  TRACK1198_END:  __asm__("nop;");
   fclose ( inStr );
   }
               setExit(1);
               return;
 };
          if ( inStr == ((void *)0) ) {
-  TRACK1001_BEGIN: track(&&TRACK1001_BEGIN, &&TRACK1001_END);
-  TRACK1001_END:  __asm__("nop;");
-   
+  TRACK1200_BEGIN: track(&&TRACK1200_BEGIN, &&TRACK1200_END);
+  TRACK1200_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
                         progName, inName, strerror((*__errno_location ())) );
               setExit(1);
@@ -9453,36 +9248,31 @@ panic ( "compress: bad modes\n" );
          break;
        
   case 3:
-	TRACK1002_BEGIN: track(&&TRACK1002_BEGIN, &&TRACK1002_END);
-	TRACK1002_END:  __asm__("nop;");
-	 
+	TRACK1201_BEGIN: track(&&TRACK1201_BEGIN, &&TRACK1201_END);
+	TRACK1201_END:  __asm__("nop;");
 	inStr = fopen ( inName, "rb" );
          outStr = fopen_output_safely ( outName, "wb" );
          if ( outStr == ((void *)0)) {
-  TRACK1004_BEGIN: track(&&TRACK1004_BEGIN, &&TRACK1004_END);
-  TRACK1004_END:  __asm__("nop;");
-   
+  TRACK1203_BEGIN: track(&&TRACK1203_BEGIN, &&TRACK1203_END);
+  TRACK1203_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
                         progName, outName, strerror((*__errno_location ())) );
               if ( inStr != ((void *)0) )  {
-  TRACK1003_BEGIN: track(&&TRACK1003_BEGIN, &&TRACK1003_END);
-  TRACK1003_END:  __asm__("nop;");
-   
+  TRACK1202_BEGIN: track(&&TRACK1202_BEGIN, &&TRACK1202_END);
+  TRACK1202_END:  __asm__("nop;");
   fclose ( inStr );
   }
               setExit(1);
               return;
 }
          if ( inStr == ((void *)0) ) {
-  TRACK1006_BEGIN: track(&&TRACK1006_BEGIN, &&TRACK1006_END);
-  TRACK1006_END:  __asm__("nop;");
-   
+  TRACK1205_BEGIN: track(&&TRACK1205_BEGIN, &&TRACK1205_END);
+  TRACK1205_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
                         progName, inName, strerror((*__errno_location ())) );
               if ( outStr != ((void *)0) )  {
-  TRACK1005_BEGIN: track(&&TRACK1005_BEGIN, &&TRACK1005_END);
-  TRACK1005_END:  __asm__("nop;");
-   
+  TRACK1204_BEGIN: track(&&TRACK1204_BEGIN, &&TRACK1204_END);
+  TRACK1204_END:  __asm__("nop;");
   fclose ( outStr );
   }
               setExit(1);
@@ -9491,16 +9281,14 @@ panic ( "compress: bad modes\n" );
          break;
        
   default:
-	TRACK1007_BEGIN: track(&&TRACK1007_BEGIN, &&TRACK1007_END);
-	TRACK1007_END:  __asm__("nop;");
-	 
+	TRACK1206_BEGIN: track(&&TRACK1206_BEGIN, &&TRACK1206_END);
+	TRACK1206_END:  __asm__("nop;");
 	panic ( "compress: bad srcMode" );
          break;
    }
    if (verbosity >= 1) {
-  TRACK1008_BEGIN: track(&&TRACK1008_BEGIN, &&TRACK1008_END);
-  TRACK1008_END:  __asm__("nop;");
-   
+  TRACK1207_BEGIN: track(&&TRACK1207_BEGIN, &&TRACK1207_END);
+  TRACK1207_END:  __asm__("nop;");
   fprintf ( stderr, "  %s: ", inName );
         pad ( inName );
         fflush ( stderr );
@@ -9510,20 +9298,17 @@ panic ( "compress: bad modes\n" );
    compressStream ( inStr, outStr );
    outputHandleJustInCase = ((void *)0);
    if ( srcMode == 3 ) {
-  TRACK1011_BEGIN: track(&&TRACK1011_BEGIN, &&TRACK1011_END);
-  TRACK1011_END:  __asm__("nop;");
-   
+  TRACK1210_BEGIN: track(&&TRACK1210_BEGIN, &&TRACK1210_END);
+  TRACK1210_END:  __asm__("nop;");
   applySavedMetaInfoToOutputFile ( outName );
         deleteOutputOnInterrupt = ((Bool)0);
         if ( !keepInputFiles ) {
     IntNative retVal = remove ( inName );
-    TRACK1010_BEGIN: track(&&TRACK1010_BEGIN, &&TRACK1010_END);
-    TRACK1010_END:  __asm__("nop;");
-     
+    TRACK1209_BEGIN: track(&&TRACK1209_BEGIN, &&TRACK1209_END);
+    TRACK1209_END:  __asm__("nop;");
     { if ((retVal) != 0)  {
-    TRACK1009_BEGIN: track(&&TRACK1009_BEGIN, &&TRACK1009_END);
-    TRACK1009_END:  __asm__("nop;");
-     
+    TRACK1208_BEGIN: track(&&TRACK1208_BEGIN, &&TRACK1208_END);
+    TRACK1208_END:  __asm__("nop;");
     ioError();
     } };
   }
@@ -9542,58 +9327,55 @@ void uncompress ( Char *name )
    deleteOutputOnInterrupt = ((Bool)0);
    if (name == ((void *)0) && srcMode != 1)
        {
-TRACK1012_BEGIN: track(&&TRACK1012_BEGIN, &&TRACK1012_END);
-TRACK1012_END:  __asm__("nop;");
- 
+TRACK1211_BEGIN: track(&&TRACK1211_BEGIN, &&TRACK1211_END);
+TRACK1211_END:  __asm__("nop;");
 panic ( "uncompress: bad modes\n" );
 }
    cantGuess = ((Bool)0);
    switch (srcMode) {
        
   case 1:
-	TRACK1013_BEGIN: track(&&TRACK1013_BEGIN, &&TRACK1013_END);
-	TRACK1013_END:  __asm__("nop;");
-	 
+	TRACK1212_BEGIN: track(&&TRACK1212_BEGIN, &&TRACK1212_END);
+	TRACK1212_END:  __asm__("nop;");
 	copyFileName ( inName, "(stdin)" );
          copyFileName ( outName, "(stdout)" );
          break;
        
   case 3:
-	TRACK1014_BEGIN: track(&&TRACK1014_BEGIN, &&TRACK1014_END);
-	TRACK1014_END:  __asm__("nop;");
-	 
+	TRACK1213_BEGIN: track(&&TRACK1213_BEGIN, &&TRACK1213_END);
+	TRACK1213_END:  __asm__("nop;");
 	copyFileName ( inName, name );
          copyFileName ( outName, name );
          for (i = 0; i < 4; i++)
              {
-TRACK1015_BEGIN: track(&&TRACK1015_BEGIN, &&TRACK1015_END);
-TRACK1015_END:  __asm__("nop;");
- 
+TRACK1215_BEGIN: track(&&TRACK1215_BEGIN, &&TRACK1215_END);
+TRACK1215_END:  __asm__("nop;");
 if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
-               goto zzz;
+                {
+TRACK1214_BEGIN: track(&&TRACK1214_BEGIN, &&TRACK1214_END);
+TRACK1214_END:  __asm__("nop;");
+goto zzz;
+}
 }
          cantGuess = ((Bool)1);
          strcat ( outName, ".out" );
          break;
        
   case 2:
-	TRACK1016_BEGIN: track(&&TRACK1016_BEGIN, &&TRACK1016_END);
-	TRACK1016_END:  __asm__("nop;");
-	 
+	TRACK1216_BEGIN: track(&&TRACK1216_BEGIN, &&TRACK1216_END);
+	TRACK1216_END:  __asm__("nop;");
 	copyFileName ( inName, name );
          copyFileName ( outName, "(stdout)" );
          break;
    }
    zzz:
    if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-  TRACK1018_BEGIN: track(&&TRACK1018_BEGIN, &&TRACK1018_END);
-  TRACK1018_END:  __asm__("nop;");
-   
+  TRACK1218_BEGIN: track(&&TRACK1218_BEGIN, &&TRACK1218_END);
+  TRACK1218_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK1017_BEGIN: track(&&TRACK1017_BEGIN, &&TRACK1017_END);
-  TRACK1017_END:  __asm__("nop;");
-   
+  TRACK1217_BEGIN: track(&&TRACK1217_BEGIN, &&TRACK1217_END);
+  TRACK1217_END:  __asm__("nop;");
   fprintf ( stderr, "%s: There are no files matching `%s'.\n",
                   progName, inName );
   }
@@ -9601,23 +9383,20 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
         return;
 }
    if ( srcMode != 1 && !fileExists ( inName ) ) {
-  TRACK1019_BEGIN: track(&&TRACK1019_BEGIN, &&TRACK1019_END);
-  TRACK1019_END:  __asm__("nop;");
-   
+  TRACK1219_BEGIN: track(&&TRACK1219_BEGIN, &&TRACK1219_END);
+  TRACK1219_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
                   progName, inName, strerror((*__errno_location ())) );
         setExit(1);
         return;
 }
    if ( srcMode == 3 || srcMode == 2 ) {
-  TRACK1021_BEGIN: track(&&TRACK1021_BEGIN, &&TRACK1021_END);
-  TRACK1021_END:  __asm__("nop;");
-   
+  TRACK1221_BEGIN: track(&&TRACK1221_BEGIN, &&TRACK1221_END);
+  TRACK1221_END:  __asm__("nop;");
   stat(inName, &statBuf);
         if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-    TRACK1020_BEGIN: track(&&TRACK1020_BEGIN, &&TRACK1020_END);
-    TRACK1020_END:  __asm__("nop;");
-     
+    TRACK1220_BEGIN: track(&&TRACK1220_BEGIN, &&TRACK1220_END);
+    TRACK1220_END:  __asm__("nop;");
     fprintf( stderr,
                       "%s: Input file %s is a directory.\n",
                       progName,inName);
@@ -9626,14 +9405,12 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
   }
 }
    if ( srcMode == 3 && !forceOverwrite && notAStandardFile ( inName )) {
-  TRACK1023_BEGIN: track(&&TRACK1023_BEGIN, &&TRACK1023_END);
-  TRACK1023_END:  __asm__("nop;");
-   
+  TRACK1223_BEGIN: track(&&TRACK1223_BEGIN, &&TRACK1223_END);
+  TRACK1223_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK1022_BEGIN: track(&&TRACK1022_BEGIN, &&TRACK1022_END);
-  TRACK1022_END:  __asm__("nop;");
-   
+  TRACK1222_BEGIN: track(&&TRACK1222_BEGIN, &&TRACK1222_END);
+  TRACK1222_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Input file %s is not a normal file.\n",
                   progName, inName );
   }
@@ -9641,32 +9418,27 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
         return;
 }
    if ( cantGuess ) {
-  TRACK1025_BEGIN: track(&&TRACK1025_BEGIN, &&TRACK1025_END);
-  TRACK1025_END:  __asm__("nop;");
-   
+  TRACK1225_BEGIN: track(&&TRACK1225_BEGIN, &&TRACK1225_END);
+  TRACK1225_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK1024_BEGIN: track(&&TRACK1024_BEGIN, &&TRACK1024_END);
-  TRACK1024_END:  __asm__("nop;");
-   
+  TRACK1224_BEGIN: track(&&TRACK1224_BEGIN, &&TRACK1224_END);
+  TRACK1224_END:  __asm__("nop;");
   fprintf ( stderr,
                   "%s: Can't guess original name for %s -- using %s\n",
                   progName, inName, outName );
   }
 }
    if ( srcMode == 3 && fileExists ( outName ) ) {
-  TRACK1028_BEGIN: track(&&TRACK1028_BEGIN, &&TRACK1028_END);
-  TRACK1028_END:  __asm__("nop;");
-   
+  TRACK1228_BEGIN: track(&&TRACK1228_BEGIN, &&TRACK1228_END);
+  TRACK1228_END:  __asm__("nop;");
   if (forceOverwrite) {
-    TRACK1026_BEGIN: track(&&TRACK1026_BEGIN, &&TRACK1026_END);
-    TRACK1026_END:  __asm__("nop;");
-     
+    TRACK1226_BEGIN: track(&&TRACK1226_BEGIN, &&TRACK1226_END);
+    TRACK1226_END:  __asm__("nop;");
     remove(outName);
   } else {
-    TRACK1027_BEGIN: track(&&TRACK1027_BEGIN, &&TRACK1027_END);
-    TRACK1027_END:  __asm__("nop;");
-     
+    TRACK1227_BEGIN: track(&&TRACK1227_BEGIN, &&TRACK1227_END);
+    TRACK1227_END:  __asm__("nop;");
     fprintf ( stderr, "%s: Output file %s already exists.\n",
                       progName, outName );
             setExit(1);
@@ -9675,32 +9447,28 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
 }
    if ( srcMode == 3 && !forceOverwrite &&
         (n=countHardLinks ( inName ) ) > 0) {
-  TRACK1029_BEGIN: track(&&TRACK1029_BEGIN, &&TRACK1029_END);
-  TRACK1029_END:  __asm__("nop;");
-   
+  TRACK1229_BEGIN: track(&&TRACK1229_BEGIN, &&TRACK1229_END);
+  TRACK1229_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Input file %s has %d other link%s.\n",
                   progName, inName, n, n > 1 ? "s" : "" );
         setExit(1);
         return;
 }
    if ( srcMode == 3 ) {
-  TRACK1030_BEGIN: track(&&TRACK1030_BEGIN, &&TRACK1030_END);
-  TRACK1030_END:  __asm__("nop;");
-   
+  TRACK1230_BEGIN: track(&&TRACK1230_BEGIN, &&TRACK1230_END);
+  TRACK1230_END:  __asm__("nop;");
   saveInputFileMetaInfo ( inName );
 }
    switch ( srcMode ) {
        
   case 1:
-	TRACK1031_BEGIN: track(&&TRACK1031_BEGIN, &&TRACK1031_END);
-	TRACK1031_END:  __asm__("nop;");
-	 
+	TRACK1231_BEGIN: track(&&TRACK1231_BEGIN, &&TRACK1231_END);
+	TRACK1231_END:  __asm__("nop;");
 	inStr = stdin;
          outStr = stdout;
          if ( isatty ( fileno ( stdin ) ) ) {
-  TRACK1032_BEGIN: track(&&TRACK1032_BEGIN, &&TRACK1032_END);
-  TRACK1032_END:  __asm__("nop;");
-   
+  TRACK1232_BEGIN: track(&&TRACK1232_BEGIN, &&TRACK1232_END);
+  TRACK1232_END:  __asm__("nop;");
   fprintf ( stderr,
                         "%s: I won't read compressed data from a terminal.\n",
                         progName );
@@ -9712,21 +9480,18 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
          break;
        
   case 2:
-	TRACK1033_BEGIN: track(&&TRACK1033_BEGIN, &&TRACK1033_END);
-	TRACK1033_END:  __asm__("nop;");
-	 
+	TRACK1233_BEGIN: track(&&TRACK1233_BEGIN, &&TRACK1233_END);
+	TRACK1233_END:  __asm__("nop;");
 	inStr = fopen ( inName, "rb" );
          outStr = stdout;
          if ( inStr == ((void *)0) ) {
-  TRACK1035_BEGIN: track(&&TRACK1035_BEGIN, &&TRACK1035_END);
-  TRACK1035_END:  __asm__("nop;");
-   
+  TRACK1235_BEGIN: track(&&TRACK1235_BEGIN, &&TRACK1235_END);
+  TRACK1235_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
                         progName, inName, strerror((*__errno_location ())) );
               if ( inStr != ((void *)0) )  {
-  TRACK1034_BEGIN: track(&&TRACK1034_BEGIN, &&TRACK1034_END);
-  TRACK1034_END:  __asm__("nop;");
-   
+  TRACK1234_BEGIN: track(&&TRACK1234_BEGIN, &&TRACK1234_END);
+  TRACK1234_END:  __asm__("nop;");
   fclose ( inStr );
   }
               setExit(1);
@@ -9735,36 +9500,31 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
          break;
        
   case 3:
-	TRACK1036_BEGIN: track(&&TRACK1036_BEGIN, &&TRACK1036_END);
-	TRACK1036_END:  __asm__("nop;");
-	 
+	TRACK1236_BEGIN: track(&&TRACK1236_BEGIN, &&TRACK1236_END);
+	TRACK1236_END:  __asm__("nop;");
 	inStr = fopen ( inName, "rb" );
          outStr = fopen_output_safely ( outName, "wb" );
          if ( outStr == ((void *)0)) {
-  TRACK1038_BEGIN: track(&&TRACK1038_BEGIN, &&TRACK1038_END);
-  TRACK1038_END:  __asm__("nop;");
-   
+  TRACK1238_BEGIN: track(&&TRACK1238_BEGIN, &&TRACK1238_END);
+  TRACK1238_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't create output file %s: %s.\n",
                         progName, outName, strerror((*__errno_location ())) );
               if ( inStr != ((void *)0) )  {
-  TRACK1037_BEGIN: track(&&TRACK1037_BEGIN, &&TRACK1037_END);
-  TRACK1037_END:  __asm__("nop;");
-   
+  TRACK1237_BEGIN: track(&&TRACK1237_BEGIN, &&TRACK1237_END);
+  TRACK1237_END:  __asm__("nop;");
   fclose ( inStr );
   }
               setExit(1);
               return;
 }
          if ( inStr == ((void *)0) ) {
-  TRACK1040_BEGIN: track(&&TRACK1040_BEGIN, &&TRACK1040_END);
-  TRACK1040_END:  __asm__("nop;");
-   
+  TRACK1240_BEGIN: track(&&TRACK1240_BEGIN, &&TRACK1240_END);
+  TRACK1240_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s: %s.\n",
                         progName, inName, strerror((*__errno_location ())) );
               if ( outStr != ((void *)0) )  {
-  TRACK1039_BEGIN: track(&&TRACK1039_BEGIN, &&TRACK1039_END);
-  TRACK1039_END:  __asm__("nop;");
-   
+  TRACK1239_BEGIN: track(&&TRACK1239_BEGIN, &&TRACK1239_END);
+  TRACK1239_END:  __asm__("nop;");
   fclose ( outStr );
   }
               setExit(1);
@@ -9773,16 +9533,14 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
          break;
        
   default:
-	TRACK1041_BEGIN: track(&&TRACK1041_BEGIN, &&TRACK1041_END);
-	TRACK1041_END:  __asm__("nop;");
-	 
+	TRACK1241_BEGIN: track(&&TRACK1241_BEGIN, &&TRACK1241_END);
+	TRACK1241_END:  __asm__("nop;");
 	panic ( "uncompress: bad srcMode" );
          break;
    }
    if (verbosity >= 1) {
-  TRACK1042_BEGIN: track(&&TRACK1042_BEGIN, &&TRACK1042_END);
-  TRACK1042_END:  __asm__("nop;");
-   
+  TRACK1242_BEGIN: track(&&TRACK1242_BEGIN, &&TRACK1242_END);
+  TRACK1242_END:  __asm__("nop;");
   fprintf ( stderr, "  %s: ", inName );
         pad ( inName );
         fflush ( stderr );
@@ -9792,75 +9550,63 @@ if (mapSuffix(outName,zSuffix[i],unzSuffix[i]))
    magicNumberOK = uncompressStream ( inStr, outStr );
    outputHandleJustInCase = ((void *)0);
    if ( magicNumberOK ) {
-  TRACK1046_BEGIN: track(&&TRACK1046_BEGIN, &&TRACK1046_END);
-  TRACK1046_END:  __asm__("nop;");
-   
+  TRACK1246_BEGIN: track(&&TRACK1246_BEGIN, &&TRACK1246_END);
+  TRACK1246_END:  __asm__("nop;");
   if ( srcMode == 3 ) {
-    TRACK1045_BEGIN: track(&&TRACK1045_BEGIN, &&TRACK1045_END);
-    TRACK1045_END:  __asm__("nop;");
-     
+    TRACK1245_BEGIN: track(&&TRACK1245_BEGIN, &&TRACK1245_END);
+    TRACK1245_END:  __asm__("nop;");
     applySavedMetaInfoToOutputFile ( outName );
              deleteOutputOnInterrupt = ((Bool)0);
              if ( !keepInputFiles ) {
       IntNative retVal = remove ( inName );
-      TRACK1044_BEGIN: track(&&TRACK1044_BEGIN, &&TRACK1044_END);
-      TRACK1044_END:  __asm__("nop;");
-       
+      TRACK1244_BEGIN: track(&&TRACK1244_BEGIN, &&TRACK1244_END);
+      TRACK1244_END:  __asm__("nop;");
       { if ((retVal) != 0)  {
-      TRACK1043_BEGIN: track(&&TRACK1043_BEGIN, &&TRACK1043_END);
-      TRACK1043_END:  __asm__("nop;");
-       
+      TRACK1243_BEGIN: track(&&TRACK1243_BEGIN, &&TRACK1243_END);
+      TRACK1243_END:  __asm__("nop;");
       ioError();
       } };
     }
   }
 } else {
-  TRACK1049_BEGIN: track(&&TRACK1049_BEGIN, &&TRACK1049_END);
-  TRACK1049_END:  __asm__("nop;");
-   
+  TRACK1249_BEGIN: track(&&TRACK1249_BEGIN, &&TRACK1249_END);
+  TRACK1249_END:  __asm__("nop;");
   unzFailsExist = ((Bool)1);
         deleteOutputOnInterrupt = ((Bool)0);
         if ( srcMode == 3 ) {
     IntNative retVal = remove ( outName );
-    TRACK1048_BEGIN: track(&&TRACK1048_BEGIN, &&TRACK1048_END);
-    TRACK1048_END:  __asm__("nop;");
-     
+    TRACK1248_BEGIN: track(&&TRACK1248_BEGIN, &&TRACK1248_END);
+    TRACK1248_END:  __asm__("nop;");
     { if ((retVal) != 0)  {
-    TRACK1047_BEGIN: track(&&TRACK1047_BEGIN, &&TRACK1047_END);
-    TRACK1047_END:  __asm__("nop;");
-     
+    TRACK1247_BEGIN: track(&&TRACK1247_BEGIN, &&TRACK1247_END);
+    TRACK1247_END:  __asm__("nop;");
     ioError();
     } };
   }
 }
    deleteOutputOnInterrupt = ((Bool)0);
    if ( magicNumberOK ) {
-  TRACK1051_BEGIN: track(&&TRACK1051_BEGIN, &&TRACK1051_END);
-  TRACK1051_END:  __asm__("nop;");
-   
+  TRACK1251_BEGIN: track(&&TRACK1251_BEGIN, &&TRACK1251_END);
+  TRACK1251_END:  __asm__("nop;");
   if (verbosity >= 1)
             {
-  TRACK1050_BEGIN: track(&&TRACK1050_BEGIN, &&TRACK1050_END);
-  TRACK1050_END:  __asm__("nop;");
-   
+  TRACK1250_BEGIN: track(&&TRACK1250_BEGIN, &&TRACK1250_END);
+  TRACK1250_END:  __asm__("nop;");
   fprintf ( stderr, "done\n" );
   }
 } else {
-  TRACK1054_BEGIN: track(&&TRACK1054_BEGIN, &&TRACK1054_END);
-  TRACK1054_END:  __asm__("nop;");
-   
+  TRACK1254_BEGIN: track(&&TRACK1254_BEGIN, &&TRACK1254_END);
+  TRACK1254_END:  __asm__("nop;");
   setExit(2);
         if (verbosity >= 1)
             {
-  TRACK1052_BEGIN: track(&&TRACK1052_BEGIN, &&TRACK1052_END);
-  TRACK1052_END:  __asm__("nop;");
-   
+  TRACK1252_BEGIN: track(&&TRACK1252_BEGIN, &&TRACK1252_END);
+  TRACK1252_END:  __asm__("nop;");
   fprintf ( stderr, "not a bzip2 file.\n" );
   } else
             {
-  TRACK1053_BEGIN: track(&&TRACK1053_BEGIN, &&TRACK1053_END);
-  TRACK1053_END:  __asm__("nop;");
-   
+  TRACK1253_BEGIN: track(&&TRACK1253_BEGIN, &&TRACK1253_END);
+  TRACK1253_END:  __asm__("nop;");
   fprintf ( stderr,
                      "%s: %s is not a bzip2 file.\n",
                      progName, inName );
@@ -9876,41 +9622,35 @@ void testf ( Char *name )
    deleteOutputOnInterrupt = ((Bool)0);
    if (name == ((void *)0) && srcMode != 1)
        {
-TRACK1055_BEGIN: track(&&TRACK1055_BEGIN, &&TRACK1055_END);
-TRACK1055_END:  __asm__("nop;");
- 
+TRACK1255_BEGIN: track(&&TRACK1255_BEGIN, &&TRACK1255_END);
+TRACK1255_END:  __asm__("nop;");
 panic ( "testf: bad modes\n" );
 }
    copyFileName ( outName, "(none)" );
    switch (srcMode) {
        
   case 1:
-	TRACK1056_BEGIN: track(&&TRACK1056_BEGIN, &&TRACK1056_END);
-	TRACK1056_END:  __asm__("nop;");
-	 
+	TRACK1256_BEGIN: track(&&TRACK1256_BEGIN, &&TRACK1256_END);
+	TRACK1256_END:  __asm__("nop;");
 	copyFileName ( inName, "(stdin)" ); break;
        
   case 3:
-	TRACK1057_BEGIN: track(&&TRACK1057_BEGIN, &&TRACK1057_END);
-	TRACK1057_END:  __asm__("nop;");
-	 
+	TRACK1257_BEGIN: track(&&TRACK1257_BEGIN, &&TRACK1257_END);
+	TRACK1257_END:  __asm__("nop;");
 	copyFileName ( inName, name ); break;
        
   case 2:
-	TRACK1058_BEGIN: track(&&TRACK1058_BEGIN, &&TRACK1058_END);
-	TRACK1058_END:  __asm__("nop;");
-	 
+	TRACK1258_BEGIN: track(&&TRACK1258_BEGIN, &&TRACK1258_END);
+	TRACK1258_END:  __asm__("nop;");
 	copyFileName ( inName, name ); break;
    }
    if ( srcMode != 1 && containsDubiousChars ( inName ) ) {
-  TRACK1060_BEGIN: track(&&TRACK1060_BEGIN, &&TRACK1060_END);
-  TRACK1060_END:  __asm__("nop;");
-   
+  TRACK1260_BEGIN: track(&&TRACK1260_BEGIN, &&TRACK1260_END);
+  TRACK1260_END:  __asm__("nop;");
   if (noisy)
          {
-  TRACK1059_BEGIN: track(&&TRACK1059_BEGIN, &&TRACK1059_END);
-  TRACK1059_END:  __asm__("nop;");
-   
+  TRACK1259_BEGIN: track(&&TRACK1259_BEGIN, &&TRACK1259_END);
+  TRACK1259_END:  __asm__("nop;");
   fprintf ( stderr, "%s: There are no files matching `%s'.\n",
                   progName, inName );
   }
@@ -9918,23 +9658,20 @@ panic ( "testf: bad modes\n" );
         return;
 }
    if ( srcMode != 1 && !fileExists ( inName ) ) {
-  TRACK1061_BEGIN: track(&&TRACK1061_BEGIN, &&TRACK1061_END);
-  TRACK1061_END:  __asm__("nop;");
-   
+  TRACK1261_BEGIN: track(&&TRACK1261_BEGIN, &&TRACK1261_END);
+  TRACK1261_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input %s: %s.\n",
                   progName, inName, strerror((*__errno_location ())) );
         setExit(1);
         return;
 }
    if ( srcMode != 1 ) {
-  TRACK1063_BEGIN: track(&&TRACK1063_BEGIN, &&TRACK1063_END);
-  TRACK1063_END:  __asm__("nop;");
-   
+  TRACK1263_BEGIN: track(&&TRACK1263_BEGIN, &&TRACK1263_END);
+  TRACK1263_END:  __asm__("nop;");
   stat(inName, &statBuf);
         if ( ((((statBuf.st_mode)) & 0170000) == (0040000)) ) {
-    TRACK1062_BEGIN: track(&&TRACK1062_BEGIN, &&TRACK1062_END);
-    TRACK1062_END:  __asm__("nop;");
-     
+    TRACK1262_BEGIN: track(&&TRACK1262_BEGIN, &&TRACK1262_END);
+    TRACK1262_END:  __asm__("nop;");
     fprintf( stderr,
                       "%s: Input file %s is a directory.\n",
                       progName,inName);
@@ -9945,13 +9682,11 @@ panic ( "testf: bad modes\n" );
    switch ( srcMode ) {
        
   case 1:
-	TRACK1065_BEGIN: track(&&TRACK1065_BEGIN, &&TRACK1065_END);
-	TRACK1065_END:  __asm__("nop;");
-	 
+	TRACK1265_BEGIN: track(&&TRACK1265_BEGIN, &&TRACK1265_END);
+	TRACK1265_END:  __asm__("nop;");
 	if ( isatty ( fileno ( stdin ) ) ) {
-	  TRACK1064_BEGIN: track(&&TRACK1064_BEGIN, &&TRACK1064_END);
-	  TRACK1064_END:  __asm__("nop;");
-	   
+	  TRACK1264_BEGIN: track(&&TRACK1264_BEGIN, &&TRACK1264_END);
+	  TRACK1264_END:  __asm__("nop;");
 	  fprintf ( stderr,
 	                        "%s: I won't read compressed data from a terminal.\n",
 	                        progName );
@@ -9964,19 +9699,16 @@ panic ( "testf: bad modes\n" );
          break;
        
   case 2:
-	TRACK1067_BEGIN: track(&&TRACK1067_BEGIN, &&TRACK1067_END);
-	TRACK1067_END:  __asm__("nop;");
-	 
+	TRACK1267_BEGIN: track(&&TRACK1267_BEGIN, &&TRACK1267_END);
+	TRACK1267_END:  __asm__("nop;");
 	 
 	  case 3:
-		TRACK1066_BEGIN: track(&&TRACK1066_BEGIN, &&TRACK1066_END);
-		TRACK1066_END:  __asm__("nop;");
-		 
+		TRACK1266_BEGIN: track(&&TRACK1266_BEGIN, &&TRACK1266_END);
+		TRACK1266_END:  __asm__("nop;");
 		inStr = fopen ( inName, "rb" );
          if ( inStr == ((void *)0) ) {
-  TRACK1068_BEGIN: track(&&TRACK1068_BEGIN, &&TRACK1068_END);
-  TRACK1068_END:  __asm__("nop;");
-   
+  TRACK1268_BEGIN: track(&&TRACK1268_BEGIN, &&TRACK1268_END);
+  TRACK1268_END:  __asm__("nop;");
   fprintf ( stderr, "%s: Can't open input file %s:%s.\n",
                         progName, inName, strerror((*__errno_location ())) );
               setExit(1);
@@ -9985,16 +9717,14 @@ panic ( "testf: bad modes\n" );
          break;
        
   default:
-	TRACK1069_BEGIN: track(&&TRACK1069_BEGIN, &&TRACK1069_END);
-	TRACK1069_END:  __asm__("nop;");
-	 
+	TRACK1269_BEGIN: track(&&TRACK1269_BEGIN, &&TRACK1269_END);
+	TRACK1269_END:  __asm__("nop;");
 	panic ( "testf: bad srcMode" );
          break;
    }
    if (verbosity >= 1) {
-  TRACK1070_BEGIN: track(&&TRACK1070_BEGIN, &&TRACK1070_END);
-  TRACK1070_END:  __asm__("nop;");
-   
+  TRACK1270_BEGIN: track(&&TRACK1270_BEGIN, &&TRACK1270_END);
+  TRACK1270_END:  __asm__("nop;");
   fprintf ( stderr, "  %s: ", inName );
         pad ( inName );
         fflush ( stderr );
@@ -10002,15 +9732,13 @@ panic ( "testf: bad modes\n" );
    outputHandleJustInCase = ((void *)0);
    allOK = testStream ( inStr );
    if (allOK && verbosity >= 1)  {
-TRACK1071_BEGIN: track(&&TRACK1071_BEGIN, &&TRACK1071_END);
-TRACK1071_END:  __asm__("nop;");
- 
+TRACK1271_BEGIN: track(&&TRACK1271_BEGIN, &&TRACK1271_END);
+TRACK1271_END:  __asm__("nop;");
 fprintf ( stderr, "ok\n" );
 }
    if (!allOK)  {
-TRACK1072_BEGIN: track(&&TRACK1072_BEGIN, &&TRACK1072_END);
-TRACK1072_END:  __asm__("nop;");
- 
+TRACK1272_BEGIN: track(&&TRACK1272_BEGIN, &&TRACK1272_END);
+TRACK1272_END:  __asm__("nop;");
 testFailsExist = ((Bool)1);
 }
 }
@@ -10093,9 +9821,8 @@ void *myMalloc ( Int32 n )
    void* p;
    p = malloc ( (size_t)n );
    if (p == ((void *)0))  {
-TRACK1073_BEGIN: track(&&TRACK1073_BEGIN, &&TRACK1073_END);
-TRACK1073_END:  __asm__("nop;");
- 
+TRACK1273_BEGIN: track(&&TRACK1273_BEGIN, &&TRACK1273_END);
+TRACK1273_END:  __asm__("nop;");
 outOfMemory ();
 }
    return p;
@@ -10114,21 +9841,18 @@ Cell *snocString ( Cell *root, Char *name )
 {
    if (root == ((void *)0)) {
   Cell *tmp = mkCell();
-  TRACK1074_BEGIN: track(&&TRACK1074_BEGIN, &&TRACK1074_END);
-  TRACK1074_END:  __asm__("nop;");
-   
+  TRACK1274_BEGIN: track(&&TRACK1274_BEGIN, &&TRACK1274_END);
+  TRACK1274_END:  __asm__("nop;");
   tmp->name = (Char*) myMalloc ( 5 + strlen(name) );
         strcpy ( tmp->name, name );
         return tmp;
 } else {
   Cell *tmp = root;
-  TRACK1076_BEGIN: track(&&TRACK1076_BEGIN, &&TRACK1076_END);
-  TRACK1076_END:  __asm__("nop;");
-   
+  TRACK1276_BEGIN: track(&&TRACK1276_BEGIN, &&TRACK1276_END);
+  TRACK1276_END:  __asm__("nop;");
   while (tmp->link != ((void *)0))  {
-  TRACK1075_BEGIN: track(&&TRACK1075_BEGIN, &&TRACK1075_END);
-  TRACK1075_END:  __asm__("nop;");
-   
+  TRACK1275_BEGIN: track(&&TRACK1275_BEGIN, &&TRACK1275_END);
+  TRACK1275_END:  __asm__("nop;");
   tmp = tmp->link;
   }
         tmp->link = snocString ( tmp->link, name );
@@ -10142,44 +9866,41 @@ void addFlagsFromEnvVar ( Cell** argList, Char* varName )
    Char *envbase, *p;
    envbase = getenv(varName);
    if (envbase != ((void *)0)) {
-  TRACK1083_BEGIN: track(&&TRACK1083_BEGIN, &&TRACK1083_END);
-  TRACK1083_END:  __asm__("nop;");
-   
+  TRACK1284_BEGIN: track(&&TRACK1284_BEGIN, &&TRACK1284_END);
+  TRACK1284_END:  __asm__("nop;");
   p = envbase;
         i = 0;
         while (((Bool)1)) {
-    TRACK1082_BEGIN: track(&&TRACK1082_BEGIN, &&TRACK1082_END);
-    TRACK1082_END:  __asm__("nop;");
-     
-    if (p[i] == 0) break;
+    TRACK1283_BEGIN: track(&&TRACK1283_BEGIN, &&TRACK1283_END);
+    TRACK1283_END:  __asm__("nop;");
+    if (p[i] == 0)  {
+    TRACK1277_BEGIN: track(&&TRACK1277_BEGIN, &&TRACK1277_END);
+    TRACK1277_END:  __asm__("nop;");
+    break;
+    }
              p += i;
              i = 0;
              while (((*__ctype_b_loc ())[(int) (((Int32)(p[0])))] & (unsigned short int) _ISspace))  {
-    TRACK1077_BEGIN: track(&&TRACK1077_BEGIN, &&TRACK1077_END);
-    TRACK1077_END:  __asm__("nop;");
-     
+    TRACK1278_BEGIN: track(&&TRACK1278_BEGIN, &&TRACK1278_END);
+    TRACK1278_END:  __asm__("nop;");
     p++;
     }
              while (p[i] != 0 && !((*__ctype_b_loc ())[(int) (((Int32)(p[i])))] & (unsigned short int) _ISspace))  {
-    TRACK1078_BEGIN: track(&&TRACK1078_BEGIN, &&TRACK1078_END);
-    TRACK1078_END:  __asm__("nop;");
-     
+    TRACK1279_BEGIN: track(&&TRACK1279_BEGIN, &&TRACK1279_END);
+    TRACK1279_END:  __asm__("nop;");
     i++;
     }
              if (i > 0) {
-      TRACK1081_BEGIN: track(&&TRACK1081_BEGIN, &&TRACK1081_END);
-      TRACK1081_END:  __asm__("nop;");
-       
+      TRACK1282_BEGIN: track(&&TRACK1282_BEGIN, &&TRACK1282_END);
+      TRACK1282_END:  __asm__("nop;");
       k = i; if (k > 1034 -10)  {
-      TRACK1079_BEGIN: track(&&TRACK1079_BEGIN, &&TRACK1079_END);
-      TRACK1079_END:  __asm__("nop;");
-       
+      TRACK1280_BEGIN: track(&&TRACK1280_BEGIN, &&TRACK1280_END);
+      TRACK1280_END:  __asm__("nop;");
       k = 1034 -10;
       }
                   for (j = 0; j < k; j++)  {
-      TRACK1080_BEGIN: track(&&TRACK1080_BEGIN, &&TRACK1080_END);
-      TRACK1080_END:  __asm__("nop;");
-       
+      TRACK1281_BEGIN: track(&&TRACK1281_BEGIN, &&TRACK1281_END);
+      TRACK1281_END:  __asm__("nop;");
       tmpName[j] = p[j];
       }
                   tmpName[k] = 0;
@@ -10201,9 +9922,8 @@ IntNative main ( IntNative argc, Char *argv[] )
        sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
        sizeof(Char) != 1 || sizeof(UChar) != 1)
        {
-TRACK1084_BEGIN: track(&&TRACK1084_BEGIN, &&TRACK1084_END);
-TRACK1084_END:  __asm__("nop;");
- 
+TRACK1285_BEGIN: track(&&TRACK1285_BEGIN, &&TRACK1285_END);
+TRACK1285_END:  __asm__("nop;");
 configError();
 }
    outputHandleJustInCase = ((void *)0);
@@ -10229,13 +9949,11 @@ configError();
    progName = &progNameReally[0];
    for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
        {
-TRACK1086_BEGIN: track(&&TRACK1086_BEGIN, &&TRACK1086_END);
-TRACK1086_END:  __asm__("nop;");
- 
+TRACK1287_BEGIN: track(&&TRACK1287_BEGIN, &&TRACK1287_END);
+TRACK1287_END:  __asm__("nop;");
 if (*tmp == '/')  {
-TRACK1085_BEGIN: track(&&TRACK1085_BEGIN, &&TRACK1085_END);
-TRACK1085_END:  __asm__("nop;");
- 
+TRACK1286_BEGIN: track(&&TRACK1286_BEGIN, &&TRACK1286_END);
+TRACK1286_END:  __asm__("nop;");
 progName = tmp + 1;
 }
 }
@@ -10244,211 +9962,186 @@ progName = tmp + 1;
    addFlagsFromEnvVar ( &argList, "BZIP" );
    for (i = 1; i <= argc-1; i++)
        {
-TRACK1087_BEGIN: track(&&TRACK1087_BEGIN, &&TRACK1087_END);
-TRACK1087_END:  __asm__("nop;");
- 
+TRACK1288_BEGIN: track(&&TRACK1288_BEGIN, &&TRACK1288_END);
+TRACK1288_END:  __asm__("nop;");
 argList=snocString((argList), (argv[i]));
 }
    longestFileName = 7;
    numFileNames = 0;
    decode = ((Bool)1);
    for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1090_BEGIN: track(&&TRACK1090_BEGIN, &&TRACK1090_END);
-  TRACK1090_END:  __asm__("nop;");
-   
+  TRACK1292_BEGIN: track(&&TRACK1292_BEGIN, &&TRACK1292_END);
+  TRACK1292_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--"))==0)) {
-    TRACK1088_BEGIN: track(&&TRACK1088_BEGIN, &&TRACK1088_END);
-    TRACK1088_END:  __asm__("nop;");
-     
+    TRACK1289_BEGIN: track(&&TRACK1289_BEGIN, &&TRACK1289_END);
+    TRACK1289_END:  __asm__("nop;");
     decode = ((Bool)0); continue;
   }
-        if (aa->name[0] == '-' && decode) continue;
+        if (aa->name[0] == '-' && decode)  {
+  TRACK1290_BEGIN: track(&&TRACK1290_BEGIN, &&TRACK1290_END);
+  TRACK1290_END:  __asm__("nop;");
+  continue;
+  }
         numFileNames++;
         if (longestFileName < (Int32)strlen(aa->name) )
             {
-  TRACK1089_BEGIN: track(&&TRACK1089_BEGIN, &&TRACK1089_END);
-  TRACK1089_END:  __asm__("nop;");
-   
+  TRACK1291_BEGIN: track(&&TRACK1291_BEGIN, &&TRACK1291_END);
+  TRACK1291_END:  __asm__("nop;");
   longestFileName = (Int32)strlen(aa->name);
   }
 }
    if (numFileNames == 0)
        {
-TRACK1091_BEGIN: track(&&TRACK1091_BEGIN, &&TRACK1091_END);
-TRACK1091_END:  __asm__("nop;");
- 
+TRACK1293_BEGIN: track(&&TRACK1293_BEGIN, &&TRACK1293_END);
+TRACK1293_END:  __asm__("nop;");
 srcMode = 1;
 } else  {
-TRACK1092_BEGIN: track(&&TRACK1092_BEGIN, &&TRACK1092_END);
-TRACK1092_END:  __asm__("nop;");
- 
+TRACK1294_BEGIN: track(&&TRACK1294_BEGIN, &&TRACK1294_END);
+TRACK1294_END:  __asm__("nop;");
 srcMode = 3;
 }
    opMode = 1;
    if ( (strstr ( progName, "unzip" ) != 0) ||
         (strstr ( progName, "UNZIP" ) != 0) )
        {
-TRACK1093_BEGIN: track(&&TRACK1093_BEGIN, &&TRACK1093_END);
-TRACK1093_END:  __asm__("nop;");
- 
+TRACK1295_BEGIN: track(&&TRACK1295_BEGIN, &&TRACK1295_END);
+TRACK1295_END:  __asm__("nop;");
 opMode = 2;
 }
    if ( (strstr ( progName, "z2cat" ) != 0) ||
         (strstr ( progName, "Z2CAT" ) != 0) ||
         (strstr ( progName, "zcat" ) != 0) ||
         (strstr ( progName, "ZCAT" ) != 0) ) {
-  TRACK1094_BEGIN: track(&&TRACK1094_BEGIN, &&TRACK1094_END);
-  TRACK1094_END:  __asm__("nop;");
-   
+  TRACK1296_BEGIN: track(&&TRACK1296_BEGIN, &&TRACK1296_END);
+  TRACK1296_END:  __asm__("nop;");
   opMode = 2;
         srcMode = (numFileNames == 0) ? 1 : 2;
 }
    for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1119_BEGIN: track(&&TRACK1119_BEGIN, &&TRACK1119_END);
-  TRACK1119_END:  __asm__("nop;");
-   
-  if ((strcmp(aa->name, ("--"))==0)) break;
+  TRACK1322_BEGIN: track(&&TRACK1322_BEGIN, &&TRACK1322_END);
+  TRACK1322_END:  __asm__("nop;");
+  if ((strcmp(aa->name, ("--"))==0))  {
+  TRACK1297_BEGIN: track(&&TRACK1297_BEGIN, &&TRACK1297_END);
+  TRACK1297_END:  __asm__("nop;");
+  break;
+  }
         if (aa->name[0] == '-' && aa->name[1] != '-') {
-    TRACK1118_BEGIN: track(&&TRACK1118_BEGIN, &&TRACK1118_END);
-    TRACK1118_END:  __asm__("nop;");
-     
+    TRACK1321_BEGIN: track(&&TRACK1321_BEGIN, &&TRACK1321_END);
+    TRACK1321_END:  __asm__("nop;");
     for (j = 1; aa->name[j] != '\0'; j++) {
-      TRACK1117_BEGIN: track(&&TRACK1117_BEGIN, &&TRACK1117_END);
-      TRACK1117_END:  __asm__("nop;");
-       
+      TRACK1320_BEGIN: track(&&TRACK1320_BEGIN, &&TRACK1320_END);
+      TRACK1320_END:  __asm__("nop;");
       switch (aa->name[j]) {
                       
         case 'c':
-      	TRACK1095_BEGIN: track(&&TRACK1095_BEGIN, &&TRACK1095_END);
-      	TRACK1095_END:  __asm__("nop;");
-      	 
+      	TRACK1298_BEGIN: track(&&TRACK1298_BEGIN, &&TRACK1298_END);
+      	TRACK1298_END:  __asm__("nop;");
       	srcMode = 2; break;
                       
         case 'd':
-      	TRACK1096_BEGIN: track(&&TRACK1096_BEGIN, &&TRACK1096_END);
-      	TRACK1096_END:  __asm__("nop;");
-      	 
+      	TRACK1299_BEGIN: track(&&TRACK1299_BEGIN, &&TRACK1299_END);
+      	TRACK1299_END:  __asm__("nop;");
       	opMode = 2; break;
                       
         case 'z':
-      	TRACK1097_BEGIN: track(&&TRACK1097_BEGIN, &&TRACK1097_END);
-      	TRACK1097_END:  __asm__("nop;");
-      	 
+      	TRACK1300_BEGIN: track(&&TRACK1300_BEGIN, &&TRACK1300_END);
+      	TRACK1300_END:  __asm__("nop;");
       	opMode = 1; break;
                       
         case 'f':
-      	TRACK1098_BEGIN: track(&&TRACK1098_BEGIN, &&TRACK1098_END);
-      	TRACK1098_END:  __asm__("nop;");
-      	 
+      	TRACK1301_BEGIN: track(&&TRACK1301_BEGIN, &&TRACK1301_END);
+      	TRACK1301_END:  __asm__("nop;");
       	forceOverwrite = ((Bool)1); break;
                       
         case 't':
-      	TRACK1099_BEGIN: track(&&TRACK1099_BEGIN, &&TRACK1099_END);
-      	TRACK1099_END:  __asm__("nop;");
-      	 
+      	TRACK1302_BEGIN: track(&&TRACK1302_BEGIN, &&TRACK1302_END);
+      	TRACK1302_END:  __asm__("nop;");
       	opMode = 3; break;
                       
         case 'k':
-      	TRACK1100_BEGIN: track(&&TRACK1100_BEGIN, &&TRACK1100_END);
-      	TRACK1100_END:  __asm__("nop;");
-      	 
+      	TRACK1303_BEGIN: track(&&TRACK1303_BEGIN, &&TRACK1303_END);
+      	TRACK1303_END:  __asm__("nop;");
       	keepInputFiles = ((Bool)1); break;
                       
         case 's':
-      	TRACK1101_BEGIN: track(&&TRACK1101_BEGIN, &&TRACK1101_END);
-      	TRACK1101_END:  __asm__("nop;");
-      	 
+      	TRACK1304_BEGIN: track(&&TRACK1304_BEGIN, &&TRACK1304_END);
+      	TRACK1304_END:  __asm__("nop;");
       	smallMode = ((Bool)1); break;
                       
         case 'q':
-      	TRACK1102_BEGIN: track(&&TRACK1102_BEGIN, &&TRACK1102_END);
-      	TRACK1102_END:  __asm__("nop;");
-      	 
+      	TRACK1305_BEGIN: track(&&TRACK1305_BEGIN, &&TRACK1305_END);
+      	TRACK1305_END:  __asm__("nop;");
       	noisy = ((Bool)0); break;
                       
         case '1':
-      	TRACK1103_BEGIN: track(&&TRACK1103_BEGIN, &&TRACK1103_END);
-      	TRACK1103_END:  __asm__("nop;");
-      	 
+      	TRACK1306_BEGIN: track(&&TRACK1306_BEGIN, &&TRACK1306_END);
+      	TRACK1306_END:  __asm__("nop;");
       	blockSize100k = 1; break;
                       
         case '2':
-      	TRACK1104_BEGIN: track(&&TRACK1104_BEGIN, &&TRACK1104_END);
-      	TRACK1104_END:  __asm__("nop;");
-      	 
+      	TRACK1307_BEGIN: track(&&TRACK1307_BEGIN, &&TRACK1307_END);
+      	TRACK1307_END:  __asm__("nop;");
       	blockSize100k = 2; break;
                       
         case '3':
-      	TRACK1105_BEGIN: track(&&TRACK1105_BEGIN, &&TRACK1105_END);
-      	TRACK1105_END:  __asm__("nop;");
-      	 
+      	TRACK1308_BEGIN: track(&&TRACK1308_BEGIN, &&TRACK1308_END);
+      	TRACK1308_END:  __asm__("nop;");
       	blockSize100k = 3; break;
                       
         case '4':
-      	TRACK1106_BEGIN: track(&&TRACK1106_BEGIN, &&TRACK1106_END);
-      	TRACK1106_END:  __asm__("nop;");
-      	 
+      	TRACK1309_BEGIN: track(&&TRACK1309_BEGIN, &&TRACK1309_END);
+      	TRACK1309_END:  __asm__("nop;");
       	blockSize100k = 4; break;
                       
         case '5':
-      	TRACK1107_BEGIN: track(&&TRACK1107_BEGIN, &&TRACK1107_END);
-      	TRACK1107_END:  __asm__("nop;");
-      	 
+      	TRACK1310_BEGIN: track(&&TRACK1310_BEGIN, &&TRACK1310_END);
+      	TRACK1310_END:  __asm__("nop;");
       	blockSize100k = 5; break;
                       
         case '6':
-      	TRACK1108_BEGIN: track(&&TRACK1108_BEGIN, &&TRACK1108_END);
-      	TRACK1108_END:  __asm__("nop;");
-      	 
+      	TRACK1311_BEGIN: track(&&TRACK1311_BEGIN, &&TRACK1311_END);
+      	TRACK1311_END:  __asm__("nop;");
       	blockSize100k = 6; break;
                       
         case '7':
-      	TRACK1109_BEGIN: track(&&TRACK1109_BEGIN, &&TRACK1109_END);
-      	TRACK1109_END:  __asm__("nop;");
-      	 
+      	TRACK1312_BEGIN: track(&&TRACK1312_BEGIN, &&TRACK1312_END);
+      	TRACK1312_END:  __asm__("nop;");
       	blockSize100k = 7; break;
                       
         case '8':
-      	TRACK1110_BEGIN: track(&&TRACK1110_BEGIN, &&TRACK1110_END);
-      	TRACK1110_END:  __asm__("nop;");
-      	 
+      	TRACK1313_BEGIN: track(&&TRACK1313_BEGIN, &&TRACK1313_END);
+      	TRACK1313_END:  __asm__("nop;");
       	blockSize100k = 8; break;
                       
         case '9':
-      	TRACK1111_BEGIN: track(&&TRACK1111_BEGIN, &&TRACK1111_END);
-      	TRACK1111_END:  __asm__("nop;");
-      	 
+      	TRACK1314_BEGIN: track(&&TRACK1314_BEGIN, &&TRACK1314_END);
+      	TRACK1314_END:  __asm__("nop;");
       	blockSize100k = 9; break;
                       
         case 'V':
-      	TRACK1113_BEGIN: track(&&TRACK1113_BEGIN, &&TRACK1113_END);
-      	TRACK1113_END:  __asm__("nop;");
-      	 
+      	TRACK1316_BEGIN: track(&&TRACK1316_BEGIN, &&TRACK1316_END);
+      	TRACK1316_END:  __asm__("nop;");
       	 
       	  case 'L':
-      		TRACK1112_BEGIN: track(&&TRACK1112_BEGIN, &&TRACK1112_END);
-      		TRACK1112_END:  __asm__("nop;");
-      		 
+      		TRACK1315_BEGIN: track(&&TRACK1315_BEGIN, &&TRACK1315_END);
+      		TRACK1315_END:  __asm__("nop;");
       		license(); break;
                       
         case 'v':
-      	TRACK1114_BEGIN: track(&&TRACK1114_BEGIN, &&TRACK1114_END);
-      	TRACK1114_END:  __asm__("nop;");
-      	 
+      	TRACK1317_BEGIN: track(&&TRACK1317_BEGIN, &&TRACK1317_END);
+      	TRACK1317_END:  __asm__("nop;");
       	verbosity++; break;
                       
         case 'h':
-      	TRACK1115_BEGIN: track(&&TRACK1115_BEGIN, &&TRACK1115_END);
-      	TRACK1115_END:  __asm__("nop;");
-      	 
+      	TRACK1318_BEGIN: track(&&TRACK1318_BEGIN, &&TRACK1318_END);
+      	TRACK1318_END:  __asm__("nop;");
       	usage ( progName );
                                exit ( 0 );
                                break;
                       
         default:
-      	TRACK1116_BEGIN: track(&&TRACK1116_BEGIN, &&TRACK1116_END);
-      	TRACK1116_END:  __asm__("nop;");
-      	 
+      	TRACK1319_BEGIN: track(&&TRACK1319_BEGIN, &&TRACK1319_END);
+      	TRACK1319_END:  __asm__("nop;");
       	fprintf ( stderr, "%s: Bad flag `%s'\n",
       	                                   progName, aa->name );
                                usage ( progName );
@@ -10459,185 +10152,153 @@ opMode = 2;
   }
 }
    for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1155_BEGIN: track(&&TRACK1155_BEGIN, &&TRACK1155_END);
-  TRACK1155_END:  __asm__("nop;");
-   
-  if ((strcmp(aa->name, ("--"))==0)) break;
+  TRACK1359_BEGIN: track(&&TRACK1359_BEGIN, &&TRACK1359_END);
+  TRACK1359_END:  __asm__("nop;");
+  if ((strcmp(aa->name, ("--"))==0))  {
+  TRACK1323_BEGIN: track(&&TRACK1323_BEGIN, &&TRACK1323_END);
+  TRACK1323_END:  __asm__("nop;");
+  break;
+  }
         if ((strcmp(aa->name, ("--stdout"))==0))  {
-  TRACK1120_BEGIN: track(&&TRACK1120_BEGIN, &&TRACK1120_END);
-  TRACK1120_END:  __asm__("nop;");
-   
+  TRACK1324_BEGIN: track(&&TRACK1324_BEGIN, &&TRACK1324_END);
+  TRACK1324_END:  __asm__("nop;");
   srcMode = 2;
   } else
          {
-  TRACK1154_BEGIN: track(&&TRACK1154_BEGIN, &&TRACK1154_END);
-  TRACK1154_END:  __asm__("nop;");
-   
+  TRACK1358_BEGIN: track(&&TRACK1358_BEGIN, &&TRACK1358_END);
+  TRACK1358_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--decompress"))==0))  {
-  TRACK1121_BEGIN: track(&&TRACK1121_BEGIN, &&TRACK1121_END);
-  TRACK1121_END:  __asm__("nop;");
-   
+  TRACK1325_BEGIN: track(&&TRACK1325_BEGIN, &&TRACK1325_END);
+  TRACK1325_END:  __asm__("nop;");
   opMode = 2;
   } else
          {
-  TRACK1153_BEGIN: track(&&TRACK1153_BEGIN, &&TRACK1153_END);
-  TRACK1153_END:  __asm__("nop;");
-   
+  TRACK1357_BEGIN: track(&&TRACK1357_BEGIN, &&TRACK1357_END);
+  TRACK1357_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--compress"))==0))  {
-  TRACK1122_BEGIN: track(&&TRACK1122_BEGIN, &&TRACK1122_END);
-  TRACK1122_END:  __asm__("nop;");
-   
+  TRACK1326_BEGIN: track(&&TRACK1326_BEGIN, &&TRACK1326_END);
+  TRACK1326_END:  __asm__("nop;");
   opMode = 1;
   } else
          {
-  TRACK1152_BEGIN: track(&&TRACK1152_BEGIN, &&TRACK1152_END);
-  TRACK1152_END:  __asm__("nop;");
-   
+  TRACK1356_BEGIN: track(&&TRACK1356_BEGIN, &&TRACK1356_END);
+  TRACK1356_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--force"))==0))  {
-  TRACK1123_BEGIN: track(&&TRACK1123_BEGIN, &&TRACK1123_END);
-  TRACK1123_END:  __asm__("nop;");
-   
+  TRACK1327_BEGIN: track(&&TRACK1327_BEGIN, &&TRACK1327_END);
+  TRACK1327_END:  __asm__("nop;");
   forceOverwrite = ((Bool)1);
   } else
          {
-  TRACK1151_BEGIN: track(&&TRACK1151_BEGIN, &&TRACK1151_END);
-  TRACK1151_END:  __asm__("nop;");
-   
+  TRACK1355_BEGIN: track(&&TRACK1355_BEGIN, &&TRACK1355_END);
+  TRACK1355_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--test"))==0))  {
-  TRACK1124_BEGIN: track(&&TRACK1124_BEGIN, &&TRACK1124_END);
-  TRACK1124_END:  __asm__("nop;");
-   
+  TRACK1328_BEGIN: track(&&TRACK1328_BEGIN, &&TRACK1328_END);
+  TRACK1328_END:  __asm__("nop;");
   opMode = 3;
   } else
          {
-  TRACK1150_BEGIN: track(&&TRACK1150_BEGIN, &&TRACK1150_END);
-  TRACK1150_END:  __asm__("nop;");
-   
+  TRACK1354_BEGIN: track(&&TRACK1354_BEGIN, &&TRACK1354_END);
+  TRACK1354_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--keep"))==0))  {
-  TRACK1125_BEGIN: track(&&TRACK1125_BEGIN, &&TRACK1125_END);
-  TRACK1125_END:  __asm__("nop;");
-   
+  TRACK1329_BEGIN: track(&&TRACK1329_BEGIN, &&TRACK1329_END);
+  TRACK1329_END:  __asm__("nop;");
   keepInputFiles = ((Bool)1);
   } else
          {
-  TRACK1149_BEGIN: track(&&TRACK1149_BEGIN, &&TRACK1149_END);
-  TRACK1149_END:  __asm__("nop;");
-   
+  TRACK1353_BEGIN: track(&&TRACK1353_BEGIN, &&TRACK1353_END);
+  TRACK1353_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--small"))==0))  {
-  TRACK1126_BEGIN: track(&&TRACK1126_BEGIN, &&TRACK1126_END);
-  TRACK1126_END:  __asm__("nop;");
-   
+  TRACK1330_BEGIN: track(&&TRACK1330_BEGIN, &&TRACK1330_END);
+  TRACK1330_END:  __asm__("nop;");
   smallMode = ((Bool)1);
   } else
          {
-  TRACK1148_BEGIN: track(&&TRACK1148_BEGIN, &&TRACK1148_END);
-  TRACK1148_END:  __asm__("nop;");
-   
+  TRACK1352_BEGIN: track(&&TRACK1352_BEGIN, &&TRACK1352_END);
+  TRACK1352_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--quiet"))==0))  {
-  TRACK1127_BEGIN: track(&&TRACK1127_BEGIN, &&TRACK1127_END);
-  TRACK1127_END:  __asm__("nop;");
-   
+  TRACK1331_BEGIN: track(&&TRACK1331_BEGIN, &&TRACK1331_END);
+  TRACK1331_END:  __asm__("nop;");
   noisy = ((Bool)0);
   } else
          {
-  TRACK1147_BEGIN: track(&&TRACK1147_BEGIN, &&TRACK1147_END);
-  TRACK1147_END:  __asm__("nop;");
-   
+  TRACK1351_BEGIN: track(&&TRACK1351_BEGIN, &&TRACK1351_END);
+  TRACK1351_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--version"))==0))  {
-  TRACK1128_BEGIN: track(&&TRACK1128_BEGIN, &&TRACK1128_END);
-  TRACK1128_END:  __asm__("nop;");
-   
+  TRACK1332_BEGIN: track(&&TRACK1332_BEGIN, &&TRACK1332_END);
+  TRACK1332_END:  __asm__("nop;");
   license();
   } else
          {
-  TRACK1146_BEGIN: track(&&TRACK1146_BEGIN, &&TRACK1146_END);
-  TRACK1146_END:  __asm__("nop;");
-   
+  TRACK1350_BEGIN: track(&&TRACK1350_BEGIN, &&TRACK1350_END);
+  TRACK1350_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--license"))==0))  {
-  TRACK1129_BEGIN: track(&&TRACK1129_BEGIN, &&TRACK1129_END);
-  TRACK1129_END:  __asm__("nop;");
-   
+  TRACK1333_BEGIN: track(&&TRACK1333_BEGIN, &&TRACK1333_END);
+  TRACK1333_END:  __asm__("nop;");
   license();
   } else
          {
-  TRACK1145_BEGIN: track(&&TRACK1145_BEGIN, &&TRACK1145_END);
-  TRACK1145_END:  __asm__("nop;");
-   
+  TRACK1349_BEGIN: track(&&TRACK1349_BEGIN, &&TRACK1349_END);
+  TRACK1349_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--exponential"))==0))  {
-  TRACK1130_BEGIN: track(&&TRACK1130_BEGIN, &&TRACK1130_END);
-  TRACK1130_END:  __asm__("nop;");
-   
+  TRACK1334_BEGIN: track(&&TRACK1334_BEGIN, &&TRACK1334_END);
+  TRACK1334_END:  __asm__("nop;");
   workFactor = 1;
   } else
          {
-  TRACK1144_BEGIN: track(&&TRACK1144_BEGIN, &&TRACK1144_END);
-  TRACK1144_END:  __asm__("nop;");
-   
+  TRACK1348_BEGIN: track(&&TRACK1348_BEGIN, &&TRACK1348_END);
+  TRACK1348_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--repetitive-best"))==0))  {
-  TRACK1131_BEGIN: track(&&TRACK1131_BEGIN, &&TRACK1131_END);
-  TRACK1131_END:  __asm__("nop;");
-   
+  TRACK1335_BEGIN: track(&&TRACK1335_BEGIN, &&TRACK1335_END);
+  TRACK1335_END:  __asm__("nop;");
   redundant(aa->name);
   } else
          {
-  TRACK1143_BEGIN: track(&&TRACK1143_BEGIN, &&TRACK1143_END);
-  TRACK1143_END:  __asm__("nop;");
-   
+  TRACK1347_BEGIN: track(&&TRACK1347_BEGIN, &&TRACK1347_END);
+  TRACK1347_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--repetitive-fast"))==0))  {
-  TRACK1132_BEGIN: track(&&TRACK1132_BEGIN, &&TRACK1132_END);
-  TRACK1132_END:  __asm__("nop;");
-   
+  TRACK1336_BEGIN: track(&&TRACK1336_BEGIN, &&TRACK1336_END);
+  TRACK1336_END:  __asm__("nop;");
   redundant(aa->name);
   } else
          {
-  TRACK1142_BEGIN: track(&&TRACK1142_BEGIN, &&TRACK1142_END);
-  TRACK1142_END:  __asm__("nop;");
-   
+  TRACK1346_BEGIN: track(&&TRACK1346_BEGIN, &&TRACK1346_END);
+  TRACK1346_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--fast"))==0))  {
-  TRACK1133_BEGIN: track(&&TRACK1133_BEGIN, &&TRACK1133_END);
-  TRACK1133_END:  __asm__("nop;");
-   
+  TRACK1337_BEGIN: track(&&TRACK1337_BEGIN, &&TRACK1337_END);
+  TRACK1337_END:  __asm__("nop;");
   blockSize100k = 1;
   } else
          {
-  TRACK1141_BEGIN: track(&&TRACK1141_BEGIN, &&TRACK1141_END);
-  TRACK1141_END:  __asm__("nop;");
-   
+  TRACK1345_BEGIN: track(&&TRACK1345_BEGIN, &&TRACK1345_END);
+  TRACK1345_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--best"))==0))  {
-  TRACK1134_BEGIN: track(&&TRACK1134_BEGIN, &&TRACK1134_END);
-  TRACK1134_END:  __asm__("nop;");
-   
+  TRACK1338_BEGIN: track(&&TRACK1338_BEGIN, &&TRACK1338_END);
+  TRACK1338_END:  __asm__("nop;");
   blockSize100k = 9;
   } else
          {
-  TRACK1140_BEGIN: track(&&TRACK1140_BEGIN, &&TRACK1140_END);
-  TRACK1140_END:  __asm__("nop;");
-   
+  TRACK1344_BEGIN: track(&&TRACK1344_BEGIN, &&TRACK1344_END);
+  TRACK1344_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--verbose"))==0))  {
-  TRACK1135_BEGIN: track(&&TRACK1135_BEGIN, &&TRACK1135_END);
-  TRACK1135_END:  __asm__("nop;");
-   
+  TRACK1339_BEGIN: track(&&TRACK1339_BEGIN, &&TRACK1339_END);
+  TRACK1339_END:  __asm__("nop;");
   verbosity++;
   } else
          {
-  TRACK1139_BEGIN: track(&&TRACK1139_BEGIN, &&TRACK1139_END);
-  TRACK1139_END:  __asm__("nop;");
-   
+  TRACK1343_BEGIN: track(&&TRACK1343_BEGIN, &&TRACK1343_END);
+  TRACK1343_END:  __asm__("nop;");
   if ((strcmp(aa->name, ("--help"))==0)) {
-    TRACK1136_BEGIN: track(&&TRACK1136_BEGIN, &&TRACK1136_END);
-    TRACK1136_END:  __asm__("nop;");
-     
+    TRACK1340_BEGIN: track(&&TRACK1340_BEGIN, &&TRACK1340_END);
+    TRACK1340_END:  __asm__("nop;");
     usage ( progName ); exit ( 0 );
   }
            else
             {
-  TRACK1138_BEGIN: track(&&TRACK1138_BEGIN, &&TRACK1138_END);
-  TRACK1138_END:  __asm__("nop;");
-   
+  TRACK1342_BEGIN: track(&&TRACK1342_BEGIN, &&TRACK1342_END);
+  TRACK1342_END:  __asm__("nop;");
   if (strncmp ( aa->name, "--", 2) == 0) {
-    TRACK1137_BEGIN: track(&&TRACK1137_BEGIN, &&TRACK1137_END);
-    TRACK1137_END:  __asm__("nop;");
-     
+    TRACK1341_BEGIN: track(&&TRACK1341_BEGIN, &&TRACK1341_END);
+    TRACK1341_END:  __asm__("nop;");
     fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
                 usage ( progName );
                 exit ( 1 );
@@ -10661,72 +10322,65 @@ opMode = 2;
   }
 }
    if (verbosity > 4)  {
-TRACK1156_BEGIN: track(&&TRACK1156_BEGIN, &&TRACK1156_END);
-TRACK1156_END:  __asm__("nop;");
- 
+TRACK1360_BEGIN: track(&&TRACK1360_BEGIN, &&TRACK1360_END);
+TRACK1360_END:  __asm__("nop;");
 verbosity = 4;
 }
    if (opMode == 1 && smallMode && blockSize100k > 2)
        {
-TRACK1157_BEGIN: track(&&TRACK1157_BEGIN, &&TRACK1157_END);
-TRACK1157_END:  __asm__("nop;");
- 
+TRACK1361_BEGIN: track(&&TRACK1361_BEGIN, &&TRACK1361_END);
+TRACK1361_END:  __asm__("nop;");
 blockSize100k = 2;
 }
    if (opMode == 3 && srcMode == 2) {
-  TRACK1158_BEGIN: track(&&TRACK1158_BEGIN, &&TRACK1158_END);
-  TRACK1158_END:  __asm__("nop;");
-   
+  TRACK1362_BEGIN: track(&&TRACK1362_BEGIN, &&TRACK1362_END);
+  TRACK1362_END:  __asm__("nop;");
   fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
                   progName );
         exit ( 1 );
 }
    if (srcMode == 2 && numFileNames == 0)
        {
-TRACK1159_BEGIN: track(&&TRACK1159_BEGIN, &&TRACK1159_END);
-TRACK1159_END:  __asm__("nop;");
- 
+TRACK1363_BEGIN: track(&&TRACK1363_BEGIN, &&TRACK1363_END);
+TRACK1363_END:  __asm__("nop;");
 srcMode = 1;
 }
    if (opMode != 1)  {
-TRACK1160_BEGIN: track(&&TRACK1160_BEGIN, &&TRACK1160_END);
-TRACK1160_END:  __asm__("nop;");
- 
+TRACK1364_BEGIN: track(&&TRACK1364_BEGIN, &&TRACK1364_END);
+TRACK1364_END:  __asm__("nop;");
 blockSize100k = 0;
 }
    if (srcMode == 3) {
-  TRACK1161_BEGIN: track(&&TRACK1161_BEGIN, &&TRACK1161_END);
-  TRACK1161_END:  __asm__("nop;");
-   
+  TRACK1365_BEGIN: track(&&TRACK1365_BEGIN, &&TRACK1365_END);
+  TRACK1365_END:  __asm__("nop;");
   signal (2, mySignalCatcher);
         signal (15, mySignalCatcher);
         signal (1, mySignalCatcher);
 }
    if (opMode == 1) {
-  TRACK1166_BEGIN: track(&&TRACK1166_BEGIN, &&TRACK1166_END);
-  TRACK1166_END:  __asm__("nop;");
-   
+  TRACK1371_BEGIN: track(&&TRACK1371_BEGIN, &&TRACK1371_END);
+  TRACK1371_END:  __asm__("nop;");
   if (srcMode == 1) {
-    TRACK1162_BEGIN: track(&&TRACK1162_BEGIN, &&TRACK1162_END);
-    TRACK1162_END:  __asm__("nop;");
-     
+    TRACK1366_BEGIN: track(&&TRACK1366_BEGIN, &&TRACK1366_END);
+    TRACK1366_END:  __asm__("nop;");
     compress ( ((void *)0) );
   } else {
-    TRACK1165_BEGIN: track(&&TRACK1165_BEGIN, &&TRACK1165_END);
-    TRACK1165_END:  __asm__("nop;");
-     
+    TRACK1370_BEGIN: track(&&TRACK1370_BEGIN, &&TRACK1370_END);
+    TRACK1370_END:  __asm__("nop;");
     decode = ((Bool)1);
             for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1164_BEGIN: track(&&TRACK1164_BEGIN, &&TRACK1164_END);
-      TRACK1164_END:  __asm__("nop;");
-       
+      TRACK1369_BEGIN: track(&&TRACK1369_BEGIN, &&TRACK1369_END);
+      TRACK1369_END:  __asm__("nop;");
       if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1163_BEGIN: track(&&TRACK1163_BEGIN, &&TRACK1163_END);
-        TRACK1163_END:  __asm__("nop;");
-         
+        TRACK1367_BEGIN: track(&&TRACK1367_BEGIN, &&TRACK1367_END);
+        TRACK1367_END:  __asm__("nop;");
         decode = ((Bool)0); continue;
       }
-                 if (aa->name[0] == '-' && decode) continue;
+                 if (aa->name[0] == '-' && decode)  {
+      TRACK1368_BEGIN: track(&&TRACK1368_BEGIN, &&TRACK1368_END);
+      TRACK1368_END:  __asm__("nop;");
+      continue;
+      }
                  numFilesProcessed++;
                  compress ( aa->name );
     }
@@ -10734,81 +10388,76 @@ blockSize100k = 0;
 }
    else
     {
-TRACK1179_BEGIN: track(&&TRACK1179_BEGIN, &&TRACK1179_END);
-TRACK1179_END:  __asm__("nop;");
- 
+TRACK1386_BEGIN: track(&&TRACK1386_BEGIN, &&TRACK1386_END);
+TRACK1386_END:  __asm__("nop;");
 if (opMode == 2) {
-  TRACK1172_BEGIN: track(&&TRACK1172_BEGIN, &&TRACK1172_END);
-  TRACK1172_END:  __asm__("nop;");
-   
+  TRACK1378_BEGIN: track(&&TRACK1378_BEGIN, &&TRACK1378_END);
+  TRACK1378_END:  __asm__("nop;");
   unzFailsExist = ((Bool)0);
         if (srcMode == 1) {
-    TRACK1167_BEGIN: track(&&TRACK1167_BEGIN, &&TRACK1167_END);
-    TRACK1167_END:  __asm__("nop;");
-     
+    TRACK1372_BEGIN: track(&&TRACK1372_BEGIN, &&TRACK1372_END);
+    TRACK1372_END:  __asm__("nop;");
     uncompress ( ((void *)0) );
   } else {
-    TRACK1170_BEGIN: track(&&TRACK1170_BEGIN, &&TRACK1170_END);
-    TRACK1170_END:  __asm__("nop;");
-     
+    TRACK1376_BEGIN: track(&&TRACK1376_BEGIN, &&TRACK1376_END);
+    TRACK1376_END:  __asm__("nop;");
     decode = ((Bool)1);
              for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1169_BEGIN: track(&&TRACK1169_BEGIN, &&TRACK1169_END);
-      TRACK1169_END:  __asm__("nop;");
-       
+      TRACK1375_BEGIN: track(&&TRACK1375_BEGIN, &&TRACK1375_END);
+      TRACK1375_END:  __asm__("nop;");
       if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1168_BEGIN: track(&&TRACK1168_BEGIN, &&TRACK1168_END);
-        TRACK1168_END:  __asm__("nop;");
-         
+        TRACK1373_BEGIN: track(&&TRACK1373_BEGIN, &&TRACK1373_END);
+        TRACK1373_END:  __asm__("nop;");
         decode = ((Bool)0); continue;
       }
-                  if (aa->name[0] == '-' && decode) continue;
+                  if (aa->name[0] == '-' && decode)  {
+      TRACK1374_BEGIN: track(&&TRACK1374_BEGIN, &&TRACK1374_END);
+      TRACK1374_END:  __asm__("nop;");
+      continue;
+      }
                   numFilesProcessed++;
                   uncompress ( aa->name );
     }
   }
         if (unzFailsExist) {
-    TRACK1171_BEGIN: track(&&TRACK1171_BEGIN, &&TRACK1171_END);
-    TRACK1171_END:  __asm__("nop;");
-     
+    TRACK1377_BEGIN: track(&&TRACK1377_BEGIN, &&TRACK1377_END);
+    TRACK1377_END:  __asm__("nop;");
     setExit(2);
              exit(exitValue);
   }
 }
    else {
-  TRACK1178_BEGIN: track(&&TRACK1178_BEGIN, &&TRACK1178_END);
-  TRACK1178_END:  __asm__("nop;");
-   
+  TRACK1385_BEGIN: track(&&TRACK1385_BEGIN, &&TRACK1385_END);
+  TRACK1385_END:  __asm__("nop;");
   testFailsExist = ((Bool)0);
         if (srcMode == 1) {
-    TRACK1173_BEGIN: track(&&TRACK1173_BEGIN, &&TRACK1173_END);
-    TRACK1173_END:  __asm__("nop;");
-     
+    TRACK1379_BEGIN: track(&&TRACK1379_BEGIN, &&TRACK1379_END);
+    TRACK1379_END:  __asm__("nop;");
     testf ( ((void *)0) );
   } else {
-    TRACK1176_BEGIN: track(&&TRACK1176_BEGIN, &&TRACK1176_END);
-    TRACK1176_END:  __asm__("nop;");
-     
+    TRACK1383_BEGIN: track(&&TRACK1383_BEGIN, &&TRACK1383_END);
+    TRACK1383_END:  __asm__("nop;");
     decode = ((Bool)1);
              for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1175_BEGIN: track(&&TRACK1175_BEGIN, &&TRACK1175_END);
-      TRACK1175_END:  __asm__("nop;");
-       
+      TRACK1382_BEGIN: track(&&TRACK1382_BEGIN, &&TRACK1382_END);
+      TRACK1382_END:  __asm__("nop;");
       if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1174_BEGIN: track(&&TRACK1174_BEGIN, &&TRACK1174_END);
-        TRACK1174_END:  __asm__("nop;");
-         
+        TRACK1380_BEGIN: track(&&TRACK1380_BEGIN, &&TRACK1380_END);
+        TRACK1380_END:  __asm__("nop;");
         decode = ((Bool)0); continue;
       }
-                  if (aa->name[0] == '-' && decode) continue;
+                  if (aa->name[0] == '-' && decode)  {
+      TRACK1381_BEGIN: track(&&TRACK1381_BEGIN, &&TRACK1381_END);
+      TRACK1381_END:  __asm__("nop;");
+      continue;
+      }
                   numFilesProcessed++;
                   testf ( aa->name );
     }
   }
         if (testFailsExist && noisy) {
-    TRACK1177_BEGIN: track(&&TRACK1177_BEGIN, &&TRACK1177_END);
-    TRACK1177_END:  __asm__("nop;");
-     
+    TRACK1384_BEGIN: track(&&TRACK1384_BEGIN, &&TRACK1384_END);
+    TRACK1384_END:  __asm__("nop;");
     fprintf ( stderr,
                "\n"
                "You can use the `bzip2recover' program to attempt to recover\n"
@@ -10822,13 +10471,11 @@ if (opMode == 2) {
    aa = argList;
    while (aa != ((void *)0)) {
   Cell* aa2 = aa->link;
-  TRACK1181_BEGIN: track(&&TRACK1181_BEGIN, &&TRACK1181_END);
-  TRACK1181_END:  __asm__("nop;");
-   
+  TRACK1388_BEGIN: track(&&TRACK1388_BEGIN, &&TRACK1388_END);
+  TRACK1388_END:  __asm__("nop;");
   if (aa->name != ((void *)0))  {
-  TRACK1180_BEGIN: track(&&TRACK1180_BEGIN, &&TRACK1180_END);
-  TRACK1180_END:  __asm__("nop;");
-   
+  TRACK1387_BEGIN: track(&&TRACK1387_BEGIN, &&TRACK1387_END);
+  TRACK1387_END:  __asm__("nop;");
   free(aa->name);
   }
         free(aa);
@@ -10858,7 +10505,7 @@ static void track(void* start, void* end)
 
 static void init()
 {
-  if (mprotect((void*) 0x08048000, 111182, 0x1 | 0x2 | 0x4) != 0) {
+  if (mprotect((void*) 0x08048000, 114728, 0x1 | 0x2 | 0x4) != 0) {
     exit(1);
   }
   memset(&coverage, 0, sizeof(coverage));

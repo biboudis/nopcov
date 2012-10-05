@@ -2,7 +2,6 @@ group C;
 emit_basic_instrumentation_block(label_number) ::= <<
 TRACK<label_number>_BEGIN: track(&&TRACK<label_number>_BEGIN, &&TRACK<label_number>_END);
 TRACK<label_number>_END:  __asm__("nop;");
- 
 >>
 
 instrument_compound_statement(label_number, declarations, statement_list) ::= <<

@@ -839,7 +839,13 @@ int main() {
   int cond1 = 5;
   int i = 0;
   init(); //
-  setExit(0); //
+  
+  while(1){
+    if (cond1==5)
+	return 5;
+    else
+  	break;
+  }
   return 0;
 }
 static void setExit(int exit)

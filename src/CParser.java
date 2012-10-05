@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C.g 2012-10-05 00:51:31
+// $ANTLR 3.4 C.g 2012-10-05 01:01:27
 
 import java.util.Set;
 import java.util.HashSet;
@@ -185,7 +185,7 @@ public class CParser extends Parser {
     }
     public CParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
-        this.state.ruleMemo = new HashMap[267+1];
+        this.state.ruleMemo = new HashMap[268+1];
          
 
     }
@@ -8812,7 +8812,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "statement"
-    // C.g:502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement | jump_statement | assembly_statement );
+    // C.g:502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );
     public final CParser.statement_return statement() throws RecognitionException {
         CParser.statement_return retval = new CParser.statement_return();
         retval.start = input.LT(1);
@@ -8825,12 +8825,14 @@ public static class STAttrMap extends HashMap {
 
         CParser.iteration_statement_return iteration_statement5 =null;
 
+        CParser.jump_statement_return jump_statement6 =null;
+
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
 
-            // C.g:503:2: ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement | jump_statement | assembly_statement )
-            int alt81=10;
+            // C.g:503:2: ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement )
+            int alt81=11;
             alt81 = dfa81.predict(input);
             switch (alt81) {
                 case 1 :
@@ -8988,9 +8990,42 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 9 :
-                    // C.g:514:4: jump_statement
+                    // C.g:514:4: {...}? jump_statement
                     {
-                    pushFollow(FOLLOW_jump_statement_in_statement2370);
+                    if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
+                        if (state.backtracking>0) {state.failed=true; return retval;}
+                        throw new FailedPredicateException(input, "statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
+                    }
+
+                    pushFollow(FOLLOW_jump_statement_in_statement2372);
+                    jump_statement6=jump_statement();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+
+                    if ( state.backtracking==0 ) {((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber++;}
+
+                    // TEMPLATE REWRITE
+                    if ( state.backtracking==0 ) {
+                      // 515:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)
+                      {
+                          retval.st = templateLib.getInstanceOf("instrument_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (jump_statement6!=null?input.toString(jump_statement6.start,jump_statement6.stop):null)));
+                      }
+
+
+                      ((TokenRewriteStream)input).replace(
+                        ((Token)retval.start).getTokenIndex(),
+                        input.LT(-1).getTokenIndex(),
+                        retval.st);
+
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // C.g:517:4: jump_statement
+                    {
+                    pushFollow(FOLLOW_jump_statement_in_statement2397);
                     jump_statement();
 
                     state._fsp--;
@@ -8998,10 +9033,10 @@ public static class STAttrMap extends HashMap {
 
                     }
                     break;
-                case 10 :
-                    // C.g:515:4: assembly_statement
+                case 11 :
+                    // C.g:518:4: assembly_statement
                     {
-                    pushFollow(FOLLOW_assembly_statement_in_statement2375);
+                    pushFollow(FOLLOW_assembly_statement_in_statement2402);
                     assembly_statement();
 
                     state._fsp--;
@@ -9038,18 +9073,18 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "labeled_statement"
-    // C.g:518:1: labeled_statement : ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement );
+    // C.g:521:1: labeled_statement : ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement );
     public final CParser.labeled_statement_return labeled_statement() throws RecognitionException {
         CParser.labeled_statement_return retval = new CParser.labeled_statement_return();
         retval.start = input.LT(1);
 
         int labeled_statement_StartIndex = input.index();
 
-        CParser.constant_expression_return constant_expression6 =null;
-
-        CParser.statement_return statement7 =null;
+        CParser.constant_expression_return constant_expression7 =null;
 
         CParser.statement_return statement8 =null;
+
+        CParser.statement_return statement9 =null;
 
 
 
@@ -9058,7 +9093,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
 
-            // C.g:522:2: ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement )
+            // C.g:525:2: ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement )
             int alt82=5;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
@@ -9073,10 +9108,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_4 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9093,10 +9128,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_5 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9113,10 +9148,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_6 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9133,10 +9168,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_7 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9153,10 +9188,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_8 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9173,10 +9208,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_9 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9193,10 +9228,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_10 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9213,10 +9248,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_11 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9233,10 +9268,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_12 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9253,10 +9288,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_13 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9278,10 +9313,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_14 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9298,10 +9333,10 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA82_15 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred171_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred172_C())) ) {
                         alt82=2;
                     }
-                    else if ( (synpred172_C()) ) {
+                    else if ( (synpred173_C()) ) {
                         alt82=3;
                     }
                     else {
@@ -9332,7 +9367,7 @@ public static class STAttrMap extends HashMap {
                 if ( (LA82_3==47) ) {
                     int LA82_16 = input.LA(3);
 
-                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred173_C())) ) {
+                    if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred174_C())) ) {
                         alt82=4;
                     }
                     else if ( (true) ) {
@@ -9368,13 +9403,13 @@ public static class STAttrMap extends HashMap {
 
             switch (alt82) {
                 case 1 :
-                    // C.g:522:4: IDENTIFIER ':' statement
+                    // C.g:525:4: IDENTIFIER ':' statement
                     {
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_labeled_statement2390); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_labeled_statement2417); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2392); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2419); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2394);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2421);
                     statement();
 
                     state._fsp--;
@@ -9383,27 +9418,27 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:523:4: {...}? 'case' constant_expression ':' statement
+                    // C.g:526:4: {...}? 'case' constant_expression ':' statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "labeled_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    match(input,77,FOLLOW_77_in_labeled_statement2401); if (state.failed) return retval;
+                    match(input,77,FOLLOW_77_in_labeled_statement2428); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2404);
-                    constant_expression6=constant_expression();
+                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2431);
+                    constant_expression7=constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2406); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2433); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2411);
-                    statement7=statement();
+                    pushFollow(FOLLOW_statement_in_labeled_statement2438);
+                    statement8=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
@@ -9412,9 +9447,9 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 524:3: -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)
+                      // 527:3: -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)
                       {
-                          retval.st = templateLib.getInstanceOf("instrument_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("constant_expression", (constant_expression6!=null?input.toString(constant_expression6.start,constant_expression6.stop):null)).put("statement", (statement7!=null?input.toString(statement7.start,statement7.stop):null)));
+                          retval.st = templateLib.getInstanceOf("instrument_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("constant_expression", (constant_expression7!=null?input.toString(constant_expression7.start,constant_expression7.stop):null)).put("statement", (statement8!=null?input.toString(statement8.start,statement8.stop):null)));
                       }
 
 
@@ -9428,19 +9463,19 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:525:4: 'case' constant_expression ':' statement
+                    // C.g:528:4: 'case' constant_expression ':' statement
                     {
-                    match(input,77,FOLLOW_77_in_labeled_statement2440); if (state.failed) return retval;
+                    match(input,77,FOLLOW_77_in_labeled_statement2467); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2443);
+                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2470);
                     constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2445); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2472); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2447);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2474);
                     statement();
 
                     state._fsp--;
@@ -9449,21 +9484,21 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:526:4: {...}? 'default' ':' statement
+                    // C.g:529:4: {...}? 'default' ':' statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "labeled_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    match(input,81,FOLLOW_81_in_labeled_statement2455); if (state.failed) return retval;
+                    match(input,81,FOLLOW_81_in_labeled_statement2482); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2457); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2484); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2461);
-                    statement8=statement();
+                    pushFollow(FOLLOW_statement_in_labeled_statement2488);
+                    statement9=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
@@ -9472,9 +9507,9 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 527:3: -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)
+                      // 530:3: -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)
                       {
-                          retval.st = templateLib.getInstanceOf("instrument_default_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (statement8!=null?input.toString(statement8.start,statement8.stop):null)));
+                          retval.st = templateLib.getInstanceOf("instrument_default_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (statement9!=null?input.toString(statement9.start,statement9.stop):null)));
                       }
 
 
@@ -9488,13 +9523,13 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 5 :
-                    // C.g:528:4: 'default' ':' statement
+                    // C.g:531:4: 'default' ':' statement
                     {
-                    match(input,81,FOLLOW_81_in_labeled_statement2485); if (state.failed) return retval;
+                    match(input,81,FOLLOW_81_in_labeled_statement2512); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2487); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2514); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2489);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2516);
                     statement();
 
                     state._fsp--;
@@ -9531,7 +9566,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "compound_statement"
-    // C.g:531:1: compound_statement : ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' );
+    // C.g:534:1: compound_statement : ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' );
     public final CParser.compound_statement_return compound_statement() throws RecognitionException {
         Symbols_stack.push(new Symbols_scope());
 
@@ -9540,9 +9575,9 @@ public static class STAttrMap extends HashMap {
 
         int compound_statement_StartIndex = input.index();
 
-        CParser.declarations_return declarations9 =null;
+        CParser.declarations_return declarations10 =null;
 
-        CParser.statement_list_return statement_list10 =null;
+        CParser.statement_list_return statement_list11 =null;
 
 
 
@@ -9551,7 +9586,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
 
-            // C.g:536:2: ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' )
+            // C.g:539:2: ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' )
             int alt86=2;
             int LA86_0 = input.LA(1);
 
@@ -9561,7 +9596,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_2 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9584,7 +9619,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_3 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9604,7 +9639,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_4 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9624,7 +9659,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_5 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9644,7 +9679,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_6 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9664,7 +9699,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_7 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9684,7 +9719,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_8 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9704,7 +9739,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_9 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9724,7 +9759,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_10 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9744,7 +9779,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_11 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9764,7 +9799,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_12 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9784,7 +9819,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_13 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9805,7 +9840,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_14 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9825,7 +9860,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_15 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9845,7 +9880,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_16 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9867,7 +9902,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_17 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9889,7 +9924,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_18 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9911,7 +9946,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_19 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9931,7 +9966,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_20 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9951,7 +9986,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_21 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9971,7 +10006,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_22 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -9991,7 +10026,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_23 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10011,7 +10046,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_24 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10031,7 +10066,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_25 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10051,7 +10086,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_26 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10071,7 +10106,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_27 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10091,7 +10126,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_28 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10111,7 +10146,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_29 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10131,7 +10166,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_30 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10151,7 +10186,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_31 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10171,7 +10206,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_32 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10196,7 +10231,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_33 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10216,7 +10251,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_34 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10236,7 +10271,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_35 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10256,7 +10291,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_36 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10276,7 +10311,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_37 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10296,7 +10331,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_38 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10316,7 +10351,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_39 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10336,7 +10371,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_40 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10356,7 +10391,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_41 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10376,7 +10411,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_42 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10396,7 +10431,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_43 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10418,7 +10453,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_44 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10438,7 +10473,7 @@ public static class STAttrMap extends HashMap {
                     {
                     int LA86_45 = input.LA(3);
 
-                    if ( (synpred175_C()) ) {
+                    if ( (synpred176_C()) ) {
                         alt86=1;
                     }
                     else if ( (true) ) {
@@ -10474,24 +10509,24 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt86) {
                 case 1 :
-                    // C.g:536:5: '{' {...}? declarations ( statement_list )? '}'
+                    // C.g:539:5: '{' {...}? declarations ( statement_list )? '}'
                     {
-                    match(input,108,FOLLOW_108_in_compound_statement2512); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_compound_statement2539); if (state.failed) return retval;
 
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "compound_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_declarations_in_compound_statement2516);
-                    declarations9=declarations();
+                    pushFollow(FOLLOW_declarations_in_compound_statement2543);
+                    declarations10=declarations();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    // C.g:536:131: ( statement_list )?
+                    // C.g:539:131: ( statement_list )?
                     int alt83=2;
                     int LA83_0 = input.LA(1);
 
@@ -10500,10 +10535,10 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt83) {
                         case 1 :
-                            // C.g:536:131: statement_list
+                            // C.g:539:131: statement_list
                             {
-                            pushFollow(FOLLOW_statement_list_in_compound_statement2520);
-                            statement_list10=statement_list();
+                            pushFollow(FOLLOW_statement_list_in_compound_statement2547);
+                            statement_list11=statement_list();
 
                             state._fsp--;
                             if (state.failed) return retval;
@@ -10516,13 +10551,13 @@ public static class STAttrMap extends HashMap {
 
                     if ( state.backtracking==0 ) {((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber++;}
 
-                    match(input,112,FOLLOW_112_in_compound_statement2526); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_compound_statement2553); if (state.failed) return retval;
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 537:6: -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)
+                      // 540:6: -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)
                       {
-                          retval.st = templateLib.getInstanceOf("instrument_compound_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("declarations", (declarations9!=null?input.toString(declarations9.start,declarations9.stop):null)).put("statement_list", (statement_list10!=null?input.toString(statement_list10.start,statement_list10.stop):null)));
+                          retval.st = templateLib.getInstanceOf("instrument_compound_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("declarations", (declarations10!=null?input.toString(declarations10.start,declarations10.stop):null)).put("statement_list", (statement_list11!=null?input.toString(statement_list11.start,statement_list11.stop):null)));
                       }
 
 
@@ -10536,20 +10571,20 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:538:5: '{' ( declaration )* ( statement_list )? '}'
+                    // C.g:541:5: '{' ( declaration )* ( statement_list )? '}'
                     {
-                    match(input,108,FOLLOW_108_in_compound_statement2558); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_compound_statement2585); if (state.failed) return retval;
 
-                    // C.g:538:10: ( declaration )*
+                    // C.g:541:10: ( declaration )*
                     loop84:
                     do {
                         int alt84=2;
                         alt84 = dfa84.predict(input);
                         switch (alt84) {
                     	case 1 :
-                    	    // C.g:538:10: declaration
+                    	    // C.g:541:10: declaration
                     	    {
-                    	    pushFollow(FOLLOW_declaration_in_compound_statement2561);
+                    	    pushFollow(FOLLOW_declaration_in_compound_statement2588);
                     	    declaration();
 
                     	    state._fsp--;
@@ -10564,7 +10599,7 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    // C.g:538:23: ( statement_list )?
+                    // C.g:541:23: ( statement_list )?
                     int alt85=2;
                     int LA85_0 = input.LA(1);
 
@@ -10573,9 +10608,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt85) {
                         case 1 :
-                            // C.g:538:23: statement_list
+                            // C.g:541:23: statement_list
                             {
-                            pushFollow(FOLLOW_statement_list_in_compound_statement2564);
+                            pushFollow(FOLLOW_statement_list_in_compound_statement2591);
                             statement_list();
 
                             state._fsp--;
@@ -10587,7 +10622,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,112,FOLLOW_112_in_compound_statement2567); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_compound_statement2594); if (state.failed) return retval;
 
                     }
                     break;
@@ -10622,7 +10657,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declarations"
-    // C.g:541:1: declarations : ( declaration )* ;
+    // C.g:544:1: declarations : ( declaration )* ;
     public final CParser.declarations_return declarations() throws RecognitionException {
         CParser.declarations_return retval = new CParser.declarations_return();
         retval.start = input.LT(1);
@@ -10632,19 +10667,19 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
 
-            // C.g:542:2: ( ( declaration )* )
-            // C.g:542:4: ( declaration )*
+            // C.g:545:2: ( ( declaration )* )
+            // C.g:545:4: ( declaration )*
             {
-            // C.g:542:4: ( declaration )*
+            // C.g:545:4: ( declaration )*
             loop87:
             do {
                 int alt87=2;
                 alt87 = dfa87.predict(input);
                 switch (alt87) {
             	case 1 :
-            	    // C.g:542:4: declaration
+            	    // C.g:545:4: declaration
             	    {
-            	    pushFollow(FOLLOW_declaration_in_declarations2581);
+            	    pushFollow(FOLLOW_declaration_in_declarations2608);
             	    declaration();
 
             	    state._fsp--;
@@ -10688,7 +10723,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "statement_list"
-    // C.g:545:1: statement_list : ( statement )+ ;
+    // C.g:548:1: statement_list : ( statement )+ ;
     public final CParser.statement_list_return statement_list() throws RecognitionException {
         CParser.statement_list_return retval = new CParser.statement_list_return();
         retval.start = input.LT(1);
@@ -10698,10 +10733,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
 
-            // C.g:546:2: ( ( statement )+ )
-            // C.g:546:4: ( statement )+
+            // C.g:549:2: ( ( statement )+ )
+            // C.g:549:4: ( statement )+
             {
-            // C.g:546:4: ( statement )+
+            // C.g:549:4: ( statement )+
             int cnt88=0;
             loop88:
             do {
@@ -10715,9 +10750,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt88) {
             	case 1 :
-            	    // C.g:546:4: statement
+            	    // C.g:549:4: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_statement_list2594);
+            	    pushFollow(FOLLOW_statement_in_statement_list2621);
             	    statement();
 
             	    state._fsp--;
@@ -10766,7 +10801,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "expression_statement"
-    // C.g:549:1: expression_statement : ( ';' | expression ';' );
+    // C.g:552:1: expression_statement : ( ';' | expression ';' );
     public final CParser.expression_statement_return expression_statement() throws RecognitionException {
         CParser.expression_statement_return retval = new CParser.expression_statement_return();
         retval.start = input.LT(1);
@@ -10776,7 +10811,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
 
-            // C.g:550:2: ( ';' | expression ';' )
+            // C.g:553:2: ( ';' | expression ';' )
             int alt89=2;
             int LA89_0 = input.LA(1);
 
@@ -10796,22 +10831,22 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt89) {
                 case 1 :
-                    // C.g:550:4: ';'
+                    // C.g:553:4: ';'
                     {
-                    match(input,48,FOLLOW_48_in_expression_statement2606); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_expression_statement2633); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:551:4: expression ';'
+                    // C.g:554:4: expression ';'
                     {
-                    pushFollow(FOLLOW_expression_in_expression_statement2611);
+                    pushFollow(FOLLOW_expression_in_expression_statement2638);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_expression_statement2613); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_expression_statement2640); if (state.failed) return retval;
 
                     }
                     break;
@@ -10844,7 +10879,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "selection_statement"
-    // C.g:554:1: selection_statement : ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement );
+    // C.g:557:1: selection_statement : ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement );
     public final CParser.selection_statement_return selection_statement() throws RecognitionException {
         InstrumentationInfo_stack.push(new InstrumentationInfo_scope());
 
@@ -10856,7 +10891,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
 
-            // C.g:556:2: ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement )
+            // C.g:559:2: ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement )
             int alt91=2;
             int LA91_0 = input.LA(1);
 
@@ -10876,29 +10911,29 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt91) {
                 case 1 :
-                    // C.g:556:4: 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )?
+                    // C.g:559:4: 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )?
                     {
-                    match(input,90,FOLLOW_90_in_selection_statement2630); if (state.failed) return retval;
+                    match(input,90,FOLLOW_90_in_selection_statement2657); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_selection_statement2632); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_selection_statement2659); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_selection_statement2634);
+                    pushFollow(FOLLOW_expression_in_selection_statement2661);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_selection_statement2636); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_selection_statement2663); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {setupScopeVarsIfBranchWithPassingAttribute();}
 
-                    pushFollow(FOLLOW_statement_in_selection_statement2640);
+                    pushFollow(FOLLOW_statement_in_selection_statement2667);
                     statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:556:86: ( options {k=1; backtrack=false; } : 'else' statement )?
+                    // C.g:559:86: ( options {k=1; backtrack=false; } : 'else' statement )?
                     int alt90=2;
                     int LA90_0 = input.LA(1);
 
@@ -10911,13 +10946,13 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt90) {
                         case 1 :
-                            // C.g:556:119: 'else' statement
+                            // C.g:559:119: 'else' statement
                             {
-                            match(input,84,FOLLOW_84_in_selection_statement2655); if (state.failed) return retval;
+                            match(input,84,FOLLOW_84_in_selection_statement2682); if (state.failed) return retval;
 
                             if ( state.backtracking==0 ) {setupScopeVarsIfBranchWithPassingAttribute();}
 
-                            pushFollow(FOLLOW_statement_in_selection_statement2659);
+                            pushFollow(FOLLOW_statement_in_selection_statement2686);
                             statement();
 
                             state._fsp--;
@@ -10932,21 +10967,21 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:557:4: 'switch' '(' expression ')' statement
+                    // C.g:560:4: 'switch' '(' expression ')' statement
                     {
-                    match(input,101,FOLLOW_101_in_selection_statement2666); if (state.failed) return retval;
+                    match(input,101,FOLLOW_101_in_selection_statement2693); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_selection_statement2668); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_selection_statement2695); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_selection_statement2670);
+                    pushFollow(FOLLOW_expression_in_selection_statement2697);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_selection_statement2672); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_selection_statement2699); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_selection_statement2674);
+                    pushFollow(FOLLOW_statement_in_selection_statement2701);
                     statement();
 
                     state._fsp--;
@@ -10985,7 +11020,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "iteration_statement"
-    // C.g:560:1: iteration_statement : ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement );
+    // C.g:563:1: iteration_statement : ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement );
     public final CParser.iteration_statement_return iteration_statement() throws RecognitionException {
         InstrumentationInfo_stack.push(new InstrumentationInfo_scope());
 
@@ -11000,7 +11035,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
 
-            // C.g:565:2: ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement )
+            // C.g:568:2: ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement )
             int alt93=3;
             switch ( input.LA(1) ) {
             case 107:
@@ -11029,21 +11064,21 @@ public static class STAttrMap extends HashMap {
 
             switch (alt93) {
                 case 1 :
-                    // C.g:565:4: 'while' '(' expression ')' statement
+                    // C.g:568:4: 'while' '(' expression ')' statement
                     {
-                    match(input,107,FOLLOW_107_in_iteration_statement2694); if (state.failed) return retval;
+                    match(input,107,FOLLOW_107_in_iteration_statement2721); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2696); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2723); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_iteration_statement2698);
+                    pushFollow(FOLLOW_expression_in_iteration_statement2725);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2700); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2727); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2702);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2729);
                     statement();
 
                     state._fsp--;
@@ -11052,52 +11087,52 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:566:4: 'do' statement 'while' '(' expression ')' ';'
+                    // C.g:569:4: 'do' statement 'while' '(' expression ')' ';'
                     {
-                    match(input,82,FOLLOW_82_in_iteration_statement2707); if (state.failed) return retval;
+                    match(input,82,FOLLOW_82_in_iteration_statement2734); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2709);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2736);
                     statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,107,FOLLOW_107_in_iteration_statement2711); if (state.failed) return retval;
+                    match(input,107,FOLLOW_107_in_iteration_statement2738); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2713); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2740); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_iteration_statement2715);
+                    pushFollow(FOLLOW_expression_in_iteration_statement2742);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2717); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2744); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_iteration_statement2719); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_iteration_statement2746); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:567:4: 'for' '(' expression_statement expression_statement ( expression )? ')' statement
+                    // C.g:570:4: 'for' '(' expression_statement expression_statement ( expression )? ')' statement
                     {
-                    match(input,88,FOLLOW_88_in_iteration_statement2724); if (state.failed) return retval;
+                    match(input,88,FOLLOW_88_in_iteration_statement2751); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2726); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2753); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2728);
+                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2755);
                     expression_statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2730);
+                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2757);
                     expression_statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:567:56: ( expression )?
+                    // C.g:570:56: ( expression )?
                     int alt92=2;
                     int LA92_0 = input.LA(1);
 
@@ -11106,9 +11141,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt92) {
                         case 1 :
-                            // C.g:567:56: expression
+                            // C.g:570:56: expression
                             {
-                            pushFollow(FOLLOW_expression_in_iteration_statement2732);
+                            pushFollow(FOLLOW_expression_in_iteration_statement2759);
                             expression();
 
                             state._fsp--;
@@ -11120,9 +11155,9 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2735); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2762); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2737);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2764);
                     statement();
 
                     state._fsp--;
@@ -11161,7 +11196,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "jump_statement"
-    // C.g:570:1: jump_statement : ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' );
+    // C.g:573:1: jump_statement : ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' );
     public final CParser.jump_statement_return jump_statement() throws RecognitionException {
         CParser.jump_statement_return retval = new CParser.jump_statement_return();
         retval.start = input.LT(1);
@@ -11171,7 +11206,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
 
-            // C.g:571:2: ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' )
+            // C.g:574:2: ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' )
             int alt94=5;
             switch ( input.LA(1) ) {
             case 89:
@@ -11220,55 +11255,55 @@ public static class STAttrMap extends HashMap {
 
             switch (alt94) {
                 case 1 :
-                    // C.g:571:4: 'goto' IDENTIFIER ';'
+                    // C.g:574:4: 'goto' IDENTIFIER ';'
                     {
-                    match(input,89,FOLLOW_89_in_jump_statement2748); if (state.failed) return retval;
+                    match(input,89,FOLLOW_89_in_jump_statement2775); if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_jump_statement2750); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_jump_statement2777); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2752); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2779); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:572:4: 'continue' ';'
+                    // C.g:575:4: 'continue' ';'
                     {
-                    match(input,80,FOLLOW_80_in_jump_statement2757); if (state.failed) return retval;
+                    match(input,80,FOLLOW_80_in_jump_statement2784); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2759); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2786); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:573:4: 'break' ';'
+                    // C.g:576:4: 'break' ';'
                     {
-                    match(input,76,FOLLOW_76_in_jump_statement2764); if (state.failed) return retval;
+                    match(input,76,FOLLOW_76_in_jump_statement2791); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2766); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2793); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:574:4: 'return' ';'
+                    // C.g:577:4: 'return' ';'
                     {
-                    match(input,95,FOLLOW_95_in_jump_statement2771); if (state.failed) return retval;
+                    match(input,95,FOLLOW_95_in_jump_statement2798); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2773); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2800); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
-                    // C.g:575:4: 'return' expression ';'
+                    // C.g:578:4: 'return' expression ';'
                     {
-                    match(input,95,FOLLOW_95_in_jump_statement2778); if (state.failed) return retval;
+                    match(input,95,FOLLOW_95_in_jump_statement2805); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_jump_statement2780);
+                    pushFollow(FOLLOW_expression_in_jump_statement2807);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2782); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2809); if (state.failed) return retval;
 
                     }
                     break;
@@ -12390,28 +12425,18 @@ public static class STAttrMap extends HashMap {
     }
     // $ANTLR end synpred168_C
 
-    // $ANTLR start synpred171_C
-    public final void synpred171_C_fragment() throws RecognitionException {
-        // C.g:523:4: ({...}? 'case' constant_expression ':' statement )
-        // C.g:523:4: {...}? 'case' constant_expression ':' statement
+    // $ANTLR start synpred169_C
+    public final void synpred169_C_fragment() throws RecognitionException {
+        // C.g:514:4: ({...}? jump_statement )
+        // C.g:514:4: {...}? jump_statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
-            throw new FailedPredicateException(input, "synpred171_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
+            throw new FailedPredicateException(input, "synpred169_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        match(input,77,FOLLOW_77_in_synpred171_C2401); if (state.failed) return ;
-
-        pushFollow(FOLLOW_constant_expression_in_synpred171_C2404);
-        constant_expression();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        match(input,47,FOLLOW_47_in_synpred171_C2406); if (state.failed) return ;
-
-        pushFollow(FOLLOW_statement_in_synpred171_C2411);
-        statement();
+        pushFollow(FOLLOW_jump_statement_in_synpred169_C2372);
+        jump_statement();
 
         state._fsp--;
         if (state.failed) return ;
@@ -12419,24 +12444,45 @@ public static class STAttrMap extends HashMap {
         }
 
     }
-    // $ANTLR end synpred171_C
+    // $ANTLR end synpred169_C
+
+    // $ANTLR start synpred170_C
+    public final void synpred170_C_fragment() throws RecognitionException {
+        // C.g:517:4: ( jump_statement )
+        // C.g:517:4: jump_statement
+        {
+        pushFollow(FOLLOW_jump_statement_in_synpred170_C2397);
+        jump_statement();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred170_C
 
     // $ANTLR start synpred172_C
     public final void synpred172_C_fragment() throws RecognitionException {
-        // C.g:525:4: ( 'case' constant_expression ':' statement )
-        // C.g:525:4: 'case' constant_expression ':' statement
+        // C.g:526:4: ({...}? 'case' constant_expression ':' statement )
+        // C.g:526:4: {...}? 'case' constant_expression ':' statement
         {
-        match(input,77,FOLLOW_77_in_synpred172_C2440); if (state.failed) return ;
+        if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
+            if (state.backtracking>0) {state.failed=true; return ;}
+            throw new FailedPredicateException(input, "synpred172_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
+        }
 
-        pushFollow(FOLLOW_constant_expression_in_synpred172_C2443);
+        match(input,77,FOLLOW_77_in_synpred172_C2428); if (state.failed) return ;
+
+        pushFollow(FOLLOW_constant_expression_in_synpred172_C2431);
         constant_expression();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,47,FOLLOW_47_in_synpred172_C2445); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred172_C2433); if (state.failed) return ;
 
-        pushFollow(FOLLOW_statement_in_synpred172_C2447);
+        pushFollow(FOLLOW_statement_in_synpred172_C2438);
         statement();
 
         state._fsp--;
@@ -12449,19 +12495,20 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred173_C
     public final void synpred173_C_fragment() throws RecognitionException {
-        // C.g:526:4: ({...}? 'default' ':' statement )
-        // C.g:526:4: {...}? 'default' ':' statement
+        // C.g:528:4: ( 'case' constant_expression ':' statement )
+        // C.g:528:4: 'case' constant_expression ':' statement
         {
-        if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
-            if (state.backtracking>0) {state.failed=true; return ;}
-            throw new FailedPredicateException(input, "synpred173_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
-        }
+        match(input,77,FOLLOW_77_in_synpred173_C2467); if (state.failed) return ;
 
-        match(input,81,FOLLOW_81_in_synpred173_C2455); if (state.failed) return ;
+        pushFollow(FOLLOW_constant_expression_in_synpred173_C2470);
+        constant_expression();
 
-        match(input,47,FOLLOW_47_in_synpred173_C2457); if (state.failed) return ;
+        state._fsp--;
+        if (state.failed) return ;
 
-        pushFollow(FOLLOW_statement_in_synpred173_C2461);
+        match(input,47,FOLLOW_47_in_synpred173_C2472); if (state.failed) return ;
+
+        pushFollow(FOLLOW_statement_in_synpred173_C2474);
         statement();
 
         state._fsp--;
@@ -12472,25 +12519,50 @@ public static class STAttrMap extends HashMap {
     }
     // $ANTLR end synpred173_C
 
-    // $ANTLR start synpred175_C
-    public final void synpred175_C_fragment() throws RecognitionException {
-        // C.g:536:5: ( '{' {...}? declarations ( statement_list )? '}' )
-        // C.g:536:5: '{' {...}? declarations ( statement_list )? '}'
+    // $ANTLR start synpred174_C
+    public final void synpred174_C_fragment() throws RecognitionException {
+        // C.g:529:4: ({...}? 'default' ':' statement )
+        // C.g:529:4: {...}? 'default' ':' statement
         {
-        match(input,108,FOLLOW_108_in_synpred175_C2512); if (state.failed) return ;
+        if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
+            if (state.backtracking>0) {state.failed=true; return ;}
+            throw new FailedPredicateException(input, "synpred174_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
+        }
+
+        match(input,81,FOLLOW_81_in_synpred174_C2482); if (state.failed) return ;
+
+        match(input,47,FOLLOW_47_in_synpred174_C2484); if (state.failed) return ;
+
+        pushFollow(FOLLOW_statement_in_synpred174_C2488);
+        statement();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred174_C
+
+    // $ANTLR start synpred176_C
+    public final void synpred176_C_fragment() throws RecognitionException {
+        // C.g:539:5: ( '{' {...}? declarations ( statement_list )? '}' )
+        // C.g:539:5: '{' {...}? declarations ( statement_list )? '}'
+        {
+        match(input,108,FOLLOW_108_in_synpred176_C2539); if (state.failed) return ;
 
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
-            throw new FailedPredicateException(input, "synpred175_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
+            throw new FailedPredicateException(input, "synpred176_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_declarations_in_synpred175_C2516);
+        pushFollow(FOLLOW_declarations_in_synpred176_C2543);
         declarations();
 
         state._fsp--;
         if (state.failed) return ;
 
-        // C.g:536:131: ( statement_list )?
+        // C.g:539:131: ( statement_list )?
         int alt115=2;
         int LA115_0 = input.LA(1);
 
@@ -12499,9 +12571,9 @@ public static class STAttrMap extends HashMap {
         }
         switch (alt115) {
             case 1 :
-                // C.g:536:131: statement_list
+                // C.g:539:131: statement_list
                 {
-                pushFollow(FOLLOW_statement_list_in_synpred175_C2520);
+                pushFollow(FOLLOW_statement_list_in_synpred176_C2547);
                 statement_list();
 
                 state._fsp--;
@@ -12513,35 +12585,19 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        match(input,112,FOLLOW_112_in_synpred175_C2526); if (state.failed) return ;
-
-        }
-
-    }
-    // $ANTLR end synpred175_C
-
-    // $ANTLR start synpred176_C
-    public final void synpred176_C_fragment() throws RecognitionException {
-        // C.g:538:10: ( declaration )
-        // C.g:538:10: declaration
-        {
-        pushFollow(FOLLOW_declaration_in_synpred176_C2561);
-        declaration();
-
-        state._fsp--;
-        if (state.failed) return ;
+        match(input,112,FOLLOW_112_in_synpred176_C2553); if (state.failed) return ;
 
         }
 
     }
     // $ANTLR end synpred176_C
 
-    // $ANTLR start synpred178_C
-    public final void synpred178_C_fragment() throws RecognitionException {
-        // C.g:542:4: ( declaration )
-        // C.g:542:4: declaration
+    // $ANTLR start synpred177_C
+    public final void synpred177_C_fragment() throws RecognitionException {
+        // C.g:541:10: ( declaration )
+        // C.g:541:10: declaration
         {
-        pushFollow(FOLLOW_declaration_in_synpred178_C2581);
+        pushFollow(FOLLOW_declaration_in_synpred177_C2588);
         declaration();
 
         state._fsp--;
@@ -12550,7 +12606,23 @@ public static class STAttrMap extends HashMap {
         }
 
     }
-    // $ANTLR end synpred178_C
+    // $ANTLR end synpred177_C
+
+    // $ANTLR start synpred179_C
+    public final void synpred179_C_fragment() throws RecognitionException {
+        // C.g:545:4: ( declaration )
+        // C.g:545:4: declaration
+        {
+        pushFollow(FOLLOW_declaration_in_synpred179_C2608);
+        declaration();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred179_C
 
     // Delegated rules
 
@@ -12559,6 +12631,20 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred166_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred174_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred174_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12601,20 +12687,6 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred27_C_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred175_C() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred175_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12685,6 +12757,20 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred165_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred170_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred170_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12778,6 +12864,20 @@ public static class STAttrMap extends HashMap {
         state.failed=false;
         return success;
     }
+    public final boolean synpred169_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred169_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred67_C() {
         state.backtracking++;
         int start = input.mark();
@@ -12834,20 +12934,6 @@ public static class STAttrMap extends HashMap {
         state.failed=false;
         return success;
     }
-    public final boolean synpred171_C() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred171_C_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred85_C() {
         state.backtracking++;
         int start = input.mark();
@@ -12881,6 +12967,20 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred35_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred177_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred177_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12960,11 +13060,11 @@ public static class STAttrMap extends HashMap {
         state.failed=false;
         return success;
     }
-    public final boolean synpred178_C() {
+    public final boolean synpred78_C() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred178_C_fragment(); // can never throw exception
+            synpred78_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12974,11 +13074,11 @@ public static class STAttrMap extends HashMap {
         state.failed=false;
         return success;
     }
-    public final boolean synpred78_C() {
+    public final boolean synpred179_C() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred78_C_fragment(); // can never throw exception
+            synpred179_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -16430,18 +16530,18 @@ public static class STAttrMap extends HashMap {
 
     }
     static final String DFA81_eotS =
-        "\u014a\uffff";
+        "\u015c\uffff";
     static final String DFA81_eofS =
-        "\u014a\uffff";
+        "\u015c\uffff";
     static final String DFA81_minS =
-        "\1\4\1\31\3\uffff\1\0\4\31\1\25\1\31\5\4\3\37\1\4\1\37\6\uffff\27"+
-        "\0\37\uffff\u00f4\0\4\uffff";
+        "\1\4\1\31\3\uffff\1\0\4\31\1\25\1\31\5\4\3\37\1\4\1\37\1\15\2\60"+
+        "\1\4\2\uffff\27\0\37\uffff\u0104\0\6\uffff";
     static final String DFA81_maxS =
-        "\1\161\1\157\3\uffff\1\0\6\157\5\161\3\37\1\161\1\37\6\uffff\27"+
-        "\0\37\uffff\u00f4\0\4\uffff";
+        "\1\161\1\157\3\uffff\1\0\6\157\5\161\3\37\1\161\1\37\1\15\2\60\1"+
+        "\161\2\uffff\27\0\37\uffff\u0104\0\6\uffff";
     static final String DFA81_acceptS =
-        "\2\uffff\1\1\1\uffff\1\2\21\uffff\1\11\3\uffff\1\12\65\uffff\1\3"+
-        "\1\4\u00f4\uffff\1\5\1\6\1\7\1\10";
+        "\2\uffff\1\1\1\uffff\1\2\25\uffff\1\13\65\uffff\1\3\1\4\u0104\uffff"+
+        "\1\5\1\6\1\7\1\10\1\11\1\12";
     static final String DFA81_specialS =
         "\5\uffff\1\0\26\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12"+
         "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
@@ -16471,13 +16571,15 @@ public static class STAttrMap extends HashMap {
         "\u00ef\1\u00f0\1\u00f1\1\u00f2\1\u00f3\1\u00f4\1\u00f5\1\u00f6\1"+
         "\u00f7\1\u00f8\1\u00f9\1\u00fa\1\u00fb\1\u00fc\1\u00fd\1\u00fe\1"+
         "\u00ff\1\u0100\1\u0101\1\u0102\1\u0103\1\u0104\1\u0105\1\u0106\1"+
-        "\u0107\1\u0108\1\u0109\1\u010a\1\u010b\4\uffff}>";
+        "\u0107\1\u0108\1\u0109\1\u010a\1\u010b\1\u010c\1\u010d\1\u010e\1"+
+        "\u010f\1\u0110\1\u0111\1\u0112\1\u0113\1\u0114\1\u0115\1\u0116\1"+
+        "\u0117\1\u0118\1\u0119\1\u011a\1\u011b\6\uffff}>";
     static final String[] DFA81_transitionS = {
             "\1\11\1\uffff\1\10\2\uffff\1\13\1\uffff\1\6\1\uffff\1\1\4\uffff"+
             "\1\7\2\uffff\1\12\2\uffff\1\17\4\uffff\1\17\1\uffff\1\14\1\uffff"+
             "\1\17\1\uffff\1\17\1\15\2\uffff\1\17\1\16\7\uffff\1\5\17\uffff"+
-            "\2\32\10\uffff\1\32\1\uffff\1\26\1\2\2\uffff\1\26\1\2\1\24\5"+
-            "\uffff\1\25\1\26\1\21\4\uffff\1\26\2\uffff\1\20\2\uffff\1\22"+
+            "\2\32\10\uffff\1\32\1\uffff\1\30\1\2\2\uffff\1\27\1\2\1\24\5"+
+            "\uffff\1\25\1\26\1\21\4\uffff\1\31\2\uffff\1\20\2\uffff\1\22"+
             "\5\uffff\1\23\1\4\4\uffff\1\17",
             "\1\52\1\45\1\42\1\56\1\53\1\42\1\35\1\uffff\1\43\1\42\1\46"+
             "\1\40\1\42\1\61\1\47\1\41\1\42\1\37\1\36\1\uffff\1\44\1\42\1"+
@@ -16561,64 +16663,14 @@ public static class STAttrMap extends HashMap {
             "\2\uffff\1\u013a\2\uffff\1\u013c\5\uffff\1\u013d\1\u012e\4\uffff"+
             "\1\u0139",
             "\1\u0145",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\u0146",
+            "\1\u0147",
+            "\1\u0148",
+            "\1\u014e\1\uffff\1\u014d\2\uffff\1\u0150\1\uffff\1\u014b\1"+
+            "\uffff\1\u014a\4\uffff\1\u014c\2\uffff\1\u014f\2\uffff\1\u0154"+
+            "\4\uffff\1\u0154\1\uffff\1\u0151\1\uffff\1\u0154\1\uffff\1\u0154"+
+            "\1\u0152\2\uffff\1\u0154\1\u0153\7\uffff\1\u0149\61\uffff\1"+
+            "\u0155\16\uffff\1\u0154",
             "",
             "",
             "\1\uffff",
@@ -16644,6 +16696,37 @@ public static class STAttrMap extends HashMap {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -16865,6 +16948,47 @@ public static class STAttrMap extends HashMap {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "",
+            "",
             "",
             "",
             "",
@@ -16901,7 +17025,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA81_transition;
         }
         public String getDescription() {
-            return "502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement | jump_statement | assembly_statement );";
+            return "502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -21199,9 +21323,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred165_C()&&synpred165_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 326;}
+                        if ( (((synpred165_C()&&synpred165_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 342;}
 
-                        else if ( (synpred166_C()) ) {s = 327;}
+                        else if ( (synpred166_C()) ) {s = 343;}
 
                          
                         input.seek(index81_296);
@@ -21217,9 +21341,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred165_C()&&synpred165_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 326;}
+                        if ( (((synpred165_C()&&synpred165_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 342;}
 
-                        else if ( (synpred166_C()) ) {s = 327;}
+                        else if ( (synpred166_C()) ) {s = 343;}
 
                          
                         input.seek(index81_297);
@@ -21235,9 +21359,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_298);
@@ -21253,9 +21377,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_299);
@@ -21271,9 +21395,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_300);
@@ -21289,9 +21413,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_301);
@@ -21307,9 +21431,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_302);
@@ -21325,9 +21449,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_303);
@@ -21343,9 +21467,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_304);
@@ -21361,9 +21485,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_305);
@@ -21379,9 +21503,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_306);
@@ -21397,9 +21521,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_307);
@@ -21415,9 +21539,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_308);
@@ -21433,9 +21557,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_309);
@@ -21451,9 +21575,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_310);
@@ -21469,9 +21593,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_311);
@@ -21487,9 +21611,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_312);
@@ -21505,9 +21629,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_313);
@@ -21523,9 +21647,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_314);
@@ -21541,9 +21665,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_315);
@@ -21559,9 +21683,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_316);
@@ -21577,9 +21701,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_317);
@@ -21595,9 +21719,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_318);
@@ -21613,9 +21737,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_319);
@@ -21631,9 +21755,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_320);
@@ -21649,9 +21773,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_321);
@@ -21667,9 +21791,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_322);
@@ -21685,9 +21809,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_323);
@@ -21703,9 +21827,9 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_324);
@@ -21721,12 +21845,300 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 328;}
+                        if ( ((((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))&&synpred167_C())) ) {s = 344;}
 
-                        else if ( (synpred168_C()) ) {s = 329;}
+                        else if ( (synpred168_C()) ) {s = 345;}
 
                          
                         input.seek(index81_325);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 268 : 
+                        int LA81_326 = input.LA(1);
+
+                         
+                        int index81_326 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_326);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 269 : 
+                        int LA81_327 = input.LA(1);
+
+                         
+                        int index81_327 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_327);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 270 : 
+                        int LA81_328 = input.LA(1);
+
+                         
+                        int index81_328 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_328);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 271 : 
+                        int LA81_329 = input.LA(1);
+
+                         
+                        int index81_329 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_329);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 272 : 
+                        int LA81_330 = input.LA(1);
+
+                         
+                        int index81_330 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_330);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 273 : 
+                        int LA81_331 = input.LA(1);
+
+                         
+                        int index81_331 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_331);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 274 : 
+                        int LA81_332 = input.LA(1);
+
+                         
+                        int index81_332 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_332);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 275 : 
+                        int LA81_333 = input.LA(1);
+
+                         
+                        int index81_333 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_333);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 276 : 
+                        int LA81_334 = input.LA(1);
+
+                         
+                        int index81_334 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_334);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 277 : 
+                        int LA81_335 = input.LA(1);
+
+                         
+                        int index81_335 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_335);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 278 : 
+                        int LA81_336 = input.LA(1);
+
+                         
+                        int index81_336 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_336);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 279 : 
+                        int LA81_337 = input.LA(1);
+
+                         
+                        int index81_337 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_337);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 280 : 
+                        int LA81_338 = input.LA(1);
+
+                         
+                        int index81_338 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_338);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 281 : 
+                        int LA81_339 = input.LA(1);
+
+                         
+                        int index81_339 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_339);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 282 : 
+                        int LA81_340 = input.LA(1);
+
+                         
+                        int index81_340 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_340);
+
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 283 : 
+                        int LA81_341 = input.LA(1);
+
+                         
+                        int index81_341 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (((synpred169_C()&&synpred169_C())&&(InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch))) ) {s = 346;}
+
+                        else if ( (synpred170_C()) ) {s = 347;}
+
+                         
+                        input.seek(index81_341);
 
                         if ( s>=0 ) return s;
                         break;
@@ -21879,7 +22291,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA84_transition;
         }
         public String getDescription() {
-            return "()* loopback of 538:10: ( declaration )*";
+            return "()* loopback of 541:10: ( declaration )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -21893,7 +22305,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred176_C()&&synpred176_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -21911,7 +22323,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred176_C()&&synpred176_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -21929,7 +22341,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred176_C()&&synpred176_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -22087,7 +22499,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA87_transition;
         }
         public String getDescription() {
-            return "()* loopback of 542:4: ( declaration )*";
+            return "()* loopback of 545:4: ( declaration )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -22101,7 +22513,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred178_C()&&synpred178_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -22119,7 +22531,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred178_C()&&synpred178_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -22137,7 +22549,7 @@ public static class STAttrMap extends HashMap {
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred178_C()&&synpred178_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
@@ -22463,81 +22875,82 @@ public static class STAttrMap extends HashMap {
     public static final BitSet FOLLOW_selection_statement_in_statement2334 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_iteration_statement_in_statement2341 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_iteration_statement_in_statement2365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jump_statement_in_statement2370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assembly_statement_in_statement2375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_labeled_statement2390 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2392 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_labeled_statement2401 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2404 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2406 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2411 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_labeled_statement2440 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2443 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2445 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_labeled_statement2455 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2457 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_labeled_statement2485 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2487 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2489 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_compound_statement2512 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declarations_in_compound_statement2516 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
-    public static final BitSet FOLLOW_statement_list_in_compound_statement2520 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_compound_statement2526 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_compound_statement2558 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declaration_in_compound_statement2561 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_statement_list_in_compound_statement2564 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_compound_statement2567 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_declarations2581 = new BitSet(new long[]{0x0000000000002002L,0x000007DB78E8CBDCL});
-    public static final BitSet FOLLOW_statement_in_statement_list2594 = new BitSet(new long[]{0x0001019AA1242A52L,0x0002182487073403L});
-    public static final BitSet FOLLOW_48_in_expression_statement2606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expression_statement2611 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_expression_statement2613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_selection_statement2630 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_selection_statement2632 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_selection_statement2634 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_selection_statement2636 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2640 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_selection_statement2655 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2659 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_selection_statement2666 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_selection_statement2668 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_selection_statement2670 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_selection_statement2672 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_iteration_statement2694 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2696 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2698 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2700 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_iteration_statement2707 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2709 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_107_in_iteration_statement2711 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2713 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2715 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2717 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_iteration_statement2719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_iteration_statement2724 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2726 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2728 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2730 = new BitSet(new long[]{0x0000019BA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2732 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2735 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2737 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_jump_statement2748 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_jump_statement2750 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2752 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_jump_statement2757 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_jump_statement2764 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_jump_statement2771 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_jump_statement2778 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_jump_statement2780 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_statement2372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_statement2397 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assembly_statement_in_statement2402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_labeled_statement2417 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2419 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_labeled_statement2428 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2431 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2433 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_labeled_statement2467 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2470 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2472 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_labeled_statement2482 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2484 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_labeled_statement2512 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2514 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_compound_statement2539 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_compound_statement2543 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_compound_statement2547 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_compound_statement2553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_compound_statement2585 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declaration_in_compound_statement2588 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_statement_list_in_compound_statement2591 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_compound_statement2594 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_declarations2608 = new BitSet(new long[]{0x0000000000002002L,0x000007DB78E8CBDCL});
+    public static final BitSet FOLLOW_statement_in_statement_list2621 = new BitSet(new long[]{0x0001019AA1242A52L,0x0002182487073403L});
+    public static final BitSet FOLLOW_48_in_expression_statement2633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expression_statement2638 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_expression_statement2640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_selection_statement2657 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_selection_statement2659 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_selection_statement2661 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_selection_statement2663 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2667 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_selection_statement2682 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_selection_statement2693 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_selection_statement2695 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_selection_statement2697 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_selection_statement2699 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_iteration_statement2721 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2723 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2725 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2727 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_iteration_statement2734 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2736 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_107_in_iteration_statement2738 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2740 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2742 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2744 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_iteration_statement2746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_iteration_statement2751 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2753 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2755 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2757 = new BitSet(new long[]{0x0000019BA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2759 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2762 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_jump_statement2775 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_jump_statement2777 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_jump_statement2784 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_jump_statement2791 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_jump_statement2798 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2800 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_jump_statement2805 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_jump_statement2807 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2809 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_declaration_specifiers_in_synpred3_C163 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_declaration_specifiers_in_synpred5_C163 = new BitSet(new long[]{0x0000000280002000L});
     public static final BitSet FOLLOW_declarator_in_synpred5_C166 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
@@ -22603,22 +23016,24 @@ public static class STAttrMap extends HashMap {
     public static final BitSet FOLLOW_selection_statement_in_synpred166_C2334 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_iteration_statement_in_synpred167_C2341 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_iteration_statement_in_synpred168_C2365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_synpred171_C2401 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_synpred171_C2404 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred171_C2406 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred171_C2411 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_synpred172_C2440 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_synpred172_C2443 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred172_C2445 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred172_C2447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_synpred173_C2455 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred173_C2457 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred173_C2461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_synpred175_C2512 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declarations_in_synpred175_C2516 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
-    public static final BitSet FOLLOW_statement_list_in_synpred175_C2520 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_synpred175_C2526 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_synpred176_C2561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_synpred178_C2581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_synpred169_C2372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_synpred170_C2397 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_synpred172_C2428 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_synpred172_C2431 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred172_C2433 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred172_C2438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_synpred173_C2467 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_synpred173_C2470 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred173_C2472 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred173_C2474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_synpred174_C2482 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred174_C2484 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred174_C2488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_synpred176_C2539 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_synpred176_C2543 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_synpred176_C2547 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_synpred176_C2553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_synpred177_C2588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_synpred179_C2608 = new BitSet(new long[]{0x0000000000000002L});
 
 }

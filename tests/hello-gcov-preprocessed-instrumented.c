@@ -839,15 +839,34 @@ int main() {
   int cond1 = 5;
   int i = 0;
   init(); //
-  setExit(0); //
+  
+  while(1){
+  TRACK3_BEGIN: track(&&TRACK3_BEGIN, &&TRACK3_END);
+  TRACK3_END:  __asm__("nop;");
+   
+  if (cond1==5)
+  	 {
+  TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
+  TRACK1_END:  __asm__("nop;");
+   
+  return 5;
+  }
+      else
+    	 {
+  TRACK2_BEGIN: track(&&TRACK2_BEGIN, &&TRACK2_END);
+  TRACK2_END:  __asm__("nop;");
+   
+  break;
+  }
+}
   return 0;
 }
 static void setExit(int exit)
 {
    if (exit==0)
        {
-TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
-TRACK1_END:  __asm__("nop;");
+TRACK4_BEGIN: track(&&TRACK4_BEGIN, &&TRACK4_END);
+TRACK4_END:  __asm__("nop;");
  
 report();
 }
