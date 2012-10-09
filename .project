@@ -18,7 +18,7 @@
 		<link>
 			<name>templates</name>
 			<type>2</type>
-			<location>/home/bibou/workspace/nopcov/src/templates</location>
+			<locationURI>PROJECT_LOC/src/templates</locationURI>
 		</link>
 	</linkedResources>
 	<filteredResources>
@@ -29,6 +29,33 @@
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
 				<arguments>1.0-name-matches-false-false-*~</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1349820179347</id>
+			<name>tests</name>
+			<type>5</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.c</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1349820179450</id>
+			<name>tests</name>
+			<type>5</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.h</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1349820179553</id>
+			<name>tests</name>
+			<type>5</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.sh</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>
