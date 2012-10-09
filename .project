@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Coverage</name>
+	<name>nopcov</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,9 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>templates</name>
+			<type>2</type>
+			<location>/home/bibou/workspace/nopcov/src/templates</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
-			<id>1349353786130</id>
+			<id>1349790439955</id>
 			<name></name>
 			<type>22</type>
 			<matcher>

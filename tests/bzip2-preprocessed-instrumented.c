@@ -2269,8 +2269,6 @@ h = 3 * h + 1;
   BZ2_bz__AssertH__fail ( 1007 );
   } }
 
-
-
         for (j = 0; j <= 255; j++)  {
   TRACK162_BEGIN: track(&&TRACK162_BEGIN, &&TRACK162_END);
   TRACK162_END:  __asm__("nop;");

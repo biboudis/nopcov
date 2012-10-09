@@ -1,39 +1,46 @@
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+
 import org.antlr.runtime.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.antlr.stringtemplate.StringTemplateGroup;
 
 public class CTransformer {
-	private static final String TEMPLATE_PATH = "./templates/branch-coverage.stg";
 
 	public static void main(String[] args) throws Exception {
-		
-		FileReader groupFileR = new FileReader(TEMPLATE_PATH);
+
+		InputStreamReader groupFileR = new InputStreamReader(CTransformer.class.getResourceAsStream("/branch-coverage.stg"));
 		StringTemplateGroup templates = new StringTemplateGroup(groupFileR);
 		groupFileR.close();
 		
-		for (int i=0; i<args.length;i++){
-			String outputFile = 
-					FilenameUtils.getFullPath(args[i]) +
-					FilenameUtils.getBaseName(args[i]) +
-					"-instrumented." +
-					FilenameUtils.getExtension(args[i]);
-			
+		if (args.length == 0) {
+			System.err.println("No input files");
+			return;
+		}
+
+		for (int i = 0; i < args.length; i++) {
+			String outputFile = FilenameUtils.getFullPath(args[i])
+					+ FilenameUtils.getBaseName(args[i]) + "-instrumented."
+					+ FilenameUtils.getExtension(args[i]);
+
 			File output = new File(outputFile);
-			
-			CLexer lexer = new CLexer(new ANTLRFileStream(args[i]));
-			TokenRewriteStream tokens = new TokenRewriteStream(lexer);
-			CParser parser = new CParser(tokens);
-			
-			parser.setTemplateLib(templates);
 			try {
-				CParser.translation_unit_return r = parser.translation_unit();
-				//System.out.print(tokens.toString());
+
+				CLexer lexer = new CLexer(new ANTLRFileStream(args[i]));
+				TokenRewriteStream tokens = new TokenRewriteStream(lexer);
+				CParser parser = new CParser(tokens);
+
+				parser.setTemplateLib(templates);
+
+				parser.translation_unit();
+				
 				FileUtils.writeStringToFile(output, tokens.toString());
-			} catch (RecognitionException e) {
-				e.printStackTrace();
+				
+				System.err.println("SUCCESS: " + args[i]);
+			} catch (Exception e) {
+				System.err.println("FAILED: " + e.getMessage());
 			}
 		}
 	}
