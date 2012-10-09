@@ -828,10 +828,8 @@ static void init();
 //Report Statistics in the end
 static void report();
 //Tracking block
-static void track(void* start, void* end);
-
+static void track(int start, int end);
 static void setExit(int exit);
-
 //Declare a static coverage var
 static coverage_t coverage;
 int main() {
@@ -839,45 +837,21 @@ int main() {
   int cond1 = 5;
   int i = 0;
   init(); //
-  
-  while(1){
-  TRACK3_BEGIN: track(&&TRACK3_BEGIN, &&TRACK3_END);
-  TRACK3_END:  __asm__("nop;");
-   
-  if (cond1==5)
-  	 {
-  TRACK1_BEGIN: track(&&TRACK1_BEGIN, &&TRACK1_END);
-  TRACK1_END:  __asm__("nop;");
-   
-  return 5;
-  }
-      else
-    	 {
-  TRACK2_BEGIN: track(&&TRACK2_BEGIN, &&TRACK2_END);
-  TRACK2_END:  __asm__("nop;");
-   
-  break;
-  }
-}
+  setExit(0); //
   return 0;
 }
 static void setExit(int exit)
 {
    if (exit==0)
-       {
-TRACK4_BEGIN: track(&&TRACK4_BEGIN, &&TRACK4_END);
-TRACK4_END:  __asm__("nop;");
- 
-report();
+      report();
 }
-}
-
+[NotInstrumented]
 static void report()
 {
   printf("Branches taken: %d\n", coverage.count);
 }
-
-static void track(void* start, void* end)
+[NotInstrumented]
+static void track(int start, int end)
 {
   __asm__( "movl	%0, %%edi\n\t"
     "mov        $144, %%al\n\t"
@@ -889,7 +863,7 @@ static void track(void* start, void* end)
     );
   coverage.count++;
 }
-
+[NotInstrumented]
 static void init()
 {
   void *addr = (void*)&main;

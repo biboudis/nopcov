@@ -1,5 +1,5 @@
 #define __attribute__(x)
-
+#define __inline__
 #include <stdio.h>
 
 //Include files for page unprotection

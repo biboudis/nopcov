@@ -12,6 +12,15 @@ instrument_compound_statement(label_number, declarations, statement_list) ::= <<
 }
 >>
 
+instrument_main(declarations, statement_list) ::= <<
+{
+  <declarations; separator="\n">
+  init();
+  atexit(report);
+  <statement_list>
+}
+>>
+
 instrument_statement(label_number, statement) ::= << {
 <emit_basic_instrumentation_block(label_number)>
 <statement>

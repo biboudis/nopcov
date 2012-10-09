@@ -54,14 +54,6 @@ struct _IO_FILE;
 
 typedef struct _IO_FILE FILE;
 
-
-
-
-
-
-
-
-
 typedef struct _IO_FILE __FILE;
 typedef struct
 {
@@ -165,32 +157,12 @@ extern void _IO_free_backup_area (_IO_FILE *) ;
 
 typedef _G_fpos_t fpos_t;
 
-
 extern struct _IO_FILE *stdin;
 extern struct _IO_FILE *stdout;
 extern struct _IO_FILE *stderr;
 
-
-
-
-
-
-
 extern int remove (__const char *__filename) ;
-
 extern int rename (__const char *__old, __const char *__new) ;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 extern FILE *tmpfile (void) ;
@@ -207,7 +179,6 @@ extern FILE *freopen (__const char *__restrict __filename,
         __const char *__restrict __modes,
         FILE *__restrict __stream) ;
 
-extern FILE *fdopen (int __fd, __const char *__modes) ;
 
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) ;
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
@@ -237,15 +208,11 @@ extern int fgetc (FILE *__stream);
 extern int getc (FILE *__stream);
 extern int getchar (void);
 
-extern int getc_unlocked (FILE *__stream);
-extern int getchar_unlocked (void);
 
 extern int fputc (int __c, FILE *__stream);
 extern int putc (int __c, FILE *__stream);
 extern int putchar (int __c);
 
-extern int putc_unlocked (int __c, FILE *__stream);
-extern int putchar_unlocked (int __c);
 
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
      ;
@@ -277,13 +244,7 @@ extern int ferror (FILE *__stream) ;
 
 extern void perror (__const char *__s);
 
-extern int fileno (FILE *__stream) ;
-extern char *ctermid (char *__s) ;
-extern void flockfile (FILE *__stream) ;
-extern int ftrylockfile (FILE *__stream) ;
-extern void funlockfile (FILE *__stream) ;
 
-//Include files for page unprotection
 
 extern int *__errno_location (void) ;
 
@@ -335,29 +296,14 @@ extern size_t strspn (__const char *__s, __const char *__accept)
      ;
 extern char *strpbrk (__const char *__s, __const char *__accept)
      ;
-
-
-
-
 extern char *strstr (__const char *__haystack, __const char *__needle)
      ;
-
-
-
-
 extern char *strtok (char *__restrict __s, __const char *__restrict __delim)
      ;
-
-
-
 
 extern char *__strtok_r (char *__restrict __s,
     __const char *__restrict __delim,
     char **__restrict __save_ptr)
-     ;
-
-extern char *strtok_r (char *__restrict __s, __const char *__restrict __delim,
-         char **__restrict __save_ptr)
      ;
 
 extern size_t strlen (__const char *__s)
@@ -395,39 +341,16 @@ extern int __sigdelset (__sigset_t *, int);
 
 typedef __sig_atomic_t sig_atomic_t;
 
-typedef __sigset_t sigset_t;
 typedef void (*__sighandler_t) (int);
 extern __sighandler_t __sysv_signal (int __sig, __sighandler_t __handler)
      ;
 
 extern __sighandler_t signal (int __sig, __sighandler_t __handler) __asm__ ("" "__sysv_signal") ;
 
-extern int kill (__pid_t __pid, int __sig) ;
 
 extern int raise (int __sig) ;
 
 extern int __sigpause (int __sig_or_mask, int __is_sig);
-extern int sigemptyset (sigset_t *__set) ;
-extern int sigfillset (sigset_t *__set) ;
-extern int sigaddset (sigset_t *__set, int __signo) ;
-extern int sigdelset (sigset_t *__set, int __signo) ;
-extern int sigismember (__const sigset_t *__set, int __signo)
-     ;
-struct sigaction
-  {
-    __sighandler_t sa_handler;
-    __sigset_t sa_mask;
-    int sa_flags;
-    void (*sa_restorer) (void);
-  };
-extern int sigprocmask (int __how, __const sigset_t *__restrict __set,
-   sigset_t *__restrict __oset) ;
-extern int sigsuspend (__const sigset_t *__set) ;
-extern int sigaction (int __sig, __const struct sigaction *__restrict __act,
-        struct sigaction *__restrict __oact) ;
-extern int sigpending (sigset_t *__set) ;
-extern int sigwait (__const sigset_t *__restrict __set, int *__restrict __sig)
-     ;
 extern int __libc_current_sigrtmin (void) ;
 extern int __libc_current_sigrtmax (void) ;
 
@@ -471,20 +394,14 @@ extern unsigned long int strtoul (__const char *__restrict __nptr,
 extern int rand (void) ;
 extern void srand (unsigned int __seed) ;
 
-extern int rand_r (unsigned int *__seed) ;
 
 extern void *malloc (size_t __size) ;
 extern void *calloc (size_t __nmemb, size_t __size)
      ;
 
 
-
-
-
-
 extern void *realloc (void *__ptr, size_t __size)
      ;
-
 extern void free (void *__ptr) ;
 
 
@@ -548,7 +465,6 @@ extern char *getcwd (char *__buf, size_t __size) ;
 extern int dup (int __fd) ;
 extern int dup2 (int __fd, int __fd2) ;
 extern char **__environ;
-
 extern int execve (__const char *__path, char *__const __argv[],
      char *__const __envp[]) ;
 extern int execv (__const char *__path, char *__const __argv[])
@@ -893,6 +809,7 @@ extern char *ttyname (int __fd) ;
 extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
      ;
 extern int isatty (int __fd) ;
+
 extern int link (__const char *__from, __const char *__to)
      ;
 extern int unlink (__const char *__name) ;
@@ -901,19 +818,21 @@ extern __pid_t tcgetpgrp (int __fd) ;
 extern int tcsetpgrp (int __fd, __pid_t __pgrp_id) ;
 extern char *getlogin (void);
 
-//Statistics
+//Statistics data structure
 typedef struct
 {
   int count;
-}coverage_t;
+} coverage_t;
 //Unprotect CS and initialize variables
-static void init();
+void init();
 //Report Statistics in the end
-static void report();
+void report();
 //Tracking block
-static void track(void* start, void* end);
-//Declare a static coverage var
-static coverage_t coverage;
+void track(void* start, void* end);
+//Declare a coverage var
+coverage_t coverage;
+//Text segment addresses
+extern char etext, __executable_start;
 typedef
    struct {
       char *next_in;
@@ -2349,6 +2268,9 @@ h = 3 * h + 1;
   TRACK161_END:  __asm__("nop;");
   BZ2_bz__AssertH__fail ( 1007 );
   } }
+
+
+
         for (j = 0; j <= 255; j++)  {
   TRACK162_BEGIN: track(&&TRACK162_BEGIN, &&TRACK162_END);
   TRACK162_END:  __asm__("nop;");
@@ -7858,7 +7780,6 @@ typedef __pid_t pid_t;
 
 typedef __time_t time_t;
 
-
 typedef __clockid_t clockid_t;
 typedef __timer_t timer_t;
 typedef int int8_t ;
@@ -7949,7 +7870,6 @@ extern int __xmknodat (int __ver, int __fd, __const char *__path,
 
 
 typedef __clock_t clock_t;
-
 
 
 struct tms
@@ -9911,602 +9831,575 @@ void addFlagsFromEnvVar ( Cell** argList, Char* varName )
 }
 IntNative main ( IntNative argc, Char *argv[] )
 {
-   Int32 i, j;
-   Char *tmp;
-   Cell *argList;
-   Cell *aa;
-   Bool decode;
-   void* lol = &track; //
-   init(); //
-   if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
-       sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
-       sizeof(Char) != 1 || sizeof(UChar) != 1)
-       {
-TRACK1285_BEGIN: track(&&TRACK1285_BEGIN, &&TRACK1285_END);
-TRACK1285_END:  __asm__("nop;");
-configError();
-}
-   outputHandleJustInCase = ((void *)0);
-   smallMode = ((Bool)0);
-   keepInputFiles = ((Bool)0);
-   forceOverwrite = ((Bool)0);
-   noisy = ((Bool)1);
-   verbosity = 0;
-   blockSize100k = 9;
-   testFailsExist = ((Bool)0);
-   unzFailsExist = ((Bool)0);
-   numFileNames = 0;
-   numFilesProcessed = 0;
-   workFactor = 30;
-   deleteOutputOnInterrupt = ((Bool)0);
-   exitValue = 0;
-   i = j = 0;
-   signal (11, mySIGSEGVorSIGBUScatcher);
-   signal (7, mySIGSEGVorSIGBUScatcher);
-   copyFileName ( inName, "(none)" );
-   copyFileName ( outName, "(none)" );
-   copyFileName ( progNameReally, argv[0] );
-   progName = &progNameReally[0];
-   for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
-       {
-TRACK1287_BEGIN: track(&&TRACK1287_BEGIN, &&TRACK1287_END);
-TRACK1287_END:  __asm__("nop;");
-if (*tmp == '/')  {
-TRACK1286_BEGIN: track(&&TRACK1286_BEGIN, &&TRACK1286_END);
-TRACK1286_END:  __asm__("nop;");
-progName = tmp + 1;
-}
-}
-   argList = ((void *)0);
-   addFlagsFromEnvVar ( &argList, "BZIP2" );
-   addFlagsFromEnvVar ( &argList, "BZIP" );
-   for (i = 1; i <= argc-1; i++)
-       {
-TRACK1288_BEGIN: track(&&TRACK1288_BEGIN, &&TRACK1288_END);
-TRACK1288_END:  __asm__("nop;");
-argList=snocString((argList), (argv[i]));
-}
-   longestFileName = 7;
-   numFileNames = 0;
-   decode = ((Bool)1);
-   for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1292_BEGIN: track(&&TRACK1292_BEGIN, &&TRACK1292_END);
-  TRACK1292_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--"))==0)) {
-    TRACK1289_BEGIN: track(&&TRACK1289_BEGIN, &&TRACK1289_END);
-    TRACK1289_END:  __asm__("nop;");
-    decode = ((Bool)0); continue;
+  Int32 i, j;
+     Char *tmp;
+     Cell *argList;
+     Cell *aa;
+     Bool decode;
+  init();
+  atexit(report);
+  if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
+         sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
+         sizeof(Char) != 1 || sizeof(UChar) != 1)
+         {
+  TRACK1285_BEGIN: track(&&TRACK1285_BEGIN, &&TRACK1285_END);
+  TRACK1285_END:  __asm__("nop;");
+  configError();
   }
-        if (aa->name[0] == '-' && decode)  {
-  TRACK1290_BEGIN: track(&&TRACK1290_BEGIN, &&TRACK1290_END);
-  TRACK1290_END:  __asm__("nop;");
-  continue;
+     outputHandleJustInCase = ((void *)0);
+     smallMode = ((Bool)0);
+     keepInputFiles = ((Bool)0);
+     forceOverwrite = ((Bool)0);
+     noisy = ((Bool)1);
+     verbosity = 0;
+     blockSize100k = 9;
+     testFailsExist = ((Bool)0);
+     unzFailsExist = ((Bool)0);
+     numFileNames = 0;
+     numFilesProcessed = 0;
+     workFactor = 30;
+     deleteOutputOnInterrupt = ((Bool)0);
+     exitValue = 0;
+     i = j = 0;
+     signal (11, mySIGSEGVorSIGBUScatcher);
+     signal (7, mySIGSEGVorSIGBUScatcher);
+     copyFileName ( inName, "(none)" );
+     copyFileName ( outName, "(none)" );
+     copyFileName ( progNameReally, argv[0] );
+     progName = &progNameReally[0];
+     for (tmp = &progNameReally[0]; *tmp != '\0'; tmp++)
+         {
+  TRACK1287_BEGIN: track(&&TRACK1287_BEGIN, &&TRACK1287_END);
+  TRACK1287_END:  __asm__("nop;");
+  if (*tmp == '/')  {
+  TRACK1286_BEGIN: track(&&TRACK1286_BEGIN, &&TRACK1286_END);
+  TRACK1286_END:  __asm__("nop;");
+  progName = tmp + 1;
   }
-        numFileNames++;
-        if (longestFileName < (Int32)strlen(aa->name) )
-            {
-  TRACK1291_BEGIN: track(&&TRACK1291_BEGIN, &&TRACK1291_END);
-  TRACK1291_END:  __asm__("nop;");
-  longestFileName = (Int32)strlen(aa->name);
   }
-}
-   if (numFileNames == 0)
-       {
-TRACK1293_BEGIN: track(&&TRACK1293_BEGIN, &&TRACK1293_END);
-TRACK1293_END:  __asm__("nop;");
-srcMode = 1;
-} else  {
-TRACK1294_BEGIN: track(&&TRACK1294_BEGIN, &&TRACK1294_END);
-TRACK1294_END:  __asm__("nop;");
-srcMode = 3;
-}
-   opMode = 1;
-   if ( (strstr ( progName, "unzip" ) != 0) ||
-        (strstr ( progName, "UNZIP" ) != 0) )
-       {
-TRACK1295_BEGIN: track(&&TRACK1295_BEGIN, &&TRACK1295_END);
-TRACK1295_END:  __asm__("nop;");
-opMode = 2;
-}
-   if ( (strstr ( progName, "z2cat" ) != 0) ||
-        (strstr ( progName, "Z2CAT" ) != 0) ||
-        (strstr ( progName, "zcat" ) != 0) ||
-        (strstr ( progName, "ZCAT" ) != 0) ) {
-  TRACK1296_BEGIN: track(&&TRACK1296_BEGIN, &&TRACK1296_END);
-  TRACK1296_END:  __asm__("nop;");
+     argList = ((void *)0);
+     addFlagsFromEnvVar ( &argList, "BZIP2" );
+     addFlagsFromEnvVar ( &argList, "BZIP" );
+     for (i = 1; i <= argc-1; i++)
+         {
+  TRACK1288_BEGIN: track(&&TRACK1288_BEGIN, &&TRACK1288_END);
+  TRACK1288_END:  __asm__("nop;");
+  argList=snocString((argList), (argv[i]));
+  }
+     longestFileName = 7;
+     numFileNames = 0;
+     decode = ((Bool)1);
+     for (aa = argList; aa != ((void *)0); aa = aa->link) {
+    TRACK1292_BEGIN: track(&&TRACK1292_BEGIN, &&TRACK1292_END);
+    TRACK1292_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--"))==0)) {
+      TRACK1289_BEGIN: track(&&TRACK1289_BEGIN, &&TRACK1289_END);
+      TRACK1289_END:  __asm__("nop;");
+      decode = ((Bool)0); continue;
+    }
+          if (aa->name[0] == '-' && decode)  {
+    TRACK1290_BEGIN: track(&&TRACK1290_BEGIN, &&TRACK1290_END);
+    TRACK1290_END:  __asm__("nop;");
+    continue;
+    }
+          numFileNames++;
+          if (longestFileName < (Int32)strlen(aa->name) )
+              {
+    TRACK1291_BEGIN: track(&&TRACK1291_BEGIN, &&TRACK1291_END);
+    TRACK1291_END:  __asm__("nop;");
+    longestFileName = (Int32)strlen(aa->name);
+    }
+  }
+     if (numFileNames == 0)
+         {
+  TRACK1293_BEGIN: track(&&TRACK1293_BEGIN, &&TRACK1293_END);
+  TRACK1293_END:  __asm__("nop;");
+  srcMode = 1;
+  } else  {
+  TRACK1294_BEGIN: track(&&TRACK1294_BEGIN, &&TRACK1294_END);
+  TRACK1294_END:  __asm__("nop;");
+  srcMode = 3;
+  }
+     opMode = 1;
+     if ( (strstr ( progName, "unzip" ) != 0) ||
+          (strstr ( progName, "UNZIP" ) != 0) )
+         {
+  TRACK1295_BEGIN: track(&&TRACK1295_BEGIN, &&TRACK1295_END);
+  TRACK1295_END:  __asm__("nop;");
   opMode = 2;
-        srcMode = (numFileNames == 0) ? 1 : 2;
-}
-   for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1322_BEGIN: track(&&TRACK1322_BEGIN, &&TRACK1322_END);
-  TRACK1322_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--"))==0))  {
-  TRACK1297_BEGIN: track(&&TRACK1297_BEGIN, &&TRACK1297_END);
-  TRACK1297_END:  __asm__("nop;");
-  break;
   }
-        if (aa->name[0] == '-' && aa->name[1] != '-') {
-    TRACK1321_BEGIN: track(&&TRACK1321_BEGIN, &&TRACK1321_END);
-    TRACK1321_END:  __asm__("nop;");
-    for (j = 1; aa->name[j] != '\0'; j++) {
-      TRACK1320_BEGIN: track(&&TRACK1320_BEGIN, &&TRACK1320_END);
-      TRACK1320_END:  __asm__("nop;");
-      switch (aa->name[j]) {
-                      
-        case 'c':
-      	TRACK1298_BEGIN: track(&&TRACK1298_BEGIN, &&TRACK1298_END);
-      	TRACK1298_END:  __asm__("nop;");
-      	srcMode = 2; break;
-                      
-        case 'd':
-      	TRACK1299_BEGIN: track(&&TRACK1299_BEGIN, &&TRACK1299_END);
-      	TRACK1299_END:  __asm__("nop;");
-      	opMode = 2; break;
-                      
-        case 'z':
-      	TRACK1300_BEGIN: track(&&TRACK1300_BEGIN, &&TRACK1300_END);
-      	TRACK1300_END:  __asm__("nop;");
-      	opMode = 1; break;
-                      
-        case 'f':
-      	TRACK1301_BEGIN: track(&&TRACK1301_BEGIN, &&TRACK1301_END);
-      	TRACK1301_END:  __asm__("nop;");
-      	forceOverwrite = ((Bool)1); break;
-                      
-        case 't':
-      	TRACK1302_BEGIN: track(&&TRACK1302_BEGIN, &&TRACK1302_END);
-      	TRACK1302_END:  __asm__("nop;");
-      	opMode = 3; break;
-                      
-        case 'k':
-      	TRACK1303_BEGIN: track(&&TRACK1303_BEGIN, &&TRACK1303_END);
-      	TRACK1303_END:  __asm__("nop;");
-      	keepInputFiles = ((Bool)1); break;
-                      
-        case 's':
-      	TRACK1304_BEGIN: track(&&TRACK1304_BEGIN, &&TRACK1304_END);
-      	TRACK1304_END:  __asm__("nop;");
-      	smallMode = ((Bool)1); break;
-                      
-        case 'q':
-      	TRACK1305_BEGIN: track(&&TRACK1305_BEGIN, &&TRACK1305_END);
-      	TRACK1305_END:  __asm__("nop;");
-      	noisy = ((Bool)0); break;
-                      
-        case '1':
-      	TRACK1306_BEGIN: track(&&TRACK1306_BEGIN, &&TRACK1306_END);
-      	TRACK1306_END:  __asm__("nop;");
-      	blockSize100k = 1; break;
-                      
-        case '2':
-      	TRACK1307_BEGIN: track(&&TRACK1307_BEGIN, &&TRACK1307_END);
-      	TRACK1307_END:  __asm__("nop;");
-      	blockSize100k = 2; break;
-                      
-        case '3':
-      	TRACK1308_BEGIN: track(&&TRACK1308_BEGIN, &&TRACK1308_END);
-      	TRACK1308_END:  __asm__("nop;");
-      	blockSize100k = 3; break;
-                      
-        case '4':
-      	TRACK1309_BEGIN: track(&&TRACK1309_BEGIN, &&TRACK1309_END);
-      	TRACK1309_END:  __asm__("nop;");
-      	blockSize100k = 4; break;
-                      
-        case '5':
-      	TRACK1310_BEGIN: track(&&TRACK1310_BEGIN, &&TRACK1310_END);
-      	TRACK1310_END:  __asm__("nop;");
-      	blockSize100k = 5; break;
-                      
-        case '6':
-      	TRACK1311_BEGIN: track(&&TRACK1311_BEGIN, &&TRACK1311_END);
-      	TRACK1311_END:  __asm__("nop;");
-      	blockSize100k = 6; break;
-                      
-        case '7':
-      	TRACK1312_BEGIN: track(&&TRACK1312_BEGIN, &&TRACK1312_END);
-      	TRACK1312_END:  __asm__("nop;");
-      	blockSize100k = 7; break;
-                      
-        case '8':
-      	TRACK1313_BEGIN: track(&&TRACK1313_BEGIN, &&TRACK1313_END);
-      	TRACK1313_END:  __asm__("nop;");
-      	blockSize100k = 8; break;
-                      
-        case '9':
-      	TRACK1314_BEGIN: track(&&TRACK1314_BEGIN, &&TRACK1314_END);
-      	TRACK1314_END:  __asm__("nop;");
-      	blockSize100k = 9; break;
-                      
-        case 'V':
-      	TRACK1316_BEGIN: track(&&TRACK1316_BEGIN, &&TRACK1316_END);
-      	TRACK1316_END:  __asm__("nop;");
-      	 
-      	  case 'L':
-      		TRACK1315_BEGIN: track(&&TRACK1315_BEGIN, &&TRACK1315_END);
-      		TRACK1315_END:  __asm__("nop;");
-      		license(); break;
-                      
-        case 'v':
-      	TRACK1317_BEGIN: track(&&TRACK1317_BEGIN, &&TRACK1317_END);
-      	TRACK1317_END:  __asm__("nop;");
-      	verbosity++; break;
-                      
-        case 'h':
-      	TRACK1318_BEGIN: track(&&TRACK1318_BEGIN, &&TRACK1318_END);
-      	TRACK1318_END:  __asm__("nop;");
-      	usage ( progName );
-                               exit ( 0 );
-                               break;
-                      
-        default:
-      	TRACK1319_BEGIN: track(&&TRACK1319_BEGIN, &&TRACK1319_END);
-      	TRACK1319_END:  __asm__("nop;");
-      	fprintf ( stderr, "%s: Bad flag `%s'\n",
-      	                                   progName, aa->name );
-                               usage ( progName );
-                               exit ( 1 );
-                               break;
-                  }
+     if ( (strstr ( progName, "z2cat" ) != 0) ||
+          (strstr ( progName, "Z2CAT" ) != 0) ||
+          (strstr ( progName, "zcat" ) != 0) ||
+          (strstr ( progName, "ZCAT" ) != 0) ) {
+    TRACK1296_BEGIN: track(&&TRACK1296_BEGIN, &&TRACK1296_END);
+    TRACK1296_END:  __asm__("nop;");
+    opMode = 2;
+          srcMode = (numFileNames == 0) ? 1 : 2;
+  }
+     for (aa = argList; aa != ((void *)0); aa = aa->link) {
+    TRACK1322_BEGIN: track(&&TRACK1322_BEGIN, &&TRACK1322_END);
+    TRACK1322_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--"))==0))  {
+    TRACK1297_BEGIN: track(&&TRACK1297_BEGIN, &&TRACK1297_END);
+    TRACK1297_END:  __asm__("nop;");
+    break;
+    }
+          if (aa->name[0] == '-' && aa->name[1] != '-') {
+      TRACK1321_BEGIN: track(&&TRACK1321_BEGIN, &&TRACK1321_END);
+      TRACK1321_END:  __asm__("nop;");
+      for (j = 1; aa->name[j] != '\0'; j++) {
+        TRACK1320_BEGIN: track(&&TRACK1320_BEGIN, &&TRACK1320_END);
+        TRACK1320_END:  __asm__("nop;");
+        switch (aa->name[j]) {
+                        
+          case 'c':
+        	TRACK1298_BEGIN: track(&&TRACK1298_BEGIN, &&TRACK1298_END);
+        	TRACK1298_END:  __asm__("nop;");
+        	srcMode = 2; break;
+                        
+          case 'd':
+        	TRACK1299_BEGIN: track(&&TRACK1299_BEGIN, &&TRACK1299_END);
+        	TRACK1299_END:  __asm__("nop;");
+        	opMode = 2; break;
+                        
+          case 'z':
+        	TRACK1300_BEGIN: track(&&TRACK1300_BEGIN, &&TRACK1300_END);
+        	TRACK1300_END:  __asm__("nop;");
+        	opMode = 1; break;
+                        
+          case 'f':
+        	TRACK1301_BEGIN: track(&&TRACK1301_BEGIN, &&TRACK1301_END);
+        	TRACK1301_END:  __asm__("nop;");
+        	forceOverwrite = ((Bool)1); break;
+                        
+          case 't':
+        	TRACK1302_BEGIN: track(&&TRACK1302_BEGIN, &&TRACK1302_END);
+        	TRACK1302_END:  __asm__("nop;");
+        	opMode = 3; break;
+                        
+          case 'k':
+        	TRACK1303_BEGIN: track(&&TRACK1303_BEGIN, &&TRACK1303_END);
+        	TRACK1303_END:  __asm__("nop;");
+        	keepInputFiles = ((Bool)1); break;
+                        
+          case 's':
+        	TRACK1304_BEGIN: track(&&TRACK1304_BEGIN, &&TRACK1304_END);
+        	TRACK1304_END:  __asm__("nop;");
+        	smallMode = ((Bool)1); break;
+                        
+          case 'q':
+        	TRACK1305_BEGIN: track(&&TRACK1305_BEGIN, &&TRACK1305_END);
+        	TRACK1305_END:  __asm__("nop;");
+        	noisy = ((Bool)0); break;
+                        
+          case '1':
+        	TRACK1306_BEGIN: track(&&TRACK1306_BEGIN, &&TRACK1306_END);
+        	TRACK1306_END:  __asm__("nop;");
+        	blockSize100k = 1; break;
+                        
+          case '2':
+        	TRACK1307_BEGIN: track(&&TRACK1307_BEGIN, &&TRACK1307_END);
+        	TRACK1307_END:  __asm__("nop;");
+        	blockSize100k = 2; break;
+                        
+          case '3':
+        	TRACK1308_BEGIN: track(&&TRACK1308_BEGIN, &&TRACK1308_END);
+        	TRACK1308_END:  __asm__("nop;");
+        	blockSize100k = 3; break;
+                        
+          case '4':
+        	TRACK1309_BEGIN: track(&&TRACK1309_BEGIN, &&TRACK1309_END);
+        	TRACK1309_END:  __asm__("nop;");
+        	blockSize100k = 4; break;
+                        
+          case '5':
+        	TRACK1310_BEGIN: track(&&TRACK1310_BEGIN, &&TRACK1310_END);
+        	TRACK1310_END:  __asm__("nop;");
+        	blockSize100k = 5; break;
+                        
+          case '6':
+        	TRACK1311_BEGIN: track(&&TRACK1311_BEGIN, &&TRACK1311_END);
+        	TRACK1311_END:  __asm__("nop;");
+        	blockSize100k = 6; break;
+                        
+          case '7':
+        	TRACK1312_BEGIN: track(&&TRACK1312_BEGIN, &&TRACK1312_END);
+        	TRACK1312_END:  __asm__("nop;");
+        	blockSize100k = 7; break;
+                        
+          case '8':
+        	TRACK1313_BEGIN: track(&&TRACK1313_BEGIN, &&TRACK1313_END);
+        	TRACK1313_END:  __asm__("nop;");
+        	blockSize100k = 8; break;
+                        
+          case '9':
+        	TRACK1314_BEGIN: track(&&TRACK1314_BEGIN, &&TRACK1314_END);
+        	TRACK1314_END:  __asm__("nop;");
+        	blockSize100k = 9; break;
+                        
+          case 'V':
+        	TRACK1316_BEGIN: track(&&TRACK1316_BEGIN, &&TRACK1316_END);
+        	TRACK1316_END:  __asm__("nop;");
+        	 
+        	  case 'L':
+        		TRACK1315_BEGIN: track(&&TRACK1315_BEGIN, &&TRACK1315_END);
+        		TRACK1315_END:  __asm__("nop;");
+        		license(); break;
+                        
+          case 'v':
+        	TRACK1317_BEGIN: track(&&TRACK1317_BEGIN, &&TRACK1317_END);
+        	TRACK1317_END:  __asm__("nop;");
+        	verbosity++; break;
+                        
+          case 'h':
+        	TRACK1318_BEGIN: track(&&TRACK1318_BEGIN, &&TRACK1318_END);
+        	TRACK1318_END:  __asm__("nop;");
+        	usage ( progName );
+                                 exit ( 0 );
+                                 break;
+                        
+          default:
+        	TRACK1319_BEGIN: track(&&TRACK1319_BEGIN, &&TRACK1319_END);
+        	TRACK1319_END:  __asm__("nop;");
+        	fprintf ( stderr, "%s: Bad flag `%s'\n",
+        	                                   progName, aa->name );
+                                 usage ( progName );
+                                 exit ( 1 );
+                                 break;
+                    }
+      }
     }
   }
-}
-   for (aa = argList; aa != ((void *)0); aa = aa->link) {
-  TRACK1359_BEGIN: track(&&TRACK1359_BEGIN, &&TRACK1359_END);
-  TRACK1359_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--"))==0))  {
-  TRACK1323_BEGIN: track(&&TRACK1323_BEGIN, &&TRACK1323_END);
-  TRACK1323_END:  __asm__("nop;");
-  break;
-  }
-        if ((strcmp(aa->name, ("--stdout"))==0))  {
-  TRACK1324_BEGIN: track(&&TRACK1324_BEGIN, &&TRACK1324_END);
-  TRACK1324_END:  __asm__("nop;");
-  srcMode = 2;
-  } else
-         {
-  TRACK1358_BEGIN: track(&&TRACK1358_BEGIN, &&TRACK1358_END);
-  TRACK1358_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--decompress"))==0))  {
-  TRACK1325_BEGIN: track(&&TRACK1325_BEGIN, &&TRACK1325_END);
-  TRACK1325_END:  __asm__("nop;");
-  opMode = 2;
-  } else
-         {
-  TRACK1357_BEGIN: track(&&TRACK1357_BEGIN, &&TRACK1357_END);
-  TRACK1357_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--compress"))==0))  {
-  TRACK1326_BEGIN: track(&&TRACK1326_BEGIN, &&TRACK1326_END);
-  TRACK1326_END:  __asm__("nop;");
-  opMode = 1;
-  } else
-         {
-  TRACK1356_BEGIN: track(&&TRACK1356_BEGIN, &&TRACK1356_END);
-  TRACK1356_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--force"))==0))  {
-  TRACK1327_BEGIN: track(&&TRACK1327_BEGIN, &&TRACK1327_END);
-  TRACK1327_END:  __asm__("nop;");
-  forceOverwrite = ((Bool)1);
-  } else
-         {
-  TRACK1355_BEGIN: track(&&TRACK1355_BEGIN, &&TRACK1355_END);
-  TRACK1355_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--test"))==0))  {
-  TRACK1328_BEGIN: track(&&TRACK1328_BEGIN, &&TRACK1328_END);
-  TRACK1328_END:  __asm__("nop;");
-  opMode = 3;
-  } else
-         {
-  TRACK1354_BEGIN: track(&&TRACK1354_BEGIN, &&TRACK1354_END);
-  TRACK1354_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--keep"))==0))  {
-  TRACK1329_BEGIN: track(&&TRACK1329_BEGIN, &&TRACK1329_END);
-  TRACK1329_END:  __asm__("nop;");
-  keepInputFiles = ((Bool)1);
-  } else
-         {
-  TRACK1353_BEGIN: track(&&TRACK1353_BEGIN, &&TRACK1353_END);
-  TRACK1353_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--small"))==0))  {
-  TRACK1330_BEGIN: track(&&TRACK1330_BEGIN, &&TRACK1330_END);
-  TRACK1330_END:  __asm__("nop;");
-  smallMode = ((Bool)1);
-  } else
-         {
-  TRACK1352_BEGIN: track(&&TRACK1352_BEGIN, &&TRACK1352_END);
-  TRACK1352_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--quiet"))==0))  {
-  TRACK1331_BEGIN: track(&&TRACK1331_BEGIN, &&TRACK1331_END);
-  TRACK1331_END:  __asm__("nop;");
-  noisy = ((Bool)0);
-  } else
-         {
-  TRACK1351_BEGIN: track(&&TRACK1351_BEGIN, &&TRACK1351_END);
-  TRACK1351_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--version"))==0))  {
-  TRACK1332_BEGIN: track(&&TRACK1332_BEGIN, &&TRACK1332_END);
-  TRACK1332_END:  __asm__("nop;");
-  license();
-  } else
-         {
-  TRACK1350_BEGIN: track(&&TRACK1350_BEGIN, &&TRACK1350_END);
-  TRACK1350_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--license"))==0))  {
-  TRACK1333_BEGIN: track(&&TRACK1333_BEGIN, &&TRACK1333_END);
-  TRACK1333_END:  __asm__("nop;");
-  license();
-  } else
-         {
-  TRACK1349_BEGIN: track(&&TRACK1349_BEGIN, &&TRACK1349_END);
-  TRACK1349_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--exponential"))==0))  {
-  TRACK1334_BEGIN: track(&&TRACK1334_BEGIN, &&TRACK1334_END);
-  TRACK1334_END:  __asm__("nop;");
-  workFactor = 1;
-  } else
-         {
-  TRACK1348_BEGIN: track(&&TRACK1348_BEGIN, &&TRACK1348_END);
-  TRACK1348_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--repetitive-best"))==0))  {
-  TRACK1335_BEGIN: track(&&TRACK1335_BEGIN, &&TRACK1335_END);
-  TRACK1335_END:  __asm__("nop;");
-  redundant(aa->name);
-  } else
-         {
-  TRACK1347_BEGIN: track(&&TRACK1347_BEGIN, &&TRACK1347_END);
-  TRACK1347_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--repetitive-fast"))==0))  {
-  TRACK1336_BEGIN: track(&&TRACK1336_BEGIN, &&TRACK1336_END);
-  TRACK1336_END:  __asm__("nop;");
-  redundant(aa->name);
-  } else
-         {
-  TRACK1346_BEGIN: track(&&TRACK1346_BEGIN, &&TRACK1346_END);
-  TRACK1346_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--fast"))==0))  {
-  TRACK1337_BEGIN: track(&&TRACK1337_BEGIN, &&TRACK1337_END);
-  TRACK1337_END:  __asm__("nop;");
-  blockSize100k = 1;
-  } else
-         {
-  TRACK1345_BEGIN: track(&&TRACK1345_BEGIN, &&TRACK1345_END);
-  TRACK1345_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--best"))==0))  {
-  TRACK1338_BEGIN: track(&&TRACK1338_BEGIN, &&TRACK1338_END);
-  TRACK1338_END:  __asm__("nop;");
-  blockSize100k = 9;
-  } else
-         {
-  TRACK1344_BEGIN: track(&&TRACK1344_BEGIN, &&TRACK1344_END);
-  TRACK1344_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--verbose"))==0))  {
-  TRACK1339_BEGIN: track(&&TRACK1339_BEGIN, &&TRACK1339_END);
-  TRACK1339_END:  __asm__("nop;");
-  verbosity++;
-  } else
-         {
-  TRACK1343_BEGIN: track(&&TRACK1343_BEGIN, &&TRACK1343_END);
-  TRACK1343_END:  __asm__("nop;");
-  if ((strcmp(aa->name, ("--help"))==0)) {
-    TRACK1340_BEGIN: track(&&TRACK1340_BEGIN, &&TRACK1340_END);
-    TRACK1340_END:  __asm__("nop;");
-    usage ( progName ); exit ( 0 );
-  }
-           else
-            {
-  TRACK1342_BEGIN: track(&&TRACK1342_BEGIN, &&TRACK1342_END);
-  TRACK1342_END:  __asm__("nop;");
-  if (strncmp ( aa->name, "--", 2) == 0) {
-    TRACK1341_BEGIN: track(&&TRACK1341_BEGIN, &&TRACK1341_END);
-    TRACK1341_END:  __asm__("nop;");
-    fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
-                usage ( progName );
-                exit ( 1 );
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-  }
-}
-   if (verbosity > 4)  {
-TRACK1360_BEGIN: track(&&TRACK1360_BEGIN, &&TRACK1360_END);
-TRACK1360_END:  __asm__("nop;");
-verbosity = 4;
-}
-   if (opMode == 1 && smallMode && blockSize100k > 2)
-       {
-TRACK1361_BEGIN: track(&&TRACK1361_BEGIN, &&TRACK1361_END);
-TRACK1361_END:  __asm__("nop;");
-blockSize100k = 2;
-}
-   if (opMode == 3 && srcMode == 2) {
-  TRACK1362_BEGIN: track(&&TRACK1362_BEGIN, &&TRACK1362_END);
-  TRACK1362_END:  __asm__("nop;");
-  fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
-                  progName );
-        exit ( 1 );
-}
-   if (srcMode == 2 && numFileNames == 0)
-       {
-TRACK1363_BEGIN: track(&&TRACK1363_BEGIN, &&TRACK1363_END);
-TRACK1363_END:  __asm__("nop;");
-srcMode = 1;
-}
-   if (opMode != 1)  {
-TRACK1364_BEGIN: track(&&TRACK1364_BEGIN, &&TRACK1364_END);
-TRACK1364_END:  __asm__("nop;");
-blockSize100k = 0;
-}
-   if (srcMode == 3) {
-  TRACK1365_BEGIN: track(&&TRACK1365_BEGIN, &&TRACK1365_END);
-  TRACK1365_END:  __asm__("nop;");
-  signal (2, mySignalCatcher);
-        signal (15, mySignalCatcher);
-        signal (1, mySignalCatcher);
-}
-   if (opMode == 1) {
-  TRACK1371_BEGIN: track(&&TRACK1371_BEGIN, &&TRACK1371_END);
-  TRACK1371_END:  __asm__("nop;");
-  if (srcMode == 1) {
-    TRACK1366_BEGIN: track(&&TRACK1366_BEGIN, &&TRACK1366_END);
-    TRACK1366_END:  __asm__("nop;");
-    compress ( ((void *)0) );
-  } else {
-    TRACK1370_BEGIN: track(&&TRACK1370_BEGIN, &&TRACK1370_END);
-    TRACK1370_END:  __asm__("nop;");
-    decode = ((Bool)1);
-            for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1369_BEGIN: track(&&TRACK1369_BEGIN, &&TRACK1369_END);
-      TRACK1369_END:  __asm__("nop;");
-      if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1367_BEGIN: track(&&TRACK1367_BEGIN, &&TRACK1367_END);
-        TRACK1367_END:  __asm__("nop;");
-        decode = ((Bool)0); continue;
-      }
-                 if (aa->name[0] == '-' && decode)  {
-      TRACK1368_BEGIN: track(&&TRACK1368_BEGIN, &&TRACK1368_END);
-      TRACK1368_END:  __asm__("nop;");
-      continue;
-      }
-                 numFilesProcessed++;
-                 compress ( aa->name );
+     for (aa = argList; aa != ((void *)0); aa = aa->link) {
+    TRACK1359_BEGIN: track(&&TRACK1359_BEGIN, &&TRACK1359_END);
+    TRACK1359_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--"))==0))  {
+    TRACK1323_BEGIN: track(&&TRACK1323_BEGIN, &&TRACK1323_END);
+    TRACK1323_END:  __asm__("nop;");
+    break;
+    }
+          if ((strcmp(aa->name, ("--stdout"))==0))  {
+    TRACK1324_BEGIN: track(&&TRACK1324_BEGIN, &&TRACK1324_END);
+    TRACK1324_END:  __asm__("nop;");
+    srcMode = 2;
+    } else
+           {
+    TRACK1358_BEGIN: track(&&TRACK1358_BEGIN, &&TRACK1358_END);
+    TRACK1358_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--decompress"))==0))  {
+    TRACK1325_BEGIN: track(&&TRACK1325_BEGIN, &&TRACK1325_END);
+    TRACK1325_END:  __asm__("nop;");
+    opMode = 2;
+    } else
+           {
+    TRACK1357_BEGIN: track(&&TRACK1357_BEGIN, &&TRACK1357_END);
+    TRACK1357_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--compress"))==0))  {
+    TRACK1326_BEGIN: track(&&TRACK1326_BEGIN, &&TRACK1326_END);
+    TRACK1326_END:  __asm__("nop;");
+    opMode = 1;
+    } else
+           {
+    TRACK1356_BEGIN: track(&&TRACK1356_BEGIN, &&TRACK1356_END);
+    TRACK1356_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--force"))==0))  {
+    TRACK1327_BEGIN: track(&&TRACK1327_BEGIN, &&TRACK1327_END);
+    TRACK1327_END:  __asm__("nop;");
+    forceOverwrite = ((Bool)1);
+    } else
+           {
+    TRACK1355_BEGIN: track(&&TRACK1355_BEGIN, &&TRACK1355_END);
+    TRACK1355_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--test"))==0))  {
+    TRACK1328_BEGIN: track(&&TRACK1328_BEGIN, &&TRACK1328_END);
+    TRACK1328_END:  __asm__("nop;");
+    opMode = 3;
+    } else
+           {
+    TRACK1354_BEGIN: track(&&TRACK1354_BEGIN, &&TRACK1354_END);
+    TRACK1354_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--keep"))==0))  {
+    TRACK1329_BEGIN: track(&&TRACK1329_BEGIN, &&TRACK1329_END);
+    TRACK1329_END:  __asm__("nop;");
+    keepInputFiles = ((Bool)1);
+    } else
+           {
+    TRACK1353_BEGIN: track(&&TRACK1353_BEGIN, &&TRACK1353_END);
+    TRACK1353_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--small"))==0))  {
+    TRACK1330_BEGIN: track(&&TRACK1330_BEGIN, &&TRACK1330_END);
+    TRACK1330_END:  __asm__("nop;");
+    smallMode = ((Bool)1);
+    } else
+           {
+    TRACK1352_BEGIN: track(&&TRACK1352_BEGIN, &&TRACK1352_END);
+    TRACK1352_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--quiet"))==0))  {
+    TRACK1331_BEGIN: track(&&TRACK1331_BEGIN, &&TRACK1331_END);
+    TRACK1331_END:  __asm__("nop;");
+    noisy = ((Bool)0);
+    } else
+           {
+    TRACK1351_BEGIN: track(&&TRACK1351_BEGIN, &&TRACK1351_END);
+    TRACK1351_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--version"))==0))  {
+    TRACK1332_BEGIN: track(&&TRACK1332_BEGIN, &&TRACK1332_END);
+    TRACK1332_END:  __asm__("nop;");
+    license();
+    } else
+           {
+    TRACK1350_BEGIN: track(&&TRACK1350_BEGIN, &&TRACK1350_END);
+    TRACK1350_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--license"))==0))  {
+    TRACK1333_BEGIN: track(&&TRACK1333_BEGIN, &&TRACK1333_END);
+    TRACK1333_END:  __asm__("nop;");
+    license();
+    } else
+           {
+    TRACK1349_BEGIN: track(&&TRACK1349_BEGIN, &&TRACK1349_END);
+    TRACK1349_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--exponential"))==0))  {
+    TRACK1334_BEGIN: track(&&TRACK1334_BEGIN, &&TRACK1334_END);
+    TRACK1334_END:  __asm__("nop;");
+    workFactor = 1;
+    } else
+           {
+    TRACK1348_BEGIN: track(&&TRACK1348_BEGIN, &&TRACK1348_END);
+    TRACK1348_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--repetitive-best"))==0))  {
+    TRACK1335_BEGIN: track(&&TRACK1335_BEGIN, &&TRACK1335_END);
+    TRACK1335_END:  __asm__("nop;");
+    redundant(aa->name);
+    } else
+           {
+    TRACK1347_BEGIN: track(&&TRACK1347_BEGIN, &&TRACK1347_END);
+    TRACK1347_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--repetitive-fast"))==0))  {
+    TRACK1336_BEGIN: track(&&TRACK1336_BEGIN, &&TRACK1336_END);
+    TRACK1336_END:  __asm__("nop;");
+    redundant(aa->name);
+    } else
+           {
+    TRACK1346_BEGIN: track(&&TRACK1346_BEGIN, &&TRACK1346_END);
+    TRACK1346_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--fast"))==0))  {
+    TRACK1337_BEGIN: track(&&TRACK1337_BEGIN, &&TRACK1337_END);
+    TRACK1337_END:  __asm__("nop;");
+    blockSize100k = 1;
+    } else
+           {
+    TRACK1345_BEGIN: track(&&TRACK1345_BEGIN, &&TRACK1345_END);
+    TRACK1345_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--best"))==0))  {
+    TRACK1338_BEGIN: track(&&TRACK1338_BEGIN, &&TRACK1338_END);
+    TRACK1338_END:  __asm__("nop;");
+    blockSize100k = 9;
+    } else
+           {
+    TRACK1344_BEGIN: track(&&TRACK1344_BEGIN, &&TRACK1344_END);
+    TRACK1344_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--verbose"))==0))  {
+    TRACK1339_BEGIN: track(&&TRACK1339_BEGIN, &&TRACK1339_END);
+    TRACK1339_END:  __asm__("nop;");
+    verbosity++;
+    } else
+           {
+    TRACK1343_BEGIN: track(&&TRACK1343_BEGIN, &&TRACK1343_END);
+    TRACK1343_END:  __asm__("nop;");
+    if ((strcmp(aa->name, ("--help"))==0)) {
+      TRACK1340_BEGIN: track(&&TRACK1340_BEGIN, &&TRACK1340_END);
+      TRACK1340_END:  __asm__("nop;");
+      usage ( progName ); exit ( 0 );
+    }
+             else
+              {
+    TRACK1342_BEGIN: track(&&TRACK1342_BEGIN, &&TRACK1342_END);
+    TRACK1342_END:  __asm__("nop;");
+    if (strncmp ( aa->name, "--", 2) == 0) {
+      TRACK1341_BEGIN: track(&&TRACK1341_BEGIN, &&TRACK1341_END);
+      TRACK1341_END:  __asm__("nop;");
+      fprintf ( stderr, "%s: Bad flag `%s'\n", progName, aa->name );
+                  usage ( progName );
+                  exit ( 1 );
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
     }
   }
-}
-   else
-    {
-TRACK1386_BEGIN: track(&&TRACK1386_BEGIN, &&TRACK1386_END);
-TRACK1386_END:  __asm__("nop;");
-if (opMode == 2) {
-  TRACK1378_BEGIN: track(&&TRACK1378_BEGIN, &&TRACK1378_END);
-  TRACK1378_END:  __asm__("nop;");
-  unzFailsExist = ((Bool)0);
-        if (srcMode == 1) {
-    TRACK1372_BEGIN: track(&&TRACK1372_BEGIN, &&TRACK1372_END);
-    TRACK1372_END:  __asm__("nop;");
-    uncompress ( ((void *)0) );
-  } else {
-    TRACK1376_BEGIN: track(&&TRACK1376_BEGIN, &&TRACK1376_END);
-    TRACK1376_END:  __asm__("nop;");
-    decode = ((Bool)1);
-             for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1375_BEGIN: track(&&TRACK1375_BEGIN, &&TRACK1375_END);
-      TRACK1375_END:  __asm__("nop;");
-      if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1373_BEGIN: track(&&TRACK1373_BEGIN, &&TRACK1373_END);
-        TRACK1373_END:  __asm__("nop;");
-        decode = ((Bool)0); continue;
+     if (verbosity > 4)  {
+  TRACK1360_BEGIN: track(&&TRACK1360_BEGIN, &&TRACK1360_END);
+  TRACK1360_END:  __asm__("nop;");
+  verbosity = 4;
+  }
+     if (opMode == 1 && smallMode && blockSize100k > 2)
+         {
+  TRACK1361_BEGIN: track(&&TRACK1361_BEGIN, &&TRACK1361_END);
+  TRACK1361_END:  __asm__("nop;");
+  blockSize100k = 2;
+  }
+     if (opMode == 3 && srcMode == 2) {
+    TRACK1362_BEGIN: track(&&TRACK1362_BEGIN, &&TRACK1362_END);
+    TRACK1362_END:  __asm__("nop;");
+    fprintf ( stderr, "%s: -c and -t cannot be used together.\n",
+                    progName );
+          exit ( 1 );
+  }
+     if (srcMode == 2 && numFileNames == 0)
+         {
+  TRACK1363_BEGIN: track(&&TRACK1363_BEGIN, &&TRACK1363_END);
+  TRACK1363_END:  __asm__("nop;");
+  srcMode = 1;
+  }
+     if (opMode != 1)  {
+  TRACK1364_BEGIN: track(&&TRACK1364_BEGIN, &&TRACK1364_END);
+  TRACK1364_END:  __asm__("nop;");
+  blockSize100k = 0;
+  }
+     if (srcMode == 3) {
+    TRACK1365_BEGIN: track(&&TRACK1365_BEGIN, &&TRACK1365_END);
+    TRACK1365_END:  __asm__("nop;");
+    signal (2, mySignalCatcher);
+          signal (15, mySignalCatcher);
+          signal (1, mySignalCatcher);
+  }
+     if (opMode == 1) {
+    TRACK1371_BEGIN: track(&&TRACK1371_BEGIN, &&TRACK1371_END);
+    TRACK1371_END:  __asm__("nop;");
+    if (srcMode == 1) {
+      TRACK1366_BEGIN: track(&&TRACK1366_BEGIN, &&TRACK1366_END);
+      TRACK1366_END:  __asm__("nop;");
+      compress ( ((void *)0) );
+    } else {
+      TRACK1370_BEGIN: track(&&TRACK1370_BEGIN, &&TRACK1370_END);
+      TRACK1370_END:  __asm__("nop;");
+      decode = ((Bool)1);
+              for (aa = argList; aa != ((void *)0); aa = aa->link) {
+        TRACK1369_BEGIN: track(&&TRACK1369_BEGIN, &&TRACK1369_END);
+        TRACK1369_END:  __asm__("nop;");
+        if ((strcmp(aa->name, ("--"))==0)) {
+          TRACK1367_BEGIN: track(&&TRACK1367_BEGIN, &&TRACK1367_END);
+          TRACK1367_END:  __asm__("nop;");
+          decode = ((Bool)0); continue;
+        }
+                   if (aa->name[0] == '-' && decode)  {
+        TRACK1368_BEGIN: track(&&TRACK1368_BEGIN, &&TRACK1368_END);
+        TRACK1368_END:  __asm__("nop;");
+        continue;
+        }
+                   numFilesProcessed++;
+                   compress ( aa->name );
       }
-                  if (aa->name[0] == '-' && decode)  {
-      TRACK1374_BEGIN: track(&&TRACK1374_BEGIN, &&TRACK1374_END);
-      TRACK1374_END:  __asm__("nop;");
-      continue;
-      }
-                  numFilesProcessed++;
-                  uncompress ( aa->name );
     }
   }
-        if (unzFailsExist) {
-    TRACK1377_BEGIN: track(&&TRACK1377_BEGIN, &&TRACK1377_END);
-    TRACK1377_END:  __asm__("nop;");
-    setExit(2);
-             exit(exitValue);
-  }
-}
-   else {
-  TRACK1385_BEGIN: track(&&TRACK1385_BEGIN, &&TRACK1385_END);
-  TRACK1385_END:  __asm__("nop;");
-  testFailsExist = ((Bool)0);
-        if (srcMode == 1) {
-    TRACK1379_BEGIN: track(&&TRACK1379_BEGIN, &&TRACK1379_END);
-    TRACK1379_END:  __asm__("nop;");
-    testf ( ((void *)0) );
-  } else {
-    TRACK1383_BEGIN: track(&&TRACK1383_BEGIN, &&TRACK1383_END);
-    TRACK1383_END:  __asm__("nop;");
-    decode = ((Bool)1);
-             for (aa = argList; aa != ((void *)0); aa = aa->link) {
-      TRACK1382_BEGIN: track(&&TRACK1382_BEGIN, &&TRACK1382_END);
-      TRACK1382_END:  __asm__("nop;");
-      if ((strcmp(aa->name, ("--"))==0)) {
-        TRACK1380_BEGIN: track(&&TRACK1380_BEGIN, &&TRACK1380_END);
-        TRACK1380_END:  __asm__("nop;");
-        decode = ((Bool)0); continue;
+     else
+      {
+  TRACK1386_BEGIN: track(&&TRACK1386_BEGIN, &&TRACK1386_END);
+  TRACK1386_END:  __asm__("nop;");
+  if (opMode == 2) {
+    TRACK1378_BEGIN: track(&&TRACK1378_BEGIN, &&TRACK1378_END);
+    TRACK1378_END:  __asm__("nop;");
+    unzFailsExist = ((Bool)0);
+          if (srcMode == 1) {
+      TRACK1372_BEGIN: track(&&TRACK1372_BEGIN, &&TRACK1372_END);
+      TRACK1372_END:  __asm__("nop;");
+      uncompress ( ((void *)0) );
+    } else {
+      TRACK1376_BEGIN: track(&&TRACK1376_BEGIN, &&TRACK1376_END);
+      TRACK1376_END:  __asm__("nop;");
+      decode = ((Bool)1);
+               for (aa = argList; aa != ((void *)0); aa = aa->link) {
+        TRACK1375_BEGIN: track(&&TRACK1375_BEGIN, &&TRACK1375_END);
+        TRACK1375_END:  __asm__("nop;");
+        if ((strcmp(aa->name, ("--"))==0)) {
+          TRACK1373_BEGIN: track(&&TRACK1373_BEGIN, &&TRACK1373_END);
+          TRACK1373_END:  __asm__("nop;");
+          decode = ((Bool)0); continue;
+        }
+                    if (aa->name[0] == '-' && decode)  {
+        TRACK1374_BEGIN: track(&&TRACK1374_BEGIN, &&TRACK1374_END);
+        TRACK1374_END:  __asm__("nop;");
+        continue;
+        }
+                    numFilesProcessed++;
+                    uncompress ( aa->name );
       }
-                  if (aa->name[0] == '-' && decode)  {
-      TRACK1381_BEGIN: track(&&TRACK1381_BEGIN, &&TRACK1381_END);
-      TRACK1381_END:  __asm__("nop;");
-      continue;
-      }
-                  numFilesProcessed++;
-                  testf ( aa->name );
+    }
+          if (unzFailsExist) {
+      TRACK1377_BEGIN: track(&&TRACK1377_BEGIN, &&TRACK1377_END);
+      TRACK1377_END:  __asm__("nop;");
+      setExit(2);
+               exit(exitValue);
     }
   }
-        if (testFailsExist && noisy) {
-    TRACK1384_BEGIN: track(&&TRACK1384_BEGIN, &&TRACK1384_END);
-    TRACK1384_END:  __asm__("nop;");
-    fprintf ( stderr,
-               "\n"
-               "You can use the `bzip2recover' program to attempt to recover\n"
-               "data from undamaged sections of corrupted files.\n\n"
-             );
-             setExit(2);
-             exit(exitValue);
+     else {
+    TRACK1385_BEGIN: track(&&TRACK1385_BEGIN, &&TRACK1385_END);
+    TRACK1385_END:  __asm__("nop;");
+    testFailsExist = ((Bool)0);
+          if (srcMode == 1) {
+      TRACK1379_BEGIN: track(&&TRACK1379_BEGIN, &&TRACK1379_END);
+      TRACK1379_END:  __asm__("nop;");
+      testf ( ((void *)0) );
+    } else {
+      TRACK1383_BEGIN: track(&&TRACK1383_BEGIN, &&TRACK1383_END);
+      TRACK1383_END:  __asm__("nop;");
+      decode = ((Bool)1);
+               for (aa = argList; aa != ((void *)0); aa = aa->link) {
+        TRACK1382_BEGIN: track(&&TRACK1382_BEGIN, &&TRACK1382_END);
+        TRACK1382_END:  __asm__("nop;");
+        if ((strcmp(aa->name, ("--"))==0)) {
+          TRACK1380_BEGIN: track(&&TRACK1380_BEGIN, &&TRACK1380_END);
+          TRACK1380_END:  __asm__("nop;");
+          decode = ((Bool)0); continue;
+        }
+                    if (aa->name[0] == '-' && decode)  {
+        TRACK1381_BEGIN: track(&&TRACK1381_BEGIN, &&TRACK1381_END);
+        TRACK1381_END:  __asm__("nop;");
+        continue;
+        }
+                    numFilesProcessed++;
+                    testf ( aa->name );
+      }
+    }
+          if (testFailsExist && noisy) {
+      TRACK1384_BEGIN: track(&&TRACK1384_BEGIN, &&TRACK1384_END);
+      TRACK1384_END:  __asm__("nop;");
+      fprintf ( stderr,
+                 "\n"
+                 "You can use the `bzip2recover' program to attempt to recover\n"
+                 "data from undamaged sections of corrupted files.\n\n"
+               );
+               setExit(2);
+               exit(exitValue);
+    }
   }
-}
-}
-   aa = argList;
-   while (aa != ((void *)0)) {
-  Cell* aa2 = aa->link;
-  TRACK1388_BEGIN: track(&&TRACK1388_BEGIN, &&TRACK1388_END);
-  TRACK1388_END:  __asm__("nop;");
-  if (aa->name != ((void *)0))  {
-  TRACK1387_BEGIN: track(&&TRACK1387_BEGIN, &&TRACK1387_END);
-  TRACK1387_END:  __asm__("nop;");
-  free(aa->name);
   }
-        free(aa);
-        aa = aa2;
-}
-   report(); //
-   return exitValue;
-}
-
-static void report()
-{
-  printf("Branches taken: %d\n", coverage.count);
-}
-
-static void track(void* start, void* end)
-{
-  __asm__( "movl	%0, %%edi\n\t"
-    "mov        $144, %%al\n\t"
-    "movl	%1, %%ecx\n\t"
-    "rep 	stosb\n\t"
-    :
-    : "r" (start), "r"(end-start)
-    : "edi", "al", "ecx"
-    );
-  coverage.count++;
-}
-
-static void init()
-{
-  if (mprotect((void*) 0x08048000, 114728, 0x1 | 0x2 | 0x4) != 0) {
-    exit(1);
+     aa = argList;
+     while (aa != ((void *)0)) {
+    Cell* aa2 = aa->link;
+    TRACK1388_BEGIN: track(&&TRACK1388_BEGIN, &&TRACK1388_END);
+    TRACK1388_END:  __asm__("nop;");
+    if (aa->name != ((void *)0))  {
+    TRACK1387_BEGIN: track(&&TRACK1387_BEGIN, &&TRACK1387_END);
+    TRACK1387_END:  __asm__("nop;");
+    free(aa->name);
+    }
+          free(aa);
+          aa = aa2;
   }
-  memset(&coverage, 0, sizeof(coverage));
+     return exitValue;
 }

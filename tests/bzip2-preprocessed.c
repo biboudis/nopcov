@@ -54,14 +54,6 @@ struct _IO_FILE;
 
 typedef struct _IO_FILE FILE;
 
-
-
-
-
-
-
-
-
 typedef struct _IO_FILE __FILE;
 typedef struct
 {
@@ -165,32 +157,12 @@ extern void _IO_free_backup_area (_IO_FILE *) ;
 
 typedef _G_fpos_t fpos_t;
 
-
 extern struct _IO_FILE *stdin;
 extern struct _IO_FILE *stdout;
 extern struct _IO_FILE *stderr;
 
-
-
-
-
-
-
 extern int remove (__const char *__filename) ;
-
 extern int rename (__const char *__old, __const char *__new) ;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 extern FILE *tmpfile (void) ;
@@ -207,7 +179,6 @@ extern FILE *freopen (__const char *__restrict __filename,
         __const char *__restrict __modes,
         FILE *__restrict __stream) ;
 
-extern FILE *fdopen (int __fd, __const char *__modes) ;
 
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) ;
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
@@ -237,15 +208,11 @@ extern int fgetc (FILE *__stream);
 extern int getc (FILE *__stream);
 extern int getchar (void);
 
-extern int getc_unlocked (FILE *__stream);
-extern int getchar_unlocked (void);
 
 extern int fputc (int __c, FILE *__stream);
 extern int putc (int __c, FILE *__stream);
 extern int putchar (int __c);
 
-extern int putc_unlocked (int __c, FILE *__stream);
-extern int putchar_unlocked (int __c);
 
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
      ;
@@ -277,13 +244,7 @@ extern int ferror (FILE *__stream) ;
 
 extern void perror (__const char *__s);
 
-extern int fileno (FILE *__stream) ;
-extern char *ctermid (char *__s) ;
-extern void flockfile (FILE *__stream) ;
-extern int ftrylockfile (FILE *__stream) ;
-extern void funlockfile (FILE *__stream) ;
 
-//Include files for page unprotection
 
 extern int *__errno_location (void) ;
 
@@ -335,29 +296,14 @@ extern size_t strspn (__const char *__s, __const char *__accept)
      ;
 extern char *strpbrk (__const char *__s, __const char *__accept)
      ;
-
-
-
-
 extern char *strstr (__const char *__haystack, __const char *__needle)
      ;
-
-
-
-
 extern char *strtok (char *__restrict __s, __const char *__restrict __delim)
      ;
-
-
-
 
 extern char *__strtok_r (char *__restrict __s,
     __const char *__restrict __delim,
     char **__restrict __save_ptr)
-     ;
-
-extern char *strtok_r (char *__restrict __s, __const char *__restrict __delim,
-         char **__restrict __save_ptr)
      ;
 
 extern size_t strlen (__const char *__s)
@@ -395,39 +341,16 @@ extern int __sigdelset (__sigset_t *, int);
 
 typedef __sig_atomic_t sig_atomic_t;
 
-typedef __sigset_t sigset_t;
 typedef void (*__sighandler_t) (int);
 extern __sighandler_t __sysv_signal (int __sig, __sighandler_t __handler)
      ;
 
 extern __sighandler_t signal (int __sig, __sighandler_t __handler) __asm__ ("" "__sysv_signal") ;
 
-extern int kill (__pid_t __pid, int __sig) ;
 
 extern int raise (int __sig) ;
 
 extern int __sigpause (int __sig_or_mask, int __is_sig);
-extern int sigemptyset (sigset_t *__set) ;
-extern int sigfillset (sigset_t *__set) ;
-extern int sigaddset (sigset_t *__set, int __signo) ;
-extern int sigdelset (sigset_t *__set, int __signo) ;
-extern int sigismember (__const sigset_t *__set, int __signo)
-     ;
-struct sigaction
-  {
-    __sighandler_t sa_handler;
-    __sigset_t sa_mask;
-    int sa_flags;
-    void (*sa_restorer) (void);
-  };
-extern int sigprocmask (int __how, __const sigset_t *__restrict __set,
-   sigset_t *__restrict __oset) ;
-extern int sigsuspend (__const sigset_t *__set) ;
-extern int sigaction (int __sig, __const struct sigaction *__restrict __act,
-        struct sigaction *__restrict __oact) ;
-extern int sigpending (sigset_t *__set) ;
-extern int sigwait (__const sigset_t *__restrict __set, int *__restrict __sig)
-     ;
 extern int __libc_current_sigrtmin (void) ;
 extern int __libc_current_sigrtmax (void) ;
 
@@ -471,20 +394,14 @@ extern unsigned long int strtoul (__const char *__restrict __nptr,
 extern int rand (void) ;
 extern void srand (unsigned int __seed) ;
 
-extern int rand_r (unsigned int *__seed) ;
 
 extern void *malloc (size_t __size) ;
 extern void *calloc (size_t __nmemb, size_t __size)
      ;
 
 
-
-
-
-
 extern void *realloc (void *__ptr, size_t __size)
      ;
-
 extern void free (void *__ptr) ;
 
 
@@ -548,7 +465,6 @@ extern char *getcwd (char *__buf, size_t __size) ;
 extern int dup (int __fd) ;
 extern int dup2 (int __fd, int __fd2) ;
 extern char **__environ;
-
 extern int execve (__const char *__path, char *__const __argv[],
      char *__const __envp[]) ;
 extern int execv (__const char *__path, char *__const __argv[])
@@ -893,6 +809,7 @@ extern char *ttyname (int __fd) ;
 extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
      ;
 extern int isatty (int __fd) ;
+
 extern int link (__const char *__from, __const char *__to)
      ;
 extern int unlink (__const char *__name) ;
@@ -901,19 +818,21 @@ extern __pid_t tcgetpgrp (int __fd) ;
 extern int tcsetpgrp (int __fd, __pid_t __pgrp_id) ;
 extern char *getlogin (void);
 
-//Statistics
+//Statistics data structure
 typedef struct
 {
   int count;
-}coverage_t;
+} coverage_t;
 //Unprotect CS and initialize variables
-static void init();
+void init();
 //Report Statistics in the end
-static void report();
+void report();
 //Tracking block
-static void track(void* start, void* end);
-//Declare a static coverage var
-static coverage_t coverage;
+void track(void* start, void* end);
+//Declare a coverage var
+coverage_t coverage;
+//Text segment addresses
+extern char etext, __executable_start;
 typedef
    struct {
       char *next_in;
@@ -1806,6 +1725,7 @@ void mainSort ( UInt32* ptr,
          }
       }
       { if (!((copyStart[ss]-1 == copyEnd[ss]) || (copyStart[ss] == 0 && copyEnd[ss] == nblock-1))) BZ2_bz__AssertH__fail ( 1007 ); }
+
       for (j = 0; j <= 255; j++) ftab[(j << 8) + ss] |= (1 << 21);
       bigDone[ss] = ((Bool)1);
       if (i < 255) {
@@ -4074,7 +3994,6 @@ typedef __pid_t pid_t;
 
 typedef __time_t time_t;
 
-
 typedef __clockid_t clockid_t;
 typedef __timer_t timer_t;
 typedef int int8_t ;
@@ -4165,7 +4084,6 @@ extern int __xmknodat (int __ver, int __fd, __const char *__path,
 
 
 typedef __clock_t clock_t;
-
 
 
 struct tms
@@ -5379,8 +5297,6 @@ IntNative main ( IntNative argc, Char *argv[] )
    Cell *argList;
    Cell *aa;
    Bool decode;
-   void* lol = &track; //
-   init(); //
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4 ||
        sizeof(Int16) != 2 || sizeof(UInt16) != 2 ||
        sizeof(Char) != 1 || sizeof(UChar) != 1)
@@ -5577,32 +5493,5 @@ IntNative main ( IntNative argc, Char *argv[] )
       free(aa);
       aa = aa2;
    }
-   report(); //
    return exitValue;
-}
-[NotInstrumented]
-static void report()
-{
-  printf("Branches taken: %d\n", coverage.count);
-}
-[NotInstrumented]
-static void track(void* start, void* end)
-{
-  __asm__( "movl	%0, %%edi\n\t"
-    "mov        $144, %%al\n\t"
-    "movl	%1, %%ecx\n\t"
-    "rep 	stosb\n\t"
-    :
-    : "r" (start), "r"(end-start)
-    : "edi", "al", "ecx"
-    );
-  coverage.count++;
-}
-[NotInstrumented]
-static void init()
-{
-  if (mprotect((void*) 0x08048000, 111182, 0x1 | 0x2 | 0x4) != 0) {
-    exit(1);
-  }
-  memset(&coverage, 0, sizeof(coverage));
 }

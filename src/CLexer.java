@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C.g 2012-10-05 00:51:33
+// $ANTLR 3.4 C.g 2012-10-09 02:32:41
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -2161,13 +2161,13 @@ public class CLexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:165:2: ( STRING ( WS STRING )* ( WS )? )
-            // C.g:165:4: STRING ( WS STRING )* ( WS )?
+            // C.g:172:2: ( STRING ( WS STRING )* ( WS )? )
+            // C.g:172:4: STRING ( WS STRING )* ( WS )?
             {
             mSTRING(); 
 
 
-            // C.g:165:11: ( WS STRING )*
+            // C.g:172:11: ( WS STRING )*
             loop1:
             do {
                 int alt1=2;
@@ -2186,7 +2186,7 @@ public class CLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C.g:165:12: WS STRING
+            	    // C.g:172:12: WS STRING
             	    {
             	    mWS(); 
 
@@ -2203,7 +2203,7 @@ public class CLexer extends Lexer {
             } while (true);
 
 
-            // C.g:165:24: ( WS )?
+            // C.g:172:24: ( WS )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2212,7 +2212,7 @@ public class CLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // C.g:165:24: WS
+                    // C.g:172:24: WS
                     {
                     mWS(); 
 
@@ -2237,12 +2237,12 @@ public class CLexer extends Lexer {
     // $ANTLR start "STRING"
     public final void mSTRING() throws RecognitionException {
         try {
-            // C.g:171:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"' )
-            // C.g:171:8: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"'
+            // C.g:178:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"' )
+            // C.g:178:8: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // C.g:171:12: ( EscapeSequence |~ ( '\\\\' | '\"' ) )*
+            // C.g:178:12: ( EscapeSequence |~ ( '\\\\' | '\"' ) )*
             loop3:
             do {
                 int alt3=3;
@@ -2258,7 +2258,7 @@ public class CLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C.g:171:14: EscapeSequence
+            	    // C.g:178:14: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -2266,7 +2266,7 @@ public class CLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:171:31: ~ ( '\\\\' | '\"' )
+            	    // C.g:178:31: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2304,13 +2304,13 @@ public class CLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:579:2: ( LETTER ( LETTER | '0' .. '9' )* )
-            // C.g:579:4: LETTER ( LETTER | '0' .. '9' )*
+            // C.g:595:2: ( LETTER ( LETTER | '0' .. '9' )* )
+            // C.g:595:4: LETTER ( LETTER | '0' .. '9' )*
             {
             mLETTER(); 
 
 
-            // C.g:579:11: ( LETTER | '0' .. '9' )*
+            // C.g:595:11: ( LETTER | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -2358,7 +2358,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // C.g:585:2: ( '$' | 'A' .. 'Z' | 'a' .. 'z' | '_' )
+            // C.g:601:2: ( '$' | 'A' .. 'Z' | 'a' .. 'z' | '_' )
             // C.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -2386,12 +2386,12 @@ public class CLexer extends Lexer {
         try {
             int _type = CHARACTER_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:591:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // C.g:591:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\''
+            // C.g:607:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // C.g:607:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
 
-            // C.g:591:14: ( EscapeSequence |~ ( '\\'' | '\\\\' ) )
+            // C.g:607:14: ( EscapeSequence |~ ( '\\'' | '\\\\' ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2410,7 +2410,7 @@ public class CLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C.g:591:16: EscapeSequence
+                    // C.g:607:16: EscapeSequence
                     {
                     mEscapeSequence(); 
 
@@ -2418,7 +2418,7 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C.g:591:33: ~ ( '\\'' | '\\\\' )
+                    // C.g:607:33: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                         input.consume();
@@ -2454,8 +2454,8 @@ public class CLexer extends Lexer {
         try {
             int _type = HEX_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:594:13: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-            // C.g:594:15: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+            // C.g:610:13: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+            // C.g:610:15: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
 
@@ -2469,7 +2469,7 @@ public class CLexer extends Lexer {
             }
 
 
-            // C.g:594:29: ( HexDigit )+
+            // C.g:610:29: ( HexDigit )+
             int cnt6=0;
             loop6:
             do {
@@ -2508,7 +2508,7 @@ public class CLexer extends Lexer {
             } while (true);
 
 
-            // C.g:594:39: ( IntegerTypeSuffix )?
+            // C.g:610:39: ( IntegerTypeSuffix )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2517,7 +2517,7 @@ public class CLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C.g:594:39: IntegerTypeSuffix
+                    // C.g:610:39: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -2544,10 +2544,10 @@ public class CLexer extends Lexer {
         try {
             int _type = DECIMAL_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:596:17: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-            // C.g:596:19: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+            // C.g:612:17: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+            // C.g:612:19: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
             {
-            // C.g:596:19: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // C.g:612:19: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2566,18 +2566,18 @@ public class CLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // C.g:596:20: '0'
+                    // C.g:612:20: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // C.g:596:26: '1' .. '9' ( '0' .. '9' )*
+                    // C.g:612:26: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
 
-                    // C.g:596:35: ( '0' .. '9' )*
+                    // C.g:612:35: ( '0' .. '9' )*
                     loop8:
                     do {
                         int alt8=2;
@@ -2617,7 +2617,7 @@ public class CLexer extends Lexer {
             }
 
 
-            // C.g:596:46: ( IntegerTypeSuffix )?
+            // C.g:612:46: ( IntegerTypeSuffix )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2626,7 +2626,7 @@ public class CLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // C.g:596:46: IntegerTypeSuffix
+                    // C.g:612:46: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -2653,12 +2653,12 @@ public class CLexer extends Lexer {
         try {
             int _type = OCTAL_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:598:15: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-            // C.g:598:17: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+            // C.g:614:15: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+            // C.g:614:17: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
 
-            // C.g:598:21: ( '0' .. '7' )+
+            // C.g:614:21: ( '0' .. '7' )+
             int cnt11=0;
             loop11:
             do {
@@ -2697,7 +2697,7 @@ public class CLexer extends Lexer {
             } while (true);
 
 
-            // C.g:598:33: ( IntegerTypeSuffix )?
+            // C.g:614:33: ( IntegerTypeSuffix )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2706,7 +2706,7 @@ public class CLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C.g:598:33: IntegerTypeSuffix
+                    // C.g:614:33: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -2731,7 +2731,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // C.g:602:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C.g:618:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // C.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2757,7 +2757,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "IntegerTypeSuffix"
     public final void mIntegerTypeSuffix() throws RecognitionException {
         try {
-            // C.g:606:2: ( ( 'u' | 'U' )? ( 'l' | 'L' ) | ( 'u' | 'U' ) ( 'l' | 'L' )? )
+            // C.g:622:2: ( ( 'u' | 'U' )? ( 'l' | 'L' ) | ( 'u' | 'U' ) ( 'l' | 'L' )? )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2783,9 +2783,9 @@ public class CLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // C.g:606:4: ( 'u' | 'U' )? ( 'l' | 'L' )
+                    // C.g:622:4: ( 'u' | 'U' )? ( 'l' | 'L' )
                     {
-                    // C.g:606:4: ( 'u' | 'U' )?
+                    // C.g:622:4: ( 'u' | 'U' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2825,7 +2825,7 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C.g:607:4: ( 'u' | 'U' ) ( 'l' | 'L' )?
+                    // C.g:623:4: ( 'u' | 'U' ) ( 'l' | 'L' )?
                     {
                     if ( input.LA(1)=='U'||input.LA(1)=='u' ) {
                         input.consume();
@@ -2837,7 +2837,7 @@ public class CLexer extends Lexer {
                     }
 
 
-                    // C.g:607:15: ( 'l' | 'L' )?
+                    // C.g:623:15: ( 'l' | 'L' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2881,14 +2881,14 @@ public class CLexer extends Lexer {
         try {
             int _type = FLOATING_POINT_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:610:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix )
+            // C.g:626:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix )
             int alt27=4;
             alt27 = dfa27.predict(input);
             switch (alt27) {
                 case 1 :
-                    // C.g:610:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+                    // C.g:626:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
                     {
-                    // C.g:610:9: ( '0' .. '9' )+
+                    // C.g:626:9: ( '0' .. '9' )+
                     int cnt16=0;
                     loop16:
                     do {
@@ -2929,7 +2929,7 @@ public class CLexer extends Lexer {
 
                     match('.'); 
 
-                    // C.g:610:25: ( '0' .. '9' )*
+                    // C.g:626:25: ( '0' .. '9' )*
                     loop17:
                     do {
                         int alt17=2;
@@ -2963,7 +2963,7 @@ public class CLexer extends Lexer {
                     } while (true);
 
 
-                    // C.g:610:37: ( Exponent )?
+                    // C.g:626:37: ( Exponent )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -2972,7 +2972,7 @@ public class CLexer extends Lexer {
                     }
                     switch (alt18) {
                         case 1 :
-                            // C.g:610:37: Exponent
+                            // C.g:626:37: Exponent
                             {
                             mExponent(); 
 
@@ -2983,7 +2983,7 @@ public class CLexer extends Lexer {
                     }
 
 
-                    // C.g:610:47: ( FloatTypeSuffix )?
+                    // C.g:626:47: ( FloatTypeSuffix )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -3013,11 +3013,11 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C.g:611:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+                    // C.g:627:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
                     {
                     match('.'); 
 
-                    // C.g:611:13: ( '0' .. '9' )+
+                    // C.g:627:13: ( '0' .. '9' )+
                     int cnt20=0;
                     loop20:
                     do {
@@ -3056,7 +3056,7 @@ public class CLexer extends Lexer {
                     } while (true);
 
 
-                    // C.g:611:25: ( Exponent )?
+                    // C.g:627:25: ( Exponent )?
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -3065,7 +3065,7 @@ public class CLexer extends Lexer {
                     }
                     switch (alt21) {
                         case 1 :
-                            // C.g:611:25: Exponent
+                            // C.g:627:25: Exponent
                             {
                             mExponent(); 
 
@@ -3076,7 +3076,7 @@ public class CLexer extends Lexer {
                     }
 
 
-                    // C.g:611:35: ( FloatTypeSuffix )?
+                    // C.g:627:35: ( FloatTypeSuffix )?
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -3106,9 +3106,9 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C.g:612:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+                    // C.g:628:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
                     {
-                    // C.g:612:9: ( '0' .. '9' )+
+                    // C.g:628:9: ( '0' .. '9' )+
                     int cnt23=0;
                     loop23:
                     do {
@@ -3150,7 +3150,7 @@ public class CLexer extends Lexer {
                     mExponent(); 
 
 
-                    // C.g:612:30: ( FloatTypeSuffix )?
+                    // C.g:628:30: ( FloatTypeSuffix )?
                     int alt24=2;
                     int LA24_0 = input.LA(1);
 
@@ -3180,9 +3180,9 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C.g:613:9: ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix
+                    // C.g:629:9: ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix
                     {
-                    // C.g:613:9: ( '0' .. '9' )+
+                    // C.g:629:9: ( '0' .. '9' )+
                     int cnt25=0;
                     loop25:
                     do {
@@ -3221,7 +3221,7 @@ public class CLexer extends Lexer {
                     } while (true);
 
 
-                    // C.g:613:21: ( Exponent )?
+                    // C.g:629:21: ( Exponent )?
                     int alt26=2;
                     int LA26_0 = input.LA(1);
 
@@ -3230,7 +3230,7 @@ public class CLexer extends Lexer {
                     }
                     switch (alt26) {
                         case 1 :
-                            // C.g:613:21: Exponent
+                            // C.g:629:21: Exponent
                             {
                             mExponent(); 
 
@@ -3260,8 +3260,8 @@ public class CLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // C.g:618:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C.g:618:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // C.g:634:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // C.g:634:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -3273,7 +3273,7 @@ public class CLexer extends Lexer {
             }
 
 
-            // C.g:618:22: ( '+' | '-' )?
+            // C.g:634:22: ( '+' | '-' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3300,7 +3300,7 @@ public class CLexer extends Lexer {
             }
 
 
-            // C.g:618:33: ( '0' .. '9' )+
+            // C.g:634:33: ( '0' .. '9' )+
             int cnt29=0;
             loop29:
             do {
@@ -3352,7 +3352,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "FloatTypeSuffix"
     public final void mFloatTypeSuffix() throws RecognitionException {
         try {
-            // C.g:621:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+            // C.g:637:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
             // C.g:
             {
             if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
@@ -3378,7 +3378,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // C.g:625:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | OctalEscape )
+            // C.g:641:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | OctalEscape )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -3408,7 +3408,7 @@ public class CLexer extends Lexer {
             }
             switch (alt30) {
                 case 1 :
-                    // C.g:625:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // C.g:641:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -3425,7 +3425,7 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C.g:626:9: OctalEscape
+                    // C.g:642:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -3445,7 +3445,7 @@ public class CLexer extends Lexer {
     // $ANTLR start "OctalEscape"
     public final void mOctalEscape() throws RecognitionException {
         try {
-            // C.g:631:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // C.g:647:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt31=3;
             int LA31_0 = input.LA(1);
 
@@ -3496,7 +3496,7 @@ public class CLexer extends Lexer {
             }
             switch (alt31) {
                 case 1 :
-                    // C.g:631:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C.g:647:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -3533,7 +3533,7 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C.g:632:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // C.g:648:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -3560,7 +3560,7 @@ public class CLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C.g:633:9: '\\\\' ( '0' .. '7' )
+                    // C.g:649:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -3589,8 +3589,8 @@ public class CLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // C.g:638:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // C.g:638:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // C.g:654:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // C.g:654:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
 
@@ -3623,8 +3623,8 @@ public class CLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:640:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // C.g:640:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // C.g:656:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // C.g:656:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||(input.LA(1) >= '\f' && input.LA(1) <= '\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -3654,14 +3654,14 @@ public class CLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:644:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C.g:644:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C.g:660:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C.g:660:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
 
 
-            // C.g:644:14: ( options {greedy=false; } : . )*
+            // C.g:660:14: ( options {greedy=false; } : . )*
             loop32:
             do {
                 int alt32=2;
@@ -3686,7 +3686,7 @@ public class CLexer extends Lexer {
 
                 switch (alt32) {
             	case 1 :
-            	    // C.g:644:42: .
+            	    // C.g:660:42: .
             	    {
             	    matchAny(); 
 
@@ -3721,14 +3721,14 @@ public class CLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:648:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // C.g:648:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // C.g:664:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // C.g:664:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
 
 
-            // C.g:648:12: (~ ( '\\n' | '\\r' ) )*
+            // C.g:664:12: (~ ( '\\n' | '\\r' ) )*
             loop33:
             do {
                 int alt33=2;
@@ -3762,7 +3762,7 @@ public class CLexer extends Lexer {
             } while (true);
 
 
-            // C.g:648:26: ( '\\r' )?
+            // C.g:664:26: ( '\\r' )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -3771,7 +3771,7 @@ public class CLexer extends Lexer {
             }
             switch (alt34) {
                 case 1 :
-                    // C.g:648:26: '\\r'
+                    // C.g:664:26: '\\r'
                     {
                     match('\r'); 
 
@@ -3801,12 +3801,12 @@ public class CLexer extends Lexer {
         try {
             int _type = LINE_COMMAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C.g:653:5: ( '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // C.g:653:7: '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // C.g:669:5: ( '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // C.g:669:7: '#' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match('#'); 
 
-            // C.g:653:11: (~ ( '\\n' | '\\r' ) )*
+            // C.g:669:11: (~ ( '\\n' | '\\r' ) )*
             loop35:
             do {
                 int alt35=2;
@@ -3840,7 +3840,7 @@ public class CLexer extends Lexer {
             } while (true);
 
 
-            // C.g:653:25: ( '\\r' )?
+            // C.g:669:25: ( '\\r' )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -3849,7 +3849,7 @@ public class CLexer extends Lexer {
             }
             switch (alt36) {
                 case 1 :
-                    // C.g:653:25: '\\r'
+                    // C.g:669:25: '\\r'
                     {
                     match('\r'); 
 
@@ -4750,7 +4750,7 @@ public class CLexer extends Lexer {
             this.transition = DFA27_transition;
         }
         public String getDescription() {
-            return "609:1: FLOATING_POINT_LITERAL : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix );";
+            return "625:1: FLOATING_POINT_LITERAL : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ ( Exponent )? FloatTypeSuffix );";
         }
     }
     static final String DFA37_eotS =

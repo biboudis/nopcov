@@ -1,33 +1,3 @@
-#define __attribute__(x)
-#define __inline__
-#define _POSIX_SOURCE
-
-#include <stdio.h>
-
-//Include files for page unprotection
-
-#include <errno.h>
-#include <string.h>
-#include <sys/mman.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-//Statistics
-typedef struct 
-{
-  int count;
-}coverage_t;
-
-//Unprotect CS and initialize variables
-static void init();
-//Report Statistics in the end
-static void report();
-//Tracking block
-static void track(int start, int end);
-
-//Declare a static coverage var
-static coverage_t coverage;
 /*-------------------------------------------------------------*/
 /*--- Public header file for the library.                   ---*/
 /*---                                               bzlib.h ---*/
@@ -6774,8 +6744,6 @@ IntNative main ( IntNative argc, Char *argv[] )
    Cell   *argList;
    Cell   *aa;
    Bool   decode;
-   void* lol  = &track; 	//
-   init(); 			//
 
    /*-- Be really really really paranoid :-) --*/
    if (sizeof(Int32) != 4 || sizeof(UInt32) != 4  ||
@@ -7020,40 +6988,8 @@ IntNative main ( IntNative argc, Char *argv[] )
       free(aa);
       aa = aa2;
    }
-   
-   report(); 		//
-   return exitValue;
-}
-[NotInstrumented]
-static void report()
-{
-  printf("Branches taken: %d\n", coverage.count);
-}
-[NotInstrumented]
-static void track(int start, int end)
-{
-  __asm__( "movl	%0, %%edi\n\t" 
-	   "mov        $144, %%al\n\t"
-	   "movl	%1, %%ecx\n\t" 
-	   "rep 	stosb\n\t"
-	   :
-	   : "r" (start), "r"(end-start)
-	   : "edi", "al", "ecx"
-	   ); 
-  coverage.count++;
-}
-[NotInstrumented]
-static void init()
-{
-  void *addr  = (void*)&main;
-  long length = sysconf(_SC_PAGESIZE);
-  unsigned long *d = (unsigned long *) ((int) addr &~(length-1));
-  
-  if (mprotect(d, length, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
-    exit(EXIT_FAILURE);
-  }
 
-  memset(&coverage, 0, sizeof(coverage));
+   return exitValue;
 }
 /*-----------------------------------------------------------*/
 /*--- end                                         bzip2.c ---*/

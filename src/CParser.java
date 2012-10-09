@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C.g 2012-10-05 01:01:27
+// $ANTLR 3.4 C.g 2012-10-09 02:32:39
 
 import java.util.Set;
 import java.util.HashSet;
@@ -156,6 +156,7 @@ public class CParser extends Parser {
 
     protected static class Symbols_scope {
         Set types;
+        boolean hasMainEntryPoint;
     }
     protected Stack Symbols_stack = new Stack();
 
@@ -166,6 +167,13 @@ public class CParser extends Parser {
     protected Stack StatementType_stack = new Stack();
 
 
+    protected static class InstrumentationMain_scope {
+        boolean isFunction;
+        boolean isMain;
+    }
+    protected Stack InstrumentationMain_stack = new Stack();
+
+
     protected static class Attribute_scope {
         String attr_name;
     }
@@ -174,7 +182,6 @@ public class CParser extends Parser {
 
     protected static class InstrumentationInfo_scope {
         boolean isBranch;
-        boolean isMain;
     }
     protected Stack InstrumentationInfo_stack = new Stack();
 
@@ -185,7 +192,7 @@ public class CParser extends Parser {
     }
     public CParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
-        this.state.ruleMemo = new HashMap[268+1];
+        this.state.ruleMemo = new HashMap[270+1];
          
 
     }
@@ -243,7 +250,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "translation_unit"
-    // C.g:66:1: translation_unit : ( external_declaration )+ ;
+    // C.g:71:1: translation_unit : ( external_declaration )+ ;
     public final CParser.translation_unit_return translation_unit() throws RecognitionException {
         Symbols_stack.push(new Symbols_scope());
         InstrumentationStats_stack.push(new InstrumentationStats_scope());
@@ -259,10 +266,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
 
-            // C.g:75:2: ( ( external_declaration )+ )
-            // C.g:75:4: ( external_declaration )+
+            // C.g:80:2: ( ( external_declaration )+ )
+            // C.g:80:4: ( external_declaration )+
             {
-            // C.g:75:4: ( external_declaration )+
+            // C.g:80:4: ( external_declaration )+
             int cnt1=0;
             loop1:
             do {
@@ -276,9 +283,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt1) {
             	case 1 :
-            	    // C.g:75:4: external_declaration
+            	    // C.g:80:4: external_declaration
             	    {
-            	    pushFollow(FOLLOW_external_declaration_in_translation_unit131);
+            	    pushFollow(FOLLOW_external_declaration_in_translation_unit137);
             	    external_declaration();
 
             	    state._fsp--;
@@ -304,7 +311,7 @@ public static class STAttrMap extends HashMap {
 
 
             if ( state.backtracking==0 ) {
-              System.out.println(((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber);
+              System.out.println("Probes installed:\n\tBranches: " + ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber);
             }
         }
         catch (RecognitionException re) {
@@ -333,7 +340,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "external_declaration"
-    // C.g:92:1: external_declaration options {k=1; } : ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition | '__extension__' declaration | declaration | assembly_definition );
+    // C.g:97:1: external_declaration options {k=1; } : ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition | '__extension__' declaration | declaration | assembly_definition );
     public final CParser.external_declaration_return external_declaration() throws RecognitionException {
         Attribute_stack.push(new Attribute_scope());
 
@@ -345,7 +352,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
 
-            // C.g:95:2: ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition | '__extension__' declaration | declaration | assembly_definition )
+            // C.g:100:2: ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition | '__extension__' declaration | declaration | assembly_definition )
             int alt3=4;
             switch ( input.LA(1) ) {
             case 31:
@@ -733,9 +740,9 @@ public static class STAttrMap extends HashMap {
 
             switch (alt3) {
                 case 1 :
-                    // C.g:95:4: ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition
+                    // C.g:100:4: ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition
                     {
-                    // C.g:95:4: ( attribute )?
+                    // C.g:100:4: ( attribute )?
                     int alt2=2;
                     int LA2_0 = input.LA(1);
 
@@ -744,9 +751,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt2) {
                         case 1 :
-                            // C.g:95:4: attribute
+                            // C.g:100:4: attribute
                             {
-                            pushFollow(FOLLOW_attribute_in_external_declaration157);
+                            pushFollow(FOLLOW_attribute_in_external_declaration163);
                             attribute();
 
                             state._fsp--;
@@ -758,7 +765,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    pushFollow(FOLLOW_function_definition_in_external_declaration176);
+                    pushFollow(FOLLOW_function_definition_in_external_declaration182);
                     function_definition();
 
                     state._fsp--;
@@ -767,11 +774,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:96:4: '__extension__' declaration
+                    // C.g:101:4: '__extension__' declaration
                     {
-                    match(input,69,FOLLOW_69_in_external_declaration181); if (state.failed) return retval;
+                    match(input,69,FOLLOW_69_in_external_declaration187); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_declaration_in_external_declaration183);
+                    pushFollow(FOLLOW_declaration_in_external_declaration189);
                     declaration();
 
                     state._fsp--;
@@ -780,9 +787,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:97:4: declaration
+                    // C.g:102:4: declaration
                     {
-                    pushFollow(FOLLOW_declaration_in_external_declaration188);
+                    pushFollow(FOLLOW_declaration_in_external_declaration194);
                     declaration();
 
                     state._fsp--;
@@ -791,9 +798,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:98:4: assembly_definition
+                    // C.g:103:4: assembly_definition
                     {
-                    pushFollow(FOLLOW_assembly_definition_in_external_declaration193);
+                    pushFollow(FOLLOW_assembly_definition_in_external_declaration199);
                     assembly_definition();
 
                     state._fsp--;
@@ -832,9 +839,10 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "function_definition"
-    // C.g:101:1: function_definition : ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement ) ;
+    // C.g:106:1: function_definition : ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement ) ;
     public final CParser.function_definition_return function_definition() throws RecognitionException {
         Symbols_stack.push(new Symbols_scope());
+        InstrumentationMain_stack.push(new InstrumentationMain_scope());
 
         CParser.function_definition_return retval = new CParser.function_definition_return();
         retval.start = input.LT(1);
@@ -843,14 +851,15 @@ public static class STAttrMap extends HashMap {
 
          
           ((Symbols_scope)Symbols_stack.peek()).types = new HashSet();
+          ((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isFunction = true;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
 
-            // C.g:106:2: ( ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement ) )
-            // C.g:106:4: ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement )
+            // C.g:113:2: ( ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement ) )
+            // C.g:113:4: ( declaration_specifiers )? declarator ( ( declaration )+ compound_statement | compound_statement )
             {
-            // C.g:106:4: ( declaration_specifiers )?
+            // C.g:113:4: ( declaration_specifiers )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1041,9 +1050,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt4) {
                 case 1 :
-                    // C.g:106:4: declaration_specifiers
+                    // C.g:113:4: declaration_specifiers
                     {
-                    pushFollow(FOLLOW_declaration_specifiers_in_function_definition215);
+                    pushFollow(FOLLOW_declaration_specifiers_in_function_definition226);
                     declaration_specifiers();
 
                     state._fsp--;
@@ -1055,13 +1064,13 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            pushFollow(FOLLOW_declarator_in_function_definition218);
+            pushFollow(FOLLOW_declarator_in_function_definition229);
             declarator();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:106:40: ( ( declaration )+ compound_statement | compound_statement )
+            // C.g:113:40: ( ( declaration )+ compound_statement | compound_statement )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1081,9 +1090,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt6) {
                 case 1 :
-                    // C.g:106:42: ( declaration )+ compound_statement
+                    // C.g:113:42: ( declaration )+ compound_statement
                     {
-                    // C.g:106:42: ( declaration )+
+                    // C.g:113:42: ( declaration )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -1097,9 +1106,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C.g:106:42: declaration
+                    	    // C.g:113:42: declaration
                     	    {
-                    	    pushFollow(FOLLOW_declaration_in_function_definition223);
+                    	    pushFollow(FOLLOW_declaration_in_function_definition234);
                     	    declaration();
 
                     	    state._fsp--;
@@ -1119,7 +1128,7 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    pushFollow(FOLLOW_compound_statement_in_function_definition226);
+                    pushFollow(FOLLOW_compound_statement_in_function_definition237);
                     compound_statement();
 
                     state._fsp--;
@@ -1128,9 +1137,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:107:7: compound_statement
+                    // C.g:114:7: compound_statement
                     {
-                    pushFollow(FOLLOW_compound_statement_in_function_definition235);
+                    pushFollow(FOLLOW_compound_statement_in_function_definition246);
                     compound_statement();
 
                     state._fsp--;
@@ -1158,6 +1167,7 @@ public static class STAttrMap extends HashMap {
             if ( state.backtracking>0 ) { memoize(input, 3, function_definition_StartIndex); }
 
             Symbols_stack.pop();
+            InstrumentationMain_stack.pop();
 
         }
         return retval;
@@ -1173,7 +1183,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "attribute"
-    // C.g:111:1: attribute : '[' IDENTIFIER ']' -> template( \"\";
+    // C.g:118:1: attribute : '[' IDENTIFIER ']' -> template( \"\";
     public final CParser.attribute_return attribute() throws RecognitionException {
         CParser.attribute_return retval = new CParser.attribute_return();
         retval.start = input.LT(1);
@@ -1185,20 +1195,20 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
 
-            // C.g:112:2: ( '[' IDENTIFIER ']' -> template( \"\")
-            // C.g:112:4: '[' IDENTIFIER ']'
+            // C.g:119:2: ( '[' IDENTIFIER ']' -> template( \"\")
+            // C.g:119:4: '[' IDENTIFIER ']'
             {
-            match(input,60,FOLLOW_60_in_attribute255); if (state.failed) return retval;
+            match(input,60,FOLLOW_60_in_attribute266); if (state.failed) return retval;
 
-            IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_attribute257); if (state.failed) return retval;
+            IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_attribute268); if (state.failed) return retval;
 
-            match(input,61,FOLLOW_61_in_attribute260); if (state.failed) return retval;
+            match(input,61,FOLLOW_61_in_attribute271); if (state.failed) return retval;
 
             if ( state.backtracking==0 ) { ((Attribute_scope)Attribute_stack.peek()).attr_name = (IDENTIFIER1!=null?IDENTIFIER1.getText():null); }
 
             // TEMPLATE REWRITE
             if ( state.backtracking==0 ) {
-              // 112:70: -> template( \"\"
+              // 119:70: -> template( \"\"
               {
                   retval.st = new StringTemplate(templateLib, "");
               }
@@ -1246,7 +1256,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declaration"
-    // C.g:116:1: declaration : ( 'typedef' ( declaration_specifiers )? init_declarator_list ';' | declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';' );
+    // C.g:123:1: declaration : ( 'typedef' ( declaration_specifiers )? init_declarator_list ';' | declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';' );
     public final CParser.declaration_return declaration() throws RecognitionException {
         declaration_stack.push(new declaration_scope());
         CParser.declaration_return retval = new CParser.declaration_return();
@@ -1260,7 +1270,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
 
-            // C.g:123:2: ( 'typedef' ( declaration_specifiers )? init_declarator_list ';' | declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';' )
+            // C.g:130:2: ( 'typedef' ( declaration_specifiers )? init_declarator_list ';' | declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';' )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1280,11 +1290,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt10) {
                 case 1 :
-                    // C.g:123:4: 'typedef' ( declaration_specifiers )? init_declarator_list ';'
+                    // C.g:130:4: 'typedef' ( declaration_specifiers )? init_declarator_list ';'
                     {
-                    match(input,102,FOLLOW_102_in_declaration291); if (state.failed) return retval;
+                    match(input,102,FOLLOW_102_in_declaration302); if (state.failed) return retval;
 
-                    // C.g:123:14: ( declaration_specifiers )?
+                    // C.g:130:14: ( declaration_specifiers )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -1307,9 +1317,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt7) {
                         case 1 :
-                            // C.g:123:14: declaration_specifiers
+                            // C.g:130:14: declaration_specifiers
                             {
-                            pushFollow(FOLLOW_declaration_specifiers_in_declaration293);
+                            pushFollow(FOLLOW_declaration_specifiers_in_declaration304);
                             declaration_specifiers();
 
                             state._fsp--;
@@ -1323,26 +1333,26 @@ public static class STAttrMap extends HashMap {
 
                     if ( state.backtracking==0 ) {((declaration_scope)declaration_stack.peek()).isTypedef =true;}
 
-                    pushFollow(FOLLOW_init_declarator_list_in_declaration298);
+                    pushFollow(FOLLOW_init_declarator_list_in_declaration309);
                     init_declarator_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_declaration300); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_declaration311); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:124:4: declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';'
+                    // C.g:131:4: declaration_specifiers ( init_declarator_list )? ( simple_assembly_expression )? ';'
                     {
-                    pushFollow(FOLLOW_declaration_specifiers_in_declaration306);
+                    pushFollow(FOLLOW_declaration_specifiers_in_declaration317);
                     declaration_specifiers();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:124:27: ( init_declarator_list )?
+                    // C.g:131:27: ( init_declarator_list )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1351,9 +1361,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt8) {
                         case 1 :
-                            // C.g:124:27: init_declarator_list
+                            // C.g:131:27: init_declarator_list
                             {
-                            pushFollow(FOLLOW_init_declarator_list_in_declaration308);
+                            pushFollow(FOLLOW_init_declarator_list_in_declaration319);
                             init_declarator_list();
 
                             state._fsp--;
@@ -1365,7 +1375,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    // C.g:124:49: ( simple_assembly_expression )?
+                    // C.g:131:49: ( simple_assembly_expression )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1374,9 +1384,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt9) {
                         case 1 :
-                            // C.g:124:49: simple_assembly_expression
+                            // C.g:131:49: simple_assembly_expression
                             {
-                            pushFollow(FOLLOW_simple_assembly_expression_in_declaration311);
+                            pushFollow(FOLLOW_simple_assembly_expression_in_declaration322);
                             simple_assembly_expression();
 
                             state._fsp--;
@@ -1388,7 +1398,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,48,FOLLOW_48_in_declaration314); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_declaration325); if (state.failed) return retval;
 
                     }
                     break;
@@ -1422,7 +1432,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_definition"
-    // C.g:127:1: assembly_definition : simple_assembly_expression ';' ;
+    // C.g:134:1: assembly_definition : simple_assembly_expression ';' ;
     public final CParser.assembly_definition_return assembly_definition() throws RecognitionException {
         CParser.assembly_definition_return retval = new CParser.assembly_definition_return();
         retval.start = input.LT(1);
@@ -1432,16 +1442,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
 
-            // C.g:128:2: ( simple_assembly_expression ';' )
-            // C.g:128:4: simple_assembly_expression ';'
+            // C.g:135:2: ( simple_assembly_expression ';' )
+            // C.g:135:4: simple_assembly_expression ';'
             {
-            pushFollow(FOLLOW_simple_assembly_expression_in_assembly_definition327);
+            pushFollow(FOLLOW_simple_assembly_expression_in_assembly_definition338);
             simple_assembly_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            match(input,48,FOLLOW_48_in_assembly_definition329); if (state.failed) return retval;
+            match(input,48,FOLLOW_48_in_assembly_definition340); if (state.failed) return retval;
 
             }
 
@@ -1472,7 +1482,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "simple_assembly_expression"
-    // C.g:131:1: simple_assembly_expression : asm_keyword '(' STRING_LITERAL ')' ;
+    // C.g:138:1: simple_assembly_expression : asm_keyword '(' STRING_LITERAL ')' ;
     public final CParser.simple_assembly_expression_return simple_assembly_expression() throws RecognitionException {
         CParser.simple_assembly_expression_return retval = new CParser.simple_assembly_expression_return();
         retval.start = input.LT(1);
@@ -1482,20 +1492,20 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
 
-            // C.g:132:3: ( asm_keyword '(' STRING_LITERAL ')' )
-            // C.g:132:5: asm_keyword '(' STRING_LITERAL ')'
+            // C.g:139:3: ( asm_keyword '(' STRING_LITERAL ')' )
+            // C.g:139:5: asm_keyword '(' STRING_LITERAL ')'
             {
-            pushFollow(FOLLOW_asm_keyword_in_simple_assembly_expression343);
+            pushFollow(FOLLOW_asm_keyword_in_simple_assembly_expression354);
             asm_keyword();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            match(input,31,FOLLOW_31_in_simple_assembly_expression345); if (state.failed) return retval;
+            match(input,31,FOLLOW_31_in_simple_assembly_expression356); if (state.failed) return retval;
 
-            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_simple_assembly_expression347); if (state.failed) return retval;
+            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_simple_assembly_expression358); if (state.failed) return retval;
 
-            match(input,32,FOLLOW_32_in_simple_assembly_expression349); if (state.failed) return retval;
+            match(input,32,FOLLOW_32_in_simple_assembly_expression360); if (state.failed) return retval;
 
             }
 
@@ -1526,7 +1536,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_statement"
-    // C.g:135:1: assembly_statement : asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';' ;
+    // C.g:142:1: assembly_statement : asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';' ;
     public final CParser.assembly_statement_return assembly_statement() throws RecognitionException {
         CParser.assembly_statement_return retval = new CParser.assembly_statement_return();
         retval.start = input.LT(1);
@@ -1536,16 +1546,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
 
-            // C.g:136:3: ( asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';' )
-            // C.g:136:5: asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';'
+            // C.g:143:3: ( asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';' )
+            // C.g:143:5: asm_keyword ( type_qualifier )? '(' assembly_argument ')' ';'
             {
-            pushFollow(FOLLOW_asm_keyword_in_assembly_statement364);
+            pushFollow(FOLLOW_asm_keyword_in_assembly_statement375);
             asm_keyword();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:136:17: ( type_qualifier )?
+            // C.g:143:17: ( type_qualifier )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1554,9 +1564,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt11) {
                 case 1 :
-                    // C.g:136:17: type_qualifier
+                    // C.g:143:17: type_qualifier
                     {
-                    pushFollow(FOLLOW_type_qualifier_in_assembly_statement366);
+                    pushFollow(FOLLOW_type_qualifier_in_assembly_statement377);
                     type_qualifier();
 
                     state._fsp--;
@@ -1568,17 +1578,17 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            match(input,31,FOLLOW_31_in_assembly_statement369); if (state.failed) return retval;
+            match(input,31,FOLLOW_31_in_assembly_statement380); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_assembly_argument_in_assembly_statement371);
+            pushFollow(FOLLOW_assembly_argument_in_assembly_statement382);
             assembly_argument();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            match(input,32,FOLLOW_32_in_assembly_statement373); if (state.failed) return retval;
+            match(input,32,FOLLOW_32_in_assembly_statement384); if (state.failed) return retval;
 
-            match(input,48,FOLLOW_48_in_assembly_statement375); if (state.failed) return retval;
+            match(input,48,FOLLOW_48_in_assembly_statement386); if (state.failed) return retval;
 
             }
 
@@ -1609,7 +1619,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_argument"
-    // C.g:139:1: assembly_argument : ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* );
+    // C.g:146:1: assembly_argument : ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* );
     public final CParser.assembly_argument_return assembly_argument() throws RecognitionException {
         CParser.assembly_argument_return retval = new CParser.assembly_argument_return();
         retval.start = input.LT(1);
@@ -1619,7 +1629,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
 
-            // C.g:139:19: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* )
+            // C.g:146:19: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? | STRING_LITERAL ( STRING_LITERAL )* )
             int alt21=4;
             int LA21_0 = input.LA(1);
 
@@ -1699,11 +1709,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt21) {
                 case 1 :
-                    // C.g:140:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers
+                    // C.g:147:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers
                     {
-                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument389); if (state.failed) return retval;
+                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument400); if (state.failed) return retval;
 
-                    // C.g:140:20: ( STRING_LITERAL )*
+                    // C.g:147:20: ( STRING_LITERAL )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1716,9 +1726,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // C.g:140:21: STRING_LITERAL
+                    	    // C.g:147:21: STRING_LITERAL
                     	    {
-                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument392); if (state.failed) return retval;
+                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument403); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -1729,9 +1739,9 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument396); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument407); if (state.failed) return retval;
 
-                    // C.g:140:42: ( assembly_operands )?
+                    // C.g:147:42: ( assembly_operands )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1740,9 +1750,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt13) {
                         case 1 :
-                            // C.g:140:42: assembly_operands
+                            // C.g:147:42: assembly_operands
                             {
-                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument398);
+                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument409);
                             assembly_operands();
 
                             state._fsp--;
@@ -1754,9 +1764,9 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument401); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument412); if (state.failed) return retval;
 
-                    // C.g:140:65: ( assembly_operands )?
+                    // C.g:147:65: ( assembly_operands )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1765,9 +1775,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt14) {
                         case 1 :
-                            // C.g:140:65: assembly_operands
+                            // C.g:147:65: assembly_operands
                             {
-                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument403);
+                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument414);
                             assembly_operands();
 
                             state._fsp--;
@@ -1779,9 +1789,9 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument406); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument417); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_assembly_clobbers_in_assembly_argument408);
+                    pushFollow(FOLLOW_assembly_clobbers_in_assembly_argument419);
                     assembly_clobbers();
 
                     state._fsp--;
@@ -1790,11 +1800,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:141:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )?
+                    // C.g:148:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )?
                     {
-                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument414); if (state.failed) return retval;
+                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument425); if (state.failed) return retval;
 
-                    // C.g:141:20: ( STRING_LITERAL )*
+                    // C.g:148:20: ( STRING_LITERAL )*
                     loop15:
                     do {
                         int alt15=2;
@@ -1807,9 +1817,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // C.g:141:21: STRING_LITERAL
+                    	    // C.g:148:21: STRING_LITERAL
                     	    {
-                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument417); if (state.failed) return retval;
+                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument428); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -1820,9 +1830,9 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument421); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument432); if (state.failed) return retval;
 
-                    // C.g:141:42: ( assembly_operands )?
+                    // C.g:148:42: ( assembly_operands )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1831,9 +1841,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt16) {
                         case 1 :
-                            // C.g:141:42: assembly_operands
+                            // C.g:148:42: assembly_operands
                             {
-                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument423);
+                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument434);
                             assembly_operands();
 
                             state._fsp--;
@@ -1845,9 +1855,9 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument426); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument437); if (state.failed) return retval;
 
-                    // C.g:141:65: ( assembly_operands )?
+                    // C.g:148:65: ( assembly_operands )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1856,9 +1866,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt17) {
                         case 1 :
-                            // C.g:141:65: assembly_operands
+                            // C.g:148:65: assembly_operands
                             {
-                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument428);
+                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument439);
                             assembly_operands();
 
                             state._fsp--;
@@ -1873,11 +1883,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:142:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )?
+                    // C.g:149:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )?
                     {
-                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument435); if (state.failed) return retval;
+                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument446); if (state.failed) return retval;
 
-                    // C.g:142:20: ( STRING_LITERAL )*
+                    // C.g:149:20: ( STRING_LITERAL )*
                     loop18:
                     do {
                         int alt18=2;
@@ -1890,9 +1900,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // C.g:142:21: STRING_LITERAL
+                    	    // C.g:149:21: STRING_LITERAL
                     	    {
-                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument438); if (state.failed) return retval;
+                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument449); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -1903,9 +1913,9 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    match(input,47,FOLLOW_47_in_assembly_argument442); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_assembly_argument453); if (state.failed) return retval;
 
-                    // C.g:142:42: ( assembly_operands )?
+                    // C.g:149:42: ( assembly_operands )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1914,9 +1924,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt19) {
                         case 1 :
-                            // C.g:142:42: assembly_operands
+                            // C.g:149:42: assembly_operands
                             {
-                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument444);
+                            pushFollow(FOLLOW_assembly_operands_in_assembly_argument455);
                             assembly_operands();
 
                             state._fsp--;
@@ -1931,11 +1941,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:143:5: STRING_LITERAL ( STRING_LITERAL )*
+                    // C.g:150:5: STRING_LITERAL ( STRING_LITERAL )*
                     {
-                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument451); if (state.failed) return retval;
+                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument462); if (state.failed) return retval;
 
-                    // C.g:143:20: ( STRING_LITERAL )*
+                    // C.g:150:20: ( STRING_LITERAL )*
                     loop20:
                     do {
                         int alt20=2;
@@ -1948,9 +1958,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt20) {
                     	case 1 :
-                    	    // C.g:143:21: STRING_LITERAL
+                    	    // C.g:150:21: STRING_LITERAL
                     	    {
-                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument454); if (state.failed) return retval;
+                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_argument465); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -1992,7 +2002,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_operands"
-    // C.g:146:1: assembly_operands : assembly_operand ( ',' assembly_operand )* ;
+    // C.g:153:1: assembly_operands : assembly_operand ( ',' assembly_operand )* ;
     public final CParser.assembly_operands_return assembly_operands() throws RecognitionException {
         CParser.assembly_operands_return retval = new CParser.assembly_operands_return();
         retval.start = input.LT(1);
@@ -2002,16 +2012,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
 
-            // C.g:146:19: ( assembly_operand ( ',' assembly_operand )* )
-            // C.g:147:3: assembly_operand ( ',' assembly_operand )*
+            // C.g:153:19: ( assembly_operand ( ',' assembly_operand )* )
+            // C.g:154:3: assembly_operand ( ',' assembly_operand )*
             {
-            pushFollow(FOLLOW_assembly_operand_in_assembly_operands469);
+            pushFollow(FOLLOW_assembly_operand_in_assembly_operands480);
             assembly_operand();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:147:20: ( ',' assembly_operand )*
+            // C.g:154:20: ( ',' assembly_operand )*
             loop22:
             do {
                 int alt22=2;
@@ -2024,11 +2034,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt22) {
             	case 1 :
-            	    // C.g:148:5: ',' assembly_operand
+            	    // C.g:155:5: ',' assembly_operand
             	    {
-            	    match(input,38,FOLLOW_38_in_assembly_operands479); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_assembly_operands490); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_assembly_operand_in_assembly_operands481);
+            	    pushFollow(FOLLOW_assembly_operand_in_assembly_operands492);
             	    assembly_operand();
 
             	    state._fsp--;
@@ -2072,7 +2082,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_operand"
-    // C.g:152:1: assembly_operand : ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')' ;
+    // C.g:159:1: assembly_operand : ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')' ;
     public final CParser.assembly_operand_return assembly_operand() throws RecognitionException {
         CParser.assembly_operand_return retval = new CParser.assembly_operand_return();
         retval.start = input.LT(1);
@@ -2082,10 +2092,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
 
-            // C.g:152:18: ( ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')' )
-            // C.g:153:3: ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')'
+            // C.g:159:18: ( ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')' )
+            // C.g:160:3: ( '[' IDENTIFIER ']' )? STRING_LITERAL '(' expression ')'
             {
-            // C.g:153:3: ( '[' IDENTIFIER ']' )?
+            // C.g:160:3: ( '[' IDENTIFIER ']' )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2094,13 +2104,13 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt23) {
                 case 1 :
-                    // C.g:154:5: '[' IDENTIFIER ']'
+                    // C.g:161:5: '[' IDENTIFIER ']'
                     {
-                    match(input,60,FOLLOW_60_in_assembly_operand507); if (state.failed) return retval;
+                    match(input,60,FOLLOW_60_in_assembly_operand518); if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assembly_operand509); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_assembly_operand520); if (state.failed) return retval;
 
-                    match(input,61,FOLLOW_61_in_assembly_operand511); if (state.failed) return retval;
+                    match(input,61,FOLLOW_61_in_assembly_operand522); if (state.failed) return retval;
 
                     }
                     break;
@@ -2108,17 +2118,17 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_operand518); if (state.failed) return retval;
+            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_operand529); if (state.failed) return retval;
 
-            match(input,31,FOLLOW_31_in_assembly_operand520); if (state.failed) return retval;
+            match(input,31,FOLLOW_31_in_assembly_operand531); if (state.failed) return retval;
 
-            pushFollow(FOLLOW_expression_in_assembly_operand522);
+            pushFollow(FOLLOW_expression_in_assembly_operand533);
             expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            match(input,32,FOLLOW_32_in_assembly_operand524); if (state.failed) return retval;
+            match(input,32,FOLLOW_32_in_assembly_operand535); if (state.failed) return retval;
 
             }
 
@@ -2149,7 +2159,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assembly_clobbers"
-    // C.g:158:1: assembly_clobbers : STRING_LITERAL ( ',' STRING_LITERAL )* ;
+    // C.g:165:1: assembly_clobbers : STRING_LITERAL ( ',' STRING_LITERAL )* ;
     public final CParser.assembly_clobbers_return assembly_clobbers() throws RecognitionException {
         CParser.assembly_clobbers_return retval = new CParser.assembly_clobbers_return();
         retval.start = input.LT(1);
@@ -2159,12 +2169,12 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
 
-            // C.g:158:19: ( STRING_LITERAL ( ',' STRING_LITERAL )* )
-            // C.g:159:3: STRING_LITERAL ( ',' STRING_LITERAL )*
+            // C.g:165:19: ( STRING_LITERAL ( ',' STRING_LITERAL )* )
+            // C.g:166:3: STRING_LITERAL ( ',' STRING_LITERAL )*
             {
-            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_clobbers537); if (state.failed) return retval;
+            match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_clobbers548); if (state.failed) return retval;
 
-            // C.g:159:18: ( ',' STRING_LITERAL )*
+            // C.g:166:18: ( ',' STRING_LITERAL )*
             loop24:
             do {
                 int alt24=2;
@@ -2177,11 +2187,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt24) {
             	case 1 :
-            	    // C.g:160:5: ',' STRING_LITERAL
+            	    // C.g:167:5: ',' STRING_LITERAL
             	    {
-            	    match(input,38,FOLLOW_38_in_assembly_clobbers547); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_assembly_clobbers558); if (state.failed) return retval;
 
-            	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_clobbers549); if (state.failed) return retval;
+            	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_assembly_clobbers560); if (state.failed) return retval;
 
             	    }
             	    break;
@@ -2221,7 +2231,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "asm_keyword"
-    // C.g:173:1: asm_keyword : ( 'asm' | '__asm' | '__asm__' );
+    // C.g:180:1: asm_keyword : ( 'asm' | '__asm' | '__asm__' );
     public final CParser.asm_keyword_return asm_keyword() throws RecognitionException {
         CParser.asm_keyword_return retval = new CParser.asm_keyword_return();
         retval.start = input.LT(1);
@@ -2231,7 +2241,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
 
-            // C.g:174:2: ( 'asm' | '__asm' | '__asm__' )
+            // C.g:181:2: ( 'asm' | '__asm' | '__asm__' )
             // C.g:
             {
             if ( (input.LA(1) >= 64 && input.LA(1) <= 65)||input.LA(1)==74 ) {
@@ -2275,7 +2285,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declaration_specifiers"
-    // C.g:179:1: declaration_specifiers : ( storage_class_specifier | type_specifier | type_qualifier )+ ;
+    // C.g:186:1: declaration_specifiers : ( storage_class_specifier | type_specifier | type_qualifier )+ ;
     public final CParser.declaration_specifiers_return declaration_specifiers() throws RecognitionException {
         CParser.declaration_specifiers_return retval = new CParser.declaration_specifiers_return();
         retval.start = input.LT(1);
@@ -2285,10 +2295,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
 
-            // C.g:180:2: ( ( storage_class_specifier | type_specifier | type_qualifier )+ )
-            // C.g:180:4: ( storage_class_specifier | type_specifier | type_qualifier )+
+            // C.g:187:2: ( ( storage_class_specifier | type_specifier | type_qualifier )+ )
+            // C.g:187:4: ( storage_class_specifier | type_specifier | type_qualifier )+
             {
-            // C.g:180:4: ( storage_class_specifier | type_specifier | type_qualifier )+
+            // C.g:187:4: ( storage_class_specifier | type_specifier | type_qualifier )+
             int cnt25=0;
             loop25:
             do {
@@ -2348,9 +2358,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt25) {
             	case 1 :
-            	    // C.g:180:6: storage_class_specifier
+            	    // C.g:187:6: storage_class_specifier
             	    {
-            	    pushFollow(FOLLOW_storage_class_specifier_in_declaration_specifiers653);
+            	    pushFollow(FOLLOW_storage_class_specifier_in_declaration_specifiers664);
             	    storage_class_specifier();
 
             	    state._fsp--;
@@ -2359,9 +2369,9 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:180:32: type_specifier
+            	    // C.g:187:32: type_specifier
             	    {
-            	    pushFollow(FOLLOW_type_specifier_in_declaration_specifiers657);
+            	    pushFollow(FOLLOW_type_specifier_in_declaration_specifiers668);
             	    type_specifier();
 
             	    state._fsp--;
@@ -2370,9 +2380,9 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 3 :
-            	    // C.g:180:49: type_qualifier
+            	    // C.g:187:49: type_qualifier
             	    {
-            	    pushFollow(FOLLOW_type_qualifier_in_declaration_specifiers661);
+            	    pushFollow(FOLLOW_type_qualifier_in_declaration_specifiers672);
             	    type_qualifier();
 
             	    state._fsp--;
@@ -2421,7 +2431,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "init_declarator_list"
-    // C.g:183:1: init_declarator_list : init_declarator ( ',' init_declarator )* ;
+    // C.g:190:1: init_declarator_list : init_declarator ( ',' init_declarator )* ;
     public final CParser.init_declarator_list_return init_declarator_list() throws RecognitionException {
         CParser.init_declarator_list_return retval = new CParser.init_declarator_list_return();
         retval.start = input.LT(1);
@@ -2431,16 +2441,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
 
-            // C.g:184:2: ( init_declarator ( ',' init_declarator )* )
-            // C.g:184:4: init_declarator ( ',' init_declarator )*
+            // C.g:191:2: ( init_declarator ( ',' init_declarator )* )
+            // C.g:191:4: init_declarator ( ',' init_declarator )*
             {
-            pushFollow(FOLLOW_init_declarator_in_init_declarator_list675);
+            pushFollow(FOLLOW_init_declarator_in_init_declarator_list686);
             init_declarator();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:184:20: ( ',' init_declarator )*
+            // C.g:191:20: ( ',' init_declarator )*
             loop26:
             do {
                 int alt26=2;
@@ -2453,11 +2463,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt26) {
             	case 1 :
-            	    // C.g:184:21: ',' init_declarator
+            	    // C.g:191:21: ',' init_declarator
             	    {
-            	    match(input,38,FOLLOW_38_in_init_declarator_list678); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_init_declarator_list689); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_init_declarator_in_init_declarator_list680);
+            	    pushFollow(FOLLOW_init_declarator_in_init_declarator_list691);
             	    init_declarator();
 
             	    state._fsp--;
@@ -2501,7 +2511,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "init_declarator"
-    // C.g:187:1: init_declarator : declarator ( '=' initializer )? ;
+    // C.g:194:1: init_declarator : declarator ( '=' initializer )? ;
     public final CParser.init_declarator_return init_declarator() throws RecognitionException {
         CParser.init_declarator_return retval = new CParser.init_declarator_return();
         retval.start = input.LT(1);
@@ -2511,16 +2521,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
 
-            // C.g:188:2: ( declarator ( '=' initializer )? )
-            // C.g:188:4: declarator ( '=' initializer )?
+            // C.g:195:2: ( declarator ( '=' initializer )? )
+            // C.g:195:4: declarator ( '=' initializer )?
             {
-            pushFollow(FOLLOW_declarator_in_init_declarator693);
+            pushFollow(FOLLOW_declarator_in_init_declarator704);
             declarator();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:188:15: ( '=' initializer )?
+            // C.g:195:15: ( '=' initializer )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2529,11 +2539,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt27) {
                 case 1 :
-                    // C.g:188:16: '=' initializer
+                    // C.g:195:16: '=' initializer
                     {
-                    match(input,53,FOLLOW_53_in_init_declarator696); if (state.failed) return retval;
+                    match(input,53,FOLLOW_53_in_init_declarator707); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_initializer_in_init_declarator698);
+                    pushFollow(FOLLOW_initializer_in_init_declarator709);
                     initializer();
 
                     state._fsp--;
@@ -2574,7 +2584,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "storage_class_specifier"
-    // C.g:191:1: storage_class_specifier : ( 'extern' | 'static' | 'auto' | 'register' );
+    // C.g:198:1: storage_class_specifier : ( 'extern' | 'static' | 'auto' | 'register' );
     public final CParser.storage_class_specifier_return storage_class_specifier() throws RecognitionException {
         CParser.storage_class_specifier_return retval = new CParser.storage_class_specifier_return();
         retval.start = input.LT(1);
@@ -2584,7 +2594,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
 
-            // C.g:192:2: ( 'extern' | 'static' | 'auto' | 'register' )
+            // C.g:199:2: ( 'extern' | 'static' | 'auto' | 'register' )
             // C.g:
             {
             if ( input.LA(1)==75||input.LA(1)==86||input.LA(1)==93||input.LA(1)==99 ) {
@@ -2628,7 +2638,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "type_qualifier"
-    // C.g:198:1: type_qualifier : ( volatile_qualifier | constant_qualifier | restrict_qualifier );
+    // C.g:205:1: type_qualifier : ( volatile_qualifier | constant_qualifier | restrict_qualifier );
     public final CParser.type_qualifier_return type_qualifier() throws RecognitionException {
         CParser.type_qualifier_return retval = new CParser.type_qualifier_return();
         retval.start = input.LT(1);
@@ -2638,7 +2648,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
 
-            // C.g:199:2: ( volatile_qualifier | constant_qualifier | restrict_qualifier )
+            // C.g:206:2: ( volatile_qualifier | constant_qualifier | restrict_qualifier )
             int alt28=3;
             switch ( input.LA(1) ) {
             case 72:
@@ -2673,9 +2683,9 @@ public static class STAttrMap extends HashMap {
 
             switch (alt28) {
                 case 1 :
-                    // C.g:199:4: volatile_qualifier
+                    // C.g:206:4: volatile_qualifier
                     {
-                    pushFollow(FOLLOW_volatile_qualifier_in_type_qualifier739);
+                    pushFollow(FOLLOW_volatile_qualifier_in_type_qualifier750);
                     volatile_qualifier();
 
                     state._fsp--;
@@ -2684,9 +2694,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:200:4: constant_qualifier
+                    // C.g:207:4: constant_qualifier
                     {
-                    pushFollow(FOLLOW_constant_qualifier_in_type_qualifier744);
+                    pushFollow(FOLLOW_constant_qualifier_in_type_qualifier755);
                     constant_qualifier();
 
                     state._fsp--;
@@ -2695,9 +2705,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:201:4: restrict_qualifier
+                    // C.g:208:4: restrict_qualifier
                     {
-                    pushFollow(FOLLOW_restrict_qualifier_in_type_qualifier749);
+                    pushFollow(FOLLOW_restrict_qualifier_in_type_qualifier760);
                     restrict_qualifier();
 
                     state._fsp--;
@@ -2734,7 +2744,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "volatile_qualifier"
-    // C.g:204:1: volatile_qualifier : ( 'volatile' | '__volatile' | '__volatile__' );
+    // C.g:211:1: volatile_qualifier : ( 'volatile' | '__volatile' | '__volatile__' );
     public final CParser.volatile_qualifier_return volatile_qualifier() throws RecognitionException {
         CParser.volatile_qualifier_return retval = new CParser.volatile_qualifier_return();
         retval.start = input.LT(1);
@@ -2744,7 +2754,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
 
-            // C.g:205:2: ( 'volatile' | '__volatile' | '__volatile__' )
+            // C.g:212:2: ( 'volatile' | '__volatile' | '__volatile__' )
             // C.g:
             {
             if ( (input.LA(1) >= 72 && input.LA(1) <= 73)||input.LA(1)==106 ) {
@@ -2788,7 +2798,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "constant_qualifier"
-    // C.g:210:1: constant_qualifier : ( 'const' | '__const' | '__const__' );
+    // C.g:217:1: constant_qualifier : ( 'const' | '__const' | '__const__' );
     public final CParser.constant_qualifier_return constant_qualifier() throws RecognitionException {
         CParser.constant_qualifier_return retval = new CParser.constant_qualifier_return();
         retval.start = input.LT(1);
@@ -2798,7 +2808,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
 
-            // C.g:211:2: ( 'const' | '__const' | '__const__' )
+            // C.g:218:2: ( 'const' | '__const' | '__const__' )
             // C.g:
             {
             if ( (input.LA(1) >= 67 && input.LA(1) <= 68)||input.LA(1)==79 ) {
@@ -2842,7 +2852,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "restrict_qualifier"
-    // C.g:216:1: restrict_qualifier : ( 'restrict' | '__restrict' | '__restrict__' );
+    // C.g:223:1: restrict_qualifier : ( 'restrict' | '__restrict' | '__restrict__' );
     public final CParser.restrict_qualifier_return restrict_qualifier() throws RecognitionException {
         CParser.restrict_qualifier_return retval = new CParser.restrict_qualifier_return();
         retval.start = input.LT(1);
@@ -2852,7 +2862,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
 
-            // C.g:217:4: ( 'restrict' | '__restrict' | '__restrict__' )
+            // C.g:224:4: ( 'restrict' | '__restrict' | '__restrict__' )
             // C.g:
             {
             if ( (input.LA(1) >= 70 && input.LA(1) <= 71)||input.LA(1)==94 ) {
@@ -2896,7 +2906,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "type_specifier"
-    // C.g:222:1: type_specifier : ( 'void' | 'char' | 'short' | 'int' | 'long' | 'float' | 'double' | 'signed' | 'unsigned' | '__builtin_va_list' | struct_or_union_specifier | enum_specifier | type_id );
+    // C.g:229:1: type_specifier : ( 'void' | 'char' | 'short' | 'int' | 'long' | 'float' | 'double' | 'signed' | 'unsigned' | '__builtin_va_list' | struct_or_union_specifier | enum_specifier | type_id );
     public final CParser.type_specifier_return type_specifier() throws RecognitionException {
         CParser.type_specifier_return retval = new CParser.type_specifier_return();
         retval.start = input.LT(1);
@@ -2906,7 +2916,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
 
-            // C.g:223:2: ( 'void' | 'char' | 'short' | 'int' | 'long' | 'float' | 'double' | 'signed' | 'unsigned' | '__builtin_va_list' | struct_or_union_specifier | enum_specifier | type_id )
+            // C.g:230:2: ( 'void' | 'char' | 'short' | 'int' | 'long' | 'float' | 'double' | 'signed' | 'unsigned' | '__builtin_va_list' | struct_or_union_specifier | enum_specifier | type_id )
             int alt29=13;
             switch ( input.LA(1) ) {
             case 105:
@@ -2986,79 +2996,79 @@ public static class STAttrMap extends HashMap {
 
             switch (alt29) {
                 case 1 :
-                    // C.g:223:4: 'void'
+                    // C.g:230:4: 'void'
                     {
-                    match(input,105,FOLLOW_105_in_type_specifier844); if (state.failed) return retval;
+                    match(input,105,FOLLOW_105_in_type_specifier855); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:224:4: 'char'
+                    // C.g:231:4: 'char'
                     {
-                    match(input,78,FOLLOW_78_in_type_specifier849); if (state.failed) return retval;
+                    match(input,78,FOLLOW_78_in_type_specifier860); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:225:4: 'short'
+                    // C.g:232:4: 'short'
                     {
-                    match(input,96,FOLLOW_96_in_type_specifier854); if (state.failed) return retval;
+                    match(input,96,FOLLOW_96_in_type_specifier865); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:226:4: 'int'
+                    // C.g:233:4: 'int'
                     {
-                    match(input,91,FOLLOW_91_in_type_specifier859); if (state.failed) return retval;
+                    match(input,91,FOLLOW_91_in_type_specifier870); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
-                    // C.g:227:4: 'long'
+                    // C.g:234:4: 'long'
                     {
-                    match(input,92,FOLLOW_92_in_type_specifier864); if (state.failed) return retval;
+                    match(input,92,FOLLOW_92_in_type_specifier875); if (state.failed) return retval;
 
                     }
                     break;
                 case 6 :
-                    // C.g:228:4: 'float'
+                    // C.g:235:4: 'float'
                     {
-                    match(input,87,FOLLOW_87_in_type_specifier869); if (state.failed) return retval;
+                    match(input,87,FOLLOW_87_in_type_specifier880); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
-                    // C.g:229:4: 'double'
+                    // C.g:236:4: 'double'
                     {
-                    match(input,83,FOLLOW_83_in_type_specifier874); if (state.failed) return retval;
+                    match(input,83,FOLLOW_83_in_type_specifier885); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
-                    // C.g:230:4: 'signed'
+                    // C.g:237:4: 'signed'
                     {
-                    match(input,97,FOLLOW_97_in_type_specifier879); if (state.failed) return retval;
+                    match(input,97,FOLLOW_97_in_type_specifier890); if (state.failed) return retval;
 
                     }
                     break;
                 case 9 :
-                    // C.g:231:4: 'unsigned'
+                    // C.g:238:4: 'unsigned'
                     {
-                    match(input,104,FOLLOW_104_in_type_specifier884); if (state.failed) return retval;
+                    match(input,104,FOLLOW_104_in_type_specifier895); if (state.failed) return retval;
 
                     }
                     break;
                 case 10 :
-                    // C.g:232:4: '__builtin_va_list'
+                    // C.g:239:4: '__builtin_va_list'
                     {
-                    match(input,66,FOLLOW_66_in_type_specifier889); if (state.failed) return retval;
+                    match(input,66,FOLLOW_66_in_type_specifier900); if (state.failed) return retval;
 
                     }
                     break;
                 case 11 :
-                    // C.g:233:4: struct_or_union_specifier
+                    // C.g:240:4: struct_or_union_specifier
                     {
-                    pushFollow(FOLLOW_struct_or_union_specifier_in_type_specifier894);
+                    pushFollow(FOLLOW_struct_or_union_specifier_in_type_specifier905);
                     struct_or_union_specifier();
 
                     state._fsp--;
@@ -3067,9 +3077,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 12 :
-                    // C.g:234:4: enum_specifier
+                    // C.g:241:4: enum_specifier
                     {
-                    pushFollow(FOLLOW_enum_specifier_in_type_specifier899);
+                    pushFollow(FOLLOW_enum_specifier_in_type_specifier910);
                     enum_specifier();
 
                     state._fsp--;
@@ -3078,9 +3088,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 13 :
-                    // C.g:235:4: type_id
+                    // C.g:242:4: type_id
                     {
-                    pushFollow(FOLLOW_type_id_in_type_specifier904);
+                    pushFollow(FOLLOW_type_id_in_type_specifier915);
                     type_id();
 
                     state._fsp--;
@@ -3117,7 +3127,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "type_id"
-    // C.g:238:1: type_id :{...}? IDENTIFIER ;
+    // C.g:245:1: type_id :{...}? IDENTIFIER ;
     public final CParser.type_id_return type_id() throws RecognitionException {
         CParser.type_id_return retval = new CParser.type_id_return();
         retval.start = input.LT(1);
@@ -3127,15 +3137,15 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
 
-            // C.g:239:5: ({...}? IDENTIFIER )
-            // C.g:239:9: {...}? IDENTIFIER
+            // C.g:246:5: ({...}? IDENTIFIER )
+            // C.g:246:9: {...}? IDENTIFIER
             {
             if ( !((isTypeName(input.LT(1).getText()))) ) {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 throw new FailedPredicateException(input, "type_id", "isTypeName(input.LT(1).getText())");
             }
 
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type_id922); if (state.failed) return retval;
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type_id933); if (state.failed) return retval;
 
             }
 
@@ -3166,7 +3176,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_or_union_specifier"
-    // C.g:243:1: struct_or_union_specifier options {k=3; } : ( struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}' | struct_or_union IDENTIFIER );
+    // C.g:250:1: struct_or_union_specifier options {k=3; } : ( struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}' | struct_or_union IDENTIFIER );
     public final CParser.struct_or_union_specifier_return struct_or_union_specifier() throws RecognitionException {
         Symbols_stack.push(new Symbols_scope());
 
@@ -3181,7 +3191,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
 
-            // C.g:249:2: ( struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}' | struct_or_union IDENTIFIER )
+            // C.g:256:2: ( struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}' | struct_or_union IDENTIFIER )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -3228,15 +3238,15 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt31) {
                 case 1 :
-                    // C.g:249:4: struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}'
+                    // C.g:256:4: struct_or_union ( IDENTIFIER )? '{' struct_declaration_list '}'
                     {
-                    pushFollow(FOLLOW_struct_or_union_in_struct_or_union_specifier955);
+                    pushFollow(FOLLOW_struct_or_union_in_struct_or_union_specifier966);
                     struct_or_union();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:249:20: ( IDENTIFIER )?
+                    // C.g:256:20: ( IDENTIFIER )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
@@ -3245,9 +3255,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt30) {
                         case 1 :
-                            // C.g:249:20: IDENTIFIER
+                            // C.g:256:20: IDENTIFIER
                             {
-                            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_struct_or_union_specifier957); if (state.failed) return retval;
+                            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_struct_or_union_specifier968); if (state.failed) return retval;
 
                             }
                             break;
@@ -3255,28 +3265,28 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,108,FOLLOW_108_in_struct_or_union_specifier960); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_struct_or_union_specifier971); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_struct_declaration_list_in_struct_or_union_specifier962);
+                    pushFollow(FOLLOW_struct_declaration_list_in_struct_or_union_specifier973);
                     struct_declaration_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,112,FOLLOW_112_in_struct_or_union_specifier964); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_struct_or_union_specifier975); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:250:4: struct_or_union IDENTIFIER
+                    // C.g:257:4: struct_or_union IDENTIFIER
                     {
-                    pushFollow(FOLLOW_struct_or_union_in_struct_or_union_specifier969);
+                    pushFollow(FOLLOW_struct_or_union_in_struct_or_union_specifier980);
                     struct_or_union();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_struct_or_union_specifier971); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_struct_or_union_specifier982); if (state.failed) return retval;
 
                     }
                     break;
@@ -3311,7 +3321,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_or_union"
-    // C.g:253:1: struct_or_union : ( 'struct' | 'union' );
+    // C.g:260:1: struct_or_union : ( 'struct' | 'union' );
     public final CParser.struct_or_union_return struct_or_union() throws RecognitionException {
         CParser.struct_or_union_return retval = new CParser.struct_or_union_return();
         retval.start = input.LT(1);
@@ -3321,7 +3331,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
 
-            // C.g:254:2: ( 'struct' | 'union' )
+            // C.g:261:2: ( 'struct' | 'union' )
             // C.g:
             {
             if ( input.LA(1)==100||input.LA(1)==103 ) {
@@ -3365,7 +3375,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_declaration_list"
-    // C.g:258:1: struct_declaration_list : ( struct_declaration )+ ;
+    // C.g:265:1: struct_declaration_list : ( struct_declaration )+ ;
     public final CParser.struct_declaration_list_return struct_declaration_list() throws RecognitionException {
         CParser.struct_declaration_list_return retval = new CParser.struct_declaration_list_return();
         retval.start = input.LT(1);
@@ -3375,10 +3385,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
 
-            // C.g:259:2: ( ( struct_declaration )+ )
-            // C.g:259:4: ( struct_declaration )+
+            // C.g:266:2: ( ( struct_declaration )+ )
+            // C.g:266:4: ( struct_declaration )+
             {
-            // C.g:259:4: ( struct_declaration )+
+            // C.g:266:4: ( struct_declaration )+
             int cnt32=0;
             loop32:
             do {
@@ -3392,9 +3402,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt32) {
             	case 1 :
-            	    // C.g:259:4: struct_declaration
+            	    // C.g:266:4: struct_declaration
             	    {
-            	    pushFollow(FOLLOW_struct_declaration_in_struct_declaration_list998);
+            	    pushFollow(FOLLOW_struct_declaration_in_struct_declaration_list1009);
             	    struct_declaration();
 
             	    state._fsp--;
@@ -3443,7 +3453,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_declaration"
-    // C.g:262:1: struct_declaration : specifier_qualifier_list struct_declarator_list ';' ;
+    // C.g:269:1: struct_declaration : specifier_qualifier_list struct_declarator_list ';' ;
     public final CParser.struct_declaration_return struct_declaration() throws RecognitionException {
         CParser.struct_declaration_return retval = new CParser.struct_declaration_return();
         retval.start = input.LT(1);
@@ -3453,22 +3463,22 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
 
-            // C.g:263:2: ( specifier_qualifier_list struct_declarator_list ';' )
-            // C.g:263:4: specifier_qualifier_list struct_declarator_list ';'
+            // C.g:270:2: ( specifier_qualifier_list struct_declarator_list ';' )
+            // C.g:270:4: specifier_qualifier_list struct_declarator_list ';'
             {
-            pushFollow(FOLLOW_specifier_qualifier_list_in_struct_declaration1010);
+            pushFollow(FOLLOW_specifier_qualifier_list_in_struct_declaration1021);
             specifier_qualifier_list();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            pushFollow(FOLLOW_struct_declarator_list_in_struct_declaration1012);
+            pushFollow(FOLLOW_struct_declarator_list_in_struct_declaration1023);
             struct_declarator_list();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            match(input,48,FOLLOW_48_in_struct_declaration1014); if (state.failed) return retval;
+            match(input,48,FOLLOW_48_in_struct_declaration1025); if (state.failed) return retval;
 
             }
 
@@ -3499,7 +3509,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "specifier_qualifier_list"
-    // C.g:266:1: specifier_qualifier_list : ( type_qualifier | type_specifier )+ ;
+    // C.g:273:1: specifier_qualifier_list : ( type_qualifier | type_specifier )+ ;
     public final CParser.specifier_qualifier_list_return specifier_qualifier_list() throws RecognitionException {
         CParser.specifier_qualifier_list_return retval = new CParser.specifier_qualifier_list_return();
         retval.start = input.LT(1);
@@ -3509,10 +3519,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
 
-            // C.g:267:2: ( ( type_qualifier | type_specifier )+ )
-            // C.g:267:4: ( type_qualifier | type_specifier )+
+            // C.g:274:2: ( ( type_qualifier | type_specifier )+ )
+            // C.g:274:4: ( type_qualifier | type_specifier )+
             {
-            // C.g:267:4: ( type_qualifier | type_specifier )+
+            // C.g:274:4: ( type_qualifier | type_specifier )+
             int cnt33=0;
             loop33:
             do {
@@ -3623,9 +3633,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt33) {
             	case 1 :
-            	    // C.g:267:6: type_qualifier
+            	    // C.g:274:6: type_qualifier
             	    {
-            	    pushFollow(FOLLOW_type_qualifier_in_specifier_qualifier_list1027);
+            	    pushFollow(FOLLOW_type_qualifier_in_specifier_qualifier_list1038);
             	    type_qualifier();
 
             	    state._fsp--;
@@ -3634,9 +3644,9 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:267:23: type_specifier
+            	    // C.g:274:23: type_specifier
             	    {
-            	    pushFollow(FOLLOW_type_specifier_in_specifier_qualifier_list1031);
+            	    pushFollow(FOLLOW_type_specifier_in_specifier_qualifier_list1042);
             	    type_specifier();
 
             	    state._fsp--;
@@ -3685,7 +3695,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_declarator_list"
-    // C.g:270:1: struct_declarator_list : struct_declarator ( ',' struct_declarator )* ;
+    // C.g:277:1: struct_declarator_list : struct_declarator ( ',' struct_declarator )* ;
     public final CParser.struct_declarator_list_return struct_declarator_list() throws RecognitionException {
         CParser.struct_declarator_list_return retval = new CParser.struct_declarator_list_return();
         retval.start = input.LT(1);
@@ -3695,16 +3705,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
 
-            // C.g:271:2: ( struct_declarator ( ',' struct_declarator )* )
-            // C.g:271:4: struct_declarator ( ',' struct_declarator )*
+            // C.g:278:2: ( struct_declarator ( ',' struct_declarator )* )
+            // C.g:278:4: struct_declarator ( ',' struct_declarator )*
             {
-            pushFollow(FOLLOW_struct_declarator_in_struct_declarator_list1045);
+            pushFollow(FOLLOW_struct_declarator_in_struct_declarator_list1056);
             struct_declarator();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:271:22: ( ',' struct_declarator )*
+            // C.g:278:22: ( ',' struct_declarator )*
             loop34:
             do {
                 int alt34=2;
@@ -3717,11 +3727,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt34) {
             	case 1 :
-            	    // C.g:271:23: ',' struct_declarator
+            	    // C.g:278:23: ',' struct_declarator
             	    {
-            	    match(input,38,FOLLOW_38_in_struct_declarator_list1048); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_struct_declarator_list1059); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_struct_declarator_in_struct_declarator_list1050);
+            	    pushFollow(FOLLOW_struct_declarator_in_struct_declarator_list1061);
             	    struct_declarator();
 
             	    state._fsp--;
@@ -3765,7 +3775,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "struct_declarator"
-    // C.g:274:1: struct_declarator : ( declarator ( ':' constant_expression )? | ':' constant_expression );
+    // C.g:281:1: struct_declarator : ( declarator ( ':' constant_expression )? | ':' constant_expression );
     public final CParser.struct_declarator_return struct_declarator() throws RecognitionException {
         CParser.struct_declarator_return retval = new CParser.struct_declarator_return();
         retval.start = input.LT(1);
@@ -3775,7 +3785,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
 
-            // C.g:275:2: ( declarator ( ':' constant_expression )? | ':' constant_expression )
+            // C.g:282:2: ( declarator ( ':' constant_expression )? | ':' constant_expression )
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -3795,15 +3805,15 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt36) {
                 case 1 :
-                    // C.g:275:4: declarator ( ':' constant_expression )?
+                    // C.g:282:4: declarator ( ':' constant_expression )?
                     {
-                    pushFollow(FOLLOW_declarator_in_struct_declarator1063);
+                    pushFollow(FOLLOW_declarator_in_struct_declarator1074);
                     declarator();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:275:15: ( ':' constant_expression )?
+                    // C.g:282:15: ( ':' constant_expression )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -3812,11 +3822,11 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt35) {
                         case 1 :
-                            // C.g:275:16: ':' constant_expression
+                            // C.g:282:16: ':' constant_expression
                             {
-                            match(input,47,FOLLOW_47_in_struct_declarator1066); if (state.failed) return retval;
+                            match(input,47,FOLLOW_47_in_struct_declarator1077); if (state.failed) return retval;
 
-                            pushFollow(FOLLOW_constant_expression_in_struct_declarator1068);
+                            pushFollow(FOLLOW_constant_expression_in_struct_declarator1079);
                             constant_expression();
 
                             state._fsp--;
@@ -3831,11 +3841,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:276:4: ':' constant_expression
+                    // C.g:283:4: ':' constant_expression
                     {
-                    match(input,47,FOLLOW_47_in_struct_declarator1075); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_struct_declarator1086); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_struct_declarator1077);
+                    pushFollow(FOLLOW_constant_expression_in_struct_declarator1088);
                     constant_expression();
 
                     state._fsp--;
@@ -3872,7 +3882,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "enum_specifier"
-    // C.g:279:1: enum_specifier options {k=3; } : ( 'enum' '{' enumerator_list '}' | 'enum' IDENTIFIER '{' enumerator_list '}' | 'enum' IDENTIFIER );
+    // C.g:286:1: enum_specifier options {k=3; } : ( 'enum' '{' enumerator_list '}' | 'enum' IDENTIFIER '{' enumerator_list '}' | 'enum' IDENTIFIER );
     public final CParser.enum_specifier_return enum_specifier() throws RecognitionException {
         CParser.enum_specifier_return retval = new CParser.enum_specifier_return();
         retval.start = input.LT(1);
@@ -3882,7 +3892,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
 
-            // C.g:281:2: ( 'enum' '{' enumerator_list '}' | 'enum' IDENTIFIER '{' enumerator_list '}' | 'enum' IDENTIFIER )
+            // C.g:288:2: ( 'enum' '{' enumerator_list '}' | 'enum' IDENTIFIER '{' enumerator_list '}' | 'enum' IDENTIFIER )
             int alt37=3;
             int LA37_0 = input.LA(1);
 
@@ -3929,47 +3939,47 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt37) {
                 case 1 :
-                    // C.g:281:4: 'enum' '{' enumerator_list '}'
+                    // C.g:288:4: 'enum' '{' enumerator_list '}'
                     {
-                    match(input,85,FOLLOW_85_in_enum_specifier1095); if (state.failed) return retval;
+                    match(input,85,FOLLOW_85_in_enum_specifier1106); if (state.failed) return retval;
 
-                    match(input,108,FOLLOW_108_in_enum_specifier1097); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_enum_specifier1108); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_enumerator_list_in_enum_specifier1099);
+                    pushFollow(FOLLOW_enumerator_list_in_enum_specifier1110);
                     enumerator_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,112,FOLLOW_112_in_enum_specifier1101); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_enum_specifier1112); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:282:4: 'enum' IDENTIFIER '{' enumerator_list '}'
+                    // C.g:289:4: 'enum' IDENTIFIER '{' enumerator_list '}'
                     {
-                    match(input,85,FOLLOW_85_in_enum_specifier1106); if (state.failed) return retval;
+                    match(input,85,FOLLOW_85_in_enum_specifier1117); if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enum_specifier1108); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enum_specifier1119); if (state.failed) return retval;
 
-                    match(input,108,FOLLOW_108_in_enum_specifier1110); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_enum_specifier1121); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_enumerator_list_in_enum_specifier1112);
+                    pushFollow(FOLLOW_enumerator_list_in_enum_specifier1123);
                     enumerator_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,112,FOLLOW_112_in_enum_specifier1114); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_enum_specifier1125); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:283:4: 'enum' IDENTIFIER
+                    // C.g:290:4: 'enum' IDENTIFIER
                     {
-                    match(input,85,FOLLOW_85_in_enum_specifier1119); if (state.failed) return retval;
+                    match(input,85,FOLLOW_85_in_enum_specifier1130); if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enum_specifier1121); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enum_specifier1132); if (state.failed) return retval;
 
                     }
                     break;
@@ -4002,7 +4012,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "enumerator_list"
-    // C.g:286:1: enumerator_list : enumerator ( ',' enumerator )* ;
+    // C.g:293:1: enumerator_list : enumerator ( ',' enumerator )* ;
     public final CParser.enumerator_list_return enumerator_list() throws RecognitionException {
         CParser.enumerator_list_return retval = new CParser.enumerator_list_return();
         retval.start = input.LT(1);
@@ -4012,16 +4022,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
 
-            // C.g:287:2: ( enumerator ( ',' enumerator )* )
-            // C.g:287:4: enumerator ( ',' enumerator )*
+            // C.g:294:2: ( enumerator ( ',' enumerator )* )
+            // C.g:294:4: enumerator ( ',' enumerator )*
             {
-            pushFollow(FOLLOW_enumerator_in_enumerator_list1132);
+            pushFollow(FOLLOW_enumerator_in_enumerator_list1143);
             enumerator();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:287:15: ( ',' enumerator )*
+            // C.g:294:15: ( ',' enumerator )*
             loop38:
             do {
                 int alt38=2;
@@ -4034,11 +4044,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt38) {
             	case 1 :
-            	    // C.g:287:16: ',' enumerator
+            	    // C.g:294:16: ',' enumerator
             	    {
-            	    match(input,38,FOLLOW_38_in_enumerator_list1135); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_enumerator_list1146); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_enumerator_in_enumerator_list1137);
+            	    pushFollow(FOLLOW_enumerator_in_enumerator_list1148);
             	    enumerator();
 
             	    state._fsp--;
@@ -4082,7 +4092,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "enumerator"
-    // C.g:290:1: enumerator : IDENTIFIER ( '=' constant_expression )? ;
+    // C.g:297:1: enumerator : IDENTIFIER ( '=' constant_expression )? ;
     public final CParser.enumerator_return enumerator() throws RecognitionException {
         CParser.enumerator_return retval = new CParser.enumerator_return();
         retval.start = input.LT(1);
@@ -4092,12 +4102,12 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
 
-            // C.g:291:2: ( IDENTIFIER ( '=' constant_expression )? )
-            // C.g:291:4: IDENTIFIER ( '=' constant_expression )?
+            // C.g:298:2: ( IDENTIFIER ( '=' constant_expression )? )
+            // C.g:298:4: IDENTIFIER ( '=' constant_expression )?
             {
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumerator1150); if (state.failed) return retval;
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumerator1161); if (state.failed) return retval;
 
-            // C.g:291:15: ( '=' constant_expression )?
+            // C.g:298:15: ( '=' constant_expression )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -4106,11 +4116,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt39) {
                 case 1 :
-                    // C.g:291:16: '=' constant_expression
+                    // C.g:298:16: '=' constant_expression
                     {
-                    match(input,53,FOLLOW_53_in_enumerator1153); if (state.failed) return retval;
+                    match(input,53,FOLLOW_53_in_enumerator1164); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_enumerator1155);
+                    pushFollow(FOLLOW_constant_expression_in_enumerator1166);
                     constant_expression();
 
                     state._fsp--;
@@ -4151,7 +4161,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declarator"
-    // C.g:294:1: declarator : ( ( pointer )? direct_declarator | pointer );
+    // C.g:301:1: declarator : ( ( pointer )? direct_declarator | pointer );
     public final CParser.declarator_return declarator() throws RecognitionException {
         CParser.declarator_return retval = new CParser.declarator_return();
         retval.start = input.LT(1);
@@ -4161,7 +4171,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
 
-            // C.g:295:2: ( ( pointer )? direct_declarator | pointer )
+            // C.g:302:2: ( ( pointer )? direct_declarator | pointer )
             int alt41=2;
             int LA41_0 = input.LA(1);
 
@@ -4196,9 +4206,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt41) {
                 case 1 :
-                    // C.g:295:4: ( pointer )? direct_declarator
+                    // C.g:302:4: ( pointer )? direct_declarator
                     {
-                    // C.g:295:4: ( pointer )?
+                    // C.g:302:4: ( pointer )?
                     int alt40=2;
                     int LA40_0 = input.LA(1);
 
@@ -4207,9 +4217,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt40) {
                         case 1 :
-                            // C.g:295:4: pointer
+                            // C.g:302:4: pointer
                             {
-                            pushFollow(FOLLOW_pointer_in_declarator1168);
+                            pushFollow(FOLLOW_pointer_in_declarator1179);
                             pointer();
 
                             state._fsp--;
@@ -4221,7 +4231,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    pushFollow(FOLLOW_direct_declarator_in_declarator1171);
+                    pushFollow(FOLLOW_direct_declarator_in_declarator1182);
                     direct_declarator();
 
                     state._fsp--;
@@ -4230,9 +4240,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:296:4: pointer
+                    // C.g:303:4: pointer
                     {
-                    pushFollow(FOLLOW_pointer_in_declarator1176);
+                    pushFollow(FOLLOW_pointer_in_declarator1187);
                     pointer();
 
                     state._fsp--;
@@ -4269,7 +4279,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "direct_declarator"
-    // C.g:299:1: direct_declarator : ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )* ;
+    // C.g:306:1: direct_declarator : ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )* ;
     public final CParser.direct_declarator_return direct_declarator() throws RecognitionException {
         CParser.direct_declarator_return retval = new CParser.direct_declarator_return();
         retval.start = input.LT(1);
@@ -4281,10 +4291,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
 
-            // C.g:300:2: ( ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )* )
-            // C.g:300:6: ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )*
+            // C.g:307:2: ( ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )* )
+            // C.g:307:6: ( IDENTIFIER | '(' declarator ')' ) ( declarator_suffix )*
             {
-            // C.g:300:6: ( IDENTIFIER | '(' declarator ')' )
+            // C.g:307:6: ( IDENTIFIER | '(' declarator ')' )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -4304,31 +4314,35 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt42) {
                 case 1 :
-                    // C.g:300:8: IDENTIFIER
+                    // C.g:307:8: IDENTIFIER
                     {
-                    IDENTIFIER2=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_direct_declarator1191); if (state.failed) return retval;
+                    IDENTIFIER2=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_direct_declarator1202); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {
                     			if (declaration_stack.size()>0&&((declaration_scope)declaration_stack.peek()).isTypedef) {
                     				((Symbols_scope)Symbols_stack.peek()).types.add((IDENTIFIER2!=null?IDENTIFIER2.getText():null));
-                    				System.out.println("define type "+(IDENTIFIER2!=null?IDENTIFIER2.getText():null));
+                    				//System.out.println("define type "+(IDENTIFIER2!=null?IDENTIFIER2.getText():null));
+                    			}
+                    			if ( InstrumentationMain_stack.size()>0 &&  ((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isFunction && (IDENTIFIER2!=null?IDENTIFIER2.getText():null).toLowerCase().equals("main") ) {
+                    				((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isMain = true;
+                    				((Symbols_scope)Symbols_stack.peek()).hasMainEntryPoint = true;
                     			}
                     			}
 
                     }
                     break;
                 case 2 :
-                    // C.g:307:5: '(' declarator ')'
+                    // C.g:318:5: '(' declarator ')'
                     {
-                    match(input,31,FOLLOW_31_in_direct_declarator1202); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_direct_declarator1213); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_declarator_in_direct_declarator1204);
+                    pushFollow(FOLLOW_declarator_in_direct_declarator1215);
                     declarator();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_direct_declarator1206); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_direct_declarator1217); if (state.failed) return retval;
 
                     }
                     break;
@@ -4336,16 +4350,16 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            // C.g:309:9: ( declarator_suffix )*
+            // C.g:320:9: ( declarator_suffix )*
             loop43:
             do {
                 int alt43=2;
                 alt43 = dfa43.predict(input);
                 switch (alt43) {
             	case 1 :
-            	    // C.g:309:9: declarator_suffix
+            	    // C.g:320:9: declarator_suffix
             	    {
-            	    pushFollow(FOLLOW_declarator_suffix_in_direct_declarator1220);
+            	    pushFollow(FOLLOW_declarator_suffix_in_direct_declarator1231);
             	    declarator_suffix();
 
             	    state._fsp--;
@@ -4389,7 +4403,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declarator_suffix"
-    // C.g:312:1: declarator_suffix : ( '[' constant_expression ']' | '[' ']' | '(' parameter_type_list ')' | '(' identifier_list ')' | '(' ')' );
+    // C.g:323:1: declarator_suffix : ( '[' constant_expression ']' | '[' ']' | '(' parameter_type_list ')' | '(' identifier_list ')' | '(' ')' );
     public final CParser.declarator_suffix_return declarator_suffix() throws RecognitionException {
         CParser.declarator_suffix_return retval = new CParser.declarator_suffix_return();
         retval.start = input.LT(1);
@@ -4399,7 +4413,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 36) ) { return retval; }
 
-            // C.g:313:2: ( '[' constant_expression ']' | '[' ']' | '(' parameter_type_list ')' | '(' identifier_list ')' | '(' ')' )
+            // C.g:324:2: ( '[' constant_expression ']' | '[' ']' | '(' parameter_type_list ')' | '(' identifier_list ')' | '(' ')' )
             int alt44=5;
             int LA44_0 = input.LA(1);
 
@@ -4498,65 +4512,65 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt44) {
                 case 1 :
-                    // C.g:313:6: '[' constant_expression ']'
+                    // C.g:324:6: '[' constant_expression ']'
                     {
-                    match(input,60,FOLLOW_60_in_declarator_suffix1234); if (state.failed) return retval;
+                    match(input,60,FOLLOW_60_in_declarator_suffix1245); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_declarator_suffix1236);
+                    pushFollow(FOLLOW_constant_expression_in_declarator_suffix1247);
                     constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,61,FOLLOW_61_in_declarator_suffix1238); if (state.failed) return retval;
+                    match(input,61,FOLLOW_61_in_declarator_suffix1249); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:314:9: '[' ']'
+                    // C.g:325:9: '[' ']'
                     {
-                    match(input,60,FOLLOW_60_in_declarator_suffix1248); if (state.failed) return retval;
+                    match(input,60,FOLLOW_60_in_declarator_suffix1259); if (state.failed) return retval;
 
-                    match(input,61,FOLLOW_61_in_declarator_suffix1250); if (state.failed) return retval;
+                    match(input,61,FOLLOW_61_in_declarator_suffix1261); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:315:9: '(' parameter_type_list ')'
+                    // C.g:326:9: '(' parameter_type_list ')'
                     {
-                    match(input,31,FOLLOW_31_in_declarator_suffix1260); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_declarator_suffix1271); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_parameter_type_list_in_declarator_suffix1262);
+                    pushFollow(FOLLOW_parameter_type_list_in_declarator_suffix1273);
                     parameter_type_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_declarator_suffix1264); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_declarator_suffix1275); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:316:9: '(' identifier_list ')'
+                    // C.g:327:9: '(' identifier_list ')'
                     {
-                    match(input,31,FOLLOW_31_in_declarator_suffix1274); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_declarator_suffix1285); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_identifier_list_in_declarator_suffix1276);
+                    pushFollow(FOLLOW_identifier_list_in_declarator_suffix1287);
                     identifier_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_declarator_suffix1278); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_declarator_suffix1289); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
-                    // C.g:317:9: '(' ')'
+                    // C.g:328:9: '(' ')'
                     {
-                    match(input,31,FOLLOW_31_in_declarator_suffix1288); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_declarator_suffix1299); if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_declarator_suffix1290); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_declarator_suffix1301); if (state.failed) return retval;
 
                     }
                     break;
@@ -4589,7 +4603,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "pointer"
-    // C.g:320:1: pointer : ( '*' ( type_qualifier )+ ( pointer )? | '*' pointer | '*' );
+    // C.g:331:1: pointer : ( '*' ( type_qualifier )+ ( pointer )? | '*' pointer | '*' );
     public final CParser.pointer_return pointer() throws RecognitionException {
         CParser.pointer_return retval = new CParser.pointer_return();
         retval.start = input.LT(1);
@@ -4599,7 +4613,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return retval; }
 
-            // C.g:321:2: ( '*' ( type_qualifier )+ ( pointer )? | '*' pointer | '*' )
+            // C.g:332:2: ( '*' ( type_qualifier )+ ( pointer )? | '*' pointer | '*' )
             int alt47=3;
             int LA47_0 = input.LA(1);
 
@@ -4746,11 +4760,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt47) {
                 case 1 :
-                    // C.g:321:4: '*' ( type_qualifier )+ ( pointer )?
+                    // C.g:332:4: '*' ( type_qualifier )+ ( pointer )?
                     {
-                    match(input,33,FOLLOW_33_in_pointer1301); if (state.failed) return retval;
+                    match(input,33,FOLLOW_33_in_pointer1312); if (state.failed) return retval;
 
-                    // C.g:321:8: ( type_qualifier )+
+                    // C.g:332:8: ( type_qualifier )+
                     int cnt45=0;
                     loop45:
                     do {
@@ -4758,9 +4772,9 @@ public static class STAttrMap extends HashMap {
                         alt45 = dfa45.predict(input);
                         switch (alt45) {
                     	case 1 :
-                    	    // C.g:321:8: type_qualifier
+                    	    // C.g:332:8: type_qualifier
                     	    {
-                    	    pushFollow(FOLLOW_type_qualifier_in_pointer1303);
+                    	    pushFollow(FOLLOW_type_qualifier_in_pointer1314);
                     	    type_qualifier();
 
                     	    state._fsp--;
@@ -4780,14 +4794,14 @@ public static class STAttrMap extends HashMap {
                     } while (true);
 
 
-                    // C.g:321:24: ( pointer )?
+                    // C.g:332:24: ( pointer )?
                     int alt46=2;
                     alt46 = dfa46.predict(input);
                     switch (alt46) {
                         case 1 :
-                            // C.g:321:24: pointer
+                            // C.g:332:24: pointer
                             {
-                            pushFollow(FOLLOW_pointer_in_pointer1306);
+                            pushFollow(FOLLOW_pointer_in_pointer1317);
                             pointer();
 
                             state._fsp--;
@@ -4802,11 +4816,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:322:4: '*' pointer
+                    // C.g:333:4: '*' pointer
                     {
-                    match(input,33,FOLLOW_33_in_pointer1312); if (state.failed) return retval;
+                    match(input,33,FOLLOW_33_in_pointer1323); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_pointer_in_pointer1314);
+                    pushFollow(FOLLOW_pointer_in_pointer1325);
                     pointer();
 
                     state._fsp--;
@@ -4815,9 +4829,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:323:4: '*'
+                    // C.g:334:4: '*'
                     {
-                    match(input,33,FOLLOW_33_in_pointer1319); if (state.failed) return retval;
+                    match(input,33,FOLLOW_33_in_pointer1330); if (state.failed) return retval;
 
                     }
                     break;
@@ -4850,7 +4864,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "parameter_type_list"
-    // C.g:326:1: parameter_type_list : parameter_list ( ',' '...' )? ;
+    // C.g:337:1: parameter_type_list : parameter_list ( ',' '...' )? ;
     public final CParser.parameter_type_list_return parameter_type_list() throws RecognitionException {
         CParser.parameter_type_list_return retval = new CParser.parameter_type_list_return();
         retval.start = input.LT(1);
@@ -4860,16 +4874,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return retval; }
 
-            // C.g:327:2: ( parameter_list ( ',' '...' )? )
-            // C.g:327:4: parameter_list ( ',' '...' )?
+            // C.g:338:2: ( parameter_list ( ',' '...' )? )
+            // C.g:338:4: parameter_list ( ',' '...' )?
             {
-            pushFollow(FOLLOW_parameter_list_in_parameter_type_list1330);
+            pushFollow(FOLLOW_parameter_list_in_parameter_type_list1341);
             parameter_list();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:327:19: ( ',' '...' )?
+            // C.g:338:19: ( ',' '...' )?
             int alt48=2;
             int LA48_0 = input.LA(1);
 
@@ -4878,11 +4892,11 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt48) {
                 case 1 :
-                    // C.g:327:20: ',' '...'
+                    // C.g:338:20: ',' '...'
                     {
-                    match(input,38,FOLLOW_38_in_parameter_type_list1333); if (state.failed) return retval;
+                    match(input,38,FOLLOW_38_in_parameter_type_list1344); if (state.failed) return retval;
 
-                    match(input,44,FOLLOW_44_in_parameter_type_list1335); if (state.failed) return retval;
+                    match(input,44,FOLLOW_44_in_parameter_type_list1346); if (state.failed) return retval;
 
                     }
                     break;
@@ -4919,7 +4933,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "parameter_list"
-    // C.g:330:1: parameter_list : parameter_declaration ( ',' parameter_declaration )* ;
+    // C.g:341:1: parameter_list : parameter_declaration ( ',' parameter_declaration )* ;
     public final CParser.parameter_list_return parameter_list() throws RecognitionException {
         CParser.parameter_list_return retval = new CParser.parameter_list_return();
         retval.start = input.LT(1);
@@ -4929,16 +4943,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 39) ) { return retval; }
 
-            // C.g:331:2: ( parameter_declaration ( ',' parameter_declaration )* )
-            // C.g:331:4: parameter_declaration ( ',' parameter_declaration )*
+            // C.g:342:2: ( parameter_declaration ( ',' parameter_declaration )* )
+            // C.g:342:4: parameter_declaration ( ',' parameter_declaration )*
             {
-            pushFollow(FOLLOW_parameter_declaration_in_parameter_list1348);
+            pushFollow(FOLLOW_parameter_declaration_in_parameter_list1359);
             parameter_declaration();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:331:26: ( ',' parameter_declaration )*
+            // C.g:342:26: ( ',' parameter_declaration )*
             loop49:
             do {
                 int alt49=2;
@@ -4957,11 +4971,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt49) {
             	case 1 :
-            	    // C.g:331:27: ',' parameter_declaration
+            	    // C.g:342:27: ',' parameter_declaration
             	    {
-            	    match(input,38,FOLLOW_38_in_parameter_list1351); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_parameter_list1362); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_parameter_declaration_in_parameter_list1353);
+            	    pushFollow(FOLLOW_parameter_declaration_in_parameter_list1364);
             	    parameter_declaration();
 
             	    state._fsp--;
@@ -5005,7 +5019,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "parameter_declaration"
-    // C.g:334:1: parameter_declaration : declaration_specifiers ( declarator | abstract_declarator )* ;
+    // C.g:345:1: parameter_declaration : declaration_specifiers ( declarator | abstract_declarator )* ;
     public final CParser.parameter_declaration_return parameter_declaration() throws RecognitionException {
         CParser.parameter_declaration_return retval = new CParser.parameter_declaration_return();
         retval.start = input.LT(1);
@@ -5015,16 +5029,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 40) ) { return retval; }
 
-            // C.g:335:2: ( declaration_specifiers ( declarator | abstract_declarator )* )
-            // C.g:335:4: declaration_specifiers ( declarator | abstract_declarator )*
+            // C.g:346:2: ( declaration_specifiers ( declarator | abstract_declarator )* )
+            // C.g:346:4: declaration_specifiers ( declarator | abstract_declarator )*
             {
-            pushFollow(FOLLOW_declaration_specifiers_in_parameter_declaration1366);
+            pushFollow(FOLLOW_declaration_specifiers_in_parameter_declaration1377);
             declaration_specifiers();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:335:27: ( declarator | abstract_declarator )*
+            // C.g:346:27: ( declarator | abstract_declarator )*
             loop50:
             do {
                 int alt50=3;
@@ -5140,9 +5154,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt50) {
             	case 1 :
-            	    // C.g:335:28: declarator
+            	    // C.g:346:28: declarator
             	    {
-            	    pushFollow(FOLLOW_declarator_in_parameter_declaration1369);
+            	    pushFollow(FOLLOW_declarator_in_parameter_declaration1380);
             	    declarator();
 
             	    state._fsp--;
@@ -5151,9 +5165,9 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:335:39: abstract_declarator
+            	    // C.g:346:39: abstract_declarator
             	    {
-            	    pushFollow(FOLLOW_abstract_declarator_in_parameter_declaration1371);
+            	    pushFollow(FOLLOW_abstract_declarator_in_parameter_declaration1382);
             	    abstract_declarator();
 
             	    state._fsp--;
@@ -5197,7 +5211,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "identifier_list"
-    // C.g:338:1: identifier_list : IDENTIFIER ( ',' IDENTIFIER )* ;
+    // C.g:349:1: identifier_list : IDENTIFIER ( ',' IDENTIFIER )* ;
     public final CParser.identifier_list_return identifier_list() throws RecognitionException {
         CParser.identifier_list_return retval = new CParser.identifier_list_return();
         retval.start = input.LT(1);
@@ -5207,12 +5221,12 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return retval; }
 
-            // C.g:339:2: ( IDENTIFIER ( ',' IDENTIFIER )* )
-            // C.g:339:4: IDENTIFIER ( ',' IDENTIFIER )*
+            // C.g:350:2: ( IDENTIFIER ( ',' IDENTIFIER )* )
+            // C.g:350:4: IDENTIFIER ( ',' IDENTIFIER )*
             {
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_identifier_list1384); if (state.failed) return retval;
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_identifier_list1395); if (state.failed) return retval;
 
-            // C.g:339:15: ( ',' IDENTIFIER )*
+            // C.g:350:15: ( ',' IDENTIFIER )*
             loop51:
             do {
                 int alt51=2;
@@ -5225,11 +5239,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt51) {
             	case 1 :
-            	    // C.g:339:16: ',' IDENTIFIER
+            	    // C.g:350:16: ',' IDENTIFIER
             	    {
-            	    match(input,38,FOLLOW_38_in_identifier_list1387); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_identifier_list1398); if (state.failed) return retval;
 
-            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_identifier_list1389); if (state.failed) return retval;
+            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_identifier_list1400); if (state.failed) return retval;
 
             	    }
             	    break;
@@ -5269,7 +5283,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "type_name"
-    // C.g:342:1: type_name : specifier_qualifier_list ( abstract_declarator )? ;
+    // C.g:353:1: type_name : specifier_qualifier_list ( abstract_declarator )? ;
     public final CParser.type_name_return type_name() throws RecognitionException {
         CParser.type_name_return retval = new CParser.type_name_return();
         retval.start = input.LT(1);
@@ -5279,16 +5293,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 42) ) { return retval; }
 
-            // C.g:343:2: ( specifier_qualifier_list ( abstract_declarator )? )
-            // C.g:343:4: specifier_qualifier_list ( abstract_declarator )?
+            // C.g:354:2: ( specifier_qualifier_list ( abstract_declarator )? )
+            // C.g:354:4: specifier_qualifier_list ( abstract_declarator )?
             {
-            pushFollow(FOLLOW_specifier_qualifier_list_in_type_name1402);
+            pushFollow(FOLLOW_specifier_qualifier_list_in_type_name1413);
             specifier_qualifier_list();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:343:29: ( abstract_declarator )?
+            // C.g:354:29: ( abstract_declarator )?
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -5297,9 +5311,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt52) {
                 case 1 :
-                    // C.g:343:29: abstract_declarator
+                    // C.g:354:29: abstract_declarator
                     {
-                    pushFollow(FOLLOW_abstract_declarator_in_type_name1404);
+                    pushFollow(FOLLOW_abstract_declarator_in_type_name1415);
                     abstract_declarator();
 
                     state._fsp--;
@@ -5340,7 +5354,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "abstract_declarator"
-    // C.g:346:1: abstract_declarator : ( pointer ( direct_abstract_declarator )? | direct_abstract_declarator );
+    // C.g:357:1: abstract_declarator : ( pointer ( direct_abstract_declarator )? | direct_abstract_declarator );
     public final CParser.abstract_declarator_return abstract_declarator() throws RecognitionException {
         CParser.abstract_declarator_return retval = new CParser.abstract_declarator_return();
         retval.start = input.LT(1);
@@ -5350,7 +5364,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
 
-            // C.g:347:2: ( pointer ( direct_abstract_declarator )? | direct_abstract_declarator )
+            // C.g:358:2: ( pointer ( direct_abstract_declarator )? | direct_abstract_declarator )
             int alt54=2;
             int LA54_0 = input.LA(1);
 
@@ -5370,15 +5384,15 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt54) {
                 case 1 :
-                    // C.g:347:4: pointer ( direct_abstract_declarator )?
+                    // C.g:358:4: pointer ( direct_abstract_declarator )?
                     {
-                    pushFollow(FOLLOW_pointer_in_abstract_declarator1416);
+                    pushFollow(FOLLOW_pointer_in_abstract_declarator1427);
                     pointer();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:347:12: ( direct_abstract_declarator )?
+                    // C.g:358:12: ( direct_abstract_declarator )?
                     int alt53=2;
                     int LA53_0 = input.LA(1);
 
@@ -5715,9 +5729,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt53) {
                         case 1 :
-                            // C.g:347:12: direct_abstract_declarator
+                            // C.g:358:12: direct_abstract_declarator
                             {
-                            pushFollow(FOLLOW_direct_abstract_declarator_in_abstract_declarator1418);
+                            pushFollow(FOLLOW_direct_abstract_declarator_in_abstract_declarator1429);
                             direct_abstract_declarator();
 
                             state._fsp--;
@@ -5732,9 +5746,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:348:4: direct_abstract_declarator
+                    // C.g:359:4: direct_abstract_declarator
                     {
-                    pushFollow(FOLLOW_direct_abstract_declarator_in_abstract_declarator1424);
+                    pushFollow(FOLLOW_direct_abstract_declarator_in_abstract_declarator1435);
                     direct_abstract_declarator();
 
                     state._fsp--;
@@ -5771,7 +5785,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "direct_abstract_declarator"
-    // C.g:351:1: direct_abstract_declarator : ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )* ;
+    // C.g:362:1: direct_abstract_declarator : ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )* ;
     public final CParser.direct_abstract_declarator_return direct_abstract_declarator() throws RecognitionException {
         CParser.direct_abstract_declarator_return retval = new CParser.direct_abstract_declarator_return();
         retval.start = input.LT(1);
@@ -5781,10 +5795,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
 
-            // C.g:352:2: ( ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )* )
-            // C.g:352:4: ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )*
+            // C.g:363:2: ( ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )* )
+            // C.g:363:4: ( '(' abstract_declarator ')' | abstract_declarator_suffix ) ( abstract_declarator_suffix )*
             {
-            // C.g:352:4: ( '(' abstract_declarator ')' | abstract_declarator_suffix )
+            // C.g:363:4: ( '(' abstract_declarator ')' | abstract_declarator_suffix )
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -5819,24 +5833,24 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt55) {
                 case 1 :
-                    // C.g:352:6: '(' abstract_declarator ')'
+                    // C.g:363:6: '(' abstract_declarator ')'
                     {
-                    match(input,31,FOLLOW_31_in_direct_abstract_declarator1437); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_direct_abstract_declarator1448); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_abstract_declarator_in_direct_abstract_declarator1439);
+                    pushFollow(FOLLOW_abstract_declarator_in_direct_abstract_declarator1450);
                     abstract_declarator();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_direct_abstract_declarator1441); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_direct_abstract_declarator1452); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:352:36: abstract_declarator_suffix
+                    // C.g:363:36: abstract_declarator_suffix
                     {
-                    pushFollow(FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1445);
+                    pushFollow(FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1456);
                     abstract_declarator_suffix();
 
                     state._fsp--;
@@ -5848,7 +5862,7 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            // C.g:352:65: ( abstract_declarator_suffix )*
+            // C.g:363:65: ( abstract_declarator_suffix )*
             loop56:
             do {
                 int alt56=2;
@@ -6226,9 +6240,9 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt56) {
             	case 1 :
-            	    // C.g:352:65: abstract_declarator_suffix
+            	    // C.g:363:65: abstract_declarator_suffix
             	    {
-            	    pushFollow(FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1449);
+            	    pushFollow(FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1460);
             	    abstract_declarator_suffix();
 
             	    state._fsp--;
@@ -6272,7 +6286,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "abstract_declarator_suffix"
-    // C.g:355:1: abstract_declarator_suffix : ( '[' ']' | '[' constant_expression ']' | '(' ')' | '(' parameter_type_list ')' );
+    // C.g:366:1: abstract_declarator_suffix : ( '[' ']' | '[' constant_expression ']' | '(' ')' | '(' parameter_type_list ')' );
     public final CParser.abstract_declarator_suffix_return abstract_declarator_suffix() throws RecognitionException {
         CParser.abstract_declarator_suffix_return retval = new CParser.abstract_declarator_suffix_return();
         retval.start = input.LT(1);
@@ -6282,7 +6296,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
 
-            // C.g:356:2: ( '[' ']' | '[' constant_expression ']' | '(' ')' | '(' parameter_type_list ')' )
+            // C.g:367:2: ( '[' ']' | '[' constant_expression ']' | '(' ')' | '(' parameter_type_list ')' )
             int alt57=4;
             int LA57_0 = input.LA(1);
 
@@ -6332,50 +6346,50 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt57) {
                 case 1 :
-                    // C.g:356:4: '[' ']'
+                    // C.g:367:4: '[' ']'
                     {
-                    match(input,60,FOLLOW_60_in_abstract_declarator_suffix1461); if (state.failed) return retval;
+                    match(input,60,FOLLOW_60_in_abstract_declarator_suffix1472); if (state.failed) return retval;
 
-                    match(input,61,FOLLOW_61_in_abstract_declarator_suffix1463); if (state.failed) return retval;
+                    match(input,61,FOLLOW_61_in_abstract_declarator_suffix1474); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:357:4: '[' constant_expression ']'
+                    // C.g:368:4: '[' constant_expression ']'
                     {
-                    match(input,60,FOLLOW_60_in_abstract_declarator_suffix1468); if (state.failed) return retval;
+                    match(input,60,FOLLOW_60_in_abstract_declarator_suffix1479); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_abstract_declarator_suffix1470);
+                    pushFollow(FOLLOW_constant_expression_in_abstract_declarator_suffix1481);
                     constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,61,FOLLOW_61_in_abstract_declarator_suffix1472); if (state.failed) return retval;
+                    match(input,61,FOLLOW_61_in_abstract_declarator_suffix1483); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:358:4: '(' ')'
+                    // C.g:369:4: '(' ')'
                     {
-                    match(input,31,FOLLOW_31_in_abstract_declarator_suffix1477); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_abstract_declarator_suffix1488); if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_abstract_declarator_suffix1479); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_abstract_declarator_suffix1490); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:359:4: '(' parameter_type_list ')'
+                    // C.g:370:4: '(' parameter_type_list ')'
                     {
-                    match(input,31,FOLLOW_31_in_abstract_declarator_suffix1484); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_abstract_declarator_suffix1495); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_parameter_type_list_in_abstract_declarator_suffix1486);
+                    pushFollow(FOLLOW_parameter_type_list_in_abstract_declarator_suffix1497);
                     parameter_type_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_abstract_declarator_suffix1488); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_abstract_declarator_suffix1499); if (state.failed) return retval;
 
                     }
                     break;
@@ -6408,7 +6422,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "initializer"
-    // C.g:362:1: initializer : ( assignment_expression | '{' initializer_list ( ',' )? '}' );
+    // C.g:373:1: initializer : ( assignment_expression | '{' initializer_list ( ',' )? '}' );
     public final CParser.initializer_return initializer() throws RecognitionException {
         CParser.initializer_return retval = new CParser.initializer_return();
         retval.start = input.LT(1);
@@ -6418,7 +6432,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
 
-            // C.g:363:2: ( assignment_expression | '{' initializer_list ( ',' )? '}' )
+            // C.g:374:2: ( assignment_expression | '{' initializer_list ( ',' )? '}' )
             int alt59=2;
             int LA59_0 = input.LA(1);
 
@@ -6438,9 +6452,9 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt59) {
                 case 1 :
-                    // C.g:363:4: assignment_expression
+                    // C.g:374:4: assignment_expression
                     {
-                    pushFollow(FOLLOW_assignment_expression_in_initializer1500);
+                    pushFollow(FOLLOW_assignment_expression_in_initializer1511);
                     assignment_expression();
 
                     state._fsp--;
@@ -6449,17 +6463,17 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:364:4: '{' initializer_list ( ',' )? '}'
+                    // C.g:375:4: '{' initializer_list ( ',' )? '}'
                     {
-                    match(input,108,FOLLOW_108_in_initializer1505); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_initializer1516); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_initializer_list_in_initializer1507);
+                    pushFollow(FOLLOW_initializer_list_in_initializer1518);
                     initializer_list();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:364:25: ( ',' )?
+                    // C.g:375:25: ( ',' )?
                     int alt58=2;
                     int LA58_0 = input.LA(1);
 
@@ -6468,9 +6482,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt58) {
                         case 1 :
-                            // C.g:364:25: ','
+                            // C.g:375:25: ','
                             {
-                            match(input,38,FOLLOW_38_in_initializer1509); if (state.failed) return retval;
+                            match(input,38,FOLLOW_38_in_initializer1520); if (state.failed) return retval;
 
                             }
                             break;
@@ -6478,7 +6492,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,112,FOLLOW_112_in_initializer1512); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_initializer1523); if (state.failed) return retval;
 
                     }
                     break;
@@ -6511,7 +6525,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "initializer_list"
-    // C.g:367:1: initializer_list : initializer ( ',' initializer )* ;
+    // C.g:378:1: initializer_list : initializer ( ',' initializer )* ;
     public final CParser.initializer_list_return initializer_list() throws RecognitionException {
         CParser.initializer_list_return retval = new CParser.initializer_list_return();
         retval.start = input.LT(1);
@@ -6521,16 +6535,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return retval; }
 
-            // C.g:368:2: ( initializer ( ',' initializer )* )
-            // C.g:368:4: initializer ( ',' initializer )*
+            // C.g:379:2: ( initializer ( ',' initializer )* )
+            // C.g:379:4: initializer ( ',' initializer )*
             {
-            pushFollow(FOLLOW_initializer_in_initializer_list1523);
+            pushFollow(FOLLOW_initializer_in_initializer_list1534);
             initializer();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:368:16: ( ',' initializer )*
+            // C.g:379:16: ( ',' initializer )*
             loop60:
             do {
                 int alt60=2;
@@ -6549,11 +6563,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt60) {
             	case 1 :
-            	    // C.g:368:17: ',' initializer
+            	    // C.g:379:17: ',' initializer
             	    {
-            	    match(input,38,FOLLOW_38_in_initializer_list1526); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_initializer_list1537); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_initializer_in_initializer_list1528);
+            	    pushFollow(FOLLOW_initializer_in_initializer_list1539);
             	    initializer();
 
             	    state._fsp--;
@@ -6597,7 +6611,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "argument_expression_list"
-    // C.g:373:1: argument_expression_list : assignment_expression ( ',' assignment_expression )* ;
+    // C.g:384:1: argument_expression_list : assignment_expression ( ',' assignment_expression )* ;
     public final CParser.argument_expression_list_return argument_expression_list() throws RecognitionException {
         CParser.argument_expression_list_return retval = new CParser.argument_expression_list_return();
         retval.start = input.LT(1);
@@ -6607,16 +6621,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
 
-            // C.g:374:2: ( assignment_expression ( ',' assignment_expression )* )
-            // C.g:374:4: assignment_expression ( ',' assignment_expression )*
+            // C.g:385:2: ( assignment_expression ( ',' assignment_expression )* )
+            // C.g:385:4: assignment_expression ( ',' assignment_expression )*
             {
-            pushFollow(FOLLOW_assignment_expression_in_argument_expression_list1543);
+            pushFollow(FOLLOW_assignment_expression_in_argument_expression_list1554);
             assignment_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:374:26: ( ',' assignment_expression )*
+            // C.g:385:26: ( ',' assignment_expression )*
             loop61:
             do {
                 int alt61=2;
@@ -6629,11 +6643,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt61) {
             	case 1 :
-            	    // C.g:374:27: ',' assignment_expression
+            	    // C.g:385:27: ',' assignment_expression
             	    {
-            	    match(input,38,FOLLOW_38_in_argument_expression_list1546); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_argument_expression_list1557); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_assignment_expression_in_argument_expression_list1548);
+            	    pushFollow(FOLLOW_assignment_expression_in_argument_expression_list1559);
             	    assignment_expression();
 
             	    state._fsp--;
@@ -6677,7 +6691,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "additive_expression"
-    // C.g:377:1: additive_expression : ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )* ;
+    // C.g:388:1: additive_expression : ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )* ;
     public final CParser.additive_expression_return additive_expression() throws RecognitionException {
         CParser.additive_expression_return retval = new CParser.additive_expression_return();
         retval.start = input.LT(1);
@@ -6687,13 +6701,13 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
 
-            // C.g:378:2: ( ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )* )
-            // C.g:378:4: ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )*
+            // C.g:389:2: ( ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )* )
+            // C.g:389:4: ( multiplicative_expression ) ( '+' multiplicative_expression | '-' multiplicative_expression )*
             {
-            // C.g:378:4: ( multiplicative_expression )
-            // C.g:378:5: multiplicative_expression
+            // C.g:389:4: ( multiplicative_expression )
+            // C.g:389:5: multiplicative_expression
             {
-            pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1562);
+            pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1573);
             multiplicative_expression();
 
             state._fsp--;
@@ -6702,7 +6716,7 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            // C.g:378:32: ( '+' multiplicative_expression | '-' multiplicative_expression )*
+            // C.g:389:32: ( '+' multiplicative_expression | '-' multiplicative_expression )*
             loop62:
             do {
                 int alt62=3;
@@ -6718,11 +6732,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt62) {
             	case 1 :
-            	    // C.g:378:33: '+' multiplicative_expression
+            	    // C.g:389:33: '+' multiplicative_expression
             	    {
-            	    match(input,35,FOLLOW_35_in_additive_expression1566); if (state.failed) return retval;
+            	    match(input,35,FOLLOW_35_in_additive_expression1577); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1568);
+            	    pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1579);
             	    multiplicative_expression();
 
             	    state._fsp--;
@@ -6731,11 +6745,11 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:378:65: '-' multiplicative_expression
+            	    // C.g:389:65: '-' multiplicative_expression
             	    {
-            	    match(input,39,FOLLOW_39_in_additive_expression1572); if (state.failed) return retval;
+            	    match(input,39,FOLLOW_39_in_additive_expression1583); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1574);
+            	    pushFollow(FOLLOW_multiplicative_expression_in_additive_expression1585);
             	    multiplicative_expression();
 
             	    state._fsp--;
@@ -6779,7 +6793,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "multiplicative_expression"
-    // C.g:381:1: multiplicative_expression : ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )* ;
+    // C.g:392:1: multiplicative_expression : ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )* ;
     public final CParser.multiplicative_expression_return multiplicative_expression() throws RecognitionException {
         CParser.multiplicative_expression_return retval = new CParser.multiplicative_expression_return();
         retval.start = input.LT(1);
@@ -6789,13 +6803,13 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
 
-            // C.g:382:2: ( ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )* )
-            // C.g:382:4: ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )*
+            // C.g:393:2: ( ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )* )
+            // C.g:393:4: ( cast_expression ) ( '*' cast_expression | '/' cast_expression | '%' cast_expression )*
             {
-            // C.g:382:4: ( cast_expression )
-            // C.g:382:5: cast_expression
+            // C.g:393:4: ( cast_expression )
+            // C.g:393:5: cast_expression
             {
-            pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1588);
+            pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1599);
             cast_expression();
 
             state._fsp--;
@@ -6804,7 +6818,7 @@ public static class STAttrMap extends HashMap {
             }
 
 
-            // C.g:382:22: ( '*' cast_expression | '/' cast_expression | '%' cast_expression )*
+            // C.g:393:22: ( '*' cast_expression | '/' cast_expression | '%' cast_expression )*
             loop63:
             do {
                 int alt63=4;
@@ -6829,11 +6843,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt63) {
             	case 1 :
-            	    // C.g:382:23: '*' cast_expression
+            	    // C.g:393:23: '*' cast_expression
             	    {
-            	    match(input,33,FOLLOW_33_in_multiplicative_expression1592); if (state.failed) return retval;
+            	    match(input,33,FOLLOW_33_in_multiplicative_expression1603); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1594);
+            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1605);
             	    cast_expression();
 
             	    state._fsp--;
@@ -6842,11 +6856,11 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 2 :
-            	    // C.g:382:45: '/' cast_expression
+            	    // C.g:393:45: '/' cast_expression
             	    {
-            	    match(input,45,FOLLOW_45_in_multiplicative_expression1598); if (state.failed) return retval;
+            	    match(input,45,FOLLOW_45_in_multiplicative_expression1609); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1600);
+            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1611);
             	    cast_expression();
 
             	    state._fsp--;
@@ -6855,11 +6869,11 @@ public static class STAttrMap extends HashMap {
             	    }
             	    break;
             	case 3 :
-            	    // C.g:382:67: '%' cast_expression
+            	    // C.g:393:67: '%' cast_expression
             	    {
-            	    match(input,26,FOLLOW_26_in_multiplicative_expression1604); if (state.failed) return retval;
+            	    match(input,26,FOLLOW_26_in_multiplicative_expression1615); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1606);
+            	    pushFollow(FOLLOW_cast_expression_in_multiplicative_expression1617);
             	    cast_expression();
 
             	    state._fsp--;
@@ -6903,7 +6917,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "cast_expression"
-    // C.g:385:1: cast_expression : ( '(' type_name ')' cast_expression | unary_expression );
+    // C.g:396:1: cast_expression : ( '(' type_name ')' cast_expression | unary_expression );
     public final CParser.cast_expression_return cast_expression() throws RecognitionException {
         CParser.cast_expression_return retval = new CParser.cast_expression_return();
         retval.start = input.LT(1);
@@ -6913,7 +6927,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return retval; }
 
-            // C.g:386:2: ( '(' type_name ')' cast_expression | unary_expression )
+            // C.g:397:2: ( '(' type_name ')' cast_expression | unary_expression )
             int alt64=2;
             int LA64_0 = input.LA(1);
 
@@ -7008,19 +7022,19 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt64) {
                 case 1 :
-                    // C.g:386:4: '(' type_name ')' cast_expression
+                    // C.g:397:4: '(' type_name ')' cast_expression
                     {
-                    match(input,31,FOLLOW_31_in_cast_expression1619); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_cast_expression1630); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_type_name_in_cast_expression1621);
+                    pushFollow(FOLLOW_type_name_in_cast_expression1632);
                     type_name();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_cast_expression1623); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_cast_expression1634); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_cast_expression_in_cast_expression1625);
+                    pushFollow(FOLLOW_cast_expression_in_cast_expression1636);
                     cast_expression();
 
                     state._fsp--;
@@ -7029,9 +7043,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:387:4: unary_expression
+                    // C.g:398:4: unary_expression
                     {
-                    pushFollow(FOLLOW_unary_expression_in_cast_expression1630);
+                    pushFollow(FOLLOW_unary_expression_in_cast_expression1641);
                     unary_expression();
 
                     state._fsp--;
@@ -7068,7 +7082,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "unary_expression"
-    // C.g:390:1: unary_expression : ( postfix_expression | '++' unary_expression | '--' unary_expression | unary_operator cast_expression | 'sizeof' unary_expression | 'sizeof' '(' type_name ')' );
+    // C.g:401:1: unary_expression : ( postfix_expression | '++' unary_expression | '--' unary_expression | unary_operator cast_expression | 'sizeof' unary_expression | 'sizeof' '(' type_name ')' );
     public final CParser.unary_expression_return unary_expression() throws RecognitionException {
         CParser.unary_expression_return retval = new CParser.unary_expression_return();
         retval.start = input.LT(1);
@@ -7078,7 +7092,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
 
-            // C.g:391:2: ( postfix_expression | '++' unary_expression | '--' unary_expression | unary_operator cast_expression | 'sizeof' unary_expression | 'sizeof' '(' type_name ')' )
+            // C.g:402:2: ( postfix_expression | '++' unary_expression | '--' unary_expression | unary_operator cast_expression | 'sizeof' unary_expression | 'sizeof' '(' type_name ')' )
             int alt65=6;
             switch ( input.LA(1) ) {
             case CHARACTER_LITERAL:
@@ -7159,9 +7173,9 @@ public static class STAttrMap extends HashMap {
 
             switch (alt65) {
                 case 1 :
-                    // C.g:391:4: postfix_expression
+                    // C.g:402:4: postfix_expression
                     {
-                    pushFollow(FOLLOW_postfix_expression_in_unary_expression1641);
+                    pushFollow(FOLLOW_postfix_expression_in_unary_expression1652);
                     postfix_expression();
 
                     state._fsp--;
@@ -7170,11 +7184,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:392:4: '++' unary_expression
+                    // C.g:403:4: '++' unary_expression
                     {
-                    match(input,36,FOLLOW_36_in_unary_expression1646); if (state.failed) return retval;
+                    match(input,36,FOLLOW_36_in_unary_expression1657); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_unary_expression_in_unary_expression1648);
+                    pushFollow(FOLLOW_unary_expression_in_unary_expression1659);
                     unary_expression();
 
                     state._fsp--;
@@ -7183,11 +7197,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:393:4: '--' unary_expression
+                    // C.g:404:4: '--' unary_expression
                     {
-                    match(input,40,FOLLOW_40_in_unary_expression1653); if (state.failed) return retval;
+                    match(input,40,FOLLOW_40_in_unary_expression1664); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_unary_expression_in_unary_expression1655);
+                    pushFollow(FOLLOW_unary_expression_in_unary_expression1666);
                     unary_expression();
 
                     state._fsp--;
@@ -7196,15 +7210,15 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:394:4: unary_operator cast_expression
+                    // C.g:405:4: unary_operator cast_expression
                     {
-                    pushFollow(FOLLOW_unary_operator_in_unary_expression1660);
+                    pushFollow(FOLLOW_unary_operator_in_unary_expression1671);
                     unary_operator();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_cast_expression_in_unary_expression1662);
+                    pushFollow(FOLLOW_cast_expression_in_unary_expression1673);
                     cast_expression();
 
                     state._fsp--;
@@ -7213,11 +7227,11 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 5 :
-                    // C.g:395:4: 'sizeof' unary_expression
+                    // C.g:406:4: 'sizeof' unary_expression
                     {
-                    match(input,98,FOLLOW_98_in_unary_expression1667); if (state.failed) return retval;
+                    match(input,98,FOLLOW_98_in_unary_expression1678); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_unary_expression_in_unary_expression1669);
+                    pushFollow(FOLLOW_unary_expression_in_unary_expression1680);
                     unary_expression();
 
                     state._fsp--;
@@ -7226,19 +7240,19 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 6 :
-                    // C.g:396:4: 'sizeof' '(' type_name ')'
+                    // C.g:407:4: 'sizeof' '(' type_name ')'
                     {
-                    match(input,98,FOLLOW_98_in_unary_expression1674); if (state.failed) return retval;
+                    match(input,98,FOLLOW_98_in_unary_expression1685); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_unary_expression1676); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_unary_expression1687); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_type_name_in_unary_expression1678);
+                    pushFollow(FOLLOW_type_name_in_unary_expression1689);
                     type_name();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_unary_expression1680); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_unary_expression1691); if (state.failed) return retval;
 
                     }
                     break;
@@ -7271,7 +7285,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "postfix_expression"
-    // C.g:399:1: postfix_expression : primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )* ;
+    // C.g:410:1: postfix_expression : primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )* ;
     public final CParser.postfix_expression_return postfix_expression() throws RecognitionException {
         CParser.postfix_expression_return retval = new CParser.postfix_expression_return();
         retval.start = input.LT(1);
@@ -7281,16 +7295,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return retval; }
 
-            // C.g:400:2: ( primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )* )
-            // C.g:400:6: primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )*
+            // C.g:411:2: ( primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )* )
+            // C.g:411:6: primary_expression ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )*
             {
-            pushFollow(FOLLOW_primary_expression_in_postfix_expression1693);
+            pushFollow(FOLLOW_primary_expression_in_postfix_expression1704);
             primary_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:401:9: ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )*
+            // C.g:412:9: ( '[' expression ']' | '(' ')' | '(' argument_expression_list ')' | '.' IDENTIFIER | '->' IDENTIFIER | '++' | '--' )*
             loop66:
             do {
                 int alt66=8;
@@ -7339,73 +7353,73 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt66) {
             	case 1 :
-            	    // C.g:401:13: '[' expression ']'
+            	    // C.g:412:13: '[' expression ']'
             	    {
-            	    match(input,60,FOLLOW_60_in_postfix_expression1707); if (state.failed) return retval;
+            	    match(input,60,FOLLOW_60_in_postfix_expression1718); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_expression_in_postfix_expression1709);
+            	    pushFollow(FOLLOW_expression_in_postfix_expression1720);
             	    expression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
 
-            	    match(input,61,FOLLOW_61_in_postfix_expression1711); if (state.failed) return retval;
+            	    match(input,61,FOLLOW_61_in_postfix_expression1722); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 2 :
-            	    // C.g:402:13: '(' ')'
+            	    // C.g:413:13: '(' ')'
             	    {
-            	    match(input,31,FOLLOW_31_in_postfix_expression1725); if (state.failed) return retval;
+            	    match(input,31,FOLLOW_31_in_postfix_expression1736); if (state.failed) return retval;
 
-            	    match(input,32,FOLLOW_32_in_postfix_expression1727); if (state.failed) return retval;
+            	    match(input,32,FOLLOW_32_in_postfix_expression1738); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 3 :
-            	    // C.g:403:13: '(' argument_expression_list ')'
+            	    // C.g:414:13: '(' argument_expression_list ')'
             	    {
-            	    match(input,31,FOLLOW_31_in_postfix_expression1741); if (state.failed) return retval;
+            	    match(input,31,FOLLOW_31_in_postfix_expression1752); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_argument_expression_list_in_postfix_expression1743);
+            	    pushFollow(FOLLOW_argument_expression_list_in_postfix_expression1754);
             	    argument_expression_list();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
 
-            	    match(input,32,FOLLOW_32_in_postfix_expression1745); if (state.failed) return retval;
+            	    match(input,32,FOLLOW_32_in_postfix_expression1756); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 4 :
-            	    // C.g:404:13: '.' IDENTIFIER
+            	    // C.g:415:13: '.' IDENTIFIER
             	    {
-            	    match(input,43,FOLLOW_43_in_postfix_expression1759); if (state.failed) return retval;
+            	    match(input,43,FOLLOW_43_in_postfix_expression1770); if (state.failed) return retval;
 
-            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_postfix_expression1761); if (state.failed) return retval;
+            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_postfix_expression1772); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 5 :
-            	    // C.g:405:13: '->' IDENTIFIER
+            	    // C.g:416:13: '->' IDENTIFIER
             	    {
-            	    match(input,42,FOLLOW_42_in_postfix_expression1775); if (state.failed) return retval;
+            	    match(input,42,FOLLOW_42_in_postfix_expression1786); if (state.failed) return retval;
 
-            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_postfix_expression1777); if (state.failed) return retval;
+            	    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_postfix_expression1788); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 6 :
-            	    // C.g:406:13: '++'
+            	    // C.g:417:13: '++'
             	    {
-            	    match(input,36,FOLLOW_36_in_postfix_expression1791); if (state.failed) return retval;
+            	    match(input,36,FOLLOW_36_in_postfix_expression1802); if (state.failed) return retval;
 
             	    }
             	    break;
             	case 7 :
-            	    // C.g:407:13: '--'
+            	    // C.g:418:13: '--'
             	    {
-            	    match(input,40,FOLLOW_40_in_postfix_expression1805); if (state.failed) return retval;
+            	    match(input,40,FOLLOW_40_in_postfix_expression1816); if (state.failed) return retval;
 
             	    }
             	    break;
@@ -7445,7 +7459,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "unary_operator"
-    // C.g:411:1: unary_operator : ( '&' | '*' | '+' | '-' | '~' | '!' );
+    // C.g:422:1: unary_operator : ( '&' | '*' | '+' | '-' | '~' | '!' );
     public final CParser.unary_operator_return unary_operator() throws RecognitionException {
         CParser.unary_operator_return retval = new CParser.unary_operator_return();
         retval.start = input.LT(1);
@@ -7455,7 +7469,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
 
-            // C.g:412:2: ( '&' | '*' | '+' | '-' | '~' | '!' )
+            // C.g:423:2: ( '&' | '*' | '+' | '-' | '~' | '!' )
             // C.g:
             {
             if ( input.LA(1)==24||input.LA(1)==29||input.LA(1)==33||input.LA(1)==35||input.LA(1)==39||input.LA(1)==113 ) {
@@ -7499,7 +7513,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "primary_expression"
-    // C.g:420:1: primary_expression : ( IDENTIFIER | constant | '(' expression ')' );
+    // C.g:431:1: primary_expression : ( IDENTIFIER | constant | '(' expression ')' );
     public final CParser.primary_expression_return primary_expression() throws RecognitionException {
         CParser.primary_expression_return retval = new CParser.primary_expression_return();
         retval.start = input.LT(1);
@@ -7509,7 +7523,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
 
-            // C.g:421:2: ( IDENTIFIER | constant | '(' expression ')' )
+            // C.g:432:2: ( IDENTIFIER | constant | '(' expression ')' )
             int alt67=3;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
@@ -7543,16 +7557,16 @@ public static class STAttrMap extends HashMap {
 
             switch (alt67) {
                 case 1 :
-                    // C.g:421:4: IDENTIFIER
+                    // C.g:432:4: IDENTIFIER
                     {
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary_expression1863); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary_expression1874); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:422:4: constant
+                    // C.g:433:4: constant
                     {
-                    pushFollow(FOLLOW_constant_in_primary_expression1868);
+                    pushFollow(FOLLOW_constant_in_primary_expression1879);
                     constant();
 
                     state._fsp--;
@@ -7561,17 +7575,17 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:423:4: '(' expression ')'
+                    // C.g:434:4: '(' expression ')'
                     {
-                    match(input,31,FOLLOW_31_in_primary_expression1873); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_primary_expression1884); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_primary_expression1875);
+                    pushFollow(FOLLOW_expression_in_primary_expression1886);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_primary_expression1877); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_primary_expression1888); if (state.failed) return retval;
 
                     }
                     break;
@@ -7604,7 +7618,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "constant"
-    // C.g:426:1: constant : ( HEX_LITERAL | OCTAL_LITERAL | DECIMAL_LITERAL | CHARACTER_LITERAL | STRING_LITERAL ( STRING_LITERAL )* | FLOATING_POINT_LITERAL );
+    // C.g:437:1: constant : ( HEX_LITERAL | OCTAL_LITERAL | DECIMAL_LITERAL | CHARACTER_LITERAL | STRING_LITERAL ( STRING_LITERAL )* | FLOATING_POINT_LITERAL );
     public final CParser.constant_return constant() throws RecognitionException {
         CParser.constant_return retval = new CParser.constant_return();
         retval.start = input.LT(1);
@@ -7614,7 +7628,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
 
-            // C.g:427:5: ( HEX_LITERAL | OCTAL_LITERAL | DECIMAL_LITERAL | CHARACTER_LITERAL | STRING_LITERAL ( STRING_LITERAL )* | FLOATING_POINT_LITERAL )
+            // C.g:438:5: ( HEX_LITERAL | OCTAL_LITERAL | DECIMAL_LITERAL | CHARACTER_LITERAL | STRING_LITERAL ( STRING_LITERAL )* | FLOATING_POINT_LITERAL )
             int alt69=6;
             switch ( input.LA(1) ) {
             case HEX_LITERAL:
@@ -7658,39 +7672,39 @@ public static class STAttrMap extends HashMap {
 
             switch (alt69) {
                 case 1 :
-                    // C.g:427:9: HEX_LITERAL
+                    // C.g:438:9: HEX_LITERAL
                     {
-                    match(input,HEX_LITERAL,FOLLOW_HEX_LITERAL_in_constant1893); if (state.failed) return retval;
+                    match(input,HEX_LITERAL,FOLLOW_HEX_LITERAL_in_constant1904); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:428:9: OCTAL_LITERAL
+                    // C.g:439:9: OCTAL_LITERAL
                     {
-                    match(input,OCTAL_LITERAL,FOLLOW_OCTAL_LITERAL_in_constant1903); if (state.failed) return retval;
+                    match(input,OCTAL_LITERAL,FOLLOW_OCTAL_LITERAL_in_constant1914); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:429:9: DECIMAL_LITERAL
+                    // C.g:440:9: DECIMAL_LITERAL
                     {
-                    match(input,DECIMAL_LITERAL,FOLLOW_DECIMAL_LITERAL_in_constant1913); if (state.failed) return retval;
+                    match(input,DECIMAL_LITERAL,FOLLOW_DECIMAL_LITERAL_in_constant1924); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:430:9: CHARACTER_LITERAL
+                    // C.g:441:9: CHARACTER_LITERAL
                     {
-                    match(input,CHARACTER_LITERAL,FOLLOW_CHARACTER_LITERAL_in_constant1923); if (state.failed) return retval;
+                    match(input,CHARACTER_LITERAL,FOLLOW_CHARACTER_LITERAL_in_constant1934); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
-                    // C.g:431:9: STRING_LITERAL ( STRING_LITERAL )*
+                    // C.g:442:9: STRING_LITERAL ( STRING_LITERAL )*
                     {
-                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_constant1933); if (state.failed) return retval;
+                    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_constant1944); if (state.failed) return retval;
 
-                    // C.g:431:24: ( STRING_LITERAL )*
+                    // C.g:442:24: ( STRING_LITERAL )*
                     loop68:
                     do {
                         int alt68=2;
@@ -7703,9 +7717,9 @@ public static class STAttrMap extends HashMap {
 
                         switch (alt68) {
                     	case 1 :
-                    	    // C.g:431:25: STRING_LITERAL
+                    	    // C.g:442:25: STRING_LITERAL
                     	    {
-                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_constant1936); if (state.failed) return retval;
+                    	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_constant1947); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -7719,9 +7733,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 6 :
-                    // C.g:432:9: FLOATING_POINT_LITERAL
+                    // C.g:443:9: FLOATING_POINT_LITERAL
                     {
-                    match(input,FLOATING_POINT_LITERAL,FOLLOW_FLOATING_POINT_LITERAL_in_constant1948); if (state.failed) return retval;
+                    match(input,FLOATING_POINT_LITERAL,FOLLOW_FLOATING_POINT_LITERAL_in_constant1959); if (state.failed) return retval;
 
                     }
                     break;
@@ -7754,7 +7768,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "expression"
-    // C.g:435:1: expression : assignment_expression ( ',' assignment_expression )* ;
+    // C.g:446:1: expression : assignment_expression ( ',' assignment_expression )* ;
     public final CParser.expression_return expression() throws RecognitionException {
         CParser.expression_return retval = new CParser.expression_return();
         retval.start = input.LT(1);
@@ -7764,16 +7778,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
 
-            // C.g:436:2: ( assignment_expression ( ',' assignment_expression )* )
-            // C.g:436:4: assignment_expression ( ',' assignment_expression )*
+            // C.g:447:2: ( assignment_expression ( ',' assignment_expression )* )
+            // C.g:447:4: assignment_expression ( ',' assignment_expression )*
             {
-            pushFollow(FOLLOW_assignment_expression_in_expression1962);
+            pushFollow(FOLLOW_assignment_expression_in_expression1973);
             assignment_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:436:26: ( ',' assignment_expression )*
+            // C.g:447:26: ( ',' assignment_expression )*
             loop70:
             do {
                 int alt70=2;
@@ -7786,11 +7800,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt70) {
             	case 1 :
-            	    // C.g:436:27: ',' assignment_expression
+            	    // C.g:447:27: ',' assignment_expression
             	    {
-            	    match(input,38,FOLLOW_38_in_expression1965); if (state.failed) return retval;
+            	    match(input,38,FOLLOW_38_in_expression1976); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_assignment_expression_in_expression1967);
+            	    pushFollow(FOLLOW_assignment_expression_in_expression1978);
             	    assignment_expression();
 
             	    state._fsp--;
@@ -7834,7 +7848,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "constant_expression"
-    // C.g:439:1: constant_expression : conditional_expression ;
+    // C.g:450:1: constant_expression : conditional_expression ;
     public final CParser.constant_expression_return constant_expression() throws RecognitionException {
         CParser.constant_expression_return retval = new CParser.constant_expression_return();
         retval.start = input.LT(1);
@@ -7844,10 +7858,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
 
-            // C.g:440:2: ( conditional_expression )
-            // C.g:440:4: conditional_expression
+            // C.g:451:2: ( conditional_expression )
+            // C.g:451:4: conditional_expression
             {
-            pushFollow(FOLLOW_conditional_expression_in_constant_expression1980);
+            pushFollow(FOLLOW_conditional_expression_in_constant_expression1991);
             conditional_expression();
 
             state._fsp--;
@@ -7882,7 +7896,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assignment_expression"
-    // C.g:443:1: assignment_expression : ( lvalue assignment_operator assignment_expression | conditional_expression );
+    // C.g:454:1: assignment_expression : ( lvalue assignment_operator assignment_expression | conditional_expression );
     public final CParser.assignment_expression_return assignment_expression() throws RecognitionException {
         CParser.assignment_expression_return retval = new CParser.assignment_expression_return();
         retval.start = input.LT(1);
@@ -7892,26 +7906,26 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
 
-            // C.g:444:2: ( lvalue assignment_operator assignment_expression | conditional_expression )
+            // C.g:455:2: ( lvalue assignment_operator assignment_expression | conditional_expression )
             int alt71=2;
             alt71 = dfa71.predict(input);
             switch (alt71) {
                 case 1 :
-                    // C.g:444:4: lvalue assignment_operator assignment_expression
+                    // C.g:455:4: lvalue assignment_operator assignment_expression
                     {
-                    pushFollow(FOLLOW_lvalue_in_assignment_expression1991);
+                    pushFollow(FOLLOW_lvalue_in_assignment_expression2002);
                     lvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_assignment_operator_in_assignment_expression1993);
+                    pushFollow(FOLLOW_assignment_operator_in_assignment_expression2004);
                     assignment_operator();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_assignment_expression_in_assignment_expression1995);
+                    pushFollow(FOLLOW_assignment_expression_in_assignment_expression2006);
                     assignment_expression();
 
                     state._fsp--;
@@ -7920,9 +7934,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:445:4: conditional_expression
+                    // C.g:456:4: conditional_expression
                     {
-                    pushFollow(FOLLOW_conditional_expression_in_assignment_expression2000);
+                    pushFollow(FOLLOW_conditional_expression_in_assignment_expression2011);
                     conditional_expression();
 
                     state._fsp--;
@@ -7959,7 +7973,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "lvalue"
-    // C.g:448:1: lvalue : unary_expression ;
+    // C.g:459:1: lvalue : unary_expression ;
     public final CParser.lvalue_return lvalue() throws RecognitionException {
         CParser.lvalue_return retval = new CParser.lvalue_return();
         retval.start = input.LT(1);
@@ -7969,10 +7983,10 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
 
-            // C.g:449:2: ( unary_expression )
-            // C.g:449:4: unary_expression
+            // C.g:460:2: ( unary_expression )
+            // C.g:460:4: unary_expression
             {
-            pushFollow(FOLLOW_unary_expression_in_lvalue2012);
+            pushFollow(FOLLOW_unary_expression_in_lvalue2023);
             unary_expression();
 
             state._fsp--;
@@ -8007,7 +8021,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "assignment_operator"
-    // C.g:452:1: assignment_operator : ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '&=' | '^=' | '|=' );
+    // C.g:463:1: assignment_operator : ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '&=' | '^=' | '|=' );
     public final CParser.assignment_operator_return assignment_operator() throws RecognitionException {
         CParser.assignment_operator_return retval = new CParser.assignment_operator_return();
         retval.start = input.LT(1);
@@ -8017,7 +8031,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
 
-            // C.g:453:2: ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '&=' | '^=' | '|=' )
+            // C.g:464:2: ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '&=' | '^=' | '|=' )
             // C.g:
             {
             if ( input.LA(1)==27||input.LA(1)==30||input.LA(1)==34||input.LA(1)==37||input.LA(1)==41||input.LA(1)==46||input.LA(1)==51||input.LA(1)==53||input.LA(1)==58||input.LA(1)==63||input.LA(1)==110 ) {
@@ -8061,7 +8075,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "conditional_expression"
-    // C.g:466:1: conditional_expression : logical_or_expression ( '?' expression ':' conditional_expression )? ;
+    // C.g:477:1: conditional_expression : logical_or_expression ( '?' expression ':' conditional_expression )? ;
     public final CParser.conditional_expression_return conditional_expression() throws RecognitionException {
         CParser.conditional_expression_return retval = new CParser.conditional_expression_return();
         retval.start = input.LT(1);
@@ -8071,16 +8085,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
 
-            // C.g:467:2: ( logical_or_expression ( '?' expression ':' conditional_expression )? )
-            // C.g:467:4: logical_or_expression ( '?' expression ':' conditional_expression )?
+            // C.g:478:2: ( logical_or_expression ( '?' expression ':' conditional_expression )? )
+            // C.g:478:4: logical_or_expression ( '?' expression ':' conditional_expression )?
             {
-            pushFollow(FOLLOW_logical_or_expression_in_conditional_expression2084);
+            pushFollow(FOLLOW_logical_or_expression_in_conditional_expression2095);
             logical_or_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:467:26: ( '?' expression ':' conditional_expression )?
+            // C.g:478:26: ( '?' expression ':' conditional_expression )?
             int alt72=2;
             int LA72_0 = input.LA(1);
 
@@ -8089,19 +8103,19 @@ public static class STAttrMap extends HashMap {
             }
             switch (alt72) {
                 case 1 :
-                    // C.g:467:27: '?' expression ':' conditional_expression
+                    // C.g:478:27: '?' expression ':' conditional_expression
                     {
-                    match(input,59,FOLLOW_59_in_conditional_expression2087); if (state.failed) return retval;
+                    match(input,59,FOLLOW_59_in_conditional_expression2098); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_conditional_expression2089);
+                    pushFollow(FOLLOW_expression_in_conditional_expression2100);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_conditional_expression2091); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_conditional_expression2102); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_conditional_expression_in_conditional_expression2093);
+                    pushFollow(FOLLOW_conditional_expression_in_conditional_expression2104);
                     conditional_expression();
 
                     state._fsp--;
@@ -8142,7 +8156,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "logical_or_expression"
-    // C.g:470:1: logical_or_expression : logical_and_expression ( '||' logical_and_expression )* ;
+    // C.g:481:1: logical_or_expression : logical_and_expression ( '||' logical_and_expression )* ;
     public final CParser.logical_or_expression_return logical_or_expression() throws RecognitionException {
         CParser.logical_or_expression_return retval = new CParser.logical_or_expression_return();
         retval.start = input.LT(1);
@@ -8152,16 +8166,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
 
-            // C.g:471:2: ( logical_and_expression ( '||' logical_and_expression )* )
-            // C.g:471:4: logical_and_expression ( '||' logical_and_expression )*
+            // C.g:482:2: ( logical_and_expression ( '||' logical_and_expression )* )
+            // C.g:482:4: logical_and_expression ( '||' logical_and_expression )*
             {
-            pushFollow(FOLLOW_logical_and_expression_in_logical_or_expression2106);
+            pushFollow(FOLLOW_logical_and_expression_in_logical_or_expression2117);
             logical_and_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:471:27: ( '||' logical_and_expression )*
+            // C.g:482:27: ( '||' logical_and_expression )*
             loop73:
             do {
                 int alt73=2;
@@ -8174,11 +8188,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt73) {
             	case 1 :
-            	    // C.g:471:28: '||' logical_and_expression
+            	    // C.g:482:28: '||' logical_and_expression
             	    {
-            	    match(input,111,FOLLOW_111_in_logical_or_expression2109); if (state.failed) return retval;
+            	    match(input,111,FOLLOW_111_in_logical_or_expression2120); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_logical_and_expression_in_logical_or_expression2111);
+            	    pushFollow(FOLLOW_logical_and_expression_in_logical_or_expression2122);
             	    logical_and_expression();
 
             	    state._fsp--;
@@ -8222,7 +8236,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "logical_and_expression"
-    // C.g:474:1: logical_and_expression : inclusive_or_expression ( '&&' inclusive_or_expression )* ;
+    // C.g:485:1: logical_and_expression : inclusive_or_expression ( '&&' inclusive_or_expression )* ;
     public final CParser.logical_and_expression_return logical_and_expression() throws RecognitionException {
         CParser.logical_and_expression_return retval = new CParser.logical_and_expression_return();
         retval.start = input.LT(1);
@@ -8232,16 +8246,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
 
-            // C.g:475:2: ( inclusive_or_expression ( '&&' inclusive_or_expression )* )
-            // C.g:475:4: inclusive_or_expression ( '&&' inclusive_or_expression )*
+            // C.g:486:2: ( inclusive_or_expression ( '&&' inclusive_or_expression )* )
+            // C.g:486:4: inclusive_or_expression ( '&&' inclusive_or_expression )*
             {
-            pushFollow(FOLLOW_inclusive_or_expression_in_logical_and_expression2124);
+            pushFollow(FOLLOW_inclusive_or_expression_in_logical_and_expression2135);
             inclusive_or_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:475:28: ( '&&' inclusive_or_expression )*
+            // C.g:486:28: ( '&&' inclusive_or_expression )*
             loop74:
             do {
                 int alt74=2;
@@ -8254,11 +8268,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt74) {
             	case 1 :
-            	    // C.g:475:29: '&&' inclusive_or_expression
+            	    // C.g:486:29: '&&' inclusive_or_expression
             	    {
-            	    match(input,28,FOLLOW_28_in_logical_and_expression2127); if (state.failed) return retval;
+            	    match(input,28,FOLLOW_28_in_logical_and_expression2138); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_inclusive_or_expression_in_logical_and_expression2129);
+            	    pushFollow(FOLLOW_inclusive_or_expression_in_logical_and_expression2140);
             	    inclusive_or_expression();
 
             	    state._fsp--;
@@ -8302,7 +8316,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "inclusive_or_expression"
-    // C.g:478:1: inclusive_or_expression : exclusive_or_expression ( '|' exclusive_or_expression )* ;
+    // C.g:489:1: inclusive_or_expression : exclusive_or_expression ( '|' exclusive_or_expression )* ;
     public final CParser.inclusive_or_expression_return inclusive_or_expression() throws RecognitionException {
         CParser.inclusive_or_expression_return retval = new CParser.inclusive_or_expression_return();
         retval.start = input.LT(1);
@@ -8312,16 +8326,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
 
-            // C.g:479:2: ( exclusive_or_expression ( '|' exclusive_or_expression )* )
-            // C.g:479:4: exclusive_or_expression ( '|' exclusive_or_expression )*
+            // C.g:490:2: ( exclusive_or_expression ( '|' exclusive_or_expression )* )
+            // C.g:490:4: exclusive_or_expression ( '|' exclusive_or_expression )*
             {
-            pushFollow(FOLLOW_exclusive_or_expression_in_inclusive_or_expression2142);
+            pushFollow(FOLLOW_exclusive_or_expression_in_inclusive_or_expression2153);
             exclusive_or_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:479:28: ( '|' exclusive_or_expression )*
+            // C.g:490:28: ( '|' exclusive_or_expression )*
             loop75:
             do {
                 int alt75=2;
@@ -8334,11 +8348,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt75) {
             	case 1 :
-            	    // C.g:479:29: '|' exclusive_or_expression
+            	    // C.g:490:29: '|' exclusive_or_expression
             	    {
-            	    match(input,109,FOLLOW_109_in_inclusive_or_expression2145); if (state.failed) return retval;
+            	    match(input,109,FOLLOW_109_in_inclusive_or_expression2156); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_exclusive_or_expression_in_inclusive_or_expression2147);
+            	    pushFollow(FOLLOW_exclusive_or_expression_in_inclusive_or_expression2158);
             	    exclusive_or_expression();
 
             	    state._fsp--;
@@ -8382,7 +8396,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "exclusive_or_expression"
-    // C.g:482:1: exclusive_or_expression : and_expression ( '^' and_expression )* ;
+    // C.g:493:1: exclusive_or_expression : and_expression ( '^' and_expression )* ;
     public final CParser.exclusive_or_expression_return exclusive_or_expression() throws RecognitionException {
         CParser.exclusive_or_expression_return retval = new CParser.exclusive_or_expression_return();
         retval.start = input.LT(1);
@@ -8392,16 +8406,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
 
-            // C.g:483:2: ( and_expression ( '^' and_expression )* )
-            // C.g:483:4: and_expression ( '^' and_expression )*
+            // C.g:494:2: ( and_expression ( '^' and_expression )* )
+            // C.g:494:4: and_expression ( '^' and_expression )*
             {
-            pushFollow(FOLLOW_and_expression_in_exclusive_or_expression2160);
+            pushFollow(FOLLOW_and_expression_in_exclusive_or_expression2171);
             and_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:483:19: ( '^' and_expression )*
+            // C.g:494:19: ( '^' and_expression )*
             loop76:
             do {
                 int alt76=2;
@@ -8414,11 +8428,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt76) {
             	case 1 :
-            	    // C.g:483:20: '^' and_expression
+            	    // C.g:494:20: '^' and_expression
             	    {
-            	    match(input,62,FOLLOW_62_in_exclusive_or_expression2163); if (state.failed) return retval;
+            	    match(input,62,FOLLOW_62_in_exclusive_or_expression2174); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_and_expression_in_exclusive_or_expression2165);
+            	    pushFollow(FOLLOW_and_expression_in_exclusive_or_expression2176);
             	    and_expression();
 
             	    state._fsp--;
@@ -8462,7 +8476,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "and_expression"
-    // C.g:486:1: and_expression : equality_expression ( '&' equality_expression )* ;
+    // C.g:497:1: and_expression : equality_expression ( '&' equality_expression )* ;
     public final CParser.and_expression_return and_expression() throws RecognitionException {
         CParser.and_expression_return retval = new CParser.and_expression_return();
         retval.start = input.LT(1);
@@ -8472,16 +8486,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
 
-            // C.g:487:2: ( equality_expression ( '&' equality_expression )* )
-            // C.g:487:4: equality_expression ( '&' equality_expression )*
+            // C.g:498:2: ( equality_expression ( '&' equality_expression )* )
+            // C.g:498:4: equality_expression ( '&' equality_expression )*
             {
-            pushFollow(FOLLOW_equality_expression_in_and_expression2178);
+            pushFollow(FOLLOW_equality_expression_in_and_expression2189);
             equality_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:487:24: ( '&' equality_expression )*
+            // C.g:498:24: ( '&' equality_expression )*
             loop77:
             do {
                 int alt77=2;
@@ -8494,11 +8508,11 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt77) {
             	case 1 :
-            	    // C.g:487:25: '&' equality_expression
+            	    // C.g:498:25: '&' equality_expression
             	    {
-            	    match(input,29,FOLLOW_29_in_and_expression2181); if (state.failed) return retval;
+            	    match(input,29,FOLLOW_29_in_and_expression2192); if (state.failed) return retval;
 
-            	    pushFollow(FOLLOW_equality_expression_in_and_expression2183);
+            	    pushFollow(FOLLOW_equality_expression_in_and_expression2194);
             	    equality_expression();
 
             	    state._fsp--;
@@ -8542,7 +8556,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "equality_expression"
-    // C.g:489:1: equality_expression : relational_expression ( ( '==' | '!=' ) relational_expression )* ;
+    // C.g:500:1: equality_expression : relational_expression ( ( '==' | '!=' ) relational_expression )* ;
     public final CParser.equality_expression_return equality_expression() throws RecognitionException {
         CParser.equality_expression_return retval = new CParser.equality_expression_return();
         retval.start = input.LT(1);
@@ -8552,16 +8566,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
 
-            // C.g:490:2: ( relational_expression ( ( '==' | '!=' ) relational_expression )* )
-            // C.g:490:4: relational_expression ( ( '==' | '!=' ) relational_expression )*
+            // C.g:501:2: ( relational_expression ( ( '==' | '!=' ) relational_expression )* )
+            // C.g:501:4: relational_expression ( ( '==' | '!=' ) relational_expression )*
             {
-            pushFollow(FOLLOW_relational_expression_in_equality_expression2195);
+            pushFollow(FOLLOW_relational_expression_in_equality_expression2206);
             relational_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:490:26: ( ( '==' | '!=' ) relational_expression )*
+            // C.g:501:26: ( ( '==' | '!=' ) relational_expression )*
             loop78:
             do {
                 int alt78=2;
@@ -8574,7 +8588,7 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt78) {
             	case 1 :
-            	    // C.g:490:27: ( '==' | '!=' ) relational_expression
+            	    // C.g:501:27: ( '==' | '!=' ) relational_expression
             	    {
             	    if ( input.LA(1)==25||input.LA(1)==54 ) {
             	        input.consume();
@@ -8588,7 +8602,7 @@ public static class STAttrMap extends HashMap {
             	    }
 
 
-            	    pushFollow(FOLLOW_relational_expression_in_equality_expression2204);
+            	    pushFollow(FOLLOW_relational_expression_in_equality_expression2215);
             	    relational_expression();
 
             	    state._fsp--;
@@ -8632,7 +8646,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "relational_expression"
-    // C.g:493:1: relational_expression : shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )* ;
+    // C.g:504:1: relational_expression : shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )* ;
     public final CParser.relational_expression_return relational_expression() throws RecognitionException {
         CParser.relational_expression_return retval = new CParser.relational_expression_return();
         retval.start = input.LT(1);
@@ -8642,16 +8656,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
 
-            // C.g:494:2: ( shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )* )
-            // C.g:494:4: shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )*
+            // C.g:505:2: ( shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )* )
+            // C.g:505:4: shift_expression ( ( '<' | '>' | '<=' | '>=' ) shift_expression )*
             {
-            pushFollow(FOLLOW_shift_expression_in_relational_expression2217);
+            pushFollow(FOLLOW_shift_expression_in_relational_expression2228);
             shift_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:494:21: ( ( '<' | '>' | '<=' | '>=' ) shift_expression )*
+            // C.g:505:21: ( ( '<' | '>' | '<=' | '>=' ) shift_expression )*
             loop79:
             do {
                 int alt79=2;
@@ -8664,7 +8678,7 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt79) {
             	case 1 :
-            	    // C.g:494:22: ( '<' | '>' | '<=' | '>=' ) shift_expression
+            	    // C.g:505:22: ( '<' | '>' | '<=' | '>=' ) shift_expression
             	    {
             	    if ( input.LA(1)==49||input.LA(1)==52||(input.LA(1) >= 55 && input.LA(1) <= 56) ) {
             	        input.consume();
@@ -8678,7 +8692,7 @@ public static class STAttrMap extends HashMap {
             	    }
 
 
-            	    pushFollow(FOLLOW_shift_expression_in_relational_expression2230);
+            	    pushFollow(FOLLOW_shift_expression_in_relational_expression2241);
             	    shift_expression();
 
             	    state._fsp--;
@@ -8722,7 +8736,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "shift_expression"
-    // C.g:497:1: shift_expression : additive_expression ( ( '<<' | '>>' ) additive_expression )* ;
+    // C.g:508:1: shift_expression : additive_expression ( ( '<<' | '>>' ) additive_expression )* ;
     public final CParser.shift_expression_return shift_expression() throws RecognitionException {
         CParser.shift_expression_return retval = new CParser.shift_expression_return();
         retval.start = input.LT(1);
@@ -8732,16 +8746,16 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
 
-            // C.g:498:2: ( additive_expression ( ( '<<' | '>>' ) additive_expression )* )
-            // C.g:498:4: additive_expression ( ( '<<' | '>>' ) additive_expression )*
+            // C.g:509:2: ( additive_expression ( ( '<<' | '>>' ) additive_expression )* )
+            // C.g:509:4: additive_expression ( ( '<<' | '>>' ) additive_expression )*
             {
-            pushFollow(FOLLOW_additive_expression_in_shift_expression2243);
+            pushFollow(FOLLOW_additive_expression_in_shift_expression2254);
             additive_expression();
 
             state._fsp--;
             if (state.failed) return retval;
 
-            // C.g:498:24: ( ( '<<' | '>>' ) additive_expression )*
+            // C.g:509:24: ( ( '<<' | '>>' ) additive_expression )*
             loop80:
             do {
                 int alt80=2;
@@ -8754,7 +8768,7 @@ public static class STAttrMap extends HashMap {
 
                 switch (alt80) {
             	case 1 :
-            	    // C.g:498:25: ( '<<' | '>>' ) additive_expression
+            	    // C.g:509:25: ( '<<' | '>>' ) additive_expression
             	    {
             	    if ( input.LA(1)==50||input.LA(1)==57 ) {
             	        input.consume();
@@ -8768,7 +8782,7 @@ public static class STAttrMap extends HashMap {
             	    }
 
 
-            	    pushFollow(FOLLOW_additive_expression_in_shift_expression2252);
+            	    pushFollow(FOLLOW_additive_expression_in_shift_expression2263);
             	    additive_expression();
 
             	    state._fsp--;
@@ -8812,7 +8826,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "statement"
-    // C.g:502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );
+    // C.g:513:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );
     public final CParser.statement_return statement() throws RecognitionException {
         CParser.statement_return retval = new CParser.statement_return();
         retval.start = input.LT(1);
@@ -8831,14 +8845,14 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
 
-            // C.g:503:2: ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement )
+            // C.g:514:2: ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement )
             int alt81=11;
             alt81 = dfa81.predict(input);
             switch (alt81) {
                 case 1 :
-                    // C.g:503:4: labeled_statement
+                    // C.g:514:4: labeled_statement
                     {
-                    pushFollow(FOLLOW_labeled_statement_in_statement2266);
+                    pushFollow(FOLLOW_labeled_statement_in_statement2277);
                     labeled_statement();
 
                     state._fsp--;
@@ -8847,9 +8861,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:504:4: compound_statement
+                    // C.g:515:4: compound_statement
                     {
-                    pushFollow(FOLLOW_compound_statement_in_statement2271);
+                    pushFollow(FOLLOW_compound_statement_in_statement2282);
                     compound_statement();
 
                     state._fsp--;
@@ -8858,14 +8872,14 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:505:4: {...}? expression_statement
+                    // C.g:516:4: {...}? expression_statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_expression_statement_in_statement2279);
+                    pushFollow(FOLLOW_expression_statement_in_statement2290);
                     expression_statement3=expression_statement();
 
                     state._fsp--;
@@ -8875,7 +8889,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 506:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)
+                      // 517:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (expression_statement3!=null?input.toString(expression_statement3.start,expression_statement3.stop):null)));
                       }
@@ -8891,9 +8905,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:507:4: expression_statement
+                    // C.g:518:4: expression_statement
                     {
-                    pushFollow(FOLLOW_expression_statement_in_statement2303);
+                    pushFollow(FOLLOW_expression_statement_in_statement2314);
                     expression_statement();
 
                     state._fsp--;
@@ -8902,14 +8916,14 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 5 :
-                    // C.g:508:4: {...}? selection_statement
+                    // C.g:519:4: {...}? selection_statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_selection_statement_in_statement2310);
+                    pushFollow(FOLLOW_selection_statement_in_statement2321);
                     selection_statement4=selection_statement();
 
                     state._fsp--;
@@ -8919,7 +8933,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 509:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)
+                      // 520:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (selection_statement4!=null?input.toString(selection_statement4.start,selection_statement4.stop):null)));
                       }
@@ -8935,9 +8949,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 6 :
-                    // C.g:510:4: selection_statement
+                    // C.g:521:4: selection_statement
                     {
-                    pushFollow(FOLLOW_selection_statement_in_statement2334);
+                    pushFollow(FOLLOW_selection_statement_in_statement2345);
                     selection_statement();
 
                     state._fsp--;
@@ -8946,14 +8960,14 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 7 :
-                    // C.g:511:4: {...}? iteration_statement
+                    // C.g:522:4: {...}? iteration_statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_iteration_statement_in_statement2341);
+                    pushFollow(FOLLOW_iteration_statement_in_statement2352);
                     iteration_statement5=iteration_statement();
 
                     state._fsp--;
@@ -8963,7 +8977,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 512:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)
+                      // 523:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (iteration_statement5!=null?input.toString(iteration_statement5.start,iteration_statement5.stop):null)));
                       }
@@ -8979,9 +8993,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 8 :
-                    // C.g:513:4: iteration_statement
+                    // C.g:524:4: iteration_statement
                     {
-                    pushFollow(FOLLOW_iteration_statement_in_statement2365);
+                    pushFollow(FOLLOW_iteration_statement_in_statement2376);
                     iteration_statement();
 
                     state._fsp--;
@@ -8990,14 +9004,14 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 9 :
-                    // C.g:514:4: {...}? jump_statement
+                    // C.g:525:4: {...}? jump_statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_jump_statement_in_statement2372);
+                    pushFollow(FOLLOW_jump_statement_in_statement2383);
                     jump_statement6=jump_statement();
 
                     state._fsp--;
@@ -9007,7 +9021,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 515:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)
+                      // 526:3: -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (jump_statement6!=null?input.toString(jump_statement6.start,jump_statement6.stop):null)));
                       }
@@ -9023,9 +9037,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 10 :
-                    // C.g:517:4: jump_statement
+                    // C.g:528:4: jump_statement
                     {
-                    pushFollow(FOLLOW_jump_statement_in_statement2397);
+                    pushFollow(FOLLOW_jump_statement_in_statement2408);
                     jump_statement();
 
                     state._fsp--;
@@ -9034,9 +9048,9 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 11 :
-                    // C.g:518:4: assembly_statement
+                    // C.g:529:4: assembly_statement
                     {
-                    pushFollow(FOLLOW_assembly_statement_in_statement2402);
+                    pushFollow(FOLLOW_assembly_statement_in_statement2413);
                     assembly_statement();
 
                     state._fsp--;
@@ -9073,7 +9087,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "labeled_statement"
-    // C.g:521:1: labeled_statement : ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement );
+    // C.g:532:1: labeled_statement : ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement );
     public final CParser.labeled_statement_return labeled_statement() throws RecognitionException {
         CParser.labeled_statement_return retval = new CParser.labeled_statement_return();
         retval.start = input.LT(1);
@@ -9093,7 +9107,7 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
 
-            // C.g:525:2: ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement )
+            // C.g:536:2: ( IDENTIFIER ':' statement |{...}? 'case' constant_expression ':' statement -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)| 'case' constant_expression ':' statement |{...}? 'default' ':' statement -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)| 'default' ':' statement )
             int alt82=5;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
@@ -9403,13 +9417,13 @@ public static class STAttrMap extends HashMap {
 
             switch (alt82) {
                 case 1 :
-                    // C.g:525:4: IDENTIFIER ':' statement
+                    // C.g:536:4: IDENTIFIER ':' statement
                     {
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_labeled_statement2417); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_labeled_statement2428); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2419); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2430); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2421);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2432);
                     statement();
 
                     state._fsp--;
@@ -9418,26 +9432,26 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:526:4: {...}? 'case' constant_expression ':' statement
+                    // C.g:537:4: {...}? 'case' constant_expression ':' statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "labeled_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    match(input,77,FOLLOW_77_in_labeled_statement2428); if (state.failed) return retval;
+                    match(input,77,FOLLOW_77_in_labeled_statement2439); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2431);
+                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2442);
                     constant_expression7=constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2433); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2444); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2438);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2449);
                     statement8=statement();
 
                     state._fsp--;
@@ -9447,7 +9461,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 527:3: -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)
+                      // 538:3: -> instrument_labeled_statement(label_number=$InstrumentationStats::labelNumberconstant_expression=$constant_expression.textstatement=$statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("constant_expression", (constant_expression7!=null?input.toString(constant_expression7.start,constant_expression7.stop):null)).put("statement", (statement8!=null?input.toString(statement8.start,statement8.stop):null)));
                       }
@@ -9463,19 +9477,19 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 3 :
-                    // C.g:528:4: 'case' constant_expression ':' statement
+                    // C.g:539:4: 'case' constant_expression ':' statement
                     {
-                    match(input,77,FOLLOW_77_in_labeled_statement2467); if (state.failed) return retval;
+                    match(input,77,FOLLOW_77_in_labeled_statement2478); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2470);
+                    pushFollow(FOLLOW_constant_expression_in_labeled_statement2481);
                     constant_expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2472); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2483); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2474);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2485);
                     statement();
 
                     state._fsp--;
@@ -9484,20 +9498,20 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 4 :
-                    // C.g:529:4: {...}? 'default' ':' statement
+                    // C.g:540:4: {...}? 'default' ':' statement
                     {
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "labeled_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    match(input,81,FOLLOW_81_in_labeled_statement2482); if (state.failed) return retval;
+                    match(input,81,FOLLOW_81_in_labeled_statement2493); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2484); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2495); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2488);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2499);
                     statement9=statement();
 
                     state._fsp--;
@@ -9507,7 +9521,7 @@ public static class STAttrMap extends HashMap {
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 530:3: -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)
+                      // 541:3: -> instrument_default_labeled_statement(label_number=$InstrumentationStats::labelNumberstatement=$statement.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_default_labeled_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("statement", (statement9!=null?input.toString(statement9.start,statement9.stop):null)));
                       }
@@ -9523,13 +9537,13 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 5 :
-                    // C.g:531:4: 'default' ':' statement
+                    // C.g:542:4: 'default' ':' statement
                     {
-                    match(input,81,FOLLOW_81_in_labeled_statement2512); if (state.failed) return retval;
+                    match(input,81,FOLLOW_81_in_labeled_statement2523); if (state.failed) return retval;
 
-                    match(input,47,FOLLOW_47_in_labeled_statement2514); if (state.failed) return retval;
+                    match(input,47,FOLLOW_47_in_labeled_statement2525); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_labeled_statement2516);
+                    pushFollow(FOLLOW_statement_in_labeled_statement2527);
                     statement();
 
                     state._fsp--;
@@ -9566,7 +9580,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "compound_statement"
-    // C.g:534:1: compound_statement : ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' );
+    // C.g:545:1: compound_statement : ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' {...}? declarations ( statement_list )? '}' -> instrument_main(declarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' );
     public final CParser.compound_statement_return compound_statement() throws RecognitionException {
         Symbols_stack.push(new Symbols_scope());
 
@@ -9579,6 +9593,10 @@ public static class STAttrMap extends HashMap {
 
         CParser.statement_list_return statement_list11 =null;
 
+        CParser.declarations_return declarations12 =null;
+
+        CParser.statement_list_return statement_list13 =null;
+
 
 
           ((Symbols_scope)Symbols_stack.peek()).types = new HashSet();
@@ -9586,26 +9604,29 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
 
-            // C.g:539:2: ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' )
-            int alt86=2;
-            int LA86_0 = input.LA(1);
+            // C.g:550:2: ( '{' {...}? declarations ( statement_list )? '}' -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)| '{' {...}? declarations ( statement_list )? '}' -> instrument_main(declarations=$declarations.textstatement_list=$statement_list.text)| '{' ( declaration )* ( statement_list )? '}' )
+            int alt87=3;
+            int LA87_0 = input.LA(1);
 
-            if ( (LA86_0==108) ) {
+            if ( (LA87_0==108) ) {
                 switch ( input.LA(2) ) {
                 case 102:
                     {
-                    int LA86_2 = input.LA(3);
+                    int LA87_2 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 2, input);
+                            new NoViableAltException("", 87, 2, input);
 
                         throw nvae;
 
@@ -9617,18 +9638,21 @@ public static class STAttrMap extends HashMap {
                 case 93:
                 case 99:
                     {
-                    int LA86_3 = input.LA(3);
+                    int LA87_3 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 3, input);
+                            new NoViableAltException("", 87, 3, input);
 
                         throw nvae;
 
@@ -9637,18 +9661,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 105:
                     {
-                    int LA86_4 = input.LA(3);
+                    int LA87_4 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 4, input);
+                            new NoViableAltException("", 87, 4, input);
 
                         throw nvae;
 
@@ -9657,18 +9684,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 78:
                     {
-                    int LA86_5 = input.LA(3);
+                    int LA87_5 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 5, input);
+                            new NoViableAltException("", 87, 5, input);
 
                         throw nvae;
 
@@ -9677,18 +9707,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 96:
                     {
-                    int LA86_6 = input.LA(3);
+                    int LA87_6 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 6, input);
+                            new NoViableAltException("", 87, 6, input);
 
                         throw nvae;
 
@@ -9697,18 +9730,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 91:
                     {
-                    int LA86_7 = input.LA(3);
+                    int LA87_7 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 7, input);
+                            new NoViableAltException("", 87, 7, input);
 
                         throw nvae;
 
@@ -9717,18 +9753,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 92:
                     {
-                    int LA86_8 = input.LA(3);
+                    int LA87_8 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 8, input);
+                            new NoViableAltException("", 87, 8, input);
 
                         throw nvae;
 
@@ -9737,18 +9776,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 87:
                     {
-                    int LA86_9 = input.LA(3);
+                    int LA87_9 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 9, input);
+                            new NoViableAltException("", 87, 9, input);
 
                         throw nvae;
 
@@ -9757,18 +9799,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 83:
                     {
-                    int LA86_10 = input.LA(3);
+                    int LA87_10 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 10, input);
+                            new NoViableAltException("", 87, 10, input);
 
                         throw nvae;
 
@@ -9777,18 +9822,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 97:
                     {
-                    int LA86_11 = input.LA(3);
+                    int LA87_11 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 11, input);
+                            new NoViableAltException("", 87, 11, input);
 
                         throw nvae;
 
@@ -9797,18 +9845,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 104:
                     {
-                    int LA86_12 = input.LA(3);
+                    int LA87_12 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 12, input);
+                            new NoViableAltException("", 87, 12, input);
 
                         throw nvae;
 
@@ -9817,18 +9868,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 66:
                     {
-                    int LA86_13 = input.LA(3);
+                    int LA87_13 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 13, input);
+                            new NoViableAltException("", 87, 13, input);
 
                         throw nvae;
 
@@ -9838,18 +9892,21 @@ public static class STAttrMap extends HashMap {
                 case 100:
                 case 103:
                     {
-                    int LA86_14 = input.LA(3);
+                    int LA87_14 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 14, input);
+                            new NoViableAltException("", 87, 14, input);
 
                         throw nvae;
 
@@ -9858,18 +9915,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 85:
                     {
-                    int LA86_15 = input.LA(3);
+                    int LA87_15 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 15, input);
+                            new NoViableAltException("", 87, 15, input);
 
                         throw nvae;
 
@@ -9878,18 +9938,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case IDENTIFIER:
                     {
-                    int LA86_16 = input.LA(3);
+                    int LA87_16 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 16, input);
+                            new NoViableAltException("", 87, 16, input);
 
                         throw nvae;
 
@@ -9900,18 +9963,21 @@ public static class STAttrMap extends HashMap {
                 case 73:
                 case 106:
                     {
-                    int LA86_17 = input.LA(3);
+                    int LA87_17 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 17, input);
+                            new NoViableAltException("", 87, 17, input);
 
                         throw nvae;
 
@@ -9922,18 +9988,21 @@ public static class STAttrMap extends HashMap {
                 case 68:
                 case 79:
                     {
-                    int LA86_18 = input.LA(3);
+                    int LA87_18 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 18, input);
+                            new NoViableAltException("", 87, 18, input);
 
                         throw nvae;
 
@@ -9944,18 +10013,21 @@ public static class STAttrMap extends HashMap {
                 case 71:
                 case 94:
                     {
-                    int LA86_19 = input.LA(3);
+                    int LA87_19 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 19, input);
+                            new NoViableAltException("", 87, 19, input);
 
                         throw nvae;
 
@@ -9964,18 +10036,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 77:
                     {
-                    int LA86_20 = input.LA(3);
+                    int LA87_20 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 20, input);
+                            new NoViableAltException("", 87, 20, input);
 
                         throw nvae;
 
@@ -9984,18 +10059,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 81:
                     {
-                    int LA86_21 = input.LA(3);
+                    int LA87_21 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 21, input);
+                            new NoViableAltException("", 87, 21, input);
 
                         throw nvae;
 
@@ -10004,18 +10082,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 108:
                     {
-                    int LA86_22 = input.LA(3);
+                    int LA87_22 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 22, input);
+                            new NoViableAltException("", 87, 22, input);
 
                         throw nvae;
 
@@ -10024,18 +10105,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 48:
                     {
-                    int LA86_23 = input.LA(3);
+                    int LA87_23 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 23, input);
+                            new NoViableAltException("", 87, 23, input);
 
                         throw nvae;
 
@@ -10044,18 +10128,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case HEX_LITERAL:
                     {
-                    int LA86_24 = input.LA(3);
+                    int LA87_24 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 24, input);
+                            new NoViableAltException("", 87, 24, input);
 
                         throw nvae;
 
@@ -10064,18 +10151,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case OCTAL_LITERAL:
                     {
-                    int LA86_25 = input.LA(3);
+                    int LA87_25 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 25, input);
+                            new NoViableAltException("", 87, 25, input);
 
                         throw nvae;
 
@@ -10084,18 +10174,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case DECIMAL_LITERAL:
                     {
-                    int LA86_26 = input.LA(3);
+                    int LA87_26 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 26, input);
+                            new NoViableAltException("", 87, 26, input);
 
                         throw nvae;
 
@@ -10104,18 +10197,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case CHARACTER_LITERAL:
                     {
-                    int LA86_27 = input.LA(3);
+                    int LA87_27 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 27, input);
+                            new NoViableAltException("", 87, 27, input);
 
                         throw nvae;
 
@@ -10124,18 +10220,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case STRING_LITERAL:
                     {
-                    int LA86_28 = input.LA(3);
+                    int LA87_28 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 28, input);
+                            new NoViableAltException("", 87, 28, input);
 
                         throw nvae;
 
@@ -10144,18 +10243,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case FLOATING_POINT_LITERAL:
                     {
-                    int LA86_29 = input.LA(3);
+                    int LA87_29 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 29, input);
+                            new NoViableAltException("", 87, 29, input);
 
                         throw nvae;
 
@@ -10164,18 +10266,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 31:
                     {
-                    int LA86_30 = input.LA(3);
+                    int LA87_30 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 30, input);
+                            new NoViableAltException("", 87, 30, input);
 
                         throw nvae;
 
@@ -10184,18 +10289,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 36:
                     {
-                    int LA86_31 = input.LA(3);
+                    int LA87_31 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 31, input);
+                            new NoViableAltException("", 87, 31, input);
 
                         throw nvae;
 
@@ -10204,18 +10312,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 40:
                     {
-                    int LA86_32 = input.LA(3);
+                    int LA87_32 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 32, input);
+                            new NoViableAltException("", 87, 32, input);
 
                         throw nvae;
 
@@ -10229,18 +10340,21 @@ public static class STAttrMap extends HashMap {
                 case 39:
                 case 113:
                     {
-                    int LA86_33 = input.LA(3);
+                    int LA87_33 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 33, input);
+                            new NoViableAltException("", 87, 33, input);
 
                         throw nvae;
 
@@ -10249,18 +10363,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 98:
                     {
-                    int LA86_34 = input.LA(3);
+                    int LA87_34 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 34, input);
+                            new NoViableAltException("", 87, 34, input);
 
                         throw nvae;
 
@@ -10269,18 +10386,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 90:
                     {
-                    int LA86_35 = input.LA(3);
+                    int LA87_35 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 35, input);
+                            new NoViableAltException("", 87, 35, input);
 
                         throw nvae;
 
@@ -10289,18 +10409,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 101:
                     {
-                    int LA86_36 = input.LA(3);
+                    int LA87_36 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 36, input);
+                            new NoViableAltException("", 87, 36, input);
 
                         throw nvae;
 
@@ -10309,18 +10432,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 107:
                     {
-                    int LA86_37 = input.LA(3);
+                    int LA87_37 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 37, input);
+                            new NoViableAltException("", 87, 37, input);
 
                         throw nvae;
 
@@ -10329,18 +10455,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 82:
                     {
-                    int LA86_38 = input.LA(3);
+                    int LA87_38 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 38, input);
+                            new NoViableAltException("", 87, 38, input);
 
                         throw nvae;
 
@@ -10349,18 +10478,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 88:
                     {
-                    int LA86_39 = input.LA(3);
+                    int LA87_39 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 39, input);
+                            new NoViableAltException("", 87, 39, input);
 
                         throw nvae;
 
@@ -10369,18 +10501,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 89:
                     {
-                    int LA86_40 = input.LA(3);
+                    int LA87_40 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 40, input);
+                            new NoViableAltException("", 87, 40, input);
 
                         throw nvae;
 
@@ -10389,18 +10524,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 80:
                     {
-                    int LA86_41 = input.LA(3);
+                    int LA87_41 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 41, input);
+                            new NoViableAltException("", 87, 41, input);
 
                         throw nvae;
 
@@ -10409,18 +10547,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 76:
                     {
-                    int LA86_42 = input.LA(3);
+                    int LA87_42 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 42, input);
+                            new NoViableAltException("", 87, 42, input);
 
                         throw nvae;
 
@@ -10429,18 +10570,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 95:
                     {
-                    int LA86_43 = input.LA(3);
+                    int LA87_43 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 43, input);
+                            new NoViableAltException("", 87, 43, input);
 
                         throw nvae;
 
@@ -10451,18 +10595,21 @@ public static class STAttrMap extends HashMap {
                 case 65:
                 case 74:
                     {
-                    int LA86_44 = input.LA(3);
+                    int LA87_44 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 44, input);
+                            new NoViableAltException("", 87, 44, input);
 
                         throw nvae;
 
@@ -10471,18 +10618,21 @@ public static class STAttrMap extends HashMap {
                     break;
                 case 112:
                     {
-                    int LA86_45 = input.LA(3);
+                    int LA87_45 = input.LA(3);
 
                     if ( (synpred176_C()) ) {
-                        alt86=1;
+                        alt87=1;
+                    }
+                    else if ( (synpred178_C()) ) {
+                        alt87=2;
                     }
                     else if ( (true) ) {
-                        alt86=2;
+                        alt87=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 86, 45, input);
+                            new NoViableAltException("", 87, 45, input);
 
                         throw nvae;
 
@@ -10492,7 +10642,7 @@ public static class STAttrMap extends HashMap {
                 default:
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 86, 1, input);
+                        new NoViableAltException("", 87, 1, input);
 
                     throw nvae;
 
@@ -10502,23 +10652,23 @@ public static class STAttrMap extends HashMap {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 86, 0, input);
+                    new NoViableAltException("", 87, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt86) {
+            switch (alt87) {
                 case 1 :
-                    // C.g:539:5: '{' {...}? declarations ( statement_list )? '}'
+                    // C.g:550:5: '{' {...}? declarations ( statement_list )? '}'
                     {
-                    match(input,108,FOLLOW_108_in_compound_statement2539); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_compound_statement2550); if (state.failed) return retval;
 
                     if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         throw new FailedPredicateException(input, "compound_statement", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
                     }
 
-                    pushFollow(FOLLOW_declarations_in_compound_statement2543);
+                    pushFollow(FOLLOW_declarations_in_compound_statement2554);
                     declarations10=declarations();
 
                     state._fsp--;
@@ -10526,7 +10676,7 @@ public static class STAttrMap extends HashMap {
 
                     if ( state.backtracking==0 ) {((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch = false;}
 
-                    // C.g:539:131: ( statement_list )?
+                    // C.g:550:131: ( statement_list )?
                     int alt83=2;
                     int LA83_0 = input.LA(1);
 
@@ -10535,9 +10685,9 @@ public static class STAttrMap extends HashMap {
                     }
                     switch (alt83) {
                         case 1 :
-                            // C.g:539:131: statement_list
+                            // C.g:550:131: statement_list
                             {
-                            pushFollow(FOLLOW_statement_list_in_compound_statement2547);
+                            pushFollow(FOLLOW_statement_list_in_compound_statement2558);
                             statement_list11=statement_list();
 
                             state._fsp--;
@@ -10551,11 +10701,11 @@ public static class STAttrMap extends HashMap {
 
                     if ( state.backtracking==0 ) {((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber++;}
 
-                    match(input,112,FOLLOW_112_in_compound_statement2553); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_compound_statement2564); if (state.failed) return retval;
 
                     // TEMPLATE REWRITE
                     if ( state.backtracking==0 ) {
-                      // 540:6: -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)
+                      // 551:6: -> instrument_compound_statement(label_number=$InstrumentationStats::labelNumberdeclarations=$declarations.textstatement_list=$statement_list.text)
                       {
                           retval.st = templateLib.getInstanceOf("instrument_compound_statement",new STAttrMap().put("label_number", ((InstrumentationStats_scope)InstrumentationStats_stack.peek()).labelNumber).put("declarations", (declarations10!=null?input.toString(declarations10.start,declarations10.stop):null)).put("statement_list", (statement_list11!=null?input.toString(statement_list11.start,statement_list11.stop):null)));
                       }
@@ -10571,20 +10721,80 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:541:5: '{' ( declaration )* ( statement_list )? '}'
+                    // C.g:552:5: '{' {...}? declarations ( statement_list )? '}'
                     {
-                    match(input,108,FOLLOW_108_in_compound_statement2585); if (state.failed) return retval;
+                    match(input,108,FOLLOW_108_in_compound_statement2596); if (state.failed) return retval;
 
-                    // C.g:541:10: ( declaration )*
-                    loop84:
+                    if ( !((InstrumentationMain_stack.size()>0 && ((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isMain)) ) {
+                        if (state.backtracking>0) {state.failed=true; return retval;}
+                        throw new FailedPredicateException(input, "compound_statement", "$InstrumentationMain.size()>0 && $InstrumentationMain::isMain");
+                    }
+
+                    if ( state.backtracking==0 ) {((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isMain = false;}
+
+                    pushFollow(FOLLOW_declarations_in_compound_statement2602);
+                    declarations12=declarations();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+
+                    // C.g:552:127: ( statement_list )?
+                    int alt84=2;
+                    int LA84_0 = input.LA(1);
+
+                    if ( (LA84_0==CHARACTER_LITERAL||LA84_0==DECIMAL_LITERAL||LA84_0==FLOATING_POINT_LITERAL||LA84_0==HEX_LITERAL||LA84_0==IDENTIFIER||LA84_0==OCTAL_LITERAL||LA84_0==STRING_LITERAL||LA84_0==24||LA84_0==29||LA84_0==31||LA84_0==33||(LA84_0 >= 35 && LA84_0 <= 36)||(LA84_0 >= 39 && LA84_0 <= 40)||LA84_0==48||(LA84_0 >= 64 && LA84_0 <= 65)||LA84_0==74||(LA84_0 >= 76 && LA84_0 <= 77)||(LA84_0 >= 80 && LA84_0 <= 82)||(LA84_0 >= 88 && LA84_0 <= 90)||LA84_0==95||LA84_0==98||LA84_0==101||(LA84_0 >= 107 && LA84_0 <= 108)||LA84_0==113) ) {
+                        alt84=1;
+                    }
+                    switch (alt84) {
+                        case 1 :
+                            // C.g:552:127: statement_list
+                            {
+                            pushFollow(FOLLOW_statement_list_in_compound_statement2604);
+                            statement_list13=statement_list();
+
+                            state._fsp--;
+                            if (state.failed) return retval;
+
+                            }
+                            break;
+
+                    }
+
+
+                    match(input,112,FOLLOW_112_in_compound_statement2607); if (state.failed) return retval;
+
+                    // TEMPLATE REWRITE
+                    if ( state.backtracking==0 ) {
+                      // 553:6: -> instrument_main(declarations=$declarations.textstatement_list=$statement_list.text)
+                      {
+                          retval.st = templateLib.getInstanceOf("instrument_main",new STAttrMap().put("declarations", (declarations12!=null?input.toString(declarations12.start,declarations12.stop):null)).put("statement_list", (statement_list13!=null?input.toString(statement_list13.start,statement_list13.stop):null)));
+                      }
+
+
+                      ((TokenRewriteStream)input).replace(
+                        ((Token)retval.start).getTokenIndex(),
+                        input.LT(-1).getTokenIndex(),
+                        retval.st);
+
+                    }
+
+                    }
+                    break;
+                case 3 :
+                    // C.g:554:5: '{' ( declaration )* ( statement_list )? '}'
+                    {
+                    match(input,108,FOLLOW_108_in_compound_statement2634); if (state.failed) return retval;
+
+                    // C.g:554:10: ( declaration )*
+                    loop85:
                     do {
-                        int alt84=2;
-                        alt84 = dfa84.predict(input);
-                        switch (alt84) {
+                        int alt85=2;
+                        alt85 = dfa85.predict(input);
+                        switch (alt85) {
                     	case 1 :
-                    	    // C.g:541:10: declaration
+                    	    // C.g:554:10: declaration
                     	    {
-                    	    pushFollow(FOLLOW_declaration_in_compound_statement2588);
+                    	    pushFollow(FOLLOW_declaration_in_compound_statement2637);
                     	    declaration();
 
                     	    state._fsp--;
@@ -10594,23 +10804,23 @@ public static class STAttrMap extends HashMap {
                     	    break;
 
                     	default :
-                    	    break loop84;
+                    	    break loop85;
                         }
                     } while (true);
 
 
-                    // C.g:541:23: ( statement_list )?
-                    int alt85=2;
-                    int LA85_0 = input.LA(1);
+                    // C.g:554:23: ( statement_list )?
+                    int alt86=2;
+                    int LA86_0 = input.LA(1);
 
-                    if ( (LA85_0==CHARACTER_LITERAL||LA85_0==DECIMAL_LITERAL||LA85_0==FLOATING_POINT_LITERAL||LA85_0==HEX_LITERAL||LA85_0==IDENTIFIER||LA85_0==OCTAL_LITERAL||LA85_0==STRING_LITERAL||LA85_0==24||LA85_0==29||LA85_0==31||LA85_0==33||(LA85_0 >= 35 && LA85_0 <= 36)||(LA85_0 >= 39 && LA85_0 <= 40)||LA85_0==48||(LA85_0 >= 64 && LA85_0 <= 65)||LA85_0==74||(LA85_0 >= 76 && LA85_0 <= 77)||(LA85_0 >= 80 && LA85_0 <= 82)||(LA85_0 >= 88 && LA85_0 <= 90)||LA85_0==95||LA85_0==98||LA85_0==101||(LA85_0 >= 107 && LA85_0 <= 108)||LA85_0==113) ) {
-                        alt85=1;
+                    if ( (LA86_0==CHARACTER_LITERAL||LA86_0==DECIMAL_LITERAL||LA86_0==FLOATING_POINT_LITERAL||LA86_0==HEX_LITERAL||LA86_0==IDENTIFIER||LA86_0==OCTAL_LITERAL||LA86_0==STRING_LITERAL||LA86_0==24||LA86_0==29||LA86_0==31||LA86_0==33||(LA86_0 >= 35 && LA86_0 <= 36)||(LA86_0 >= 39 && LA86_0 <= 40)||LA86_0==48||(LA86_0 >= 64 && LA86_0 <= 65)||LA86_0==74||(LA86_0 >= 76 && LA86_0 <= 77)||(LA86_0 >= 80 && LA86_0 <= 82)||(LA86_0 >= 88 && LA86_0 <= 90)||LA86_0==95||LA86_0==98||LA86_0==101||(LA86_0 >= 107 && LA86_0 <= 108)||LA86_0==113) ) {
+                        alt86=1;
                     }
-                    switch (alt85) {
+                    switch (alt86) {
                         case 1 :
-                            // C.g:541:23: statement_list
+                            // C.g:554:23: statement_list
                             {
-                            pushFollow(FOLLOW_statement_list_in_compound_statement2591);
+                            pushFollow(FOLLOW_statement_list_in_compound_statement2640);
                             statement_list();
 
                             state._fsp--;
@@ -10622,7 +10832,7 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,112,FOLLOW_112_in_compound_statement2594); if (state.failed) return retval;
+                    match(input,112,FOLLOW_112_in_compound_statement2643); if (state.failed) return retval;
 
                     }
                     break;
@@ -10657,7 +10867,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "declarations"
-    // C.g:544:1: declarations : ( declaration )* ;
+    // C.g:557:1: declarations : ( declaration )* ;
     public final CParser.declarations_return declarations() throws RecognitionException {
         CParser.declarations_return retval = new CParser.declarations_return();
         retval.start = input.LT(1);
@@ -10667,19 +10877,19 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
 
-            // C.g:545:2: ( ( declaration )* )
-            // C.g:545:4: ( declaration )*
+            // C.g:558:2: ( ( declaration )* )
+            // C.g:558:4: ( declaration )*
             {
-            // C.g:545:4: ( declaration )*
-            loop87:
+            // C.g:558:4: ( declaration )*
+            loop88:
             do {
-                int alt87=2;
-                alt87 = dfa87.predict(input);
-                switch (alt87) {
+                int alt88=2;
+                alt88 = dfa88.predict(input);
+                switch (alt88) {
             	case 1 :
-            	    // C.g:545:4: declaration
+            	    // C.g:558:4: declaration
             	    {
-            	    pushFollow(FOLLOW_declaration_in_declarations2608);
+            	    pushFollow(FOLLOW_declaration_in_declarations2657);
             	    declaration();
 
             	    state._fsp--;
@@ -10689,7 +10899,7 @@ public static class STAttrMap extends HashMap {
             	    break;
 
             	default :
-            	    break loop87;
+            	    break loop88;
                 }
             } while (true);
 
@@ -10723,7 +10933,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "statement_list"
-    // C.g:548:1: statement_list : ( statement )+ ;
+    // C.g:561:1: statement_list : ( statement )+ ;
     public final CParser.statement_list_return statement_list() throws RecognitionException {
         CParser.statement_list_return retval = new CParser.statement_list_return();
         retval.start = input.LT(1);
@@ -10733,26 +10943,26 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
 
-            // C.g:549:2: ( ( statement )+ )
-            // C.g:549:4: ( statement )+
+            // C.g:562:2: ( ( statement )+ )
+            // C.g:562:4: ( statement )+
             {
-            // C.g:549:4: ( statement )+
-            int cnt88=0;
-            loop88:
+            // C.g:562:4: ( statement )+
+            int cnt89=0;
+            loop89:
             do {
-                int alt88=2;
-                int LA88_0 = input.LA(1);
+                int alt89=2;
+                int LA89_0 = input.LA(1);
 
-                if ( (LA88_0==CHARACTER_LITERAL||LA88_0==DECIMAL_LITERAL||LA88_0==FLOATING_POINT_LITERAL||LA88_0==HEX_LITERAL||LA88_0==IDENTIFIER||LA88_0==OCTAL_LITERAL||LA88_0==STRING_LITERAL||LA88_0==24||LA88_0==29||LA88_0==31||LA88_0==33||(LA88_0 >= 35 && LA88_0 <= 36)||(LA88_0 >= 39 && LA88_0 <= 40)||LA88_0==48||(LA88_0 >= 64 && LA88_0 <= 65)||LA88_0==74||(LA88_0 >= 76 && LA88_0 <= 77)||(LA88_0 >= 80 && LA88_0 <= 82)||(LA88_0 >= 88 && LA88_0 <= 90)||LA88_0==95||LA88_0==98||LA88_0==101||(LA88_0 >= 107 && LA88_0 <= 108)||LA88_0==113) ) {
-                    alt88=1;
+                if ( (LA89_0==CHARACTER_LITERAL||LA89_0==DECIMAL_LITERAL||LA89_0==FLOATING_POINT_LITERAL||LA89_0==HEX_LITERAL||LA89_0==IDENTIFIER||LA89_0==OCTAL_LITERAL||LA89_0==STRING_LITERAL||LA89_0==24||LA89_0==29||LA89_0==31||LA89_0==33||(LA89_0 >= 35 && LA89_0 <= 36)||(LA89_0 >= 39 && LA89_0 <= 40)||LA89_0==48||(LA89_0 >= 64 && LA89_0 <= 65)||LA89_0==74||(LA89_0 >= 76 && LA89_0 <= 77)||(LA89_0 >= 80 && LA89_0 <= 82)||(LA89_0 >= 88 && LA89_0 <= 90)||LA89_0==95||LA89_0==98||LA89_0==101||(LA89_0 >= 107 && LA89_0 <= 108)||LA89_0==113) ) {
+                    alt89=1;
                 }
 
 
-                switch (alt88) {
+                switch (alt89) {
             	case 1 :
-            	    // C.g:549:4: statement
+            	    // C.g:562:4: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_statement_list2621);
+            	    pushFollow(FOLLOW_statement_in_statement_list2670);
             	    statement();
 
             	    state._fsp--;
@@ -10762,13 +10972,13 @@ public static class STAttrMap extends HashMap {
             	    break;
 
             	default :
-            	    if ( cnt88 >= 1 ) break loop88;
+            	    if ( cnt89 >= 1 ) break loop89;
             	    if (state.backtracking>0) {state.failed=true; return retval;}
                         EarlyExitException eee =
-                            new EarlyExitException(88, input);
+                            new EarlyExitException(89, input);
                         throw eee;
                 }
-                cnt88++;
+                cnt89++;
             } while (true);
 
 
@@ -10801,7 +11011,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "expression_statement"
-    // C.g:552:1: expression_statement : ( ';' | expression ';' );
+    // C.g:565:1: expression_statement : ( ';' | expression ';' );
     public final CParser.expression_statement_return expression_statement() throws RecognitionException {
         CParser.expression_statement_return retval = new CParser.expression_statement_return();
         retval.start = input.LT(1);
@@ -10811,42 +11021,42 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
 
-            // C.g:553:2: ( ';' | expression ';' )
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            // C.g:566:2: ( ';' | expression ';' )
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA89_0==48) ) {
-                alt89=1;
+            if ( (LA90_0==48) ) {
+                alt90=1;
             }
-            else if ( (LA89_0==CHARACTER_LITERAL||LA89_0==DECIMAL_LITERAL||LA89_0==FLOATING_POINT_LITERAL||LA89_0==HEX_LITERAL||LA89_0==IDENTIFIER||LA89_0==OCTAL_LITERAL||LA89_0==STRING_LITERAL||LA89_0==24||LA89_0==29||LA89_0==31||LA89_0==33||(LA89_0 >= 35 && LA89_0 <= 36)||(LA89_0 >= 39 && LA89_0 <= 40)||LA89_0==98||LA89_0==113) ) {
-                alt89=2;
+            else if ( (LA90_0==CHARACTER_LITERAL||LA90_0==DECIMAL_LITERAL||LA90_0==FLOATING_POINT_LITERAL||LA90_0==HEX_LITERAL||LA90_0==IDENTIFIER||LA90_0==OCTAL_LITERAL||LA90_0==STRING_LITERAL||LA90_0==24||LA90_0==29||LA90_0==31||LA90_0==33||(LA90_0 >= 35 && LA90_0 <= 36)||(LA90_0 >= 39 && LA90_0 <= 40)||LA90_0==98||LA90_0==113) ) {
+                alt90=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 89, 0, input);
+                    new NoViableAltException("", 90, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt89) {
+            switch (alt90) {
                 case 1 :
-                    // C.g:553:4: ';'
+                    // C.g:566:4: ';'
                     {
-                    match(input,48,FOLLOW_48_in_expression_statement2633); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_expression_statement2682); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:554:4: expression ';'
+                    // C.g:567:4: expression ';'
                     {
-                    pushFollow(FOLLOW_expression_in_expression_statement2638);
+                    pushFollow(FOLLOW_expression_in_expression_statement2687);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_expression_statement2640); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_expression_statement2689); if (state.failed) return retval;
 
                     }
                     break;
@@ -10879,7 +11089,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "selection_statement"
-    // C.g:557:1: selection_statement : ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement );
+    // C.g:570:1: selection_statement : ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement );
     public final CParser.selection_statement_return selection_statement() throws RecognitionException {
         InstrumentationInfo_stack.push(new InstrumentationInfo_scope());
 
@@ -10891,68 +11101,68 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
 
-            // C.g:559:2: ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement )
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            // C.g:572:2: ( 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )? | 'switch' '(' expression ')' statement )
+            int alt92=2;
+            int LA92_0 = input.LA(1);
 
-            if ( (LA91_0==90) ) {
-                alt91=1;
+            if ( (LA92_0==90) ) {
+                alt92=1;
             }
-            else if ( (LA91_0==101) ) {
-                alt91=2;
+            else if ( (LA92_0==101) ) {
+                alt92=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 91, 0, input);
+                    new NoViableAltException("", 92, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt91) {
+            switch (alt92) {
                 case 1 :
-                    // C.g:559:4: 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )?
+                    // C.g:572:4: 'if' '(' expression ')' statement ( options {k=1; backtrack=false; } : 'else' statement )?
                     {
-                    match(input,90,FOLLOW_90_in_selection_statement2657); if (state.failed) return retval;
+                    match(input,90,FOLLOW_90_in_selection_statement2706); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_selection_statement2659); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_selection_statement2708); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_selection_statement2661);
+                    pushFollow(FOLLOW_expression_in_selection_statement2710);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_selection_statement2663); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_selection_statement2712); if (state.failed) return retval;
 
                     if ( state.backtracking==0 ) {setupScopeVarsIfBranchWithPassingAttribute();}
 
-                    pushFollow(FOLLOW_statement_in_selection_statement2667);
+                    pushFollow(FOLLOW_statement_in_selection_statement2716);
                     statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:559:86: ( options {k=1; backtrack=false; } : 'else' statement )?
-                    int alt90=2;
-                    int LA90_0 = input.LA(1);
+                    // C.g:572:86: ( options {k=1; backtrack=false; } : 'else' statement )?
+                    int alt91=2;
+                    int LA91_0 = input.LA(1);
 
-                    if ( (LA90_0==84) ) {
-                        int LA90_1 = input.LA(2);
+                    if ( (LA91_0==84) ) {
+                        int LA91_1 = input.LA(2);
 
                         if ( (true) ) {
-                            alt90=1;
+                            alt91=1;
                         }
                     }
-                    switch (alt90) {
+                    switch (alt91) {
                         case 1 :
-                            // C.g:559:119: 'else' statement
+                            // C.g:572:119: 'else' statement
                             {
-                            match(input,84,FOLLOW_84_in_selection_statement2682); if (state.failed) return retval;
+                            match(input,84,FOLLOW_84_in_selection_statement2731); if (state.failed) return retval;
 
                             if ( state.backtracking==0 ) {setupScopeVarsIfBranchWithPassingAttribute();}
 
-                            pushFollow(FOLLOW_statement_in_selection_statement2686);
+                            pushFollow(FOLLOW_statement_in_selection_statement2735);
                             statement();
 
                             state._fsp--;
@@ -10967,21 +11177,21 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:560:4: 'switch' '(' expression ')' statement
+                    // C.g:573:4: 'switch' '(' expression ')' statement
                     {
-                    match(input,101,FOLLOW_101_in_selection_statement2693); if (state.failed) return retval;
+                    match(input,101,FOLLOW_101_in_selection_statement2742); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_selection_statement2695); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_selection_statement2744); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_selection_statement2697);
+                    pushFollow(FOLLOW_expression_in_selection_statement2746);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_selection_statement2699); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_selection_statement2748); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_selection_statement2701);
+                    pushFollow(FOLLOW_statement_in_selection_statement2750);
                     statement();
 
                     state._fsp--;
@@ -11020,7 +11230,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "iteration_statement"
-    // C.g:563:1: iteration_statement : ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement );
+    // C.g:576:1: iteration_statement : ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement );
     public final CParser.iteration_statement_return iteration_statement() throws RecognitionException {
         InstrumentationInfo_stack.push(new InstrumentationInfo_scope());
 
@@ -11035,50 +11245,50 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
 
-            // C.g:568:2: ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement )
-            int alt93=3;
+            // C.g:581:2: ( 'while' '(' expression ')' statement | 'do' statement 'while' '(' expression ')' ';' | 'for' '(' expression_statement expression_statement ( expression )? ')' statement )
+            int alt94=3;
             switch ( input.LA(1) ) {
             case 107:
                 {
-                alt93=1;
+                alt94=1;
                 }
                 break;
             case 82:
                 {
-                alt93=2;
+                alt94=2;
                 }
                 break;
             case 88:
                 {
-                alt93=3;
+                alt94=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 93, 0, input);
+                    new NoViableAltException("", 94, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt93) {
+            switch (alt94) {
                 case 1 :
-                    // C.g:568:4: 'while' '(' expression ')' statement
+                    // C.g:581:4: 'while' '(' expression ')' statement
                     {
-                    match(input,107,FOLLOW_107_in_iteration_statement2721); if (state.failed) return retval;
+                    match(input,107,FOLLOW_107_in_iteration_statement2770); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2723); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2772); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_iteration_statement2725);
+                    pushFollow(FOLLOW_expression_in_iteration_statement2774);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2727); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2776); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2729);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2778);
                     statement();
 
                     state._fsp--;
@@ -11087,63 +11297,63 @@ public static class STAttrMap extends HashMap {
                     }
                     break;
                 case 2 :
-                    // C.g:569:4: 'do' statement 'while' '(' expression ')' ';'
+                    // C.g:582:4: 'do' statement 'while' '(' expression ')' ';'
                     {
-                    match(input,82,FOLLOW_82_in_iteration_statement2734); if (state.failed) return retval;
+                    match(input,82,FOLLOW_82_in_iteration_statement2783); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2736);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2785);
                     statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,107,FOLLOW_107_in_iteration_statement2738); if (state.failed) return retval;
+                    match(input,107,FOLLOW_107_in_iteration_statement2787); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2740); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2789); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_iteration_statement2742);
+                    pushFollow(FOLLOW_expression_in_iteration_statement2791);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2744); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2793); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_iteration_statement2746); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_iteration_statement2795); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:570:4: 'for' '(' expression_statement expression_statement ( expression )? ')' statement
+                    // C.g:583:4: 'for' '(' expression_statement expression_statement ( expression )? ')' statement
                     {
-                    match(input,88,FOLLOW_88_in_iteration_statement2751); if (state.failed) return retval;
+                    match(input,88,FOLLOW_88_in_iteration_statement2800); if (state.failed) return retval;
 
-                    match(input,31,FOLLOW_31_in_iteration_statement2753); if (state.failed) return retval;
+                    match(input,31,FOLLOW_31_in_iteration_statement2802); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2755);
+                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2804);
                     expression_statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2757);
+                    pushFollow(FOLLOW_expression_statement_in_iteration_statement2806);
                     expression_statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    // C.g:570:56: ( expression )?
-                    int alt92=2;
-                    int LA92_0 = input.LA(1);
+                    // C.g:583:56: ( expression )?
+                    int alt93=2;
+                    int LA93_0 = input.LA(1);
 
-                    if ( (LA92_0==CHARACTER_LITERAL||LA92_0==DECIMAL_LITERAL||LA92_0==FLOATING_POINT_LITERAL||LA92_0==HEX_LITERAL||LA92_0==IDENTIFIER||LA92_0==OCTAL_LITERAL||LA92_0==STRING_LITERAL||LA92_0==24||LA92_0==29||LA92_0==31||LA92_0==33||(LA92_0 >= 35 && LA92_0 <= 36)||(LA92_0 >= 39 && LA92_0 <= 40)||LA92_0==98||LA92_0==113) ) {
-                        alt92=1;
+                    if ( (LA93_0==CHARACTER_LITERAL||LA93_0==DECIMAL_LITERAL||LA93_0==FLOATING_POINT_LITERAL||LA93_0==HEX_LITERAL||LA93_0==IDENTIFIER||LA93_0==OCTAL_LITERAL||LA93_0==STRING_LITERAL||LA93_0==24||LA93_0==29||LA93_0==31||LA93_0==33||(LA93_0 >= 35 && LA93_0 <= 36)||(LA93_0 >= 39 && LA93_0 <= 40)||LA93_0==98||LA93_0==113) ) {
+                        alt93=1;
                     }
-                    switch (alt92) {
+                    switch (alt93) {
                         case 1 :
-                            // C.g:570:56: expression
+                            // C.g:583:56: expression
                             {
-                            pushFollow(FOLLOW_expression_in_iteration_statement2759);
+                            pushFollow(FOLLOW_expression_in_iteration_statement2808);
                             expression();
 
                             state._fsp--;
@@ -11155,9 +11365,9 @@ public static class STAttrMap extends HashMap {
                     }
 
 
-                    match(input,32,FOLLOW_32_in_iteration_statement2762); if (state.failed) return retval;
+                    match(input,32,FOLLOW_32_in_iteration_statement2811); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_statement_in_iteration_statement2764);
+                    pushFollow(FOLLOW_statement_in_iteration_statement2813);
                     statement();
 
                     state._fsp--;
@@ -11196,7 +11406,7 @@ public static class STAttrMap extends HashMap {
 
 
     // $ANTLR start "jump_statement"
-    // C.g:573:1: jump_statement : ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' );
+    // C.g:586:1: jump_statement : ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' );
     public final CParser.jump_statement_return jump_statement() throws RecognitionException {
         CParser.jump_statement_return retval = new CParser.jump_statement_return();
         retval.start = input.LT(1);
@@ -11206,38 +11416,38 @@ public static class STAttrMap extends HashMap {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
 
-            // C.g:574:2: ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' )
-            int alt94=5;
+            // C.g:587:2: ( 'goto' IDENTIFIER ';' | 'continue' ';' | 'break' ';' | 'return' ';' | 'return' expression ';' )
+            int alt95=5;
             switch ( input.LA(1) ) {
             case 89:
                 {
-                alt94=1;
+                alt95=1;
                 }
                 break;
             case 80:
                 {
-                alt94=2;
+                alt95=2;
                 }
                 break;
             case 76:
                 {
-                alt94=3;
+                alt95=3;
                 }
                 break;
             case 95:
                 {
-                int LA94_4 = input.LA(2);
+                int LA95_4 = input.LA(2);
 
-                if ( (LA94_4==48) ) {
-                    alt94=4;
+                if ( (LA95_4==48) ) {
+                    alt95=4;
                 }
-                else if ( (LA94_4==CHARACTER_LITERAL||LA94_4==DECIMAL_LITERAL||LA94_4==FLOATING_POINT_LITERAL||LA94_4==HEX_LITERAL||LA94_4==IDENTIFIER||LA94_4==OCTAL_LITERAL||LA94_4==STRING_LITERAL||LA94_4==24||LA94_4==29||LA94_4==31||LA94_4==33||(LA94_4 >= 35 && LA94_4 <= 36)||(LA94_4 >= 39 && LA94_4 <= 40)||LA94_4==98||LA94_4==113) ) {
-                    alt94=5;
+                else if ( (LA95_4==CHARACTER_LITERAL||LA95_4==DECIMAL_LITERAL||LA95_4==FLOATING_POINT_LITERAL||LA95_4==HEX_LITERAL||LA95_4==IDENTIFIER||LA95_4==OCTAL_LITERAL||LA95_4==STRING_LITERAL||LA95_4==24||LA95_4==29||LA95_4==31||LA95_4==33||(LA95_4 >= 35 && LA95_4 <= 36)||(LA95_4 >= 39 && LA95_4 <= 40)||LA95_4==98||LA95_4==113) ) {
+                    alt95=5;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 94, 4, input);
+                        new NoViableAltException("", 95, 4, input);
 
                     throw nvae;
 
@@ -11247,63 +11457,63 @@ public static class STAttrMap extends HashMap {
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 94, 0, input);
+                    new NoViableAltException("", 95, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt94) {
+            switch (alt95) {
                 case 1 :
-                    // C.g:574:4: 'goto' IDENTIFIER ';'
+                    // C.g:587:4: 'goto' IDENTIFIER ';'
                     {
-                    match(input,89,FOLLOW_89_in_jump_statement2775); if (state.failed) return retval;
+                    match(input,89,FOLLOW_89_in_jump_statement2824); if (state.failed) return retval;
 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_jump_statement2777); if (state.failed) return retval;
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_jump_statement2826); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2779); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2828); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // C.g:575:4: 'continue' ';'
+                    // C.g:588:4: 'continue' ';'
                     {
-                    match(input,80,FOLLOW_80_in_jump_statement2784); if (state.failed) return retval;
+                    match(input,80,FOLLOW_80_in_jump_statement2833); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2786); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2835); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // C.g:576:4: 'break' ';'
+                    // C.g:589:4: 'break' ';'
                     {
-                    match(input,76,FOLLOW_76_in_jump_statement2791); if (state.failed) return retval;
+                    match(input,76,FOLLOW_76_in_jump_statement2840); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2793); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2842); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // C.g:577:4: 'return' ';'
+                    // C.g:590:4: 'return' ';'
                     {
-                    match(input,95,FOLLOW_95_in_jump_statement2798); if (state.failed) return retval;
+                    match(input,95,FOLLOW_95_in_jump_statement2847); if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2800); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2849); if (state.failed) return retval;
 
                     }
                     break;
                 case 5 :
-                    // C.g:578:4: 'return' expression ';'
+                    // C.g:591:4: 'return' expression ';'
                     {
-                    match(input,95,FOLLOW_95_in_jump_statement2805); if (state.failed) return retval;
+                    match(input,95,FOLLOW_95_in_jump_statement2854); if (state.failed) return retval;
 
-                    pushFollow(FOLLOW_expression_in_jump_statement2807);
+                    pushFollow(FOLLOW_expression_in_jump_statement2856);
                     expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
 
-                    match(input,48,FOLLOW_48_in_jump_statement2809); if (state.failed) return retval;
+                    match(input,48,FOLLOW_48_in_jump_statement2858); if (state.failed) return retval;
 
                     }
                     break;
@@ -11329,10 +11539,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred3_C
     public final void synpred3_C_fragment() throws RecognitionException {
-        // C.g:95:18: ( declaration_specifiers )
-        // C.g:95:18: declaration_specifiers
+        // C.g:100:18: ( declaration_specifiers )
+        // C.g:100:18: declaration_specifiers
         {
-        pushFollow(FOLLOW_declaration_specifiers_in_synpred3_C163);
+        pushFollow(FOLLOW_declaration_specifiers_in_synpred3_C169);
         declaration_specifiers();
 
         state._fsp--;
@@ -11345,38 +11555,38 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred5_C
     public final void synpred5_C_fragment() throws RecognitionException {
-        // C.g:95:16: ( ( declaration_specifiers )? declarator ( declaration )* '{' )
-        // C.g:95:18: ( declaration_specifiers )? declarator ( declaration )* '{'
+        // C.g:100:16: ( ( declaration_specifiers )? declarator ( declaration )* '{' )
+        // C.g:100:18: ( declaration_specifiers )? declarator ( declaration )* '{'
         {
-        // C.g:95:18: ( declaration_specifiers )?
-        int alt95=2;
-        int LA95_0 = input.LA(1);
+        // C.g:100:18: ( declaration_specifiers )?
+        int alt96=2;
+        int LA96_0 = input.LA(1);
 
-        if ( ((LA95_0 >= 66 && LA95_0 <= 68)||(LA95_0 >= 70 && LA95_0 <= 73)||LA95_0==75||(LA95_0 >= 78 && LA95_0 <= 79)||LA95_0==83||(LA95_0 >= 85 && LA95_0 <= 87)||(LA95_0 >= 91 && LA95_0 <= 94)||(LA95_0 >= 96 && LA95_0 <= 97)||(LA95_0 >= 99 && LA95_0 <= 100)||(LA95_0 >= 103 && LA95_0 <= 106)) ) {
-            alt95=1;
+        if ( ((LA96_0 >= 66 && LA96_0 <= 68)||(LA96_0 >= 70 && LA96_0 <= 73)||LA96_0==75||(LA96_0 >= 78 && LA96_0 <= 79)||LA96_0==83||(LA96_0 >= 85 && LA96_0 <= 87)||(LA96_0 >= 91 && LA96_0 <= 94)||(LA96_0 >= 96 && LA96_0 <= 97)||(LA96_0 >= 99 && LA96_0 <= 100)||(LA96_0 >= 103 && LA96_0 <= 106)) ) {
+            alt96=1;
         }
-        else if ( (LA95_0==IDENTIFIER) ) {
+        else if ( (LA96_0==IDENTIFIER) ) {
             switch ( input.LA(2) ) {
                 case 33:
                     {
-                    alt95=1;
+                    alt96=1;
                     }
                     break;
                 case IDENTIFIER:
                     {
-                    int LA95_21 = input.LA(3);
+                    int LA96_21 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 31:
                     {
-                    int LA95_22 = input.LA(3);
+                    int LA96_22 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
@@ -11385,119 +11595,119 @@ public static class STAttrMap extends HashMap {
                 case 93:
                 case 99:
                     {
-                    int LA95_23 = input.LA(3);
+                    int LA96_23 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 105:
                     {
-                    int LA95_24 = input.LA(3);
+                    int LA96_24 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 78:
                     {
-                    int LA95_25 = input.LA(3);
+                    int LA96_25 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 96:
                     {
-                    int LA95_26 = input.LA(3);
+                    int LA96_26 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 91:
                     {
-                    int LA95_27 = input.LA(3);
+                    int LA96_27 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 92:
                     {
-                    int LA95_28 = input.LA(3);
+                    int LA96_28 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 87:
                     {
-                    int LA95_29 = input.LA(3);
+                    int LA96_29 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 83:
                     {
-                    int LA95_30 = input.LA(3);
+                    int LA96_30 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 97:
                     {
-                    int LA95_31 = input.LA(3);
+                    int LA96_31 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 104:
                     {
-                    int LA95_32 = input.LA(3);
+                    int LA96_32 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 66:
                     {
-                    int LA95_33 = input.LA(3);
+                    int LA96_33 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 100:
                 case 103:
                     {
-                    int LA95_34 = input.LA(3);
+                    int LA96_34 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
                 case 85:
                     {
-                    int LA95_35 = input.LA(3);
+                    int LA96_35 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
@@ -11505,10 +11715,10 @@ public static class STAttrMap extends HashMap {
                 case 73:
                 case 106:
                     {
-                    int LA95_36 = input.LA(3);
+                    int LA96_36 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
@@ -11516,10 +11726,10 @@ public static class STAttrMap extends HashMap {
                 case 68:
                 case 79:
                     {
-                    int LA95_37 = input.LA(3);
+                    int LA96_37 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
@@ -11527,21 +11737,21 @@ public static class STAttrMap extends HashMap {
                 case 71:
                 case 94:
                     {
-                    int LA95_38 = input.LA(3);
+                    int LA96_38 = input.LA(3);
 
                     if ( (((synpred3_C()&&synpred3_C())&&(isTypeName(input.LT(1).getText())))) ) {
-                        alt95=1;
+                        alt96=1;
                     }
                     }
                     break;
             }
 
         }
-        switch (alt95) {
+        switch (alt96) {
             case 1 :
-                // C.g:95:18: declaration_specifiers
+                // C.g:100:18: declaration_specifiers
                 {
-                pushFollow(FOLLOW_declaration_specifiers_in_synpred5_C163);
+                pushFollow(FOLLOW_declaration_specifiers_in_synpred5_C169);
                 declaration_specifiers();
 
                 state._fsp--;
@@ -11553,28 +11763,28 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        pushFollow(FOLLOW_declarator_in_synpred5_C166);
+        pushFollow(FOLLOW_declarator_in_synpred5_C172);
         declarator();
 
         state._fsp--;
         if (state.failed) return ;
 
-        // C.g:95:53: ( declaration )*
-        loop96:
+        // C.g:100:53: ( declaration )*
+        loop97:
         do {
-            int alt96=2;
-            int LA96_0 = input.LA(1);
+            int alt97=2;
+            int LA97_0 = input.LA(1);
 
-            if ( (LA96_0==IDENTIFIER||(LA96_0 >= 66 && LA96_0 <= 68)||(LA96_0 >= 70 && LA96_0 <= 73)||LA96_0==75||(LA96_0 >= 78 && LA96_0 <= 79)||LA96_0==83||(LA96_0 >= 85 && LA96_0 <= 87)||(LA96_0 >= 91 && LA96_0 <= 94)||(LA96_0 >= 96 && LA96_0 <= 97)||(LA96_0 >= 99 && LA96_0 <= 100)||(LA96_0 >= 102 && LA96_0 <= 106)) ) {
-                alt96=1;
+            if ( (LA97_0==IDENTIFIER||(LA97_0 >= 66 && LA97_0 <= 68)||(LA97_0 >= 70 && LA97_0 <= 73)||LA97_0==75||(LA97_0 >= 78 && LA97_0 <= 79)||LA97_0==83||(LA97_0 >= 85 && LA97_0 <= 87)||(LA97_0 >= 91 && LA97_0 <= 94)||(LA97_0 >= 96 && LA97_0 <= 97)||(LA97_0 >= 99 && LA97_0 <= 100)||(LA97_0 >= 102 && LA97_0 <= 106)) ) {
+                alt97=1;
             }
 
 
-            switch (alt96) {
+            switch (alt97) {
         	case 1 :
-        	    // C.g:95:53: declaration
+        	    // C.g:100:53: declaration
         	    {
-        	    pushFollow(FOLLOW_declaration_in_synpred5_C168);
+        	    pushFollow(FOLLOW_declaration_in_synpred5_C174);
         	    declaration();
 
         	    state._fsp--;
@@ -11584,12 +11794,12 @@ public static class STAttrMap extends HashMap {
         	    break;
 
         	default :
-        	    break loop96;
+        	    break loop97;
             }
         } while (true);
 
 
-        match(input,108,FOLLOW_108_in_synpred5_C171); if (state.failed) return ;
+        match(input,108,FOLLOW_108_in_synpred5_C177); if (state.failed) return ;
 
         }
 
@@ -11598,21 +11808,21 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred6_C
     public final void synpred6_C_fragment() throws RecognitionException {
-        // C.g:95:4: ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition )
-        // C.g:95:4: ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition
+        // C.g:100:4: ( ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition )
+        // C.g:100:4: ( attribute )? ( ( declaration_specifiers )? declarator ( declaration )* '{' )=> function_definition
         {
-        // C.g:95:4: ( attribute )?
-        int alt97=2;
-        int LA97_0 = input.LA(1);
+        // C.g:100:4: ( attribute )?
+        int alt98=2;
+        int LA98_0 = input.LA(1);
 
-        if ( (LA97_0==60) ) {
-            alt97=1;
+        if ( (LA98_0==60) ) {
+            alt98=1;
         }
-        switch (alt97) {
+        switch (alt98) {
             case 1 :
-                // C.g:95:4: attribute
+                // C.g:100:4: attribute
                 {
-                pushFollow(FOLLOW_attribute_in_synpred6_C157);
+                pushFollow(FOLLOW_attribute_in_synpred6_C163);
                 attribute();
 
                 state._fsp--;
@@ -11624,7 +11834,7 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        pushFollow(FOLLOW_function_definition_in_synpred6_C176);
+        pushFollow(FOLLOW_function_definition_in_synpred6_C182);
         function_definition();
 
         state._fsp--;
@@ -11637,10 +11847,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred8_C
     public final void synpred8_C_fragment() throws RecognitionException {
-        // C.g:97:4: ( declaration )
-        // C.g:97:4: declaration
+        // C.g:102:4: ( declaration )
+        // C.g:102:4: declaration
         {
-        pushFollow(FOLLOW_declaration_in_synpred8_C188);
+        pushFollow(FOLLOW_declaration_in_synpred8_C194);
         declaration();
 
         state._fsp--;
@@ -11653,10 +11863,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred9_C
     public final void synpred9_C_fragment() throws RecognitionException {
-        // C.g:106:4: ( declaration_specifiers )
-        // C.g:106:4: declaration_specifiers
+        // C.g:113:4: ( declaration_specifiers )
+        // C.g:113:4: declaration_specifiers
         {
-        pushFollow(FOLLOW_declaration_specifiers_in_synpred9_C215);
+        pushFollow(FOLLOW_declaration_specifiers_in_synpred9_C226);
         declaration_specifiers();
 
         state._fsp--;
@@ -11669,10 +11879,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred12_C
     public final void synpred12_C_fragment() throws RecognitionException {
-        // C.g:123:14: ( declaration_specifiers )
-        // C.g:123:14: declaration_specifiers
+        // C.g:130:14: ( declaration_specifiers )
+        // C.g:130:14: declaration_specifiers
         {
-        pushFollow(FOLLOW_declaration_specifiers_in_synpred12_C293);
+        pushFollow(FOLLOW_declaration_specifiers_in_synpred12_C304);
         declaration_specifiers();
 
         state._fsp--;
@@ -11685,65 +11895,40 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred20_C
     public final void synpred20_C_fragment() throws RecognitionException {
-        // C.g:140:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers )
-        // C.g:140:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers
+        // C.g:147:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers )
+        // C.g:147:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? ':' assembly_clobbers
         {
-        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred20_C389); if (state.failed) return ;
+        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred20_C400); if (state.failed) return ;
 
-        // C.g:140:20: ( STRING_LITERAL )*
-        loop100:
+        // C.g:147:20: ( STRING_LITERAL )*
+        loop101:
         do {
-            int alt100=2;
-            int LA100_0 = input.LA(1);
+            int alt101=2;
+            int LA101_0 = input.LA(1);
 
-            if ( (LA100_0==STRING_LITERAL) ) {
-                alt100=1;
+            if ( (LA101_0==STRING_LITERAL) ) {
+                alt101=1;
             }
 
 
-            switch (alt100) {
+            switch (alt101) {
         	case 1 :
-        	    // C.g:140:21: STRING_LITERAL
+        	    // C.g:147:21: STRING_LITERAL
         	    {
-        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred20_C392); if (state.failed) return ;
+        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred20_C403); if (state.failed) return ;
 
         	    }
         	    break;
 
         	default :
-        	    break loop100;
+        	    break loop101;
             }
         } while (true);
 
 
-        match(input,47,FOLLOW_47_in_synpred20_C396); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred20_C407); if (state.failed) return ;
 
-        // C.g:140:42: ( assembly_operands )?
-        int alt101=2;
-        int LA101_0 = input.LA(1);
-
-        if ( (LA101_0==STRING_LITERAL||LA101_0==60) ) {
-            alt101=1;
-        }
-        switch (alt101) {
-            case 1 :
-                // C.g:140:42: assembly_operands
-                {
-                pushFollow(FOLLOW_assembly_operands_in_synpred20_C398);
-                assembly_operands();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-
-        }
-
-
-        match(input,47,FOLLOW_47_in_synpred20_C401); if (state.failed) return ;
-
-        // C.g:140:65: ( assembly_operands )?
+        // C.g:147:42: ( assembly_operands )?
         int alt102=2;
         int LA102_0 = input.LA(1);
 
@@ -11752,9 +11937,9 @@ public static class STAttrMap extends HashMap {
         }
         switch (alt102) {
             case 1 :
-                // C.g:140:65: assembly_operands
+                // C.g:147:42: assembly_operands
                 {
-                pushFollow(FOLLOW_assembly_operands_in_synpred20_C403);
+                pushFollow(FOLLOW_assembly_operands_in_synpred20_C409);
                 assembly_operands();
 
                 state._fsp--;
@@ -11766,9 +11951,34 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        match(input,47,FOLLOW_47_in_synpred20_C406); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred20_C412); if (state.failed) return ;
 
-        pushFollow(FOLLOW_assembly_clobbers_in_synpred20_C408);
+        // C.g:147:65: ( assembly_operands )?
+        int alt103=2;
+        int LA103_0 = input.LA(1);
+
+        if ( (LA103_0==STRING_LITERAL||LA103_0==60) ) {
+            alt103=1;
+        }
+        switch (alt103) {
+            case 1 :
+                // C.g:147:65: assembly_operands
+                {
+                pushFollow(FOLLOW_assembly_operands_in_synpred20_C414);
+                assembly_operands();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+
+        }
+
+
+        match(input,47,FOLLOW_47_in_synpred20_C417); if (state.failed) return ;
+
+        pushFollow(FOLLOW_assembly_clobbers_in_synpred20_C419);
         assembly_clobbers();
 
         state._fsp--;
@@ -11781,51 +11991,51 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred24_C
     public final void synpred24_C_fragment() throws RecognitionException {
-        // C.g:141:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? )
-        // C.g:141:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )?
+        // C.g:148:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )? )
+        // C.g:148:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? ':' ( assembly_operands )?
         {
-        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred24_C414); if (state.failed) return ;
+        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred24_C425); if (state.failed) return ;
 
-        // C.g:141:20: ( STRING_LITERAL )*
-        loop103:
+        // C.g:148:20: ( STRING_LITERAL )*
+        loop104:
         do {
-            int alt103=2;
-            int LA103_0 = input.LA(1);
+            int alt104=2;
+            int LA104_0 = input.LA(1);
 
-            if ( (LA103_0==STRING_LITERAL) ) {
-                alt103=1;
+            if ( (LA104_0==STRING_LITERAL) ) {
+                alt104=1;
             }
 
 
-            switch (alt103) {
+            switch (alt104) {
         	case 1 :
-        	    // C.g:141:21: STRING_LITERAL
+        	    // C.g:148:21: STRING_LITERAL
         	    {
-        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred24_C417); if (state.failed) return ;
+        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred24_C428); if (state.failed) return ;
 
         	    }
         	    break;
 
         	default :
-        	    break loop103;
+        	    break loop104;
             }
         } while (true);
 
 
-        match(input,47,FOLLOW_47_in_synpred24_C421); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred24_C432); if (state.failed) return ;
 
-        // C.g:141:42: ( assembly_operands )?
-        int alt104=2;
-        int LA104_0 = input.LA(1);
+        // C.g:148:42: ( assembly_operands )?
+        int alt105=2;
+        int LA105_0 = input.LA(1);
 
-        if ( (LA104_0==STRING_LITERAL||LA104_0==60) ) {
-            alt104=1;
+        if ( (LA105_0==STRING_LITERAL||LA105_0==60) ) {
+            alt105=1;
         }
-        switch (alt104) {
+        switch (alt105) {
             case 1 :
-                // C.g:141:42: assembly_operands
+                // C.g:148:42: assembly_operands
                 {
-                pushFollow(FOLLOW_assembly_operands_in_synpred24_C423);
+                pushFollow(FOLLOW_assembly_operands_in_synpred24_C434);
                 assembly_operands();
 
                 state._fsp--;
@@ -11837,20 +12047,20 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        match(input,47,FOLLOW_47_in_synpred24_C426); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred24_C437); if (state.failed) return ;
 
-        // C.g:141:65: ( assembly_operands )?
-        int alt105=2;
-        int LA105_0 = input.LA(1);
+        // C.g:148:65: ( assembly_operands )?
+        int alt106=2;
+        int LA106_0 = input.LA(1);
 
-        if ( (LA105_0==STRING_LITERAL||LA105_0==60) ) {
-            alt105=1;
+        if ( (LA106_0==STRING_LITERAL||LA106_0==60) ) {
+            alt106=1;
         }
-        switch (alt105) {
+        switch (alt106) {
             case 1 :
-                // C.g:141:65: assembly_operands
+                // C.g:148:65: assembly_operands
                 {
-                pushFollow(FOLLOW_assembly_operands_in_synpred24_C428);
+                pushFollow(FOLLOW_assembly_operands_in_synpred24_C439);
                 assembly_operands();
 
                 state._fsp--;
@@ -11869,51 +12079,51 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred27_C
     public final void synpred27_C_fragment() throws RecognitionException {
-        // C.g:142:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? )
-        // C.g:142:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )?
+        // C.g:149:5: ( STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )? )
+        // C.g:149:5: STRING_LITERAL ( STRING_LITERAL )* ':' ( assembly_operands )?
         {
-        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred27_C435); if (state.failed) return ;
+        match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred27_C446); if (state.failed) return ;
 
-        // C.g:142:20: ( STRING_LITERAL )*
-        loop106:
+        // C.g:149:20: ( STRING_LITERAL )*
+        loop107:
         do {
-            int alt106=2;
-            int LA106_0 = input.LA(1);
+            int alt107=2;
+            int LA107_0 = input.LA(1);
 
-            if ( (LA106_0==STRING_LITERAL) ) {
-                alt106=1;
+            if ( (LA107_0==STRING_LITERAL) ) {
+                alt107=1;
             }
 
 
-            switch (alt106) {
+            switch (alt107) {
         	case 1 :
-        	    // C.g:142:21: STRING_LITERAL
+        	    // C.g:149:21: STRING_LITERAL
         	    {
-        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred27_C438); if (state.failed) return ;
+        	    match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_synpred27_C449); if (state.failed) return ;
 
         	    }
         	    break;
 
         	default :
-        	    break loop106;
+        	    break loop107;
             }
         } while (true);
 
 
-        match(input,47,FOLLOW_47_in_synpred27_C442); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred27_C453); if (state.failed) return ;
 
-        // C.g:142:42: ( assembly_operands )?
-        int alt107=2;
-        int LA107_0 = input.LA(1);
+        // C.g:149:42: ( assembly_operands )?
+        int alt108=2;
+        int LA108_0 = input.LA(1);
 
-        if ( (LA107_0==STRING_LITERAL||LA107_0==60) ) {
-            alt107=1;
+        if ( (LA108_0==STRING_LITERAL||LA108_0==60) ) {
+            alt108=1;
         }
-        switch (alt107) {
+        switch (alt108) {
             case 1 :
-                // C.g:142:42: assembly_operands
+                // C.g:149:42: assembly_operands
                 {
-                pushFollow(FOLLOW_assembly_operands_in_synpred27_C444);
+                pushFollow(FOLLOW_assembly_operands_in_synpred27_C455);
                 assembly_operands();
 
                 state._fsp--;
@@ -11932,10 +12142,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred35_C
     public final void synpred35_C_fragment() throws RecognitionException {
-        // C.g:180:32: ( type_specifier )
-        // C.g:180:32: type_specifier
+        // C.g:187:32: ( type_specifier )
+        // C.g:187:32: type_specifier
         {
-        pushFollow(FOLLOW_type_specifier_in_synpred35_C657);
+        pushFollow(FOLLOW_type_specifier_in_synpred35_C668);
         type_specifier();
 
         state._fsp--;
@@ -11948,10 +12158,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred67_C
     public final void synpred67_C_fragment() throws RecognitionException {
-        // C.g:267:23: ( type_specifier )
-        // C.g:267:23: type_specifier
+        // C.g:274:23: ( type_specifier )
+        // C.g:274:23: type_specifier
         {
-        pushFollow(FOLLOW_type_specifier_in_synpred67_C1031);
+        pushFollow(FOLLOW_type_specifier_in_synpred67_C1042);
         type_specifier();
 
         state._fsp--;
@@ -11964,21 +12174,21 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred76_C
     public final void synpred76_C_fragment() throws RecognitionException {
-        // C.g:295:4: ( ( pointer )? direct_declarator )
-        // C.g:295:4: ( pointer )? direct_declarator
+        // C.g:302:4: ( ( pointer )? direct_declarator )
+        // C.g:302:4: ( pointer )? direct_declarator
         {
-        // C.g:295:4: ( pointer )?
-        int alt110=2;
-        int LA110_0 = input.LA(1);
+        // C.g:302:4: ( pointer )?
+        int alt111=2;
+        int LA111_0 = input.LA(1);
 
-        if ( (LA110_0==33) ) {
-            alt110=1;
+        if ( (LA111_0==33) ) {
+            alt111=1;
         }
-        switch (alt110) {
+        switch (alt111) {
             case 1 :
-                // C.g:295:4: pointer
+                // C.g:302:4: pointer
                 {
-                pushFollow(FOLLOW_pointer_in_synpred76_C1168);
+                pushFollow(FOLLOW_pointer_in_synpred76_C1179);
                 pointer();
 
                 state._fsp--;
@@ -11990,7 +12200,7 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        pushFollow(FOLLOW_direct_declarator_in_synpred76_C1171);
+        pushFollow(FOLLOW_direct_declarator_in_synpred76_C1182);
         direct_declarator();
 
         state._fsp--;
@@ -12003,10 +12213,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred78_C
     public final void synpred78_C_fragment() throws RecognitionException {
-        // C.g:309:9: ( declarator_suffix )
-        // C.g:309:9: declarator_suffix
+        // C.g:320:9: ( declarator_suffix )
+        // C.g:320:9: declarator_suffix
         {
-        pushFollow(FOLLOW_declarator_suffix_in_synpred78_C1220);
+        pushFollow(FOLLOW_declarator_suffix_in_synpred78_C1231);
         declarator_suffix();
 
         state._fsp--;
@@ -12019,18 +12229,18 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred81_C
     public final void synpred81_C_fragment() throws RecognitionException {
-        // C.g:315:9: ( '(' parameter_type_list ')' )
-        // C.g:315:9: '(' parameter_type_list ')'
+        // C.g:326:9: ( '(' parameter_type_list ')' )
+        // C.g:326:9: '(' parameter_type_list ')'
         {
-        match(input,31,FOLLOW_31_in_synpred81_C1260); if (state.failed) return ;
+        match(input,31,FOLLOW_31_in_synpred81_C1271); if (state.failed) return ;
 
-        pushFollow(FOLLOW_parameter_type_list_in_synpred81_C1262);
+        pushFollow(FOLLOW_parameter_type_list_in_synpred81_C1273);
         parameter_type_list();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,32,FOLLOW_32_in_synpred81_C1264); if (state.failed) return ;
+        match(input,32,FOLLOW_32_in_synpred81_C1275); if (state.failed) return ;
 
         }
 
@@ -12039,18 +12249,18 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred82_C
     public final void synpred82_C_fragment() throws RecognitionException {
-        // C.g:316:9: ( '(' identifier_list ')' )
-        // C.g:316:9: '(' identifier_list ')'
+        // C.g:327:9: ( '(' identifier_list ')' )
+        // C.g:327:9: '(' identifier_list ')'
         {
-        match(input,31,FOLLOW_31_in_synpred82_C1274); if (state.failed) return ;
+        match(input,31,FOLLOW_31_in_synpred82_C1285); if (state.failed) return ;
 
-        pushFollow(FOLLOW_identifier_list_in_synpred82_C1276);
+        pushFollow(FOLLOW_identifier_list_in_synpred82_C1287);
         identifier_list();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,32,FOLLOW_32_in_synpred82_C1278); if (state.failed) return ;
+        match(input,32,FOLLOW_32_in_synpred82_C1289); if (state.failed) return ;
 
         }
 
@@ -12059,10 +12269,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred83_C
     public final void synpred83_C_fragment() throws RecognitionException {
-        // C.g:321:8: ( type_qualifier )
-        // C.g:321:8: type_qualifier
+        // C.g:332:8: ( type_qualifier )
+        // C.g:332:8: type_qualifier
         {
-        pushFollow(FOLLOW_type_qualifier_in_synpred83_C1303);
+        pushFollow(FOLLOW_type_qualifier_in_synpred83_C1314);
         type_qualifier();
 
         state._fsp--;
@@ -12075,10 +12285,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred84_C
     public final void synpred84_C_fragment() throws RecognitionException {
-        // C.g:321:24: ( pointer )
-        // C.g:321:24: pointer
+        // C.g:332:24: ( pointer )
+        // C.g:332:24: pointer
         {
-        pushFollow(FOLLOW_pointer_in_synpred84_C1306);
+        pushFollow(FOLLOW_pointer_in_synpred84_C1317);
         pointer();
 
         state._fsp--;
@@ -12091,28 +12301,28 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred85_C
     public final void synpred85_C_fragment() throws RecognitionException {
-        // C.g:321:4: ( '*' ( type_qualifier )+ ( pointer )? )
-        // C.g:321:4: '*' ( type_qualifier )+ ( pointer )?
+        // C.g:332:4: ( '*' ( type_qualifier )+ ( pointer )? )
+        // C.g:332:4: '*' ( type_qualifier )+ ( pointer )?
         {
-        match(input,33,FOLLOW_33_in_synpred85_C1301); if (state.failed) return ;
+        match(input,33,FOLLOW_33_in_synpred85_C1312); if (state.failed) return ;
 
-        // C.g:321:8: ( type_qualifier )+
-        int cnt111=0;
-        loop111:
+        // C.g:332:8: ( type_qualifier )+
+        int cnt112=0;
+        loop112:
         do {
-            int alt111=2;
-            int LA111_0 = input.LA(1);
+            int alt112=2;
+            int LA112_0 = input.LA(1);
 
-            if ( ((LA111_0 >= 67 && LA111_0 <= 68)||(LA111_0 >= 70 && LA111_0 <= 73)||LA111_0==79||LA111_0==94||LA111_0==106) ) {
-                alt111=1;
+            if ( ((LA112_0 >= 67 && LA112_0 <= 68)||(LA112_0 >= 70 && LA112_0 <= 73)||LA112_0==79||LA112_0==94||LA112_0==106) ) {
+                alt112=1;
             }
 
 
-            switch (alt111) {
+            switch (alt112) {
         	case 1 :
-        	    // C.g:321:8: type_qualifier
+        	    // C.g:332:8: type_qualifier
         	    {
-        	    pushFollow(FOLLOW_type_qualifier_in_synpred85_C1303);
+        	    pushFollow(FOLLOW_type_qualifier_in_synpred85_C1314);
         	    type_qualifier();
 
         	    state._fsp--;
@@ -12122,28 +12332,28 @@ public static class STAttrMap extends HashMap {
         	    break;
 
         	default :
-        	    if ( cnt111 >= 1 ) break loop111;
+        	    if ( cnt112 >= 1 ) break loop112;
         	    if (state.backtracking>0) {state.failed=true; return ;}
                     EarlyExitException eee =
-                        new EarlyExitException(111, input);
+                        new EarlyExitException(112, input);
                     throw eee;
             }
-            cnt111++;
+            cnt112++;
         } while (true);
 
 
-        // C.g:321:24: ( pointer )?
-        int alt112=2;
-        int LA112_0 = input.LA(1);
+        // C.g:332:24: ( pointer )?
+        int alt113=2;
+        int LA113_0 = input.LA(1);
 
-        if ( (LA112_0==33) ) {
-            alt112=1;
+        if ( (LA113_0==33) ) {
+            alt113=1;
         }
-        switch (alt112) {
+        switch (alt113) {
             case 1 :
-                // C.g:321:24: pointer
+                // C.g:332:24: pointer
                 {
-                pushFollow(FOLLOW_pointer_in_synpred85_C1306);
+                pushFollow(FOLLOW_pointer_in_synpred85_C1317);
                 pointer();
 
                 state._fsp--;
@@ -12162,12 +12372,12 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred86_C
     public final void synpred86_C_fragment() throws RecognitionException {
-        // C.g:322:4: ( '*' pointer )
-        // C.g:322:4: '*' pointer
+        // C.g:333:4: ( '*' pointer )
+        // C.g:333:4: '*' pointer
         {
-        match(input,33,FOLLOW_33_in_synpred86_C1312); if (state.failed) return ;
+        match(input,33,FOLLOW_33_in_synpred86_C1323); if (state.failed) return ;
 
-        pushFollow(FOLLOW_pointer_in_synpred86_C1314);
+        pushFollow(FOLLOW_pointer_in_synpred86_C1325);
         pointer();
 
         state._fsp--;
@@ -12180,10 +12390,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred89_C
     public final void synpred89_C_fragment() throws RecognitionException {
-        // C.g:335:28: ( declarator )
-        // C.g:335:28: declarator
+        // C.g:346:28: ( declarator )
+        // C.g:346:28: declarator
         {
-        pushFollow(FOLLOW_declarator_in_synpred89_C1369);
+        pushFollow(FOLLOW_declarator_in_synpred89_C1380);
         declarator();
 
         state._fsp--;
@@ -12196,10 +12406,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred90_C
     public final void synpred90_C_fragment() throws RecognitionException {
-        // C.g:335:39: ( abstract_declarator )
-        // C.g:335:39: abstract_declarator
+        // C.g:346:39: ( abstract_declarator )
+        // C.g:346:39: abstract_declarator
         {
-        pushFollow(FOLLOW_abstract_declarator_in_synpred90_C1371);
+        pushFollow(FOLLOW_abstract_declarator_in_synpred90_C1382);
         abstract_declarator();
 
         state._fsp--;
@@ -12212,10 +12422,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred93_C
     public final void synpred93_C_fragment() throws RecognitionException {
-        // C.g:347:12: ( direct_abstract_declarator )
-        // C.g:347:12: direct_abstract_declarator
+        // C.g:358:12: ( direct_abstract_declarator )
+        // C.g:358:12: direct_abstract_declarator
         {
-        pushFollow(FOLLOW_direct_abstract_declarator_in_synpred93_C1418);
+        pushFollow(FOLLOW_direct_abstract_declarator_in_synpred93_C1429);
         direct_abstract_declarator();
 
         state._fsp--;
@@ -12228,10 +12438,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred96_C
     public final void synpred96_C_fragment() throws RecognitionException {
-        // C.g:352:65: ( abstract_declarator_suffix )
-        // C.g:352:65: abstract_declarator_suffix
+        // C.g:363:65: ( abstract_declarator_suffix )
+        // C.g:363:65: abstract_declarator_suffix
         {
-        pushFollow(FOLLOW_abstract_declarator_suffix_in_synpred96_C1449);
+        pushFollow(FOLLOW_abstract_declarator_suffix_in_synpred96_C1460);
         abstract_declarator_suffix();
 
         state._fsp--;
@@ -12244,20 +12454,20 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred109_C
     public final void synpred109_C_fragment() throws RecognitionException {
-        // C.g:386:4: ( '(' type_name ')' cast_expression )
-        // C.g:386:4: '(' type_name ')' cast_expression
+        // C.g:397:4: ( '(' type_name ')' cast_expression )
+        // C.g:397:4: '(' type_name ')' cast_expression
         {
-        match(input,31,FOLLOW_31_in_synpred109_C1619); if (state.failed) return ;
+        match(input,31,FOLLOW_31_in_synpred109_C1630); if (state.failed) return ;
 
-        pushFollow(FOLLOW_type_name_in_synpred109_C1621);
+        pushFollow(FOLLOW_type_name_in_synpred109_C1632);
         type_name();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,32,FOLLOW_32_in_synpred109_C1623); if (state.failed) return ;
+        match(input,32,FOLLOW_32_in_synpred109_C1634); if (state.failed) return ;
 
-        pushFollow(FOLLOW_cast_expression_in_synpred109_C1625);
+        pushFollow(FOLLOW_cast_expression_in_synpred109_C1636);
         cast_expression();
 
         state._fsp--;
@@ -12270,12 +12480,12 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred114_C
     public final void synpred114_C_fragment() throws RecognitionException {
-        // C.g:395:4: ( 'sizeof' unary_expression )
-        // C.g:395:4: 'sizeof' unary_expression
+        // C.g:406:4: ( 'sizeof' unary_expression )
+        // C.g:406:4: 'sizeof' unary_expression
         {
-        match(input,98,FOLLOW_98_in_synpred114_C1667); if (state.failed) return ;
+        match(input,98,FOLLOW_98_in_synpred114_C1678); if (state.failed) return ;
 
-        pushFollow(FOLLOW_unary_expression_in_synpred114_C1669);
+        pushFollow(FOLLOW_unary_expression_in_synpred114_C1680);
         unary_expression();
 
         state._fsp--;
@@ -12288,22 +12498,22 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred136_C
     public final void synpred136_C_fragment() throws RecognitionException {
-        // C.g:444:4: ( lvalue assignment_operator assignment_expression )
-        // C.g:444:4: lvalue assignment_operator assignment_expression
+        // C.g:455:4: ( lvalue assignment_operator assignment_expression )
+        // C.g:455:4: lvalue assignment_operator assignment_expression
         {
-        pushFollow(FOLLOW_lvalue_in_synpred136_C1991);
+        pushFollow(FOLLOW_lvalue_in_synpred136_C2002);
         lvalue();
 
         state._fsp--;
         if (state.failed) return ;
 
-        pushFollow(FOLLOW_assignment_operator_in_synpred136_C1993);
+        pushFollow(FOLLOW_assignment_operator_in_synpred136_C2004);
         assignment_operator();
 
         state._fsp--;
         if (state.failed) return ;
 
-        pushFollow(FOLLOW_assignment_expression_in_synpred136_C1995);
+        pushFollow(FOLLOW_assignment_expression_in_synpred136_C2006);
         assignment_expression();
 
         state._fsp--;
@@ -12316,15 +12526,15 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred163_C
     public final void synpred163_C_fragment() throws RecognitionException {
-        // C.g:505:4: ({...}? expression_statement )
-        // C.g:505:4: {...}? expression_statement
+        // C.g:516:4: ({...}? expression_statement )
+        // C.g:516:4: {...}? expression_statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred163_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_expression_statement_in_synpred163_C2279);
+        pushFollow(FOLLOW_expression_statement_in_synpred163_C2290);
         expression_statement();
 
         state._fsp--;
@@ -12337,10 +12547,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred164_C
     public final void synpred164_C_fragment() throws RecognitionException {
-        // C.g:507:4: ( expression_statement )
-        // C.g:507:4: expression_statement
+        // C.g:518:4: ( expression_statement )
+        // C.g:518:4: expression_statement
         {
-        pushFollow(FOLLOW_expression_statement_in_synpred164_C2303);
+        pushFollow(FOLLOW_expression_statement_in_synpred164_C2314);
         expression_statement();
 
         state._fsp--;
@@ -12353,15 +12563,15 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred165_C
     public final void synpred165_C_fragment() throws RecognitionException {
-        // C.g:508:4: ({...}? selection_statement )
-        // C.g:508:4: {...}? selection_statement
+        // C.g:519:4: ({...}? selection_statement )
+        // C.g:519:4: {...}? selection_statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred165_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_selection_statement_in_synpred165_C2310);
+        pushFollow(FOLLOW_selection_statement_in_synpred165_C2321);
         selection_statement();
 
         state._fsp--;
@@ -12374,10 +12584,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred166_C
     public final void synpred166_C_fragment() throws RecognitionException {
-        // C.g:510:4: ( selection_statement )
-        // C.g:510:4: selection_statement
+        // C.g:521:4: ( selection_statement )
+        // C.g:521:4: selection_statement
         {
-        pushFollow(FOLLOW_selection_statement_in_synpred166_C2334);
+        pushFollow(FOLLOW_selection_statement_in_synpred166_C2345);
         selection_statement();
 
         state._fsp--;
@@ -12390,15 +12600,15 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred167_C
     public final void synpred167_C_fragment() throws RecognitionException {
-        // C.g:511:4: ({...}? iteration_statement )
-        // C.g:511:4: {...}? iteration_statement
+        // C.g:522:4: ({...}? iteration_statement )
+        // C.g:522:4: {...}? iteration_statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred167_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_iteration_statement_in_synpred167_C2341);
+        pushFollow(FOLLOW_iteration_statement_in_synpred167_C2352);
         iteration_statement();
 
         state._fsp--;
@@ -12411,10 +12621,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred168_C
     public final void synpred168_C_fragment() throws RecognitionException {
-        // C.g:513:4: ( iteration_statement )
-        // C.g:513:4: iteration_statement
+        // C.g:524:4: ( iteration_statement )
+        // C.g:524:4: iteration_statement
         {
-        pushFollow(FOLLOW_iteration_statement_in_synpred168_C2365);
+        pushFollow(FOLLOW_iteration_statement_in_synpred168_C2376);
         iteration_statement();
 
         state._fsp--;
@@ -12427,15 +12637,15 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred169_C
     public final void synpred169_C_fragment() throws RecognitionException {
-        // C.g:514:4: ({...}? jump_statement )
-        // C.g:514:4: {...}? jump_statement
+        // C.g:525:4: ({...}? jump_statement )
+        // C.g:525:4: {...}? jump_statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred169_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_jump_statement_in_synpred169_C2372);
+        pushFollow(FOLLOW_jump_statement_in_synpred169_C2383);
         jump_statement();
 
         state._fsp--;
@@ -12448,10 +12658,10 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred170_C
     public final void synpred170_C_fragment() throws RecognitionException {
-        // C.g:517:4: ( jump_statement )
-        // C.g:517:4: jump_statement
+        // C.g:528:4: ( jump_statement )
+        // C.g:528:4: jump_statement
         {
-        pushFollow(FOLLOW_jump_statement_in_synpred170_C2397);
+        pushFollow(FOLLOW_jump_statement_in_synpred170_C2408);
         jump_statement();
 
         state._fsp--;
@@ -12464,25 +12674,25 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred172_C
     public final void synpred172_C_fragment() throws RecognitionException {
-        // C.g:526:4: ({...}? 'case' constant_expression ':' statement )
-        // C.g:526:4: {...}? 'case' constant_expression ':' statement
+        // C.g:537:4: ({...}? 'case' constant_expression ':' statement )
+        // C.g:537:4: {...}? 'case' constant_expression ':' statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred172_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        match(input,77,FOLLOW_77_in_synpred172_C2428); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred172_C2439); if (state.failed) return ;
 
-        pushFollow(FOLLOW_constant_expression_in_synpred172_C2431);
+        pushFollow(FOLLOW_constant_expression_in_synpred172_C2442);
         constant_expression();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,47,FOLLOW_47_in_synpred172_C2433); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred172_C2444); if (state.failed) return ;
 
-        pushFollow(FOLLOW_statement_in_synpred172_C2438);
+        pushFollow(FOLLOW_statement_in_synpred172_C2449);
         statement();
 
         state._fsp--;
@@ -12495,20 +12705,20 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred173_C
     public final void synpred173_C_fragment() throws RecognitionException {
-        // C.g:528:4: ( 'case' constant_expression ':' statement )
-        // C.g:528:4: 'case' constant_expression ':' statement
+        // C.g:539:4: ( 'case' constant_expression ':' statement )
+        // C.g:539:4: 'case' constant_expression ':' statement
         {
-        match(input,77,FOLLOW_77_in_synpred173_C2467); if (state.failed) return ;
+        match(input,77,FOLLOW_77_in_synpred173_C2478); if (state.failed) return ;
 
-        pushFollow(FOLLOW_constant_expression_in_synpred173_C2470);
+        pushFollow(FOLLOW_constant_expression_in_synpred173_C2481);
         constant_expression();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,47,FOLLOW_47_in_synpred173_C2472); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred173_C2483); if (state.failed) return ;
 
-        pushFollow(FOLLOW_statement_in_synpred173_C2474);
+        pushFollow(FOLLOW_statement_in_synpred173_C2485);
         statement();
 
         state._fsp--;
@@ -12521,19 +12731,19 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred174_C
     public final void synpred174_C_fragment() throws RecognitionException {
-        // C.g:529:4: ({...}? 'default' ':' statement )
-        // C.g:529:4: {...}? 'default' ':' statement
+        // C.g:540:4: ({...}? 'default' ':' statement )
+        // C.g:540:4: {...}? 'default' ':' statement
         {
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred174_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        match(input,81,FOLLOW_81_in_synpred174_C2482); if (state.failed) return ;
+        match(input,81,FOLLOW_81_in_synpred174_C2493); if (state.failed) return ;
 
-        match(input,47,FOLLOW_47_in_synpred174_C2484); if (state.failed) return ;
+        match(input,47,FOLLOW_47_in_synpred174_C2495); if (state.failed) return ;
 
-        pushFollow(FOLLOW_statement_in_synpred174_C2488);
+        pushFollow(FOLLOW_statement_in_synpred174_C2499);
         statement();
 
         state._fsp--;
@@ -12546,34 +12756,34 @@ public static class STAttrMap extends HashMap {
 
     // $ANTLR start synpred176_C
     public final void synpred176_C_fragment() throws RecognitionException {
-        // C.g:539:5: ( '{' {...}? declarations ( statement_list )? '}' )
-        // C.g:539:5: '{' {...}? declarations ( statement_list )? '}'
+        // C.g:550:5: ( '{' {...}? declarations ( statement_list )? '}' )
+        // C.g:550:5: '{' {...}? declarations ( statement_list )? '}'
         {
-        match(input,108,FOLLOW_108_in_synpred176_C2539); if (state.failed) return ;
+        match(input,108,FOLLOW_108_in_synpred176_C2550); if (state.failed) return ;
 
         if ( !((InstrumentationInfo_stack.size()>0 && ((InstrumentationInfo_scope)InstrumentationInfo_stack.peek()).isBranch)) ) {
             if (state.backtracking>0) {state.failed=true; return ;}
             throw new FailedPredicateException(input, "synpred176_C", "$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch");
         }
 
-        pushFollow(FOLLOW_declarations_in_synpred176_C2543);
+        pushFollow(FOLLOW_declarations_in_synpred176_C2554);
         declarations();
 
         state._fsp--;
         if (state.failed) return ;
 
-        // C.g:539:131: ( statement_list )?
-        int alt115=2;
-        int LA115_0 = input.LA(1);
+        // C.g:550:131: ( statement_list )?
+        int alt116=2;
+        int LA116_0 = input.LA(1);
 
-        if ( (LA115_0==CHARACTER_LITERAL||LA115_0==DECIMAL_LITERAL||LA115_0==FLOATING_POINT_LITERAL||LA115_0==HEX_LITERAL||LA115_0==IDENTIFIER||LA115_0==OCTAL_LITERAL||LA115_0==STRING_LITERAL||LA115_0==24||LA115_0==29||LA115_0==31||LA115_0==33||(LA115_0 >= 35 && LA115_0 <= 36)||(LA115_0 >= 39 && LA115_0 <= 40)||LA115_0==48||(LA115_0 >= 64 && LA115_0 <= 65)||LA115_0==74||(LA115_0 >= 76 && LA115_0 <= 77)||(LA115_0 >= 80 && LA115_0 <= 82)||(LA115_0 >= 88 && LA115_0 <= 90)||LA115_0==95||LA115_0==98||LA115_0==101||(LA115_0 >= 107 && LA115_0 <= 108)||LA115_0==113) ) {
-            alt115=1;
+        if ( (LA116_0==CHARACTER_LITERAL||LA116_0==DECIMAL_LITERAL||LA116_0==FLOATING_POINT_LITERAL||LA116_0==HEX_LITERAL||LA116_0==IDENTIFIER||LA116_0==OCTAL_LITERAL||LA116_0==STRING_LITERAL||LA116_0==24||LA116_0==29||LA116_0==31||LA116_0==33||(LA116_0 >= 35 && LA116_0 <= 36)||(LA116_0 >= 39 && LA116_0 <= 40)||LA116_0==48||(LA116_0 >= 64 && LA116_0 <= 65)||LA116_0==74||(LA116_0 >= 76 && LA116_0 <= 77)||(LA116_0 >= 80 && LA116_0 <= 82)||(LA116_0 >= 88 && LA116_0 <= 90)||LA116_0==95||LA116_0==98||LA116_0==101||(LA116_0 >= 107 && LA116_0 <= 108)||LA116_0==113) ) {
+            alt116=1;
         }
-        switch (alt115) {
+        switch (alt116) {
             case 1 :
-                // C.g:539:131: statement_list
+                // C.g:550:131: statement_list
                 {
-                pushFollow(FOLLOW_statement_list_in_synpred176_C2547);
+                pushFollow(FOLLOW_statement_list_in_synpred176_C2558);
                 statement_list();
 
                 state._fsp--;
@@ -12585,35 +12795,67 @@ public static class STAttrMap extends HashMap {
         }
 
 
-        match(input,112,FOLLOW_112_in_synpred176_C2553); if (state.failed) return ;
+        match(input,112,FOLLOW_112_in_synpred176_C2564); if (state.failed) return ;
 
         }
 
     }
     // $ANTLR end synpred176_C
 
-    // $ANTLR start synpred177_C
-    public final void synpred177_C_fragment() throws RecognitionException {
-        // C.g:541:10: ( declaration )
-        // C.g:541:10: declaration
+    // $ANTLR start synpred178_C
+    public final void synpred178_C_fragment() throws RecognitionException {
+        // C.g:552:5: ( '{' {...}? declarations ( statement_list )? '}' )
+        // C.g:552:5: '{' {...}? declarations ( statement_list )? '}'
         {
-        pushFollow(FOLLOW_declaration_in_synpred177_C2588);
-        declaration();
+        match(input,108,FOLLOW_108_in_synpred178_C2596); if (state.failed) return ;
+
+        if ( !((InstrumentationMain_stack.size()>0 && ((InstrumentationMain_scope)InstrumentationMain_stack.peek()).isMain)) ) {
+            if (state.backtracking>0) {state.failed=true; return ;}
+            throw new FailedPredicateException(input, "synpred178_C", "$InstrumentationMain.size()>0 && $InstrumentationMain::isMain");
+        }
+
+        pushFollow(FOLLOW_declarations_in_synpred178_C2602);
+        declarations();
 
         state._fsp--;
         if (state.failed) return ;
 
+        // C.g:552:127: ( statement_list )?
+        int alt117=2;
+        int LA117_0 = input.LA(1);
+
+        if ( (LA117_0==CHARACTER_LITERAL||LA117_0==DECIMAL_LITERAL||LA117_0==FLOATING_POINT_LITERAL||LA117_0==HEX_LITERAL||LA117_0==IDENTIFIER||LA117_0==OCTAL_LITERAL||LA117_0==STRING_LITERAL||LA117_0==24||LA117_0==29||LA117_0==31||LA117_0==33||(LA117_0 >= 35 && LA117_0 <= 36)||(LA117_0 >= 39 && LA117_0 <= 40)||LA117_0==48||(LA117_0 >= 64 && LA117_0 <= 65)||LA117_0==74||(LA117_0 >= 76 && LA117_0 <= 77)||(LA117_0 >= 80 && LA117_0 <= 82)||(LA117_0 >= 88 && LA117_0 <= 90)||LA117_0==95||LA117_0==98||LA117_0==101||(LA117_0 >= 107 && LA117_0 <= 108)||LA117_0==113) ) {
+            alt117=1;
+        }
+        switch (alt117) {
+            case 1 :
+                // C.g:552:127: statement_list
+                {
+                pushFollow(FOLLOW_statement_list_in_synpred178_C2604);
+                statement_list();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+
+        }
+
+
+        match(input,112,FOLLOW_112_in_synpred178_C2607); if (state.failed) return ;
+
         }
 
     }
-    // $ANTLR end synpred177_C
+    // $ANTLR end synpred178_C
 
     // $ANTLR start synpred179_C
     public final void synpred179_C_fragment() throws RecognitionException {
-        // C.g:545:4: ( declaration )
-        // C.g:545:4: declaration
+        // C.g:554:10: ( declaration )
+        // C.g:554:10: declaration
         {
-        pushFollow(FOLLOW_declaration_in_synpred179_C2608);
+        pushFollow(FOLLOW_declaration_in_synpred179_C2637);
         declaration();
 
         state._fsp--;
@@ -12623,6 +12865,22 @@ public static class STAttrMap extends HashMap {
 
     }
     // $ANTLR end synpred179_C
+
+    // $ANTLR start synpred181_C
+    public final void synpred181_C_fragment() throws RecognitionException {
+        // C.g:558:4: ( declaration )
+        // C.g:558:4: declaration
+        {
+        pushFollow(FOLLOW_declaration_in_synpred181_C2657);
+        declaration();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred181_C
 
     // Delegated rules
 
@@ -12948,6 +13206,20 @@ public static class STAttrMap extends HashMap {
         state.failed=false;
         return success;
     }
+    public final boolean synpred181_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred181_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred172_C() {
         state.backtracking++;
         int start = input.mark();
@@ -12967,20 +13239,6 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred35_C_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred177_C() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred177_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13051,6 +13309,20 @@ public static class STAttrMap extends HashMap {
         int start = input.mark();
         try {
             synpred114_C_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred178_C() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred178_C_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13193,8 +13465,8 @@ public static class STAttrMap extends HashMap {
     protected DFA46 dfa46 = new DFA46(this);
     protected DFA71 dfa71 = new DFA71(this);
     protected DFA81 dfa81 = new DFA81(this);
-    protected DFA84 dfa84 = new DFA84(this);
-    protected DFA87 dfa87 = new DFA87(this);
+    protected DFA85 dfa85 = new DFA85(this);
+    protected DFA88 dfa88 = new DFA88(this);
     static final String DFA43_eotS =
         "\101\uffff";
     static final String DFA43_eofS =
@@ -13316,7 +13588,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA43_transition;
         }
         public String getDescription() {
-            return "()* loopback of 309:9: ( declarator_suffix )*";
+            return "()* loopback of 320:9: ( declarator_suffix )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -14055,7 +14327,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA45_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 321:8: ( type_qualifier )+";
+            return "()+ loopback of 332:8: ( type_qualifier )+";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -14232,7 +14504,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA46_transition;
         }
         public String getDescription() {
-            return "321:24: ( pointer )?";
+            return "332:24: ( pointer )?";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -14660,7 +14932,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA71_transition;
         }
         public String getDescription() {
-            return "443:1: assignment_expression : ( lvalue assignment_operator assignment_expression | conditional_expression );";
+            return "454:1: assignment_expression : ( lvalue assignment_operator assignment_expression | conditional_expression );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -17025,7 +17297,7 @@ public static class STAttrMap extends HashMap {
             this.transition = DFA81_transition;
         }
         public String getDescription() {
-            return "502:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );";
+            return "513:1: statement : ( labeled_statement | compound_statement |{...}? expression_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$expression_statement.text)| expression_statement |{...}? selection_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$selection_statement.text)| selection_statement |{...}? iteration_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$iteration_statement.text)| iteration_statement |{...}? jump_statement -> instrument_statement(label_number=$InstrumentationStats::labelNumberstatement=$jump_statement.text)| jump_statement | assembly_statement );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -22152,19 +22424,19 @@ public static class STAttrMap extends HashMap {
         }
 
     }
-    static final String DFA84_eotS =
+    static final String DFA85_eotS =
         "\127\uffff";
-    static final String DFA84_eofS =
+    static final String DFA85_eofS =
         "\127\uffff";
-    static final String DFA84_minS =
+    static final String DFA85_minS =
         "\1\4\1\15\55\uffff\1\0\5\uffff\1\0\16\uffff\1\0\22\uffff";
-    static final String DFA84_maxS =
+    static final String DFA85_maxS =
         "\1\161\1\157\55\uffff\1\0\5\uffff\1\0\16\uffff\1\0\22\uffff";
-    static final String DFA84_acceptS =
+    static final String DFA85_acceptS =
         "\2\uffff\1\2\31\uffff\1\1\72\uffff";
-    static final String DFA84_specialS =
+    static final String DFA85_specialS =
         "\57\uffff\1\0\5\uffff\1\1\16\uffff\1\2\22\uffff}>";
-    static final String[] DFA84_transitionS = {
+    static final String[] DFA85_transitionS = {
             "\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\1\1\4\uffff"+
             "\1\2\2\uffff\1\2\2\uffff\1\2\4\uffff\1\2\1\uffff\1\2\1\uffff"+
             "\1\2\1\uffff\2\2\2\uffff\2\2\7\uffff\1\2\17\uffff\2\2\3\34\1"+
@@ -22261,92 +22533,92 @@ public static class STAttrMap extends HashMap {
             ""
     };
 
-    static final short[] DFA84_eot = DFA.unpackEncodedString(DFA84_eotS);
-    static final short[] DFA84_eof = DFA.unpackEncodedString(DFA84_eofS);
-    static final char[] DFA84_min = DFA.unpackEncodedStringToUnsignedChars(DFA84_minS);
-    static final char[] DFA84_max = DFA.unpackEncodedStringToUnsignedChars(DFA84_maxS);
-    static final short[] DFA84_accept = DFA.unpackEncodedString(DFA84_acceptS);
-    static final short[] DFA84_special = DFA.unpackEncodedString(DFA84_specialS);
-    static final short[][] DFA84_transition;
+    static final short[] DFA85_eot = DFA.unpackEncodedString(DFA85_eotS);
+    static final short[] DFA85_eof = DFA.unpackEncodedString(DFA85_eofS);
+    static final char[] DFA85_min = DFA.unpackEncodedStringToUnsignedChars(DFA85_minS);
+    static final char[] DFA85_max = DFA.unpackEncodedStringToUnsignedChars(DFA85_maxS);
+    static final short[] DFA85_accept = DFA.unpackEncodedString(DFA85_acceptS);
+    static final short[] DFA85_special = DFA.unpackEncodedString(DFA85_specialS);
+    static final short[][] DFA85_transition;
 
     static {
-        int numStates = DFA84_transitionS.length;
-        DFA84_transition = new short[numStates][];
+        int numStates = DFA85_transitionS.length;
+        DFA85_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA84_transition[i] = DFA.unpackEncodedString(DFA84_transitionS[i]);
+            DFA85_transition[i] = DFA.unpackEncodedString(DFA85_transitionS[i]);
         }
     }
 
-    class DFA84 extends DFA {
+    class DFA85 extends DFA {
 
-        public DFA84(BaseRecognizer recognizer) {
+        public DFA85(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 84;
-            this.eot = DFA84_eot;
-            this.eof = DFA84_eof;
-            this.min = DFA84_min;
-            this.max = DFA84_max;
-            this.accept = DFA84_accept;
-            this.special = DFA84_special;
-            this.transition = DFA84_transition;
+            this.decisionNumber = 85;
+            this.eot = DFA85_eot;
+            this.eof = DFA85_eof;
+            this.min = DFA85_min;
+            this.max = DFA85_max;
+            this.accept = DFA85_accept;
+            this.special = DFA85_special;
+            this.transition = DFA85_transition;
         }
         public String getDescription() {
-            return "()* loopback of 541:10: ( declaration )*";
+            return "()* loopback of 554:10: ( declaration )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA84_47 = input.LA(1);
+                        int LA85_47 = input.LA(1);
 
                          
-                        int index84_47 = input.index();
+                        int index85_47 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index84_47);
+                        input.seek(index85_47);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 1 : 
-                        int LA84_53 = input.LA(1);
+                        int LA85_53 = input.LA(1);
 
                          
-                        int index84_53 = input.index();
+                        int index85_53 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index84_53);
+                        input.seek(index85_53);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 2 : 
-                        int LA84_68 = input.LA(1);
+                        int LA85_68 = input.LA(1);
 
                          
-                        int index84_68 = input.index();
+                        int index85_68 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred177_C()&&synpred177_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index84_68);
+                        input.seek(index85_68);
 
                         if ( s>=0 ) return s;
                         break;
@@ -22354,25 +22626,25 @@ public static class STAttrMap extends HashMap {
             if (state.backtracking>0) {state.failed=true; return -1;}
 
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 84, _s, input);
+                new NoViableAltException(getDescription(), 85, _s, input);
             error(nvae);
             throw nvae;
         }
 
     }
-    static final String DFA87_eotS =
+    static final String DFA88_eotS =
         "\127\uffff";
-    static final String DFA87_eofS =
+    static final String DFA88_eofS =
         "\127\uffff";
-    static final String DFA87_minS =
+    static final String DFA88_minS =
         "\1\4\1\15\55\uffff\1\0\5\uffff\1\0\16\uffff\1\0\22\uffff";
-    static final String DFA87_maxS =
+    static final String DFA88_maxS =
         "\1\161\1\157\55\uffff\1\0\5\uffff\1\0\16\uffff\1\0\22\uffff";
-    static final String DFA87_acceptS =
+    static final String DFA88_acceptS =
         "\2\uffff\1\2\31\uffff\1\1\72\uffff";
-    static final String DFA87_specialS =
+    static final String DFA88_specialS =
         "\57\uffff\1\0\5\uffff\1\1\16\uffff\1\2\22\uffff}>";
-    static final String[] DFA87_transitionS = {
+    static final String[] DFA88_transitionS = {
             "\1\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\uffff\1\1\4\uffff"+
             "\1\2\2\uffff\1\2\2\uffff\1\2\4\uffff\1\2\1\uffff\1\2\1\uffff"+
             "\1\2\1\uffff\2\2\2\uffff\2\2\7\uffff\1\2\17\uffff\2\2\3\34\1"+
@@ -22469,92 +22741,92 @@ public static class STAttrMap extends HashMap {
             ""
     };
 
-    static final short[] DFA87_eot = DFA.unpackEncodedString(DFA87_eotS);
-    static final short[] DFA87_eof = DFA.unpackEncodedString(DFA87_eofS);
-    static final char[] DFA87_min = DFA.unpackEncodedStringToUnsignedChars(DFA87_minS);
-    static final char[] DFA87_max = DFA.unpackEncodedStringToUnsignedChars(DFA87_maxS);
-    static final short[] DFA87_accept = DFA.unpackEncodedString(DFA87_acceptS);
-    static final short[] DFA87_special = DFA.unpackEncodedString(DFA87_specialS);
-    static final short[][] DFA87_transition;
+    static final short[] DFA88_eot = DFA.unpackEncodedString(DFA88_eotS);
+    static final short[] DFA88_eof = DFA.unpackEncodedString(DFA88_eofS);
+    static final char[] DFA88_min = DFA.unpackEncodedStringToUnsignedChars(DFA88_minS);
+    static final char[] DFA88_max = DFA.unpackEncodedStringToUnsignedChars(DFA88_maxS);
+    static final short[] DFA88_accept = DFA.unpackEncodedString(DFA88_acceptS);
+    static final short[] DFA88_special = DFA.unpackEncodedString(DFA88_specialS);
+    static final short[][] DFA88_transition;
 
     static {
-        int numStates = DFA87_transitionS.length;
-        DFA87_transition = new short[numStates][];
+        int numStates = DFA88_transitionS.length;
+        DFA88_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA87_transition[i] = DFA.unpackEncodedString(DFA87_transitionS[i]);
+            DFA88_transition[i] = DFA.unpackEncodedString(DFA88_transitionS[i]);
         }
     }
 
-    class DFA87 extends DFA {
+    class DFA88 extends DFA {
 
-        public DFA87(BaseRecognizer recognizer) {
+        public DFA88(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 87;
-            this.eot = DFA87_eot;
-            this.eof = DFA87_eof;
-            this.min = DFA87_min;
-            this.max = DFA87_max;
-            this.accept = DFA87_accept;
-            this.special = DFA87_special;
-            this.transition = DFA87_transition;
+            this.decisionNumber = 88;
+            this.eot = DFA88_eot;
+            this.eof = DFA88_eof;
+            this.min = DFA88_min;
+            this.max = DFA88_max;
+            this.accept = DFA88_accept;
+            this.special = DFA88_special;
+            this.transition = DFA88_transition;
         }
         public String getDescription() {
-            return "()* loopback of 545:4: ( declaration )*";
+            return "()* loopback of 558:4: ( declaration )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA87_47 = input.LA(1);
+                        int LA88_47 = input.LA(1);
 
                          
-                        int index87_47 = input.index();
+                        int index88_47 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( ((((isTypeName(input.LT(1).getText()))&&(isTypeName(input.LT(1).getText())))&&synpred181_C())) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index87_47);
+                        input.seek(index88_47);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 1 : 
-                        int LA87_53 = input.LA(1);
+                        int LA88_53 = input.LA(1);
 
                          
-                        int index87_53 = input.index();
+                        int index88_53 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( ((((isTypeName(input.LT(1).getText()))&&(isTypeName(input.LT(1).getText())))&&synpred181_C())) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index87_53);
+                        input.seek(index88_53);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 2 : 
-                        int LA87_68 = input.LA(1);
+                        int LA88_68 = input.LA(1);
 
                          
-                        int index87_68 = input.index();
+                        int index88_68 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (((synpred179_C()&&synpred179_C())&&(isTypeName(input.LT(1).getText())))) ) {s = 28;}
+                        if ( ((((isTypeName(input.LT(1).getText()))&&(isTypeName(input.LT(1).getText())))&&synpred181_C())) ) {s = 28;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index87_68);
+                        input.seek(index88_68);
 
                         if ( s>=0 ) return s;
                         break;
@@ -22562,7 +22834,7 @@ public static class STAttrMap extends HashMap {
             if (state.backtracking>0) {state.failed=true; return -1;}
 
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 87, _s, input);
+                new NoViableAltException(getDescription(), 88, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -22570,470 +22842,478 @@ public static class STAttrMap extends HashMap {
     }
  
 
-    public static final BitSet FOLLOW_external_declaration_in_translation_unit131 = new BitSet(new long[]{0x1000000280002002L,0x000007DB78E8CFFFL});
-    public static final BitSet FOLLOW_attribute_in_external_declaration157 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_function_definition_in_external_declaration176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_external_declaration181 = new BitSet(new long[]{0x0000000000002000L,0x000007DB78E8CBDCL});
-    public static final BitSet FOLLOW_declaration_in_external_declaration183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_external_declaration188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assembly_definition_in_external_declaration193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_function_definition215 = new BitSet(new long[]{0x0000000280002000L});
-    public static final BitSet FOLLOW_declarator_in_function_definition218 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
-    public static final BitSet FOLLOW_declaration_in_function_definition223 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
-    public static final BitSet FOLLOW_compound_statement_in_function_definition226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_compound_statement_in_function_definition235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_attribute255 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_attribute257 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_attribute260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_declaration291 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_declaration_specifiers_in_declaration293 = new BitSet(new long[]{0x0000000280002000L});
-    public static final BitSet FOLLOW_init_declarator_list_in_declaration298 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_declaration300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_declaration306 = new BitSet(new long[]{0x0001000280002000L,0x0000000000000403L});
-    public static final BitSet FOLLOW_init_declarator_list_in_declaration308 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000403L});
-    public static final BitSet FOLLOW_simple_assembly_expression_in_declaration311 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_declaration314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_simple_assembly_expression_in_assembly_definition327 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_assembly_definition329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_asm_keyword_in_simple_assembly_expression343 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_simple_assembly_expression345 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_simple_assembly_expression347 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_simple_assembly_expression349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_asm_keyword_in_assembly_statement364 = new BitSet(new long[]{0x0000000080000000L,0x00000400400083D8L});
-    public static final BitSet FOLLOW_type_qualifier_in_assembly_statement366 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_assembly_statement369 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_assembly_argument_in_assembly_statement371 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_assembly_statement373 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_assembly_statement375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument389 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument392 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument396 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument398 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument401 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument403 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument406 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_assembly_clobbers_in_assembly_argument408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument414 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument417 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument421 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument423 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument426 = new BitSet(new long[]{0x1000000000200002L});
-    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument435 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument438 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_assembly_argument442 = new BitSet(new long[]{0x1000000000200002L});
-    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument451 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument454 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_assembly_operand_in_assembly_operands469 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_assembly_operands479 = new BitSet(new long[]{0x1000000000200000L});
-    public static final BitSet FOLLOW_assembly_operand_in_assembly_operands481 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_60_in_assembly_operand507 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_assembly_operand509 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_assembly_operand511 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_operand518 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_assembly_operand520 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_assembly_operand522 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_assembly_operand524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_clobbers537 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_assembly_clobbers547 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_clobbers549 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_storage_class_specifier_in_declaration_specifiers653 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_type_specifier_in_declaration_specifiers657 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_type_qualifier_in_declaration_specifiers661 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_init_declarator_in_init_declarator_list675 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_init_declarator_list678 = new BitSet(new long[]{0x0000000280002000L});
-    public static final BitSet FOLLOW_init_declarator_in_init_declarator_list680 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_declarator_in_init_declarator693 = new BitSet(new long[]{0x0020000000000002L});
-    public static final BitSet FOLLOW_53_in_init_declarator696 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
-    public static final BitSet FOLLOW_initializer_in_init_declarator698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_volatile_qualifier_in_type_qualifier739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_constant_qualifier_in_type_qualifier744 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_restrict_qualifier_in_type_qualifier749 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_type_specifier844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_type_specifier849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_type_specifier854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_type_specifier859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_type_specifier864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_type_specifier869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_type_specifier874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_type_specifier879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_104_in_type_specifier884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_type_specifier889 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_struct_or_union_specifier_in_type_specifier894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enum_specifier_in_type_specifier899 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_id_in_type_specifier904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_type_id922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_struct_or_union_in_struct_or_union_specifier955 = new BitSet(new long[]{0x0000000000002000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_struct_or_union_specifier957 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_108_in_struct_or_union_specifier960 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_struct_declaration_list_in_struct_or_union_specifier962 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_struct_or_union_specifier964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_struct_or_union_in_struct_or_union_specifier969 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_struct_or_union_specifier971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_struct_declaration_in_struct_declaration_list998 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_specifier_qualifier_list_in_struct_declaration1010 = new BitSet(new long[]{0x0000800280002000L});
-    public static final BitSet FOLLOW_struct_declarator_list_in_struct_declaration1012 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_struct_declaration1014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_qualifier_in_specifier_qualifier_list1027 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_type_specifier_in_specifier_qualifier_list1031 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_struct_declarator_in_struct_declarator_list1045 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_struct_declarator_list1048 = new BitSet(new long[]{0x0000800280002000L});
-    public static final BitSet FOLLOW_struct_declarator_in_struct_declarator_list1050 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_declarator_in_struct_declarator1063 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_47_in_struct_declarator1066 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_struct_declarator1068 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_struct_declarator1075 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_struct_declarator1077 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_enum_specifier1095 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_108_in_enum_specifier1097 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_enumerator_list_in_enum_specifier1099 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_enum_specifier1101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_enum_specifier1106 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enum_specifier1108 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_108_in_enum_specifier1110 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_enumerator_list_in_enum_specifier1112 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_enum_specifier1114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_enum_specifier1119 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enum_specifier1121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enumerator_in_enumerator_list1132 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_enumerator_list1135 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_enumerator_in_enumerator_list1137 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumerator1150 = new BitSet(new long[]{0x0020000000000002L});
-    public static final BitSet FOLLOW_53_in_enumerator1153 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_enumerator1155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointer_in_declarator1168 = new BitSet(new long[]{0x0000000080002000L});
-    public static final BitSet FOLLOW_direct_declarator_in_declarator1171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointer_in_declarator1176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_direct_declarator1191 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_31_in_direct_declarator1202 = new BitSet(new long[]{0x0000000280002000L});
-    public static final BitSet FOLLOW_declarator_in_direct_declarator1204 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_direct_declarator1206 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_declarator_suffix_in_direct_declarator1220 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_60_in_declarator_suffix1234 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_declarator_suffix1236 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_declarator_suffix1238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_declarator_suffix1248 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_declarator_suffix1250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_declarator_suffix1260 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_parameter_type_list_in_declarator_suffix1262 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_declarator_suffix1264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_declarator_suffix1274 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_identifier_list_in_declarator_suffix1276 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_declarator_suffix1278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_declarator_suffix1288 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_declarator_suffix1290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_pointer1301 = new BitSet(new long[]{0x0000000000000000L,0x00000400400083D8L});
-    public static final BitSet FOLLOW_type_qualifier_in_pointer1303 = new BitSet(new long[]{0x0000000200000002L,0x00000400400083D8L});
-    public static final BitSet FOLLOW_pointer_in_pointer1306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_pointer1312 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_pointer_in_pointer1314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_pointer1319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parameter_list_in_parameter_type_list1330 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_parameter_type_list1333 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_parameter_type_list1335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parameter_declaration_in_parameter_list1348 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_parameter_list1351 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_parameter_declaration_in_parameter_list1353 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_parameter_declaration1366 = new BitSet(new long[]{0x1000000280002002L});
-    public static final BitSet FOLLOW_declarator_in_parameter_declaration1369 = new BitSet(new long[]{0x1000000280002002L});
-    public static final BitSet FOLLOW_abstract_declarator_in_parameter_declaration1371 = new BitSet(new long[]{0x1000000280002002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_identifier_list1384 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_identifier_list1387 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_identifier_list1389 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_specifier_qualifier_list_in_type_name1402 = new BitSet(new long[]{0x1000000280000002L});
-    public static final BitSet FOLLOW_abstract_declarator_in_type_name1404 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointer_in_abstract_declarator1416 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_direct_abstract_declarator_in_abstract_declarator1418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_direct_abstract_declarator_in_abstract_declarator1424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_direct_abstract_declarator1437 = new BitSet(new long[]{0x1000000280000000L});
-    public static final BitSet FOLLOW_abstract_declarator_in_direct_abstract_declarator1439 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_direct_abstract_declarator1441 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1445 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1449 = new BitSet(new long[]{0x1000000080000002L});
-    public static final BitSet FOLLOW_60_in_abstract_declarator_suffix1461 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_abstract_declarator_suffix1463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_abstract_declarator_suffix1468 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_abstract_declarator_suffix1470 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_abstract_declarator_suffix1472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_abstract_declarator_suffix1477 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_abstract_declarator_suffix1479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_abstract_declarator_suffix1484 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_parameter_type_list_in_abstract_declarator_suffix1486 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_abstract_declarator_suffix1488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assignment_expression_in_initializer1500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_initializer1505 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
-    public static final BitSet FOLLOW_initializer_list_in_initializer1507 = new BitSet(new long[]{0x0000004000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_38_in_initializer1509 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_initializer1512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_initializer_in_initializer_list1523 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_initializer_list1526 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
-    public static final BitSet FOLLOW_initializer_in_initializer_list1528 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_assignment_expression_in_argument_expression_list1543 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_argument_expression_list1546 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_assignment_expression_in_argument_expression_list1548 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1562 = new BitSet(new long[]{0x0000008800000002L});
-    public static final BitSet FOLLOW_35_in_additive_expression1566 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1568 = new BitSet(new long[]{0x0000008800000002L});
-    public static final BitSet FOLLOW_39_in_additive_expression1572 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1574 = new BitSet(new long[]{0x0000008800000002L});
-    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1588 = new BitSet(new long[]{0x0000200204000002L});
-    public static final BitSet FOLLOW_33_in_multiplicative_expression1592 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1594 = new BitSet(new long[]{0x0000200204000002L});
-    public static final BitSet FOLLOW_45_in_multiplicative_expression1598 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1600 = new BitSet(new long[]{0x0000200204000002L});
-    public static final BitSet FOLLOW_26_in_multiplicative_expression1604 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1606 = new BitSet(new long[]{0x0000200204000002L});
-    public static final BitSet FOLLOW_31_in_cast_expression1619 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_type_name_in_cast_expression1621 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_cast_expression1623 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_cast_expression1625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unary_expression_in_cast_expression1630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_postfix_expression_in_unary_expression1641 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_unary_expression1646 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_unary_expression_in_unary_expression1648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_unary_expression1653 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_unary_expression_in_unary_expression1655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unary_operator_in_unary_expression1660 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_unary_expression1662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_unary_expression1667 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_unary_expression_in_unary_expression1669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_unary_expression1674 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_unary_expression1676 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_type_name_in_unary_expression1678 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_unary_expression1680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primary_expression_in_postfix_expression1693 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_60_in_postfix_expression1707 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_postfix_expression1709 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_postfix_expression1711 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_31_in_postfix_expression1725 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_postfix_expression1727 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_31_in_postfix_expression1741 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_argument_expression_list_in_postfix_expression1743 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_postfix_expression1745 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_43_in_postfix_expression1759 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_postfix_expression1761 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_42_in_postfix_expression1775 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_postfix_expression1777 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_36_in_postfix_expression1791 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_40_in_postfix_expression1805 = new BitSet(new long[]{0x10000D1080000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary_expression1863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_constant_in_primary_expression1868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_primary_expression1873 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_primary_expression1875 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_primary_expression1877 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEX_LITERAL_in_constant1893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OCTAL_LITERAL_in_constant1903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_LITERAL_in_constant1913 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHARACTER_LITERAL_in_constant1923 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_constant1933 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_constant1936 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_FLOATING_POINT_LITERAL_in_constant1948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assignment_expression_in_expression1962 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_38_in_expression1965 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_assignment_expression_in_expression1967 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_conditional_expression_in_constant_expression1980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lvalue_in_assignment_expression1991 = new BitSet(new long[]{0x8428422448000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_assignment_operator_in_assignment_expression1993 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_assignment_expression_in_assignment_expression1995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_conditional_expression_in_assignment_expression2000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unary_expression_in_lvalue2012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logical_or_expression_in_conditional_expression2084 = new BitSet(new long[]{0x0800000000000002L});
-    public static final BitSet FOLLOW_59_in_conditional_expression2087 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_conditional_expression2089 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_conditional_expression2091 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_conditional_expression_in_conditional_expression2093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logical_and_expression_in_logical_or_expression2106 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_111_in_logical_or_expression2109 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_logical_and_expression_in_logical_or_expression2111 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_inclusive_or_expression_in_logical_and_expression2124 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_28_in_logical_and_expression2127 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_inclusive_or_expression_in_logical_and_expression2129 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_exclusive_or_expression_in_inclusive_or_expression2142 = new BitSet(new long[]{0x0000000000000002L,0x0000200000000000L});
-    public static final BitSet FOLLOW_109_in_inclusive_or_expression2145 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_exclusive_or_expression_in_inclusive_or_expression2147 = new BitSet(new long[]{0x0000000000000002L,0x0000200000000000L});
-    public static final BitSet FOLLOW_and_expression_in_exclusive_or_expression2160 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_62_in_exclusive_or_expression2163 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_and_expression_in_exclusive_or_expression2165 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_equality_expression_in_and_expression2178 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_and_expression2181 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_equality_expression_in_and_expression2183 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_relational_expression_in_equality_expression2195 = new BitSet(new long[]{0x0040000002000002L});
-    public static final BitSet FOLLOW_set_in_equality_expression2198 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_relational_expression_in_equality_expression2204 = new BitSet(new long[]{0x0040000002000002L});
-    public static final BitSet FOLLOW_shift_expression_in_relational_expression2217 = new BitSet(new long[]{0x0192000000000002L});
-    public static final BitSet FOLLOW_set_in_relational_expression2220 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_shift_expression_in_relational_expression2230 = new BitSet(new long[]{0x0192000000000002L});
-    public static final BitSet FOLLOW_additive_expression_in_shift_expression2243 = new BitSet(new long[]{0x0204000000000002L});
-    public static final BitSet FOLLOW_set_in_shift_expression2246 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_additive_expression_in_shift_expression2252 = new BitSet(new long[]{0x0204000000000002L});
-    public static final BitSet FOLLOW_labeled_statement_in_statement2266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_compound_statement_in_statement2271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_statement_in_statement2279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_statement_in_statement2303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selection_statement_in_statement2310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selection_statement_in_statement2334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iteration_statement_in_statement2341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iteration_statement_in_statement2365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jump_statement_in_statement2372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jump_statement_in_statement2397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assembly_statement_in_statement2402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_labeled_statement2417 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2419 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_labeled_statement2428 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2431 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2433 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_labeled_statement2467 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2470 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2472 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_labeled_statement2482 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2484 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_labeled_statement2512 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_labeled_statement2514 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_labeled_statement2516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_compound_statement2539 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declarations_in_compound_statement2543 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
-    public static final BitSet FOLLOW_statement_list_in_compound_statement2547 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_compound_statement2553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_compound_statement2585 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declaration_in_compound_statement2588 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_statement_list_in_compound_statement2591 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_compound_statement2594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_declarations2608 = new BitSet(new long[]{0x0000000000002002L,0x000007DB78E8CBDCL});
-    public static final BitSet FOLLOW_statement_in_statement_list2621 = new BitSet(new long[]{0x0001019AA1242A52L,0x0002182487073403L});
-    public static final BitSet FOLLOW_48_in_expression_statement2633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expression_statement2638 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_expression_statement2640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_selection_statement2657 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_selection_statement2659 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_selection_statement2661 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_selection_statement2663 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2667 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_selection_statement2682 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_selection_statement2693 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_selection_statement2695 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_selection_statement2697 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_selection_statement2699 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_selection_statement2701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_iteration_statement2721 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2723 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2725 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2727 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_iteration_statement2734 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2736 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_107_in_iteration_statement2738 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2740 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2742 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2744 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_iteration_statement2746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_iteration_statement2751 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_iteration_statement2753 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2755 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2757 = new BitSet(new long[]{0x0000019BA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_iteration_statement2759 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_iteration_statement2762 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_iteration_statement2764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_jump_statement2775 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_jump_statement2777 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_jump_statement2784 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_jump_statement2791 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_jump_statement2798 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_jump_statement2805 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_expression_in_jump_statement2807 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_jump_statement2809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_synpred3_C163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_synpred5_C163 = new BitSet(new long[]{0x0000000280002000L});
-    public static final BitSet FOLLOW_declarator_in_synpred5_C166 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
-    public static final BitSet FOLLOW_declaration_in_synpred5_C168 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
-    public static final BitSet FOLLOW_108_in_synpred5_C171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_attribute_in_synpred6_C157 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_function_definition_in_synpred6_C176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_synpred8_C188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_synpred9_C215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_specifiers_in_synpred12_C293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred20_C389 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred20_C392 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_synpred20_C396 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_synpred20_C398 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred20_C401 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_synpred20_C403 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred20_C406 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_assembly_clobbers_in_synpred20_C408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred24_C414 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred24_C417 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_synpred24_C421 = new BitSet(new long[]{0x1000800000200000L});
-    public static final BitSet FOLLOW_assembly_operands_in_synpred24_C423 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred24_C426 = new BitSet(new long[]{0x1000000000200002L});
-    public static final BitSet FOLLOW_assembly_operands_in_synpred24_C428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred27_C435 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred27_C438 = new BitSet(new long[]{0x0000800000200000L});
-    public static final BitSet FOLLOW_47_in_synpred27_C442 = new BitSet(new long[]{0x1000000000200002L});
-    public static final BitSet FOLLOW_assembly_operands_in_synpred27_C444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_specifier_in_synpred35_C657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_specifier_in_synpred67_C1031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointer_in_synpred76_C1168 = new BitSet(new long[]{0x0000000080002000L});
-    public static final BitSet FOLLOW_direct_declarator_in_synpred76_C1171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declarator_suffix_in_synpred78_C1220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_synpred81_C1260 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
-    public static final BitSet FOLLOW_parameter_type_list_in_synpred81_C1262 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_synpred81_C1264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_synpred82_C1274 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_identifier_list_in_synpred82_C1276 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_synpred82_C1278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_qualifier_in_synpred83_C1303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointer_in_synpred84_C1306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_synpred85_C1301 = new BitSet(new long[]{0x0000000000000000L,0x00000400400083D8L});
-    public static final BitSet FOLLOW_type_qualifier_in_synpred85_C1303 = new BitSet(new long[]{0x0000000200000002L,0x00000400400083D8L});
-    public static final BitSet FOLLOW_pointer_in_synpred85_C1306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_synpred86_C1312 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_pointer_in_synpred86_C1314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declarator_in_synpred89_C1369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstract_declarator_in_synpred90_C1371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_direct_abstract_declarator_in_synpred93_C1418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstract_declarator_suffix_in_synpred96_C1449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_synpred109_C1619 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
-    public static final BitSet FOLLOW_type_name_in_synpred109_C1621 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_synpred109_C1623 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_cast_expression_in_synpred109_C1625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_synpred114_C1667 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_unary_expression_in_synpred114_C1669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lvalue_in_synpred136_C1991 = new BitSet(new long[]{0x8428422448000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_assignment_operator_in_synpred136_C1993 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_assignment_expression_in_synpred136_C1995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_statement_in_synpred163_C2279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_statement_in_synpred164_C2303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selection_statement_in_synpred165_C2310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selection_statement_in_synpred166_C2334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iteration_statement_in_synpred167_C2341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iteration_statement_in_synpred168_C2365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jump_statement_in_synpred169_C2372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jump_statement_in_synpred170_C2397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_synpred172_C2428 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_synpred172_C2431 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred172_C2433 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred172_C2438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_synpred173_C2467 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
-    public static final BitSet FOLLOW_constant_expression_in_synpred173_C2470 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred173_C2472 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred173_C2474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_synpred174_C2482 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_synpred174_C2484 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
-    public static final BitSet FOLLOW_statement_in_synpred174_C2488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_synpred176_C2539 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
-    public static final BitSet FOLLOW_declarations_in_synpred176_C2543 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
-    public static final BitSet FOLLOW_statement_list_in_synpred176_C2547 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_synpred176_C2553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_synpred177_C2588 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_synpred179_C2608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_external_declaration_in_translation_unit137 = new BitSet(new long[]{0x1000000280002002L,0x000007DB78E8CFFFL});
+    public static final BitSet FOLLOW_attribute_in_external_declaration163 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_function_definition_in_external_declaration182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_external_declaration187 = new BitSet(new long[]{0x0000000000002000L,0x000007DB78E8CBDCL});
+    public static final BitSet FOLLOW_declaration_in_external_declaration189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_external_declaration194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assembly_definition_in_external_declaration199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_function_definition226 = new BitSet(new long[]{0x0000000280002000L});
+    public static final BitSet FOLLOW_declarator_in_function_definition229 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
+    public static final BitSet FOLLOW_declaration_in_function_definition234 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
+    public static final BitSet FOLLOW_compound_statement_in_function_definition237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_compound_statement_in_function_definition246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_attribute266 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_attribute268 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_attribute271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_declaration302 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_declaration_specifiers_in_declaration304 = new BitSet(new long[]{0x0000000280002000L});
+    public static final BitSet FOLLOW_init_declarator_list_in_declaration309 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_declaration311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_declaration317 = new BitSet(new long[]{0x0001000280002000L,0x0000000000000403L});
+    public static final BitSet FOLLOW_init_declarator_list_in_declaration319 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000403L});
+    public static final BitSet FOLLOW_simple_assembly_expression_in_declaration322 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_declaration325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_simple_assembly_expression_in_assembly_definition338 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_assembly_definition340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_asm_keyword_in_simple_assembly_expression354 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_simple_assembly_expression356 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_simple_assembly_expression358 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_simple_assembly_expression360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_asm_keyword_in_assembly_statement375 = new BitSet(new long[]{0x0000000080000000L,0x00000400400083D8L});
+    public static final BitSet FOLLOW_type_qualifier_in_assembly_statement377 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_assembly_statement380 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_assembly_argument_in_assembly_statement382 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_assembly_statement384 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_assembly_statement386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument400 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument403 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument407 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument409 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument412 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument414 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument417 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_assembly_clobbers_in_assembly_argument419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument425 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument428 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument432 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument434 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument437 = new BitSet(new long[]{0x1000000000200002L});
+    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument446 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument449 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_assembly_argument453 = new BitSet(new long[]{0x1000000000200002L});
+    public static final BitSet FOLLOW_assembly_operands_in_assembly_argument455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument462 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_argument465 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_assembly_operand_in_assembly_operands480 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_assembly_operands490 = new BitSet(new long[]{0x1000000000200000L});
+    public static final BitSet FOLLOW_assembly_operand_in_assembly_operands492 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_60_in_assembly_operand518 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_assembly_operand520 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_assembly_operand522 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_operand529 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_assembly_operand531 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_assembly_operand533 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_assembly_operand535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_clobbers548 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_assembly_clobbers558 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_assembly_clobbers560 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_storage_class_specifier_in_declaration_specifiers664 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_type_specifier_in_declaration_specifiers668 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_type_qualifier_in_declaration_specifiers672 = new BitSet(new long[]{0x0000000000002002L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_init_declarator_in_init_declarator_list686 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_init_declarator_list689 = new BitSet(new long[]{0x0000000280002000L});
+    public static final BitSet FOLLOW_init_declarator_in_init_declarator_list691 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_declarator_in_init_declarator704 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_53_in_init_declarator707 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
+    public static final BitSet FOLLOW_initializer_in_init_declarator709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_volatile_qualifier_in_type_qualifier750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_constant_qualifier_in_type_qualifier755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_restrict_qualifier_in_type_qualifier760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_type_specifier855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_type_specifier860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_type_specifier865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_type_specifier870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_type_specifier875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_type_specifier880 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_type_specifier885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_type_specifier890 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_104_in_type_specifier895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_type_specifier900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_struct_or_union_specifier_in_type_specifier905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enum_specifier_in_type_specifier910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_id_in_type_specifier915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_type_id933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_struct_or_union_in_struct_or_union_specifier966 = new BitSet(new long[]{0x0000000000002000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_struct_or_union_specifier968 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_108_in_struct_or_union_specifier971 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_struct_declaration_list_in_struct_or_union_specifier973 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_struct_or_union_specifier975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_struct_or_union_in_struct_or_union_specifier980 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_struct_or_union_specifier982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_struct_declaration_in_struct_declaration_list1009 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_specifier_qualifier_list_in_struct_declaration1021 = new BitSet(new long[]{0x0000800280002000L});
+    public static final BitSet FOLLOW_struct_declarator_list_in_struct_declaration1023 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_struct_declaration1025 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_qualifier_in_specifier_qualifier_list1038 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_type_specifier_in_specifier_qualifier_list1042 = new BitSet(new long[]{0x0000000000002002L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_struct_declarator_in_struct_declarator_list1056 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_struct_declarator_list1059 = new BitSet(new long[]{0x0000800280002000L});
+    public static final BitSet FOLLOW_struct_declarator_in_struct_declarator_list1061 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_declarator_in_struct_declarator1074 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_47_in_struct_declarator1077 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_struct_declarator1079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_struct_declarator1086 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_struct_declarator1088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_enum_specifier1106 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_108_in_enum_specifier1108 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_enumerator_list_in_enum_specifier1110 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_enum_specifier1112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_enum_specifier1117 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enum_specifier1119 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_108_in_enum_specifier1121 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_enumerator_list_in_enum_specifier1123 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_enum_specifier1125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_enum_specifier1130 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enum_specifier1132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumerator_in_enumerator_list1143 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_enumerator_list1146 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_enumerator_in_enumerator_list1148 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumerator1161 = new BitSet(new long[]{0x0020000000000002L});
+    public static final BitSet FOLLOW_53_in_enumerator1164 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_enumerator1166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointer_in_declarator1179 = new BitSet(new long[]{0x0000000080002000L});
+    public static final BitSet FOLLOW_direct_declarator_in_declarator1182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointer_in_declarator1187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_direct_declarator1202 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_31_in_direct_declarator1213 = new BitSet(new long[]{0x0000000280002000L});
+    public static final BitSet FOLLOW_declarator_in_direct_declarator1215 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_direct_declarator1217 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_declarator_suffix_in_direct_declarator1231 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_60_in_declarator_suffix1245 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_declarator_suffix1247 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_declarator_suffix1249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_declarator_suffix1259 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_declarator_suffix1261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_declarator_suffix1271 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_parameter_type_list_in_declarator_suffix1273 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_declarator_suffix1275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_declarator_suffix1285 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_identifier_list_in_declarator_suffix1287 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_declarator_suffix1289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_declarator_suffix1299 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_declarator_suffix1301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_pointer1312 = new BitSet(new long[]{0x0000000000000000L,0x00000400400083D8L});
+    public static final BitSet FOLLOW_type_qualifier_in_pointer1314 = new BitSet(new long[]{0x0000000200000002L,0x00000400400083D8L});
+    public static final BitSet FOLLOW_pointer_in_pointer1317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_pointer1323 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_pointer_in_pointer1325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_pointer1330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parameter_list_in_parameter_type_list1341 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_parameter_type_list1344 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_44_in_parameter_type_list1346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parameter_declaration_in_parameter_list1359 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_parameter_list1362 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_parameter_declaration_in_parameter_list1364 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_parameter_declaration1377 = new BitSet(new long[]{0x1000000280002002L});
+    public static final BitSet FOLLOW_declarator_in_parameter_declaration1380 = new BitSet(new long[]{0x1000000280002002L});
+    public static final BitSet FOLLOW_abstract_declarator_in_parameter_declaration1382 = new BitSet(new long[]{0x1000000280002002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_identifier_list1395 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_identifier_list1398 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_identifier_list1400 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_specifier_qualifier_list_in_type_name1413 = new BitSet(new long[]{0x1000000280000002L});
+    public static final BitSet FOLLOW_abstract_declarator_in_type_name1415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointer_in_abstract_declarator1427 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_direct_abstract_declarator_in_abstract_declarator1429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_direct_abstract_declarator_in_abstract_declarator1435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_direct_abstract_declarator1448 = new BitSet(new long[]{0x1000000280000000L});
+    public static final BitSet FOLLOW_abstract_declarator_in_direct_abstract_declarator1450 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_direct_abstract_declarator1452 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1456 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_abstract_declarator_suffix_in_direct_abstract_declarator1460 = new BitSet(new long[]{0x1000000080000002L});
+    public static final BitSet FOLLOW_60_in_abstract_declarator_suffix1472 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_abstract_declarator_suffix1474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_abstract_declarator_suffix1479 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_abstract_declarator_suffix1481 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_abstract_declarator_suffix1483 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_abstract_declarator_suffix1488 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_abstract_declarator_suffix1490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_abstract_declarator_suffix1495 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_parameter_type_list_in_abstract_declarator_suffix1497 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_abstract_declarator_suffix1499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assignment_expression_in_initializer1511 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_initializer1516 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
+    public static final BitSet FOLLOW_initializer_list_in_initializer1518 = new BitSet(new long[]{0x0000004000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_38_in_initializer1520 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_initializer1523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_initializer_in_initializer_list1534 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_initializer_list1537 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002100400000000L});
+    public static final BitSet FOLLOW_initializer_in_initializer_list1539 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_assignment_expression_in_argument_expression_list1554 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_argument_expression_list1557 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_assignment_expression_in_argument_expression_list1559 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1573 = new BitSet(new long[]{0x0000008800000002L});
+    public static final BitSet FOLLOW_35_in_additive_expression1577 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1579 = new BitSet(new long[]{0x0000008800000002L});
+    public static final BitSet FOLLOW_39_in_additive_expression1583 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_multiplicative_expression_in_additive_expression1585 = new BitSet(new long[]{0x0000008800000002L});
+    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1599 = new BitSet(new long[]{0x0000200204000002L});
+    public static final BitSet FOLLOW_33_in_multiplicative_expression1603 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1605 = new BitSet(new long[]{0x0000200204000002L});
+    public static final BitSet FOLLOW_45_in_multiplicative_expression1609 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1611 = new BitSet(new long[]{0x0000200204000002L});
+    public static final BitSet FOLLOW_26_in_multiplicative_expression1615 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_multiplicative_expression1617 = new BitSet(new long[]{0x0000200204000002L});
+    public static final BitSet FOLLOW_31_in_cast_expression1630 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_type_name_in_cast_expression1632 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_cast_expression1634 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_cast_expression1636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unary_expression_in_cast_expression1641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_postfix_expression_in_unary_expression1652 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_unary_expression1657 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_unary_expression_in_unary_expression1659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_unary_expression1664 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_unary_expression_in_unary_expression1666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unary_operator_in_unary_expression1671 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_unary_expression1673 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_unary_expression1678 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_unary_expression_in_unary_expression1680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_unary_expression1685 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_unary_expression1687 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_type_name_in_unary_expression1689 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_unary_expression1691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primary_expression_in_postfix_expression1704 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_60_in_postfix_expression1718 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_postfix_expression1720 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_postfix_expression1722 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_31_in_postfix_expression1736 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_postfix_expression1738 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_31_in_postfix_expression1752 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_argument_expression_list_in_postfix_expression1754 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_postfix_expression1756 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_43_in_postfix_expression1770 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_postfix_expression1772 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_42_in_postfix_expression1786 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_postfix_expression1788 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_36_in_postfix_expression1802 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_40_in_postfix_expression1816 = new BitSet(new long[]{0x10000D1080000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary_expression1874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_constant_in_primary_expression1879 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_primary_expression1884 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_primary_expression1886 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_primary_expression1888 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEX_LITERAL_in_constant1904 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OCTAL_LITERAL_in_constant1914 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_LITERAL_in_constant1924 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHARACTER_LITERAL_in_constant1934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_constant1944 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_constant1947 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_FLOATING_POINT_LITERAL_in_constant1959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assignment_expression_in_expression1973 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_expression1976 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_assignment_expression_in_expression1978 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_conditional_expression_in_constant_expression1991 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lvalue_in_assignment_expression2002 = new BitSet(new long[]{0x8428422448000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_assignment_operator_in_assignment_expression2004 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_assignment_expression_in_assignment_expression2006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_conditional_expression_in_assignment_expression2011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unary_expression_in_lvalue2023 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_logical_or_expression_in_conditional_expression2095 = new BitSet(new long[]{0x0800000000000002L});
+    public static final BitSet FOLLOW_59_in_conditional_expression2098 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_conditional_expression2100 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_conditional_expression2102 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_conditional_expression_in_conditional_expression2104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_logical_and_expression_in_logical_or_expression2117 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_111_in_logical_or_expression2120 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_logical_and_expression_in_logical_or_expression2122 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_inclusive_or_expression_in_logical_and_expression2135 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_28_in_logical_and_expression2138 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_inclusive_or_expression_in_logical_and_expression2140 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_exclusive_or_expression_in_inclusive_or_expression2153 = new BitSet(new long[]{0x0000000000000002L,0x0000200000000000L});
+    public static final BitSet FOLLOW_109_in_inclusive_or_expression2156 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_exclusive_or_expression_in_inclusive_or_expression2158 = new BitSet(new long[]{0x0000000000000002L,0x0000200000000000L});
+    public static final BitSet FOLLOW_and_expression_in_exclusive_or_expression2171 = new BitSet(new long[]{0x4000000000000002L});
+    public static final BitSet FOLLOW_62_in_exclusive_or_expression2174 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_and_expression_in_exclusive_or_expression2176 = new BitSet(new long[]{0x4000000000000002L});
+    public static final BitSet FOLLOW_equality_expression_in_and_expression2189 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_and_expression2192 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_equality_expression_in_and_expression2194 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_relational_expression_in_equality_expression2206 = new BitSet(new long[]{0x0040000002000002L});
+    public static final BitSet FOLLOW_set_in_equality_expression2209 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_relational_expression_in_equality_expression2215 = new BitSet(new long[]{0x0040000002000002L});
+    public static final BitSet FOLLOW_shift_expression_in_relational_expression2228 = new BitSet(new long[]{0x0192000000000002L});
+    public static final BitSet FOLLOW_set_in_relational_expression2231 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_shift_expression_in_relational_expression2241 = new BitSet(new long[]{0x0192000000000002L});
+    public static final BitSet FOLLOW_additive_expression_in_shift_expression2254 = new BitSet(new long[]{0x0204000000000002L});
+    public static final BitSet FOLLOW_set_in_shift_expression2257 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_additive_expression_in_shift_expression2263 = new BitSet(new long[]{0x0204000000000002L});
+    public static final BitSet FOLLOW_labeled_statement_in_statement2277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_compound_statement_in_statement2282 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_statement_in_statement2290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_statement_in_statement2314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selection_statement_in_statement2321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selection_statement_in_statement2345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_iteration_statement_in_statement2352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_iteration_statement_in_statement2376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_statement2383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_statement2408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assembly_statement_in_statement2413 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_labeled_statement2428 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2430 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_labeled_statement2439 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2442 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2444 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_labeled_statement2478 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_labeled_statement2481 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2483 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_labeled_statement2493 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2495 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_labeled_statement2523 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_labeled_statement2525 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_labeled_statement2527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_compound_statement2550 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_compound_statement2554 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_compound_statement2558 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_compound_statement2564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_compound_statement2596 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_compound_statement2602 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_compound_statement2604 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_compound_statement2607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_compound_statement2634 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declaration_in_compound_statement2637 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_statement_list_in_compound_statement2640 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_compound_statement2643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_declarations2657 = new BitSet(new long[]{0x0000000000002002L,0x000007DB78E8CBDCL});
+    public static final BitSet FOLLOW_statement_in_statement_list2670 = new BitSet(new long[]{0x0001019AA1242A52L,0x0002182487073403L});
+    public static final BitSet FOLLOW_48_in_expression_statement2682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expression_statement2687 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_expression_statement2689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_selection_statement2706 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_selection_statement2708 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_selection_statement2710 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_selection_statement2712 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2716 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_selection_statement2731 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_selection_statement2742 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_selection_statement2744 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_selection_statement2746 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_selection_statement2748 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_selection_statement2750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_iteration_statement2770 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2772 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2774 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2776 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_iteration_statement2783 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2785 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_107_in_iteration_statement2787 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2789 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2791 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2793 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_iteration_statement2795 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_iteration_statement2800 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_iteration_statement2802 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2804 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_statement_in_iteration_statement2806 = new BitSet(new long[]{0x0000019BA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_iteration_statement2808 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_iteration_statement2811 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_iteration_statement2813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_jump_statement2824 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_jump_statement2826 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_jump_statement2833 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_jump_statement2840 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2842 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_jump_statement2847 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_jump_statement2854 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_expression_in_jump_statement2856 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_jump_statement2858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_synpred3_C169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_synpred5_C169 = new BitSet(new long[]{0x0000000280002000L});
+    public static final BitSet FOLLOW_declarator_in_synpred5_C172 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
+    public static final BitSet FOLLOW_declaration_in_synpred5_C174 = new BitSet(new long[]{0x0000000000002000L,0x000017DB78E8CBDCL});
+    public static final BitSet FOLLOW_108_in_synpred5_C177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_attribute_in_synpred6_C163 = new BitSet(new long[]{0x0000000280002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_function_definition_in_synpred6_C182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_synpred8_C194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_synpred9_C226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_specifiers_in_synpred12_C304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred20_C400 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred20_C403 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_synpred20_C407 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_synpred20_C409 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred20_C412 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_synpred20_C414 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred20_C417 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_assembly_clobbers_in_synpred20_C419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred24_C425 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred24_C428 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_synpred24_C432 = new BitSet(new long[]{0x1000800000200000L});
+    public static final BitSet FOLLOW_assembly_operands_in_synpred24_C434 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred24_C437 = new BitSet(new long[]{0x1000000000200002L});
+    public static final BitSet FOLLOW_assembly_operands_in_synpred24_C439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred27_C446 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_STRING_LITERAL_in_synpred27_C449 = new BitSet(new long[]{0x0000800000200000L});
+    public static final BitSet FOLLOW_47_in_synpred27_C453 = new BitSet(new long[]{0x1000000000200002L});
+    public static final BitSet FOLLOW_assembly_operands_in_synpred27_C455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_specifier_in_synpred35_C668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_specifier_in_synpred67_C1042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointer_in_synpred76_C1179 = new BitSet(new long[]{0x0000000080002000L});
+    public static final BitSet FOLLOW_direct_declarator_in_synpred76_C1182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declarator_suffix_in_synpred78_C1231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_synpred81_C1271 = new BitSet(new long[]{0x0000000000002000L,0x0000079B78E8CBDCL});
+    public static final BitSet FOLLOW_parameter_type_list_in_synpred81_C1273 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_synpred81_C1275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_synpred82_C1285 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_identifier_list_in_synpred82_C1287 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_synpred82_C1289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_qualifier_in_synpred83_C1314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointer_in_synpred84_C1317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_synpred85_C1312 = new BitSet(new long[]{0x0000000000000000L,0x00000400400083D8L});
+    public static final BitSet FOLLOW_type_qualifier_in_synpred85_C1314 = new BitSet(new long[]{0x0000000200000002L,0x00000400400083D8L});
+    public static final BitSet FOLLOW_pointer_in_synpred85_C1317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_synpred86_C1323 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_pointer_in_synpred86_C1325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declarator_in_synpred89_C1380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstract_declarator_in_synpred90_C1382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_direct_abstract_declarator_in_synpred93_C1429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstract_declarator_suffix_in_synpred96_C1460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_synpred109_C1630 = new BitSet(new long[]{0x0000000000002000L,0x0000079358A8C3DCL});
+    public static final BitSet FOLLOW_type_name_in_synpred109_C1632 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_synpred109_C1634 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_cast_expression_in_synpred109_C1636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_synpred114_C1678 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_unary_expression_in_synpred114_C1680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lvalue_in_synpred136_C2002 = new BitSet(new long[]{0x8428422448000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_assignment_operator_in_synpred136_C2004 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_assignment_expression_in_synpred136_C2006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_statement_in_synpred163_C2290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_statement_in_synpred164_C2314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selection_statement_in_synpred165_C2321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selection_statement_in_synpred166_C2345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_iteration_statement_in_synpred167_C2352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_iteration_statement_in_synpred168_C2376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_synpred169_C2383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jump_statement_in_synpred170_C2408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_synpred172_C2439 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_synpred172_C2442 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred172_C2444 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred172_C2449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_synpred173_C2478 = new BitSet(new long[]{0x0000019AA1242A50L,0x0002000400000000L});
+    public static final BitSet FOLLOW_constant_expression_in_synpred173_C2481 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred173_C2483 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred173_C2485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_synpred174_C2493 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_synpred174_C2495 = new BitSet(new long[]{0x0001019AA1242A50L,0x0002182487073403L});
+    public static final BitSet FOLLOW_statement_in_synpred174_C2499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_synpred176_C2550 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_synpred176_C2554 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_synpred176_C2558 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_synpred176_C2564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_synpred178_C2596 = new BitSet(new long[]{0x0001019AA1242A50L,0x00031FFFFFEFFFDFL});
+    public static final BitSet FOLLOW_declarations_in_synpred178_C2602 = new BitSet(new long[]{0x0001019AA1242A50L,0x0003182487073403L});
+    public static final BitSet FOLLOW_statement_list_in_synpred178_C2604 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_synpred178_C2607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_synpred179_C2637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_synpred181_C2657 = new BitSet(new long[]{0x0000000000000002L});
 
 }

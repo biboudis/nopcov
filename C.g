@@ -19,10 +19,15 @@ options {
 
 scope Symbols {
     Set types; // only track types in order to get parser working
+    boolean hasMainEntryPoint;
 }
 
 scope InstrumentationInfo {
     boolean isBranch;
+}
+
+scope InstrumentationMain{
+    boolean isFunction;
     boolean isMain;
 }
 
@@ -70,7 +75,7 @@ scope InstrumentationStats;
   $Symbols::types = new HashSet();
 } 
 @after {
-  System.out.println($InstrumentationStats::labelNumber);
+  System.out.println("Probes installed:\n\tBranches: " + $InstrumentationStats::labelNumber);
 }
 	: external_declaration+
 	;
@@ -100,8 +105,10 @@ scope Attribute;
 
 function_definition
 scope Symbols; // put parameters and locals into same scope for now
+scope InstrumentationMain;
 @init { 
   $Symbols::types = new HashSet();
+  $InstrumentationMain::isFunction = true;
 }
 	: declaration_specifiers? declarator 	( declaration+ compound_statement	// K&R style
 				| compound_statement		// ANSI style
@@ -301,7 +308,11 @@ direct_declarator
 			{
 			if ($declaration.size()>0&&$declaration::isTypedef) {
 				$Symbols::types.add($IDENTIFIER.text);
-				System.out.println("define type "+$IDENTIFIER.text);
+				//System.out.println("define type "+$IDENTIFIER.text);
+			}
+			if ( $InstrumentationMain.size()>0 &&  $InstrumentationMain::isFunction && $IDENTIFIER.text.toLowerCase().equals("main") ) {
+				$InstrumentationMain::isMain = true;
+				$Symbols::hasMainEntryPoint = true;
 			}
 			}
 		|	'(' declarator ')'
@@ -538,6 +549,8 @@ scope Symbols; // blocks have a scope of symbols
 }
 	:  '{' {$InstrumentationInfo.size()>0 && $InstrumentationInfo::isBranch}? declarations {$InstrumentationInfo::isBranch = false;} statement_list? {$InstrumentationStats::labelNumber++;}  '}'
 	   	-> instrument_compound_statement(label_number={$InstrumentationStats::labelNumber}, declarations={$declarations.text}, statement_list = {$statement_list.text})
+	|  '{' {$InstrumentationMain.size()>0 && $InstrumentationMain::isMain}? {$InstrumentationMain::isMain = false;} declarations statement_list? '}'
+	   	-> instrument_main(declarations={$declarations.text}, statement_list = {$statement_list.text})
 	|  '{'  declaration* statement_list? '}'  //The case where a block is defined but not as part of another statement.
 	;
 	
