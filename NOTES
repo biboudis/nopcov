@@ -1,3 +1,18 @@
+;;Important publications
+
+;;Probe Removal
+2007 - The Advantages of Post-Link Code Coverage
+2004 - Reducing Coverage Collection Overhead With Disposable Instrumentation
+
+;;Hardware
+2012 - THeME: a system for testing by hardware monitoring events
+
+;;General
+2002 - Efficient Instrumentation for Code Coverage Testing 
+
+;;Parsing
+2002 - Branch Coverage for Arbitrary Languages Made Easy
+
 ;;Init
 gcc -c nopcov.c
 
