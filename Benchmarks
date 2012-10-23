@@ -1,0 +1,23 @@
+Benchmark 1: Compressing gcc source code of 21 MB
+-Flags: gcc -O0 -g
+-Results:
+ gcov    		reported : 36.23% of 2581
+ probe elimination cov 	reported : 329 of 1388
+no instr	|	gcov		|	nopcov
+8.564s		|	9.301		|	8.832s
+
+Benchmark 2: Compressing random text file of 402 MB
+-Flags: gcc -O0 -g
+-Results:
+ gcov    		reported : 39.79% of 2581
+ probe elimination cov 	reported : 341 of 1388
+no instr	|	gcov		|	nopcov
+12m41.140s	|	12m24.694s	|	12m11.042s
+
+Benchmark 3: Compressing random text file of 402 MB
+-Flags: gcc -O1 -g
+-Results:
+ gcov    		reported : 39.79% of 2581
+ probe elimination cov 	reported : 339 of 1388
+no instr	|	gcov		|	nopcov
+6m36.332	|	6m40.543s	|	8m9.572s
