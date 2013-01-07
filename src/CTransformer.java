@@ -19,7 +19,7 @@ public class CTransformer {
 			System.err.println("No input files");
 			return;
 		}
-
+		
 		for (int i = 0; i < args.length; i++) {
 			String outputFile = FilenameUtils.getFullPath(args[i])
 					+ FilenameUtils.getBaseName(args[i]) + "-instrumented."
